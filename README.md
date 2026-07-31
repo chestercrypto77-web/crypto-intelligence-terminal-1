@@ -1,71 +1,65 @@
-# Crypto Intelligence Terminal V5.4.0
+# Crypto Intelligence Terminal V5.3.0
 
-Complete replacement release.
+Complete replacement release based on V5.1.0.
 
-## Main improvements
+## What changed
 
-### Markets
-- Top five holdings in each major narrative category
-- RWA / Tokenisation
-- AI
-- DePIN / Storage
-- Layer 1
-- Layer 2
-- DeFi / DEX
-- Gaming
-- Interoperability
-- Privacy / Payments
-- Meme
-- Each ranking includes 24-hour movement, RVOL, Opportunity Score, momentum and portfolio weight
+- Existing page layout and charcoal visual structure retained
+- Strong green, blue, yellow, orange and red signal language retained
+- Holdings moved out of `app.py` into `holdings.json`
+- Accurate quantities added from all clearly visible portfolio screenshots
+- Holdings classified as Core, Secondary or Legacy
+- Core holdings receive highest intelligence priority
+- Secondary holdings escalate when price, momentum or volume changes materially
+- Legacy positions remain lightweight unless an unusual shift occurs
+- Attention Score added
+- Opportunity Score added
+- Possible Buy, Buy Watch, Hold/Mixed, Possible Sell Watch and Defensive/Sell Review labels added
+- Portfolio concentration and top-five weight added
+- Narrative exposure now reflects the expanded portfolio
+- ONDO and MANTRA added, along with all clearly visible smaller holdings
 
-### Watch
-- Rebuilt as a priority triage desk
-- Surfaces possible-buy watches
-- Surfaces declining and possible-sell watches
-- Promotes Secondary and Legacy holdings when unusual activity develops
-- Explains why each item matters
-- Explains what still needs confirmation
+## Signal reference
 
-### Research
-- Rebuilt as a selected-asset investigation page
-- Shows signal, value, weight, Attention Score, Opportunity Score and risk
-- Supporting and contrary evidence
-- Score breakdown
-- Portfolio context
-- Full comparison matrix behind an expander
+- Green 80–100: Possible Buy / Strong Watch
+- Blue 65–79: Watching / Buy Setup Forming
+- Yellow 50–64: Hold / Mixed
+- Orange 35–49: Declining / Possible Sell Watch
+- Red 0–34: Defensive / Sell Review
 
-### 4H Intelligence
-- New dedicated signature page
-- Core holding selector
-- 30-day and 60-day hourly research windows
-- Strong colour-coded shift signal
-- 6-hour and 24-hour movement
-- RSI 9 direction
-- hourly Relative Volume
-- positive evidence and confirmation gaps
-- hourly EMA trend chart
-- core-portfolio attention snapshot
+These remain research prompts, not automatic trading instructions.
 
-### Signal Lab
-- Retained as a separate manual research tool
-- Broader daily analysis
-- Historical setup testing
-- Supports crypto, stocks and ETFs
+## Updating a holding
+
+Open `holdings.json`, find the asset and change only its `tokens` number.
+
+Example:
+
+```json
+{
+  "symbol": "ONDO",
+  "tokens": 848.8129832
+}
+```
+
+Commit the change and reboot or refresh Streamlit. No Python editing is required.
 
 ## Installation
 
 This is a full replacement package.
 
-1. Delete all current repository contents.
+1. Delete the current repository contents.
 2. Extract this ZIP.
-3. Upload all extracted files to the repository root.
-4. Commit the upload.
+3. Upload all extracted contents to the repository root.
+4. Commit the files.
 5. Reboot the Streamlit app.
 
-Expected files:
+Expected repository contents:
 
-- app.py
-- holdings.json
-- requirements.txt
-- README.md
-- .streamlit/config.toml
+- `app.py`
+- `holdings.json`
+- `requirements.txt`
+- `README.md`
+- `.streamlit/config.toml`
+
+Do not keep an old `pages/` directory.
