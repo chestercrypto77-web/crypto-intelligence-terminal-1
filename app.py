@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "5.4.1"
+APP_VERSION = "5.4.2"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -436,35 +436,42 @@ FOUR_HOUR_UNIVERSE = {
     "RWA / Tokenisation": [
         ("ONDO", "Ondo", "ONDO-USD"), ("LINK", "Chainlink", "LINK-USD"),
         ("POLYX", "Polymesh", "POLYX-USD"), ("MPL", "Maple Finance", "MPL-USD"),
+        ("CFG", "Centrifuge", "CFG-USD"),
     ],
     "AI": [
         ("FET", "Artificial Superintelligence Alliance", "FET-USD"),
         ("RENDER", "Render", "RENDER-USD"), ("TAO", "Bittensor", "TAO22974-USD"),
-        ("NEAR", "NEAR Protocol", "NEAR-USD"),
+        ("NEAR", "NEAR Protocol", "NEAR-USD"), ("AKT", "Akash Network", "AKT-USD"),
     ],
     "Layer 1": [
         ("SOL", "Solana", "SOL-USD"), ("SUI", "Sui", "SUI20947-USD"),
         ("AVAX", "Avalanche", "AVAX-USD"), ("SEI", "Sei", "SEI-USD"),
+        ("ADA", "Cardano", "ADA-USD"),
     ],
     "Layer 2 / Scaling": [
         ("POL", "Polygon", "POL-USD"), ("ARB", "Arbitrum", "ARB11841-USD"),
         ("OP", "Optimism", "OP-USD"), ("IMX", "Immutable", "IMX10603-USD"),
+        ("LRC", "Loopring", "LRC-USD"),
     ],
     "DeFi / DEX": [
         ("AAVE", "Aave", "AAVE-USD"), ("UNI", "Uniswap", "UNI7083-USD"),
         ("RUNE", "THORChain", "RUNE-USD"), ("AERO", "Aerodrome", "AERO29270-USD"),
+        ("CRV", "Curve DAO", "CRV-USD"),
     ],
     "DePIN / Storage": [
         ("FIL", "Filecoin", "FIL-USD"), ("AR", "Arweave", "AR-USD"),
         ("AIOZ", "AIOZ Network", "AIOZ-USD"), ("HNT", "Helium", "HNT-USD"),
+        ("GRT", "The Graph", "GRT-USD"),
     ],
     "Gaming / Metaverse": [
         ("IMX", "Immutable", "IMX10603-USD"), ("SUPER", "SuperVerse", "SUPER-USD"),
         ("GALA", "Gala", "GALA-USD"), ("SAND", "The Sandbox", "SAND-USD"),
+        ("ENJ", "Enjin Coin", "ENJ-USD"),
     ],
     "Privacy / Payments": [
         ("COTI", "COTI", "COTI-USD"), ("XMR", "Monero", "XMR-USD"),
         ("ZEC", "Zcash", "ZEC-USD"), ("XLM", "Stellar", "XLM-USD"),
+        ("XRP", "XRP", "XRP-USD"),
     ],
 }
 
@@ -625,6 +632,28 @@ def render_fourh_scan_row(rank: int, item: dict) -> None:
         f'</div>',
         unsafe_allow_html=True,
     )
+
+
+
+def render_market_top_five_row(rank: int, item: dict) -> None:
+    price_arrow, price_colour = direction_arrow(item["ret24"])
+    volume_arrow, volume_colour = direction_arrow(item["rvol_delta"], 0.10)
+    held = f'{item["portfolio_weight"]:.1f}%' if item["in_portfolio"] else "—"
+    st.markdown(
+        f'<div class="fourh-grid">'
+        f'<div><div class="fourh-asset">{rank}. {esc(item["symbol"])} · {esc(item["name"])}</div>'
+        f'<div class="fourh-name">Portfolio weight {held}</div></div>'
+        f'<div><span class="flow-arrow flow-{price_colour}">{price_arrow}</span> '
+        f'<b>{signed(item["ret24"])}</b><div class="fourh-name">24-hour price</div></div>'
+        f'<div><span class="flow-arrow flow-{volume_colour}">{volume_arrow}</span> '
+        f'<b>{item["rvol_delta"]:+.2f}×</b><div class="fourh-name">RVOL change</div></div>'
+        f'<div><b>{item["rvol"]:.2f}×</b><div class="fourh-name">Current RVOL</div></div>'
+        f'<div>{render_flow_arrow(item["flow"])} <b>{esc(item["flow"]["label"])}</b>'
+        f'<div class="fourh-name">Volume flow</div></div>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
 
 
 def render_objective_card(item: dict, title: str) -> None:
@@ -1089,16 +1118,66 @@ elif selection=="Portfolio":
                 st.write("")
 
 elif selection=="Markets":
-    section("Capital rotation")
-    for start in range(0,min(8,len(portfolio["themes"])),4):
-        cols=st.columns(4)
-        for col,theme in zip(cols,portfolio["themes"][start:start+4]):
-            with col: progress(theme["name"],theme["strength"],f'{signed(theme["change"])} today')
-    section("Portfolio exposure")
-    themes=sorted(portfolio["themes"],key=lambda x:x["value"],reverse=True)
-    cols=st.columns(4)
-    for col,theme in zip(cols,themes[:4]):
-        with col: metric(theme["name"],f'{theme["value"]/portfolio["total"]*100:.1f}%',money(theme["value"]))
+    st.markdown(
+        '<div class="summary-box"><b>Purpose:</b> Show the top five observable market projects '
+        'inside each narrative using price direction, RVOL change, current RVOL and volume flow. '
+        'No prediction score or confidence percentage is used.</div>',
+        unsafe_allow_html=True,
+    )
+
+    with st.spinner("Loading narrative market data..."):
+        market_narratives, market_projects = scan_fourh_universe(portfolio)
+
+    if not market_projects:
+        st.error("Narrative market data is temporarily unavailable. Try refreshing later.")
+    else:
+        section("Top 5 projects by narrative")
+        st.caption(
+            "Projects are ordered within each narrative by fixed volume-flow rules, "
+            "then RVOL change, current RVOL and price direction."
+        )
+
+        narrative_order = []
+        for narrative, items in market_narratives.items():
+            if items:
+                positive = sum(1 for item in items if item["flow"]["label"] == "Positive flow")
+                negative = sum(1 for item in items if item["flow"]["label"] == "Negative flow")
+                average_rvol_change = sum(item["rvol_delta"] for item in items) / len(items)
+                narrative_order.append((narrative, positive - negative, average_rvol_change))
+        narrative_order.sort(key=lambda row: (row[1], row[2]), reverse=True)
+
+        for index, (narrative, _, _) in enumerate(narrative_order):
+            items = market_narratives[narrative][:5]
+            flow_label, flow_arrow, _ = narrative_flow_summary(items)
+            with st.expander(
+                f'{narrative} · {flow_arrow} {flow_label} volume flow · Top {len(items)}',
+                expanded=index < 3,
+            ):
+                for rank, item in enumerate(items, 1):
+                    render_market_top_five_row(rank, item)
+
+        section("Portfolio narrative exposure")
+        themes = sorted(portfolio["themes"], key=lambda x: x["value"], reverse=True)
+        cols = st.columns(4)
+        for col, theme in zip(cols, themes[:4]):
+            with col:
+                metric(
+                    theme["name"],
+                    f'{theme["value"]/portfolio["total"]*100:.1f}%',
+                    money(theme["value"]),
+                )
+
+        section("Arrow rules")
+        st.markdown(
+            '<div class="summary-box">'
+            '<b>Green ↑:</b> price and volume are rising together. '
+            '<b>Red ↓:</b> volume is rising while price falls. '
+            '<b>Blue ↑:</b> volume is rising while price is mostly flat. '
+            '<b>Orange ↓:</b> price rises while volume fades. '
+            '<b>Yellow/Grey →:</b> mixed, falling or stable activity.'
+            '</div>',
+            unsafe_allow_html=True,
+        )
 
 elif selection=="Watch":
     section("Priority briefs")

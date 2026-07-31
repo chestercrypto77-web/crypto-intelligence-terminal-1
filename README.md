@@ -1,21 +1,27 @@
-# Crypto Intelligence Terminal V5.4.1
+# Crypto Intelligence Terminal V5.4.2
 
-Objective-signals update built directly from the official V5.4.0 release.
+Markets Top Five update, built directly from V5.4.1.
 
-## Changes
+## Added to Markets
 
-- Removed the 4H Intelligence score and confidence percentage from view
-- Replaced them with fixed-rule, colour-coded arrows
-- Added separate price direction, RVOL change, current RVOL and volume-flow fields
-- Green up: price and volume rising together
-- Red down: volume rising while price falls
-- Blue up: volume rising before price direction is clear
-- Orange down: price rising while volume fades
-- Yellow or grey: mixed, falling or stable activity
-- Narrative ordering now uses observed volume-flow counts and RVOL change
-- Removed visible health, attention and opportunity scores from the main pages
-- Rebuilt the Research matrix around observable price, volume, RVOL and portfolio-weight data
-- Existing holdings, navigation and Signal Lab remain available
+- Top five projects for every narrative
+- RWA / Tokenisation
+- AI
+- Layer 1
+- Layer 2 / Scaling
+- DeFi / DEX
+- DePIN / Storage
+- Gaming / Metaverse
+- Privacy / Payments
+- 24-hour price direction
+- RVOL change
+- Current RVOL
+- Colour-coded volume-flow arrows
+- Portfolio weight indicator
+- Narrative sections ordered using objective volume-flow rules
+- Existing portfolio narrative exposure retained
+
+No prediction scores or confidence percentages were added.
 
 ## Upload
 
