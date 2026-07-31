@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "5.3.0"
+APP_VERSION = "5.4.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -129,7 +129,16 @@ div[data-testid="stDataFrame"]{border:1px solid var(--line);border-radius:12px;o
 .explain-card{background:#1b1f25;border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;margin:.45rem 0}
 .explain-title{font-weight:800}.explain-meaning{color:var(--muted);font-size:.82rem;margin-top:.28rem;line-height:1.45}
 .component-score{display:flex;justify-content:space-between;align-items:center;margin:.4rem 0;padding:.55rem .65rem;background:#1a1e24;border-radius:9px}
+
+.rank-row{display:grid;grid-template-columns:42px 1.4fr .8fr .8fr .8fr 1.2fr;gap:.55rem;align-items:center;
+background:#1b1f25;border:1px solid var(--line);border-radius:10px;padding:.58rem .7rem;margin:.34rem 0;font-size:.82rem}
+.rank-num{font-size:1rem;font-weight:850;color:var(--blue)}
+.rank-name{font-weight:800}.rank-sub{color:var(--muted);font-size:.72rem}
+.change-pill{border-radius:999px;padding:.18rem .42rem;text-align:center;font-weight:750}
+.change-pill.pos{background:#173524;color:#8ce8ae}.change-pill.neg{background:#431d22;color:#ff9b9b}
+.change-pill.mix{background:#403814;color:#f5d882}
 </style>
+
 
 """
 
@@ -394,6 +403,77 @@ def build_portfolio(rows: list[dict]) -> dict:
             "risk":"HIGH" if weighted_risk>=64 else "MEDIUM" if weighted_risk>=40 else "LOW",
             "themes":themes,"attention":attention,"opportunities":opportunities,
             "concentration":concentration,"top5_weight":top5_weight,"tier_values":dict(tier_values)}
+
+
+
+def category_members(items: list[dict], category: str) -> list[dict]:
+    aliases = {
+        "RWA / Tokenisation": ["RWA", "Tokenisation", "Enterprise"],
+        "AI": ["AI", "Data"],
+        "DePIN / Storage": ["DePIN", "Storage", "Telecom"],
+        "Layer 1": ["Layer 1", "Legacy Layer 1"],
+        "Layer 2": ["Layer 2", "Scaling"],
+        "DeFi / DEX": ["DeFi", "DEX", "Trading"],
+        "Gaming": ["Gaming", "Metaverse"],
+        "Interoperability": ["Interoperability", "Oracle"],
+        "Privacy / Payments": ["Privacy", "Payments"],
+        "Meme": ["Meme"],
+    }
+    terms = aliases.get(category, [category])
+    matched = []
+    for item in items:
+        narrative = item.get("narrative", "")
+        if any(term.lower() in narrative.lower() for term in terms):
+            matched.append(item)
+    return sorted(
+        matched,
+        key=lambda x: (
+            x["opportunity_score"] * 0.45
+            + x["score"] * 0.30
+            + x["attention_score"] * 0.15
+            + x["weight"] * 0.10
+        ),
+        reverse=True,
+    )[:5]
+
+
+def render_rank_row(rank: int, item: dict) -> None:
+    change_class = "pos" if item["change_24h"] > 0 else "neg" if item["change_24h"] < 0 else "mix"
+    st.markdown(
+        f'<div class="rank-row">'
+        f'<div class="rank-num">{rank}</div>'
+        f'<div><div class="rank-name">{esc(item["symbol"])} · {esc(item["name"])}</div>'
+        f'<div class="rank-sub">{esc(item["tier"])} · {esc(item["signal_label"])}</div></div>'
+        f'<div><span class="change-pill {change_class}">{signed(item["change_24h"])}</span></div>'
+        f'<div><b>{item["rvol"]:.2f}×</b><div class="rank-sub">RVOL</div></div>'
+        f'<div><b>{item["opportunity_score"]:.0f}</b><div class="rank-sub">Opportunity</div></div>'
+        f'<div><b>{esc(item["momentum"])}</b><div class="rank-sub">{item["weight"]:.1f}% portfolio</div></div>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+
+def selected_portfolio_item(portfolio: dict, symbol: str) -> dict:
+    return next(item for item in portfolio["items"] if item["symbol"] == symbol)
+
+
+def research_summary(item: dict) -> str:
+    if item["score"] >= 80:
+        direction = "has broad positive agreement and deserves possible-buy investigation"
+    elif item["score"] >= 65:
+        direction = "is improving and belongs on the buy watchlist"
+    elif item["score"] >= 50:
+        direction = "has mixed evidence and currently supports a hold-and-monitor approach"
+    elif item["score"] >= 35:
+        direction = "is declining and deserves possible-sell monitoring"
+    else:
+        direction = "has broad negative agreement and deserves defensive review"
+    return (
+        f'{item["symbol"]} {direction}. Its portfolio weight is {item["weight"]:.1f}%, '
+        f'relative volume is {item["rvol"]:.2f}×, and the current momentum state is '
+        f'{item["momentum"].lower()}. Attention is {item["attention_score"]:.0f}/100 and '
+        f'opportunity is {item["opportunity_score"]:.0f}/100.'
+    )
 
 
 def executive_brief(portfolio: dict) -> str:
@@ -774,7 +854,7 @@ portfolio = build_portfolio(market_rows)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","Signal Lab"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Signal Lab"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · refreshes every 5 minutes")
 
@@ -783,8 +863,9 @@ titles = {
     "Portfolio":("My Portfolio","How am I doing, and which holdings matter most today?"),
     "Markets":("Market Themes","Where is capital moving, and how is your portfolio exposed?"),
     "Watch":("Needs Attention","Only the holdings with the most meaningful changes."),
-    "Research":("Research","The evidence beneath the daily briefing."),
-    "Signal Lab":("Signal Lab","Capture fast shifts early, then confirm them against the broader trend."),
+    "Research":("Research","Investigate one holding and understand exactly why it matters."),
+    "4H Intelligence":("4H Intelligence","Detect short-term behavioural shifts before the daily trend fully turns."),
+    "Signal Lab":("Signal Lab","Manually test any crypto, stock or ETF against the broader trend."),
 }
 page_header(*titles[selection])
 
@@ -846,111 +927,254 @@ elif selection=="Portfolio":
                 st.write("")
 
 elif selection=="Markets":
-    section("Capital rotation")
-    for start in range(0,min(8,len(portfolio["themes"])),4):
+    section("Market pulse")
+    strongest_theme = max(portfolio["themes"], key=lambda x:x["strength"]) if portfolio["themes"] else None
+    weakest_theme = min(portfolio["themes"], key=lambda x:x["strength"]) if portfolio["themes"] else None
+    pulse_cols = st.columns(4)
+    with pulse_cols[0]: metric("Leading narrative", strongest_theme["name"] if strongest_theme else "—", f'{strongest_theme["strength"]:.0f}/100' if strongest_theme else "No data")
+    with pulse_cols[1]: metric("Weakest narrative", weakest_theme["name"] if weakest_theme else "—", f'{weakest_theme["strength"]:.0f}/100' if weakest_theme else "No data")
+    with pulse_cols[2]: metric("Portfolio themes", str(len(portfolio["themes"])), "Narratives represented")
+    with pulse_cols[3]: metric("Top-five concentration", f'{portfolio["top5_weight"]:.1f}%', "Largest five positions")
+
+    section("Narrative strength")
+    for start_idx in range(0,min(8,len(portfolio["themes"])),4):
         cols=st.columns(4)
-        for col,theme in zip(cols,portfolio["themes"][start:start+4]):
+        for col,theme in zip(cols,portfolio["themes"][start_idx:start_idx+4]):
             with col: progress(theme["name"],theme["strength"],f'{signed(theme["change"])} today')
+
+    categories = [
+        "RWA / Tokenisation","AI","DePIN / Storage","Layer 1","Layer 2",
+        "DeFi / DEX","Gaming","Interoperability","Privacy / Payments","Meme"
+    ]
+    section("Top five by category")
+    for category in categories:
+        members = category_members(portfolio["items"], category)
+        if not members:
+            continue
+        with st.expander(f"{category} · Top {len(members)}", expanded=category in ["RWA / Tokenisation","Layer 1","AI"]):
+            header_cols = st.columns([.5,1.7,.8,.8,.8,1.2])
+            header_cols[0].caption("Rank")
+            header_cols[1].caption("Asset")
+            header_cols[2].caption("24h")
+            header_cols[3].caption("RVOL")
+            header_cols[4].caption("Opportunity")
+            header_cols[5].caption("Momentum")
+            for rank,item in enumerate(members,1):
+                render_rank_row(rank,item)
+
     section("Portfolio exposure")
     themes=sorted(portfolio["themes"],key=lambda x:x["value"],reverse=True)
-    cols=st.columns(4)
-    for col,theme in zip(cols,themes[:4]):
-        with col: metric(theme["name"],f'{theme["value"]/portfolio["total"]*100:.1f}%',money(theme["value"]))
+    for start_idx in range(0,min(8,len(themes)),4):
+        cols=st.columns(4)
+        for col,theme in zip(cols,themes[start_idx:start_idx+4]):
+            with col: metric(theme["name"],f'{theme["value"]/portfolio["total"]*100:.1f}%',money(theme["value"]))
 
 elif selection=="Watch":
-    section("Priority briefs")
-    for start in range(0,len(portfolio["attention"]),2):
-        cols=st.columns(2)
-        for col,item in zip(cols,portfolio["attention"][start:start+2]):
-            with col: attention_card(item)
-    section("Interpretation")
-    st.markdown('<div class="summary-box">A watch item is not automatically a buy or sell signal. It means price, participation, risk or momentum has changed enough to deserve closer investigation.</div>',unsafe_allow_html=True)
+    section("Priority watchlist")
+    watch_items = sorted(
+        portfolio["items"],
+        key=lambda x: (
+            x["attention_score"] * .50
+            + abs(x["change_24h"]) * 2.5
+            + x["rvol"] * 8
+            + (12 if x["tier"] == "Core" else 5 if x["tier"] == "Secondary" else 0)
+        ),
+        reverse=True,
+    )[:10]
+
+    watch_cols = st.columns(4)
+    possible_buys = sum(item["score"] >= 65 for item in watch_items)
+    sell_watches = sum(item["score"] < 50 for item in watch_items)
+    promoted = sum(item["tier"] != "Core" and item["attention_score"] >= 65 for item in watch_items)
+    with watch_cols[0]: metric("Items requiring attention",str(len(watch_items)),"Ranked by impact and signal change")
+    with watch_cols[1]: metric("Possible buy watches",str(possible_buys),"Blue or green signals")
+    with watch_cols[2]: metric("Declining / sell watches",str(sell_watches),"Orange or red signals")
+    with watch_cols[3]: metric("Secondary promotions",str(promoted),"Smaller holdings showing unusual activity")
+
+    for item in watch_items:
+        with st.expander(
+            f'{item["symbol"]} · {item["signal_label"]} · Attention {item["attention_score"]:.0f}',
+            expanded=item["attention_score"] >= 75,
+        ):
+            top = st.columns(4)
+            with top[0]: metric("Portfolio impact",f'{item["weight"]:.1f}%',money(item["value"]))
+            with top[1]: metric("Attention",f'{item["attention_score"]:.0f}/100',item["tier"])
+            with top[2]: metric("Opportunity",f'{item["opportunity_score"]:.0f}/100',item["momentum"])
+            with top[3]: metric("Relative volume",f'{item["rvol"]:.2f}×',item["volume_label"])
+
+            left,right = st.columns(2)
+            with left:
+                st.markdown("**Why it matters**")
+                reasons = [
+                    f'24-hour movement is {signed(item["change_24h"])}.',
+                    f'7-day movement is {signed(item["change_7d"])}.',
+                    f'Current signal is {item["signal_label"].lower()}.',
+                    f'Portfolio exposure is {item["weight"]:.1f}%.',
+                ]
+                for reason in reasons:
+                    st.markdown(f"• {reason}")
+            with right:
+                st.markdown("**What still needs confirmation**")
+                confirmations = []
+                if item["rvol"] < 1.15:
+                    confirmations.append("Volume participation is not yet elevated.")
+                if item["score"] < 65:
+                    confirmations.append("The overall evidence score has not reached buy-watch territory.")
+                if item["risk"] == "HIGH":
+                    confirmations.append("Risk remains high despite any improving momentum.")
+                if not confirmations:
+                    confirmations.append("No major confirmation gap is currently visible.")
+                for confirmation in confirmations:
+                    st.markdown(f"• {confirmation}")
+
+    section("Purpose of this page")
+    st.markdown(
+        '<div class="summary-box">Watch is the triage desk. It only surfaces holdings where portfolio impact, '
+        'price movement, volume, momentum or signal quality has changed enough to deserve your attention.</div>',
+        unsafe_allow_html=True,
+    )
 
 elif selection=="Research":
-    section("Intelligence matrix")
-    rows=[]
-    for item in sorted(portfolio["items"],key=lambda x:x["score"],reverse=True):
-        rows.append({"Asset":item["symbol"],"Score":round(item["score"]),"Momentum":item["momentum"],
-                     "Momentum score":round(item["momentum_score"]),"RVOL proxy":round(item["rvol"],2),
-                     "Volume":item["volume_label"],"Attention":round(item["attention_score"]),"Opportunity":round(item["opportunity_score"]),"Signal":item["signal_label"],"24h":signed(item["change_24h"]),
-                     "7d":signed(item["change_7d"]),"Risk":item["risk"],"Narrative":item["narrative"]})
-    st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
-    section("Methodology")
-    st.markdown('<div class="summary-box"><b>Score reference:</b> 80–100 means broad positive agreement, 65–79 means positive evidence worth investigating, 50–64 means mixed evidence, 35–49 means risk is increasing, and below 35 means defensive review. Portfolio Intelligence and Signal Lab use separate scoring models.</div>',unsafe_allow_html=True)
+    section("Select a portfolio asset")
+    symbols = [item["symbol"] for item in sorted(portfolio["items"], key=lambda x:(x["tier"]!="Core",-x["value"]))]
+    selected_symbol = st.selectbox("Holding", symbols)
+    item = selected_portfolio_item(portfolio, selected_symbol)
 
-else:
-    st.markdown('<div class="summary-box"><b>Research signal only.</b> Signal Lab identifies setups worth investigating. It does not provide automatic trading instructions, and every signal should be checked against fundamentals, news, liquidity and personal risk.</div>',unsafe_allow_html=True)
+    render_signal_hero(
+        item["score"],
+        item["signal_label"],
+        "HIGH" if item["score"] >= 75 or item["score"] <= 25 else "MEDIUM",
+    )
 
-    section("Investigate an asset")
-    c1,c2,c3=st.columns([1,1,1])
-    with c1:
-        market=st.selectbox("Market",["Crypto","Stock / ETF"])
-    with c2:
-        default_ticker="SOL" if market=="Crypto" else "AAPL"
-        raw=st.text_input("Ticker",value=default_ticker)
-    with c3:
-        period=st.selectbox("History",["1y","2y","5y"],index=1)
+    cols = st.columns(4)
+    with cols[0]: metric("Current value",money(item["value"]),f'{item["weight"]:.1f}% of portfolio')
+    with cols[1]: metric("Attention",f'{item["attention_score"]:.0f}/100',item["tier"])
+    with cols[2]: metric("Opportunity",f'{item["opportunity_score"]:.0f}/100',item["narrative"])
+    with cols[3]: metric("Risk",item["risk"],f'{item["risk_score"]:.0f}/100 risk score')
 
-    ticker=resolve_ticker(raw,market)
+    section("Research conclusion")
+    st.markdown(f'<div class="summary-box">{esc(research_summary(item))}</div>',unsafe_allow_html=True)
 
-    section("Short-term shift radar")
-    short_left, short_right = st.columns([1, 3])
-    with short_left:
-        short_window = st.selectbox(
-            "Shift window",
-            ["30-day hourly view", "60-day hourly view"],
-            help="Hourly bars help detect changes before they become obvious on daily charts.",
-        )
+    left,right = st.columns(2)
+    with left:
+        section("Supporting evidence")
+        support = []
+        if item["change_24h"] > 0: support.append(f'Price is positive over 24 hours at {signed(item["change_24h"])}.')
+        if item["change_7d"] > 0: support.append(f'Price is positive over seven days at {signed(item["change_7d"])}.')
+        if item["rvol"] >= 1.15: support.append(f'Participation is elevated at {item["rvol"]:.2f}×.')
+        if item["momentum_score"] >= 60: support.append(f'Momentum score is constructive at {item["momentum_score"]:.0f}/100.')
+        if item["score"] >= 65: support.append("The combined evidence score is in possible-buy territory.")
+        if not support: support.append("No strong positive agreement is currently present.")
+        for line in support: st.markdown(f"✓ {line}")
+
+    with right:
+        section("Contrary evidence")
+        caution = []
+        if item["change_24h"] < 0: caution.append(f'Price is negative over 24 hours at {signed(item["change_24h"])}.')
+        if item["change_7d"] < 0: caution.append(f'Price is negative over seven days at {signed(item["change_7d"])}.')
+        if item["rvol"] < .75: caution.append(f'Participation is quiet at {item["rvol"]:.2f}×.')
+        if item["risk"] == "HIGH": caution.append("Risk is elevated.")
+        if item["score"] < 50: caution.append("The combined evidence score is in declining or defensive territory.")
+        if not caution: caution.append("No major contrary evidence is currently present.")
+        for line in caution: st.markdown(f"• {line}")
+
+    section("Score breakdown")
+    score_cols = st.columns(4)
+    with score_cols[0]: progress("Overall intelligence",item["score"],item["signal_label"])
+    with score_cols[1]: progress("Momentum",item["momentum_score"],item["momentum"])
+    with score_cols[2]: progress("Participation",item["volume_score"],f'{item["rvol"]:.2f}× relative volume')
+    with score_cols[3]: progress("Risk quality",100-item["risk_score"],f'{item["risk"]} risk')
+
+    section("Portfolio context")
+    context_cols = st.columns(4)
+    with context_cols[0]: metric("Tier",item["tier"],"Monitoring priority")
+    with context_cols[1]: metric("Narrative",item["narrative"],"Market exposure")
+    with context_cols[2]: metric("Tokens",f'{item["tokens"]:,.6f}',"From holdings.json")
+    with context_cols[3]: metric("Live price",money(item["price"],6 if item["price"] < 1 else 2),source)
+
+    section("Full portfolio matrix")
+    with st.expander("Open comparison table"):
+        rows=[]
+        for row_item in sorted(portfolio["items"],key=lambda x:x["attention_score"],reverse=True):
+            rows.append({"Asset":row_item["symbol"],"Tier":row_item["tier"],"Signal":row_item["signal_label"],
+                         "Score":round(row_item["score"]),"Attention":round(row_item["attention_score"]),
+                         "Opportunity":round(row_item["opportunity_score"]),"RVOL":round(row_item["rvol"],2),
+                         "24h":signed(row_item["change_24h"]),"7d":signed(row_item["change_7d"]),
+                         "Weight":f'{row_item["weight"]:.1f}%',"Narrative":row_item["narrative"]})
+        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+
+elif selection=="4H Intelligence":
+    st.markdown('<div class="summary-box"><b>Signature feature.</b> This page looks for behavioural change on hourly data before the broader daily trend fully confirms.</div>',unsafe_allow_html=True)
+
+    section("Portfolio 4H scanner")
+    core_symbols = [item["symbol"] for item in portfolio["items"] if item["tier"]=="Core"]
+    selected_4h = st.selectbox("Core holding", core_symbols, index=core_symbols.index("COTI") if "COTI" in core_symbols else 0)
+    ticker = resolve_ticker(selected_4h,"Crypto")
+    short_window = st.selectbox("Research window",["30-day hourly view","60-day hourly view"],index=0)
     short_days = 30 if short_window.startswith("30") else 60
 
-    with st.spinner(f"Scanning short-term shifts in {ticker}..."):
+    with st.spinner(f"Scanning {selected_4h} across the 4-hour research framework..."):
         intraday = load_intraday_history(ticker, short_days)
         short_data = add_short_shift_indicators(intraday) if not intraday.empty else pd.DataFrame()
         short_result = short_shift_result(short_data) if not short_data.empty else None
 
     if short_result is None:
-        st.info("Short-term hourly data was unavailable for this ticker.")
+        st.error("Hourly market history was unavailable for this asset.")
     else:
         confidence = (
             "HIGH" if short_result["score"] >= 78 or short_result["score"] <= 22
             else "MEDIUM" if short_result["score"] >= 62 or short_result["score"] <= 38
             else "LOW"
         )
-        render_signal_hero(short_result["score"], short_result["label"], confidence)
+        render_signal_hero(short_result["score"],short_result["label"],confidence)
+        render_score_key()
 
-        cols = st.columns(4)
-        with cols[0]: metric("6-hour move", signed(short_result["ret6"]), "Fast directional check")
-        with cols[1]: metric("24-hour move", signed(short_result["ret24"]), "Current daily shift")
-        with cols[2]: metric("RSI 9", f'{short_result["rsi"]:.1f}', f'6-hour change {short_result["rsi_delta"]:+.1f}')
-        with cols[3]: metric("Hourly RVOL", f'{short_result["rvol"]:.2f}×', f'6-hour change {short_result["rvol_delta"]:+.2f}×')
+        metric_cols = st.columns(4)
+        with metric_cols[0]: metric("6-hour shift",signed(short_result["ret6"]),"Fast direction")
+        with metric_cols[1]: metric("24-hour shift",signed(short_result["ret24"]),"Current behaviour")
+        with metric_cols[2]: metric("RSI 9",f'{short_result["rsi"]:.1f}',f'6-hour change {short_result["rsi_delta"]:+.1f}')
+        with metric_cols[3]: metric("Hourly RVOL",f'{short_result["rvol"]:.2f}×',f'6-hour change {short_result["rvol_delta"]:+.2f}×')
 
-        fast_left, fast_right = st.columns(2)
-        with fast_left:
-            st.markdown('<div class="signal-card"><div class="asset-head"><b>What is shifting positively</b><span class="badge badge-green">Fast evidence</span></div>', unsafe_allow_html=True)
+        left,right = st.columns(2)
+        with left:
+            section("Why the signal improved")
             if short_result["evidence"]:
-                for item in short_result["evidence"]:
-                    st.markdown(f"✓ {item}")
+                for line in short_result["evidence"]: st.markdown(f"✓ {line}")
             else:
                 st.markdown("No strong positive short-term agreement yet.")
-            st.markdown("</div>", unsafe_allow_html=True)
-
-        with fast_right:
-            st.markdown('<div class="signal-card"><div class="asset-head"><b>What still needs confirmation</b><span class="badge badge-amber">Watch</span></div>', unsafe_allow_html=True)
+        with right:
+            section("What still needs confirmation")
             if short_result["cautions"]:
-                for item in short_result["cautions"]:
-                    st.markdown(f"• {item}")
+                for line in short_result["cautions"]: st.markdown(f"• {line}")
             else:
                 st.markdown("No major short-term cautions are present.")
-            st.markdown("</div>", unsafe_allow_html=True)
 
-        st.caption(
-            "This score uses hourly EMA 9/21/55 structure, RSI 9 direction, fast MACD, "
-            "hourly relative volume and 6-hour/24-hour confirmation. It is designed "
-            "to identify behavioural shifts early, not replace the broader daily trend."
-        )
-        st.line_chart(short_result["chart"], use_container_width=True)
+        section("4H trend structure")
+        st.line_chart(short_result["chart"],use_container_width=True)
+        st.caption("The 4H Intelligence score combines hourly EMA 9/21/55 structure, RSI 9 direction, fast MACD, relative volume and 6-hour/24-hour price confirmation. It is an early-warning research signal, not an automatic trade instruction.")
 
-    section("Broader trend confirmation")
+    section("Core portfolio snapshot")
+    core_ranked = sorted([x for x in portfolio["items"] if x["tier"]=="Core"],key=lambda x:x["attention_score"],reverse=True)[:8]
+    cols=st.columns(4)
+    for idx,item in enumerate(core_ranked):
+        with cols[idx%4]:
+            intelligence_card(item,"attention_score","Portfolio attention")
+
+elif selection=="Signal Lab":
+    st.markdown('<div class="summary-box"><b>Manual research tool.</b> Use Signal Lab for broader daily trend analysis and historical testing on any crypto, stock or ETF.</div>',unsafe_allow_html=True)
+
+    section("Investigate an asset")
+    c1,c2,c3=st.columns([1,1,1])
+    with c1:
+        market=st.selectbox("Market",["Crypto","Stock / ETF"],key="signal_market")
+    with c2:
+        default_ticker="SOL" if market=="Crypto" else "AAPL"
+        raw=st.text_input("Ticker",value=default_ticker,key="signal_ticker")
+    with c3:
+        period=st.selectbox("History",["1y","2y","5y"],index=1,key="signal_period")
+    ticker=resolve_ticker(raw,market)
+
+    section("Broader trend research")
     with st.spinner(f"Loading {ticker} daily history..."):
         history=load_history(ticker,period)
 
