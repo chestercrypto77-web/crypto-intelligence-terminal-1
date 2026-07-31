@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "5.4.2"
+APP_VERSION = "5.4.3"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -152,6 +152,13 @@ background:#1b1f25;border:1px solid var(--line);border-radius:11px;padding:.66re
 .objective-row{display:flex;justify-content:space-between;gap:.75rem;border-top:1px solid var(--line);padding:.48rem 0;font-size:.8rem}
 .objective-row:first-of-type{border-top:0}
 .fourh-grid{grid-template-columns:1.35fr .72fr .72fr .72fr .72fr}
+
+
+.live-move-grid{display:grid;grid-template-columns:1.25fr .72fr .72fr .72fr .72fr;gap:.55rem;
+align-items:center;background:#1b1f25;border:1px solid var(--line);border-radius:11px;
+padding:.68rem .78rem;margin:.4rem 0}
+.live-source{font-size:.68rem;color:var(--muted)}
+.candle-up{color:#5ee58d;font-weight:850}.candle-down{color:#ff7373;font-weight:850}
 
 </style>
 
@@ -338,17 +345,150 @@ def get_market_rows():
         return fallback_rows(), "Snapshot fallback"
 
 
-def build_portfolio(rows: list[dict]) -> dict:
+
+@st.cache_data(ttl=120, show_spinner=False)
+def get_portfolio_intraday() -> dict[str, dict]:
+    """Load recent hourly returns for held assets.
+
+    Returns are currency-neutral, so USD hourly data can be used to detect
+    direction even though the portfolio valuation is displayed in AUD.
+    """
+    ticker_to_symbol = {
+        ticker: symbol for symbol, ticker in CRYPTO_TICKERS.items()
+        if symbol in {holding["symbol"] for holding in PORTFOLIO}
+    }
+    tickers = sorted(ticker_to_symbol)
+    if not tickers:
+        return {}
+
+    try:
+        raw = yf.download(
+            tickers,
+            period="5d",
+            interval="1h",
+            auto_adjust=True,
+            progress=False,
+            threads=True,
+            group_by="ticker",
+        )
+    except Exception:
+        return {}
+
+    output = {}
+    for ticker, symbol in ticker_to_symbol.items():
+        try:
+            if isinstance(raw.columns, pd.MultiIndex):
+                if ticker in raw.columns.get_level_values(0):
+                    frame = raw[ticker].copy()
+                elif ticker in raw.columns.get_level_values(-1):
+                    frame = raw.xs(ticker, axis=1, level=-1).copy()
+                else:
+                    continue
+            else:
+                if len(tickers) != 1:
+                    continue
+                frame = raw.copy()
+
+            if not all(col in frame.columns for col in ["Open", "Close", "Volume"]):
+                continue
+
+            frame = frame[["Open", "Close", "Volume"]].dropna(subset=["Close"]).copy()
+            if len(frame) < 25:
+                continue
+
+            close = frame["Close"].astype(float)
+            volume = frame["Volume"].fillna(0).astype(float)
+            latest_time = pd.Timestamp(frame.index[-1])
+            if latest_time.tzinfo is None:
+                latest_time = latest_time.tz_localize("UTC")
+            else:
+                latest_time = latest_time.tz_convert("UTC")
+
+            now_utc = pd.Timestamp.now(tz="UTC")
+            age_minutes = max(0.0, (now_utc - latest_time).total_seconds() / 60)
+
+            def pct(periods: int) -> float:
+                if len(close) <= periods or float(close.iloc[-periods-1]) == 0:
+                    return 0.0
+                return (float(close.iloc[-1]) / float(close.iloc[-periods-1]) - 1) * 100
+
+            rolling_volume = volume.rolling(20).mean().replace(0, np.nan)
+            rvol_series = volume / rolling_volume
+            current_rvol = float(rvol_series.iloc[-1]) if pd.notna(rvol_series.iloc[-1]) else 1.0
+            previous_rvol = float(rvol_series.iloc[-7]) if len(rvol_series) >= 7 and pd.notna(rvol_series.iloc[-7]) else current_rvol
+
+            last_six = frame.tail(6)
+            green_candles = int((last_six["Close"] > last_six["Open"]).sum())
+            red_candles = int((last_six["Close"] < last_six["Open"]).sum())
+
+            output[symbol] = {
+                "change_1h": pct(1),
+                "change_6h": pct(6),
+                "change_24h": pct(24),
+                "hourly_rvol": current_rvol,
+                "hourly_rvol_delta": current_rvol - previous_rvol,
+                "green_candles_6h": green_candles,
+                "red_candles_6h": red_candles,
+                "latest_time": latest_time.isoformat(),
+                "age_minutes": age_minutes,
+                "fresh": age_minutes <= 240,
+            }
+        except Exception:
+            continue
+    return output
+
+
+def parse_last_updated(value) -> pd.Timestamp | None:
+    try:
+        timestamp = pd.Timestamp(value)
+        if timestamp.tzinfo is None:
+            timestamp = timestamp.tz_localize("UTC")
+        else:
+            timestamp = timestamp.tz_convert("UTC")
+        return timestamp
+    except Exception:
+        return None
+
+
+
+def build_portfolio(rows: list[dict], intraday: dict[str, dict] | None = None) -> dict:
     row_map = {str(row.get("id")): row for row in rows}
+    intraday = intraday or {}
     items, total = [], 0.0
     for holding in PORTFOLIO:
         row = row_map.get(holding["coin_id"], {})
         price = float(row.get("current_price") or 0)
-        ch24 = float(row.get("price_change_percentage_24h") or 0)
-        ch7 = float(row.get("price_change_percentage_7d_in_currency") or ch24)
+        cg_ch24 = float(row.get("price_change_percentage_24h") or 0)
+        ch7 = float(row.get("price_change_percentage_7d_in_currency") or cg_ch24)
         volume = float(row.get("total_volume") or 0)
         market_cap = float(row.get("market_cap") or 1)
-        rvol = clamp(.70 + (volume/max(market_cap,1))*8 + abs(ch24)/25, .35, 3.0)
+
+        hourly = intraday.get(holding["symbol"], {})
+        cg_updated = parse_last_updated(row.get("last_updated"))
+        now_utc = pd.Timestamp.now(tz="UTC")
+        cg_age_minutes = (
+            max(0.0, (now_utc - cg_updated).total_seconds() / 60)
+            if cg_updated is not None else 999999.0
+        )
+        hourly_fresh = bool(hourly.get("fresh"))
+        hourly_age = float(hourly.get("age_minutes", 999999.0))
+
+        # Use the freshest available 24-hour return. This avoids a stale provider
+        # masking a fast move that is already visible in hourly candles.
+        use_hourly_move = hourly_fresh and (
+            cg_age_minutes > 20
+            or hourly_age + 10 < cg_age_minutes
+            or abs(float(hourly.get("change_24h", 0)) - cg_ch24) >= 3.0
+        )
+        ch24 = float(hourly.get("change_24h", cg_ch24)) if use_hourly_move else cg_ch24
+        ch1 = float(hourly.get("change_1h", 0.0))
+        ch6 = float(hourly.get("change_6h", ch24 / 4))
+        hourly_rvol = float(hourly.get("hourly_rvol", 1.0))
+        hourly_rvol_delta = float(hourly.get("hourly_rvol_delta", 0.0))
+        rvol = hourly_rvol if hourly_fresh else clamp(
+            .70 + (volume/max(market_cap,1))*8 + abs(ch24)/25, .35, 3.0
+        )
+        move_source = "Hourly candles" if use_hourly_move else "CoinGecko"
         value = price * float(holding["tokens"])
         total += value
         momentum_score = clamp(50 + ch24*3.1 + ch7*1.25)
@@ -382,8 +522,15 @@ def build_portfolio(rows: list[dict]) -> dict:
             "DECLINING / POSSIBLE SELL WATCH" if score >= 35 else
             "DEFENSIVE / SELL REVIEW"
         )
-        items.append({**holding,"price":price,"value":value,"change_24h":ch24,"change_7d":ch7,
-                      "volume":volume,"rvol":rvol,"momentum":momentum,"momentum_score":momentum_score,
+        items.append({**holding,"price":price,"value":value,
+                      "change_1h":ch1,"change_6h":ch6,"change_24h":ch24,"change_7d":ch7,
+                      "coin_gecko_24h":cg_ch24,"volume":volume,"rvol":rvol,
+                      "rvol_delta":hourly_rvol_delta,
+                      "green_candles_6h":int(hourly.get("green_candles_6h",0)),
+                      "red_candles_6h":int(hourly.get("red_candles_6h",0)),
+                      "move_source":move_source,
+                      "data_age_minutes":hourly_age if use_hourly_move else cg_age_minutes,
+                      "momentum":momentum,"momentum_score":momentum_score,
                       "volume_score":volume_score,"risk_score":risk_score,"risk":risk,"score":score,
                       "attention_score":attention_score,"opportunity_score":opportunity_score,
                       "signal_label":signal_label,"contribution":contribution,
@@ -407,8 +554,8 @@ def build_portfolio(rows: list[dict]) -> dict:
         themes.append({"name":name,"value":data["value"],"change":change,"strength":clamp(50+change*5)})
     themes.sort(key=lambda x:x["strength"], reverse=True)
     items.sort(key=lambda x:x["value"], reverse=True)
-    attention = sorted(items, key=lambda x:x["attention_score"], reverse=True)[:6]
-    opportunities = sorted(items, key=lambda x:x["opportunity_score"], reverse=True)[:6]
+    attention = sorted(items, key=lambda x:(abs(x["change_6h"]), abs(x["change_24h"]), x["rvol"]), reverse=True)[:6]
+    opportunities = sorted(items, key=lambda x:(x["change_6h"], x["change_24h"], x["rvol_delta"]), reverse=True)[:6]
     concentration = sum(x["weight"] ** 2 for x in items) / 100
     top5_weight = sum(x["weight"] for x in sorted(items, key=lambda x:x["weight"], reverse=True)[:5])
     tier_values = defaultdict(float)
@@ -656,14 +803,43 @@ def render_market_top_five_row(rank: int, item: dict) -> None:
 
 
 
+
+def render_live_move_row(rank: int, item: dict) -> None:
+    arrow1, colour1 = direction_arrow(item.get("change_1h", 0))
+    arrow6, colour6 = direction_arrow(item.get("change_6h", 0))
+    arrow24, colour24 = direction_arrow(item.get("change_24h", 0))
+    candle_text = (
+        f'{item.get("green_candles_6h",0)} green / {item.get("red_candles_6h",0)} red'
+        if item.get("green_candles_6h",0) or item.get("red_candles_6h",0)
+        else "No candle count"
+    )
+    age = item.get("data_age_minutes", 0)
+    source_text = f'{item.get("move_source","Market data")} · {age:.0f} min old'
+    st.markdown(
+        f'<div class="live-move-grid">'
+        f'<div><div class="fourh-asset">{rank}. {esc(item["symbol"])} · {esc(item["name"])}</div>'
+        f'<div class="live-source">{esc(source_text)}</div></div>'
+        f'<div><span class="flow-arrow flow-{colour1}">{arrow1}</span> '
+        f'<b>{signed(item.get("change_1h",0))}</b><div class="fourh-name">1 hour</div></div>'
+        f'<div><span class="flow-arrow flow-{colour6}">{arrow6}</span> '
+        f'<b>{signed(item.get("change_6h",0))}</b><div class="fourh-name">6 hours</div></div>'
+        f'<div><span class="flow-arrow flow-{colour24}">{arrow24}</span> '
+        f'<b>{signed(item.get("change_24h",0))}</b><div class="fourh-name">24 hours</div></div>'
+        f'<div><b>{item.get("rvol",1):.2f}×</b><div class="fourh-name">RVOL · {esc(candle_text)}</div></div>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+
+
 def render_objective_card(item: dict, title: str) -> None:
-    flow = volume_flow(item["change_24h"], item["rvol"] - 1.0, item["rvol"])
-    price_arrow, price_colour = direction_arrow(item["change_24h"])
+    flow = volume_flow(item.get("change_6h", item["change_24h"]), item.get("rvol_delta",0.0), item["rvol"])
+    price_arrow, price_colour = direction_arrow(item.get("change_6h", item["change_24h"]))
     st.markdown(
         f'<div class="objective-card"><div class="objective-title">{esc(title)}</div>'
         f'<div class="objective-main">{esc(item["symbol"])} '
         f'<span class="flow-arrow flow-{price_colour}">{price_arrow}</span></div>'
-        f'<div class="objective-row"><span>24-hour price</span><b>{signed(item["change_24h"])}</b></div>'
+        f'<div class="objective-row"><span>6-hour price</span><b>{signed(item.get("change_6h",0))}</b></div>'f'<div class="objective-row"><span>24-hour price</span><b>{signed(item["change_24h"])}</b></div>'
         f'<div class="objective-row"><span>7-day price</span><b>{signed(item["change_7d"])}</b></div>'
         f'<div class="objective-row"><span>Relative volume</span><b>{item["rvol"]:.2f}×</b></div>'
         f'<div class="objective-row"><span>Volume flow</span><b>{render_flow_arrow(flow)} {esc(flow["label"])}</b></div>'
@@ -1036,14 +1212,15 @@ def resolve_ticker(raw: str, market: str) -> str:
 st.set_page_config(page_title=APP_NAME,page_icon="◈",layout="wide",initial_sidebar_state="expanded")
 st.markdown(CSS,unsafe_allow_html=True)
 market_rows, source = get_market_rows()
-portfolio = build_portfolio(market_rows)
+portfolio_intraday = get_portfolio_intraday()
+portfolio = build_portfolio(market_rows, portfolio_intraday)
 
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
 selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Signal Lab"],label_visibility="collapsed")
 st.sidebar.markdown("---")
-st.sidebar.caption(f"{source} · refreshes every 5 minutes")
+st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
 titles = {
     "Today":("Good morning, Mark","Your portfolio briefing in under five minutes."),
@@ -1075,6 +1252,15 @@ if selection == "Today":
             f'<b>Daily contribution:</b> {money(portfolio["daily_change"])}</div>',
             unsafe_allow_html=True,
         )
+    section("Moves now")
+    live_movers = sorted(
+        portfolio["items"],
+        key=lambda x:(abs(x.get("change_6h",0)), abs(x.get("change_1h",0)), abs(x["change_24h"])),
+        reverse=True,
+    )
+    for rank,item in enumerate(live_movers[:6],1):
+        render_live_move_row(rank,item)
+
     section("Today's attention")
     cols=st.columns(3)
     for col,item in zip(cols,portfolio["attention"][:3]):
@@ -1100,6 +1286,15 @@ elif selection=="Portfolio":
     with cols[1]: metric("Daily contribution",money(portfolio["daily_change"]),"Across all holdings")
     with cols[2]: metric("24-hour direction", signed(portfolio["daily_pct"]), "Portfolio-weighted move")
     with cols[3]: metric("Largest position",portfolio["items"][0]["symbol"],f'{portfolio["items"][0]["weight"]:.1f}% of portfolio')
+    section("Live portfolio moves")
+    live_movers = sorted(
+        portfolio["items"],
+        key=lambda x:(x.get("change_6h",0), x.get("change_1h",0), x["change_24h"]),
+        reverse=True,
+    )
+    for rank,item in enumerate(live_movers[:8],1):
+        render_live_move_row(rank,item)
+
     section("Portfolio structure")
     tier_cols = st.columns(4)
     with tier_cols[0]: metric("Core holdings", money(portfolio["tier_values"].get("Core",0)), "Full intelligence coverage")
@@ -1196,10 +1391,14 @@ elif selection=="Research":
         price_arrow, _ = direction_arrow(item["change_24h"])
         rows.append({
             "Asset":item["symbol"],
+            "1h":signed(item.get("change_1h",0)),
+            "6h":signed(item.get("change_6h",0)),
             "24h direction":price_arrow,
             "24h":signed(item["change_24h"]),
             "7d":signed(item["change_7d"]),
             "RVOL":round(item["rvol"],2),
+            "Data source":item.get("move_source","Market data"),
+            "Age (min)":round(item.get("data_age_minutes",0)),
             "Volume flow":f'{flow["arrow"]} {flow["label"]}',
             "Momentum":item["momentum"],
             "Portfolio weight":f'{item["weight"]:.1f}%',
