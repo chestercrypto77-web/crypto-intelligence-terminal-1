@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "5.4.0"
+APP_VERSION = "5.4.1"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -142,6 +142,17 @@ background:#1b1f25;border:1px solid var(--line);border-radius:11px;padding:.66re
 .narrative-note{color:var(--muted);font-size:.78rem;margin:-.25rem 0 .65rem}
 .scan-status{background:#1b1f25;border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem}
 
+
+.flow-arrow{font-size:1.25rem;font-weight:900;line-height:1}
+.flow-up{color:#5ee58d}.flow-down{color:#ff7373}.flow-watch{color:#79b8ff}
+.flow-flat{color:#f0d46d}.flow-fade{color:#ffab68}.flow-muted{color:#9aa4b2}
+.objective-card{background:#1b1f25;border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;height:100%}
+.objective-title{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.objective-main{font-size:1.35rem;font-weight:900;margin:.15rem 0}
+.objective-row{display:flex;justify-content:space-between;gap:.75rem;border-top:1px solid var(--line);padding:.48rem 0;font-size:.8rem}
+.objective-row:first-of-type{border-top:0}
+.fourh-grid{grid-template-columns:1.35fr .72fr .72fr .72fr .72fr}
+
 </style>
 
 """
@@ -238,7 +249,7 @@ def attention_card(item: dict) -> None:
         f'<div class="asset-head"><div><div class="asset-symbol">{esc(item["symbol"])}</div>'
         f'<div class="asset-name">{esc(item["narrative"])}</div></div><span class="badge">{esc(item["action"])}</span></div>'
         f'<div class="data-row"><span>Momentum</span><b>{esc(item["momentum"])}</b></div>'
-        f'<div class="data-row"><span>Market strength</span><b>{item["score"]:.0f}/100</b></div>'
+        f'<div class="data-row"><span>Relative volume</span><b>{item["rvol"]:.2f}×</b></div>'
         f'<div class="small-muted" style="margin-top:.7rem">{esc(reason)}</div></div>',
         unsafe_allow_html=True,
     )
@@ -415,7 +426,7 @@ def executive_brief(portfolio: dict) -> str:
     active = max(portfolio["items"],key=lambda x:x["rvol"])
     direction = "gained" if portfolio["daily_change"]>=0 else "declined"
     ending = "No urgent defensive action is indicated." if portfolio["risk"]!="HIGH" else "Review the highest-risk positions."
-    return f"Your portfolio {direction} today. {leaders[0]['symbol']} and {leaders[1]['symbol']} are the largest positive contributors. {strongest['symbol']} has the strongest combined intelligence score, while {active['symbol']} shows the highest participation signal. Overall portfolio health is {portfolio['health']:.0f}/100 with {portfolio['risk'].lower()} risk. {ending}"
+    return f"Your portfolio {direction} today. {leaders[0]['symbol']} and {leaders[1]['symbol']} are the largest positive contributors. {active['symbol']} currently has the highest relative-volume reading. {ending}"
 
 
 
@@ -423,76 +434,79 @@ def executive_brief(portfolio: dict) -> str:
 
 FOUR_HOUR_UNIVERSE = {
     "RWA / Tokenisation": [
-        ("ONDO", "Ondo", "ONDO-USD"),
-        ("LINK", "Chainlink", "LINK-USD"),
-        ("POLYX", "Polymesh", "POLYX-USD"),
-        ("MPL", "Maple Finance", "MPL-USD"),
+        ("ONDO", "Ondo", "ONDO-USD"), ("LINK", "Chainlink", "LINK-USD"),
+        ("POLYX", "Polymesh", "POLYX-USD"), ("MPL", "Maple Finance", "MPL-USD"),
     ],
     "AI": [
         ("FET", "Artificial Superintelligence Alliance", "FET-USD"),
-        ("RENDER", "Render", "RENDER-USD"),
-        ("TAO", "Bittensor", "TAO22974-USD"),
+        ("RENDER", "Render", "RENDER-USD"), ("TAO", "Bittensor", "TAO22974-USD"),
         ("NEAR", "NEAR Protocol", "NEAR-USD"),
     ],
     "Layer 1": [
-        ("SOL", "Solana", "SOL-USD"),
-        ("SUI", "Sui", "SUI20947-USD"),
-        ("AVAX", "Avalanche", "AVAX-USD"),
-        ("SEI", "Sei", "SEI-USD"),
+        ("SOL", "Solana", "SOL-USD"), ("SUI", "Sui", "SUI20947-USD"),
+        ("AVAX", "Avalanche", "AVAX-USD"), ("SEI", "Sei", "SEI-USD"),
     ],
     "Layer 2 / Scaling": [
-        ("POL", "Polygon", "POL-USD"),
-        ("ARB", "Arbitrum", "ARB11841-USD"),
-        ("OP", "Optimism", "OP-USD"),
-        ("IMX", "Immutable", "IMX10603-USD"),
+        ("POL", "Polygon", "POL-USD"), ("ARB", "Arbitrum", "ARB11841-USD"),
+        ("OP", "Optimism", "OP-USD"), ("IMX", "Immutable", "IMX10603-USD"),
     ],
     "DeFi / DEX": [
-        ("AAVE", "Aave", "AAVE-USD"),
-        ("UNI", "Uniswap", "UNI7083-USD"),
-        ("RUNE", "THORChain", "RUNE-USD"),
-        ("AERO", "Aerodrome", "AERO29270-USD"),
+        ("AAVE", "Aave", "AAVE-USD"), ("UNI", "Uniswap", "UNI7083-USD"),
+        ("RUNE", "THORChain", "RUNE-USD"), ("AERO", "Aerodrome", "AERO29270-USD"),
     ],
     "DePIN / Storage": [
-        ("FIL", "Filecoin", "FIL-USD"),
-        ("AR", "Arweave", "AR-USD"),
-        ("AIOZ", "AIOZ Network", "AIOZ-USD"),
-        ("HNT", "Helium", "HNT-USD"),
+        ("FIL", "Filecoin", "FIL-USD"), ("AR", "Arweave", "AR-USD"),
+        ("AIOZ", "AIOZ Network", "AIOZ-USD"), ("HNT", "Helium", "HNT-USD"),
     ],
     "Gaming / Metaverse": [
-        ("IMX", "Immutable", "IMX10603-USD"),
-        ("SUPER", "SuperVerse", "SUPER-USD"),
-        ("GALA", "Gala", "GALA-USD"),
-        ("SAND", "The Sandbox", "SAND-USD"),
+        ("IMX", "Immutable", "IMX10603-USD"), ("SUPER", "SuperVerse", "SUPER-USD"),
+        ("GALA", "Gala", "GALA-USD"), ("SAND", "The Sandbox", "SAND-USD"),
     ],
     "Privacy / Payments": [
-        ("COTI", "COTI", "COTI-USD"),
-        ("XMR", "Monero", "XMR-USD"),
-        ("ZEC", "Zcash", "ZEC-USD"),
-        ("XLM", "Stellar", "XLM-USD"),
+        ("COTI", "COTI", "COTI-USD"), ("XMR", "Monero", "XMR-USD"),
+        ("ZEC", "Zcash", "ZEC-USD"), ("XLM", "Stellar", "XLM-USD"),
     ],
 }
 
 
-def fourh_colour(score: float) -> str:
-    if score >= 80:
-        return "green"
-    if score >= 65:
-        return "blue"
-    if score >= 50:
-        return "yellow"
-    if score >= 35:
-        return "orange"
-    return "red"
+def direction_arrow(value: float, threshold: float = 0.15) -> tuple[str, str]:
+    if value > threshold:
+        return "↑", "up"
+    if value < -threshold:
+        return "↓", "down"
+    return "→", "flat"
 
 
-def fourh_confidence(score: float, result: dict) -> str:
-    distance = abs(score - 50)
-    evidence_count = len(result.get("evidence", [])) + len(result.get("cautions", []))
-    if distance >= 26 and evidence_count >= 4:
-        return "HIGH"
-    if distance >= 13 and evidence_count >= 3:
-        return "MEDIUM"
-    return "LOW"
+def volume_flow(ret6: float, rvol_delta: float, rvol: float) -> dict:
+    price_up = ret6 > 0.20
+    price_down = ret6 < -0.20
+    volume_up = rvol_delta > 0.10
+    volume_down = rvol_delta < -0.10
+
+    if volume_up and price_up:
+        return {"label": "Positive flow", "arrow": "↑", "colour": "up", "rank": 5}
+    if volume_up and price_down:
+        return {"label": "Negative flow", "arrow": "↓", "colour": "down", "rank": 1}
+    if volume_up:
+        return {"label": "Volume rising", "arrow": "↑", "colour": "watch", "rank": 4}
+    if volume_down and price_up:
+        return {"label": "Volume fading", "arrow": "↓", "colour": "fade", "rank": 2}
+    if volume_down:
+        return {"label": "Volume falling", "arrow": "↓", "colour": "flat", "rank": 2}
+    if rvol >= 1.25:
+        return {"label": "Above normal", "arrow": "→", "colour": "watch", "rank": 3}
+    return {"label": "Stable", "arrow": "→", "colour": "muted", "rank": 3}
+
+
+def trend_direction(item: dict) -> dict:
+    chart = item.get("chart")
+    if isinstance(chart, pd.DataFrame) and not chart.empty:
+        last = chart.iloc[-1]
+        if last["Close"] > last["EMA9"] > last["EMA21"]:
+            return {"label": "Up", "arrow": "↑", "colour": "up"}
+        if last["Close"] < last["EMA9"] < last["EMA21"]:
+            return {"label": "Down", "arrow": "↓", "colour": "down"}
+    return {"label": "Mixed", "arrow": "→", "colour": "flat"}
 
 
 @st.cache_data(ttl=900, show_spinner=False)
@@ -500,13 +514,8 @@ def load_fourh_universe() -> dict[str, pd.DataFrame]:
     tickers = sorted({ticker for assets in FOUR_HOUR_UNIVERSE.values() for _, _, ticker in assets})
     try:
         raw = yf.download(
-            tickers,
-            period="1mo",
-            interval="1h",
-            auto_adjust=True,
-            progress=False,
-            threads=True,
-            group_by="ticker",
+            tickers, period="1mo", interval="1h", auto_adjust=True,
+            progress=False, threads=True, group_by="ticker",
         )
     except Exception:
         return {}
@@ -538,8 +547,7 @@ def load_fourh_universe() -> dict[str, pd.DataFrame]:
 def scan_fourh_universe(portfolio: dict) -> tuple[dict[str, list[dict]], list[dict]]:
     history_map = load_fourh_universe()
     portfolio_map = {item["symbol"]: item for item in portfolio["items"]}
-    grouped = {}
-    all_results = []
+    grouped, all_results = {}, []
 
     for narrative, assets in FOUR_HOUR_UNIVERSE.items():
         narrative_results = []
@@ -547,72 +555,92 @@ def scan_fourh_universe(portfolio: dict) -> tuple[dict[str, list[dict]], list[di
             history = history_map.get(ticker)
             result = None
             if history is not None and not history.empty:
-                enriched = add_short_shift_indicators(history)
-                result = short_shift_result(enriched)
+                result = short_shift_result(add_short_shift_indicators(history))
 
             if result is None:
                 holding = portfolio_map.get(symbol)
                 if holding is None:
                     continue
-                proxy_score = clamp(
-                    holding["score"] * .55
-                    + holding["momentum_score"] * .25
-                    + holding["volume_score"] * .20
-                )
                 result = {
-                    "score": proxy_score,
-                    "label": "PORTFOLIO PROXY",
-                    "rsi": float("nan"),
-                    "rsi_delta": 0.0,
-                    "rvol": holding["rvol"],
-                    "rvol_delta": 0.0,
+                    "rsi": float("nan"), "rsi_delta": 0.0,
+                    "rvol": holding["rvol"], "rvol_delta": 0.0,
                     "ret6": holding["change_24h"] / 4,
-                    "ret24": holding["change_24h"],
-                    "ret7d": holding["change_7d"],
-                    "evidence": ["Live hourly history was unavailable; portfolio market data is shown as a fallback."],
-                    "cautions": ["Confirm this project in the detailed view when hourly data returns."],
+                    "ret24": holding["change_24h"], "ret7d": holding["change_7d"],
                     "chart": pd.DataFrame(),
                 }
 
-            result = {
-                **result,
-                "symbol": symbol,
-                "name": name,
-                "ticker": ticker,
-                "narrative": narrative,
-                "confidence": fourh_confidence(result["score"], result),
-                "in_portfolio": symbol in portfolio_map,
+            item = {
+                **result, "symbol": symbol, "name": name, "ticker": ticker,
+                "narrative": narrative, "in_portfolio": symbol in portfolio_map,
                 "portfolio_weight": portfolio_map.get(symbol, {}).get("weight", 0.0),
             }
-            narrative_results.append(result)
-            all_results.append(result)
+            item["flow"] = volume_flow(item["ret6"], item["rvol_delta"], item["rvol"])
+            item["trend"] = trend_direction(item)
+            narrative_results.append(item)
+            all_results.append(item)
 
         grouped[narrative] = sorted(
             narrative_results,
-            key=lambda item: (item["score"], item["rvol"], item["ret24"]),
+            key=lambda x: (x["flow"]["rank"], x["rvol_delta"], x["rvol"], x["ret6"]),
             reverse=True,
         )
 
-    return grouped, sorted(all_results, key=lambda item: item["score"], reverse=True)
+    all_results = sorted(
+        all_results,
+        key=lambda x: (x["flow"]["rank"], x["rvol_delta"], x["rvol"], x["ret6"]),
+        reverse=True,
+    )
+    return grouped, all_results
+
+
+def narrative_flow_summary(items: list[dict]) -> tuple[str, str, str]:
+    positive = sum(1 for x in items if x["flow"]["label"] == "Positive flow")
+    negative = sum(1 for x in items if x["flow"]["label"] == "Negative flow")
+    if positive > negative:
+        return "Positive", "↑", "up"
+    if negative > positive:
+        return "Negative", "↓", "down"
+    return "Mixed", "→", "flat"
+
+
+def render_flow_arrow(flow: dict) -> str:
+    return f'<span class="flow-arrow flow-{flow["colour"]}">{flow["arrow"]}</span>'
 
 
 def render_fourh_scan_row(rank: int, item: dict) -> None:
-    colour = fourh_colour(item["score"])
-    portfolio_marker = f' · In portfolio {item["portfolio_weight"]:.1f}%' if item["in_portfolio"] else ""
-    delta_text = signed(item["ret6"])
+    portfolio_marker = f' · Held {item["portfolio_weight"]:.1f}%' if item["in_portfolio"] else ""
+    price_arrow, price_colour = direction_arrow(item["ret6"])
+    volume_arrow, volume_colour = direction_arrow(item["rvol_delta"], 0.10)
     st.markdown(
         f'<div class="fourh-grid">'
         f'<div><div class="fourh-asset">{rank}. {esc(item["symbol"])} · {esc(item["name"])}</div>'
-        f'<div class="fourh-name">{esc(item["label"])}{portfolio_marker}</div></div>'
-        f'<div><div class="fourh-score">{item["score"]:.0f}</div><div class="fourh-name">4H score</div></div>'
-        f'<div><span class="fourh-delta">{delta_text}</span><div class="fourh-name">6-hour move</div></div>'
-        f'<div><b>{item["rvol"]:.2f}×</b><div class="fourh-name">Hourly RVOL</div></div>'
-        f'<div><span class="fourh-pill fourh-{colour}">{esc(item["confidence"])}</span>'
-        f'<div class="fourh-name">Confidence</div></div>'
+        f'<div class="fourh-name">{esc(item["narrative"])}{portfolio_marker}</div></div>'
+        f'<div><span class="flow-arrow flow-{price_colour}">{price_arrow}</span> '
+        f'<b>{signed(item["ret6"])}</b><div class="fourh-name">6-hour price</div></div>'
+        f'<div><span class="flow-arrow flow-{volume_colour}">{volume_arrow}</span> '
+        f'<b>{item["rvol_delta"]:+.2f}×</b><div class="fourh-name">RVOL change</div></div>'
+        f'<div><b>{item["rvol"]:.2f}×</b><div class="fourh-name">Current RVOL</div></div>'
+        f'<div>{render_flow_arrow(item["flow"])} <b>{esc(item["flow"]["label"])}</b>'
+        f'<div class="fourh-name">Volume flow</div></div>'
         f'</div>',
         unsafe_allow_html=True,
     )
 
+
+def render_objective_card(item: dict, title: str) -> None:
+    flow = volume_flow(item["change_24h"], item["rvol"] - 1.0, item["rvol"])
+    price_arrow, price_colour = direction_arrow(item["change_24h"])
+    st.markdown(
+        f'<div class="objective-card"><div class="objective-title">{esc(title)}</div>'
+        f'<div class="objective-main">{esc(item["symbol"])} '
+        f'<span class="flow-arrow flow-{price_colour}">{price_arrow}</span></div>'
+        f'<div class="objective-row"><span>24-hour price</span><b>{signed(item["change_24h"])}</b></div>'
+        f'<div class="objective-row"><span>7-day price</span><b>{signed(item["change_7d"])}</b></div>'
+        f'<div class="objective-row"><span>Relative volume</span><b>{item["rvol"]:.2f}×</b></div>'
+        f'<div class="objective-row"><span>Volume flow</span><b>{render_flow_arrow(flow)} {esc(flow["label"])}</b></div>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
 
 
 # ---------- Signal Lab calculations ----------
@@ -1003,7 +1031,7 @@ if selection == "Today":
     cols=st.columns(4)
     with cols[0]: metric("Portfolio value",money(portfolio["total"]),signed(portfolio["daily_pct"])+" today")
     with cols[1]: metric("Today's P/L",money(portfolio["daily_change"]),"Portfolio contribution")
-    with cols[2]: metric("Portfolio health",f'{portfolio["health"]:.0f}/100',f'{portfolio["risk"]} risk')
+    with cols[2]: metric("Portfolio direction", signed(portfolio["daily_pct"]), "24-hour weighted move")
     wc=sum(1 for x in portfolio["attention"] if x["action"]!="Hold")
     workload="LOW" if wc<=1 else "MEDIUM" if wc<=3 else "HIGH"
     with cols[3]: metric("Today's workload",workload,f"{wc} holdings deserve attention")
@@ -1012,17 +1040,21 @@ if selection == "Today":
         section("Executive brief")
         st.markdown(f'<div class="summary-box">{executive_brief(portfolio)}</div>',unsafe_allow_html=True)
     with right:
-        section("Portfolio health")
-        progress("Overall intelligence",portfolio["health"],"Momentum, participation, conviction and risk")
+        section("Portfolio direction")
+        st.markdown(
+            f'<div class="summary-box"><b>24-hour move:</b> {signed(portfolio["daily_pct"])}<br>'
+            f'<b>Daily contribution:</b> {money(portfolio["daily_change"])}</div>',
+            unsafe_allow_html=True,
+        )
     section("Today's attention")
     cols=st.columns(3)
     for col,item in zip(cols,portfolio["attention"][:3]):
-        with col: intelligence_card(item, "attention_score", "Attention score")
+        with col: render_objective_card(item, "Attention")
 
     section("Possible opportunities")
     cols=st.columns(3)
     for col,item in zip(cols,portfolio["opportunities"][:3]):
-        with col: intelligence_card(item, "opportunity_score", "Opportunity score")
+        with col: render_objective_card(item, "Market movement")
     section("What drove the portfolio")
     leaders=sorted(portfolio["items"],key=lambda x:x["contribution"],reverse=True)
     cols=st.columns(4)
@@ -1037,7 +1069,7 @@ elif selection=="Portfolio":
     cols=st.columns(4)
     with cols[0]: metric("Total value",money(portfolio["total"]),signed(portfolio["daily_pct"])+" today")
     with cols[1]: metric("Daily contribution",money(portfolio["daily_change"]),"Across all holdings")
-    with cols[2]: metric("Health",f'{portfolio["health"]:.0f}/100',f'{portfolio["risk"]} risk')
+    with cols[2]: metric("24-hour direction", signed(portfolio["daily_pct"]), "Portfolio-weighted move")
     with cols[3]: metric("Largest position",portfolio["items"][0]["symbol"],f'{portfolio["items"][0]["weight"]:.1f}% of portfolio')
     section("Portfolio structure")
     tier_cols = st.columns(4)
@@ -1078,76 +1110,98 @@ elif selection=="Watch":
     st.markdown('<div class="summary-box">A watch item is not automatically a buy or sell signal. It means price, participation, risk or momentum has changed enough to deserve closer investigation.</div>',unsafe_allow_html=True)
 
 elif selection=="Research":
-    section("Intelligence matrix")
+    section("Observable market data")
     rows=[]
-    for item in sorted(portfolio["items"],key=lambda x:x["score"],reverse=True):
-        rows.append({"Asset":item["symbol"],"Score":round(item["score"]),"Momentum":item["momentum"],
-                     "Momentum score":round(item["momentum_score"]),"RVOL proxy":round(item["rvol"],2),
-                     "Volume":item["volume_label"],"Attention":round(item["attention_score"]),"Opportunity":round(item["opportunity_score"]),"Signal":item["signal_label"],"24h":signed(item["change_24h"]),
-                     "7d":signed(item["change_7d"]),"Risk":item["risk"],"Narrative":item["narrative"]})
+    for item in sorted(portfolio["items"], key=lambda x:(x["rvol"], abs(x["change_24h"])), reverse=True):
+        flow = volume_flow(item["change_24h"], item["rvol"]-1.0, item["rvol"])
+        price_arrow, _ = direction_arrow(item["change_24h"])
+        rows.append({
+            "Asset":item["symbol"],
+            "24h direction":price_arrow,
+            "24h":signed(item["change_24h"]),
+            "7d":signed(item["change_7d"]),
+            "RVOL":round(item["rvol"],2),
+            "Volume flow":f'{flow["arrow"]} {flow["label"]}',
+            "Momentum":item["momentum"],
+            "Portfolio weight":f'{item["weight"]:.1f}%',
+            "Narrative":item["narrative"],
+        })
     st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
-    section("Methodology")
-    st.markdown('<div class="summary-box"><b>Score reference:</b> 80–100 means broad positive agreement, 65–79 means positive evidence worth investigating, 50–64 means mixed evidence, 35–49 means risk is increasing, and below 35 means defensive review. Portfolio Intelligence and Signal Lab use separate scoring models.</div>',unsafe_allow_html=True)
+    section("Display rules")
+    st.markdown(
+        '<div class="summary-box">'
+        '<b>Green ↑</b> price and volume are rising together. '
+        '<b>Red ↓</b> volume is rising while price is falling. '
+        '<b>Blue ↑</b> volume is rising before price direction is clear. '
+        '<b>Orange ↓</b> price is rising while volume fades. '
+        '<b>Yellow/Grey →</b> mixed or stable conditions.'
+        '</div>',
+        unsafe_allow_html=True,
+    )
 
 
 elif selection=="4H Intelligence":
     st.markdown(
-        '<div class="summary-box"><b>Purpose:</b> Find emerging four-hour trends across major crypto narratives, '
-        'then select one project to inspect the evidence, risks and confirmation gaps. '
-        'This is a research indicator—not an automatic trading instruction.</div>',
+        '<div class="summary-box"><b>Purpose:</b> Compare observable four-hour price and volume direction '
+        'across narratives. No confidence percentage or 0–100 prediction score is used.</div>',
         unsafe_allow_html=True,
     )
 
-    with st.spinner("Scanning the four-hour narrative universe..."):
+    with st.spinner("Scanning hourly market data..."):
         narrative_results, all_fourh_results = scan_fourh_universe(portfolio)
 
     if not all_fourh_results:
-        st.error("The four-hour market scan could not retrieve enough hourly data. Try rebooting or refreshing later.")
+        st.error("The four-hour market scan could not retrieve enough hourly data. Try refreshing later.")
     else:
-        positive = [item for item in all_fourh_results if item["score"] >= 65]
-        strongest_narratives = []
+        positive_flows = [x for x in all_fourh_results if x["flow"]["label"] == "Positive flow"]
+        negative_flows = [x for x in all_fourh_results if x["flow"]["label"] == "Negative flow"]
+        active_volume = sorted(all_fourh_results, key=lambda x:(x["rvol_delta"], x["rvol"]), reverse=True)
+
+        narrative_order = []
         for narrative, items in narrative_results.items():
             if items:
-                avg_score = sum(item["score"] for item in items[:3]) / min(3, len(items))
-                strongest_narratives.append((narrative, avg_score))
-        strongest_narratives.sort(key=lambda x: x[1], reverse=True)
+                pos = sum(1 for x in items if x["flow"]["label"] == "Positive flow")
+                neg = sum(1 for x in items if x["flow"]["label"] == "Negative flow")
+                avg_delta = sum(x["rvol_delta"] for x in items) / len(items)
+                narrative_order.append((narrative, pos-neg, avg_delta))
+        narrative_order.sort(key=lambda x:(x[1],x[2]), reverse=True)
 
-        top = all_fourh_results[0]
         summary_cols = st.columns(4)
         with summary_cols[0]:
-            metric("Emerging setups", str(len(positive)), "Score of 65 or higher")
+            metric("Positive volume flow", str(len(positive_flows)), "Price ↑ and volume ↑")
         with summary_cols[1]:
-            metric("Highest priority", top["symbol"], f'{top["score"]:.0f}/100 · {top["narrative"]}')
+            metric("Negative volume flow", str(len(negative_flows)), "Price ↓ and volume ↑")
         with summary_cols[2]:
-            metric("Leading narrative", strongest_narratives[0][0], f'{strongest_narratives[0][1]:.0f}/100 average')
+            metric("Largest volume increase", active_volume[0]["symbol"], f'{active_volume[0]["rvol_delta"]:+.2f}× RVOL')
         with summary_cols[3]:
             metric("Universe scanned", str(len(all_fourh_results)), "Refreshes every 15 minutes")
 
-        section("Highest-priority movements")
+        section("Largest four-hour volume changes")
         priority_cols = st.columns(3)
-        for col, item in zip(priority_cols, all_fourh_results[:3]):
+        for col, item in zip(priority_cols, active_volume[:3]):
             with col:
-                render_signal_hero(item["score"], item["label"], item["confidence"])
-                st.caption(
-                    f'{item["symbol"]} · {item["narrative"]} · '
-                    f'6h {signed(item["ret6"])} · 24h {signed(item["ret24"])} · '
-                    f'RVOL {item["rvol"]:.2f}×'
+                price_arrow, price_colour = direction_arrow(item["ret6"])
+                volume_arrow, volume_colour = direction_arrow(item["rvol_delta"], .10)
+                st.markdown(
+                    f'<div class="objective-card"><div class="objective-title">{esc(item["narrative"])}</div>'
+                    f'<div class="objective-main">{esc(item["symbol"])}</div>'
+                    f'<div class="objective-row"><span>6-hour price</span>'
+                    f'<b><span class="flow-arrow flow-{price_colour}">{price_arrow}</span> {signed(item["ret6"])}</b></div>'
+                    f'<div class="objective-row"><span>RVOL change</span>'
+                    f'<b><span class="flow-arrow flow-{volume_colour}">{volume_arrow}</span> {item["rvol_delta"]:+.2f}×</b></div>'
+                    f'<div class="objective-row"><span>Current RVOL</span><b>{item["rvol"]:.2f}×</b></div>'
+                    f'<div class="objective-row"><span>Volume flow</span>'
+                    f'<b>{render_flow_arrow(item["flow"])} {esc(item["flow"]["label"])}</b></div></div>',
+                    unsafe_allow_html=True,
                 )
 
-        section("Emerging coins by narrative")
-        st.markdown(
-            '<div class="narrative-note">Narratives are ranked using the strongest current projects. '
-            'Open a category to compare its emerging four-hour candidates.</div>',
-            unsafe_allow_html=True,
-        )
-        ordered_narratives = [name for name, _ in strongest_narratives]
-        for index, narrative in enumerate(ordered_narratives):
-            items = narrative_results.get(narrative, [])
-            if not items:
-                continue
-            narrative_average = sum(item["score"] for item in items[:3]) / min(3, len(items))
+        section("Coins by narrative")
+        st.caption("Categories are ordered by positive minus negative volume-flow signals, then by average RVOL change.")
+        for index, (narrative, _, _) in enumerate(narrative_order):
+            items = narrative_results[narrative]
+            label, arrow, colour = narrative_flow_summary(items)
             with st.expander(
-                f'{narrative} · Strength {narrative_average:.0f}/100 · {len(items)} projects',
+                f'{narrative} · {arrow} {label} volume flow · {len(items)} projects',
                 expanded=index < 3,
             ):
                 for rank, item in enumerate(items, 1):
@@ -1158,78 +1212,68 @@ elif selection=="4H Intelligence":
             f'{item["symbol"]} · {item["name"]} · {item["narrative"]}': item
             for item in all_fourh_results
         }
-        selected_label = st.selectbox(
-            "Project or coin",
-            list(option_map.keys()),
-            index=0,
-            help="Choose a project from the narrative scanner to open its detailed four-hour research view.",
-        )
-        selected = option_map[selected_label]
+        selected = option_map[st.selectbox("Project or coin", list(option_map.keys()), index=0)]
 
-        detail_left, detail_right = st.columns([1.25, 1])
-        with detail_left:
-            render_signal_hero(selected["score"], selected["label"], selected["confidence"])
-        with detail_right:
-            detail_metrics = st.columns(2)
-            with detail_metrics[0]:
-                metric("Narrative rank", f'#{narrative_results[selected["narrative"]].index(selected)+1}', selected["narrative"])
-            with detail_metrics[1]:
-                metric("Portfolio status", "HELD" if selected["in_portfolio"] else "NOT HELD",
-                       f'{selected["portfolio_weight"]:.1f}% weight' if selected["in_portfolio"] else "Market research candidate")
+        flow = selected["flow"]
+        trend = selected["trend"]
+        price_arrow, price_colour = direction_arrow(selected["ret6"])
+        volume_arrow, volume_colour = direction_arrow(selected["rvol_delta"], .10)
 
-        detail_cols = st.columns(4)
-        with detail_cols[0]: metric("6-hour move", signed(selected["ret6"]), "Fast direction")
-        with detail_cols[1]: metric("24-hour move", signed(selected["ret24"]), "Current behaviour")
-        with detail_cols[2]: metric("RSI 9", f'{selected["rsi"]:.1f}' if pd.notna(selected["rsi"]) else "—",
-                                    f'Change {selected["rsi_delta"]:+.1f}' if pd.notna(selected["rsi"]) else "Hourly fallback")
-        with detail_cols[3]: metric("Hourly RVOL", f'{selected["rvol"]:.2f}×',
-                                    f'Change {selected["rvol_delta"]:+.2f}×')
-
-        evidence_col, caution_col = st.columns(2)
-        with evidence_col:
+        header_cols = st.columns([1.15,1,1])
+        with header_cols[0]:
             st.markdown(
-                '<div class="signal-card"><div class="asset-head"><b>Why the signal is improving</b>'
-                '<span class="badge badge-green">Positive evidence</span></div>',
+                f'<div class="objective-card"><div class="objective-title">{esc(selected["narrative"])}</div>'
+                f'<div class="objective-main">{esc(selected["symbol"])} · {esc(selected["name"])}</div>'
+                f'<div class="objective-row"><span>Volume flow</span>'
+                f'<b>{render_flow_arrow(flow)} {esc(flow["label"])}</b></div></div>',
                 unsafe_allow_html=True,
             )
-            if selected["evidence"]:
-                for line in selected["evidence"]:
-                    st.markdown(f"✓ {line}")
-            else:
-                st.markdown("No strong positive agreement is currently present.")
-            st.markdown("</div>", unsafe_allow_html=True)
-
-        with caution_col:
+        with header_cols[1]:
             st.markdown(
-                '<div class="signal-card"><div class="asset-head"><b>What still needs confirmation</b>'
-                '<span class="badge badge-amber">Risk check</span></div>',
+                f'<div class="objective-card"><div class="objective-title">Price direction</div>'
+                f'<div class="objective-main"><span class="flow-arrow flow-{price_colour}">{price_arrow}</span> '
+                f'{signed(selected["ret6"])}</div>'
+                f'<div class="objective-row"><span>24-hour price</span><b>{signed(selected["ret24"])}</b></div>'
+                f'<div class="objective-row"><span>Trend</span><b>'
+                f'<span class="flow-arrow flow-{trend["colour"]}">{trend["arrow"]}</span> {trend["label"]}</b></div></div>',
                 unsafe_allow_html=True,
             )
-            if selected["cautions"]:
-                for line in selected["cautions"]:
-                    st.markdown(f"• {line}")
-            else:
-                st.markdown("No major short-term caution is currently present.")
-            st.markdown("</div>", unsafe_allow_html=True)
+        with header_cols[2]:
+            st.markdown(
+                f'<div class="objective-card"><div class="objective-title">Volume</div>'
+                f'<div class="objective-main"><span class="flow-arrow flow-{volume_colour}">{volume_arrow}</span> '
+                f'{selected["rvol_delta"]:+.2f}×</div>'
+                f'<div class="objective-row"><span>Current RVOL</span><b>{selected["rvol"]:.2f}×</b></div>'
+                f'<div class="objective-row"><span>Portfolio</span><b>'
+                f'{"Held " + format(selected["portfolio_weight"], ".1f") + "%" if selected["in_portfolio"] else "Not held"}</b></div></div>',
+                unsafe_allow_html=True,
+            )
+
+        detail_cols = st.columns(3)
+        with detail_cols[0]:
+            metric("RSI 9", f'{selected["rsi"]:.1f}' if pd.notna(selected["rsi"]) else "—",
+                   f'{selected["rsi_delta"]:+.1f} change' if pd.notna(selected["rsi"]) else "No hourly reading")
+        with detail_cols[1]:
+            metric("6-hour price", signed(selected["ret6"]), "Observed return")
+        with detail_cols[2]:
+            metric("24-hour price", signed(selected["ret24"]), "Observed return")
 
         section("Four-hour trend structure")
         if isinstance(selected["chart"], pd.DataFrame) and not selected["chart"].empty:
             st.line_chart(selected["chart"], use_container_width=True)
-            st.caption("Price with EMA 9, EMA 21 and EMA 55. The chart uses hourly bars to identify four-hour behavioural shifts.")
+            st.caption("Hourly close with EMA 9, EMA 21 and EMA 55. No predictive score is applied.")
         else:
-            st.info("A live hourly trend chart was unavailable for this project. The scanner is showing fallback market evidence.")
+            st.info("A live hourly trend chart was unavailable for this project.")
 
-        section("Signal invalidation")
-        invalidation = []
-        if pd.notna(selected["rsi"]):
-            invalidation.append("RSI 9 falls below 45 after the current improvement.")
-        invalidation.append("Price loses the 21-hour trend and fails to reclaim it.")
-        invalidation.append("Relative volume falls below 0.8× while price momentum weakens.")
-        invalidation.append(f'{selected["narrative"]} drops materially in the narrative rankings.')
+        section("Arrow rules")
         st.markdown(
-            '<div class="summary-box"><b>The setup weakens if:</b><br>' +
-            "<br>".join(f"• {esc(line)}" for line in invalidation) +
-            "</div>",
+            '<div class="summary-box">'
+            '<b>Green ↑:</b> price and volume are both rising. '
+            '<b>Red ↓:</b> volume is rising while price falls. '
+            '<b>Blue ↑:</b> volume is rising while price is mostly flat. '
+            '<b>Orange ↓:</b> price rises while volume fades. '
+            '<b>Yellow/Grey →:</b> mixed, falling or stable activity.'
+            '</div>',
             unsafe_allow_html=True,
         )
 

@@ -1,43 +1,22 @@
-# Crypto Intelligence Terminal V5.4.0
+# Crypto Intelligence Terminal V5.4.1
 
-Official drag-and-drop release built directly from the working V5.3.0 project.
+Objective-signals update built directly from the official V5.4.0 release.
 
-## This release adds one feature only
+## Changes
 
-### 4H Intelligence
-
-A dedicated page with:
-
-- Emerging four-hour projects grouped by narrative
-- RWA / Tokenisation
-- AI
-- Layer 1
-- Layer 2 / Scaling
-- DeFi / DEX
-- DePIN / Storage
-- Gaming / Metaverse
-- Privacy / Payments
-- Highest-priority movements
-- Narrative strength ranking
-- Strong colour-coded signals
-- Confidence rating
-- Six-hour and 24-hour movement
-- Hourly relative volume
-- Portfolio holding marker
-- Individual project selector
-- Detailed evidence and confirmation gaps
-- EMA 9 / 21 / 55 trend chart
-- Signal invalidation conditions
-
-All existing V5.3.0 pages and features remain in place.
+- Removed the 4H Intelligence score and confidence percentage from view
+- Replaced them with fixed-rule, colour-coded arrows
+- Added separate price direction, RVOL change, current RVOL and volume-flow fields
+- Green up: price and volume rising together
+- Red down: volume rising while price falls
+- Blue up: volume rising before price direction is clear
+- Orange down: price rising while volume fades
+- Yellow or grey: mixed, falling or stable activity
+- Narrative ordering now uses observed volume-flow counts and RVOL change
+- Removed visible health, attention and opportunity scores from the main pages
+- Rebuilt the Research matrix around observable price, volume, RVOL and portfolio-weight data
+- Existing holdings, navigation and Signal Lab remain available
 
 ## Upload
 
-1. Download and extract the ZIP.
-2. Open GitHub.
-3. Choose **Add file → Upload files**.
-4. Drag all extracted contents into the upload area.
-5. Commit the replacement files.
-6. Reboot the Streamlit app.
-
-The extracted contents are already arranged for direct drag-and-drop.
+Extract the ZIP, drag all five extracted items into GitHub **Add file → Upload files**, commit the replacements, then reboot Streamlit.
