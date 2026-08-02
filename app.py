@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "5.4.3"
+APP_VERSION = "6.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -159,6 +159,27 @@ align-items:center;background:#1b1f25;border:1px solid var(--line);border-radius
 padding:.68rem .78rem;margin:.4rem 0}
 .live-source{font-size:.68rem;color:var(--muted)}
 .candle-up{color:#5ee58d;font-weight:850}.candle-down{color:#ff7373;font-weight:850}
+
+
+.conviction-hero{border-radius:15px;padding:1rem 1.1rem;border:1px solid var(--line);height:100%}
+.conviction-strong-buy{background:#123923;border-color:#3d8b59}
+.conviction-buy{background:#18364f;border-color:#4d83b0}
+.conviction-buy-watch{background:#1d3046;border-color:#4e7195}
+.conviction-hold{background:#403814;border-color:#82742f}
+.conviction-sell-watch{background:#4a2d18;border-color:#986039}
+.conviction-sell{background:#491f25;border-color:#9b4652}
+.conviction-strong-sell{background:#38151b;border-color:#b34b59}
+.conviction-label{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;opacity:.78;font-weight:800}
+.conviction-call{font-size:1.9rem;font-weight:950;margin:.18rem 0}
+.conviction-evidence{font-size:.82rem;opacity:.9}
+.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem}
+.check-item{background:#1a1e24;border:1px solid var(--line);border-radius:9px;padding:.55rem .65rem;font-size:.8rem}
+.check-pass{border-left:3px solid #53d38a}.check-fail{border-left:3px solid #ff7272}.check-neutral{border-left:3px solid #f3c765}
+.source-chip{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.18rem .48rem;margin:.1rem;
+font-size:.69rem;color:#dce3eb;background:#1a1e24}
+.category-pass{color:#67e59a;font-weight:850}.category-fail{color:#ff8181;font-weight:850}.category-mixed{color:#f0d46d;font-weight:850}
+.action-row{display:grid;grid-template-columns:1.05fr .65fr .65fr .65fr 1fr;gap:.5rem;align-items:center;
+background:#1b1f25;border:1px solid var(--line);border-radius:11px;padding:.68rem .75rem;margin:.38rem 0}
 
 </style>
 
@@ -848,6 +869,359 @@ def render_objective_card(item: dict, title: str) -> None:
     )
 
 
+
+# ---------- V6 unified conviction engine ----------
+
+BINANCE_KLINES_URL = "https://api.binance.com/api/v3/klines"
+
+
+@st.cache_data(ttl=120, show_spinner=False)
+def load_binance_4h(symbol: str, limit: int = 220) -> pd.DataFrame:
+    pair = f"{symbol.upper()}USDT"
+    try:
+        response = requests.get(
+            BINANCE_KLINES_URL,
+            params={"symbol": pair, "interval": "4h", "limit": limit},
+            timeout=8,
+        )
+        response.raise_for_status()
+        rows = response.json()
+        if not isinstance(rows, list) or not rows:
+            return pd.DataFrame()
+        frame = pd.DataFrame(rows, columns=[
+            "Open time","Open","High","Low","Close","Volume","Close time",
+            "Quote volume","Trades","Taker base","Taker quote","Ignore",
+        ])
+        frame.index = pd.to_datetime(frame["Open time"], unit="ms", utc=True)
+        for column in ["Open","High","Low","Close","Volume"]:
+            frame[column] = pd.to_numeric(frame[column], errors="coerce")
+        return frame[["Open","High","Low","Close","Volume"]].dropna()
+    except Exception:
+        return pd.DataFrame()
+
+
+def resample_hourly_to_4h(frame: pd.DataFrame) -> pd.DataFrame:
+    if frame is None or frame.empty:
+        return pd.DataFrame()
+    x = frame.copy()
+    try:
+        index = pd.to_datetime(x.index, utc=True)
+        x.index = index
+        result = x.resample("4h").agg({
+            "Open":"first","High":"max","Low":"min","Close":"last","Volume":"sum"
+        }).dropna(subset=["Close"])
+        return result
+    except Exception:
+        return pd.DataFrame()
+
+
+def source_freshness(frame: pd.DataFrame) -> float:
+    if frame is None or frame.empty:
+        return 999999.0
+    try:
+        latest = pd.Timestamp(frame.index[-1])
+        if latest.tzinfo is None:
+            latest = latest.tz_localize("UTC")
+        else:
+            latest = latest.tz_convert("UTC")
+        return max(0.0, (pd.Timestamp.now(tz="UTC") - latest).total_seconds() / 60)
+    except Exception:
+        return 999999.0
+
+
+def prepare_conviction_indicators(frame: pd.DataFrame) -> pd.DataFrame:
+    if frame is None or frame.empty:
+        return pd.DataFrame()
+    x = frame.copy()
+    close = x["Close"].astype(float)
+    high = x["High"].astype(float)
+    low = x["Low"].astype(float)
+    volume = x["Volume"].fillna(0).astype(float)
+
+    x["EMA9"] = close.ewm(span=9, adjust=False).mean()
+    x["EMA21"] = close.ewm(span=21, adjust=False).mean()
+    x["EMA55"] = close.ewm(span=55, adjust=False).mean()
+    x["EMA200"] = close.ewm(span=200, adjust=False).mean()
+
+    delta = close.diff()
+    gain = delta.clip(lower=0)
+    loss = -delta.clip(upper=0)
+    avg_gain = gain.ewm(alpha=1/14, adjust=False, min_periods=14).mean()
+    avg_loss = loss.ewm(alpha=1/14, adjust=False, min_periods=14).mean()
+    rs = avg_gain / avg_loss.replace(0, np.nan)
+    x["RSI14"] = 100 - (100 / (1 + rs))
+    x["RSI_DELTA3"] = x["RSI14"] - x["RSI14"].shift(3)
+
+    ema12 = close.ewm(span=12, adjust=False).mean()
+    ema26 = close.ewm(span=26, adjust=False).mean()
+    x["MACD"] = ema12 - ema26
+    x["MACD_SIGNAL"] = x["MACD"].ewm(span=9, adjust=False).mean()
+    x["MACD_HIST"] = x["MACD"] - x["MACD_SIGNAL"]
+    x["MACD_ACCEL"] = x["MACD_HIST"] - x["MACD_HIST"].shift(2)
+
+    previous_close = close.shift(1)
+    true_range = pd.concat([
+        high-low, (high-previous_close).abs(), (low-previous_close).abs()
+    ], axis=1).max(axis=1)
+    x["ATR14"] = true_range.ewm(alpha=1/14, adjust=False, min_periods=14).mean()
+    x["ATR_PCT"] = x["ATR14"] / close.replace(0, np.nan) * 100
+
+    plus_dm = high.diff()
+    minus_dm = -low.diff()
+    plus_dm = plus_dm.where((plus_dm > minus_dm) & (plus_dm > 0), 0.0)
+    minus_dm = minus_dm.where((minus_dm > plus_dm) & (minus_dm > 0), 0.0)
+    atr = x["ATR14"].replace(0, np.nan)
+    plus_di = 100 * plus_dm.ewm(alpha=1/14, adjust=False).mean() / atr
+    minus_di = 100 * minus_dm.ewm(alpha=1/14, adjust=False).mean() / atr
+    dx = 100 * (plus_di-minus_di).abs() / (plus_di+minus_di).replace(0, np.nan)
+    x["ADX14"] = dx.ewm(alpha=1/14, adjust=False).mean()
+    x["PLUS_DI"] = plus_di
+    x["MINUS_DI"] = minus_di
+
+    x["RVOL20"] = volume / volume.rolling(20).mean().replace(0, np.nan)
+    x["RVOL_DELTA3"] = x["RVOL20"] - x["RVOL20"].shift(3)
+    x["RET1"] = close.pct_change(1) * 100
+    x["RET3"] = close.pct_change(3) * 100
+    x["RET6"] = close.pct_change(6) * 100
+    x["GREEN6"] = (close > x["Open"]).rolling(6).sum()
+    x["RED6"] = (close < x["Open"]).rolling(6).sum()
+    x["PRIOR_HIGH6"] = high.shift(1).rolling(6).max()
+    x["PRIOR_LOW6"] = low.shift(1).rolling(6).min()
+    x["BREAKOUT"] = close > x["PRIOR_HIGH6"]
+    x["BREAKDOWN"] = close < x["PRIOR_LOW6"]
+    x["HIGHER_HIGH"] = high.rolling(3).max() > high.shift(3).rolling(3).max()
+    x["HIGHER_LOW"] = low.rolling(3).min() > low.shift(3).rolling(3).min()
+    x["LOWER_HIGH"] = high.rolling(3).max() < high.shift(3).rolling(3).max()
+    x["LOWER_LOW"] = low.rolling(3).min() < low.shift(3).rolling(3).min()
+    return x
+
+
+def conviction_signal(frame: pd.DataFrame, btc_return: float = 0.0) -> dict | None:
+    x = prepare_conviction_indicators(frame)
+    valid = x.dropna(subset=[
+        "EMA9","EMA21","EMA55","RSI14","MACD_HIST","RVOL20","RET3","RET6"
+    ])
+    if valid.empty:
+        return None
+    row = valid.iloc[-1]
+    prev = valid.iloc[-2] if len(valid) > 1 else row
+    close = float(row["Close"])
+
+    conditions = [
+        ("Price above EMA 9", close > row["EMA9"], close < row["EMA9"], "Trend"),
+        ("EMA 9 above EMA 21", row["EMA9"] > row["EMA21"], row["EMA9"] < row["EMA21"], "Trend"),
+        ("EMA 21 above EMA 55", row["EMA21"] > row["EMA55"], row["EMA21"] < row["EMA55"], "Trend"),
+        ("MACD histogram positive", row["MACD_HIST"] > 0, row["MACD_HIST"] < 0, "Momentum"),
+        ("MACD momentum accelerating", row["MACD_ACCEL"] > 0, row["MACD_ACCEL"] < 0, "Momentum"),
+        ("RSI strengthening", 50 <= row["RSI14"] <= 78 and row["RSI_DELTA3"] > 0,
+         row["RSI14"] < 45 and row["RSI_DELTA3"] < 0, "Momentum"),
+        ("Relative volume above normal", row["RVOL20"] >= 1.15, row["RVOL20"] < 0.70, "Volume"),
+        ("Relative volume increasing", row["RVOL_DELTA3"] > 0.10, row["RVOL_DELTA3"] < -0.10, "Volume"),
+        ("Majority of recent candles green", row["GREEN6"] >= 4, row["RED6"] >= 4, "Volume"),
+        ("Three-candle price direction positive", row["RET3"] > 0, row["RET3"] < 0, "Structure"),
+        ("Higher-high structure", bool(row["HIGHER_HIGH"]), bool(row["LOWER_HIGH"]), "Structure"),
+        ("Higher-low structure", bool(row["HIGHER_LOW"]), bool(row["LOWER_LOW"]), "Structure"),
+        ("Breakout above prior range", bool(row["BREAKOUT"]), bool(row["BREAKDOWN"]), "Structure"),
+        ("Outperforming Bitcoin", row["RET6"] > btc_return + 1.0, row["RET6"] < btc_return - 1.0, "Relative strength"),
+    ]
+
+    bullish = sum(1 for _, bull, _, _ in conditions if bool(bull))
+    bearish = sum(1 for _, _, bear, _ in conditions if bool(bear))
+    category = {}
+    for _, bull, bear, group in conditions:
+        stats = category.setdefault(group, {"bull":0,"bear":0,"total":0})
+        stats["total"] += 1
+        stats["bull"] += int(bool(bull))
+        stats["bear"] += int(bool(bear))
+
+    trend_pass = category["Trend"]["bull"] >= 2
+    volume_pass = category["Volume"]["bull"] >= 2
+    bearish_trend = category["Trend"]["bear"] >= 2
+    bearish_volume = category["Volume"]["bear"] >= 2
+
+    # Decisive calls, but only when several independent categories agree.
+    if bullish >= 10 and bearish <= 2 and trend_pass and volume_pass:
+        signal = "STRONG BUY"
+    elif bullish >= 8 and bearish <= 3 and trend_pass:
+        signal = "BUY"
+    elif bullish >= 6 and bearish <= 4:
+        signal = "BUY WATCH"
+    elif bearish >= 10 and bullish <= 2 and bearish_trend and bearish_volume:
+        signal = "STRONG SELL"
+    elif bearish >= 8 and bullish <= 3 and bearish_trend:
+        signal = "SELL"
+    elif bearish >= 6 and bullish <= 4:
+        signal = "SELL WATCH"
+    else:
+        signal = "HOLD"
+
+    class_name = signal.lower().replace(" ", "-")
+    evidence = []
+    contrary = []
+    for name, bull, bear, group in conditions:
+        if bool(bull):
+            evidence.append({"name":name,"group":group,"state":"bull"})
+        elif bool(bear):
+            contrary.append({"name":name,"group":group,"state":"bear"})
+        else:
+            contrary.append({"name":name,"group":group,"state":"neutral"})
+
+    category_states = {}
+    for group, stats in category.items():
+        if stats["bull"] > stats["bear"] and stats["bull"] >= max(1, stats["total"]//2):
+            category_states[group] = "PASS"
+        elif stats["bear"] > stats["bull"] and stats["bear"] >= max(1, stats["total"]//2):
+            category_states[group] = "FAIL"
+        else:
+            category_states[group] = "MIXED"
+
+    return {
+        "signal":signal,
+        "class_name":class_name,
+        "bullish":bullish,
+        "bearish":bearish,
+        "total":len(conditions),
+        "conditions":conditions,
+        "evidence":evidence,
+        "contrary":contrary,
+        "categories":category_states,
+        "close":close,
+        "ret4h":float(row["RET1"]),
+        "ret12h":float(row["RET3"]),
+        "ret24h":float(row["RET6"]),
+        "rsi":float(row["RSI14"]),
+        "rsi_delta":float(row["RSI_DELTA3"]),
+        "rvol":float(row["RVOL20"]),
+        "rvol_delta":float(row["RVOL_DELTA3"]),
+        "adx":float(row["ADX14"]) if pd.notna(row["ADX14"]) else np.nan,
+        "atr_pct":float(row["ATR_PCT"]) if pd.notna(row["ATR_PCT"]) else np.nan,
+        "green6":int(row["GREEN6"]) if pd.notna(row["GREEN6"]) else 0,
+        "red6":int(row["RED6"]) if pd.notna(row["RED6"]) else 0,
+        "breakout":bool(row["BREAKOUT"]),
+        "breakdown":bool(row["BREAKDOWN"]),
+        "chart":valid[["Close","EMA9","EMA21","EMA55"]].tail(120),
+        "latest_time":pd.Timestamp(valid.index[-1]),
+    }
+
+
+@st.cache_data(ttl=120, show_spinner=False)
+def unified_asset_intelligence(symbol: str, ticker: str) -> dict:
+    sources = []
+    yahoo_hourly = load_intraday_history(ticker, 30)
+    yahoo_4h = resample_hourly_to_4h(yahoo_hourly)
+    if not yahoo_4h.empty:
+        sources.append({
+            "name":"Yahoo Finance",
+            "frame":yahoo_4h,
+            "age":source_freshness(yahoo_4h),
+            "candles":len(yahoo_4h),
+        })
+
+    binance = load_binance_4h(symbol)
+    if not binance.empty:
+        sources.append({
+            "name":"Binance",
+            "frame":binance,
+            "age":source_freshness(binance),
+            "candles":len(binance),
+        })
+
+    if not sources:
+        return {"symbol":symbol,"ticker":ticker,"sources":[],"primary":None,"confirmation":None}
+
+    sources.sort(key=lambda item:(item["age"], -item["candles"]))
+    primary = sources[0]
+    primary_signal = conviction_signal(primary["frame"])
+
+    confirmations = []
+    for source in sources[1:]:
+        result = conviction_signal(source["frame"])
+        if result:
+            confirmations.append({"source":source["name"],"result":result,"age":source["age"]})
+
+    agreement = "SINGLE SOURCE"
+    if primary_signal and confirmations:
+        matching = sum(1 for item in confirmations if item["result"]["signal"] == primary_signal["signal"])
+        same_direction = sum(
+            1 for item in confirmations
+            if ("BUY" in item["result"]["signal"]) == ("BUY" in primary_signal["signal"])
+            and ("SELL" in item["result"]["signal"]) == ("SELL" in primary_signal["signal"])
+        )
+        if matching == len(confirmations):
+            agreement = "FULL AGREEMENT"
+        elif same_direction >= 1:
+            agreement = "DIRECTION AGREEMENT"
+        else:
+            agreement = "SOURCE CONFLICT"
+
+    return {
+        "symbol":symbol,
+        "ticker":ticker,
+        "sources":[{"name":x["name"],"age":x["age"],"candles":x["candles"]} for x in sources],
+        "primary_source":primary["name"],
+        "primary":primary_signal,
+        "confirmations":confirmations,
+        "agreement":agreement,
+    }
+
+
+def render_conviction_hero(symbol: str, result: dict, source: str, agreement: str) -> None:
+    st.markdown(
+        f'<div class="conviction-hero conviction-{result["class_name"]}">'
+        f'<div class="conviction-label">{esc(symbol)} · Four-hour conviction call</div>'
+        f'<div class="conviction-call">{esc(result["signal"])}</div>'
+        f'<div class="conviction-evidence">{result["bullish"]} bullish conditions · '
+        f'{result["bearish"]} bearish conditions · {esc(agreement)} · {esc(source)}</div>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+
+def render_category_states(states: dict) -> None:
+    cols = st.columns(len(states))
+    for col, (name, state) in zip(cols, states.items()):
+        css = "category-pass" if state=="PASS" else "category-fail" if state=="FAIL" else "category-mixed"
+        with col:
+            st.markdown(
+                f'<div class="objective-card"><div class="objective-title">{esc(name)}</div>'
+                f'<div class="objective-main {css}">{esc(state)}</div></div>',
+                unsafe_allow_html=True,
+            )
+
+
+def render_signal_checklist(result: dict) -> None:
+    blocks = []
+    for name, bull, bear, group in result["conditions"]:
+        if bool(bull):
+            css, marker = "check-pass", "✓"
+        elif bool(bear):
+            css, marker = "check-fail", "✕"
+        else:
+            css, marker = "check-neutral", "—"
+        blocks.append(
+            f'<div class="check-item {css}"><b>{marker} {esc(name)}</b>'
+            f'<div class="fourh-name">{esc(group)}</div></div>'
+        )
+    st.markdown('<div class="check-grid">' + "".join(blocks) + '</div>', unsafe_allow_html=True)
+
+
+def render_action_row(rank: int, item: dict) -> None:
+    result = item["intelligence"]["primary"]
+    age = min((x["age"] for x in item["intelligence"]["sources"]), default=999999)
+    st.markdown(
+        f'<div class="action-row">'
+        f'<div><div class="fourh-asset">{rank}. {esc(item["symbol"])}</div>'
+        f'<div class="fourh-name">{esc(item.get("name",""))} · {esc(item.get("narrative",""))}</div></div>'
+        f'<div><b>{esc(result["signal"])}</b><div class="fourh-name">Call</div></div>'
+        f'<div><b>{signed(result["ret4h"])}</b><div class="fourh-name">4 hours</div></div>'
+        f'<div><b>{result["rvol"]:.2f}×</b><div class="fourh-name">RVOL</div></div>'
+        f'<div><b>{result["bullish"]} bull / {result["bearish"]} bear</b>'
+        f'<div class="fourh-name">{esc(item["intelligence"]["agreement"])} · {age:.0f} min</div></div>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+
 # ---------- Signal Lab calculations ----------
 
 @st.cache_data(ttl=900, show_spinner=False)
@@ -1228,7 +1602,7 @@ titles = {
     "Markets":("Market Themes","Where is capital moving, and how is your portfolio exposed?"),
     "Watch":("Needs Attention","Only the holdings with the most meaningful changes."),
     "Research":("Research","The evidence beneath the daily briefing."),
-    "4H Intelligence":("4H Intelligence","Emerging four-hour trends by narrative, followed by a detailed project investigation."),
+    "4H Intelligence":("4H Intelligence","The platform’s primary conviction engine for portfolio and on-demand asset calls."),
     "Signal Lab":("Signal Lab","Capture fast shifts early, then confirm them against the broader trend."),
 }
 page_header(*titles[selection])
@@ -1420,137 +1794,177 @@ elif selection=="Research":
 
 elif selection=="4H Intelligence":
     st.markdown(
-        '<div class="summary-box"><b>Purpose:</b> Compare observable four-hour price and volume direction '
-        'across narratives. No confidence percentage or 0–100 prediction score is used.</div>',
+        '<div class="summary-box"><b>V6 conviction engine:</b> This page now combines fresh hourly/four-hour '
+        'candles from multiple sources, evaluates a fixed checklist, and makes decisive Buy, Hold and Sell calls. '
+        'The call is not a trade instruction; the complete evidence remains visible.</div>',
         unsafe_allow_html=True,
     )
 
-    with st.spinner("Scanning hourly market data..."):
-        narrative_results, all_fourh_results = scan_fourh_universe(portfolio)
+    section("Action required")
+    st.caption("All portfolio holdings are checked. Strongest calls appear first.")
 
-    if not all_fourh_results:
-        st.error("The four-hour market scan could not retrieve enough hourly data. Try refreshing later.")
-    else:
-        positive_flows = [x for x in all_fourh_results if x["flow"]["label"] == "Positive flow"]
-        negative_flows = [x for x in all_fourh_results if x["flow"]["label"] == "Negative flow"]
-        active_volume = sorted(all_fourh_results, key=lambda x:(x["rvol_delta"], x["rvol"]), reverse=True)
+    portfolio_calls = []
+    progress_bar = st.progress(0, text="Scanning portfolio holdings...")
+    held_tickers = {item["symbol"]: CRYPTO_TICKERS.get(item["symbol"], f'{item["symbol"]}-USD') for item in portfolio["items"]}
+    total_assets = max(1, len(held_tickers))
 
-        narrative_order = []
-        for narrative, items in narrative_results.items():
-            if items:
-                pos = sum(1 for x in items if x["flow"]["label"] == "Positive flow")
-                neg = sum(1 for x in items if x["flow"]["label"] == "Negative flow")
-                avg_delta = sum(x["rvol_delta"] for x in items) / len(items)
-                narrative_order.append((narrative, pos-neg, avg_delta))
-        narrative_order.sort(key=lambda x:(x[1],x[2]), reverse=True)
+    for index, item in enumerate(portfolio["items"]):
+        symbol = item["symbol"]
+        ticker = held_tickers[symbol]
+        intelligence = unified_asset_intelligence(symbol, ticker)
+        if intelligence.get("primary"):
+            portfolio_calls.append({**item, "intelligence":intelligence})
+        progress_bar.progress((index+1)/total_assets, text=f"Scanning {symbol}...")
+    progress_bar.empty()
 
-        summary_cols = st.columns(4)
-        with summary_cols[0]:
-            metric("Positive volume flow", str(len(positive_flows)), "Price ↑ and volume ↑")
-        with summary_cols[1]:
-            metric("Negative volume flow", str(len(negative_flows)), "Price ↓ and volume ↑")
-        with summary_cols[2]:
-            metric("Largest volume increase", active_volume[0]["symbol"], f'{active_volume[0]["rvol_delta"]:+.2f}× RVOL')
-        with summary_cols[3]:
-            metric("Universe scanned", str(len(all_fourh_results)), "Refreshes every 15 minutes")
+    signal_priority = {
+        "STRONG BUY":7, "BUY":6, "BUY WATCH":5, "STRONG SELL":4,
+        "SELL":3, "SELL WATCH":2, "HOLD":1,
+    }
+    portfolio_calls.sort(
+        key=lambda x:(
+            signal_priority.get(x["intelligence"]["primary"]["signal"],0),
+            x["intelligence"]["primary"]["bullish"] - x["intelligence"]["primary"]["bearish"],
+            abs(x["intelligence"]["primary"]["ret4h"]),
+        ),
+        reverse=True,
+    )
 
-        section("Largest four-hour volume changes")
-        priority_cols = st.columns(3)
-        for col, item in zip(priority_cols, active_volume[:3]):
+    actionable = [x for x in portfolio_calls if x["intelligence"]["primary"]["signal"] != "HOLD"]
+    for rank, item in enumerate((actionable or portfolio_calls)[:10], 1):
+        render_action_row(rank, item)
+
+    if portfolio_calls:
+        counts = defaultdict(int)
+        for item in portfolio_calls:
+            counts[item["intelligence"]["primary"]["signal"]] += 1
+        cols = st.columns(5)
+        labels = ["STRONG BUY","BUY","BUY WATCH","SELL / STRONG SELL","HOLD"]
+        values = [
+            counts["STRONG BUY"],
+            counts["BUY"],
+            counts["BUY WATCH"],
+            counts["SELL"]+counts["STRONG SELL"]+counts["SELL WATCH"],
+            counts["HOLD"],
+        ]
+        for col,label,value in zip(cols,labels,values):
             with col:
-                price_arrow, price_colour = direction_arrow(item["ret6"])
-                volume_arrow, volume_colour = direction_arrow(item["rvol_delta"], .10)
-                st.markdown(
-                    f'<div class="objective-card"><div class="objective-title">{esc(item["narrative"])}</div>'
-                    f'<div class="objective-main">{esc(item["symbol"])}</div>'
-                    f'<div class="objective-row"><span>6-hour price</span>'
-                    f'<b><span class="flow-arrow flow-{price_colour}">{price_arrow}</span> {signed(item["ret6"])}</b></div>'
-                    f'<div class="objective-row"><span>RVOL change</span>'
-                    f'<b><span class="flow-arrow flow-{volume_colour}">{volume_arrow}</span> {item["rvol_delta"]:+.2f}×</b></div>'
-                    f'<div class="objective-row"><span>Current RVOL</span><b>{item["rvol"]:.2f}×</b></div>'
-                    f'<div class="objective-row"><span>Volume flow</span>'
-                    f'<b>{render_flow_arrow(item["flow"])} {esc(item["flow"]["label"])}</b></div></div>',
-                    unsafe_allow_html=True,
-                )
+                metric(label,str(value),"Current portfolio calls")
 
-        section("Coins by narrative")
-        st.caption("Categories are ordered by positive minus negative volume-flow signals, then by average RVOL change.")
-        for index, (narrative, _, _) in enumerate(narrative_order):
-            items = narrative_results[narrative]
-            label, arrow, colour = narrative_flow_summary(items)
-            with st.expander(
-                f'{narrative} · {arrow} {label} volume flow · {len(items)} projects',
-                expanded=index < 3,
-            ):
-                for rank, item in enumerate(items, 1):
-                    render_fourh_scan_row(rank, item)
+    section("Deep-dive asset")
+    options = {
+        f'{item["symbol"]} · {item["name"]} · held': (item["symbol"], CRYPTO_TICKERS.get(item["symbol"], f'{item["symbol"]}-USD'), item)
+        for item in portfolio["items"]
+    }
+    selected_label = st.selectbox("Select a portfolio holding", list(options.keys()))
+    selected_symbol, selected_ticker, selected_holding = options[selected_label]
 
-        section("Open an individual project")
-        option_map = {
-            f'{item["symbol"]} · {item["name"]} · {item["narrative"]}': item
-            for item in all_fourh_results
-        }
-        selected = option_map[st.selectbox("Project or coin", list(option_map.keys()), index=0)]
+    custom_cols = st.columns([1,1,1])
+    with custom_cols[0]:
+        custom_symbol = st.text_input("Or investigate another symbol", placeholder="Example: LINK")
+    with custom_cols[1]:
+        custom_market = st.selectbox("Asset type", ["Crypto","US stock / ETF"])
+    with custom_cols[2]:
+        run_custom = st.button("Deep dive", use_container_width=True)
 
-        flow = selected["flow"]
-        trend = selected["trend"]
-        price_arrow, price_colour = direction_arrow(selected["ret6"])
-        volume_arrow, volume_colour = direction_arrow(selected["rvol_delta"], .10)
+    if run_custom and custom_symbol.strip():
+        selected_symbol = custom_symbol.strip().upper()
+        selected_ticker = resolve_ticker(selected_symbol, "Crypto" if custom_market=="Crypto" else "Stock / ETF")
+        selected_holding = next((x for x in portfolio["items"] if x["symbol"]==selected_symbol), None)
 
-        header_cols = st.columns([1.15,1,1])
-        with header_cols[0]:
-            st.markdown(
-                f'<div class="objective-card"><div class="objective-title">{esc(selected["narrative"])}</div>'
-                f'<div class="objective-main">{esc(selected["symbol"])} · {esc(selected["name"])}</div>'
-                f'<div class="objective-row"><span>Volume flow</span>'
-                f'<b>{render_flow_arrow(flow)} {esc(flow["label"])}</b></div></div>',
-                unsafe_allow_html=True,
+    with st.spinner(f"Deep-diving {selected_symbol} across available sources..."):
+        selected_intel = unified_asset_intelligence(selected_symbol, selected_ticker)
+
+    result = selected_intel.get("primary")
+    if not result:
+        st.error(f"Could not retrieve enough four-hour data for {selected_symbol}.")
+    else:
+        hero_cols = st.columns([1.45,1])
+        with hero_cols[0]:
+            render_conviction_hero(
+                selected_symbol, result,
+                selected_intel.get("primary_source","Market data"),
+                selected_intel.get("agreement","SINGLE SOURCE"),
             )
-        with header_cols[1]:
-            st.markdown(
-                f'<div class="objective-card"><div class="objective-title">Price direction</div>'
-                f'<div class="objective-main"><span class="flow-arrow flow-{price_colour}">{price_arrow}</span> '
-                f'{signed(selected["ret6"])}</div>'
-                f'<div class="objective-row"><span>24-hour price</span><b>{signed(selected["ret24"])}</b></div>'
-                f'<div class="objective-row"><span>Trend</span><b>'
-                f'<span class="flow-arrow flow-{trend["colour"]}">{trend["arrow"]}</span> {trend["label"]}</b></div></div>',
-                unsafe_allow_html=True,
+        with hero_cols[1]:
+            source_html = "".join(
+                f'<span class="source-chip">{esc(source["name"])} · {source["age"]:.0f} min · '
+                f'{source["candles"]} candles</span>'
+                for source in selected_intel.get("sources",[])
             )
-        with header_cols[2]:
             st.markdown(
-                f'<div class="objective-card"><div class="objective-title">Volume</div>'
-                f'<div class="objective-main"><span class="flow-arrow flow-{volume_colour}">{volume_arrow}</span> '
-                f'{selected["rvol_delta"]:+.2f}×</div>'
-                f'<div class="objective-row"><span>Current RVOL</span><b>{selected["rvol"]:.2f}×</b></div>'
-                f'<div class="objective-row"><span>Portfolio</span><b>'
-                f'{"Held " + format(selected["portfolio_weight"], ".1f") + "%" if selected["in_portfolio"] else "Not held"}</b></div></div>',
+                f'<div class="objective-card"><div class="objective-title">Data sources</div>'
+                f'<div style="margin-top:.45rem">{source_html}</div>'
+                f'<div class="objective-row"><span>Primary source</span>'
+                f'<b>{esc(selected_intel.get("primary_source","—"))}</b></div>'
+                f'<div class="objective-row"><span>Cross-source result</span>'
+                f'<b>{esc(selected_intel.get("agreement","—"))}</b></div></div>',
                 unsafe_allow_html=True,
             )
 
-        detail_cols = st.columns(3)
-        with detail_cols[0]:
-            metric("RSI 9", f'{selected["rsi"]:.1f}' if pd.notna(selected["rsi"]) else "—",
-                   f'{selected["rsi_delta"]:+.1f} change' if pd.notna(selected["rsi"]) else "No hourly reading")
-        with detail_cols[1]:
-            metric("6-hour price", signed(selected["ret6"]), "Observed return")
-        with detail_cols[2]:
-            metric("24-hour price", signed(selected["ret24"]), "Observed return")
+        section("Independent evidence groups")
+        render_category_states(result["categories"])
 
-        section("Four-hour trend structure")
-        if isinstance(selected["chart"], pd.DataFrame) and not selected["chart"].empty:
-            st.line_chart(selected["chart"], use_container_width=True)
-            st.caption("Hourly close with EMA 9, EMA 21 and EMA 55. No predictive score is applied.")
+        metric_cols = st.columns(6)
+        metrics = [
+            ("4-hour move", signed(result["ret4h"]), "Latest completed candle"),
+            ("12-hour move", signed(result["ret12h"]), "Three 4H candles"),
+            ("24-hour move", signed(result["ret24h"]), "Six 4H candles"),
+            ("RVOL", f'{result["rvol"]:.2f}×', f'{result["rvol_delta"]:+.2f}× change'),
+            ("RSI 14", f'{result["rsi"]:.1f}', f'{result["rsi_delta"]:+.1f} change'),
+            ("ADX", f'{result["adx"]:.1f}' if pd.notna(result["adx"]) else "—", "Trend strength"),
+        ]
+        for col,(label,value,note) in zip(metric_cols,metrics):
+            with col:
+                metric(label,value,note)
+
+        section("Conviction checklist")
+        st.caption(
+            f'{result["bullish"]} bullish conditions and {result["bearish"]} bearish conditions '
+            f'out of {result["total"]}. No hidden 0–100 score is used.'
+        )
+        render_signal_checklist(result)
+
+        section("Price and trend")
+        st.line_chart(result["chart"], use_container_width=True)
+        st.caption("Four-hour close with EMA 9, EMA 21 and EMA 55.")
+
+        section("Source confirmation")
+        if selected_intel.get("confirmations"):
+            rows = []
+            rows.append({
+                "Source":selected_intel.get("primary_source"),
+                "Call":result["signal"],
+                "4H":signed(result["ret4h"]),
+                "24H":signed(result["ret24h"]),
+                "RVOL":round(result["rvol"],2),
+                "Bullish":result["bullish"],
+                "Bearish":result["bearish"],
+            })
+            for confirmation in selected_intel["confirmations"]:
+                other = confirmation["result"]
+                rows.append({
+                    "Source":confirmation["source"],
+                    "Call":other["signal"],
+                    "4H":signed(other["ret4h"]),
+                    "24H":signed(other["ret24h"]),
+                    "RVOL":round(other["rvol"],2),
+                    "Bullish":other["bullish"],
+                    "Bearish":other["bearish"],
+                })
+            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
         else:
-            st.info("A live hourly trend chart was unavailable for this project.")
+            st.info("Only one usable candle source was available for this asset.")
 
-        section("Arrow rules")
+        section("Call rules")
         st.markdown(
             '<div class="summary-box">'
-            '<b>Green ↑:</b> price and volume are both rising. '
-            '<b>Red ↓:</b> volume is rising while price falls. '
-            '<b>Blue ↑:</b> volume is rising while price is mostly flat. '
-            '<b>Orange ↓:</b> price rises while volume fades. '
-            '<b>Yellow/Grey →:</b> mixed, falling or stable activity.'
+            '<b>Strong Buy:</b> at least 10 bullish conditions, no more than two bearish conditions, '
+            'with both trend and volume confirmation. '
+            '<b>Buy:</b> at least eight bullish conditions with trend confirmation. '
+            '<b>Buy Watch:</b> at least six bullish conditions. '
+            '<b>Sell calls:</b> use the same thresholds in the opposite direction. '
+            '<b>Hold:</b> evidence is not sufficiently one-sided.'
             '</div>',
             unsafe_allow_html=True,
         )

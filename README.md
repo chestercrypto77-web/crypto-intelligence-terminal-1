@@ -1,31 +1,59 @@
-# Crypto Intelligence Terminal V5.4.3
+# Crypto Intelligence Terminal V6.0.0
 
-Live Move Detection update, built directly from V5.4.2.
+## Conviction Engine
 
-## Why this update was needed
+V6 turns **4H Intelligence** into the strongest indicator and central decision-support
+page in the platform.
 
-A fast move could appear clearly on an exchange chart while the portfolio pages still
-looked neutral or negative. The main portfolio used only the CoinGecko 24-hour field,
-while the 4H tools used separate Yahoo hourly candles. Those feeds could disagree or
-refresh at different times.
+### Data architecture
 
-## Changes
+- CoinGecko remains the portfolio price and market metadata source
+- Yahoo Finance supplies hourly candles which are resampled into four-hour candles
+- Binance confirms four-hour crypto candles when the pair is available
+- Every portfolio holding is scanned
+- Any additional crypto, US stock or ETF can be investigated on demand
+- Data-source names, freshness and candle counts are visible
+- Cross-source agreement or conflict is shown
 
-- Added two-minute hourly move detection for held assets
-- Added 1-hour, 6-hour and 24-hour observed returns
-- Added recent green/red candle counts
-- Added hourly RVOL and RVOL change
-- Uses the freshest available 24-hour return between CoinGecko and hourly candles
-- Shows the selected data source and age
-- Added **Moves now** to Today
-- Added **Live portfolio moves** to Portfolio
-- Replaced hidden score-based attention ordering with observable move ordering
-- Positive movers are now ranked by 6-hour, 1-hour and 24-hour movement
-- Research now shows source and data freshness
+### Decisive calls
 
-No confidence scores or prediction scores were added.
+The engine produces:
+
+- STRONG BUY
+- BUY
+- BUY WATCH
+- HOLD
+- SELL WATCH
+- SELL
+- STRONG SELL
+
+No 0–100 prediction score is displayed. Calls come from a transparent checklist of
+14 observable conditions across:
+
+- Trend
+- Volume
+- Momentum
+- Structure
+- Relative strength
+
+Strong calls require agreement across independent categories. The page shows every
+passing, failing and neutral condition.
+
+### 4H page
+
+- Action Required scans all portfolio holdings
+- Calls are ranked by signal state and current movement
+- Deep dive for any holding
+- On-demand symbol input for other assets
+- Four-hour, 12-hour and 24-hour movement
+- RVOL and RVOL change
+- RSI, ADX, EMA structure, MACD acceleration
+- Green/red candle balance
+- Higher highs, higher lows, breakouts and breakdowns
+- Source confirmation table
+- Explicit call thresholds
 
 ## Upload
 
-Extract the ZIP, drag all five extracted items into GitHub **Add file → Upload files**,
-commit the replacements, then reboot Streamlit.
+Extract the ZIP and drag all five extracted items into GitHub
+**Add file → Upload files**, commit the replacements, then reboot Streamlit.
