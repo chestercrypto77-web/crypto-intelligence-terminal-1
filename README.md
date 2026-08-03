@@ -1,44 +1,42 @@
-# Crypto Intelligence Terminal V6.1.1
+# Crypto Intelligence Terminal V7.0.0
 
-## Hourly automatic signal recording
+V7 adds a complete accountability and performance layer.
 
-This release changes the unattended call engine from one scan every four hours to one scan every hour.
+## Performance tracking
+Every engine and external paper trade records directional results after:
+- 1 hour
+- 4 hours
+- 12 hours
+- 24 hours
+- 3 days
+- 7 days
 
-The engine still evaluates the **four-hour trading framework**. Running it hourly allows the platform to detect a developing change during the current four-hour window rather than waiting up to four hours for the next scheduled job.
+It also records best favourable return, worst adverse return, and an automatic seven-day Win, Loss or Flat outcome. Long and short calls are measured correctly in opposite directions.
 
-### Every hour the recorder
+## Performance Lab
+Compares Our Engine, Sheldon the Sniper, Mark and other sources using:
+- Calls and evaluated calls
+- Win rate
+- Average return
+- Average winner and loser
+- Profit factor
+- Full call-by-call checkpoint table
 
-1. Reads every holding from `holdings.json`
-2. Retrieves current Yahoo Finance and Binance candle data where available
-3. Evaluates the V6 conviction checklist
-4. Compares each asset with its previously recorded call
-5. Records a new signal-history entry when the state changes
-6. Opens a paper trade when an actionable signal changes into:
-   - Strong Buy
-   - Buy
-   - Buy Watch
-   - Sell Watch
-   - Sell
-   - Strong Sell
-7. Freezes the timestamp, entry price, evidence and source
-8. Commits the updated records to GitHub
+## Sheldon calls
+Paper Trading includes a reviewed external-call builder. It prepares an updated `external_calls.json` file. Download it, replace `data/external_calls.json` in GitHub, and the hourly recorder will begin tracking the call separately.
 
-### Duplicate protection
+## GitHub Actions setup
+Your browser skipped the hidden `.github` folder. This release includes a visible backup:
+`WORKFLOW_SETUP/hourly_signal_recorder.yml`
 
-Hourly scans do not repeatedly open the same trade. A paper trade is created only when the signal state changes, and signal IDs include the asset, call and four-hour candle time.
+If Actions still shows “Get started with GitHub Actions”:
+1. Click **set up a workflow yourself**
+2. Name it `hourly_signal_recorder.yml`
+3. Replace the example with the contents of the visible backup file
+4. Commit it
+5. Run **Hourly Signal Recorder**
 
-### Important distinction
+A standalone workflow file is also provided beside the release ZIP.
 
-This is an **hourly scan of a four-hour signal model**. Signals developing inside an unfinished four-hour candle may change before that candle closes. We will preserve those changes so the Performance Lab can later compare early intrabar calls with confirmed closed-candle calls.
-
-## Upload and activate
-
-1. Extract the ZIP.
-2. Drag every extracted file and folder into GitHub **Add file → Upload files**.
-3. Commit the replacement files.
-4. Reboot Streamlit.
-5. Open GitHub **Actions**.
-6. Select **Hourly Signal Recorder**.
-7. Click **Run workflow** once and confirm it succeeds.
-
-After that, the workflow runs at 17 minutes past every hour.
+## Upload
+Extract the ZIP and drag all visible extracted files and folders into GitHub **Add file → Upload files**, commit, and reboot Streamlit.

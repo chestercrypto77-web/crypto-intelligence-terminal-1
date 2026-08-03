@@ -134,21 +134,88 @@ def source(symbol,ticker):
 def sid(symbol,signal,candle):
     return f"{symbol}_{signal.replace(' ','_')}_{candle.replace('-','').replace(':','').replace('+','').replace('T','_')}"
 
+
+def parse_time(value):
+    try:
+        t=pd.Timestamp(value)
+        return t.tz_localize("UTC") if t.tzinfo is None else t.tz_convert("UTC")
+    except Exception:
+        return None
+
+def directional_return(direction,entry,current):
+    if not entry or not current or float(entry)<=0: return None
+    raw=(float(current)/float(entry)-1)*100
+    return raw if direction=="LONG" else -raw
+
+def update_trade_outcomes(trades,snapshots,now):
+    now_ts=parse_time(now)
+    checkpoints=[1,4,12,24,72,168]
+    for trade in trades:
+        if trade.get("status") not in {"OPEN","CLOSED"}: continue
+        snap=snapshots.get(str(trade.get("symbol","")).upper())
+        if not snap: continue
+        current=float(snap.get("price") or 0); entry=float(trade.get("entry_price") or 0)
+        result=directional_return(trade.get("direction"),entry,current)
+        if result is None: continue
+        trade["current_price"]=current; trade["current_return"]=result; trade["last_updated"]=now
+        trade["best_return"]=max(float(trade.get("best_return") or result),result)
+        trade["worst_return"]=min(float(trade.get("worst_return") or result),result)
+        trade.setdefault("returns",{})
+        entered=parse_time(trade.get("entry_time"))
+        if entered is None or now_ts is None: continue
+        elapsed=max(0.0,(now_ts-entered).total_seconds()/3600); trade["hours_open"]=elapsed
+        for hours in checkpoints:
+            key=f"{hours}h" if hours<24 else f"{hours//24}d"
+            if elapsed>=hours and key not in trade["returns"]:
+                trade["returns"][key]={"return":result,"price":current,"recorded_at":now}
+        if trade.get("status")=="OPEN" and elapsed>=168:
+            trade["status"]="CLOSED"; trade["exit_time"]=now; trade["exit_price"]=current
+            trade["exit_reason"]="Automatic 7-day evaluation"; trade["final_return"]=result
+            trade["outcome"]="WIN" if result>.25 else "LOSS" if result<-.25 else "FLAT"
+    return trades
+
+def ingest_external_calls(calls,trades,snapshots,now):
+    existing={str(t.get("trade_id")) for t in trades}
+    for call in calls:
+        if not isinstance(call,dict) or call.get("status","ACTIVE")!="ACTIVE": continue
+        call_id=str(call.get("call_id") or "").strip(); symbol=str(call.get("symbol") or "").upper().strip()
+        direction=str(call.get("direction") or "").upper().strip()
+        if not call_id or not symbol or direction not in {"LONG","SHORT"}: continue
+        trade_id=f"EXTERNAL_{call_id}"
+        if trade_id in existing: continue
+        entry=float(call.get("entry_price") or snapshots.get(symbol,{}).get("price") or 0)
+        if entry<=0: continue
+        trades.append({
+          "trade_id":trade_id,"source":str(call.get("source") or "EXTERNAL"),"symbol":symbol,
+          "name":str(call.get("name") or symbol),"narrative":str(call.get("narrative") or ""),
+          "tier":"EXTERNAL","direction":direction,
+          "call":str(call.get("call") or ("BUY" if direction=="LONG" else "SELL")),
+          "entry_time":str(call.get("entry_time") or now),"candle_time":str(call.get("entry_time") or now),
+          "entry_price":entry,"status":"OPEN","target_price":call.get("target_price"),
+          "invalidation_price":call.get("invalidation_price"),"exit_time":None,"exit_price":None,
+          "exit_reason":None,"bullish_conditions":None,"bearish_conditions":None,"checks":[],
+          "source_data":str(call.get("source_link") or "Manual external call"),
+          "notes":str(call.get("notes") or ""),"timeframe":str(call.get("timeframe") or ""),
+          "returns":{},"best_return":0.0,"worst_return":0.0
+        }); existing.add(trade_id)
+    return trades
+
 def main():
     holdings=read(ROOT/"holdings.json",[])
     previous=read(DATA/"signals_latest.json",{"signals":[]})
     prev={x.get("symbol"):x for x in previous.get("signals",[])}
-    history=read(DATA/"signal_history.json",[]); trades=read(DATA/"paper_trades.json",[])
-    history=history if isinstance(history,list) else []; trades=trades if isinstance(trades,list) else []
+    history=read(DATA/"signal_history.json",[]); trades=read(DATA/"paper_trades.json",[]); external=read(DATA/"external_calls.json",[])
+    history=history if isinstance(history,list) else []; trades=trades if isinstance(trades,list) else []; external=external if isinstance(external,list) else []
     seen={x.get("signal_id") for x in history}; trade_ids={x.get("trade_id") for x in trades}
     _,bf=source("BTC",TICKERS["BTC"]); be=evaluate(bf,0) if not bf.empty else None
     btc24=be["return_24h"] if be else 0
-    now=datetime.now(timezone.utc).isoformat(); latest=[]; nh=nt=0
+    now=datetime.now(timezone.utc).isoformat(); latest=[]; snapshots={}; nh=nt=0
     for h in holdings:
         sym=str(h["symbol"]).upper(); provider,f=source(sym,TICKERS.get(sym,f"{sym}-USD"))
         if f.empty: continue
         result=evaluate(f,0 if sym=="BTC" else btc24)
         if not result: continue
+        snapshots[sym]={"price":result["entry_price"],"source":provider,"recorded_at":now}
         old=prev.get(sym,{}).get("signal"); changed=old is not None and old!=result["signal"]
         rec={"signal_id":sid(sym,result["signal"],result["candle_time"]),"recorded_at":now,
              "symbol":sym,"name":h.get("name",sym),"narrative":h.get("narrative",""),
@@ -168,6 +235,8 @@ def main():
               "source_data":provider,"returns":{},"best_return":0.0,"worst_return":0.0})
             trade_ids.add(rec["signal_id"]); nt+=1
         time.sleep(.1)
+    trades=ingest_external_calls(external,trades,snapshots,now)
+    trades=update_trade_outcomes(trades,snapshots,now)
     write(DATA/"signals_latest.json",{"generated_at":now,"scan_frequency":"hourly","signal_timeframe":"4h","btc_reference_return_24h":btc24,
           "signals":latest,"new_history_records":nh,"new_paper_trades":nt})
     write(DATA/"signal_history.json",history[-10000:]); write(DATA/"paper_trades.json",trades)

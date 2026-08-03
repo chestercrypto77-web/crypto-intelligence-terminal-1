@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "6.1.1"
+APP_VERSION = "7.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1601,6 +1601,31 @@ def trade_live_return(trade: dict, current_prices: dict[str,float]):
     raw=(current/entry-1)*100
     return raw if trade.get("direction")=="LONG" else -raw
 
+
+def checkpoint_return(trade,key):
+    value=(trade.get("returns") or {}).get(key)
+    return value.get("return") if isinstance(value,dict) else value
+
+def evaluated_return(trade):
+    if trade.get("status")=="CLOSED" and trade.get("final_return") is not None:
+        return float(trade["final_return"])
+    for key in ["7d","3d","1d","12h","4h","1h"]:
+        value=checkpoint_return(trade,key)
+        if value is not None: return float(value)
+    value=trade.get("current_return")
+    return float(value) if value is not None else None
+
+def performance_summary(trades):
+    results=[evaluated_return(t) for t in trades]
+    results=[x for x in results if x is not None]
+    wins=[x for x in results if x>.25]; losses=[x for x in results if x<-.25]
+    gp=sum(wins); gl=abs(sum(losses))
+    return {"calls":len(trades),"evaluated":len(results),"wins":len(wins),"losses":len(losses),
+      "win_rate":len(wins)/len(results)*100 if results else 0,
+      "average_return":sum(results)/len(results) if results else 0,
+      "average_winner":sum(wins)/len(wins) if wins else 0,
+      "average_loser":sum(losses)/len(losses) if losses else 0,
+      "profit_factor":gp/gl if gl else (float("inf") if gp else 0)}
 st.set_page_config(page_title=APP_NAME,page_icon="◈",layout="wide",initial_sidebar_state="expanded")
 st.markdown(CSS,unsafe_allow_html=True)
 market_rows, source = get_market_rows()
@@ -1610,7 +1635,7 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Paper Trading","Signal Lab"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
@@ -1621,7 +1646,8 @@ titles = {
     "Watch":("Needs Attention","Only the holdings with the most meaningful changes."),
     "Research":("Research","The evidence beneath the daily briefing."),
     "4H Intelligence":("4H Intelligence","The platform’s primary conviction engine for portfolio and on-demand asset calls."),
-    "Paper Trading":("Paper Trading","Automatically recorded engine calls and frozen entry evidence."),
+    "Paper Trading":("Paper Trading","Engine calls plus reviewed Sheldon and external predictions."),
+    "Performance Lab":("Performance Lab","Measure whether calls became profitable or losing hours and days later."),
     "Signal Lab":("Signal Lab","Capture fast shifts early, then confirm them against the broader trend."),
 }
 page_header(*titles[selection])
@@ -2058,12 +2084,83 @@ elif selection=="Paper Trading":
             })
         st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
 
-    section("External calls")
-    st.markdown(
-        '<div class="summary-box">Sheldon the Sniper and other external calls remain separate from the engine. '
-        'The next stage will add a reviewed entry form and performance comparison.</div>',
-        unsafe_allow_html=True,
-    )
+    section("Sheldon and external call list")
+    if external_calls:
+        st.dataframe(pd.DataFrame(external_calls),use_container_width=True,hide_index=True)
+    else:
+        st.caption("No reviewed external calls have been added yet.")
+
+    with st.expander("Create a reviewed Sheldon / external call file"):
+        st.caption("Enter a call only after confirming exactly what was predicted.")
+        c1,c2,c3=st.columns(3)
+        with c1:
+            ext_source=st.selectbox("Source",["SHELDON THE SNIPER","MARK","OTHER"])
+            ext_symbol=st.text_input("Asset symbol",placeholder="COTI")
+            ext_direction=st.selectbox("Direction",["LONG","SHORT"])
+        with c2:
+            ext_call=st.selectbox("Call",["BUY WATCH","BUY","STRONG BUY","SELL WATCH","SELL","STRONG SELL"])
+            ext_entry=st.number_input("Entry price",min_value=0.0,value=0.0,format="%.10f")
+            ext_timeframe=st.text_input("Timeframe",placeholder="4H / swing / daily")
+        with c3:
+            ext_target=st.number_input("Target price",min_value=0.0,value=0.0,format="%.10f")
+            ext_invalidation=st.number_input("Invalidation price",min_value=0.0,value=0.0,format="%.10f")
+            ext_link=st.text_input("Source link or reference")
+        ext_notes=st.text_area("Notes")
+        if st.button("Prepare external_calls.json",use_container_width=True):
+            if not ext_symbol.strip() or ext_entry<=0:
+                st.error("Enter a symbol and valid entry price.")
+            else:
+                updated=list(external_calls) if isinstance(external_calls,list) else []
+                call_id=f'{ext_source.replace(" ","_")}_{ext_symbol.upper()}_{pd.Timestamp.now(tz="UTC").strftime("%Y%m%d_%H%M%S")}'
+                updated.append({"call_id":call_id,"source":ext_source,"symbol":ext_symbol.strip().upper(),
+                  "direction":ext_direction,"call":ext_call,"entry_time":pd.Timestamp.now(tz="UTC").isoformat(),
+                  "entry_price":ext_entry,"target_price":ext_target or None,
+                  "invalidation_price":ext_invalidation or None,"timeframe":ext_timeframe,
+                  "source_link":ext_link,"notes":ext_notes,"status":"ACTIVE"})
+                st.success("Download and replace data/external_calls.json in GitHub.")
+                st.download_button("Download updated external_calls.json",
+                  data=json.dumps(updated,indent=2),file_name="external_calls.json",
+                  mime="application/json",use_container_width=True)
+
+
+
+elif selection=="Performance Lab":
+    paper_trades=read_runtime_json(PAPER_TRADES_FILE,[])
+    if not paper_trades:
+        st.info("No paper trades have been recorded yet.")
+    else:
+        st.markdown('<div class="summary-box"><b>Purpose:</b> Judge every engine and external call using the same hourly and daily checkpoints. Long calls profit when price rises; short calls profit when price falls.</div>',unsafe_allow_html=True)
+        sources=sorted({str(t.get("source") or "UNKNOWN") for t in paper_trades})
+        section("Source comparison")
+        source_rows=[]
+        for source_name in sources:
+            s=performance_summary([t for t in paper_trades if str(t.get("source") or "UNKNOWN")==source_name])
+            source_rows.append({"Source":source_name,"Calls":s["calls"],"Evaluated":s["evaluated"],
+              "Win rate":f'{s["win_rate"]:.1f}%',"Average return":f'{s["average_return"]:+.2f}%',
+              "Average winner":f'{s["average_winner"]:+.2f}%',"Average loser":f'{s["average_loser"]:+.2f}%',
+              "Profit factor":"∞" if math.isinf(s["profit_factor"]) else f'{s["profit_factor"]:.2f}'})
+        st.dataframe(pd.DataFrame(source_rows),use_container_width=True,hide_index=True)
+        s=performance_summary(paper_trades)
+        cols=st.columns(4)
+        with cols[0]: metric("Total calls",str(s["calls"]),f'{s["evaluated"]} evaluated')
+        with cols[1]: metric("Win rate",f'{s["win_rate"]:.1f}%',"Above +0.25%")
+        with cols[2]: metric("Average result",f'{s["average_return"]:+.2f}%',"Latest checkpoint")
+        with cols[3]: metric("Profit factor","∞" if math.isinf(s["profit_factor"]) else f'{s["profit_factor"]:.2f}',"Gross wins ÷ gross losses")
+        section("Call-by-call outcomes")
+        rows=[]
+        for t in reversed(paper_trades):
+            result=evaluated_return(t)
+            outcome="WIN" if result is not None and result>.25 else "LOSS" if result is not None and result<-.25 else "FLAT / PENDING"
+            rows.append({"Source":t.get("source"),"Asset":t.get("symbol"),"Call":t.get("call"),
+              "Direction":t.get("direction"),"Entry":t.get("entry_price"),
+              "1H":checkpoint_return(t,"1h"),"4H":checkpoint_return(t,"4h"),
+              "12H":checkpoint_return(t,"12h"),"24H":checkpoint_return(t,"1d"),
+              "3D":checkpoint_return(t,"3d"),"7D":checkpoint_return(t,"7d"),
+              "Best":t.get("best_return"),"Worst":t.get("worst_return"),
+              "Latest":result,"Outcome":outcome,"Status":t.get("status")})
+        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+        section("Learning rule")
+        st.markdown('<div class="summary-box">The platform will compare results by source, call type, direction, asset, narrative and entry conditions. It will not rewrite live rules from a handful of examples; changes should wait for a meaningful sample.</div>',unsafe_allow_html=True)
 
 
 else:
