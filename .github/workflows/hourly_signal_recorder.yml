@@ -16,28 +16,34 @@ jobs:
   scan-and-record:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Run recorder
-        run: python scripts/signal_recorder.py
-      - name: Commit signal data
+
+      - name: Run stable hourly platform runner
+        run: python scripts/hourly_runner.py
+
+      - name: Commit persistent runtime data
         run: |
           git config user.name "Crypto Intelligence Recorder"
           git config user.email "actions@users.noreply.github.com"
-          git add data/signals_latest.json data/signal_history.json data/paper_trades.json
+          git add data/*.json
           if git diff --cached --quiet; then
-            echo "No data changes."
+            echo "No runtime changes to commit."
           else
-            git commit -m "Record hourly signal scan"
+            git commit -m "Update hourly intelligence records"
+            git pull --rebase
             git push
           fi
