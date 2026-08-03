@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.1.0"
+APP_VERSION = "8.5.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -227,6 +227,16 @@ background:#1b1f25;border:1px solid var(--line);border-radius:11px;padding:.68re
   .research-details{grid-template-columns:1fr 1fr}
 }
 
+
+.radar-grid{display:grid;grid-template-columns:1.25fr .75fr .75fr .75fr .9fr 1fr;gap:.55rem;align-items:center;background:#1b1f25;border:1px solid #343b45;border-radius:11px;padding:.7rem .78rem;margin:.4rem 0}
+.radar-grid:hover{border-color:#566273;background:#20252c}
+.radar-asset{font-weight:950;color:#fff;font-size:.95rem}.radar-sub{font-size:.7rem;color:#98a5b4}
+.radar-label{font-size:.65rem;color:#8e9aaa;text-transform:uppercase;letter-spacing:.06em}.radar-value{font-size:.84rem;font-weight:850;color:#eef3f8}
+.narrative-grid{display:grid;grid-template-columns:1.15fr .7fr .7fr .7fr .8fr;gap:.55rem;align-items:center;background:#191e24;border:1px solid #313842;border-radius:10px;padding:.62rem .72rem;margin:.32rem 0}
+.history-card{background:#1a1f25;border:1px solid #343b45;border-radius:12px;padding:.8rem .9rem}
+.history-good{border-left:4px solid #53df8d}.history-bad{border-left:4px solid #ff737d}.history-mixed{border-left:4px solid #efd36d}
+.change-box{background:#181d23;border-left:4px solid #6aaeff;border-radius:9px;padding:.72rem .85rem;margin:.45rem 0}
+@media(max-width:950px){.radar-grid,.narrative-grid{grid-template-columns:1fr 1fr}}
 </style>
 
 """
@@ -1713,6 +1723,81 @@ def outcome_html(value: str) -> str:
     css = "outcome-win" if text == "WIN" else "outcome-loss" if text == "LOSS" else "outcome-flat"
     return f'<span class="{css}">{esc(text)}</span>'
 
+
+def signal_priority_value(call: str) -> int:
+    return {
+        "STRONG BUY": 7, "BUY": 6, "BUY WATCH": 5, "HOLD": 4,
+        "SELL WATCH": 3, "SELL": 2, "STRONG SELL": 1,
+    }.get(str(call or "HOLD").upper(), 0)
+
+def historical_asset_stats(symbol: str, trades: list[dict]) -> dict:
+    relevant=[t for t in trades if str(t.get("symbol","")).upper()==symbol.upper()]
+    results=[evaluated_return(t) for t in relevant]
+    results=[x for x in results if x is not None]
+    wins=[x for x in results if x>.25]
+    losses=[x for x in results if x<-.25]
+    return {
+        "calls":len(relevant),"evaluated":len(results),"wins":len(wins),"losses":len(losses),
+        "win_rate":len(wins)/len(results)*100 if results else 0.0,
+        "average":sum(results)/len(results) if results else 0.0,
+        "best":max(results) if results else None,"worst":min(results) if results else None,
+        "trades":relevant,
+    }
+
+def latest_signal_change(symbol: str, history: list[dict]) -> dict | None:
+    records=[x for x in history if str(x.get("symbol","")).upper()==symbol.upper()]
+    if not records: return None
+    records=sorted(records,key=lambda x:str(x.get("recorded_at","")))
+    latest=records[-1]; previous=records[-2] if len(records)>1 else None
+    changes=[]
+    if previous:
+        if latest.get("signal")!=previous.get("signal"):
+            changes.append(f'Call changed from {previous.get("signal")} to {latest.get("signal")}')
+        if float(latest.get("rvol",0) or 0)>float(previous.get("rvol",0) or 0)+.2:
+            changes.append("Relative volume increased")
+        if float(latest.get("return_4h",0) or 0)>float(previous.get("return_4h",0) or 0)+1:
+            changes.append("Four-hour price momentum improved")
+        if float(latest.get("bullish",0) or 0)>float(previous.get("bullish",0) or 0):
+            changes.append("More bullish checklist conditions are passing")
+        if float(latest.get("bearish",0) or 0)>float(previous.get("bearish",0) or 0):
+            changes.append("More bearish checklist conditions are passing")
+    return {"latest":latest,"previous":previous,"changes":changes}
+
+def external_agreement_for_asset(symbol: str, calls: list[dict], current_call: str) -> dict:
+    relevant=[c for c in calls if str(c.get("symbol","")).upper()==symbol.upper() and c.get("status","ACTIVE")=="ACTIVE"]
+    engine_side="BUY" if "BUY" in current_call else "SELL" if "SELL" in current_call else "HOLD"
+    agree=disagree=0; items=[]
+    for call in relevant:
+        external_side="BUY" if "BUY" in str(call.get("call","")).upper() else "SELL" if "SELL" in str(call.get("call","")).upper() else "HOLD"
+        matched=external_side==engine_side and engine_side!="HOLD"
+        agree+=int(matched); disagree+=int(not matched and external_side!="HOLD")
+        items.append({**call,"agreement":"AGREE" if matched else "DISAGREE" if external_side!="HOLD" else "NEUTRAL"})
+    return {"count":len(relevant),"agree":agree,"disagree":disagree,"items":items}
+
+def render_radar_row(rank: int, item: dict) -> None:
+    result=item["intelligence"]["primary"]
+    agreement=item["intelligence"].get("agreement","SINGLE SOURCE")
+    age=min((s["age"] for s in item["intelligence"].get("sources",[])),default=999999)
+    st.markdown(
+        f'<div class="radar-grid"><div><div class="radar-asset">{rank}. {esc(item["symbol"])} · {esc(item.get("name",""))}</div>'
+        f'<div class="radar-sub">{esc(item.get("narrative",""))} · {esc(agreement)}</div></div>'
+        f'<div><div class="radar-label">Call</div><div class="radar-value">{call_badge(result["signal"])}</div></div>'
+        f'<div><div class="radar-label">4H</div><div class="radar-value">{html_signal(result["ret4h"])}</div></div>'
+        f'<div><div class="radar-label">24H</div><div class="radar-value">{html_signal(result["ret24h"])}</div></div>'
+        f'<div><div class="radar-label">RVOL</div><div class="radar-value">{result["rvol"]:.2f}×</div></div>'
+        f'<div><div class="radar-label">Evidence</div><div class="radar-value">{result["bullish"]} bull / {result["bearish"]} bear</div>'
+        f'<div class="radar-sub">{age:.0f} min old</div></div></div>',unsafe_allow_html=True)
+
+def narrative_flow_state(items: list[dict]) -> dict:
+    buys=sum(1 for x in items if "BUY" in x["intelligence"]["primary"]["signal"])
+    sells=sum(1 for x in items if "SELL" in x["intelligence"]["primary"]["signal"])
+    avg4=sum(x["intelligence"]["primary"]["ret4h"] for x in items)/len(items) if items else 0
+    avgrvol=sum(x["intelligence"]["primary"]["rvol"] for x in items)/len(items) if items else 0
+    if buys>sells and avg4>0: return {"label":"RISING","arrow":"↑"}
+    if sells>buys and avg4<0: return {"label":"NEGATIVE","arrow":"↓"}
+    if avgrvol>1.2: return {"label":"ACTIVE / MIXED","arrow":"↕"}
+    return {"label":"MIXED","arrow":"→"}
+
 st.set_page_config(page_title=APP_NAME,page_icon="◈",layout="wide",initial_sidebar_state="expanded")
 st.markdown(CSS,unsafe_allow_html=True)
 market_rows, source = get_market_rows()
@@ -1945,184 +2030,115 @@ elif selection=="Research":
     )
 
 elif selection=="4H Intelligence":
-    st.markdown(
-        '<div class="summary-box"><b>V6 conviction engine:</b> This page now combines fresh hourly/four-hour '
-        'candles from multiple sources, evaluates a fixed checklist, and makes decisive Buy, Hold and Sell calls. '
-        'The call is not a trade instruction; the complete evidence remains visible.</div>',
-        unsafe_allow_html=True,
-    )
+    signal_history=read_runtime_json(SIGNAL_HISTORY_FILE,[])
+    paper_trades=read_runtime_json(PAPER_TRADES_FILE,[])
+    external_calls=read_runtime_json(EXTERNAL_CALLS_FILE,[])
+    st.markdown('<div class="summary-box"><b>Flagship 4H Intelligence:</b> current calls, narrative rotation, source agreement, prior-call performance and reviewed external agreement. No hidden 0–100 score is used.</div>',unsafe_allow_html=True)
 
-    section("Action required")
-    st.caption("All portfolio holdings are checked. Strongest calls appear first.")
+    with st.spinner("Scanning portfolio holdings across available four-hour sources..."):
+        portfolio_calls=[]
+        progress=st.progress(0,text="Preparing portfolio radar...")
+        total=max(1,len(portfolio["items"]))
+        for index,item in enumerate(portfolio["items"]):
+            symbol=item["symbol"]; ticker=CRYPTO_TICKERS.get(symbol,f"{symbol}-USD")
+            intelligence=unified_asset_intelligence(symbol,ticker)
+            if intelligence.get("primary"): portfolio_calls.append({**item,"intelligence":intelligence})
+            progress.progress((index+1)/total,text=f"Scanning {symbol}...")
+        progress.empty()
 
-    portfolio_calls = []
-    progress_bar = st.progress(0, text="Scanning portfolio holdings...")
-    held_tickers = {item["symbol"]: CRYPTO_TICKERS.get(item["symbol"], f'{item["symbol"]}-USD') for item in portfolio["items"]}
-    total_assets = max(1, len(held_tickers))
-
-    for index, item in enumerate(portfolio["items"]):
-        symbol = item["symbol"]
-        ticker = held_tickers[symbol]
-        intelligence = unified_asset_intelligence(symbol, ticker)
-        if intelligence.get("primary"):
-            portfolio_calls.append({**item, "intelligence":intelligence})
-        progress_bar.progress((index+1)/total_assets, text=f"Scanning {symbol}...")
-    progress_bar.empty()
-
-    signal_priority = {
-        "STRONG BUY":7, "BUY":6, "BUY WATCH":5, "STRONG SELL":4,
-        "SELL":3, "SELL WATCH":2, "HOLD":1,
-    }
-    portfolio_calls.sort(
-        key=lambda x:(
-            signal_priority.get(x["intelligence"]["primary"]["signal"],0),
-            x["intelligence"]["primary"]["bullish"] - x["intelligence"]["primary"]["bearish"],
-            abs(x["intelligence"]["primary"]["ret4h"]),
-        ),
-        reverse=True,
-    )
-
-    actionable = [x for x in portfolio_calls if x["intelligence"]["primary"]["signal"] != "HOLD"]
-    for rank, item in enumerate((actionable or portfolio_calls)[:10], 1):
-        render_action_row(rank, item)
-
-    if portfolio_calls:
-        counts = defaultdict(int)
-        for item in portfolio_calls:
-            counts[item["intelligence"]["primary"]["signal"]] += 1
-        cols = st.columns(5)
-        labels = ["STRONG BUY","BUY","BUY WATCH","SELL / STRONG SELL","HOLD"]
-        values = [
-            counts["STRONG BUY"],
-            counts["BUY"],
-            counts["BUY WATCH"],
-            counts["SELL"]+counts["STRONG SELL"]+counts["SELL WATCH"],
-            counts["HOLD"],
-        ]
-        for col,label,value in zip(cols,labels,values):
-            with col:
-                metric(label,str(value),"Current portfolio calls")
-
-    section("Deep-dive asset")
-    options = {
-        f'{item["symbol"]} · {item["name"]} · held': (item["symbol"], CRYPTO_TICKERS.get(item["symbol"], f'{item["symbol"]}-USD'), item)
-        for item in portfolio["items"]
-    }
-    selected_label = st.selectbox("Select a portfolio holding", list(options.keys()))
-    selected_symbol, selected_ticker, selected_holding = options[selected_label]
-
-    custom_cols = st.columns([1,1,1])
-    with custom_cols[0]:
-        custom_symbol = st.text_input("Or investigate another symbol", placeholder="Example: LINK")
-    with custom_cols[1]:
-        custom_market = st.selectbox("Asset type", ["Crypto","US stock / ETF"])
-    with custom_cols[2]:
-        run_custom = st.button("Deep dive", use_container_width=True)
-
-    if run_custom and custom_symbol.strip():
-        selected_symbol = custom_symbol.strip().upper()
-        selected_ticker = resolve_ticker(selected_symbol, "Crypto" if custom_market=="Crypto" else "Stock / ETF")
-        selected_holding = next((x for x in portfolio["items"] if x["symbol"]==selected_symbol), None)
-
-    with st.spinner(f"Deep-diving {selected_symbol} across available sources..."):
-        selected_intel = unified_asset_intelligence(selected_symbol, selected_ticker)
-
-    result = selected_intel.get("primary")
-    if not result:
-        st.error(f"Could not retrieve enough four-hour data for {selected_symbol}.")
+    if not portfolio_calls:
+        st.error("No usable four-hour market data could be retrieved.")
     else:
-        hero_cols = st.columns([1.45,1])
-        with hero_cols[0]:
-            render_conviction_hero(
-                selected_symbol, result,
-                selected_intel.get("primary_source","Market data"),
-                selected_intel.get("agreement","SINGLE SOURCE"),
-            )
-        with hero_cols[1]:
-            source_html = "".join(
-                f'<span class="source-chip">{esc(source["name"])} · {source["age"]:.0f} min · '
-                f'{source["candles"]} candles</span>'
-                for source in selected_intel.get("sources",[])
-            )
-            st.markdown(
-                f'<div class="objective-card"><div class="objective-title">Data sources</div>'
-                f'<div style="margin-top:.45rem">{source_html}</div>'
-                f'<div class="objective-row"><span>Primary source</span>'
-                f'<b>{esc(selected_intel.get("primary_source","—"))}</b></div>'
-                f'<div class="objective-row"><span>Cross-source result</span>'
-                f'<b>{esc(selected_intel.get("agreement","—"))}</b></div></div>',
-                unsafe_allow_html=True,
-            )
+        portfolio_calls.sort(key=lambda x:(signal_priority_value(x["intelligence"]["primary"]["signal"]),x["intelligence"]["primary"]["bullish"]-x["intelligence"]["primary"]["bearish"],x["intelligence"]["primary"]["ret4h"]),reverse=True)
+        section("Market radar")
+        counts=defaultdict(int)
+        for item in portfolio_calls: counts[item["intelligence"]["primary"]["signal"]]+=1
+        cols=st.columns(5)
+        values=[("Strong Buy",counts["STRONG BUY"]),("Buy / Watch",counts["BUY"]+counts["BUY WATCH"]),("Hold",counts["HOLD"]),("Sell / Watch",counts["SELL"]+counts["SELL WATCH"]),("Strong Sell",counts["STRONG SELL"])]
+        for col,(label,value) in zip(cols,values):
+            with col: metric(label,str(value),"Current calls")
+        actionable=[x for x in portfolio_calls if x["intelligence"]["primary"]["signal"]!="HOLD"]
+        for rank,item in enumerate((actionable or portfolio_calls)[:12],1): render_radar_row(rank,item)
 
-        section("Independent evidence groups")
-        render_category_states(result["categories"])
+        section("Narrative radar")
+        grouped=defaultdict(list)
+        for item in portfolio_calls: grouped[item.get("narrative","Other")].append(item)
+        rows=[]
+        for narrative,items in grouped.items():
+            state=narrative_flow_state(items)
+            top=sorted(items,key=lambda x:(signal_priority_value(x["intelligence"]["primary"]["signal"]),x["intelligence"]["primary"]["rvol"],x["intelligence"]["primary"]["ret4h"]),reverse=True)[:5]
+            rows.append((narrative,state,top))
+        rows.sort(key=lambda row:(sum(signal_priority_value(x["intelligence"]["primary"]["signal"]) for x in row[2]),sum(x["intelligence"]["primary"]["ret4h"] for x in row[2])),reverse=True)
+        for narrative,state,items in rows:
+            with st.expander(f'{narrative} · {state["arrow"]} {state["label"]} · Top {len(items)}'):
+                for rank,item in enumerate(items,1):
+                    result=item["intelligence"]["primary"]
+                    st.markdown(f'<div class="narrative-grid"><div><div class="radar-asset">{rank}. {esc(item["symbol"])}</div><div class="radar-sub">{esc(item.get("name",""))}</div></div><div><div class="radar-label">Call</div><div class="radar-value">{call_badge(result["signal"])}</div></div><div><div class="radar-label">4H</div><div class="radar-value">{html_signal(result["ret4h"])}</div></div><div><div class="radar-label">RVOL</div><div class="radar-value">{result["rvol"]:.2f}×</div></div><div><div class="radar-label">Sources</div><div class="radar-value">{esc(item["intelligence"].get("agreement","—"))}</div></div></div>',unsafe_allow_html=True)
 
-        metric_cols = st.columns(6)
-        metrics = [
-            ("4-hour move", signed(result["ret4h"]), "Latest completed candle"),
-            ("12-hour move", signed(result["ret12h"]), "Three 4H candles"),
-            ("24-hour move", signed(result["ret24h"]), "Six 4H candles"),
-            ("RVOL", f'{result["rvol"]:.2f}×', f'{result["rvol_delta"]:+.2f}× change'),
-            ("RSI 14", f'{result["rsi"]:.1f}', f'{result["rsi_delta"]:+.1f} change'),
-            ("ADX", f'{result["adx"]:.1f}' if pd.notna(result["adx"]) else "—", "Trend strength"),
-        ]
-        for col,(label,value,note) in zip(metric_cols,metrics):
-            with col:
-                metric(label,value,note)
+        section("Deep-dive asset")
+        option_map={f'{item["symbol"]} · {item.get("name","")} · held':(item["symbol"],CRYPTO_TICKERS.get(item["symbol"],f'{item["symbol"]}-USD'),item) for item in portfolio_calls}
+        selected_label=st.selectbox("Portfolio holding",list(option_map.keys()))
+        selected_symbol,selected_ticker,selected_item=option_map[selected_label]
+        c=st.columns([1,1,1])
+        with c[0]: custom_symbol=st.text_input("Or investigate another asset",placeholder="LINK or AAPL")
+        with c[1]: custom_type=st.selectbox("Asset type",["Crypto","US stock / ETF"])
+        with c[2]: run_custom=st.button("Open deep dive",use_container_width=True)
+        if run_custom and custom_symbol.strip():
+            selected_symbol=custom_symbol.strip().upper()
+            selected_ticker=resolve_ticker(selected_symbol,"Crypto" if custom_type=="Crypto" else "Stock / ETF")
 
-        section("Conviction checklist")
-        st.caption(
-            f'{result["bullish"]} bullish conditions and {result["bearish"]} bearish conditions '
-            f'out of {result["total"]}. No hidden 0–100 score is used.'
-        )
-        render_signal_checklist(result)
-
-        section("Price and trend")
-        st.line_chart(result["chart"], use_container_width=True)
-        st.caption("Four-hour close with EMA 9, EMA 21 and EMA 55.")
-
-        section("Source confirmation")
-        if selected_intel.get("confirmations"):
-            rows = []
-            rows.append({
-                "Source":selected_intel.get("primary_source"),
-                "Call":result["signal"],
-                "4H":signed(result["ret4h"]),
-                "24H":signed(result["ret24h"]),
-                "RVOL":round(result["rvol"],2),
-                "Bullish":result["bullish"],
-                "Bearish":result["bearish"],
-            })
-            for confirmation in selected_intel["confirmations"]:
-                other = confirmation["result"]
-                rows.append({
-                    "Source":confirmation["source"],
-                    "Call":other["signal"],
-                    "4H":signed(other["ret4h"]),
-                    "24H":signed(other["ret24h"]),
-                    "RVOL":round(other["rvol"],2),
-                    "Bullish":other["bullish"],
-                    "Bearish":other["bearish"],
-                })
-            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+        with st.spinner(f"Deep-diving {selected_symbol}..."): intel=unified_asset_intelligence(selected_symbol,selected_ticker)
+        result=intel.get("primary")
+        if not result:
+            st.error(f"Not enough four-hour data was available for {selected_symbol}.")
         else:
-            st.info("Only one usable candle source was available for this asset.")
+            stats=historical_asset_stats(selected_symbol,paper_trades)
+            change=latest_signal_change(selected_symbol,signal_history)
+            external=external_agreement_for_asset(selected_symbol,external_calls,result["signal"])
+            left,right=st.columns([1.35,1])
+            with left: render_conviction_hero(selected_symbol,result,intel.get("primary_source","Market data"),intel.get("agreement","SINGLE SOURCE"))
+            with right:
+                cls="history-good" if stats["win_rate"]>=60 and stats["evaluated"] else "history-bad" if stats["win_rate"]<40 and stats["evaluated"] else "history-mixed"
+                st.markdown(f'<div class="history-card {cls}"><div class="objective-title">Prior call performance</div><div class="objective-main">{stats["win_rate"]:.1f}% win rate</div><div class="objective-row"><span>Calls</span><b>{stats["calls"]}</b></div><div class="objective-row"><span>Evaluated</span><b>{stats["evaluated"]}</b></div><div class="objective-row"><span>Average result</span><b>{stats["average"]:+.2f}%</b></div></div>',unsafe_allow_html=True)
 
-        section("Call rules")
-        st.markdown(
-            '<div class="summary-box">'
-            '<b>Strong Buy:</b> at least 10 bullish conditions, no more than two bearish conditions, '
-            'with both trend and volume confirmation. '
-            '<b>Buy:</b> at least eight bullish conditions with trend confirmation. '
-            '<b>Buy Watch:</b> at least six bullish conditions. '
-            '<b>Sell calls:</b> use the same thresholds in the opposite direction. '
-            '<b>Hold:</b> evidence is not sufficiently one-sided.'
-            '</div>',
-            unsafe_allow_html=True,
-        )
+            section("Current observable evidence")
+            render_category_states(result["categories"])
+            cols=st.columns(6)
+            values=[("4H",signed(result["ret4h"]),"Latest candle"),("12H",signed(result["ret12h"]),"Three candles"),("24H",signed(result["ret24h"]),"Six candles"),("RVOL",f'{result["rvol"]:.2f}×',f'{result["rvol_delta"]:+.2f}× change'),("RSI",f'{result["rsi"]:.1f}',f'{result["rsi_delta"]:+.1f} change'),("ADX",f'{result["adx"]:.1f}' if pd.notna(result["adx"]) else "—","Trend strength")]
+            for col,(label,value,note) in zip(cols,values):
+                with col: metric(label,value,note)
 
+            section("Why the call changed")
+            if change and change["changes"]:
+                st.markdown('<div class="change-box"><b>Latest recorded changes</b><br>'+"<br>".join(f'• {esc(x)}' for x in change["changes"])+"</div>",unsafe_allow_html=True)
+            elif change:
+                st.markdown('<div class="change-box">The latest recorded scan did not show a major state change.</div>',unsafe_allow_html=True)
+            else: st.info("No prior signal history exists for this asset yet.")
 
+            section("External-source agreement")
+            cols=st.columns(3)
+            with cols[0]: metric("Active external calls",str(external["count"]),"Reviewed calls only")
+            with cols[1]: metric("Agree",str(external["agree"]),"Same direction")
+            with cols[2]: metric("Disagree",str(external["disagree"]),"Opposite direction")
+            if external["items"]:
+                st.dataframe(pd.DataFrame([{"Source":x.get("source"),"Call":x.get("call"),"Direction":x.get("direction"),"Entry":x.get("entry_price"),"Agreement":x.get("agreement"),"Timeframe":x.get("timeframe"),"Reference":x.get("source_link")} for x in external["items"]]),use_container_width=True,hide_index=True)
+            else: st.caption("No reviewed external calls are active for this asset.")
 
+            section("Prior calls on this asset")
+            if stats["trades"]:
+                st.dataframe(pd.DataFrame([{"Source":t.get("source"),"Call":t.get("call"),"Entry":t.get("entry_price"),"1H":checkpoint_return(t,"1h"),"4H":checkpoint_return(t,"4h"),"12H":checkpoint_return(t,"12h"),"24H":checkpoint_return(t,"1d"),"3D":checkpoint_return(t,"3d"),"7D":checkpoint_return(t,"7d"),"Latest":evaluated_return(t),"Status":t.get("status")} for t in reversed(stats["trades"][-30:])]),use_container_width=True,hide_index=True)
+            else: st.caption("No prior paper-trade calls have been recorded for this asset.")
+
+            section("Conviction checklist")
+            st.caption(f'{result["bullish"]} bullish · {result["bearish"]} bearish · {result["total"]} total conditions')
+            render_signal_checklist(result)
+            section("Four-hour trend chart")
+            st.line_chart(result["chart"],use_container_width=True)
+            section("Source confirmation")
+            source_rows=[{"Source":intel.get("primary_source"),"Call":result["signal"],"4H":result["ret4h"],"24H":result["ret24h"],"RVOL":result["rvol"],"Bullish":result["bullish"],"Bearish":result["bearish"]}]
+            for confirmation in intel.get("confirmations",[]):
+                other=confirmation["result"]; source_rows.append({"Source":confirmation["source"],"Call":other["signal"],"4H":other["ret4h"],"24H":other["ret24h"],"RVOL":other["rvol"],"Bullish":other["bullish"],"Bearish":other["bearish"]})
+            st.dataframe(pd.DataFrame(source_rows),use_container_width=True,hide_index=True)
 
 elif selection=="External Intelligence":
     inbox = read_runtime_json(EXTERNAL_INBOX_FILE, [])

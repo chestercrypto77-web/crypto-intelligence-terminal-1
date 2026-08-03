@@ -50,3 +50,6 @@ Future releases can change what the runner does without requiring another workfl
 6. Run the hourly workflow once as a quick check.
 
 No data copying, no selective patching, and no workflow editing should normally be needed.
+
+
+V8.5 follows this policy. Upload the entire extracted release over the existing repository.
