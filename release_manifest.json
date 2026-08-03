@@ -1,7 +1,7 @@
 {
   "name": "Crypto Intelligence Terminal",
-  "version": "8.0.0",
-  "release_type": "complete full upload",
+  "version": "8.1.0",
+  "release_type": "complete safe overlay",
   "entrypoint": "app.py",
   "automation": ".github/workflows/four_hour_signal_recorder.yml",
   "features": [
@@ -14,5 +14,9 @@
     "External Intelligence inbox",
     "Reviewed Sheldon and external call tracking"
   ],
-  "runtime_data_policy": "Preserve existing data/*.json files; templates are supplied for fresh repositories."
+  "runtime_data_policy": "Preserve existing data/*.json files; templates are supplied for fresh repositories.",
+  "update_model": "upload all release files over existing repository",
+  "persistent_data_contract": "config/persistent_data.json",
+  "stable_workflow": ".github/workflows/hourly_signal_recorder.yml",
+  "stable_runner": "scripts/hourly_runner.py"
 }

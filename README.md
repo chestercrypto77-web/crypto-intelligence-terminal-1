@@ -1,33 +1,44 @@
-# Crypto Intelligence Terminal V8.0.0
+# Crypto Intelligence Terminal V8.1.0
 
-V8 is the first complete platform snapshot intended to be uploaded as one full project.
+## Safe full-update foundation
 
-## Included
+V8.1 establishes the permanent update process for future releases.
 
-- Today
-- Portfolio
-- Markets
-- Watch
-- Research
-- 4H Intelligence
-- External Intelligence
-- Paper Trading
-- Performance Lab
-- Signal Lab
-- Hourly GitHub Actions recorder
-- Yahoo Finance and Binance market inputs
-- CoinGecko portfolio market data
-- Automated paper-trade checkpoints
-- Reviewed Sheldon and external calls
-- Public-source monitoring and review inbox
-- Workflow setup backup
-- Runtime data templates
-- Shared `services` package for future modular migration
+### From now on
 
-## Data protection
+Every release will be a complete project ZIP. Upload every extracted item over the
+existing GitHub repository. Do not delete the repository first.
 
-The release does not overwrite the live JSON filenames used by your existing repository.
-Keep the existing `data/*.json` files. Template files are provided under
-`data/templates/` for new installations.
+### Recorded data is protected
 
-See `FULL_UPLOAD_INSTRUCTIONS.md` before uploading.
+Live history files are not shipped in release ZIPs. They remain in your GitHub `data`
+folder while the application code is replaced.
+
+The new bootstrap process:
+
+- creates a live file only when it is missing
+- validates existing files
+- never overwrites accumulated records
+
+### Stable hourly workflow
+
+The workflow now calls one stable entry point:
+
+`python scripts/hourly_runner.py`
+
+That runner performs runtime bootstrap, external-source monitoring and signal recording.
+Future releases can update the runner and scripts without requiring repeated workflow
+editing.
+
+### Included safeguards
+
+- Persistent-data contract
+- Runtime templates
+- Safe bootstrap script
+- Stable hourly runner
+- Release preflight validator
+- Duplicate old workflow removed
+- Full upload instructions
+
+Read `UPDATE_POLICY.md` once. After the one-time workflow replacement, future updates
+should be the simple drag-and-drop process you prefer.
