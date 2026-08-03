@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "6.0.0"
+APP_VERSION = "6.1.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1583,6 +1583,24 @@ def resolve_ticker(raw: str, market: str) -> str:
     return t
 
 
+
+SIGNALS_LATEST_FILE = Path(__file__).with_name("data") / "signals_latest.json"
+SIGNAL_HISTORY_FILE = Path(__file__).with_name("data") / "signal_history.json"
+PAPER_TRADES_FILE = Path(__file__).with_name("data") / "paper_trades.json"
+EXTERNAL_CALLS_FILE = Path(__file__).with_name("data") / "external_calls.json"
+
+def read_runtime_json(path: Path, default):
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return default
+
+def trade_live_return(trade: dict, current_prices: dict[str,float]):
+    entry=float(trade.get("entry_price") or 0); current=float(current_prices.get(trade.get("symbol"),0) or 0)
+    if entry<=0 or current<=0: return None
+    raw=(current/entry-1)*100
+    return raw if trade.get("direction")=="LONG" else -raw
+
 st.set_page_config(page_title=APP_NAME,page_icon="◈",layout="wide",initial_sidebar_state="expanded")
 st.markdown(CSS,unsafe_allow_html=True)
 market_rows, source = get_market_rows()
@@ -1592,7 +1610,7 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Signal Lab"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Paper Trading","Signal Lab"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
@@ -1603,6 +1621,7 @@ titles = {
     "Watch":("Needs Attention","Only the holdings with the most meaningful changes."),
     "Research":("Research","The evidence beneath the daily briefing."),
     "4H Intelligence":("4H Intelligence","The platform’s primary conviction engine for portfolio and on-demand asset calls."),
+    "Paper Trading":("Paper Trading","Automatically recorded engine calls and frozen entry evidence."),
     "Signal Lab":("Signal Lab","Capture fast shifts early, then confirm them against the broader trend."),
 }
 page_header(*titles[selection])
@@ -1968,6 +1987,83 @@ elif selection=="4H Intelligence":
             '</div>',
             unsafe_allow_html=True,
         )
+
+
+
+elif selection=="Paper Trading":
+    latest_signals = read_runtime_json(SIGNALS_LATEST_FILE, {"generated_at":None,"signals":[]})
+    signal_history = read_runtime_json(SIGNAL_HISTORY_FILE, [])
+    paper_trades = read_runtime_json(PAPER_TRADES_FILE, [])
+    external_calls = read_runtime_json(EXTERNAL_CALLS_FILE, [])
+    current_prices = {item["symbol"]:item["price"] for item in portfolio["items"]}
+    open_trades = [t for t in paper_trades if t.get("status")=="OPEN"]
+
+    st.markdown(
+        '<div class="summary-box"><b>Automatic accountability:</b> GitHub Actions runs every four hours, '
+        'freezes each new call and entry price, and creates a paper trade whenever an actionable signal changes.</div>',
+        unsafe_allow_html=True,
+    )
+    generated_at = latest_signals.get("generated_at")
+    cols=st.columns(4)
+    with cols[0]: metric("Open paper trades",str(len(open_trades)),"Engine generated")
+    with cols[1]: metric("Recorded signals",str(len(signal_history)),"Signal history")
+    with cols[2]: metric("External calls",str(len(external_calls)),"Sheldon / manual")
+    with cols[3]: metric("Last recorder run",generated_at[:16].replace("T"," ") if generated_at else "Not run","UTC")
+
+    section("Open engine paper trades")
+    if not open_trades:
+        st.info("No automatic paper trades yet. Run the GitHub Actions workflow once manually.")
+    else:
+        rows=[]
+        for trade in reversed(open_trades):
+            live=trade_live_return(trade,current_prices)
+            rows.append({
+                "Asset":trade.get("symbol"),"Call":trade.get("call"),"Direction":trade.get("direction"),
+                "Entry time":str(trade.get("entry_time",""))[:16].replace("T"," "),
+                "Entry price":trade.get("entry_price"),"Current price":current_prices.get(trade.get("symbol")),
+                "Open return":f"{live:+.2f}%" if live is not None else "—",
+                "Bullish":trade.get("bullish_conditions"),"Bearish":trade.get("bearish_conditions"),
+                "Source":trade.get("source"),
+            })
+        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+
+    section("Signal changes from latest scan")
+    changed=[x for x in latest_signals.get("signals",[]) if x.get("changed")]
+    if not changed:
+        st.caption("No signal-state changes in the latest scan.")
+    else:
+        for r in changed:
+            st.markdown(
+                f'<div class="action-row"><div><div class="fourh-asset">{esc(r.get("symbol"))}</div>'
+                f'<div class="fourh-name">{esc(r.get("name"))}</div></div>'
+                f'<div><b>{esc(r.get("previous_signal") or "First scan")}</b><div class="fourh-name">Previous</div></div>'
+                f'<div><b>{esc(r.get("signal"))}</b><div class="fourh-name">Current</div></div>'
+                f'<div><b>{r.get("entry_price",0):.8g}</b><div class="fourh-name">Frozen price</div></div>'
+                f'<div><b>{r.get("bullish",0)} bull / {r.get("bearish",0)} bear</b>'
+                f'<div class="fourh-name">{esc(r.get("data_source"))}</div></div></div>',
+                unsafe_allow_html=True,
+            )
+
+    section("Signal journal")
+    with st.expander(f"Open full journal · {len(signal_history)} records"):
+        rows=[]
+        for r in reversed(signal_history[-1000:]):
+            rows.append({
+                "Recorded":str(r.get("recorded_at",""))[:16].replace("T"," "),
+                "Asset":r.get("symbol"),"Signal":r.get("signal"),"Previous":r.get("previous_signal"),
+                "Changed":r.get("changed"),"Entry price":r.get("entry_price"),
+                "4H":f'{r.get("return_4h",0):+.2f}%',"12H":f'{r.get("return_12h",0):+.2f}%',
+                "24H":f'{r.get("return_24h",0):+.2f}%',"RVOL":round(float(r.get("rvol",0)),2),
+                "Bullish":r.get("bullish"),"Bearish":r.get("bearish"),"Source":r.get("data_source"),
+            })
+        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+
+    section("External calls")
+    st.markdown(
+        '<div class="summary-box">Sheldon the Sniper and other external calls remain separate from the engine. '
+        'The next stage will add a reviewed entry form and performance comparison.</div>',
+        unsafe_allow_html=True,
+    )
 
 
 else:

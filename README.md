@@ -1,59 +1,40 @@
-# Crypto Intelligence Terminal V6.0.0
+# Crypto Intelligence Terminal V6.1.0
 
-## Conviction Engine
+## Automatic four-hour signal recording
 
-V6 turns **4H Intelligence** into the strongest indicator and central decision-support
-page in the platform.
+This release lets the engine record calls while nobody is using Streamlit.
 
-### Data architecture
+A GitHub Actions workflow runs every four hours, scans every holding, evaluates the V6 conviction checklist, freezes each completed-candle call and entry price, and opens a paper trade whenever the signal changes into Strong Buy, Buy, Buy Watch, Sell Watch, Sell or Strong Sell.
 
-- CoinGecko remains the portfolio price and market metadata source
-- Yahoo Finance supplies hourly candles which are resampled into four-hour candles
-- Binance confirms four-hour crypto candles when the pair is available
-- Every portfolio holding is scanned
-- Any additional crypto, US stock or ETF can be investigated on demand
-- Data-source names, freshness and candle counts are visible
-- Cross-source agreement or conflict is shown
+### New files
 
-### Decisive calls
+- `.github/workflows/four_hour_signal_recorder.yml`
+- `scripts/signal_recorder.py`
+- `data/signals_latest.json`
+- `data/signal_history.json`
+- `data/paper_trades.json`
+- `data/external_calls.json`
 
-The engine produces:
+### New page
 
-- STRONG BUY
-- BUY
-- BUY WATCH
-- HOLD
-- SELL WATCH
-- SELL
-- STRONG SELL
+**Paper Trading** shows open engine paper trades, frozen entries, signal changes and the full signal journal.
 
-No 0–100 prediction score is displayed. Calls come from a transparent checklist of
-14 observable conditions across:
+## Activate after uploading
 
-- Trend
-- Volume
-- Momentum
-- Structure
-- Relative strength
+1. Upload every extracted file and folder to GitHub.
+2. Open the repository **Actions** tab.
+3. Choose **Four Hour Signal Recorder**.
+4. Click **Run workflow** once.
+5. Wait for it to finish.
+6. Refresh Streamlit.
 
-Strong calls require agreement across independent categories. The page shows every
-passing, failing and neutral condition.
+The workflow will then run automatically every four hours.
 
-### 4H page
+If the workflow cannot commit:
+GitHub repository → Settings → Actions → General → Workflow permissions → Read and write permissions.
 
-- Action Required scans all portfolio holdings
-- Calls are ranked by signal state and current movement
-- Deep dive for any holding
-- On-demand symbol input for other assets
-- Four-hour, 12-hour and 24-hour movement
-- RVOL and RVOL change
-- RSI, ADX, EMA structure, MACD acceleration
-- Green/red candle balance
-- Higher highs, higher lows, breakouts and breakdowns
-- Source confirmation table
-- Explicit call thresholds
+GitHub scheduled workflows are unattended but can occasionally start late. In a public repository, schedules can be disabled after 60 days without repository activity. The Paper Trading page displays the last recorder timestamp so stale scans are visible.
 
 ## Upload
 
-Extract the ZIP and drag all five extracted items into GitHub
-**Add file → Upload files**, commit the replacements, then reboot Streamlit.
+Extract the ZIP, drag all contents into GitHub **Add file → Upload files**, commit, then reboot Streamlit.
