@@ -1,45 +1,33 @@
-# Crypto Intelligence Terminal V7.1.0
+# Crypto Intelligence Terminal V8.0.0
 
-## Full UI update
+V8 is the first complete platform snapshot intended to be uploaded as one full project.
 
-This release keeps the hourly engine, paper-trade outcome tracking and Performance Lab,
-while making the Sheldon workflow obvious and fixing the Research-page colours.
+## Included
 
-### Research colour fix
+- Today
+- Portfolio
+- Markets
+- Watch
+- Research
+- 4H Intelligence
+- External Intelligence
+- Paper Trading
+- Performance Lab
+- Signal Lab
+- Hourly GitHub Actions recorder
+- Yahoo Finance and Binance market inputs
+- CoinGecko portfolio market data
+- Automated paper-trade checkpoints
+- Reviewed Sheldon and external calls
+- Public-source monitoring and review inbox
+- Workflow setup backup
+- Runtime data templates
+- Shared `services` package for future modular migration
 
-The Research page no longer relies on a standard dataframe for directional colours.
-It now uses dedicated dark cards with reliable HTML styling:
+## Data protection
 
-- Green: positive direction / positive price-volume alignment
-- Red: negative direction / selling pressure
-- Blue: volume rising before price confirms
-- Orange: price rising while volume fades
-- Yellow: mixed or stable
-- Data freshness is green, yellow or red according to age
+The release does not overwrite the live JSON filenames used by your existing repository.
+Keep the existing `data/*.json` files. Template files are provided under
+`data/templates/` for new installations.
 
-### Paper Trading redesign
-
-Paper Trading now has four clear tabs:
-
-1. Our Engine Calls
-2. Sheldon Calls
-3. Add Sheldon / External Call
-4. Signal Journal
-
-The Sheldon section is no longer buried near the bottom of the page.
-
-### Live data protection
-
-The release ZIP deliberately does **not** contain the runtime JSON files inside `data/`.
-Uploading this release will therefore preserve the signal history and paper trades already
-being written by GitHub Actions.
-
-### Upload
-
-1. Extract the ZIP.
-2. Drag every extracted item into GitHub **Add file → Upload files**.
-3. Commit the replacements.
-4. Reboot Streamlit.
-
-Do not delete the existing `data` folder in GitHub. It contains your accumulated records.
-The existing hourly GitHub Actions workflow remains active.
+See `FULL_UPLOAD_INSTRUCTIONS.md` before uploading.

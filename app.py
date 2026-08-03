@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "7.1.0"
+APP_VERSION = "8.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1634,6 +1634,9 @@ SIGNALS_LATEST_FILE = Path(__file__).with_name("data") / "signals_latest.json"
 SIGNAL_HISTORY_FILE = Path(__file__).with_name("data") / "signal_history.json"
 PAPER_TRADES_FILE = Path(__file__).with_name("data") / "paper_trades.json"
 EXTERNAL_CALLS_FILE = Path(__file__).with_name("data") / "external_calls.json"
+EXTERNAL_INBOX_FILE = Path(__file__).with_name("data") / "external_inbox.json"
+EXTERNAL_STATUS_FILE = Path(__file__).with_name("data") / "external_monitor_status.json"
+EXTERNAL_SOURCES_FILE = Path(__file__).with_name("config") / "external_sources.json"
 
 def read_runtime_json(path: Path, default):
     try:
@@ -1719,7 +1722,7 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
@@ -1730,6 +1733,7 @@ titles = {
     "Watch":("Needs Attention","Only the holdings with the most meaningful changes."),
     "Research":("Research","The evidence beneath the daily briefing."),
     "4H Intelligence":("4H Intelligence","The platform’s primary conviction engine for portfolio and on-demand asset calls."),
+    "External Intelligence":("External Intelligence","Hourly reviewed monitoring of approved analysts and public research sources."),
     "Paper Trading":("Paper Trading","Engine calls plus reviewed Sheldon and external predictions."),
     "Performance Lab":("Performance Lab","Measure whether calls became profitable or losing hours and days later."),
     "Signal Lab":("Signal Lab","Capture fast shifts early, then confirm them against the broader trend."),
@@ -2117,6 +2121,205 @@ elif selection=="4H Intelligence":
             unsafe_allow_html=True,
         )
 
+
+
+
+elif selection=="External Intelligence":
+    inbox = read_runtime_json(EXTERNAL_INBOX_FILE, [])
+    monitor_status = read_runtime_json(EXTERNAL_STATUS_FILE, {})
+    source_config = read_runtime_json(EXTERNAL_SOURCES_FILE, {"sources":[]})
+    external_calls = read_runtime_json(EXTERNAL_CALLS_FILE, [])
+
+    st.markdown(
+        '<div class="summary-box"><b>Reviewed intelligence feed:</b> the hourly workflow monitors '
+        'approved public sources and identifies possible calls or market ideas. Nothing is entered '
+        'into paper trading until you review and confirm it.</div>',
+        unsafe_allow_html=True,
+    )
+
+    enabled_sources = [s for s in source_config.get("sources",[]) if s.get("enabled")]
+    pending = [x for x in inbox if x.get("review_status","PENDING")=="PENDING"]
+    possible = [x for x in pending if x.get("classification") in {"POSSIBLE CALL","POSSIBLE IDEA"}]
+    cols=st.columns(4)
+    with cols[0]: metric("Pending items",str(len(pending)),"Awaiting review")
+    with cols[1]: metric("Possible calls / ideas",str(len(possible)),"Rule-based detection")
+    with cols[2]: metric("Enabled sources",str(len(enabled_sources)),"Public approved feeds")
+    with cols[3]:
+        last_run=monitor_status.get("last_run")
+        metric("Last monitor run",last_run[:16].replace("T"," ") if last_run else "Not run","UTC")
+
+    tab_inbox, tab_review, tab_sources = st.tabs([
+        "Intelligence Inbox","Review and Prepare Call","Approved Sources"
+    ])
+
+    with tab_inbox:
+        filters=st.columns(3)
+        with filters[0]:
+            classification_filter=st.selectbox(
+                "Classification",
+                ["ALL","POSSIBLE CALL","POSSIBLE IDEA","COMMENTARY","GENERAL CONTENT"]
+            )
+        with filters[1]:
+            platform_filter=st.selectbox(
+                "Platform",
+                ["ALL"]+sorted({str(x.get("platform")) for x in inbox if x.get("platform")})
+            )
+        with filters[2]:
+            source_filter=st.selectbox(
+                "Source",
+                ["ALL"]+sorted({str(x.get("source_name")) for x in inbox if x.get("source_name")})
+            )
+
+        visible=[]
+        for item in inbox:
+            if classification_filter!="ALL" and item.get("classification")!=classification_filter:
+                continue
+            if platform_filter!="ALL" and item.get("platform")!=platform_filter:
+                continue
+            if source_filter!="ALL" and item.get("source_name")!=source_filter:
+                continue
+            visible.append(item)
+
+        if not visible:
+            st.info("No monitored items match the current filters. Run the hourly workflow once after uploading V7.2.")
+        else:
+            for item in visible[:100]:
+                direction=item.get("direction","UNCLEAR")
+                badge = call_badge(
+                    "BUY WATCH" if direction=="LONG"
+                    else "SELL WATCH" if direction=="SHORT"
+                    else "HOLD"
+                )
+                symbols=", ".join(item.get("symbols") or []) or "No asset detected"
+                st.markdown(
+                    f'<div class="research-card">'
+                    f'<div class="research-head">'
+                    f'<div><div class="research-asset">{esc(item.get("source_name"))}</div>'
+                    f'<div class="research-name">{esc(item.get("platform"))} · {esc(item.get("published_at") or item.get("detected_at"))}</div></div>'
+                    f'<div><div class="research-label">Classification</div><div class="research-value">{esc(item.get("classification"))}</div></div>'
+                    f'<div><div class="research-label">Direction</div><div class="research-value">{badge}</div></div>'
+                    f'<div><div class="research-label">Assets</div><div class="research-value">{esc(symbols)}</div></div>'
+                    f'<div><div class="research-label">Review</div><div class="research-value">{esc(item.get("review_status","PENDING"))}</div></div>'
+                    f'<div><div class="research-label">Levels found</div><div class="research-value">{esc(", ".join(str(x) for x in item.get("price_levels",[])) or "—")}</div></div>'
+                    f'</div>'
+                    f'<div class="research-details" style="grid-template-columns:1fr">'
+                    f'<div><div class="research-label">Title</div><div class="research-value">{esc(item.get("title"))}</div>'
+                    f'<div class="research-name" style="margin-top:.35rem">{esc((item.get("summary") or "")[:500])}</div>'
+                    f'<div style="margin-top:.45rem"><a href="{esc(item.get("source_link"))}" target="_blank">Open original source</a></div></div>'
+                    f'</div></div>',
+                    unsafe_allow_html=True,
+                )
+
+    with tab_review:
+        candidates=[x for x in inbox if x.get("classification") in {"POSSIBLE CALL","POSSIBLE IDEA"}]
+        if not candidates:
+            st.info("No possible calls or ideas are waiting for review.")
+        else:
+            labels={
+                f'{x.get("source_name")} · {x.get("title","")[:70]} · {x.get("item_id")}':x
+                for x in candidates
+            }
+            selected_label=st.selectbox("Select detected item",list(labels.keys()))
+            selected=labels[selected_label]
+            detected_symbols=selected.get("symbols") or [""]
+            detected_levels=selected.get("price_levels") or []
+
+            st.markdown(
+                f'<div class="tab-note"><b>Original:</b> {esc(selected.get("title"))}<br>'
+                f'<b>Detected:</b> {esc(selected.get("classification"))} · '
+                f'{esc(selected.get("direction"))} · {esc(", ".join(detected_symbols) or "no symbol")}<br>'
+                f'<a href="{esc(selected.get("source_link"))}" target="_blank">Open and verify the source before approving</a></div>',
+                unsafe_allow_html=True,
+            )
+
+            c1,c2,c3=st.columns(3)
+            with c1:
+                review_source=st.text_input("Source",value=selected.get("person") or selected.get("source_name"))
+                review_symbol=st.text_input("Confirmed symbol",value=detected_symbols[0])
+                default_direction=selected.get("direction") if selected.get("direction") in {"LONG","SHORT"} else "LONG"
+                review_direction=st.selectbox("Confirmed direction",["LONG","SHORT"],index=0 if default_direction=="LONG" else 1)
+            with c2:
+                review_call=st.selectbox("Confirmed call",["BUY WATCH","BUY","STRONG BUY","SELL WATCH","SELL","STRONG SELL"])
+                review_entry=st.number_input(
+                    "Entry price",
+                    min_value=0.0,
+                    value=float(detected_levels[0]) if detected_levels else 0.0,
+                    format="%.10f",
+                )
+                review_timeframe=st.text_input("Timeframe",placeholder="4H / swing / daily")
+            with c3:
+                review_target=st.number_input(
+                    "Target price",
+                    min_value=0.0,
+                    value=float(detected_levels[1]) if len(detected_levels)>1 else 0.0,
+                    format="%.10f",
+                )
+                review_invalidation=st.number_input(
+                    "Invalidation price",
+                    min_value=0.0,
+                    value=float(detected_levels[2]) if len(detected_levels)>2 else 0.0,
+                    format="%.10f",
+                )
+                review_link=st.text_input("Source link",value=selected.get("source_link",""))
+
+            review_notes=st.text_area(
+                "Review notes",
+                value=f'Original title: {selected.get("title","")}\nDetected text: {(selected.get("summary") or "")[:700]}'
+            )
+
+            if st.button("Prepare confirmed external_calls.json",use_container_width=True):
+                if not review_symbol.strip() or review_entry<=0:
+                    st.error("Confirm the symbol and enter a valid entry price.")
+                else:
+                    updated=list(external_calls) if isinstance(external_calls,list) else []
+                    call_id=f'REVIEWED_{selected.get("item_id")}'
+                    if not any(str(x.get("call_id"))==call_id for x in updated):
+                        updated.append({
+                            "call_id":call_id,
+                            "source":review_source.strip().upper(),
+                            "symbol":review_symbol.strip().upper(),
+                            "direction":review_direction,
+                            "call":review_call,
+                            "entry_time":pd.Timestamp.now(tz="UTC").isoformat(),
+                            "entry_price":review_entry,
+                            "target_price":review_target or None,
+                            "invalidation_price":review_invalidation or None,
+                            "timeframe":review_timeframe,
+                            "source_link":review_link,
+                            "notes":review_notes,
+                            "status":"ACTIVE",
+                            "detected_item_id":selected.get("item_id"),
+                        })
+                    st.success("Verified call prepared. Download and replace data/external_calls.json in GitHub.")
+                    st.download_button(
+                        "Download confirmed external_calls.json",
+                        data=json.dumps(updated,indent=2),
+                        file_name="external_calls.json",
+                        mime="application/json",
+                        use_container_width=True,
+                    )
+
+    with tab_sources:
+        rows=[]
+        for source in source_config.get("sources",[]):
+            rows.append({
+                "Enabled":source.get("enabled"),
+                "Source":source.get("name"),
+                "Person":source.get("person"),
+                "Platform":source.get("platform"),
+                "Type":source.get("type"),
+                "Review required":source.get("review_required"),
+                "Notes":source.get("notes"),
+                "Profile":source.get("profile_url"),
+            })
+        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+        st.markdown(
+            '<div class="summary-box"><b>X limitation:</b> the Sheldon X source is listed but disabled '
+            'because official API credentials are required. YouTube and Medium public feeds work without '
+            'private credentials. Video titles and descriptions can be monitored; full video understanding '
+            'would require transcripts or a separate transcription service.</div>',
+            unsafe_allow_html=True,
+        )
 
 
 elif selection=="Paper Trading":
