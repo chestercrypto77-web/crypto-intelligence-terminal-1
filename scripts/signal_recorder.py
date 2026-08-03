@@ -168,7 +168,7 @@ def main():
               "source_data":provider,"returns":{},"best_return":0.0,"worst_return":0.0})
             trade_ids.add(rec["signal_id"]); nt+=1
         time.sleep(.1)
-    write(DATA/"signals_latest.json",{"generated_at":now,"btc_reference_return_24h":btc24,
+    write(DATA/"signals_latest.json",{"generated_at":now,"scan_frequency":"hourly","signal_timeframe":"4h","btc_reference_return_24h":btc24,
           "signals":latest,"new_history_records":nh,"new_paper_trades":nt})
     write(DATA/"signal_history.json",history[-10000:]); write(DATA/"paper_trades.json",trades)
     print(json.dumps({"signals":len(latest),"new_history":nh,"new_trades":nt},indent=2))

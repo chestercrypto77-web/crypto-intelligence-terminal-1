@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "6.1.0"
+APP_VERSION = "6.1.1"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1999,7 +1999,7 @@ elif selection=="Paper Trading":
     open_trades = [t for t in paper_trades if t.get("status")=="OPEN"]
 
     st.markdown(
-        '<div class="summary-box"><b>Automatic accountability:</b> GitHub Actions runs every four hours, '
+        '<div class="summary-box"><b>Automatic accountability:</b> GitHub Actions runs every hour, '
         'freezes each new call and entry price, and creates a paper trade whenever an actionable signal changes.</div>',
         unsafe_allow_html=True,
     )

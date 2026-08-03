@@ -1,40 +1,44 @@
-# Crypto Intelligence Terminal V6.1.0
+# Crypto Intelligence Terminal V6.1.1
 
-## Automatic four-hour signal recording
+## Hourly automatic signal recording
 
-This release lets the engine record calls while nobody is using Streamlit.
+This release changes the unattended call engine from one scan every four hours to one scan every hour.
 
-A GitHub Actions workflow runs every four hours, scans every holding, evaluates the V6 conviction checklist, freezes each completed-candle call and entry price, and opens a paper trade whenever the signal changes into Strong Buy, Buy, Buy Watch, Sell Watch, Sell or Strong Sell.
+The engine still evaluates the **four-hour trading framework**. Running it hourly allows the platform to detect a developing change during the current four-hour window rather than waiting up to four hours for the next scheduled job.
 
-### New files
+### Every hour the recorder
 
-- `.github/workflows/four_hour_signal_recorder.yml`
-- `scripts/signal_recorder.py`
-- `data/signals_latest.json`
-- `data/signal_history.json`
-- `data/paper_trades.json`
-- `data/external_calls.json`
+1. Reads every holding from `holdings.json`
+2. Retrieves current Yahoo Finance and Binance candle data where available
+3. Evaluates the V6 conviction checklist
+4. Compares each asset with its previously recorded call
+5. Records a new signal-history entry when the state changes
+6. Opens a paper trade when an actionable signal changes into:
+   - Strong Buy
+   - Buy
+   - Buy Watch
+   - Sell Watch
+   - Sell
+   - Strong Sell
+7. Freezes the timestamp, entry price, evidence and source
+8. Commits the updated records to GitHub
 
-### New page
+### Duplicate protection
 
-**Paper Trading** shows open engine paper trades, frozen entries, signal changes and the full signal journal.
+Hourly scans do not repeatedly open the same trade. A paper trade is created only when the signal state changes, and signal IDs include the asset, call and four-hour candle time.
 
-## Activate after uploading
+### Important distinction
 
-1. Upload every extracted file and folder to GitHub.
-2. Open the repository **Actions** tab.
-3. Choose **Four Hour Signal Recorder**.
-4. Click **Run workflow** once.
-5. Wait for it to finish.
-6. Refresh Streamlit.
+This is an **hourly scan of a four-hour signal model**. Signals developing inside an unfinished four-hour candle may change before that candle closes. We will preserve those changes so the Performance Lab can later compare early intrabar calls with confirmed closed-candle calls.
 
-The workflow will then run automatically every four hours.
+## Upload and activate
 
-If the workflow cannot commit:
-GitHub repository → Settings → Actions → General → Workflow permissions → Read and write permissions.
+1. Extract the ZIP.
+2. Drag every extracted file and folder into GitHub **Add file → Upload files**.
+3. Commit the replacement files.
+4. Reboot Streamlit.
+5. Open GitHub **Actions**.
+6. Select **Hourly Signal Recorder**.
+7. Click **Run workflow** once and confirm it succeeds.
 
-GitHub scheduled workflows are unattended but can occasionally start late. In a public repository, schedules can be disabled after 60 days without repository activity. The Paper Trading page displays the last recorder timestamp so stale scans are visible.
-
-## Upload
-
-Extract the ZIP, drag all contents into GitHub **Add file → Upload files**, commit, then reboot Streamlit.
+After that, the workflow runs at 17 minutes past every hour.
