@@ -1,42 +1,45 @@
-# Crypto Intelligence Terminal V7.0.0
+# Crypto Intelligence Terminal V7.1.0
 
-V7 adds a complete accountability and performance layer.
+## Full UI update
 
-## Performance tracking
-Every engine and external paper trade records directional results after:
-- 1 hour
-- 4 hours
-- 12 hours
-- 24 hours
-- 3 days
-- 7 days
+This release keeps the hourly engine, paper-trade outcome tracking and Performance Lab,
+while making the Sheldon workflow obvious and fixing the Research-page colours.
 
-It also records best favourable return, worst adverse return, and an automatic seven-day Win, Loss or Flat outcome. Long and short calls are measured correctly in opposite directions.
+### Research colour fix
 
-## Performance Lab
-Compares Our Engine, Sheldon the Sniper, Mark and other sources using:
-- Calls and evaluated calls
-- Win rate
-- Average return
-- Average winner and loser
-- Profit factor
-- Full call-by-call checkpoint table
+The Research page no longer relies on a standard dataframe for directional colours.
+It now uses dedicated dark cards with reliable HTML styling:
 
-## Sheldon calls
-Paper Trading includes a reviewed external-call builder. It prepares an updated `external_calls.json` file. Download it, replace `data/external_calls.json` in GitHub, and the hourly recorder will begin tracking the call separately.
+- Green: positive direction / positive price-volume alignment
+- Red: negative direction / selling pressure
+- Blue: volume rising before price confirms
+- Orange: price rising while volume fades
+- Yellow: mixed or stable
+- Data freshness is green, yellow or red according to age
 
-## GitHub Actions setup
-Your browser skipped the hidden `.github` folder. This release includes a visible backup:
-`WORKFLOW_SETUP/hourly_signal_recorder.yml`
+### Paper Trading redesign
 
-If Actions still shows “Get started with GitHub Actions”:
-1. Click **set up a workflow yourself**
-2. Name it `hourly_signal_recorder.yml`
-3. Replace the example with the contents of the visible backup file
-4. Commit it
-5. Run **Hourly Signal Recorder**
+Paper Trading now has four clear tabs:
 
-A standalone workflow file is also provided beside the release ZIP.
+1. Our Engine Calls
+2. Sheldon Calls
+3. Add Sheldon / External Call
+4. Signal Journal
 
-## Upload
-Extract the ZIP and drag all visible extracted files and folders into GitHub **Add file → Upload files**, commit, and reboot Streamlit.
+The Sheldon section is no longer buried near the bottom of the page.
+
+### Live data protection
+
+The release ZIP deliberately does **not** contain the runtime JSON files inside `data/`.
+Uploading this release will therefore preserve the signal history and paper trades already
+being written by GitHub Actions.
+
+### Upload
+
+1. Extract the ZIP.
+2. Drag every extracted item into GitHub **Add file → Upload files**.
+3. Commit the replacements.
+4. Reboot Streamlit.
+
+Do not delete the existing `data` folder in GitHub. It contains your accumulated records.
+The existing hourly GitHub Actions workflow remains active.

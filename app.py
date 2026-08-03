@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "7.0.0"
+APP_VERSION = "7.1.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -180,6 +180,52 @@ font-size:.69rem;color:#dce3eb;background:#1a1e24}
 .category-pass{color:#67e59a;font-weight:850}.category-fail{color:#ff8181;font-weight:850}.category-mixed{color:#f0d46d;font-weight:850}
 .action-row{display:grid;grid-template-columns:1.05fr .65fr .65fr .65fr 1fr;gap:.5rem;align-items:center;
 background:#1b1f25;border:1px solid var(--line);border-radius:11px;padding:.68rem .75rem;margin:.38rem 0}
+
+
+.research-card{
+  background:#1b1f25;border:1px solid #343b45;border-radius:12px;
+  padding:.78rem .85rem;margin:.5rem 0
+}
+.research-head{
+  display:grid;grid-template-columns:1.15fr .65fr .65fr .65fr .65fr .65fr;
+  gap:.55rem;align-items:center
+}
+.research-details{
+  display:grid;grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:.5rem;border-top:1px solid #343b45;margin-top:.62rem;padding-top:.58rem
+}
+.research-label{font-size:.68rem;color:#94a1b2;text-transform:uppercase;letter-spacing:.06em}
+.research-value{font-size:.87rem;font-weight:850;color:#edf2f7}
+.research-asset{font-size:1rem;font-weight:950;color:#ffffff}
+.research-name{font-size:.72rem;color:#9aa7b6}
+.signal-up{color:#55e18a !important;font-weight:900}
+.signal-down{color:#ff6f79 !important;font-weight:900}
+.signal-watch{color:#70b7ff !important;font-weight:900}
+.signal-fade{color:#ffad65 !important;font-weight:900}
+.signal-flat{color:#efd36c !important;font-weight:900}
+.signal-muted{color:#a1aab7 !important;font-weight:900}
+.source-fresh{color:#55e18a;font-weight:800}
+.source-aging{color:#efd36c;font-weight:800}
+.source-stale{color:#ff7b7b;font-weight:800}
+.tab-note{
+  background:#181d23;border-left:4px solid #63a7ff;border-radius:8px;
+  padding:.7rem .85rem;margin:.45rem 0;color:#dfe7f1
+}
+.call-badge{
+  display:inline-block;border-radius:999px;padding:.22rem .55rem;
+  font-size:.72rem;font-weight:900;letter-spacing:.03em
+}
+.call-buy{background:#163824;color:#75e5a0}
+.call-watch{background:#19334e;color:#8ec8ff}
+.call-hold{background:#403815;color:#f2d76f}
+.call-sell{background:#492027;color:#ff9098}
+.outcome-win{color:#55e18a;font-weight:900}
+.outcome-loss{color:#ff727b;font-weight:900}
+.outcome-flat{color:#efd36c;font-weight:900}
+@media(max-width:900px){
+  .research-head{grid-template-columns:1fr 1fr}
+  .research-details{grid-template-columns:1fr 1fr}
+}
 
 </style>
 
@@ -1626,6 +1672,44 @@ def performance_summary(trades):
       "average_winner":sum(wins)/len(wins) if wins else 0,
       "average_loser":sum(losses)/len(losses) if losses else 0,
       "profit_factor":gp/gl if gl else (float("inf") if gp else 0)}
+
+def html_signal(value: float, threshold: float = .15) -> str:
+    arrow, colour = direction_arrow(float(value or 0), threshold)
+    css = {
+        "up":"signal-up","down":"signal-down","watch":"signal-watch",
+        "fade":"signal-fade","flat":"signal-flat","muted":"signal-muted"
+    }.get(colour, "signal-muted")
+    return f'<span class="{css}">{arrow} {signed(float(value or 0))}</span>'
+
+def html_flow(flow: dict) -> str:
+    css = {
+        "up":"signal-up","down":"signal-down","watch":"signal-watch",
+        "fade":"signal-fade","flat":"signal-flat","muted":"signal-muted"
+    }.get(flow.get("colour"), "signal-muted")
+    return f'<span class="{css}">{esc(flow.get("arrow","→"))} {esc(flow.get("label","Stable"))}</span>'
+
+def freshness_html(age_minutes: float) -> str:
+    age = float(age_minutes or 0)
+    css = "source-fresh" if age <= 15 else "source-aging" if age <= 90 else "source-stale"
+    return f'<span class="{css}">{age:.0f} min</span>'
+
+def call_badge(call: str) -> str:
+    value = str(call or "HOLD").upper()
+    if "BUY" in value and "WATCH" not in value:
+        css = "call-buy"
+    elif "SELL" in value:
+        css = "call-sell"
+    elif "WATCH" in value:
+        css = "call-watch"
+    else:
+        css = "call-hold"
+    return f'<span class="call-badge {css}">{esc(value)}</span>'
+
+def outcome_html(value: str) -> str:
+    text = str(value or "PENDING").upper()
+    css = "outcome-win" if text == "WIN" else "outcome-loss" if text == "LOSS" else "outcome-flat"
+    return f'<span class="{css}">{esc(text)}</span>'
+
 st.set_page_config(page_title=APP_NAME,page_icon="◈",layout="wide",initial_sidebar_state="expanded")
 st.markdown(CSS,unsafe_allow_html=True)
 market_rows, source = get_market_rows()
@@ -1803,39 +1887,58 @@ elif selection=="Watch":
     st.markdown('<div class="summary-box">A watch item is not automatically a buy or sell signal. It means price, participation, risk or momentum has changed enough to deserve closer investigation.</div>',unsafe_allow_html=True)
 
 elif selection=="Research":
-    section("Observable market data")
-    rows=[]
-    for item in sorted(portfolio["items"], key=lambda x:(x["rvol"], abs(x["change_24h"])), reverse=True):
-        flow = volume_flow(item["change_24h"], item["rvol"]-1.0, item["rvol"])
-        price_arrow, _ = direction_arrow(item["change_24h"])
-        rows.append({
-            "Asset":item["symbol"],
-            "1h":signed(item.get("change_1h",0)),
-            "6h":signed(item.get("change_6h",0)),
-            "24h direction":price_arrow,
-            "24h":signed(item["change_24h"]),
-            "7d":signed(item["change_7d"]),
-            "RVOL":round(item["rvol"],2),
-            "Data source":item.get("move_source","Market data"),
-            "Age (min)":round(item.get("data_age_minutes",0)),
-            "Volume flow":f'{flow["arrow"]} {flow["label"]}',
-            "Momentum":item["momentum"],
-            "Portfolio weight":f'{item["weight"]:.1f}%',
-            "Narrative":item["narrative"],
-        })
-    st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
-    section("Display rules")
     st.markdown(
-        '<div class="summary-box">'
-        '<b>Green ↑</b> price and volume are rising together. '
-        '<b>Red ↓</b> volume is rising while price is falling. '
-        '<b>Blue ↑</b> volume is rising before price direction is clear. '
-        '<b>Orange ↓</b> price is rising while volume fades. '
-        '<b>Yellow/Grey →</b> mixed or stable conditions.'
-        '</div>',
+        '<div class="summary-box"><b>Observable market data:</b> all colours below are generated '
+        'from fixed price and volume rules. Green and red are not subjective confidence scores.</div>',
         unsafe_allow_html=True,
     )
 
+    section("Portfolio market radar")
+    ordered_items = sorted(
+        portfolio["items"],
+        key=lambda x:(abs(x.get("change_6h",0)), x.get("rvol",0), abs(x.get("change_24h",0))),
+        reverse=True,
+    )
+
+    for item in ordered_items:
+        flow = volume_flow(
+            item.get("change_6h", item.get("change_24h",0)),
+            item.get("rvol_delta",0.0),
+            item.get("rvol",1.0),
+        )
+        source = item.get("move_source","Market data")
+        age = item.get("data_age_minutes",0)
+        st.markdown(
+            f'<div class="research-card">'
+            f'<div class="research-head">'
+            f'<div><div class="research-asset">{esc(item["symbol"])}</div>'
+            f'<div class="research-name">{esc(item.get("name",""))} · {esc(item.get("narrative",""))}</div></div>'
+            f'<div><div class="research-label">1 hour</div><div class="research-value">{html_signal(item.get("change_1h",0))}</div></div>'
+            f'<div><div class="research-label">6 hours</div><div class="research-value">{html_signal(item.get("change_6h",0))}</div></div>'
+            f'<div><div class="research-label">24 hours</div><div class="research-value">{html_signal(item.get("change_24h",0))}</div></div>'
+            f'<div><div class="research-label">7 days</div><div class="research-value">{html_signal(item.get("change_7d",0))}</div></div>'
+            f'<div><div class="research-label">Volume flow</div><div class="research-value">{html_flow(flow)}</div></div>'
+            f'</div>'
+            f'<div class="research-details">'
+            f'<div><div class="research-label">Current RVOL</div><div class="research-value">{item.get("rvol",1):.2f}×</div></div>'
+            f'<div><div class="research-label">RVOL change</div><div class="research-value">{html_signal(item.get("rvol_delta",0),.10)}</div></div>'
+            f'<div><div class="research-label">Data</div><div class="research-value">{esc(source)} · {freshness_html(age)}</div></div>'
+            f'<div><div class="research-label">Portfolio weight</div><div class="research-value">{item.get("weight",0):.1f}%</div></div>'
+            f'</div></div>',
+            unsafe_allow_html=True,
+        )
+
+    section("Colour rules")
+    st.markdown(
+        '<div class="summary-box">'
+        '<span class="signal-up"><b>Green ↑</b></span> price and volume are rising together. '
+        '<span class="signal-down"><b>Red ↓</b></span> volume is rising while price falls. '
+        '<span class="signal-watch"><b>Blue ↑</b></span> volume is rising while price is flat or not confirmed. '
+        '<span class="signal-fade"><b>Orange ↓</b></span> price is rising while volume fades. '
+        '<span class="signal-flat"><b>Yellow →</b></span> mixed or stable conditions.'
+        '</div>',
+        unsafe_allow_html=True,
+    )
 
 elif selection=="4H Intelligence":
     st.markdown(
@@ -2022,76 +2125,75 @@ elif selection=="Paper Trading":
     paper_trades = read_runtime_json(PAPER_TRADES_FILE, [])
     external_calls = read_runtime_json(EXTERNAL_CALLS_FILE, [])
     current_prices = {item["symbol"]:item["price"] for item in portfolio["items"]}
-    open_trades = [t for t in paper_trades if t.get("status")=="OPEN"]
+
+    engine_trades = [t for t in paper_trades if t.get("source")=="OUR ENGINE"]
+    sheldon_trades = [t for t in paper_trades if t.get("source")=="SHELDON THE SNIPER"]
+    other_trades = [t for t in paper_trades if t.get("source") not in {"OUR ENGINE","SHELDON THE SNIPER"}]
 
     st.markdown(
-        '<div class="summary-box"><b>Automatic accountability:</b> GitHub Actions runs every hour, '
-        'freezes each new call and entry price, and creates a paper trade whenever an actionable signal changes.</div>',
+        '<div class="summary-box"><b>Automatic accountability:</b> the hourly workflow freezes '
+        'engine calls and separately tracks reviewed Sheldon and manual calls.</div>',
         unsafe_allow_html=True,
     )
+
     generated_at = latest_signals.get("generated_at")
     cols=st.columns(4)
-    with cols[0]: metric("Open paper trades",str(len(open_trades)),"Engine generated")
-    with cols[1]: metric("Recorded signals",str(len(signal_history)),"Signal history")
-    with cols[2]: metric("External calls",str(len(external_calls)),"Sheldon / manual")
+    with cols[0]: metric("Engine trades",str(len(engine_trades)),"Automatically recorded")
+    with cols[1]: metric("Sheldon trades",str(len(sheldon_trades)),"Reviewed external calls")
+    with cols[2]: metric("Signal records",str(len(signal_history)),"Hourly journal")
     with cols[3]: metric("Last recorder run",generated_at[:16].replace("T"," ") if generated_at else "Not run","UTC")
 
-    section("Open engine paper trades")
-    if not open_trades:
-        st.info("No automatic paper trades yet. Run the GitHub Actions workflow once manually.")
-    else:
-        rows=[]
-        for trade in reversed(open_trades):
-            live=trade_live_return(trade,current_prices)
-            rows.append({
-                "Asset":trade.get("symbol"),"Call":trade.get("call"),"Direction":trade.get("direction"),
-                "Entry time":str(trade.get("entry_time",""))[:16].replace("T"," "),
-                "Entry price":trade.get("entry_price"),"Current price":current_prices.get(trade.get("symbol")),
-                "Open return":f"{live:+.2f}%" if live is not None else "—",
-                "Bullish":trade.get("bullish_conditions"),"Bearish":trade.get("bearish_conditions"),
-                "Source":trade.get("source"),
-            })
-        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+    tab_engine, tab_sheldon, tab_add, tab_journal = st.tabs([
+        "Our Engine Calls","Sheldon Calls","Add Sheldon / External Call","Signal Journal"
+    ])
 
-    section("Signal changes from latest scan")
-    changed=[x for x in latest_signals.get("signals",[]) if x.get("changed")]
-    if not changed:
-        st.caption("No signal-state changes in the latest scan.")
-    else:
-        for r in changed:
-            st.markdown(
-                f'<div class="action-row"><div><div class="fourh-asset">{esc(r.get("symbol"))}</div>'
-                f'<div class="fourh-name">{esc(r.get("name"))}</div></div>'
-                f'<div><b>{esc(r.get("previous_signal") or "First scan")}</b><div class="fourh-name">Previous</div></div>'
-                f'<div><b>{esc(r.get("signal"))}</b><div class="fourh-name">Current</div></div>'
-                f'<div><b>{r.get("entry_price",0):.8g}</b><div class="fourh-name">Frozen price</div></div>'
-                f'<div><b>{r.get("bullish",0)} bull / {r.get("bearish",0)} bear</b>'
-                f'<div class="fourh-name">{esc(r.get("data_source"))}</div></div></div>',
-                unsafe_allow_html=True,
-            )
+    with tab_engine:
+        st.markdown('<div class="tab-note">Calls created automatically when the engine changes into an actionable Buy or Sell state.</div>',unsafe_allow_html=True)
+        if not engine_trades:
+            st.info("No engine paper trades have been opened yet.")
+        else:
+            rows=[]
+            for trade in reversed(engine_trades):
+                live=trade_live_return(trade,current_prices)
+                rows.append({
+                    "Asset":trade.get("symbol"),"Call":trade.get("call"),
+                    "Direction":trade.get("direction"),
+                    "Entry time":str(trade.get("entry_time",""))[:16].replace("T"," "),
+                    "Entry price":trade.get("entry_price"),
+                    "Current":current_prices.get(trade.get("symbol")),
+                    "Open return":live,
+                    "Best":trade.get("best_return"),"Worst":trade.get("worst_return"),
+                    "Status":trade.get("status"),
+                })
+            frame=pd.DataFrame(rows)
+            st.dataframe(frame,use_container_width=True,hide_index=True)
 
-    section("Signal journal")
-    with st.expander(f"Open full journal · {len(signal_history)} records"):
-        rows=[]
-        for r in reversed(signal_history[-1000:]):
-            rows.append({
-                "Recorded":str(r.get("recorded_at",""))[:16].replace("T"," "),
-                "Asset":r.get("symbol"),"Signal":r.get("signal"),"Previous":r.get("previous_signal"),
-                "Changed":r.get("changed"),"Entry price":r.get("entry_price"),
-                "4H":f'{r.get("return_4h",0):+.2f}%',"12H":f'{r.get("return_12h",0):+.2f}%',
-                "24H":f'{r.get("return_24h",0):+.2f}%',"RVOL":round(float(r.get("rvol",0)),2),
-                "Bullish":r.get("bullish"),"Bearish":r.get("bearish"),"Source":r.get("data_source"),
-            })
-        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+    with tab_sheldon:
+        st.markdown('<div class="tab-note">Only calls you have reviewed and confirmed are listed here. They remain separate from our engine.</div>',unsafe_allow_html=True)
+        if external_calls:
+            st.markdown("#### Reviewed Sheldon call list")
+            st.dataframe(pd.DataFrame(external_calls),use_container_width=True,hide_index=True)
+        else:
+            st.caption("No reviewed Sheldon calls have been added yet.")
+        if sheldon_trades:
+            st.markdown("#### Sheldon paper-trade tracking")
+            rows=[]
+            for trade in reversed(sheldon_trades):
+                rows.append({
+                    "Asset":trade.get("symbol"),"Call":trade.get("call"),
+                    "Direction":trade.get("direction"),"Entry":trade.get("entry_price"),
+                    "1H":checkpoint_return(trade,"1h"),"4H":checkpoint_return(trade,"4h"),
+                    "12H":checkpoint_return(trade,"12h"),"24H":checkpoint_return(trade,"1d"),
+                    "Current":trade.get("current_return"),"Status":trade.get("status"),
+                })
+            st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
 
-    section("Sheldon and external call list")
-    if external_calls:
-        st.dataframe(pd.DataFrame(external_calls),use_container_width=True,hide_index=True)
-    else:
-        st.caption("No reviewed external calls have been added yet.")
-
-    with st.expander("Create a reviewed Sheldon / external call file"):
-        st.caption("Enter a call only after confirming exactly what was predicted.")
+    with tab_add:
+        st.markdown(
+            '<div class="tab-note"><b>Workflow:</b> enter the confirmed call, download the generated '
+            '<code>external_calls.json</code>, then replace <code>data/external_calls.json</code> in GitHub.</div>',
+            unsafe_allow_html=True,
+        )
         c1,c2,c3=st.columns(3)
         with c1:
             ext_source=st.selectbox("Source",["SHELDON THE SNIPER","MARK","OTHER"])
@@ -2105,29 +2207,64 @@ elif selection=="Paper Trading":
             ext_target=st.number_input("Target price",min_value=0.0,value=0.0,format="%.10f")
             ext_invalidation=st.number_input("Invalidation price",min_value=0.0,value=0.0,format="%.10f")
             ext_link=st.text_input("Source link or reference")
-        ext_notes=st.text_area("Notes")
-        if st.button("Prepare external_calls.json",use_container_width=True):
+        ext_notes=st.text_area("Notes",placeholder="Record exactly what was predicted and any conditions.")
+        if st.button("Prepare updated external_calls.json",use_container_width=True):
             if not ext_symbol.strip() or ext_entry<=0:
-                st.error("Enter a symbol and valid entry price.")
+                st.error("Enter an asset symbol and a valid entry price.")
             else:
                 updated=list(external_calls) if isinstance(external_calls,list) else []
                 call_id=f'{ext_source.replace(" ","_")}_{ext_symbol.upper()}_{pd.Timestamp.now(tz="UTC").strftime("%Y%m%d_%H%M%S")}'
-                updated.append({"call_id":call_id,"source":ext_source,"symbol":ext_symbol.strip().upper(),
-                  "direction":ext_direction,"call":ext_call,"entry_time":pd.Timestamp.now(tz="UTC").isoformat(),
-                  "entry_price":ext_entry,"target_price":ext_target or None,
-                  "invalidation_price":ext_invalidation or None,"timeframe":ext_timeframe,
-                  "source_link":ext_link,"notes":ext_notes,"status":"ACTIVE"})
-                st.success("Download and replace data/external_calls.json in GitHub.")
-                st.download_button("Download updated external_calls.json",
-                  data=json.dumps(updated,indent=2),file_name="external_calls.json",
-                  mime="application/json",use_container_width=True)
+                updated.append({
+                    "call_id":call_id,"source":ext_source,"symbol":ext_symbol.strip().upper(),
+                    "direction":ext_direction,"call":ext_call,
+                    "entry_time":pd.Timestamp.now(tz="UTC").isoformat(),
+                    "entry_price":ext_entry,"target_price":ext_target or None,
+                    "invalidation_price":ext_invalidation or None,"timeframe":ext_timeframe,
+                    "source_link":ext_link,"notes":ext_notes,"status":"ACTIVE"
+                })
+                st.success("Download the file, then replace data/external_calls.json in GitHub.")
+                st.download_button(
+                    "Download external_calls.json",
+                    data=json.dumps(updated,indent=2),
+                    file_name="external_calls.json",
+                    mime="application/json",
+                    use_container_width=True,
+                )
 
-
+    with tab_journal:
+        changed=[x for x in latest_signals.get("signals",[]) if x.get("changed")]
+        st.markdown("#### Latest signal changes")
+        if not changed:
+            st.caption("No signal-state changes in the latest hourly scan.")
+        else:
+            for r in changed:
+                st.markdown(
+                    f'<div class="action-row"><div><div class="fourh-asset">{esc(r.get("symbol"))}</div>'
+                    f'<div class="fourh-name">{esc(r.get("name"))}</div></div>'
+                    f'<div>{call_badge(r.get("previous_signal") or "FIRST SCAN")}<div class="fourh-name">Previous</div></div>'
+                    f'<div>{call_badge(r.get("signal"))}<div class="fourh-name">Current</div></div>'
+                    f'<div><b>{r.get("entry_price",0):.8g}</b><div class="fourh-name">Frozen price</div></div>'
+                    f'<div><b>{r.get("bullish",0)} bull / {r.get("bearish",0)} bear</b>'
+                    f'<div class="fourh-name">{esc(r.get("data_source"))}</div></div></div>',
+                    unsafe_allow_html=True,
+                )
+        with st.expander(f"Full signal journal · {len(signal_history)} records"):
+            rows=[]
+            for r in reversed(signal_history[-1000:]):
+                rows.append({
+                    "Recorded":str(r.get("recorded_at",""))[:16].replace("T"," "),
+                    "Asset":r.get("symbol"),"Signal":r.get("signal"),
+                    "Previous":r.get("previous_signal"),"Changed":r.get("changed"),
+                    "Entry":r.get("entry_price"),"4H":r.get("return_4h"),
+                    "12H":r.get("return_12h"),"24H":r.get("return_24h"),
+                    "RVOL":r.get("rvol"),"Source":r.get("data_source"),
+                })
+            st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
 
 elif selection=="Performance Lab":
     paper_trades=read_runtime_json(PAPER_TRADES_FILE,[])
     if not paper_trades:
-        st.info("No paper trades have been recorded yet.")
+        st.info("No paper trades have been recorded yet. The hourly recorder will populate this page as signals and reviewed external calls are captured.")
     else:
         st.markdown('<div class="summary-box"><b>Purpose:</b> Judge every engine and external call using the same hourly and daily checkpoints. Long calls profit when price rises; short calls profit when price falls.</div>',unsafe_allow_html=True)
         sources=sorted({str(t.get("source") or "UNKNOWN") for t in paper_trades})
