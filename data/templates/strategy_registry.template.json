@@ -1,0 +1,48 @@
+{
+  "updated_at": null,
+  "champion_id": "conviction_v1",
+  "strategies": [
+    {
+      "strategy_id": "conviction_v1",
+      "name": "4H Conviction V1",
+      "role": "CHAMPION",
+      "version": "1.0.0",
+      "enabled": true,
+      "description": "Current production four-hour checklist.",
+      "rules": {}
+    },
+    {
+      "strategy_id": "closed_candle_challenger",
+      "name": "Closed Candle Confirmation",
+      "role": "CHALLENGER",
+      "version": "0.1.0",
+      "enabled": true,
+      "description": "Requires completed 4H candles.",
+      "rules": {
+        "require_closed_candle": true
+      }
+    },
+    {
+      "strategy_id": "rvol_150_challenger",
+      "name": "RVOL 1.50 Challenger",
+      "role": "CHALLENGER",
+      "version": "0.1.0",
+      "enabled": true,
+      "description": "Requires RVOL >= 1.50 for bullish calls.",
+      "rules": {
+        "minimum_rvol_for_buy": 1.5
+      }
+    },
+    {
+      "strategy_id": "btc_confirmed_challenger",
+      "name": "BTC Confirmation Challenger",
+      "role": "CHALLENGER",
+      "version": "0.1.0",
+      "enabled": true,
+      "description": "Requires positive BTC confirmation.",
+      "rules": {
+        "require_btc_confirmation": true
+      }
+    }
+  ]
+}

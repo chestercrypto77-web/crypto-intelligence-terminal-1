@@ -18,6 +18,7 @@ def main() -> int:
     run("bootstrap_runtime.py")
     run("external_intelligence.py")
     run("signal_recorder.py")
+    run("research_desk.py")
     return 0
 
 

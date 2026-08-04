@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.5.0"
+APP_VERSION = "8.6.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1647,6 +1647,10 @@ EXTERNAL_CALLS_FILE = Path(__file__).with_name("data") / "external_calls.json"
 EXTERNAL_INBOX_FILE = Path(__file__).with_name("data") / "external_inbox.json"
 EXTERNAL_STATUS_FILE = Path(__file__).with_name("data") / "external_monitor_status.json"
 EXTERNAL_SOURCES_FILE = Path(__file__).with_name("config") / "external_sources.json"
+EVIDENCE_LEDGER_FILE = Path(__file__).with_name("data") / "evidence_ledger.json"
+SIGNAL_LIFECYCLE_FILE = Path(__file__).with_name("data") / "signal_lifecycle.json"
+RESEARCH_WALLET_FILE = Path(__file__).with_name("data") / "research_wallet.json"
+STRATEGY_REGISTRY_FILE = Path(__file__).with_name("data") / "strategy_registry.json"
 
 def read_runtime_json(path: Path, default):
     try:
@@ -1807,7 +1811,7 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Research Desk","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
@@ -1818,6 +1822,7 @@ titles = {
     "Watch":("Needs Attention","Only the holdings with the most meaningful changes."),
     "Research":("Research","The evidence beneath the daily briefing."),
     "4H Intelligence":("4H Intelligence","The platform’s primary conviction engine for portfolio and on-demand asset calls."),
+    "Research Desk":("Research Desk","Evidence Ledger, signal lifecycle and the AI research wallet."),
     "External Intelligence":("External Intelligence","Hourly reviewed monitoring of approved analysts and public research sources."),
     "Paper Trading":("Paper Trading","Engine calls plus reviewed Sheldon and external predictions."),
     "Performance Lab":("Performance Lab","Measure whether calls became profitable or losing hours and days later."),
@@ -2139,6 +2144,56 @@ elif selection=="4H Intelligence":
             for confirmation in intel.get("confirmations",[]):
                 other=confirmation["result"]; source_rows.append({"Source":confirmation["source"],"Call":other["signal"],"4H":other["ret4h"],"24H":other["ret24h"],"RVOL":other["rvol"],"Bullish":other["bullish"],"Bearish":other["bearish"]})
             st.dataframe(pd.DataFrame(source_rows),use_container_width=True,hide_index=True)
+
+elif selection=="Research Desk":
+    ledger=read_runtime_json(EVIDENCE_LEDGER_FILE,[]); lifecycle=read_runtime_json(SIGNAL_LIFECYCLE_FILE,{"updated_at":None,"assets":{}}); wallet=read_runtime_json(RESEARCH_WALLET_FILE,{}); registry=read_runtime_json(STRATEGY_REGISTRY_FILE,{"strategies":[]})
+    st.markdown('<div class="summary-box"><b>Research Desk Foundation:</b> immutable evidence, signal lifecycle and a paper-only AI research wallet.</div>',unsafe_allow_html=True)
+    tabs=st.tabs(["Research Wallet","Evidence Ledger","Signal Lifecycle","Strategy Registry"])
+    with tabs[0]:
+        equity=float(wallet.get("equity") or wallet.get("starting_cash") or 100000); start=float(wallet.get("starting_cash") or 100000); ret=(equity/start-1)*100 if start else 0; opens=wallet.get("open_positions") or []; closed=wallet.get("closed_positions") or []
+        cols=st.columns(5)
+        with cols[0]: metric("Wallet equity",f'${equity:,.2f}',f'{ret:+.2f}% from start')
+        with cols[1]: metric("Cash",f'${float(wallet.get("cash") or 0):,.2f}',"Paper cash")
+        with cols[2]: metric("Open positions",str(len(opens)),"Decisive calls")
+        with cols[3]: metric("Closed positions",str(len(closed)),"Completed")
+        with cols[4]: metric("Realised P/L",f'${float(wallet.get("realised_pnl") or 0):+,.2f}',"Paper result")
+        if wallet.get("equity_history"):
+            h=pd.DataFrame(wallet["equity_history"]); h["recorded_at"]=pd.to_datetime(h["recorded_at"],errors="coerce"); h=h.dropna(subset=["recorded_at"]).set_index("recorded_at"); st.line_chart(h[["equity"]],use_container_width=True)
+        section("Open positions")
+        if opens: st.dataframe(pd.DataFrame(opens),use_container_width=True,hide_index=True)
+        else: st.caption("No decisive calls have opened research-wallet positions yet.")
+        section("Closed positions")
+        if closed: st.dataframe(pd.DataFrame(list(reversed(closed[-100:]))),use_container_width=True,hide_index=True)
+        else: st.caption("No research-wallet positions have closed yet.")
+    with tabs[1]:
+        section("Immutable evidence ledger")
+        if ledger:
+            rows=[]
+            for e in reversed(ledger[-1000:]): rows.append({"Recorded":e.get("recorded_at"),"Asset":e.get("asset"),"Strategy":e.get("strategy_id"),"Version":e.get("strategy_version"),"Signal":e.get("signal"),"Lifecycle":e.get("lifecycle_state"),"Entry":e.get("entry_price"),"RVOL":(e.get("indicators") or {}).get("rvol"),"Bullish":(e.get("indicators") or {}).get("bullish_conditions"),"Bearish":(e.get("indicators") or {}).get("bearish_conditions"),"Source":e.get("data_source")})
+            st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+            assets=sorted({str(x.get("asset")) for x in ledger if x.get("asset")}); chosen=st.selectbox("Inspect asset evidence",assets); selected=[x for x in ledger if x.get("asset")==chosen]
+            if selected: st.json(selected[-1],expanded=False)
+        else: st.info("The next successful hourly run will begin the Evidence Ledger.")
+    with tabs[2]:
+        section("Signal lifecycle")
+        assets=lifecycle.get("assets") or {}; counts=defaultdict(int)
+        for a in assets.values(): counts[a.get("current_state","UNKNOWN")]+=1
+        cols=st.columns(6)
+        for col,label in zip(cols,["FORMING","CONFIRMED","ACTIVE","WEAKENING","NEUTRAL","INVALIDATED"]):
+            with col: metric(label,str(counts[label]),"Current state")
+        if assets:
+            st.dataframe(pd.DataFrame([{"Asset":a.get("symbol"),"Strategy":a.get("strategy_id"),"Current signal":a.get("current_signal"),"Lifecycle":a.get("current_state"),"Last updated":a.get("last_updated"),"Transitions":len(a.get("transitions") or [])} for a in assets.values()]),use_container_width=True,hide_index=True)
+            key=st.selectbox("Inspect lifecycle history",sorted(assets.keys())); hist=(assets.get(key) or {}).get("transitions") or []
+            if hist: st.dataframe(pd.DataFrame(list(reversed(hist[-100:]))),use_container_width=True,hide_index=True)
+        else: st.info("Lifecycle records will appear after the next hourly run.")
+    with tabs[3]:
+        section("Champion and challenger registry")
+        strategies=registry.get("strategies") or []
+        if strategies:
+            st.dataframe(pd.DataFrame([{"Strategy":s.get("name"),"ID":s.get("strategy_id"),"Role":s.get("role"),"Version":s.get("version"),"Enabled":s.get("enabled"),"Description":s.get("description")} for s in strategies]),use_container_width=True,hide_index=True)
+            sid=st.selectbox("Inspect rules",[s.get("strategy_id") for s in strategies]); st.json(next(s for s in strategies if s.get("strategy_id")==sid),expanded=False)
+        else: st.info("The strategy registry will be created by bootstrap.")
+        st.markdown('<div class="summary-box"><b>Current stage:</b> only the Champion powers live paper calls. Challengers are registered for future side-by-side testing.</div>',unsafe_allow_html=True)
 
 elif selection=="External Intelligence":
     inbox = read_runtime_json(EXTERNAL_INBOX_FILE, [])

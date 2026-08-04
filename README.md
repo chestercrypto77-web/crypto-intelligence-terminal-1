@@ -1,16 +1,7 @@
-# Crypto Intelligence Terminal V8.5.0
+# Crypto Intelligence Terminal V8.6.0
 
-## 4H Intelligence flagship rebuild
+## Research Desk Foundation
 
-- Market Radar with decisive calls
-- Narrative Radar with top five portfolio projects per narrative
-- Deep dive for any holding or typed crypto, stock or ETF
-- Prior-call performance by asset
-- Why the call changed
-- Reviewed Sheldon / external-source agreement
-- Prior 1H, 4H, 12H, 24H, 3D and 7D outcomes
-- Full checklist and cross-source confirmation
+Adds an immutable Evidence Ledger, signal lifecycle tracking, a USD 100,000 paper-only AI Research Wallet, and a Champion/Challenger strategy registry. The stable hourly runner now updates the Research Desk after each signal scan.
 
-This release uses the V8.1 safe full-update process. Upload every extracted item over the
-existing repository. Do not delete the existing data folder. The stable hourly workflow
-does not need another edit.
+Use the V8.1 safe full-update process: upload all extracted files over the existing repository, do not delete the data folder, reboot Streamlit, then run Hourly Signal Recorder once.
