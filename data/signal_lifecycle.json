@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-04T08:11:20.414432+00:00",
+  "updated_at": "2026-08-04T09:01:39.173841+00:00",
   "assets": {
     "conviction_v1:BTC": {
       "strategy_id": "conviction_v1",
@@ -63,13 +63,13 @@
           "rvol": 0.0
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:SOL": {
       "strategy_id": "conviction_v1",
       "symbol": "SOL",
-      "current_state": "NEUTRAL",
-      "current_signal": "HOLD",
+      "current_state": "FORMING",
+      "current_signal": "SELL WATCH",
       "transitions": [
         {
           "transition_key": "SOL_BUY_20260804_0000000000:CONFIRMED",
@@ -125,14 +125,25 @@
           "bullish": 5,
           "bearish": 5,
           "rvol": 0.12962578376353123
+        },
+        {
+          "transition_key": "SOL_SELL_WATCH_20260804_0800000000:FORMING",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "HOLD",
+          "to_signal": "SELL WATCH",
+          "state": "FORMING",
+          "entry_price": 73.2300033569336,
+          "bullish": 3,
+          "bearish": 7,
+          "rvol": 0.1827107335059507
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:AVAX": {
       "strategy_id": "conviction_v1",
       "symbol": "AVAX",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "BUY",
       "transitions": [
         {
@@ -189,14 +200,25 @@
           "bullish": 10,
           "bearish": 1,
           "rvol": 0.02662365513807692
+        },
+        {
+          "transition_key": "AVAX_BUY_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "BUY",
+          "to_signal": "BUY",
+          "state": "ACTIVE",
+          "entry_price": 6.767000198364258,
+          "bullish": 11,
+          "bearish": 1,
+          "rvol": 0.2283371325429752
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:COTI": {
       "strategy_id": "conviction_v1",
       "symbol": "COTI",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "STRONG BUY",
       "transitions": [
         {
@@ -242,15 +264,26 @@
           "bullish": 11,
           "bearish": 1,
           "rvol": 1.6621439141965955
+        },
+        {
+          "transition_key": "COTI_STRONG_BUY_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "STRONG BUY",
+          "to_signal": "STRONG BUY",
+          "state": "ACTIVE",
+          "entry_price": 0.014000000432133675,
+          "bullish": 12,
+          "bearish": 1,
+          "rvol": 7.348390786535101
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:ZIL": {
       "strategy_id": "conviction_v1",
       "symbol": "ZIL",
       "current_state": "CONFIRMED",
-      "current_signal": "SELL",
+      "current_signal": "STRONG SELL",
       "transitions": [
         {
           "transition_key": "ZIL_SELL_WATCH_20260804_0000000000:FORMING",
@@ -306,14 +339,25 @@
           "bullish": 2,
           "bearish": 9,
           "rvol": 0.0
+        },
+        {
+          "transition_key": "ZIL_STRONG_SELL_20260804_0800000000:CONFIRMED",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL",
+          "to_signal": "STRONG SELL",
+          "state": "CONFIRMED",
+          "entry_price": 0.0025118340272456408,
+          "bullish": 1,
+          "bearish": 13,
+          "rvol": 0.20319521908680505
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:ONDO": {
       "strategy_id": "conviction_v1",
       "symbol": "ONDO",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "STRONG SELL",
       "transitions": [
         {
@@ -381,15 +425,26 @@
           "bullish": 1,
           "bearish": 11,
           "rvol": 0.06295617786440132
+        },
+        {
+          "transition_key": "ONDO_STRONG_SELL_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "STRONG SELL",
+          "to_signal": "STRONG SELL",
+          "state": "ACTIVE",
+          "entry_price": 0.3682900071144104,
+          "bullish": 1,
+          "bearish": 11,
+          "rvol": 0.1804816141678654
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:DOT": {
       "strategy_id": "conviction_v1",
       "symbol": "DOT",
-      "current_state": "FORMING",
-      "current_signal": "BUY WATCH",
+      "current_state": "CONFIRMED",
+      "current_signal": "BUY",
       "transitions": [
         {
           "transition_key": "DOT_STRONG_BUY_20260804_0000000000:CONFIRMED",
@@ -434,9 +489,20 @@
           "bullish": 9,
           "bearish": 4,
           "rvol": 0.04474580953003003
+        },
+        {
+          "transition_key": "DOT_BUY_20260804_0800000000:CONFIRMED",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "BUY WATCH",
+          "to_signal": "BUY",
+          "state": "CONFIRMED",
+          "entry_price": 0.8339999914169312,
+          "bullish": 9,
+          "bearish": 3,
+          "rvol": 0.4983113050887793
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:SUI": {
       "strategy_id": "conviction_v1",
@@ -500,12 +566,12 @@
           "rvol": 0.003356798264158882
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:NEAR": {
       "strategy_id": "conviction_v1",
       "symbol": "NEAR",
-      "current_state": "WEAKENING",
+      "current_state": "NEUTRAL",
       "current_signal": "HOLD",
       "transitions": [
         {
@@ -540,14 +606,25 @@
           "bullish": 7,
           "bearish": 5,
           "rvol": 0.0
+        },
+        {
+          "transition_key": "NEAR_HOLD_20260804_0800000000:NEUTRAL",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "HOLD",
+          "to_signal": "HOLD",
+          "state": "NEUTRAL",
+          "entry_price": 1.7441999912261963,
+          "bullish": 6,
+          "bearish": 5,
+          "rvol": 0.0038247581468086895
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:AIOZ": {
       "strategy_id": "conviction_v1",
       "symbol": "AIOZ",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "STRONG SELL",
       "transitions": [
         {
@@ -593,14 +670,25 @@
           "bullish": 0,
           "bearish": 13,
           "rvol": 0.06632982740231531
+        },
+        {
+          "transition_key": "AIOZ_STRONG_SELL_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "STRONG SELL",
+          "to_signal": "STRONG SELL",
+          "state": "ACTIVE",
+          "entry_price": 0.04699999839067459,
+          "bullish": 1,
+          "bearish": 11,
+          "rvol": 0.174936751147137
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:FIL": {
       "strategy_id": "conviction_v1",
       "symbol": "FIL",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "SELL",
       "transitions": [
         {
@@ -646,15 +734,26 @@
           "bullish": 3,
           "bearish": 8,
           "rvol": 0.0
+        },
+        {
+          "transition_key": "FIL_SELL_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL",
+          "to_signal": "SELL",
+          "state": "ACTIVE",
+          "entry_price": 0.7149999737739563,
+          "bullish": 3,
+          "bearish": 9,
+          "rvol": 0.0032143718291542996
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:OM": {
       "strategy_id": "conviction_v1",
       "symbol": "OM",
-      "current_state": "FORMING",
-      "current_signal": "SELL WATCH",
+      "current_state": "NEUTRAL",
+      "current_signal": "HOLD",
       "transitions": [
         {
           "transition_key": "OM_BUY_20260804_0000000000:CONFIRMED",
@@ -710,14 +809,25 @@
           "bullish": 4,
           "bearish": 7,
           "rvol": 0.0
+        },
+        {
+          "transition_key": "OM_HOLD_20260804_0800000000:NEUTRAL",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL WATCH",
+          "to_signal": "HOLD",
+          "state": "NEUTRAL",
+          "entry_price": 0.05268499627709389,
+          "bullish": 5,
+          "bearish": 7,
+          "rvol": 0.2120597455283054
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:USDT": {
       "strategy_id": "conviction_v1",
       "symbol": "USDT",
-      "current_state": "WEAKENING",
+      "current_state": "NEUTRAL",
       "current_signal": "HOLD",
       "transitions": [
         {
@@ -763,15 +873,26 @@
           "bullish": 6,
           "bearish": 6,
           "rvol": 0.059620895401485206
+        },
+        {
+          "transition_key": "USDT_HOLD_20260804_0800000000:NEUTRAL",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "HOLD",
+          "to_signal": "HOLD",
+          "state": "NEUTRAL",
+          "entry_price": 0.9989799857139587,
+          "bullish": 5,
+          "bearish": 6,
+          "rvol": 0.14783583601727687
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:SEI": {
       "strategy_id": "conviction_v1",
       "symbol": "SEI",
-      "current_state": "FORMING",
-      "current_signal": "SELL WATCH",
+      "current_state": "CONFIRMED",
+      "current_signal": "SELL",
       "transitions": [
         {
           "transition_key": "SEI_BUY_WATCH_20260804_0000000000:FORMING",
@@ -805,15 +926,26 @@
           "bullish": 4,
           "bearish": 7,
           "rvol": 0.08158831708801857
+        },
+        {
+          "transition_key": "SEI_SELL_20260804_0800000000:CONFIRMED",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL WATCH",
+          "to_signal": "SELL",
+          "state": "CONFIRMED",
+          "entry_price": 0.04123999923467636,
+          "bullish": 3,
+          "bearish": 9,
+          "rvol": 0.18838199842318906
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:RUNE": {
       "strategy_id": "conviction_v1",
       "symbol": "RUNE",
       "current_state": "FORMING",
-      "current_signal": "BUY WATCH",
+      "current_signal": "SELL WATCH",
       "transitions": [
         {
           "transition_key": "RUNE_HOLD_20260804_0000000000:WEAKENING",
@@ -847,9 +979,20 @@
           "bullish": 8,
           "bearish": 4,
           "rvol": 0.00043078558793067104
+        },
+        {
+          "transition_key": "RUNE_SELL_WATCH_20260804_0800000000:FORMING",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "BUY WATCH",
+          "to_signal": "SELL WATCH",
+          "state": "FORMING",
+          "entry_price": 0.4402337670326233,
+          "bullish": 3,
+          "bearish": 7,
+          "rvol": 0.17661143234296753
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:SAND": {
       "strategy_id": "conviction_v1",
@@ -913,7 +1056,7 @@
           "rvol": 0.009515951345788545
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:WIN": {
       "strategy_id": "conviction_v1",
@@ -977,12 +1120,12 @@
           "rvol": 0.012566195612897771
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:AR": {
       "strategy_id": "conviction_v1",
       "symbol": "AR",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "BUY",
       "transitions": [
         {
@@ -1039,9 +1182,20 @@
           "bullish": 10,
           "bearish": 3,
           "rvol": 0.14225771743783716
+        },
+        {
+          "transition_key": "AR_BUY_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "BUY",
+          "to_signal": "BUY",
+          "state": "ACTIVE",
+          "entry_price": 1.8315411806106567,
+          "bullish": 8,
+          "bearish": 3,
+          "rvol": 0.7522655482515155
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:BEAM": {
       "strategy_id": "conviction_v1",
@@ -1083,7 +1237,7 @@
           "rvol": 0.007223867658744492
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:SHIB": {
       "strategy_id": "conviction_v1",
@@ -1147,12 +1301,12 @@
           "rvol": 0.01998980717752829
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:ENJ": {
       "strategy_id": "conviction_v1",
       "symbol": "ENJ",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "STRONG SELL",
       "transitions": [
         {
@@ -1198,14 +1352,25 @@
           "bullish": 2,
           "bearish": 10,
           "rvol": 0.00021687507922168222
+        },
+        {
+          "transition_key": "ENJ_STRONG_SELL_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "STRONG SELL",
+          "to_signal": "STRONG SELL",
+          "state": "ACTIVE",
+          "entry_price": 0.02472831681370735,
+          "bullish": 1,
+          "bearish": 12,
+          "rvol": 0.016481236830552633
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:IMX": {
       "strategy_id": "conviction_v1",
       "symbol": "IMX",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "SELL",
       "transitions": [
         {
@@ -1251,15 +1416,26 @@
           "bullish": 2,
           "bearish": 8,
           "rvol": 0.011948767040968198
+        },
+        {
+          "transition_key": "IMX_SELL_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL",
+          "to_signal": "SELL",
+          "state": "ACTIVE",
+          "entry_price": 0.1103999987244606,
+          "bullish": 3,
+          "bearish": 9,
+          "rvol": 0.2515504173081523
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:VET": {
       "strategy_id": "conviction_v1",
       "symbol": "VET",
-      "current_state": "NEUTRAL",
-      "current_signal": "HOLD",
+      "current_state": "FORMING",
+      "current_signal": "SELL WATCH",
       "transitions": [
         {
           "transition_key": "VET_STRONG_BUY_20260804_0000000000:ACTIVE",
@@ -1304,15 +1480,26 @@
           "bullish": 5,
           "bearish": 5,
           "rvol": 0.020540223394328237
+        },
+        {
+          "transition_key": "VET_SELL_WATCH_20260804_0800000000:FORMING",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "HOLD",
+          "to_signal": "SELL WATCH",
+          "state": "FORMING",
+          "entry_price": 0.004699999932199717,
+          "bullish": 4,
+          "bearish": 6,
+          "rvol": 0.024722427569870118
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:SC": {
       "strategy_id": "conviction_v1",
       "symbol": "SC",
-      "current_state": "CONFIRMED",
-      "current_signal": "SELL",
+      "current_state": "FORMING",
+      "current_signal": "SELL WATCH",
       "transitions": [
         {
           "transition_key": "SC_BUY_WATCH_20260804_0000000000:FORMING",
@@ -1346,9 +1533,20 @@
           "bullish": 3,
           "bearish": 9,
           "rvol": 0.1860852277948964
+        },
+        {
+          "transition_key": "SC_SELL_WATCH_20260804_0800000000:FORMING",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL",
+          "to_signal": "SELL WATCH",
+          "state": "FORMING",
+          "entry_price": 0.000498532026540488,
+          "bullish": 2,
+          "bearish": 7,
+          "rvol": 1.1107024565844519
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:BTT": {
       "strategy_id": "conviction_v1",
@@ -1401,12 +1599,12 @@
           "rvol": 0.19944871195347152
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:TLM": {
       "strategy_id": "conviction_v1",
       "symbol": "TLM",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "SELL",
       "transitions": [
         {
@@ -1452,14 +1650,25 @@
           "bullish": 3,
           "bearish": 9,
           "rvol": 0.010220711848782918
+        },
+        {
+          "transition_key": "TLM_SELL_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL",
+          "to_signal": "SELL",
+          "state": "ACTIVE",
+          "entry_price": 0.0015990332467481494,
+          "bullish": 3,
+          "bearish": 8,
+          "rvol": 0.06035952104577018
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:PYR": {
       "strategy_id": "conviction_v1",
       "symbol": "PYR",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "STRONG SELL",
       "transitions": [
         {
@@ -1494,14 +1703,25 @@
           "bullish": 2,
           "bearish": 10,
           "rvol": 0.0
+        },
+        {
+          "transition_key": "PYR_STRONG_SELL_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "STRONG SELL",
+          "to_signal": "STRONG SELL",
+          "state": "ACTIVE",
+          "entry_price": 0.06300000101327896,
+          "bullish": 2,
+          "bearish": 10,
+          "rvol": 0.16246292166734805
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:PAAL": {
       "strategy_id": "conviction_v1",
       "symbol": "PAAL",
-      "current_state": "CONFIRMED",
+      "current_state": "ACTIVE",
       "current_signal": "STRONG SELL",
       "transitions": [
         {
@@ -1569,15 +1789,26 @@
           "bullish": 2,
           "bearish": 11,
           "rvol": 0.06040013794879817
+        },
+        {
+          "transition_key": "PAAL_STRONG_SELL_20260804_0800000000:ACTIVE",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "STRONG SELL",
+          "to_signal": "STRONG SELL",
+          "state": "ACTIVE",
+          "entry_price": 0.005239269230514765,
+          "bullish": 2,
+          "bearish": 11,
+          "rvol": 0.06800000704663285
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:SKL": {
       "strategy_id": "conviction_v1",
       "symbol": "SKL",
-      "current_state": "FORMING",
-      "current_signal": "BUY WATCH",
+      "current_state": "NEUTRAL",
+      "current_signal": "HOLD",
       "transitions": [
         {
           "transition_key": "SKL_SELL_20260804_0000000000:ACTIVE",
@@ -1622,9 +1853,20 @@
           "bullish": 7,
           "bearish": 3,
           "rvol": 0.09451077039568347
+        },
+        {
+          "transition_key": "SKL_HOLD_20260804_0800000000:NEUTRAL",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "BUY WATCH",
+          "to_signal": "HOLD",
+          "state": "NEUTRAL",
+          "entry_price": 0.0036700000055134296,
+          "bullish": 5,
+          "bearish": 5,
+          "rvol": 0.2501467366444177
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:AERO": {
       "strategy_id": "conviction_v1",
@@ -1666,13 +1908,13 @@
           "rvol": 0.16201417418839023
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:LUNC": {
       "strategy_id": "conviction_v1",
       "symbol": "LUNC",
-      "current_state": "CONFIRMED",
-      "current_signal": "BUY",
+      "current_state": "WEAKENING",
+      "current_signal": "HOLD",
       "transitions": [
         {
           "transition_key": "LUNC_HOLD_20260804_0000000000:NEUTRAL",
@@ -1717,9 +1959,20 @@
           "bullish": 9,
           "bearish": 2,
           "rvol": 0.1326068497796284
+        },
+        {
+          "transition_key": "LUNC_HOLD_20260804_0800000000:WEAKENING",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "BUY",
+          "to_signal": "HOLD",
+          "state": "WEAKENING",
+          "entry_price": 5.011286339140497e-05,
+          "bullish": 7,
+          "bearish": 5,
+          "rvol": 0.204381111042697
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:GALA": {
       "strategy_id": "conviction_v1",
@@ -1794,13 +2047,13 @@
           "rvol": 0.06014485712078848
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:UOS": {
       "strategy_id": "conviction_v1",
       "symbol": "UOS",
-      "current_state": "NEUTRAL",
-      "current_signal": "HOLD",
+      "current_state": "FORMING",
+      "current_signal": "SELL WATCH",
       "transitions": [
         {
           "transition_key": "UOS_SELL_WATCH_20260804_0000000000:FORMING",
@@ -1845,9 +2098,20 @@
           "bullish": 5,
           "bearish": 7,
           "rvol": 0.025994924800396113
+        },
+        {
+          "transition_key": "UOS_SELL_WATCH_20260804_0800000000:FORMING",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "HOLD",
+          "to_signal": "SELL WATCH",
+          "state": "FORMING",
+          "entry_price": 0.0027604540809988976,
+          "bullish": 4,
+          "bearish": 7,
+          "rvol": 0.15512465373961218
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:DENT": {
       "strategy_id": "conviction_v1",
@@ -1900,13 +2164,13 @@
           "rvol": 0.0
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:DOGE": {
       "strategy_id": "conviction_v1",
       "symbol": "DOGE",
-      "current_state": "FORMING",
-      "current_signal": "BUY WATCH",
+      "current_state": "NEUTRAL",
+      "current_signal": "HOLD",
       "transitions": [
         {
           "transition_key": "DOGE_BUY_WATCH_20260804_0000000000:FORMING",
@@ -1962,9 +2226,20 @@
           "bullish": 7,
           "bearish": 3,
           "rvol": 0.013145555658074636
+        },
+        {
+          "transition_key": "DOGE_HOLD_20260804_0800000000:NEUTRAL",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "BUY WATCH",
+          "to_signal": "HOLD",
+          "state": "NEUTRAL",
+          "entry_price": 0.07005999982357025,
+          "bullish": 4,
+          "bearish": 5,
+          "rvol": 0.028200455472902678
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:VRA": {
       "strategy_id": "conviction_v1",
@@ -2028,13 +2303,13 @@
           "rvol": 0.0006394843198444774
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:VTHO": {
       "strategy_id": "conviction_v1",
       "symbol": "VTHO",
-      "current_state": "FORMING",
-      "current_signal": "SELL WATCH",
+      "current_state": "CONFIRMED",
+      "current_signal": "SELL",
       "transitions": [
         {
           "transition_key": "VTHO_HOLD_20260804_0000000000:NEUTRAL",
@@ -2079,9 +2354,20 @@
           "bullish": 4,
           "bearish": 6,
           "rvol": 0.0
+        },
+        {
+          "transition_key": "VTHO_SELL_20260804_0800000000:CONFIRMED",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL WATCH",
+          "to_signal": "SELL",
+          "state": "CONFIRMED",
+          "entry_price": 0.00033000000985339284,
+          "bullish": 2,
+          "bearish": 8,
+          "rvol": 0.0528875322010425
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:XTZ": {
       "strategy_id": "conviction_v1",
@@ -2134,13 +2420,13 @@
           "rvol": 0.004642610395856139
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:POL": {
       "strategy_id": "conviction_v1",
       "symbol": "POL",
       "current_state": "CONFIRMED",
-      "current_signal": "BUY",
+      "current_signal": "STRONG BUY",
       "transitions": [
         {
           "transition_key": "POL_HOLD_20260804_0400000000:NEUTRAL",
@@ -2163,15 +2449,26 @@
           "bullish": 8,
           "bearish": 2,
           "rvol": 0.7118896578495396
+        },
+        {
+          "transition_key": "POL_STRONG_BUY_20260804_0800000000:CONFIRMED",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "BUY",
+          "to_signal": "STRONG BUY",
+          "state": "CONFIRMED",
+          "entry_price": 0.07440000027418137,
+          "bullish": 10,
+          "bearish": 2,
+          "rvol": 2.2773322794600013
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:SUPER": {
       "strategy_id": "conviction_v1",
       "symbol": "SUPER",
-      "current_state": "FORMING",
-      "current_signal": "SELL WATCH",
+      "current_state": "CONFIRMED",
+      "current_signal": "SELL",
       "transitions": [
         {
           "transition_key": "SUPER_SELL_20260804_0400000000:ACTIVE",
@@ -2194,15 +2491,26 @@
           "bullish": 3,
           "bearish": 7,
           "rvol": 0.03714553414158854
+        },
+        {
+          "transition_key": "SUPER_SELL_20260804_0800000000:CONFIRMED",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL WATCH",
+          "to_signal": "SELL",
+          "state": "CONFIRMED",
+          "entry_price": 0.08183000236749649,
+          "bullish": 2,
+          "bearish": 9,
+          "rvol": 0.12251502798620004
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:S": {
       "strategy_id": "conviction_v1",
       "symbol": "S",
-      "current_state": "FORMING",
-      "current_signal": "SELL WATCH",
+      "current_state": "NEUTRAL",
+      "current_signal": "HOLD",
       "transitions": [
         {
           "transition_key": "S_HOLD_20260804_0400000000:NEUTRAL",
@@ -2225,15 +2533,26 @@
           "bullish": 4,
           "bearish": 8,
           "rvol": 1.6285040648058247
+        },
+        {
+          "transition_key": "S_HOLD_20260804_0800000000:NEUTRAL",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "SELL WATCH",
+          "to_signal": "HOLD",
+          "state": "NEUTRAL",
+          "entry_price": 0.022853547033548773,
+          "bullish": 6,
+          "bearish": 7,
+          "rvol": 1.6020011132609164
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:UFO": {
       "strategy_id": "conviction_v1",
       "symbol": "UFO",
-      "current_state": "NEUTRAL",
-      "current_signal": "HOLD",
+      "current_state": "FORMING",
+      "current_signal": "SELL WATCH",
       "transitions": [
         {
           "transition_key": "UFO_SELL_WATCH_20260804_0400000000:FORMING",
@@ -2256,15 +2575,26 @@
           "bullish": 5,
           "bearish": 6,
           "rvol": 1.0924580508383204
+        },
+        {
+          "transition_key": "UFO_SELL_WATCH_20260804_0800000000:FORMING",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "HOLD",
+          "to_signal": "SELL WATCH",
+          "state": "FORMING",
+          "entry_price": 1.9950639972100404e-08,
+          "bullish": 4,
+          "bearish": 6,
+          "rvol": 1.091653318225078
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:MEW": {
       "strategy_id": "conviction_v1",
       "symbol": "MEW",
       "current_state": "FORMING",
-      "current_signal": "BUY WATCH",
+      "current_signal": "SELL WATCH",
       "transitions": [
         {
           "transition_key": "MEW_HOLD_20260804_0400000000:NEUTRAL",
@@ -2287,9 +2617,20 @@
           "bullish": 6,
           "bearish": 4,
           "rvol": 0.7019575477207414
+        },
+        {
+          "transition_key": "MEW_SELL_WATCH_20260804_0800000000:FORMING",
+          "recorded_at": "2026-08-04T09:01:25.064165+00:00",
+          "from_signal": "BUY WATCH",
+          "to_signal": "SELL WATCH",
+          "state": "FORMING",
+          "entry_price": 0.0003351972253013965,
+          "bullish": 3,
+          "bearish": 6,
+          "rvol": 0.700880193474481
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     },
     "conviction_v1:GRT": {
       "strategy_id": "conviction_v1",
@@ -2320,7 +2661,7 @@
           "rvol": 1.195140762396456
         }
       ],
-      "last_updated": "2026-08-04T08:11:07.910343+00:00"
+      "last_updated": "2026-08-04T09:01:25.064165+00:00"
     }
   }
 }
