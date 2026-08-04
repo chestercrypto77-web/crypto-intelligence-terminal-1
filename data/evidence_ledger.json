@@ -18229,5 +18229,108 @@
       }
     ],
     "immutable": true
+  },
+  {
+    "ledger_id": "conviction_v1_USDT_SELL_20260804_0800000000",
+    "recorded_at": "2026-08-04T09:03:30.743716+00:00",
+    "asset": "USDT",
+    "asset_name": "Tether USD",
+    "narrative": "Stablecoin",
+    "strategy_id": "conviction_v1",
+    "strategy_version": "1.0.0",
+    "signal": "SELL",
+    "previous_signal": "HOLD",
+    "changed": true,
+    "lifecycle_state": "CONFIRMED",
+    "entry_price": 0.9989200234413147,
+    "candle_time": "2026-08-04T08:00:00+00:00",
+    "candle_status": "INTRABAR",
+    "data_source": "Yahoo Finance",
+    "returns_at_signal": {
+      "4h": -0.007004660008180785,
+      "12h": -0.012009944448787557,
+      "24h": 0.029043409989992774
+    },
+    "indicators": {
+      "rvol": 0.14783583601727687,
+      "rvol_delta": -0.4363414791150716,
+      "rsi": 49.645104894193764,
+      "bullish_conditions": 3,
+      "bearish_conditions": 8,
+      "total_conditions": null
+    },
+    "checks": [
+      {
+        "name": "Price above EMA 9",
+        "group": "Trend",
+        "state": "bear"
+      },
+      {
+        "name": "EMA 9 above EMA 21",
+        "group": "Trend",
+        "state": "bull"
+      },
+      {
+        "name": "EMA 21 above EMA 55",
+        "group": "Trend",
+        "state": "bear"
+      },
+      {
+        "name": "MACD positive",
+        "group": "Momentum",
+        "state": "bull"
+      },
+      {
+        "name": "MACD accelerating",
+        "group": "Momentum",
+        "state": "bear"
+      },
+      {
+        "name": "RSI strengthening",
+        "group": "Momentum",
+        "state": "neutral"
+      },
+      {
+        "name": "RVOL above normal",
+        "group": "Volume",
+        "state": "bear"
+      },
+      {
+        "name": "RVOL increasing",
+        "group": "Volume",
+        "state": "bear"
+      },
+      {
+        "name": "Most recent candles green",
+        "group": "Volume",
+        "state": "neutral"
+      },
+      {
+        "name": "12-hour direction positive",
+        "group": "Structure",
+        "state": "bear"
+      },
+      {
+        "name": "Higher highs",
+        "group": "Structure",
+        "state": "bear"
+      },
+      {
+        "name": "Higher lows",
+        "group": "Structure",
+        "state": "bull"
+      },
+      {
+        "name": "Breakout",
+        "group": "Structure",
+        "state": "neutral"
+      },
+      {
+        "name": "Outperforming Bitcoin",
+        "group": "Relative strength",
+        "state": "bear"
+      }
+    ],
+    "immutable": true
   }
 ]
