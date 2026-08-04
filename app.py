@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.7.0"
+APP_VERSION = "8.8.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1653,6 +1653,8 @@ RESEARCH_WALLET_FILE = Path(__file__).with_name("data") / "research_wallet.json"
 STRATEGY_REGISTRY_FILE = Path(__file__).with_name("data") / "strategy_registry.json"
 ENGINE_HEALTH_FILE = Path(__file__).with_name("data") / "engine_health.json"
 STRATEGY_LAB_FILE = Path(__file__).with_name("data") / "strategy_lab.json"
+RISK_GUARDIAN_FILE = Path(__file__).with_name("data") / "risk_guardian.json"
+RISK_HISTORY_FILE = Path(__file__).with_name("data") / "risk_history.json"
 
 def read_runtime_json(path: Path, default):
     try:
@@ -1813,7 +1815,7 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Research Desk","Strategy Lab","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Research Desk","Strategy Lab","Risk Guardian","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
@@ -1826,6 +1828,7 @@ titles = {
     "4H Intelligence":("4H Intelligence","The platform’s primary conviction engine for portfolio and on-demand asset calls."),
     "Research Desk":("Research Desk","Evidence Ledger, signal lifecycle and the AI research wallet."),
     "Strategy Lab":("Strategy Lab","Champion versus challenger wallets running on identical market evidence."),
+    "Risk Guardian":("Risk Guardian","Independent defensive checks, vetoes, data-quality warnings and invalidation risk."),
     "External Intelligence":("External Intelligence","Hourly reviewed monitoring of approved analysts and public research sources."),
     "Paper Trading":("Paper Trading","Engine calls plus reviewed Sheldon and external predictions."),
     "Performance Lab":("Performance Lab","Measure whether calls became profitable or losing hours and days later."),
@@ -2389,6 +2392,100 @@ elif selection=="Strategy Lab":
                     st.warning("KEEP COLLECTING — challenger has not yet beaten the Champion on the promotion criteria.")
             else:
                 st.caption("The Champion remains the baseline strategy.")
+
+
+
+elif selection=="Risk Guardian":
+    risk=read_runtime_json(RISK_GUARDIAN_FILE,{})
+    risk_history=read_runtime_json(RISK_HISTORY_FILE,[])
+
+    st.markdown(
+        '<div class="summary-box"><b>Independent defensive layer:</b> Risk Guardian does not create '
+        'bullish calls. It checks data quality, volatility shocks, invalidation risk, participation, '
+        'wallet drawdown and whether new calls should be frozen.</div>',
+        unsafe_allow_html=True,
+    )
+
+    if not risk:
+        st.info("Run Hourly Signal Recorder once after uploading V8.8 to initialise Risk Guardian.")
+    else:
+        section("Current risk state")
+        state=risk.get("overall_state","NOT RUN")
+        allowed=bool(risk.get("new_calls_allowed",True))
+        cols=st.columns(5)
+        summary=risk.get("summary") or {}
+        market=risk.get("market_checks") or {}
+        with cols[0]: metric("Overall state",state,"Independent risk decision")
+        with cols[1]: metric("New calls","ALLOWED" if allowed else "FROZEN","Guardian veto")
+        with cols[2]: metric("Caution assets",str(summary.get("caution_assets",0)),"Need review")
+        with cols[3]: metric("Severe assets",str(summary.get("severe_assets",0)),"Invalidation or data risk")
+        with cols[4]: metric("Wallet drawdown",f'{float(market.get("wallet_drawdown_pct") or 0):.2f}%',"Research wallet")
+
+        actions=risk.get("portfolio_actions") or []
+        if actions:
+            for action in actions:
+                st.warning(action)
+        else:
+            st.success("No portfolio-level defensive action is required.")
+
+        section("Market and data checks")
+        checks=pd.DataFrame([{
+            "Signal age (min)":market.get("signal_snapshot_age_minutes"),
+            "Unavailable assets":len(market.get("unavailable_assets") or []),
+            "External errors":market.get("external_source_errors"),
+            "Wallet equity":market.get("wallet_equity"),
+            "Wallet cash":market.get("wallet_cash"),
+            "Open positions":market.get("open_positions"),
+        }])
+        st.dataframe(checks,use_container_width=True,hide_index=True)
+
+        section("Asset risk radar")
+        asset_checks=risk.get("asset_checks") or []
+        risk_filter=st.selectbox(
+            "Show state",
+            ["ALL","NORMAL","CAUTION","INVALIDATION RISK","DATA UNRELIABLE"]
+        )
+        visible=[
+            item for item in asset_checks
+            if risk_filter=="ALL" or item.get("state")==risk_filter
+        ]
+        if visible:
+            rows=[]
+            for item in visible:
+                rows.append({
+                    "Asset":item.get("symbol"),
+                    "Signal":item.get("signal"),
+                    "Risk state":item.get("state"),
+                    "Entry veto":item.get("veto_new_entry"),
+                    "4H %":item.get("return_4h"),
+                    "12H %":item.get("return_12h"),
+                    "24H %":item.get("return_24h"),
+                    "RVOL":item.get("rvol"),
+                    "Data age":item.get("age_minutes"),
+                    "Warnings":", ".join(item.get("warnings") or []),
+                    "Source":item.get("data_source"),
+                })
+            st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+        else:
+            st.caption("No assets match the selected risk state.")
+
+        section("Risk history")
+        if risk_history:
+            history_df=pd.DataFrame(risk_history)
+            if "generated_at" in history_df.columns:
+                history_df["generated_at"]=pd.to_datetime(history_df["generated_at"],errors="coerce")
+                history_df=history_df.dropna(subset=["generated_at"]).set_index("generated_at")
+                chart=pd.DataFrame(index=history_df.index)
+                chart["Caution assets"]=history_df["summary"].apply(lambda x:(x or {}).get("caution_assets",0))
+                chart["Severe assets"]=history_df["summary"].apply(lambda x:(x or {}).get("severe_assets",0))
+                chart["Vetoed assets"]=history_df["summary"].apply(lambda x:(x or {}).get("vetoed_assets",0))
+                st.line_chart(chart,use_container_width=True)
+            st.dataframe(pd.DataFrame(list(reversed(risk_history[-100:]))),use_container_width=True,hide_index=True)
+        else:
+            st.caption("Risk history will build after repeated hourly runs.")
+
+        with st.expander("Full Risk Guardian JSON"):
+            st.json(risk,expanded=False)
 
 
 elif selection=="External Intelligence":

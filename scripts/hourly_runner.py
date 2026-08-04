@@ -20,6 +20,7 @@ def main() -> int:
     run("signal_recorder.py")
     run("research_desk.py")
     run("strategy_lab.py")
+    run("risk_guardian.py")
     return 0
 
 

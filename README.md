@@ -1,46 +1,48 @@
-# Crypto Intelligence Terminal V8.7.0
+# Crypto Intelligence Terminal V8.8.0
 
-## Strategy Lab — Champion versus Challengers
+## Risk Guardian
 
-V8.7 turns the registered challenger strategies into active unattended paper wallets.
+V8.8 adds an independent defensive layer that runs after the signal recorder,
+Research Desk and Strategy Lab.
 
-### Strategies
+Risk Guardian does not create BUY signals. It can only:
 
-- 4H Conviction V1 — Champion
-- Closed Candle Confirmation — Challenger
-- RVOL 1.50 — Challenger
-- BTC Confirmation — Challenger
+- report NORMAL
+- report CAUTION
+- report INVALIDATION RISK
+- report DATA UNRELIABLE
+- freeze new calls
 
-Each strategy receives the same hourly market evidence and uses identical:
+### Checks
 
-- USD 100,000 starting capital
-- 10% position size
-- maximum eight positions
-- 20% minimum cash reserve
-- 0.10% fee per side
-- 0.05% slippage per side
-- signal-reversal and HOLD exits
+- stale signal snapshot
+- excessive unavailable market data
+- external-source failures
+- 4H and 12H volatility shocks
+- RVOL and price shocks
+- bullish calls under bearish pressure
+- bearish calls under bullish pressure
+- low market participation
+- research-wallet drawdown
+- asset-level entry vetoes
 
-Only the challenger rule differs.
+### New page
 
-### Strategy Lab page
+Risk Guardian includes:
 
-The new page includes:
+- overall risk state
+- whether new calls are allowed
+- portfolio defensive actions
+- market and data checks
+- asset risk radar
+- entry vetoes
+- risk history
 
-- strategy leaderboard
-- equity curves
-- wallet return
-- open and closed trades
-- win rate
-- average return
-- profit factor
-- maximum drawdown
-- latest activity
-- challenger filtering counts
-- promotion gate
+### Important limitation
 
-A challenger cannot become the Champion automatically. The page requires at least
-50 closed trades before it can become eligible for manual promotion review.
+The current GitHub workflow still runs hourly. V8.8 adds the defensive logic and audit
+trail, but not a genuinely faster-than-hourly worker. A later release can add a separate
+15-minute observer once the hourly system has collected enough evidence.
 
 ### Upload
 
@@ -50,5 +52,5 @@ A challenger cannot become the Champion automatically. The page requires at leas
 4. Reboot Streamlit.
 5. Run Hourly Signal Recorder once.
 
-Do not delete the existing data folder. Strategy Lab data is created only when missing.
+Do not delete the existing data folder. Risk Guardian files are created only when missing.
 The stable hourly workflow does not need editing.
