@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T05:05:32.908101+00:00",
+  "generated_at": "2026-08-04T05:22:09.750714+00:00",
   "overall_status": "PASS WITH WARNINGS",
   "market_data": {
     "holdings_requested": 45,
@@ -22,34 +22,27 @@
   },
   "signals": {
     "current_signals": 44,
-    "new_history_records": 16,
-    "signal_changes": 10
+    "new_history_records": 9,
+    "signal_changes": 11
   },
   "paper_trading": {
-    "new_engine_trades": 5,
+    "new_engine_trades": 2,
     "new_external_trades": 0,
-    "engine_trades_closed": 73,
-    "equivalent_duplicates_prevented": 7,
-    "open_engine_trades": 66,
-    "total_trades": 139
+    "engine_trades_closed": 3,
+    "equivalent_duplicates_prevented": 8,
+    "open_engine_trades": 65,
+    "total_trades": 141
   },
   "external_intelligence": {
-    "new_items": 0,
-    "total_inbox": 25,
-    "errors": [
-      {
-        "source_id": "crypto_banter_youtube",
-        "error": "RSS: 404 Client Error: Not Found for url: https://www.youtube.com/feeds/videos.xml?channel_id=UCN9Nj4tjXbVTLYWN0EKly_Q; Channel page returned no extractable videos",
-        "recorded_at": "2026-08-04T05:05:31.414301+00:00"
-      }
-    ],
+    "new_items": 1,
+    "total_inbox": 26,
+    "errors": [],
     "sources": [
       {
         "source_id": "crypto_banter_youtube",
-        "status": "FAIL",
-        "method": "youtube_channel",
-        "items_read": 0,
-        "error": "RSS: 404 Client Error: Not Found for url: https://www.youtube.com/feeds/videos.xml?channel_id=UCN9Nj4tjXbVTLYWN0EKly_Q; Channel page returned no extractable videos"
+        "status": "PASS",
+        "method": "YouTube RSS",
+        "items_read": 15
       },
       {
         "source_id": "arthur_hayes_medium",
@@ -60,25 +53,101 @@
     ]
   },
   "research_wallet": {
-    "wallet_equity": 99772.52807052272,
+    "wallet_equity": 99675.7211667011,
     "cash": 0.0,
     "realised_pnl": -529.5405488980742,
-    "unrealised_pnl": 302.0686194208005,
+    "unrealised_pnl": 205.26171559917847,
     "open_positions": 10,
     "closed_positions": 2,
     "activity": {
       "retained": 10,
       "closed": 0,
       "opened": 0,
-      "rejected_capacity": 9,
+      "rejected_capacity": 8,
       "rejected_cash_reserve": 0,
-      "rejected_existing": 10
+      "rejected_existing": 9
     },
     "minimum_cash_reserve_pct": 20.0,
     "max_positions": 10
   },
   "warnings": [
-    "Unavailable market data: ONE",
-    "External source errors: 1"
-  ]
+    "Unavailable market data: ONE"
+  ],
+  "strategy_lab": {
+    "updated_at": "2026-08-04T05:22:24.400108+00:00",
+    "strategies": {
+      "conviction_v1": {
+        "name": "4H Conviction V1",
+        "role": "CHAMPION",
+        "equity": 99760.0,
+        "return_pct": -0.23999999999999577,
+        "open_positions": 8,
+        "closed_positions": 0,
+        "activity": {
+          "retained": 0,
+          "closed": 0,
+          "opened": 8,
+          "rejected_capacity": 9,
+          "rejected_cash_reserve": 0,
+          "rejected_existing": 0,
+          "filtered_by_strategy": 15
+        },
+        "status": "COLLECTING EVIDENCE"
+      },
+      "closed_candle_challenger": {
+        "name": "Closed Candle Confirmation",
+        "role": "CHALLENGER",
+        "equity": 99760.0,
+        "return_pct": -0.23999999999999577,
+        "open_positions": 8,
+        "closed_positions": 0,
+        "activity": {
+          "retained": 0,
+          "closed": 0,
+          "opened": 8,
+          "rejected_capacity": 4,
+          "rejected_cash_reserve": 0,
+          "rejected_existing": 0,
+          "filtered_by_strategy": 20
+        },
+        "status": "COLLECTING EVIDENCE"
+      },
+      "rvol_150_challenger": {
+        "name": "RVOL 1.50 Challenger",
+        "role": "CHALLENGER",
+        "equity": 99760.0,
+        "return_pct": -0.23999999999999577,
+        "open_positions": 8,
+        "closed_positions": 0,
+        "activity": {
+          "retained": 0,
+          "closed": 0,
+          "opened": 8,
+          "rejected_capacity": 0,
+          "rejected_cash_reserve": 0,
+          "rejected_existing": 0,
+          "filtered_by_strategy": 24
+        },
+        "status": "COLLECTING EVIDENCE"
+      },
+      "btc_confirmed_challenger": {
+        "name": "BTC Confirmation Challenger",
+        "role": "CHALLENGER",
+        "equity": 99760.0,
+        "return_pct": -0.23999999999999577,
+        "open_positions": 8,
+        "closed_positions": 0,
+        "activity": {
+          "retained": 0,
+          "closed": 0,
+          "opened": 8,
+          "rejected_capacity": 1,
+          "rejected_cash_reserve": 0,
+          "rejected_existing": 0,
+          "filtered_by_strategy": 23
+        },
+        "status": "COLLECTING EVIDENCE"
+      }
+    }
+  }
 }
