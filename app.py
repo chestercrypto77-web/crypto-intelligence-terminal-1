@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.8.0"
+APP_VERSION = "8.8.1"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -237,6 +237,15 @@ background:#1b1f25;border:1px solid var(--line);border-radius:11px;padding:.68re
 .history-good{border-left:4px solid #53df8d}.history-bad{border-left:4px solid #ff737d}.history-mixed{border-left:4px solid #efd36d}
 .change-box{background:#181d23;border-left:4px solid #6aaeff;border-radius:9px;padding:.72rem .85rem;margin:.45rem 0}
 @media(max-width:950px){.radar-grid,.narrative-grid{grid-template-columns:1fr 1fr}}
+
+.watch-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:.55rem;margin:.55rem 0 1rem}
+.watch-count{background:#1a1f25;border:1px solid #343b45;border-radius:11px;padding:.7rem;text-align:center}
+.watch-number{font-size:1.3rem;font-weight:950;color:#fff}.watch-label{font-size:.68rem;color:#9aa7b5;text-transform:uppercase}
+.watch-card{display:grid;grid-template-columns:1.2fr .7fr .7fr .7fr .8fr 1fr;gap:.55rem;align-items:center;background:#1b2026;border:1px solid #343b45;border-radius:11px;padding:.72rem .8rem;margin:.38rem 0}
+.watch-positive{border-left:4px solid #55e18a}.watch-building{border-left:4px solid #70b7ff}.watch-warning{border-left:4px solid #efd36c}.watch-weakening{border-left:4px solid #ffad65}.watch-risk{border-left:4px solid #ff6f79}
+.watch-title{font-weight:950;color:#fff}.watch-sub{font-size:.7rem;color:#98a5b4}.watch-reason{font-size:.73rem;color:#cbd5df}
+.heartbeat-good{color:#55e18a;font-weight:900}.heartbeat-bad{color:#ff6f79;font-weight:900}
+@media(max-width:950px){.watch-summary{grid-template-columns:1fr 1fr}.watch-card{grid-template-columns:1fr 1fr}}
 </style>
 
 """
@@ -1978,13 +1987,112 @@ elif selection=="Markets":
         )
 
 elif selection=="Watch":
-    section("Priority briefs")
-    for start in range(0,len(portfolio["attention"]),2):
-        cols=st.columns(2)
-        for col,item in zip(cols,portfolio["attention"][start:start+2]):
-            with col: attention_card(item)
-    section("Interpretation")
-    st.markdown('<div class="summary-box">A watch item is not automatically a buy or sell signal. It means price, participation, risk or momentum has changed enough to deserve closer investigation.</div>',unsafe_allow_html=True)
+    latest_watch=read_runtime_json(SIGNALS_LATEST_FILE,{"signals":[]})
+    lifecycle_watch=read_runtime_json(SIGNAL_LIFECYCLE_FILE,{"assets":{}})
+    risk_watch=read_runtime_json(RISK_GUARDIAN_FILE,{"asset_checks":[]})
+    trades_watch=read_runtime_json(PAPER_TRADES_FILE,[])
+    external_watch=read_runtime_json(EXTERNAL_CALLS_FILE,[])
+
+    signals=latest_watch.get("signals") or []
+    lifecycle_assets=lifecycle_watch.get("assets") or {}
+    risk_map={str(x.get("symbol","")).upper():x for x in (risk_watch.get("asset_checks") or [])}
+    open_trade_symbols={
+        str(t.get("symbol","")).upper()
+        for t in trades_watch
+        if t.get("status")=="OPEN"
+    }
+    external_symbols={
+        str(t.get("symbol","")).upper()
+        for t in external_watch
+        if t.get("status","ACTIVE")=="ACTIVE"
+    }
+
+    immediate=[]; building=[]; weakening=[]; risk_items=[]; research_items=[]
+    for signal in signals:
+        symbol=str(signal.get("symbol","")).upper()
+        current=str(signal.get("signal") or "HOLD").upper()
+        previous=str(signal.get("previous_signal") or "HOLD").upper()
+        risk_item=risk_map.get(symbol,{})
+        lifecycle_key=next((k for k,v in lifecycle_assets.items() if v.get("symbol")==symbol),None)
+        life=(lifecycle_assets.get(lifecycle_key) or {}).get("current_state","NEUTRAL") if lifecycle_key else "NEUTRAL"
+        reasons=[]
+
+        if signal.get("changed"):
+            reasons.append(f'{previous} → {current}')
+        if float(signal.get("rvol_delta") or 0)>.15:
+            reasons.append("RVOL increasing")
+        if abs(float(signal.get("return_4h") or 0))>=3:
+            reasons.append("Large 4H move")
+        if risk_item.get("state") not in {None,"NORMAL"}:
+            reasons.append(str(risk_item.get("state")))
+        if symbol in external_symbols:
+            reasons.append("Reviewed external call")
+        if symbol in open_trade_symbols:
+            reasons.append("Open paper position")
+
+        item={**signal,"risk_state":risk_item.get("state","NORMAL"),"lifecycle":life,"reasons":reasons}
+
+        if risk_item.get("state") in {"INVALIDATION RISK","DATA UNRELIABLE"}:
+            risk_items.append(item)
+        elif signal.get("changed") or current in {"STRONG BUY","STRONG SELL"}:
+            immediate.append(item)
+        elif current in {"BUY WATCH","SELL WATCH"} and float(signal.get("rvol_delta") or 0)>0:
+            building.append(item)
+        elif (
+            ("BUY" in current and (float(signal.get("rvol_delta") or 0)<-.10 or int(signal.get("bearish") or 0)>=5))
+            or ("SELL" in current and (float(signal.get("rvol_delta") or 0)<-.10 or int(signal.get("bullish") or 0)>=5))
+        ):
+            weakening.append(item)
+        elif reasons:
+            research_items.append(item)
+
+    st.markdown(
+        '<div class="summary-box"><b>Attention desk:</b> this page shows what changed, what is '
+        'building, what is weakening and where Risk Guardian requires attention. It is not a second scoring system.</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        f'<div class="watch-summary">'
+        f'<div class="watch-count"><div class="watch-number">{len(immediate)}</div><div class="watch-label">Immediate</div></div>'
+        f'<div class="watch-count"><div class="watch-number">{len(building)}</div><div class="watch-label">Building</div></div>'
+        f'<div class="watch-count"><div class="watch-number">{len(weakening)}</div><div class="watch-label">Weakening</div></div>'
+        f'<div class="watch-count"><div class="watch-number">{len(risk_items)}</div><div class="watch-label">Risk</div></div>'
+        f'<div class="watch-count"><div class="watch-number">{len(research_items)}</div><div class="watch-label">Research</div></div>'
+        f'</div>',unsafe_allow_html=True
+    )
+
+    def watch_rows(title,items,css_class,empty_text):
+        section(title)
+        if not items:
+            st.caption(empty_text)
+            return
+        ordered=sorted(items,key=lambda x:(abs(float(x.get("return_4h") or 0)),float(x.get("rvol") or 0)),reverse=True)
+        for item in ordered[:20]:
+            reason=" · ".join(item.get("reasons") or ["Observable shift"])
+            st.markdown(
+                f'<div class="watch-card {css_class}">'
+                f'<div><div class="watch-title">{esc(item.get("symbol"))} · {esc(item.get("name",""))}</div>'
+                f'<div class="watch-sub">{esc(item.get("narrative",""))} · {esc(item.get("lifecycle",""))}</div></div>'
+                f'<div><div class="radar-label">Call</div>{call_badge(item.get("signal"))}</div>'
+                f'<div><div class="radar-label">4H</div><div class="radar-value">{html_signal(item.get("return_4h",0))}</div></div>'
+                f'<div><div class="radar-label">24H</div><div class="radar-value">{html_signal(item.get("return_24h",0))}</div></div>'
+                f'<div><div class="radar-label">RVOL</div><div class="radar-value">{float(item.get("rvol") or 0):.2f}×</div></div>'
+                f'<div><div class="radar-label">Why here</div><div class="watch-reason">{esc(reason)}</div></div>'
+                f'</div>',unsafe_allow_html=True
+            )
+
+    watch_rows("Immediate attention",immediate,"watch-positive","No decisive changes in the latest scan.")
+    watch_rows("Building momentum",building,"watch-building","No early momentum setups currently pass the fixed rules.")
+    watch_rows("Losing momentum",weakening,"watch-weakening","No active calls are showing meaningful weakening.")
+    watch_rows("Risk Guardian attention",risk_items,"watch-risk","No severe asset-level risk warnings.")
+    watch_rows("Research candidates",research_items,"watch-warning","No additional research candidates right now.")
+
+    section("How to use Watch")
+    st.markdown(
+        '<div class="summary-box"><b>Morning flow:</b> inspect Immediate Attention and Risk first. '
+        'Building Momentum is early evidence, not a confirmed trade. Open 4H Intelligence for the complete checklist and history.</div>',
+        unsafe_allow_html=True,
+    )
 
 elif selection=="Research":
     st.markdown(
@@ -2256,6 +2364,20 @@ elif selection=="Strategy Lab":
         unsafe_allow_html=True,
     )
 
+    section("Strategy heartbeat")
+    heartbeat=lab.get("heartbeat") or {}
+    updated=lab.get("updated_at")
+    market_snapshot=lab.get("market_snapshot")
+    heartbeat_ok=bool(heartbeat.get("database_saved")) and heartbeat.get("strategies_updated")==heartbeat.get("strategies_expected")
+    st.markdown(
+        f'<div class="summary-box"><b>Operating status:</b> '
+        f'<span class="{"heartbeat-good" if heartbeat_ok else "heartbeat-bad"}">{"HEALTHY" if heartbeat_ok else "ATTENTION REQUIRED"}</span>'
+        f' · <b>Last run:</b> {esc(str(updated or "Not run"))}'
+        f' · <b>Market snapshot:</b> {esc(str(market_snapshot or "Unknown"))}'
+        f' · <b>Wallets updated:</b> {heartbeat.get("strategies_updated",0)}/{heartbeat.get("strategies_expected",0)}</div>',
+        unsafe_allow_html=True,
+    )
+
     section("Fair comparison assumptions")
     cols=st.columns(5)
     with cols[0]: metric("Starting capital",f'${float(lab.get("starting_capital") or 100000):,.0f}',"Each strategy")
@@ -2276,7 +2398,9 @@ elif selection=="Strategy Lab":
                 "Strategy":wallet.get("name"),
                 "Role":wallet.get("role"),
                 "Status":wallet.get("status","COLLECTING EVIDENCE"),
+                "Previous":wallet.get("previous_equity"),
                 "Wallet":wallet.get("equity"),
+                "Change this run":wallet.get("equity_change_this_run"),
                 "Return %":metrics.get("return_pct"),
                 "Open":len(wallet.get("open_positions") or []),
                 "Closed":len(wallet.get("closed_positions") or []),
@@ -2374,6 +2498,34 @@ elif selection=="Strategy Lab":
             } for p in reversed(closed_positions[-200:])]),use_container_width=True,hide_index=True)
         else:
             st.caption("No closed positions yet.")
+
+        section("Strategy heartbeat")
+        hb=wallet.get("heartbeat") or {}
+        st.dataframe(pd.DataFrame([{
+            "Last run":hb.get("last_run"),
+            "Market snapshot":hb.get("market_snapshot"),
+            "Wallet updated":hb.get("wallet_updated"),
+            "Signals checked":hb.get("signals_checked"),
+            "Positions evaluated":hb.get("positions_evaluated"),
+            "Database saved":hb.get("database_saved"),
+            "Previous equity":wallet.get("previous_equity"),
+            "Current equity":wallet.get("equity"),
+            "Change this run":wallet.get("equity_change_this_run"),
+        }]),use_container_width=True,hide_index=True)
+
+        section("Activity timeline")
+        journal_rows=wallet.get("activity_journal") or []
+        if journal_rows:
+            st.dataframe(pd.DataFrame(list(reversed(journal_rows[-250:]))),use_container_width=True,hide_index=True)
+        else:
+            st.caption("Activity events will appear after the next Strategy Lab run.")
+
+        section("Rejected opportunity journal")
+        rejected=wallet.get("rejected_opportunities") or []
+        if rejected:
+            st.dataframe(pd.DataFrame(list(reversed(rejected[-200:]))),use_container_width=True,hide_index=True)
+        else:
+            st.caption("No opportunities have been rejected by this strategy wallet.")
 
         section("Promotion gate")
         closed_count=len(closed_positions)

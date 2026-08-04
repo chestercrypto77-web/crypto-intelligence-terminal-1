@@ -1,48 +1,34 @@
-# Crypto Intelligence Terminal V8.8.0
+# Crypto Intelligence Terminal V8.8.1
 
-## Risk Guardian
+## Watch and Strategy Lab Audit
 
-V8.8 adds an independent defensive layer that runs after the signal recorder,
-Research Desk and Strategy Lab.
+This complete safe-upload release focuses on usability and proving that unattended
+strategy wallets are updating correctly.
 
-Risk Guardian does not create BUY signals. It can only:
+### Watch rebuild
 
-- report NORMAL
-- report CAUTION
-- report INVALIDATION RISK
-- report DATA UNRELIABLE
-- freeze new calls
+Watch is now a colour-coded attention desk with:
 
-### Checks
+- Immediate Attention
+- Building Momentum
+- Losing Momentum
+- Risk Guardian Attention
+- Research Candidates
 
-- stale signal snapshot
-- excessive unavailable market data
-- external-source failures
-- 4H and 12H volatility shocks
-- RVOL and price shocks
-- bullish calls under bearish pressure
-- bearish calls under bullish pressure
-- low market participation
-- research-wallet drawdown
-- asset-level entry vetoes
+Each item shows its call, 4H and 24H movement, RVOL, lifecycle and the fixed reason it
+appeared on the page.
 
-### New page
+### Strategy Lab corrections
 
-Risk Guardian includes:
-
-- overall risk state
-- whether new calls are allowed
-- portfolio defensive actions
-- market and data checks
-- asset risk radar
-- entry vetoes
-- risk history
-
-### Important limitation
-
-The current GitHub workflow still runs hourly. V8.8 adds the defensive logic and audit
-trail, but not a genuinely faster-than-hourly worker. A later release can add a separate
-15-minute observer once the hourly system has collected enough evidence.
+- Closed Candle Challenger now checks whether the 4H candle has actually completed.
+- Challenger entry filters only control opening a position.
+- Positions no longer close merely because RVOL or BTC confirmation later stops passing.
+- Exits use the common base-engine reversal or HOLD rule.
+- Previous equity, current equity and change this run are stored.
+- Every wallet has a heartbeat.
+- Every retained, opened, closed, filtered and rejected action is journalled.
+- The page displays last run, market snapshot, wallets updated and database-save state.
+- Workflow logs now expose each wallet's current change and activity.
 
 ### Upload
 
@@ -51,6 +37,7 @@ trail, but not a genuinely faster-than-hourly worker. A later release can add a 
 3. Commit.
 4. Reboot Streamlit.
 5. Run Hourly Signal Recorder once.
+6. Check Watch and Strategy Lab.
 
-Do not delete the existing data folder. Risk Guardian files are created only when missing.
-The stable hourly workflow does not need editing.
+Do not delete the existing data folder. Current strategy wallets and historical records
+remain protected and will be upgraded in place.
