@@ -34,7 +34,7 @@ def main():
     lifecycle=read(DATA/'signal_lifecycle.json',{'updated_at':None,'assets':{}}); lifecycle.setdefault('assets',{})
     wallet=read(DATA/'research_wallet.json',{})
     if not wallet:
-        wallet={'wallet_id':'RESEARCH_WALLET_V1','name':'AI Research Wallet','currency':'USD','starting_cash':100000.0,'cash':100000.0,'equity':100000.0,'realised_pnl':0.0,'unrealised_pnl':0.0,'max_positions':10,'position_size_pct':10.0,'open_positions':[],'closed_positions':[],'equity_history':[]}
+        wallet={'wallet_id':'RESEARCH_WALLET_V1','name':'AI Research Wallet','currency':'USD','starting_cash':100000.0,'cash':100000.0,'equity':100000.0,'realised_pnl':0.0,'unrealised_pnl':0.0,'max_positions':8,'position_size_pct':10.0,'minimum_cash_reserve_pct':20.0,'rejected_opportunities':[],'open_positions':[],'closed_positions':[],'equity_history':[]}
     for s in signals:
         lid=f"{champion.get('strategy_id')}_{s.get('signal_id')}"
         if lid not in existing:
@@ -46,22 +46,56 @@ def main():
         a['current_state']=st; a['current_signal']=s.get('signal'); a['last_updated']=s.get('recorded_at') or now(); a['transitions']=a['transitions'][-500:]
     prices={str(s.get('symbol') or '').upper():float(s.get('entry_price') or 0) for s in signals if float(s.get('entry_price') or 0)>0}
     latestmap={str(s.get('symbol') or '').upper():s for s in signals}
+    activity={'retained':0,'closed':0,'opened':0,'rejected_capacity':0,'rejected_cash_reserve':0,'rejected_existing':0}
     keep=[]
     for p in wallet.get('open_positions',[]):
         cur=prices.get(p.get('symbol'),p.get('current_price') or p['entry_price']); p['current_price']=cur; p['unrealised_return']=dret(p['direction'],p['entry_price'],cur); p['unrealised_pnl']=p['allocated_cash']*p['unrealised_return']/100
         ls=str(latestmap.get(p.get('symbol'),{}).get('signal') or 'HOLD'); reverse=(p['direction']=='LONG' and 'SELL' in ls) or (p['direction']=='SHORT' and 'BUY' in ls)
         if reverse or ls=='HOLD':
-            p['status']='CLOSED'; p['exit_time']=now(); p['exit_price']=cur; p['exit_reason']='Signal reversal' if reverse else 'Signal returned to HOLD'; p['realised_return']=p['unrealised_return']; p['realised_pnl']=p['unrealised_pnl']; wallet['cash']+=p['allocated_cash']+p['realised_pnl']; wallet['realised_pnl']+=p['realised_pnl']; wallet.setdefault('closed_positions',[]).append(p)
-        else: keep.append(p)
+            activity['closed']+=1; p['status']='CLOSED'; p['exit_time']=now(); p['exit_price']=cur; p['exit_reason']='Signal reversal' if reverse else 'Signal returned to HOLD'; p['realised_return']=p['unrealised_return']; p['realised_pnl']=p['unrealised_pnl']; wallet['cash']+=p['allocated_cash']+p['realised_pnl']; wallet['realised_pnl']+=p['realised_pnl']; wallet.setdefault('closed_positions',[]).append(p)
+        else:
+            activity['retained']+=1
+            keep.append(p)
     wallet['open_positions']=keep; open_syms={p.get('symbol') for p in keep}
-    for s in signals:
+    decisive=[s for s in signals if direction(s.get('signal'))]
+    decisive.sort(key=lambda s:(abs(float(s.get('bullish') or 0)-float(s.get('bearish') or 0)),float(s.get('rvol') or 0),abs(float(s.get('return_4h') or 0))),reverse=True)
+    reserve=wallet['starting_cash']*float(wallet.get('minimum_cash_reserve_pct',20.0))/100
+    rejected=wallet.setdefault('rejected_opportunities',[])
+    for s in decisive:
         sym=str(s.get('symbol') or '').upper(); d=direction(s.get('signal'))
-        if not sym or not d or sym in open_syms or len(wallet['open_positions'])>=int(wallet.get('max_positions',10)): continue
-        entry=float(s.get('entry_price') or 0); alloc=min(wallet['cash'],wallet['starting_cash']*float(wallet.get('position_size_pct',10))/100)
-        if entry<=0 or alloc<=0: continue
+        if not sym or not d: continue
+        if sym in open_syms:
+            activity['rejected_existing']+=1
+            continue
+        if len(wallet['open_positions'])>=int(wallet.get('max_positions',8)):
+            activity['rejected_capacity']+=1
+            rejected.append({'recorded_at':now(),'symbol':sym,'signal':s.get('signal'),'reason':'WALLET CAPACITY','entry_price':s.get('entry_price')})
+            continue
+        entry=float(s.get('entry_price') or 0)
+        target=wallet['starting_cash']*float(wallet.get('position_size_pct',10))/100
+        available=max(0.0,wallet['cash']-reserve)
+        alloc=min(available,target)
+        if entry<=0 or alloc<=0:
+            activity['rejected_cash_reserve']+=1
+            rejected.append({'recorded_at':now(),'symbol':sym,'signal':s.get('signal'),'reason':'CASH RESERVE','entry_price':s.get('entry_price')})
+            continue
         pos={'position_id':f"{s.get('signal_id')}_WALLET",'symbol':sym,'name':s.get('name') or sym,'narrative':s.get('narrative') or '','strategy_id':champion.get('strategy_id'),'signal':s.get('signal'),'direction':d,'entry_time':s.get('recorded_at') or now(),'entry_price':entry,'current_price':entry,'allocated_cash':alloc,'units':alloc/entry,'status':'OPEN','unrealised_return':0.0,'unrealised_pnl':0.0}
-        wallet['cash']-=alloc; wallet['open_positions'].append(pos); open_syms.add(sym)
+        wallet['cash']-=alloc; wallet['open_positions'].append(pos); open_syms.add(sym); activity['opened']+=1
+    wallet['rejected_opportunities']=rejected[-10000:]
     wallet['closed_positions']=wallet.get('closed_positions',[])[-10000:]; wallet['unrealised_pnl']=sum(float(p.get('unrealised_pnl') or 0) for p in wallet['open_positions']); wallet['equity']=wallet['cash']+sum(float(p.get('allocated_cash') or 0)+float(p.get('unrealised_pnl') or 0) for p in wallet['open_positions']); wallet.setdefault('equity_history',[]).append({'recorded_at':now(),'equity':wallet['equity'],'cash':wallet['cash'],'realised_pnl':wallet['realised_pnl'],'unrealised_pnl':wallet['unrealised_pnl'],'open_positions':len(wallet['open_positions'])}); wallet['equity_history']=wallet['equity_history'][-20000:]; wallet['updated_at']=now(); lifecycle['updated_at']=now()
-    write(DATA/'evidence_ledger.json',ledger[-50000:]); write(DATA/'signal_lifecycle.json',lifecycle); write(DATA/'research_wallet.json',wallet)
-    print(json.dumps({'ledger_records':len(ledger),'lifecycle_assets':len(lifecycle['assets']),'wallet_equity':wallet['equity'],'open_positions':len(wallet['open_positions'])},indent=2))
+    health=read(DATA/'engine_health.json',{})
+    health['research_wallet']={
+        'wallet_equity':wallet['equity'],
+        'cash':wallet['cash'],
+        'realised_pnl':wallet['realised_pnl'],
+        'unrealised_pnl':wallet['unrealised_pnl'],
+        'open_positions':len(wallet['open_positions']),
+        'closed_positions':len(wallet.get('closed_positions',[])),
+        'activity':activity,
+        'minimum_cash_reserve_pct':wallet.get('minimum_cash_reserve_pct',20.0),
+        'max_positions':wallet.get('max_positions',8),
+    }
+    if health.get('overall_status')!='FAIL': health['overall_status']='PASS WITH WARNINGS' if health.get('warnings') else 'PASS'
+    write(DATA/'evidence_ledger.json',ledger[-50000:]); write(DATA/'signal_lifecycle.json',lifecycle); write(DATA/'research_wallet.json',wallet); write(DATA/'engine_health.json',health)
+    print(json.dumps({'ledger_records':len(ledger),'lifecycle_assets':len(lifecycle['assets']),'wallet_equity':wallet['equity'],'cash':wallet['cash'],'open_positions':len(wallet['open_positions']),'closed_positions':len(wallet.get('closed_positions',[])),'activity':activity},indent=2))
 if __name__=='__main__': raise SystemExit(main())

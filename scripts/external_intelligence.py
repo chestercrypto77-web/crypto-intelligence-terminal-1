@@ -19,7 +19,7 @@ DATA_DIR = ROOT / "data"
 INBOX_FILE = DATA_DIR / "external_inbox.json"
 SEEN_FILE = DATA_DIR / "external_seen.json"
 
-USER_AGENT = "CryptoIntelligenceTerminal/7.2 (+reviewed-public-feed-monitor)"
+USER_AGENT = "Mozilla/5.0 CryptoIntelligenceTerminal/8.6.1 reviewed-public-feed-monitor"
 
 DIRECTION_PATTERNS = {
     "LONG": [
@@ -192,8 +192,80 @@ def analyze(source: dict, entry: dict) -> dict:
     }
 
 
-def fetch_source(source: dict) -> list[dict]:
+
+def _decode_json_text(value: str) -> str:
+    try:
+        return json.loads(f'"{value}"')
+    except Exception:
+        return value.replace(r'\"', '"').replace(r'\n', ' ')
+
+
+def parse_youtube_channel_page(page_text: str) -> list[dict]:
+    """Extract recent public video titles and IDs from YouTube's channel page JSON."""
+    entries = []
+    seen_video_ids = set()
+    patterns = [
+        r'"videoId":"([^"]+)".{0,1800}?"title":\{"runs":\[\{"text":"((?:\\.|[^"])*)"',
+        r'"videoId":"([^"]+)".{0,1800}?"title":\{"simpleText":"((?:\\.|[^"])*)"',
+    ]
+    for pattern in patterns:
+        for video_id, raw_title in re.findall(pattern, page_text, flags=re.S):
+            if video_id in seen_video_ids:
+                continue
+            title = clean_text(_decode_json_text(raw_title))
+            if not title:
+                continue
+            seen_video_ids.add(video_id)
+            entries.append({
+                "title": title,
+                "summary": "Public YouTube channel-page detection. Open the original video to verify the full context.",
+                "link": f"https://www.youtube.com/watch?v={video_id}",
+                "published_at": "",
+            })
+            if len(entries) >= 30:
+                return entries
+    return entries
+
+
+def fetch_youtube_channel(source: dict) -> tuple[list[dict], str]:
+    errors = []
+    feed_url = source.get("url")
+    if feed_url:
+        try:
+            response = requests.get(feed_url, timeout=15, headers={"User-Agent": USER_AGENT})
+            response.raise_for_status()
+            entries = parse_feed(response.text)
+            if entries:
+                return entries, "YouTube RSS"
+        except Exception as exc:
+            errors.append(f"RSS: {exc}")
+
+    page_url = source.get("handle_url") or source.get("profile_url")
+    if page_url:
+        try:
+            response = requests.get(
+                page_url,
+                timeout=20,
+                headers={
+                    "User-Agent": USER_AGENT,
+                    "Accept-Language": "en-AU,en;q=0.9",
+                },
+            )
+            response.raise_for_status()
+            entries = parse_youtube_channel_page(response.text)
+            if entries:
+                return entries, "YouTube public page fallback"
+            errors.append("Channel page returned no extractable videos")
+        except Exception as exc:
+            errors.append(f"Channel page: {exc}")
+
+    raise RuntimeError("; ".join(errors) or "No usable YouTube source configured")
+
+
+def fetch_source(source: dict) -> tuple[list[dict], str]:
     source_type = source.get("type")
+    if source_type == "youtube_channel":
+        return fetch_youtube_channel(source)
     if source_type in {"rss", "youtube_rss"}:
         response = requests.get(
             source["url"],
@@ -201,11 +273,10 @@ def fetch_source(source: dict) -> list[dict]:
             headers={"User-Agent": USER_AGENT},
         )
         response.raise_for_status()
-        return parse_feed(response.text)
+        return parse_feed(response.text), "RSS"
     if source_type == "x_api":
-        # Deliberately disabled without official credentials.
-        return []
-    return []
+        return [], "Disabled: official API credentials required"
+    return [], "Disabled or unsupported source"
 
 
 def main() -> int:
@@ -219,12 +290,19 @@ def main() -> int:
     seen_ids = set(seen)
     new_count = 0
     errors = []
+    source_status = []
 
     for source in config.get("sources", []):
         if not source.get("enabled"):
             continue
         try:
-            entries = fetch_source(source)
+            entries, method = fetch_source(source)
+            source_status.append({
+                "source_id": source.get("id"),
+                "status": "PASS",
+                "method": method,
+                "items_read": len(entries),
+            })
             for entry in entries[:20]:
                 analyzed = analyze(source, entry)
                 if analyzed["item_id"] in seen_ids:
@@ -233,10 +311,18 @@ def main() -> int:
                 seen_ids.add(analyzed["item_id"])
                 new_count += 1
         except Exception as exc:
-            errors.append({
+            error_record = {
                 "source_id": source.get("id"),
                 "error": str(exc),
                 "recorded_at": now_iso(),
+            }
+            errors.append(error_record)
+            source_status.append({
+                "source_id": source.get("id"),
+                "status": "FAIL",
+                "method": source.get("type"),
+                "items_read": 0,
+                "error": str(exc),
             })
 
     # Most recent first; retain a practical history.
@@ -248,11 +334,13 @@ def main() -> int:
         "new_items": new_count,
         "total_inbox": len(inbox),
         "errors": errors,
+        "sources": source_status,
     })
     print(json.dumps({
         "new_items": new_count,
         "total_inbox": len(inbox),
         "errors": errors,
+        "sources": source_status,
     }, indent=2))
     return 0
 

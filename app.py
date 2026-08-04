@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.6.0"
+APP_VERSION = "8.6.1"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1651,6 +1651,7 @@ EVIDENCE_LEDGER_FILE = Path(__file__).with_name("data") / "evidence_ledger.json"
 SIGNAL_LIFECYCLE_FILE = Path(__file__).with_name("data") / "signal_lifecycle.json"
 RESEARCH_WALLET_FILE = Path(__file__).with_name("data") / "research_wallet.json"
 STRATEGY_REGISTRY_FILE = Path(__file__).with_name("data") / "strategy_registry.json"
+ENGINE_HEALTH_FILE = Path(__file__).with_name("data") / "engine_health.json"
 
 def read_runtime_json(path: Path, default):
     try:
@@ -2148,7 +2149,7 @@ elif selection=="4H Intelligence":
 elif selection=="Research Desk":
     ledger=read_runtime_json(EVIDENCE_LEDGER_FILE,[]); lifecycle=read_runtime_json(SIGNAL_LIFECYCLE_FILE,{"updated_at":None,"assets":{}}); wallet=read_runtime_json(RESEARCH_WALLET_FILE,{}); registry=read_runtime_json(STRATEGY_REGISTRY_FILE,{"strategies":[]})
     st.markdown('<div class="summary-box"><b>Research Desk Foundation:</b> immutable evidence, signal lifecycle and a paper-only AI research wallet.</div>',unsafe_allow_html=True)
-    tabs=st.tabs(["Research Wallet","Evidence Ledger","Signal Lifecycle","Strategy Registry"])
+    tabs=st.tabs(["Research Wallet","Engine Health","Evidence Ledger","Signal Lifecycle","Strategy Registry"])
     with tabs[0]:
         equity=float(wallet.get("equity") or wallet.get("starting_cash") or 100000); start=float(wallet.get("starting_cash") or 100000); ret=(equity/start-1)*100 if start else 0; opens=wallet.get("open_positions") or []; closed=wallet.get("closed_positions") or []
         cols=st.columns(5)
@@ -2166,6 +2167,44 @@ elif selection=="Research Desk":
         if closed: st.dataframe(pd.DataFrame(list(reversed(closed[-100:]))),use_container_width=True,hide_index=True)
         else: st.caption("No research-wallet positions have closed yet.")
     with tabs[1]:
+        section("Latest engine health")
+        status=engine_health.get("overall_status","NOT RUN")
+        generated=engine_health.get("generated_at")
+        st.markdown(
+            f'<div class="summary-box"><b>Status:</b> {esc(status)}'
+            f' · <b>Generated:</b> {esc(str(generated or "Not run"))}</div>',
+            unsafe_allow_html=True,
+        )
+        market=engine_health.get("market_data") or {}
+        signals_health=engine_health.get("signals") or {}
+        trades_health=engine_health.get("paper_trading") or {}
+        wallet_health=engine_health.get("research_wallet") or {}
+        cols=st.columns(5)
+        with cols[0]: metric("Analysed",str(market.get("assets_analysed",0)),f'{market.get("holdings_requested",0)} requested')
+        with cols[1]: metric("Fallbacks",str(market.get("fallback_successes",0)),", ".join(market.get("fallback_assets",[])[:4]) or "None")
+        with cols[2]: metric("Unavailable",str(market.get("unavailable_count",0)),", ".join(market.get("unavailable_assets",[])[:4]) or "None")
+        with cols[3]: metric("New trades",str(trades_health.get("new_engine_trades",0)),f'{trades_health.get("equivalent_duplicates_prevented",0)} duplicates blocked')
+        with cols[4]: metric("Wallet equity",f'${float(wallet_health.get("wallet_equity") or 0):,.2f}',f'${float(wallet_health.get("cash") or 0):,.2f} cash')
+        section("Wallet activity this run")
+        activity=wallet_health.get("activity") or {}
+        st.dataframe(pd.DataFrame([{
+            "Retained":activity.get("retained",0),
+            "Closed":activity.get("closed",0),
+            "Opened":activity.get("opened",0),
+            "Rejected: capacity":activity.get("rejected_capacity",0),
+            "Rejected: reserve":activity.get("rejected_cash_reserve",0),
+            "Existing positions":activity.get("rejected_existing",0),
+        }]),use_container_width=True,hide_index=True)
+        warnings=engine_health.get("warnings") or []
+        if warnings:
+            for warning in warnings:
+                st.warning(warning)
+        else:
+            st.success("No engine-health warnings were recorded.")
+        with st.expander("Full engine health JSON"):
+            st.json(engine_health,expanded=False)
+
+    with tabs[2]:
         section("Immutable evidence ledger")
         if ledger:
             rows=[]
@@ -2174,7 +2213,7 @@ elif selection=="Research Desk":
             assets=sorted({str(x.get("asset")) for x in ledger if x.get("asset")}); chosen=st.selectbox("Inspect asset evidence",assets); selected=[x for x in ledger if x.get("asset")==chosen]
             if selected: st.json(selected[-1],expanded=False)
         else: st.info("The next successful hourly run will begin the Evidence Ledger.")
-    with tabs[2]:
+    with tabs[3]:
         section("Signal lifecycle")
         assets=lifecycle.get("assets") or {}; counts=defaultdict(int)
         for a in assets.values(): counts[a.get("current_state","UNKNOWN")]+=1
@@ -2186,7 +2225,7 @@ elif selection=="Research Desk":
             key=st.selectbox("Inspect lifecycle history",sorted(assets.keys())); hist=(assets.get(key) or {}).get("transitions") or []
             if hist: st.dataframe(pd.DataFrame(list(reversed(hist[-100:]))),use_container_width=True,hide_index=True)
         else: st.info("Lifecycle records will appear after the next hourly run.")
-    with tabs[3]:
+    with tabs[4]:
         section("Champion and challenger registry")
         strategies=registry.get("strategies") or []
         if strategies:
