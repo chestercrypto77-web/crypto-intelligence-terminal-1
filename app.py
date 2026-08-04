@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.6.1"
+APP_VERSION = "8.6.2"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -2147,7 +2147,11 @@ elif selection=="4H Intelligence":
             st.dataframe(pd.DataFrame(source_rows),use_container_width=True,hide_index=True)
 
 elif selection=="Research Desk":
-    ledger=read_runtime_json(EVIDENCE_LEDGER_FILE,[]); lifecycle=read_runtime_json(SIGNAL_LIFECYCLE_FILE,{"updated_at":None,"assets":{}}); wallet=read_runtime_json(RESEARCH_WALLET_FILE,{}); registry=read_runtime_json(STRATEGY_REGISTRY_FILE,{"strategies":[]})
+    ledger=read_runtime_json(EVIDENCE_LEDGER_FILE,[])
+    lifecycle=read_runtime_json(SIGNAL_LIFECYCLE_FILE,{"updated_at":None,"assets":{}})
+    wallet=read_runtime_json(RESEARCH_WALLET_FILE,{})
+    registry=read_runtime_json(STRATEGY_REGISTRY_FILE,{"strategies":[]})
+    engine_health=read_runtime_json(ENGINE_HEALTH_FILE,{})
     st.markdown('<div class="summary-box"><b>Research Desk Foundation:</b> immutable evidence, signal lifecycle and a paper-only AI research wallet.</div>',unsafe_allow_html=True)
     tabs=st.tabs(["Research Wallet","Engine Health","Evidence Ledger","Signal Lifecycle","Strategy Registry"])
     with tabs[0]:
