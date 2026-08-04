@@ -19,6 +19,7 @@ def main() -> int:
     run("external_intelligence.py")
     run("signal_recorder.py")
     run("research_desk.py")
+    run("strategy_lab.py")
     return 0
 
 

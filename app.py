@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.6.2"
+APP_VERSION = "8.7.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1652,6 +1652,7 @@ SIGNAL_LIFECYCLE_FILE = Path(__file__).with_name("data") / "signal_lifecycle.jso
 RESEARCH_WALLET_FILE = Path(__file__).with_name("data") / "research_wallet.json"
 STRATEGY_REGISTRY_FILE = Path(__file__).with_name("data") / "strategy_registry.json"
 ENGINE_HEALTH_FILE = Path(__file__).with_name("data") / "engine_health.json"
+STRATEGY_LAB_FILE = Path(__file__).with_name("data") / "strategy_lab.json"
 
 def read_runtime_json(path: Path, default):
     try:
@@ -1812,7 +1813,7 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Research Desk","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Research Desk","Strategy Lab","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
@@ -1824,6 +1825,7 @@ titles = {
     "Research":("Research","The evidence beneath the daily briefing."),
     "4H Intelligence":("4H Intelligence","The platform’s primary conviction engine for portfolio and on-demand asset calls."),
     "Research Desk":("Research Desk","Evidence Ledger, signal lifecycle and the AI research wallet."),
+    "Strategy Lab":("Strategy Lab","Champion versus challenger wallets running on identical market evidence."),
     "External Intelligence":("External Intelligence","Hourly reviewed monitoring of approved analysts and public research sources."),
     "Paper Trading":("Paper Trading","Engine calls plus reviewed Sheldon and external predictions."),
     "Performance Lab":("Performance Lab","Measure whether calls became profitable or losing hours and days later."),
@@ -2237,6 +2239,157 @@ elif selection=="Research Desk":
             sid=st.selectbox("Inspect rules",[s.get("strategy_id") for s in strategies]); st.json(next(s for s in strategies if s.get("strategy_id")==sid),expanded=False)
         else: st.info("The strategy registry will be created by bootstrap.")
         st.markdown('<div class="summary-box"><b>Current stage:</b> only the Champion powers live paper calls. Challengers are registered for future side-by-side testing.</div>',unsafe_allow_html=True)
+
+
+elif selection=="Strategy Lab":
+    lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{},"assumptions":{}})
+    strategies=lab.get("strategies") or {}
+    assumptions=lab.get("assumptions") or {}
+
+    st.markdown(
+        '<div class="summary-box"><b>Champion versus Challengers:</b> all strategies receive the '
+        'same market snapshot, starting capital, position limits, cash reserve, fees, slippage and exits. '
+        'Only the challenger rule differs.</div>',
+        unsafe_allow_html=True,
+    )
+
+    section("Fair comparison assumptions")
+    cols=st.columns(5)
+    with cols[0]: metric("Starting capital",f'${float(lab.get("starting_capital") or 100000):,.0f}',"Each strategy")
+    with cols[1]: metric("Position size",f'{float(assumptions.get("position_size_pct",10)):.1f}%',"Per position")
+    with cols[2]: metric("Maximum positions",str(assumptions.get("max_positions",8)),"Per strategy")
+    with cols[3]: metric("Cash reserve",f'{float(assumptions.get("minimum_cash_reserve_pct",20)):.1f}%',"Minimum")
+    with cols[4]: metric("Round-trip cost",f'{2*(float(assumptions.get("fee_pct_per_side",.1))+float(assumptions.get("slippage_pct_per_side",.05))):.2f}%',"Fees + slippage")
+
+    if not strategies:
+        st.info("Run Hourly Signal Recorder once after uploading V8.7 to initialise the Strategy Lab.")
+    else:
+        section("Strategy leaderboard")
+        rows=[]
+        for strategy_id,wallet in strategies.items():
+            metrics=wallet.get("metrics") or {}
+            profit_factor=metrics.get("profit_factor")
+            rows.append({
+                "Strategy":wallet.get("name"),
+                "Role":wallet.get("role"),
+                "Status":wallet.get("status","COLLECTING EVIDENCE"),
+                "Wallet":wallet.get("equity"),
+                "Return %":metrics.get("return_pct"),
+                "Open":len(wallet.get("open_positions") or []),
+                "Closed":len(wallet.get("closed_positions") or []),
+                "Win rate %":metrics.get("win_rate"),
+                "Avg return %":metrics.get("average_return"),
+                "Profit factor":"∞" if profit_factor==float("inf") else profit_factor,
+                "Max drawdown %":metrics.get("max_drawdown"),
+            })
+        leaderboard=pd.DataFrame(rows).sort_values(["Return %","Max drawdown %"],ascending=[False,True])
+        st.dataframe(leaderboard,use_container_width=True,hide_index=True)
+
+        section("Equity curves")
+        curve_frames=[]
+        for strategy_id,wallet in strategies.items():
+            history=pd.DataFrame(wallet.get("equity_history") or [])
+            if history.empty or "recorded_at" not in history.columns or "equity" not in history.columns:
+                continue
+            history["recorded_at"]=pd.to_datetime(history["recorded_at"],errors="coerce")
+            history=history.dropna(subset=["recorded_at"])[["recorded_at","equity"]]
+            history["strategy"]=wallet.get("name",strategy_id)
+            curve_frames.append(history)
+        if curve_frames:
+            curve=pd.concat(curve_frames,ignore_index=True)
+            pivot=curve.pivot_table(index="recorded_at",columns="strategy",values="equity",aggfunc="last")
+            st.line_chart(pivot,use_container_width=True)
+        else:
+            st.caption("Equity curves will appear after the first Strategy Lab run.")
+
+        section("Strategy detail")
+        strategy_map={f'{wallet.get("name")} · {wallet.get("role")}':strategy_id for strategy_id,wallet in strategies.items()}
+        selected_label=st.selectbox("Select strategy",list(strategy_map.keys()))
+        selected_id=strategy_map[selected_label]
+        wallet=strategies[selected_id]
+        metrics=wallet.get("metrics") or {}
+        activity=wallet.get("activity") or {}
+
+        cols=st.columns(6)
+        values=[
+            ("Equity",f'${float(wallet.get("equity") or 0):,.2f}',f'{float(metrics.get("return_pct") or 0):+.2f}%'),
+            ("Cash",f'${float(wallet.get("cash") or 0):,.2f}',"Available"),
+            ("Open",str(len(wallet.get("open_positions") or [])),"Positions"),
+            ("Closed",str(len(wallet.get("closed_positions") or [])),"Trades"),
+            ("Win rate",f'{float(metrics.get("win_rate") or 0):.1f}%',"Closed trades"),
+            ("Drawdown",f'{float(metrics.get("max_drawdown") or 0):.2f}%',"Maximum"),
+        ]
+        for col,(label,value,note) in zip(cols,values):
+            with col: metric(label,value,note)
+
+        st.markdown(
+            f'<div class="summary-box"><b>Status:</b> {esc(wallet.get("status","COLLECTING EVIDENCE"))} '
+            f'· <b>Role:</b> {esc(wallet.get("role"))} '
+            f'· <b>Version:</b> {esc(wallet.get("version"))}</div>',
+            unsafe_allow_html=True,
+        )
+
+        section("Latest activity")
+        st.dataframe(pd.DataFrame([{
+            "Retained":activity.get("retained",0),
+            "Closed":activity.get("closed",0),
+            "Opened":activity.get("opened",0),
+            "Filtered by rule":activity.get("filtered_by_strategy",0),
+            "Capacity rejected":activity.get("rejected_capacity",0),
+            "Reserve rejected":activity.get("rejected_cash_reserve",0),
+        }]),use_container_width=True,hide_index=True)
+
+        section("Open positions")
+        open_positions=wallet.get("open_positions") or []
+        if open_positions:
+            st.dataframe(pd.DataFrame([{
+                "Asset":p.get("symbol"),
+                "Signal":p.get("signal"),
+                "Direction":p.get("direction"),
+                "Entry":p.get("entry_price"),
+                "Current":p.get("current_price"),
+                "Allocated":p.get("allocated_cash"),
+                "Return %":p.get("unrealised_return"),
+                "P/L":p.get("unrealised_pnl"),
+            } for p in open_positions]),use_container_width=True,hide_index=True)
+        else:
+            st.caption("No open positions.")
+
+        section("Closed positions")
+        closed_positions=wallet.get("closed_positions") or []
+        if closed_positions:
+            st.dataframe(pd.DataFrame([{
+                "Asset":p.get("symbol"),
+                "Direction":p.get("direction"),
+                "Entry":p.get("entry_price"),
+                "Exit":p.get("exit_price"),
+                "Return %":p.get("realised_return"),
+                "P/L":p.get("realised_pnl"),
+                "Reason":p.get("exit_reason"),
+                "Opened":p.get("entry_time"),
+                "Closed":p.get("exit_time"),
+            } for p in reversed(closed_positions[-200:])]),use_container_width=True,hide_index=True)
+        else:
+            st.caption("No closed positions yet.")
+
+        section("Promotion gate")
+        closed_count=len(closed_positions)
+        if closed_count < 50:
+            st.info(f"COLLECTING EVIDENCE — {closed_count}/50 closed trades. No promotion decision should be considered yet.")
+        else:
+            champion=next((w for w in strategies.values() if w.get("role")=="CHAMPION"),None)
+            if wallet.get("role")=="CHALLENGER" and champion:
+                challenger_return=float((wallet.get("metrics") or {}).get("return_pct") or 0)
+                champion_return=float((champion.get("metrics") or {}).get("return_pct") or 0)
+                challenger_dd=float((wallet.get("metrics") or {}).get("max_drawdown") or 0)
+                champion_dd=float((champion.get("metrics") or {}).get("max_drawdown") or 0)
+                if challenger_return>champion_return and challenger_dd<=champion_dd:
+                    st.success("PROMOTION REVIEW ELIGIBLE — challenger currently leads on return without higher drawdown. Manual review still required.")
+                else:
+                    st.warning("KEEP COLLECTING — challenger has not yet beaten the Champion on the promotion criteria.")
+            else:
+                st.caption("The Champion remains the baseline strategy.")
+
 
 elif selection=="External Intelligence":
     inbox = read_runtime_json(EXTERNAL_INBOX_FILE, [])
