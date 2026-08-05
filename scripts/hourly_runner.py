@@ -21,6 +21,7 @@ def main() -> int:
     run("research_desk.py")
     run("strategy_lab.py")
     run("risk_guardian.py")
+    run("observer_15m.py")
     return 0
 
 

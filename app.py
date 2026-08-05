@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.8.1"
+APP_VERSION = "8.9.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1664,6 +1664,10 @@ ENGINE_HEALTH_FILE = Path(__file__).with_name("data") / "engine_health.json"
 STRATEGY_LAB_FILE = Path(__file__).with_name("data") / "strategy_lab.json"
 RISK_GUARDIAN_FILE = Path(__file__).with_name("data") / "risk_guardian.json"
 RISK_HISTORY_FILE = Path(__file__).with_name("data") / "risk_history.json"
+OBSERVER_LATEST_FILE = Path(__file__).with_name("data") / "observer_latest.json"
+OBSERVER_HISTORY_FILE = Path(__file__).with_name("data") / "observer_history.json"
+OBSERVER_WALLET_FILE = Path(__file__).with_name("data") / "observer_wallet.json"
+SIGNAL_TIMING_FILE = Path(__file__).with_name("data") / "signal_timing.json"
 
 def read_runtime_json(path: Path, default):
     try:
@@ -1824,7 +1828,7 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Research","4H Intelligence","Research Desk","Strategy Lab","Risk Guardian","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","15M Observer","Research","4H Intelligence","Research Desk","Strategy Lab","Risk Guardian","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
@@ -2087,12 +2091,197 @@ elif selection=="Watch":
     watch_rows("Risk Guardian attention",risk_items,"watch-risk","No severe asset-level risk warnings.")
     watch_rows("Research candidates",research_items,"watch-warning","No additional research candidates right now.")
 
+    observer_watch=read_runtime_json(OBSERVER_LATEST_FILE,{"signals":[]})
+    section("Early Shift Detection · 15-minute observer")
+    observer_items=[
+        item for item in (observer_watch.get("signals") or [])
+        if item.get("signal") in {"EARLY BUY","EARLY SELL","BUY WATCH","SELL WATCH","VOLATILITY WATCH"}
+    ]
+    if observer_items:
+        observer_items=sorted(
+            observer_items,
+            key=lambda x:(abs(float(x.get("bullish_conditions") or 0)-float(x.get("bearish_conditions") or 0)),float(x.get("rvol") or 0)),
+            reverse=True,
+        )
+        for item in observer_items[:12]:
+            css="watch-building" if "BUY" in str(item.get("signal")) else "watch-risk" if "SELL" in str(item.get("signal")) else "watch-warning"
+            st.markdown(
+                f'<div class="watch-card {css}">'
+                f'<div><div class="watch-title">{esc(item.get("symbol"))} · {esc(item.get("name",""))}</div>'
+                f'<div class="watch-sub">{esc(item.get("lifecycle_state",""))} · 15-minute observation</div></div>'
+                f'<div><div class="radar-label">Observer</div><div class="radar-value">{esc(item.get("signal"))}</div></div>'
+                f'<div><div class="radar-label">15M</div><div class="radar-value">{html_signal(item.get("return_15m",0))}</div></div>'
+                f'<div><div class="radar-label">1H</div><div class="radar-value">{html_signal(item.get("return_1h",0))}</div></div>'
+                f'<div><div class="radar-label">RVOL</div><div class="radar-value">{float(item.get("rvol") or 0):.2f}×</div></div>'
+                f'<div><div class="radar-label">Evidence</div><div class="watch-reason">{item.get("bullish_conditions",0)} bull / {item.get("bearish_conditions",0)} bear · {esc(item.get("data_source",""))}</div></div>'
+                f'</div>',unsafe_allow_html=True
+            )
+    else:
+        st.caption("No early observer shifts are currently detected.")
+
     section("How to use Watch")
     st.markdown(
         '<div class="summary-box"><b>Morning flow:</b> inspect Immediate Attention and Risk first. '
         'Building Momentum is early evidence, not a confirmed trade. Open 4H Intelligence for the complete checklist and history.</div>',
         unsafe_allow_html=True,
     )
+
+
+elif selection=="15M Observer":
+    observer=read_runtime_json(OBSERVER_LATEST_FILE,{"signals":[],"health":{}})
+    observer_history=read_runtime_json(OBSERVER_HISTORY_FILE,[])
+    observer_wallet=read_runtime_json(OBSERVER_WALLET_FILE,{})
+    timing=read_runtime_json(SIGNAL_TIMING_FILE,{"assets":{}})
+
+    st.markdown(
+        '<div class="summary-box"><b>Early observer:</b> this layer searches for developing shifts '
+        'before the hourly 4H Champion confirms them. It is a separate challenger and paper wallet, '
+        'not a replacement for the Champion.</div>',
+        unsafe_allow_html=True,
+    )
+
+    if not observer.get("signals"):
+        st.info("Run the 15-Minute Observer workflow once after uploading V8.9.")
+    else:
+        health=observer.get("health") or {}
+        wallet_equity=float(observer_wallet.get("equity") or observer_wallet.get("starting_cash") or 100000)
+        starting=float(observer_wallet.get("starting_cash") or 100000)
+        wallet_return=(wallet_equity/starting-1)*100 if starting else 0
+
+        section("Observer heartbeat")
+        cols=st.columns(6)
+        with cols[0]: metric("Last run",str(observer.get("generated_at",""))[:16].replace("T"," "),"UTC")
+        with cols[1]: metric("Analysed",str(health.get("assets_analysed",0)),f'{health.get("assets_requested",0)} requested')
+        with cols[2]: metric("Unavailable",str(len(health.get("unavailable_assets") or [])),", ".join((health.get("unavailable_assets") or [])[:3]) or "None")
+        with cols[3]: metric("Wallet",f'${wallet_equity:,.2f}',f'{wallet_return:+.2f}%')
+        with cols[4]: metric("Open",str(len(observer_wallet.get("open_positions") or [])),"Observer positions")
+        with cols[5]: metric("Closed",str(len(observer_wallet.get("closed_positions") or [])),"Completed")
+
+        tabs=st.tabs(["Early Signals","Observer Wallet","Timing Lab","Observer Journal"])
+
+        with tabs[0]:
+            section("Current early observations")
+            signal_filter=st.selectbox(
+                "Observer state",
+                ["ALL","EARLY BUY","BUY WATCH","EARLY SELL","SELL WATCH","VOLATILITY WATCH","NEUTRAL"]
+            )
+            rows=[]
+            for item in observer.get("signals") or []:
+                if signal_filter!="ALL" and item.get("signal")!=signal_filter:
+                    continue
+                rows.append({
+                    "Asset":item.get("symbol"),
+                    "Observer":item.get("signal"),
+                    "Lifecycle":item.get("lifecycle_state"),
+                    "15M %":item.get("return_15m"),
+                    "1H %":item.get("return_1h"),
+                    "4H %":item.get("return_4h"),
+                    "RVOL":item.get("rvol"),
+                    "RVOL change":item.get("rvol_delta"),
+                    "RSI":item.get("rsi"),
+                    "Bullish":item.get("bullish_conditions"),
+                    "Bearish":item.get("bearish_conditions"),
+                    "Source":item.get("data_source"),
+                    "Changed":item.get("changed"),
+                })
+            if rows:
+                st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+            else:
+                st.caption("No observations match this filter.")
+
+        with tabs[1]:
+            section("Observer paper wallet")
+            cols=st.columns(5)
+            with cols[0]: metric("Equity",f'${wallet_equity:,.2f}',f'{wallet_return:+.2f}%')
+            with cols[1]: metric("Cash",f'${float(observer_wallet.get("cash") or 0):,.2f}',"Reserve")
+            with cols[2]: metric("Realised P/L",f'${float(observer_wallet.get("realised_pnl") or 0):+,.2f}',"Closed trades")
+            with cols[3]: metric("Unrealised P/L",f'${float(observer_wallet.get("unrealised_pnl") or 0):+,.2f}',"Open trades")
+            with cols[4]: metric("Latest change",f'${float(observer_wallet.get("equity_change_this_run") or 0):+,.2f}',"This observer run")
+
+            equity_history=pd.DataFrame(observer_wallet.get("equity_history") or [])
+            if not equity_history.empty and "recorded_at" in equity_history.columns:
+                equity_history["recorded_at"]=pd.to_datetime(equity_history["recorded_at"],errors="coerce")
+                equity_history=equity_history.dropna(subset=["recorded_at"]).set_index("recorded_at")
+                st.line_chart(equity_history[["equity"]],use_container_width=True)
+
+            section("Open observer positions")
+            open_positions=observer_wallet.get("open_positions") or []
+            if open_positions:
+                st.dataframe(pd.DataFrame([{
+                    "Asset":p.get("symbol"),
+                    "Direction":p.get("direction"),
+                    "Entry":p.get("entry_price"),
+                    "Current":p.get("current_price"),
+                    "Allocated":p.get("allocated_cash"),
+                    "P/L %":p.get("unrealised_return"),
+                    "P/L $":p.get("unrealised_pnl"),
+                    "Opened":p.get("entry_time"),
+                } for p in open_positions]),use_container_width=True,hide_index=True)
+            else:
+                st.caption("No observer positions are open.")
+
+            section("Closed observer positions")
+            closed_positions=observer_wallet.get("closed_positions") or []
+            if closed_positions:
+                st.dataframe(pd.DataFrame([{
+                    "Asset":p.get("symbol"),
+                    "Direction":p.get("direction"),
+                    "Entry":p.get("entry_price"),
+                    "Exit":p.get("exit_price"),
+                    "P/L %":p.get("realised_return"),
+                    "P/L $":p.get("realised_pnl"),
+                    "Reason":p.get("exit_reason"),
+                    "Opened":p.get("entry_time"),
+                    "Closed":p.get("exit_time"),
+                } for p in reversed(closed_positions[-250:])]),use_container_width=True,hide_index=True)
+            else:
+                st.caption("No observer trades have closed yet.")
+
+        with tabs[2]:
+            section("Observer versus hourly timing")
+            comparison_rows=[]
+            for symbol,asset in (timing.get("assets") or {}).items():
+                for comparison in asset.get("comparisons") or []:
+                    observer_price=comparison.get("observer_price")
+                    hourly_price=comparison.get("hourly_price")
+                    price_advantage=None
+                    if observer_price and hourly_price:
+                        raw=(float(hourly_price)/float(observer_price)-1)*100
+                        price_advantage=raw if comparison.get("direction")=="LONG" else -raw
+                    comparison_rows.append({
+                        "Asset":symbol,
+                        "Direction":comparison.get("direction"),
+                        "Observer detected":comparison.get("observer_detected_at"),
+                        "Hourly detected":comparison.get("hourly_detected_at"),
+                        "Lead minutes":comparison.get("lead_minutes"),
+                        "Observer price":observer_price,
+                        "Hourly price":hourly_price,
+                        "Early price advantage %":price_advantage,
+                    })
+            if comparison_rows:
+                st.dataframe(pd.DataFrame(comparison_rows),use_container_width=True,hide_index=True)
+                lead_values=[row["Lead minutes"] for row in comparison_rows if row["Lead minutes"] is not None]
+                advantage_values=[row["Early price advantage %"] for row in comparison_rows if row["Early price advantage %"] is not None]
+                cols=st.columns(3)
+                with cols[0]: metric("Comparisons",str(len(comparison_rows)),"Matched directions")
+                with cols[1]: metric("Average lead",f'{sum(lead_values)/len(lead_values):.0f} min' if lead_values else "—","Observer before hourly")
+                with cols[2]: metric("Average price advantage",f'{sum(advantage_values)/len(advantage_values):+.2f}%' if advantage_values else "—","Before costs")
+            else:
+                st.caption("Timing comparisons will appear when an early observation is later matched by the hourly engine.")
+
+        with tabs[3]:
+            section("Observer activity")
+            activity=observer_wallet.get("activity_journal") or []
+            if activity:
+                st.dataframe(pd.DataFrame(list(reversed(activity[-500:]))),use_container_width=True,hide_index=True)
+            else:
+                st.caption("Observer activity will appear after the first run.")
+            section("Observer history")
+            if observer_history:
+                st.dataframe(pd.DataFrame(list(reversed(observer_history[-500:]))),use_container_width=True,hide_index=True)
+            else:
+                st.caption("No observer history has been recorded.")
+
 
 elif selection=="Research":
     st.markdown(

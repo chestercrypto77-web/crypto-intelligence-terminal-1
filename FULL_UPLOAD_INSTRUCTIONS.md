@@ -1,32 +1,18 @@
-# V8.0.0 complete upload
+# V8.9.0 complete safe upload
 
-This is the full project release.
-
-## Safest update method for your existing repository
-
-1. Do **not** delete the existing `data` folder. It contains your accumulated calls.
+1. Do not delete the existing `data` folder.
 2. Extract this ZIP.
-3. GitHub → **Add file → Upload files**.
+3. GitHub → Add file → Upload files.
 4. Drag every extracted item into the uploader.
-5. Commit the replacement files.
+5. Commit.
 6. Reboot Streamlit.
-7. Open GitHub Actions and manually run **Hourly Signal Recorder** once.
+7. Run `Hourly Signal Recorder` once.
+8. Run `15-Minute Observer` once.
 
-GitHub will replace matching code files and retain your existing live JSON files because
-this release contains templates rather than files with the same live names.
+The observer workflow is included in `.github/workflows/observer_15m.yml`.
 
-## Brand-new repository
+If GitHub skips the hidden `.github` folder, create a new workflow and copy the visible
+backup from `WORKFLOW_SETUP/observer_15m.yml`.
 
-Upload the whole release, then run the workflow. The recorder creates the live runtime
-JSON files automatically.
-
-## Hidden folders
-
-If `.github` is skipped by your browser, use:
-
-`WORKFLOW_SETUP/hourly_signal_recorder.yml`
-
-through GitHub → Actions → set up a workflow yourself.
-
-If `.streamlit` is skipped, the application still runs, but the preferred theme settings
-will be absent.
+Release files do not contain the live runtime JSON filenames, so recorded history is
+preserved.
