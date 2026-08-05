@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.9.0"
+APP_VERSION = "8.9.1"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1837,6 +1837,7 @@ titles = {
     "Portfolio":("My Portfolio","How am I doing, and which holdings matter most today?"),
     "Markets":("Market Themes","Where is capital moving, and how is your portfolio exposed?"),
     "Watch":("Needs Attention","Only the holdings with the most meaningful changes."),
+    "15M Observer":("15-Minute Observer","Early shifts, observer paper trades and timing versus the hourly engine."),
     "Research":("Research","The evidence beneath the daily briefing."),
     "4H Intelligence":("4H Intelligence","The platform’s primary conviction engine for portfolio and on-demand asset calls."),
     "Research Desk":("Research Desk","Evidence Ledger, signal lifecycle and the AI research wallet."),

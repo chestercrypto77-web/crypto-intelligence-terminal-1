@@ -1,46 +1,28 @@
-# Crypto Intelligence Terminal V8.9.0
+# Crypto Intelligence Terminal V8.9.1
 
-## 15-Minute Observer and Signal Timing Lab
+## Observer Stability Fix
 
-V8.9 adds a separate early-detection engine that analyses 15-minute market data and
-compares its detections with the hourly 4H Champion.
+This release fixes the missing 15M Observer page title and NumPy/Pandas JSON
+serialisation failure discovered in the first V8.9 live workflow.
 
-### Included
+It also makes the Observer optional inside the core hourly workflow, adds Observer
+startup tests, verifies Observer output JSON before committing, and includes a
+repeatable release smoke-test suite.
 
-- 15-minute observer signals
-- Early Buy and Early Sell detections
-- Buy Watch, Sell Watch and Volatility Watch
-- 15-minute observer lifecycle and history
-- separate USD 100,000 observer paper wallet
-- fees, slippage, position limit and cash reserve
-- open and closed observer positions
-- observer-versus-hourly timing comparisons
-- early price advantage measurement
-- Early Shift Detection on Watch
-- dedicated 15M Observer page
-- separate observer workflow
+The release tests cover page navigation, JSON serialisation, synthetic bullish and
+bearish Observer data, long and short wallet mechanics, reversal exits, protected
+runtime templates, compilation, safe-data preflight and ZIP integrity.
 
-### Workflows
+These tests validate software behaviour. Live trading performance still requires
+continued paper-trading evidence.
 
-The existing Hourly Signal Recorder also runs the observer once per hour as a reliable
-fallback.
-
-A new `15-Minute Observer` workflow attempts runs at minutes 02, 17, 32 and 47 of each
-hour. GitHub scheduled jobs may occasionally be delayed, so the displayed run timestamps
-are the source of truth.
-
-### Important
-
-The observer is a challenger. It does not replace the 4H Champion or make real trades.
-
-### Upload
+## Upload
 
 1. Extract the ZIP.
-2. Upload every extracted item over the existing GitHub repository.
+2. Upload all extracted files over the current repository.
 3. Commit.
 4. Reboot Streamlit.
 5. Run Hourly Signal Recorder once.
-6. Open Actions and run 15-Minute Observer once manually.
-7. Open Watch and 15M Observer.
+6. Run 15-Minute Observer once.
 
-Do not delete the existing data folder. All accumulated records remain protected.
+Do not delete the existing data folder.

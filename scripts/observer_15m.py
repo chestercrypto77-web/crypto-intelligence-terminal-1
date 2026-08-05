@@ -50,10 +50,50 @@ def read_json(path: Path, default: Any) -> Any:
         return copy.deepcopy(default)
 
 
+def json_default(value: Any) -> Any:
+    """Convert NumPy/Pandas values into JSON-safe native Python values."""
+    if isinstance(value, np.bool_):
+        return bool(value)
+    if isinstance(value, np.integer):
+        return int(value)
+    if isinstance(value, np.floating):
+        number = float(value)
+        return number if math.isfinite(number) else None
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    if isinstance(value, (pd.Timestamp, datetime)):
+        timestamp = pd.Timestamp(value)
+        timestamp = timestamp.tz_localize("UTC") if timestamp.tzinfo is None else timestamp.tz_convert("UTC")
+        return timestamp.isoformat()
+    if value is pd.NA:
+        return None
+    raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
+
+
+def sanitise_json(value: Any) -> Any:
+    """Recursively normalise nested structures before persistence."""
+    if isinstance(value, dict):
+        return {str(key): sanitise_json(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple, set)):
+        return [sanitise_json(item) for item in value]
+    if isinstance(value, (np.bool_, np.integer, np.floating, np.ndarray, pd.Timestamp, datetime)):
+        return json_default(value)
+    if value is pd.NA:
+        return None
+    if isinstance(value, float) and not math.isfinite(value):
+        return None
+    return value
+
+
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temp = path.with_suffix(path.suffix + ".tmp")
-    temp.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    safe_payload = sanitise_json(payload)
+    temp.write_text(
+        json.dumps(safe_payload, indent=2, ensure_ascii=False, default=json_default),
+        encoding="utf-8",
+    )
+    json.loads(temp.read_text(encoding="utf-8"))
     temp.replace(path)
 
 
@@ -265,8 +305,8 @@ def observe(frame: pd.DataFrame) -> dict | None:
         "breakdown": bool(row["BREAKDOWN"]),
         "candle_time": timestamp.isoformat(),
         "checks": {
-            "bullish": bullish_checks,
-            "bearish": bearish_checks,
+            "bullish": {key: bool(value) for key, value in bullish_checks.items()},
+            "bearish": {key: bool(value) for key, value in bearish_checks.items()},
         },
     }
 

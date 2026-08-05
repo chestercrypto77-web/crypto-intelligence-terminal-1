@@ -35,8 +35,22 @@ jobs:
       - name: Bootstrap protected runtime files
         run: python scripts/bootstrap_runtime.py
 
+      - name: Validate observer startup
+        run: python scripts/release_smoke_test.py --observer-only
+
       - name: Run 15-minute observer
         run: python scripts/observer_15m.py
+
+      - name: Verify observer JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for name in ["observer_latest.json", "observer_history.json", "observer_wallet.json", "signal_timing.json"]:
+              path = Path("data") / name
+              json.loads(path.read_text(encoding="utf-8"))
+              print(f"PASS {path}")
+          PY
 
       - name: Commit observer records
         run: |

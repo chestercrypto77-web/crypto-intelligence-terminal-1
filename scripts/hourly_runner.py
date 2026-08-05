@@ -8,10 +8,19 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def run(script_name: str) -> None:
+def run(script_name: str, required: bool = True) -> bool:
     command = [sys.executable, str(ROOT / "scripts" / script_name)]
     print(f"\n=== Running {script_name} ===")
-    subprocess.run(command, cwd=ROOT, check=True)
+    result = subprocess.run(command, cwd=ROOT, check=False)
+    if result.returncode == 0:
+        return True
+    if required:
+        raise subprocess.CalledProcessError(result.returncode, command)
+    print(
+        f"WARNING: {script_name} exited with status {result.returncode}. "
+        "Core hourly records were preserved and the workflow will continue."
+    )
+    return False
 
 
 def main() -> int:
@@ -21,7 +30,7 @@ def main() -> int:
     run("research_desk.py")
     run("strategy_lab.py")
     run("risk_guardian.py")
-    run("observer_15m.py")
+    run("observer_15m.py", required=False)
     return 0
 
 
