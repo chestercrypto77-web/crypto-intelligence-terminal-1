@@ -1,34 +1,58 @@
-# Crypto Intelligence Terminal V9.0.0
+# Crypto Intelligence Terminal V9.0.1
 
-## Platform Simplification
+## Trading Visibility Interface Rebuild
 
-V9.0 reduces the main navigation to eight pages:
+V9.0.1 rebuilds Trading Desk, Strategy Lab and Performance Lab using the same colour-coded
+card design as Markets and Watch.
 
-- Today
-- Markets
-- Watch
-- Trading Desk
-- Intelligence
-- Strategy Lab
-- Performance Lab
-- Settings
+### Front-line trading information
 
-Paper Trading, Research Desk, Risk Guardian, External Intelligence, 15M Observer,
-Research and Signal Lab are removed from the main navigation. Their useful information
-is consolidated into Trading Desk, Watch, Intelligence, Strategy Lab, Performance Lab
-and Settings.
+Open and closed trades now show only:
 
-The Watch and Trading Desk screens use the colour-coded card layout. Only core asset or
-trade information is shown first; detailed evidence remains behind expandable panels.
+- asset
+- wallet or strategy
+- Long or Short
+- entry
+- current or exit price
+- return
+- allocated capital or result
+- current status
 
-All backend engines, workflows and protected runtime files remain intact.
+Full evidence, risk, journal and raw records remain behind expandable trade panels.
+
+### Strategy Lab
+
+- one card per Champion or Challenger
+- wallet value
+- total return
+- latest change
+- open and closed trades
+- win rate
+- drawdown
+- meaningful equity comparison only when enough history exists
+
+### Performance Lab
+
+- recent completed-trade cards
+- net realised result
+- win rate
+- average return
+- performance by wallet
+- meaningful wallet equity chart
+- Observer versus hourly timing
+- learning evidence after enough completed trades
+
+### 15-minute Observer
+
+Observer remains visible under Trading Desk with wallet equity, cash, open and closed
+positions, latest change, equity history and activity.
 
 ## Upload
 
-1. Extract this ZIP.
-2. Upload all extracted items over the existing repository.
+1. Extract the ZIP.
+2. Upload all extracted items over the current repository.
 3. Commit.
 4. Reboot Streamlit.
 5. Run Hourly Signal Recorder once.
 6. Run 15-Minute Observer once.
-7. Check all eight main pages.
+7. Check Trading Desk, Strategy Lab and Performance Lab.
