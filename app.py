@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "8.9.1"
+APP_VERSION = "9.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -246,6 +246,18 @@ background:#1b1f25;border:1px solid var(--line);border-radius:11px;padding:.68re
 .watch-title{font-weight:950;color:#fff}.watch-sub{font-size:.7rem;color:#98a5b4}.watch-reason{font-size:.73rem;color:#cbd5df}
 .heartbeat-good{color:#55e18a;font-weight:900}.heartbeat-bad{color:#ff6f79;font-weight:900}
 @media(max-width:950px){.watch-summary{grid-template-columns:1fr 1fr}.watch-card{grid-template-columns:1fr 1fr}}
+
+.asset-front-card{background:#1a1f25;border:1px solid #343b45;border-radius:13px;padding:.82rem .95rem;margin:.42rem 0}
+.asset-front-card.good{border-left:4px solid #55e18a}.asset-front-card.info{border-left:4px solid #70b7ff}.asset-front-card.watch{border-left:4px solid #efd36c}.asset-front-card.warn{border-left:4px solid #ffad65}.asset-front-card.risk{border-left:4px solid #ff6f79}
+.asset-grid{display:grid;grid-template-columns:1.25fr .72fr .72fr .72fr 1fr;gap:.65rem;align-items:center}
+.asset-name{font-size:1rem;font-weight:950;color:#fff}.asset-sub{font-size:.71rem;color:#98a5b4}
+.asset-k{font-size:.63rem;color:#8290a0;text-transform:uppercase;letter-spacing:.08em}.asset-v{font-weight:900;color:#fff}
+.trade-wallet-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin:.5rem 0 1rem}
+.wallet-tile{background:#1a1f25;border:1px solid #343b45;border-radius:13px;padding:.85rem}
+.wallet-tile.good{border-top:4px solid #55e18a}.wallet-tile.info{border-top:4px solid #70b7ff}.wallet-tile.watch{border-top:4px solid #efd36c}.wallet-tile.warn{border-top:4px solid #ffad65}.wallet-tile.risk{border-top:4px solid #ff6f79}
+.wallet-name{font-size:.7rem;color:#9aa7b5;text-transform:uppercase}.wallet-value{font-size:1.18rem;font-weight:950;color:#fff}.wallet-note{font-size:.67rem;color:#8fa0b2}
+.compact-note{font-size:.72rem;color:#aeb9c5}
+@media(max-width:1000px){.asset-grid{grid-template-columns:1fr 1fr}.trade-wallet-grid{grid-template-columns:1fr 1fr}}
 </style>
 
 """
@@ -1745,6 +1757,23 @@ def outcome_html(value: str) -> str:
     return f'<span class="{css}">{esc(text)}</span>'
 
 
+def safe_float(value, default=0.0):
+    try:
+        number=float(value)
+        return number if math.isfinite(number) else default
+    except Exception:
+        return default
+
+def wallet_start(wallet):
+    return safe_float(wallet.get("starting_cash") or wallet.get("starting_capital") or 100000,100000)
+
+def wallet_equity(wallet):
+    return safe_float(wallet.get("equity") or wallet_start(wallet),wallet_start(wallet))
+
+def wallet_return_pct(wallet):
+    start=wallet_start(wallet)
+    return (wallet_equity(wallet)/start-1)*100 if start else 0.0
+
 def signal_priority_value(call: str) -> int:
     return {
         "STRONG BUY": 7, "BUY": 6, "BUY WATCH": 5, "HOLD": 4,
@@ -1828,25 +1857,19 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","15M Observer","Research","4H Intelligence","Research Desk","Strategy Lab","Risk Guardian","External Intelligence","Paper Trading","Performance Lab","Signal Lab"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Markets","Watch","Trading Desk","Intelligence","Strategy Lab","Performance Lab","Settings"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
 titles = {
-    "Today":("Good morning, Mark","Your portfolio briefing in under five minutes."),
-    "Portfolio":("My Portfolio","How am I doing, and which holdings matter most today?"),
-    "Markets":("Market Themes","Where is capital moving, and how is your portfolio exposed?"),
-    "Watch":("Needs Attention","Only the holdings with the most meaningful changes."),
-    "15M Observer":("15-Minute Observer","Early shifts, observer paper trades and timing versus the hourly engine."),
-    "Research":("Research","The evidence beneath the daily briefing."),
-    "4H Intelligence":("4H Intelligence","The platform’s primary conviction engine for portfolio and on-demand asset calls."),
-    "Research Desk":("Research Desk","Evidence Ledger, signal lifecycle and the AI research wallet."),
-    "Strategy Lab":("Strategy Lab","Champion versus challenger wallets running on identical market evidence."),
-    "Risk Guardian":("Risk Guardian","Independent defensive checks, vetoes, data-quality warnings and invalidation risk."),
-    "External Intelligence":("External Intelligence","Hourly reviewed monitoring of approved analysts and public research sources."),
-    "Paper Trading":("Paper Trading","Engine calls plus reviewed Sheldon and external predictions."),
-    "Performance Lab":("Performance Lab","Measure whether calls became profitable or losing hours and days later."),
-    "Signal Lab":("Signal Lab","Capture fast shifts early, then confirm them against the broader trend."),
+    "Today":("Today","Your five-minute market, portfolio and trading briefing."),
+    "Markets":("Markets","Top projects by narrative with clean price and volume context."),
+    "Watch":("Watch","What deserves attention now, with detail hidden behind each asset."),
+    "Trading Desk":("Trading Desk","All paper wallets, positions, completed trades and external calls in one place."),
+    "Intelligence":("Intelligence","Research, news, analyst calls and supporting evidence."),
+    "Strategy Lab":("Strategy Lab","Champion and challenger strategies, kept separate from daily use."),
+    "Performance Lab":("Performance Lab","Trade outcomes, lessons and evidence about what is working."),
+    "Settings":("Settings","Workflow status, data health and platform controls."),
 }
 page_header(*titles[selection])
 
@@ -1993,140 +2016,90 @@ elif selection=="Markets":
 
 elif selection=="Watch":
     latest_watch=read_runtime_json(SIGNALS_LATEST_FILE,{"signals":[]})
-    lifecycle_watch=read_runtime_json(SIGNAL_LIFECYCLE_FILE,{"assets":{}})
+    observer_watch=read_runtime_json(OBSERVER_LATEST_FILE,{"signals":[]})
     risk_watch=read_runtime_json(RISK_GUARDIAN_FILE,{"asset_checks":[]})
-    trades_watch=read_runtime_json(PAPER_TRADES_FILE,[])
+    lifecycle_watch=read_runtime_json(SIGNAL_LIFECYCLE_FILE,{"assets":{}})
+    paper_watch=read_runtime_json(PAPER_TRADES_FILE,[])
     external_watch=read_runtime_json(EXTERNAL_CALLS_FILE,[])
 
     signals=latest_watch.get("signals") or []
-    lifecycle_assets=lifecycle_watch.get("assets") or {}
+    observer_map={str(x.get("symbol","")).upper():x for x in (observer_watch.get("signals") or [])}
     risk_map={str(x.get("symbol","")).upper():x for x in (risk_watch.get("asset_checks") or [])}
-    open_trade_symbols={
-        str(t.get("symbol","")).upper()
-        for t in trades_watch
-        if t.get("status")=="OPEN"
-    }
-    external_symbols={
-        str(t.get("symbol","")).upper()
-        for t in external_watch
-        if t.get("status","ACTIVE")=="ACTIVE"
-    }
+    lifecycle_assets=lifecycle_watch.get("assets") or {}
+    open_paper={str(x.get("symbol","")).upper():x for x in paper_watch if x.get("status")=="OPEN"}
+    external_map={str(x.get("symbol","")).upper():x for x in external_watch if x.get("status","ACTIVE")=="ACTIVE"}
 
-    immediate=[]; building=[]; weakening=[]; risk_items=[]; research_items=[]
-    for signal in signals:
+    def lifecycle_for(symbol):
+        for value in lifecycle_assets.values():
+            if str(value.get("symbol","")).upper()==symbol:
+                return value.get("current_state","NEUTRAL")
+        return "NEUTRAL"
+
+    def classify(signal):
         symbol=str(signal.get("symbol","")).upper()
-        current=str(signal.get("signal") or "HOLD").upper()
-        previous=str(signal.get("previous_signal") or "HOLD").upper()
-        risk_item=risk_map.get(symbol,{})
-        lifecycle_key=next((k for k,v in lifecycle_assets.items() if v.get("symbol")==symbol),None)
-        life=(lifecycle_assets.get(lifecycle_key) or {}).get("current_state","NEUTRAL") if lifecycle_key else "NEUTRAL"
-        reasons=[]
+        call=str(signal.get("signal") or "HOLD").upper()
+        risk=(risk_map.get(symbol) or {}).get("state","NORMAL")
+        rvold=safe_float(signal.get("rvol_delta"))
+        if risk in {"INVALIDATION RISK","DATA UNRELIABLE"}:
+            return "risk","Risk"
+        if signal.get("changed") or call in {"STRONG BUY","STRONG SELL"}:
+            return ("good" if "BUY" in call else "risk"),"Immediate"
+        if call in {"BUY WATCH","SELL WATCH"} and rvold>0:
+            return "info","Building"
+        if rvold<-.10:
+            return "warn","Weakening"
+        return "watch","Research"
 
-        if signal.get("changed"):
-            reasons.append(f'{previous} → {current}')
-        if float(signal.get("rvol_delta") or 0)>.15:
-            reasons.append("RVOL increasing")
-        if abs(float(signal.get("return_4h") or 0))>=3:
-            reasons.append("Large 4H move")
-        if risk_item.get("state") not in {None,"NORMAL"}:
-            reasons.append(str(risk_item.get("state")))
-        if symbol in external_symbols:
-            reasons.append("Reviewed external call")
-        if symbol in open_trade_symbols:
-            reasons.append("Open paper position")
+    groups={"Immediate":[],"Building":[],"Weakening":[],"Risk":[],"Research":[]}
+    for signal in signals:
+        css,bucket=classify(signal)
+        item=dict(signal); item["_css"]=css
+        groups[bucket].append(item)
 
-        item={**signal,"risk_state":risk_item.get("state","NORMAL"),"lifecycle":life,"reasons":reasons}
+    st.markdown('<div class="summary-box"><b>Opportunity Board:</b> only core asset and trade information is shown first. Open an asset panel for the evidence, Observer, risk, trading and external details.</div>',unsafe_allow_html=True)
+    cols=st.columns(5)
+    for col,label in zip(cols,groups.keys()):
+        with col: metric(label,str(len(groups[label])),"Assets")
+    chosen=st.radio("View",list(groups.keys()),horizontal=True,label_visibility="collapsed")
+    visible=sorted(groups[chosen],key=lambda x:(abs(safe_float(x.get("return_4h"))),safe_float(x.get("rvol"))),reverse=True)
 
-        if risk_item.get("state") in {"INVALIDATION RISK","DATA UNRELIABLE"}:
-            risk_items.append(item)
-        elif signal.get("changed") or current in {"STRONG BUY","STRONG SELL"}:
-            immediate.append(item)
-        elif current in {"BUY WATCH","SELL WATCH"} and float(signal.get("rvol_delta") or 0)>0:
-            building.append(item)
-        elif (
-            ("BUY" in current and (float(signal.get("rvol_delta") or 0)<-.10 or int(signal.get("bearish") or 0)>=5))
-            or ("SELL" in current and (float(signal.get("rvol_delta") or 0)<-.10 or int(signal.get("bullish") or 0)>=5))
-        ):
-            weakening.append(item)
-        elif reasons:
-            research_items.append(item)
-
-    st.markdown(
-        '<div class="summary-box"><b>Attention desk:</b> this page shows what changed, what is '
-        'building, what is weakening and where Risk Guardian requires attention. It is not a second scoring system.</div>',
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        f'<div class="watch-summary">'
-        f'<div class="watch-count"><div class="watch-number">{len(immediate)}</div><div class="watch-label">Immediate</div></div>'
-        f'<div class="watch-count"><div class="watch-number">{len(building)}</div><div class="watch-label">Building</div></div>'
-        f'<div class="watch-count"><div class="watch-number">{len(weakening)}</div><div class="watch-label">Weakening</div></div>'
-        f'<div class="watch-count"><div class="watch-number">{len(risk_items)}</div><div class="watch-label">Risk</div></div>'
-        f'<div class="watch-count"><div class="watch-number">{len(research_items)}</div><div class="watch-label">Research</div></div>'
-        f'</div>',unsafe_allow_html=True
-    )
-
-    def watch_rows(title,items,css_class,empty_text):
-        section(title)
-        if not items:
-            st.caption(empty_text)
-            return
-        ordered=sorted(items,key=lambda x:(abs(float(x.get("return_4h") or 0)),float(x.get("rvol") or 0)),reverse=True)
-        for item in ordered[:20]:
-            reason=" · ".join(item.get("reasons") or ["Observable shift"])
-            st.markdown(
-                f'<div class="watch-card {css_class}">'
-                f'<div><div class="watch-title">{esc(item.get("symbol"))} · {esc(item.get("name",""))}</div>'
-                f'<div class="watch-sub">{esc(item.get("narrative",""))} · {esc(item.get("lifecycle",""))}</div></div>'
-                f'<div><div class="radar-label">Call</div>{call_badge(item.get("signal"))}</div>'
-                f'<div><div class="radar-label">4H</div><div class="radar-value">{html_signal(item.get("return_4h",0))}</div></div>'
-                f'<div><div class="radar-label">24H</div><div class="radar-value">{html_signal(item.get("return_24h",0))}</div></div>'
-                f'<div><div class="radar-label">RVOL</div><div class="radar-value">{float(item.get("rvol") or 0):.2f}×</div></div>'
-                f'<div><div class="radar-label">Why here</div><div class="watch-reason">{esc(reason)}</div></div>'
-                f'</div>',unsafe_allow_html=True
-            )
-
-    watch_rows("Immediate attention",immediate,"watch-positive","No decisive changes in the latest scan.")
-    watch_rows("Building momentum",building,"watch-building","No early momentum setups currently pass the fixed rules.")
-    watch_rows("Losing momentum",weakening,"watch-weakening","No active calls are showing meaningful weakening.")
-    watch_rows("Risk Guardian attention",risk_items,"watch-risk","No severe asset-level risk warnings.")
-    watch_rows("Research candidates",research_items,"watch-warning","No additional research candidates right now.")
-
-    observer_watch=read_runtime_json(OBSERVER_LATEST_FILE,{"signals":[]})
-    section("Early Shift Detection · 15-minute observer")
-    observer_items=[
-        item for item in (observer_watch.get("signals") or [])
-        if item.get("signal") in {"EARLY BUY","EARLY SELL","BUY WATCH","SELL WATCH","VOLATILITY WATCH"}
-    ]
-    if observer_items:
-        observer_items=sorted(
-            observer_items,
-            key=lambda x:(abs(float(x.get("bullish_conditions") or 0)-float(x.get("bearish_conditions") or 0)),float(x.get("rvol") or 0)),
-            reverse=True,
+    if not visible:
+        st.caption(f"No assets currently sit in {chosen}.")
+    for signal in visible:
+        symbol=str(signal.get("symbol","")).upper()
+        observer=observer_map.get(symbol,{})
+        risk=risk_map.get(symbol,{})
+        paper=open_paper.get(symbol)
+        external=external_map.get(symbol)
+        life=lifecycle_for(symbol)
+        css=signal.get("_css","watch")
+        st.markdown(
+            f'<div class="asset-front-card {css}"><div class="asset-grid">'
+            f'<div><div class="asset-name">{esc(symbol)} · {esc(signal.get("name",""))}</div><div class="asset-sub">{esc(signal.get("narrative",""))} · {esc(life)}</div></div>'
+            f'<div><div class="asset-k">Call</div><div class="asset-v">{esc(signal.get("signal","HOLD"))}</div></div>'
+            f'<div><div class="asset-k">4H</div><div class="asset-v">{html_signal(safe_float(signal.get("return_4h")))}</div></div>'
+            f'<div><div class="asset-k">24H</div><div class="asset-v">{html_signal(safe_float(signal.get("return_24h")))}</div></div>'
+            f'<div><div class="asset-k">Trade</div><div class="asset-v">{"Open" if paper else "None"}</div></div>'
+            f'</div></div>',unsafe_allow_html=True
         )
-        for item in observer_items[:12]:
-            css="watch-building" if "BUY" in str(item.get("signal")) else "watch-risk" if "SELL" in str(item.get("signal")) else "watch-warning"
-            st.markdown(
-                f'<div class="watch-card {css}">'
-                f'<div><div class="watch-title">{esc(item.get("symbol"))} · {esc(item.get("name",""))}</div>'
-                f'<div class="watch-sub">{esc(item.get("lifecycle_state",""))} · 15-minute observation</div></div>'
-                f'<div><div class="radar-label">Observer</div><div class="radar-value">{esc(item.get("signal"))}</div></div>'
-                f'<div><div class="radar-label">15M</div><div class="radar-value">{html_signal(item.get("return_15m",0))}</div></div>'
-                f'<div><div class="radar-label">1H</div><div class="radar-value">{html_signal(item.get("return_1h",0))}</div></div>'
-                f'<div><div class="radar-label">RVOL</div><div class="radar-value">{float(item.get("rvol") or 0):.2f}×</div></div>'
-                f'<div><div class="radar-label">Evidence</div><div class="watch-reason">{item.get("bullish_conditions",0)} bull / {item.get("bearish_conditions",0)} bear · {esc(item.get("data_source",""))}</div></div>'
-                f'</div>',unsafe_allow_html=True
-            )
-    else:
-        st.caption("No early observer shifts are currently detected.")
-
-    section("How to use Watch")
-    st.markdown(
-        '<div class="summary-box"><b>Morning flow:</b> inspect Immediate Attention and Risk first. '
-        'Building Momentum is early evidence, not a confirmed trade. Open 4H Intelligence for the complete checklist and history.</div>',
-        unsafe_allow_html=True,
-    )
-
+        with st.expander(f"Open {symbol} details"):
+            tabs=st.tabs(["Core","Observer","Risk","Trading","External"])
+            with tabs[0]:
+                st.dataframe(pd.DataFrame([{
+                    "Signal":signal.get("signal"),"Previous":signal.get("previous_signal"),
+                    "4H %":signal.get("return_4h"),"12H %":signal.get("return_12h"),"24H %":signal.get("return_24h"),
+                    "RVOL":signal.get("rvol"),"RVOL change":signal.get("rvol_delta"),"RSI":signal.get("rsi"),
+                    "Bullish":signal.get("bullish"),"Bearish":signal.get("bearish"),"Source":signal.get("data_source"),
+                }]),use_container_width=True,hide_index=True)
+                if signal.get("checks"): st.dataframe(pd.DataFrame(signal["checks"]),use_container_width=True,hide_index=True)
+            with tabs[1]:
+                st.json(observer,expanded=False) if observer else st.caption("No observer record.")
+            with tabs[2]:
+                st.json(risk,expanded=False) if risk else st.caption("No Risk Guardian record.")
+            with tabs[3]:
+                st.json(paper,expanded=False) if paper else st.caption("No open paper trade.")
+            with tabs[4]:
+                st.json(external,expanded=False) if external else st.caption("No active external call.")
 
 elif selection=="15M Observer":
     observer=read_runtime_json(OBSERVER_LATEST_FILE,{"signals":[],"health":{}})
@@ -2541,6 +2514,158 @@ elif selection=="Research Desk":
         else: st.info("The strategy registry will be created by bootstrap.")
         st.markdown('<div class="summary-box"><b>Current stage:</b> only the Champion powers live paper calls. Challengers are registered for future side-by-side testing.</div>',unsafe_allow_html=True)
 
+
+
+elif selection=="Trading Desk":
+    research_wallet=read_runtime_json(RESEARCH_WALLET_FILE,{})
+    observer_wallet=read_runtime_json(OBSERVER_WALLET_FILE,{})
+    strategy_lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{}})
+    paper_trades=read_runtime_json(PAPER_TRADES_FILE,[])
+    external_calls=read_runtime_json(EXTERNAL_CALLS_FILE,[])
+
+    wallet_defs=[("Research Wallet",research_wallet,"good"),("15M Observer",observer_wallet,"info")]
+    for sid,wallet in (strategy_lab.get("strategies") or {}).items():
+        wallet_defs.append((wallet.get("name",sid),wallet,"good" if wallet.get("role")=="CHAMPION" else "watch"))
+
+    st.markdown('<div class="summary-box"><b>One Trading Desk:</b> all paper wallets, open positions, completed trades and reviewed external calls are consolidated here. Detailed records stay behind each trade panel.</div>',unsafe_allow_html=True)
+
+    tiles=['<div class="trade-wallet-grid">']
+    for name,wallet,css in wallet_defs[:5]:
+        tiles.append(
+            f'<div class="wallet-tile {css}"><div class="wallet-name">{esc(name)}</div>'
+            f'<div class="wallet-value">${wallet_equity(wallet):,.2f}</div>'
+            f'<div class="wallet-note">{wallet_return_pct(wallet):+.2f}% · {len(wallet.get("open_positions") or [])} open</div></div>'
+        )
+    tiles.append('</div>')
+    st.markdown("".join(tiles),unsafe_allow_html=True)
+
+    tabs=st.tabs(["Open Positions","Closed Trades","Wallets","External Calls","Manual Entry"])
+
+    with tabs[0]:
+        section("Open positions")
+        rows=[]
+        for wallet_name,wallet,_ in wallet_defs:
+            for p in wallet.get("open_positions") or []: rows.append((wallet_name,p))
+        if not rows: st.caption("No open positions.")
+        for wallet_name,p in rows:
+            pnl=safe_float(p.get("unrealised_pnl")); ret=safe_float(p.get("unrealised_return"))
+            css="good" if pnl>0 else "risk" if pnl<0 else "watch"
+            st.markdown(
+                f'<div class="asset-front-card {css}"><div class="asset-grid">'
+                f'<div><div class="asset-name">{esc(p.get("symbol",""))} · {esc(wallet_name)}</div><div class="asset-sub">{esc(p.get("direction",""))} · {esc(p.get("narrative",""))}</div></div>'
+                f'<div><div class="asset-k">Entry</div><div class="asset-v">{safe_float(p.get("entry_price")):,.6f}</div></div>'
+                f'<div><div class="asset-k">Current</div><div class="asset-v">{safe_float(p.get("current_price")):,.6f}</div></div>'
+                f'<div><div class="asset-k">P/L</div><div class="asset-v">{ret:+.2f}%</div></div>'
+                f'<div><div class="asset-k">Allocated</div><div class="asset-v">${safe_float(p.get("allocated_cash")):,.0f}</div></div>'
+                f'</div></div>',unsafe_allow_html=True
+            )
+            with st.expander(f"Open {p.get('symbol','')} trade details"): st.json(p,expanded=False)
+
+    with tabs[1]:
+        section("Closed trades")
+        closed=[]
+        for wallet_name,wallet,_ in wallet_defs:
+            for p in wallet.get("closed_positions") or []: closed.append((wallet_name,p))
+        closed=sorted(closed,key=lambda x:str(x[1].get("exit_time") or ""),reverse=True)
+        if not closed: st.caption("No closed trades.")
+        for wallet_name,p in closed[:250]:
+            pnl=safe_float(p.get("realised_pnl")); ret=safe_float(p.get("realised_return"))
+            css="good" if pnl>0 else "risk" if pnl<0 else "watch"
+            st.markdown(
+                f'<div class="asset-front-card {css}"><div class="asset-grid">'
+                f'<div><div class="asset-name">{esc(p.get("symbol",""))} · {esc(wallet_name)}</div><div class="asset-sub">{esc(p.get("direction",""))} · {esc(p.get("exit_reason",""))}</div></div>'
+                f'<div><div class="asset-k">Entry</div><div class="asset-v">{safe_float(p.get("entry_price")):,.6f}</div></div>'
+                f'<div><div class="asset-k">Exit</div><div class="asset-v">{safe_float(p.get("exit_price")):,.6f}</div></div>'
+                f'<div><div class="asset-k">Net P/L</div><div class="asset-v">{ret:+.2f}%</div></div>'
+                f'<div><div class="asset-k">Result</div><div class="asset-v">${pnl:+,.2f}</div></div>'
+                f'</div></div>',unsafe_allow_html=True
+            )
+            with st.expander(f"Review {p.get('symbol','')} completed trade"): st.json(p,expanded=False)
+
+    with tabs[2]:
+        section("Wallet comparison")
+        wallet_rows=[]
+        for name,wallet,_ in wallet_defs:
+            metrics=wallet.get("metrics") or {}
+            wallet_rows.append({
+                "Wallet":name,"Equity":wallet_equity(wallet),"Return %":wallet_return_pct(wallet),
+                "Cash":safe_float(wallet.get("cash")),"Open":len(wallet.get("open_positions") or []),
+                "Closed":len(wallet.get("closed_positions") or []),"Realised P/L":safe_float(wallet.get("realised_pnl")),
+                "Unrealised P/L":safe_float(wallet.get("unrealised_pnl")),"Win rate %":safe_float(metrics.get("win_rate")),
+                "Max drawdown %":safe_float(metrics.get("max_drawdown")),
+            })
+        st.dataframe(pd.DataFrame(wallet_rows),use_container_width=True,hide_index=True)
+        wallet_name=st.selectbox("Open wallet detail",[name for name,_,_ in wallet_defs])
+        selected=next(wallet for name,wallet,_ in wallet_defs if name==wallet_name)
+        with st.expander("Complete wallet record"): st.json(selected,expanded=False)
+
+    with tabs[3]:
+        section("Reviewed external calls")
+        active=[x for x in external_calls if x.get("status","ACTIVE")=="ACTIVE"]
+        if active: st.dataframe(pd.DataFrame(active),use_container_width=True,hide_index=True)
+        else: st.caption("No active reviewed external calls.")
+
+    with tabs[4]:
+        section("Manual external call entry")
+        st.caption("Manual entry stays available here rather than on a separate Paper Trading page.")
+        with st.form("trading_desk_manual_entry"):
+            c1,c2,c3=st.columns(3)
+            with c1: manual_source=st.text_input("Source",value="Sheldon / Manual")
+            with c2: manual_symbol=st.text_input("Asset symbol")
+            with c3: manual_direction=st.selectbox("Direction",["LONG","SHORT"])
+            c4,c5,c6=st.columns(3)
+            with c4: manual_entry=st.number_input("Entry price",min_value=0.0,format="%.8f")
+            with c5: manual_timeframe=st.text_input("Timeframe",value="Swing")
+            with c6: manual_reference=st.text_input("Source reference")
+            manual_notes=st.text_area("Notes")
+            submitted=st.form_submit_button("Record reviewed external call",use_container_width=True)
+        if submitted:
+            if not manual_symbol.strip() or manual_entry<=0:
+                st.error("Enter an asset symbol and a positive entry price.")
+            else:
+                existing=read_runtime_json(EXTERNAL_CALLS_FILE,[])
+                call_id=f'MANUAL_{manual_symbol.strip().upper()}_{datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")}'
+                existing.append({
+                    "call_id":call_id,"source":manual_source.strip() or "Manual",
+                    "symbol":manual_symbol.strip().upper(),"direction":manual_direction,
+                    "call":"BUY" if manual_direction=="LONG" else "SELL","entry_price":manual_entry,
+                    "entry_time":datetime.now(timezone.utc).isoformat(),"timeframe":manual_timeframe,
+                    "source_link":manual_reference,"notes":manual_notes,"status":"ACTIVE",
+                })
+                write_runtime_json(EXTERNAL_CALLS_FILE,existing)
+                st.success("Reviewed external call recorded.")
+
+
+elif selection=="Intelligence":
+    external_status=read_runtime_json(EXTERNAL_STATUS_FILE,{})
+    inbox=read_runtime_json(EXTERNAL_INBOX_FILE,[])
+    external_calls=read_runtime_json(EXTERNAL_CALLS_FILE,[])
+    latest=read_runtime_json(SIGNALS_LATEST_FILE,{"signals":[]})
+
+    st.markdown('<div class="summary-box"><b>Intelligence hub:</b> external research and supporting evidence are collected here. Daily decisions remain on Watch and Trading Desk.</div>',unsafe_allow_html=True)
+    tabs=st.tabs(["Latest Research","External Calls","Market Evidence","Source Health"])
+    with tabs[0]:
+        items=list(reversed(inbox[-100:]))
+        if items:
+            for item in items[:50]:
+                with st.expander(f'{item.get("source_name") or item.get("source_id","Source")} · {item.get("title","Untitled")}'):
+                    st.write(item.get("summary") or "No summary available.")
+                    st.caption(f'Published: {item.get("published_at") or "Unknown"} · Recorded: {item.get("recorded_at") or "Unknown"}')
+        else: st.caption("No external research items.")
+    with tabs[1]:
+        if external_calls: st.dataframe(pd.DataFrame(external_calls),use_container_width=True,hide_index=True)
+        else: st.caption("No reviewed external calls.")
+    with tabs[2]:
+        signals=latest.get("signals") or []
+        if signals:
+            st.dataframe(pd.DataFrame([{
+                "Asset":x.get("symbol"),"Signal":x.get("signal"),"4H %":x.get("return_4h"),
+                "24H %":x.get("return_24h"),"RVOL":x.get("rvol"),"Bullish":x.get("bullish"),
+                "Bearish":x.get("bearish"),"Source":x.get("data_source")
+            } for x in signals]),use_container_width=True,hide_index=True)
+        else: st.caption("No current signal evidence.")
+    with tabs[3]:
+        st.json(external_status,expanded=False)
 
 elif selection=="Strategy Lab":
     lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{},"assumptions":{}})
@@ -3208,6 +3333,32 @@ elif selection=="Performance Lab":
         section("Learning rule")
         st.markdown('<div class="summary-box">The platform will compare results by source, call type, direction, asset, narrative and entry conditions. It will not rewrite live rules from a handful of examples; changes should wait for a meaningful sample.</div>',unsafe_allow_html=True)
 
+
+
+elif selection=="Settings":
+    engine_health=read_runtime_json(ENGINE_HEALTH_FILE,{})
+    risk=read_runtime_json(RISK_GUARDIAN_FILE,{})
+    strategy=read_runtime_json(STRATEGY_LAB_FILE,{})
+    observer=read_runtime_json(OBSERVER_LATEST_FILE,{})
+    st.markdown('<div class="summary-box"><b>Settings and health:</b> operational information is kept away from the daily decision pages.</div>',unsafe_allow_html=True)
+    tabs=st.tabs(["Engine Health","Workflows","Data Files","Advanced"])
+    with tabs[0]:
+        st.json(engine_health,expanded=False)
+    with tabs[1]:
+        st.dataframe(pd.DataFrame([{
+            "Workflow":"Hourly Signal Recorder","Purpose":"4H signals, wallets, Strategy Lab and Risk Guardian",
+            "Expected":"Hourly","Latest data":(engine_health.get("generated_at") or "")
+        },{
+            "Workflow":"15-Minute Observer","Purpose":"Early shifts and Observer wallet",
+            "Expected":"15-minute attempts","Latest data":(observer.get("generated_at") or "")
+        }]),use_container_width=True,hide_index=True)
+    with tabs[2]:
+        contract=read_runtime_json(Path(__file__).with_name("config")/"persistent_data.json",{"files":{}})
+        st.dataframe(pd.DataFrame([{"Protected file":name,"Purpose":meta.get("purpose","")} for name,meta in (contract.get("files") or {}).items()]),use_container_width=True,hide_index=True)
+    with tabs[3]:
+        st.caption("Strategy and risk internals remain available here without crowding the daily pages.")
+        with st.expander("Risk Guardian"): st.json(risk,expanded=False)
+        with st.expander("Strategy Lab raw state"): st.json(strategy,expanded=False)
 
 else:
     st.markdown('<div class="summary-box"><b>Research signal only.</b> Signal Lab identifies setups worth investigating. It does not provide automatic trading instructions, and every signal should be checked against fundamentals, news, liquidity and personal risk.</div>',unsafe_allow_html=True)

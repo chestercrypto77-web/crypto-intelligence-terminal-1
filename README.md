@@ -1,28 +1,34 @@
-# Crypto Intelligence Terminal V8.9.1
+# Crypto Intelligence Terminal V9.0.0
 
-## Observer Stability Fix
+## Platform Simplification
 
-This release fixes the missing 15M Observer page title and NumPy/Pandas JSON
-serialisation failure discovered in the first V8.9 live workflow.
+V9.0 reduces the main navigation to eight pages:
 
-It also makes the Observer optional inside the core hourly workflow, adds Observer
-startup tests, verifies Observer output JSON before committing, and includes a
-repeatable release smoke-test suite.
+- Today
+- Markets
+- Watch
+- Trading Desk
+- Intelligence
+- Strategy Lab
+- Performance Lab
+- Settings
 
-The release tests cover page navigation, JSON serialisation, synthetic bullish and
-bearish Observer data, long and short wallet mechanics, reversal exits, protected
-runtime templates, compilation, safe-data preflight and ZIP integrity.
+Paper Trading, Research Desk, Risk Guardian, External Intelligence, 15M Observer,
+Research and Signal Lab are removed from the main navigation. Their useful information
+is consolidated into Trading Desk, Watch, Intelligence, Strategy Lab, Performance Lab
+and Settings.
 
-These tests validate software behaviour. Live trading performance still requires
-continued paper-trading evidence.
+The Watch and Trading Desk screens use the colour-coded card layout. Only core asset or
+trade information is shown first; detailed evidence remains behind expandable panels.
+
+All backend engines, workflows and protected runtime files remain intact.
 
 ## Upload
 
-1. Extract the ZIP.
-2. Upload all extracted files over the current repository.
+1. Extract this ZIP.
+2. Upload all extracted items over the existing repository.
 3. Commit.
 4. Reboot Streamlit.
 5. Run Hourly Signal Recorder once.
 6. Run 15-Minute Observer once.
-
-Do not delete the existing data folder.
+7. Check all eight main pages.

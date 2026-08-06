@@ -1,13 +1,12 @@
-# V8.9.1 complete safe upload
+# V9.0.0 complete safe upload
 
-1. Keep the existing GitHub data folder.
-2. Extract this ZIP.
-3. GitHub → Add file → Upload files.
-4. Drag every extracted item into the uploader.
-5. Commit the replacements.
-6. Reboot Streamlit.
-7. Run Hourly Signal Recorder once.
-8. Run 15-Minute Observer once.
+Do not delete the existing `data` folder.
 
-The Observer workflow is included in `.github/workflows/observer_15m.yml`.
-A visible backup is at `WORKFLOW_SETUP/observer_15m.yml`.
+1. Extract the ZIP.
+2. GitHub → Add file → Upload files.
+3. Drag every extracted file and folder into the upload area.
+4. Commit the replacements.
+5. Reboot Streamlit.
+6. Run Hourly Signal Recorder once.
+7. Run 15-Minute Observer once.
+8. Check Today, Markets, Watch, Trading Desk, Intelligence, Strategy Lab, Performance Lab and Settings.
