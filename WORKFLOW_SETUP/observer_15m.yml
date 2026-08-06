@@ -1,4 +1,4 @@
-name: 15-Minute Observer
+name: 15-Minute Market Observer
 
 on:
   workflow_dispatch:
@@ -9,58 +9,39 @@ permissions:
   contents: write
 
 concurrency:
-  group: fifteen-minute-observer
+  group: fifteen-minute-market-observer
   cancel-in-progress: false
 
 jobs:
-  observe:
+  observe-and-scalp:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Bootstrap protected runtime files
-        run: python scripts/bootstrap_runtime.py
-
-      - name: Validate observer startup
-        run: python scripts/release_smoke_test.py --observer-only
-
-      - name: Run 15-minute observer
+      - run: pip install -r requirements.txt
+      - run: python scripts/bootstrap_runtime.py
+      - name: Validate scalp mechanics
+        run: python scripts/v9_1_scalp_smoke_test.py
+      - name: Run Market Observer and Scalp Wallet
         run: python scripts/observer_15m.py
-
-      - name: Verify observer JSON
+      - name: Verify JSON
         run: |
-          python - <<'PY'
+          python - <<'PY2'
           import json
           from pathlib import Path
-          for name in ["observer_latest.json", "observer_history.json", "observer_wallet.json", "signal_timing.json"]:
-              path = Path("data") / name
-              json.loads(path.read_text(encoding="utf-8"))
-              print(f"PASS {path}")
-          PY
-
-      - name: Commit observer records
+          for name in ["observer_latest.json","observer_history.json","observer_wallet.json","signal_timing.json","scalp_wallet.json","scalp_checkpoints.json","scalp_learning.json","engine_health.json"]:
+              json.loads((Path("data")/name).read_text())
+              print("PASS",name)
+          PY2
+      - name: Commit records
         run: |
-          git config user.name "Crypto Observer Recorder"
+          git config user.name "Market Observer Recorder"
           git config user.email "actions@users.noreply.github.com"
-          git add data/observer_latest.json data/observer_history.json data/observer_wallet.json data/signal_timing.json data/engine_health.json
-          if git diff --cached --quiet; then
-            echo "No observer changes to commit."
-          else
-            git commit -m "Update 15-minute observer records"
-            git pull --rebase
-            git push
-          fi
+          git add data/observer_latest.json data/observer_history.json data/observer_wallet.json data/signal_timing.json data/scalp_wallet.json data/scalp_checkpoints.json data/scalp_learning.json data/engine_health.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update 15-minute Observer and scalp wallet"; git pull --rebase; git push; fi

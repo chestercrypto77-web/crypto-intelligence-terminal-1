@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "9.0.1"
+APP_VERSION = "9.1.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1712,6 +1712,9 @@ OBSERVER_LATEST_FILE = Path(__file__).with_name("data") / "observer_latest.json"
 OBSERVER_HISTORY_FILE = Path(__file__).with_name("data") / "observer_history.json"
 OBSERVER_WALLET_FILE = Path(__file__).with_name("data") / "observer_wallet.json"
 SIGNAL_TIMING_FILE = Path(__file__).with_name("data") / "signal_timing.json"
+SCALP_WALLET_FILE = Path(__file__).with_name("data") / "scalp_wallet.json"
+SCALP_CHECKPOINTS_FILE = Path(__file__).with_name("data") / "scalp_checkpoints.json"
+SCALP_LEARNING_FILE = Path(__file__).with_name("data") / "scalp_learning.json"
 
 def read_runtime_json(path: Path, default):
     try:
@@ -2551,13 +2554,16 @@ elif selection=="Research Desk":
 elif selection=="Trading Desk":
     research_wallet=read_runtime_json(RESEARCH_WALLET_FILE,{})
     observer_wallet=read_runtime_json(OBSERVER_WALLET_FILE,{})
+    scalp_wallet=read_runtime_json(SCALP_WALLET_FILE,{})
+    scalp_learning=read_runtime_json(SCALP_LEARNING_FILE,{})
+    scalp_checkpoints=read_runtime_json(SCALP_CHECKPOINTS_FILE,[])
     strategy_lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{}})
     paper_trades=read_runtime_json(PAPER_TRADES_FILE,[])
     external_calls=read_runtime_json(EXTERNAL_CALLS_FILE,[])
     risk_state=read_runtime_json(RISK_GUARDIAN_FILE,{"asset_checks":[]})
 
     risk_map={str(x.get("symbol","")).upper():x for x in (risk_state.get("asset_checks") or [])}
-    wallet_defs=[("Research Wallet",research_wallet,"active"),("15M Observer",observer_wallet,"watch")]
+    wallet_defs=[("Research Wallet",research_wallet,"active"),("Scalp Wallet",scalp_wallet,"profit"),("Observer Ledger",observer_wallet,"watch")]
     for sid,wallet in (strategy_lab.get("strategies") or {}).items():
         wallet_defs.append((wallet.get("name",sid),wallet,"profit" if wallet.get("role")=="CHAMPION" else "active"))
 
@@ -2582,7 +2588,7 @@ elif selection=="Trading Desk":
         )
     st.markdown('<div class="performance-strip">'+"".join(wallet_tiles)+'</div>',unsafe_allow_html=True)
 
-    main_tabs=st.tabs(["Open Trades","Closed Trades","Wallets","Observer","External"])
+    main_tabs=st.tabs(["Open Trades","Closed Trades","Scalp Wallet","Wallets","Observer","External"])
 
     with main_tabs[0]:
         section("Open trades")
@@ -2666,6 +2672,31 @@ elif selection=="Trading Desk":
                 st.json(p,expanded=False)
 
     with main_tabs[2]:
+        section("Profit-driven Scalp Wallet")
+        session=scalp_wallet.get("session") or {}; learning_global=scalp_learning.get("global") or {}; promotion=scalp_learning.get("promotion") or {}
+        tiles=[("Equity",f"${wallet_equity(scalp_wallet):,.2f}",f"{wallet_return_pct(scalp_wallet):+.2f}%","good" if wallet_return_pct(scalp_wallet)>0 else "bad"),("Realised",f"${safe_float(scalp_wallet.get('realised_pnl')):+,.2f}","After costs","good" if safe_float(scalp_wallet.get('realised_pnl'))>0 else "bad"),("Open",str(len(scalp_wallet.get("open_positions") or [])),"Maximum 4","info"),("Expectancy",f"{safe_float(learning_global.get('expectancy_pct')):+.2f}%","Per closed scalp","good" if safe_float(learning_global.get('expectancy_pct'))>0 else "bad"),("Status","FROZEN" if session.get("new_entries_frozen") else "ACTIVE",session.get("freeze_reason") or promotion.get("stage","Learning"),"bad" if session.get("new_entries_frozen") else "good")]
+        st.markdown('<div class="performance-strip">'+''.join(f'<div class="performance-card {css}"><div class="performance-label">{label}</div><div class="performance-value">{value}</div><div class="performance-note">{note}</div></div>' for label,value,note,css in tiles)+'</div>',unsafe_allow_html=True)
+        st.markdown('<div class="summary-box"><b>Profit objective:</b> maximise net paper-wallet growth after fees and slippage. Experimental allocation remains 0.25% until positive expectancy is proven.</div>',unsafe_allow_html=True)
+        scalp_tabs=st.tabs(["Open Scalps","Recent Exits","Rejected","Checkpoints","Learning"])
+        with scalp_tabs[0]:
+            positions=scalp_wallet.get("open_positions") or []
+            if positions:
+                for p in positions:
+                    pnl=safe_float(p.get("unrealised_pnl")); css="profit" if pnl>0 else "loss" if pnl<0 else "active"
+                    st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid"><div><div class="front-trade-title">{esc(p.get("symbol",""))} · SCALP {esc(p.get("direction",""))}</div><div class="front-trade-sub">{safe_float(p.get("minutes_open")):.0f} min · {esc(p.get("signal",""))}</div></div><div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div><div><div class="front-trade-k">Current</div><div class="front-trade-v">{safe_float(p.get("current_price")):,.6f}</div></div><div><div class="front-trade-k">P/L</div><div class="front-trade-v">{safe_float(p.get("unrealised_return")):+.2f}%</div></div><div><div class="front-trade-k">Capital</div><div class="front-trade-v">${safe_float(p.get("allocated_cash")):,.0f}</div></div><div><div class="front-trade-k">Status</div><div class="front-trade-v">MANAGE</div></div></div></div>',unsafe_allow_html=True)
+                    with st.expander(f"Open {p.get('symbol','')} scalp detail"): st.json(p,expanded=False)
+            else: st.caption("No qualified scalp is currently open.")
+        with scalp_tabs[1]:
+            closed=scalp_wallet.get("closed_positions") or []
+            st.dataframe(pd.DataFrame(list(reversed(closed[-200:]))),use_container_width=True,hide_index=True) if closed else st.caption("No completed scalps yet.")
+        with scalp_tabs[2]:
+            rejected=scalp_wallet.get("rejected_opportunities") or []
+            st.dataframe(pd.DataFrame(list(reversed(rejected[-300:]))),use_container_width=True,hide_index=True) if rejected else st.caption("No rejected scalp setups yet.")
+        with scalp_tabs[3]:
+            st.dataframe(pd.DataFrame(list(reversed(scalp_checkpoints[-500:]))),use_container_width=True,hide_index=True) if scalp_checkpoints else st.caption("No scalp checkpoints yet.")
+        with scalp_tabs[4]: st.json(scalp_learning,expanded=False)
+
+    with main_tabs[3]:
         section("Wallet comparison")
         rows=[]
         for name,wallet,_ in wallet_defs:
@@ -2684,7 +2715,7 @@ elif selection=="Trading Desk":
             })
         st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
 
-    with main_tabs[3]:
+    with main_tabs[4]:
         section("15-minute Observer")
         obs_equity=wallet_equity(observer_wallet)
         obs_ret=wallet_return_pct(observer_wallet)
@@ -2720,7 +2751,7 @@ elif selection=="Trading Desk":
             else:
                 st.caption("No Observer activity yet.")
 
-    with main_tabs[4]:
+    with main_tabs[5]:
         section("Reviewed external calls")
         if external_calls:
             st.dataframe(pd.DataFrame(external_calls),use_container_width=True,hide_index=True)
@@ -3045,7 +3076,7 @@ elif selection=="Settings":
             "Workflow":"Hourly Signal Recorder","Purpose":"4H signals, wallets, Strategy Lab and Risk Guardian",
             "Expected":"Hourly","Latest data":(engine_health.get("generated_at") or "")
         },{
-            "Workflow":"15-Minute Observer","Purpose":"Early shifts and Observer wallet",
+            "Workflow":"15-Minute Market Observer","Purpose":"Early shifts and Observer wallet",
             "Expected":"15-minute attempts","Latest data":(observer.get("generated_at") or "")
         }]),use_container_width=True,hide_index=True)
     with tabs[2]:
