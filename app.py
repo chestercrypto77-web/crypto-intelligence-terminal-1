@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "9.1.0"
+APP_VERSION = "10.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1715,6 +1715,11 @@ SIGNAL_TIMING_FILE = Path(__file__).with_name("data") / "signal_timing.json"
 SCALP_WALLET_FILE = Path(__file__).with_name("data") / "scalp_wallet.json"
 SCALP_CHECKPOINTS_FILE = Path(__file__).with_name("data") / "scalp_checkpoints.json"
 SCALP_LEARNING_FILE = Path(__file__).with_name("data") / "scalp_learning.json"
+TRADE_LESSONS_FILE = Path(__file__).with_name("data") / "trade_lessons.json"
+PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
+FUND_STATE_FILE = Path(__file__).with_name("data") / "fund_state.json"
+SWING_WALLET_FILE = Path(__file__).with_name("data") / "swing_wallet.json"
+CORE_WALLET_FILE = Path(__file__).with_name("data") / "core_wallet.json"
 
 def read_runtime_json(path: Path, default):
     try:
@@ -2552,211 +2557,48 @@ elif selection=="Research Desk":
 
 
 elif selection=="Trading Desk":
-    research_wallet=read_runtime_json(RESEARCH_WALLET_FILE,{})
-    observer_wallet=read_runtime_json(OBSERVER_WALLET_FILE,{})
-    scalp_wallet=read_runtime_json(SCALP_WALLET_FILE,{})
-    scalp_learning=read_runtime_json(SCALP_LEARNING_FILE,{})
-    scalp_checkpoints=read_runtime_json(SCALP_CHECKPOINTS_FILE,[])
-    strategy_lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{}})
-    paper_trades=read_runtime_json(PAPER_TRADES_FILE,[])
-    external_calls=read_runtime_json(EXTERNAL_CALLS_FILE,[])
-    risk_state=read_runtime_json(RISK_GUARDIAN_FILE,{"asset_checks":[]})
-
-    risk_map={str(x.get("symbol","")).upper():x for x in (risk_state.get("asset_checks") or [])}
-    wallet_defs=[("Research Wallet",research_wallet,"active"),("Scalp Wallet",scalp_wallet,"profit"),("Observer Ledger",observer_wallet,"watch")]
-    for sid,wallet in (strategy_lab.get("strategies") or {}).items():
-        wallet_defs.append((wallet.get("name",sid),wallet,"profit" if wallet.get("role")=="CHAMPION" else "active"))
-
-    st.markdown(
-        '<div class="summary-box"><b>Trading Desk:</b> this front page shows exactly what the platform '
-        'is trading in and out of. Detailed evidence, journals and raw records stay behind each trade panel.</div>',
-        unsafe_allow_html=True,
-    )
-
-    # Wallet headline cards
-    st.markdown('<div class="performance-strip">',unsafe_allow_html=True)
-    wallet_tiles=[]
-    for name,wallet,css in wallet_defs[:5]:
-        ret=wallet_return_pct(wallet)
-        tile_css="good" if ret>0 else "bad" if ret<0 else "neutral"
-        wallet_tiles.append(
-            f'<div class="performance-card {tile_css}">'
-            f'<div class="performance-label">{esc(name)}</div>'
-            f'<div class="performance-value">${wallet_equity(wallet):,.2f}</div>'
-            f'<div class="performance-note">{ret:+.2f}% · {len(wallet.get("open_positions") or [])} open · {len(wallet.get("closed_positions") or [])} closed</div>'
-            f'</div>'
-        )
-    st.markdown('<div class="performance-strip">'+"".join(wallet_tiles)+'</div>',unsafe_allow_html=True)
-
-    main_tabs=st.tabs(["Open Trades","Closed Trades","Scalp Wallet","Wallets","Observer","External"])
-
-    with main_tabs[0]:
-        section("Open trades")
-        open_rows=[]
-        for wallet_name,wallet,_ in wallet_defs:
-            for p in wallet.get("open_positions") or []:
-                open_rows.append((wallet_name,p))
-        open_rows=sorted(
-            open_rows,
-            key=lambda x:abs(safe_float(x[1].get("unrealised_pnl"))),
-            reverse=True,
-        )
-        if not open_rows:
-            st.caption("No open positions.")
-        for wallet_name,p in open_rows:
-            symbol=str(p.get("symbol","")).upper()
-            pnl=safe_float(p.get("unrealised_pnl"))
-            ret=safe_float(p.get("unrealised_return"))
-            risk=(risk_map.get(symbol) or {}).get("state","NORMAL")
-            css="profit" if pnl>0 else "loss" if pnl<0 else "active"
-            if risk not in {"NORMAL",None}:
-                css="weak" if css!="loss" else "loss"
-            st.markdown(
-                f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
-                f'<div><div class="front-trade-title">{esc(symbol)} · {esc(wallet_name)}</div>'
-                f'<div class="front-trade-sub">{esc(p.get("direction",""))} · {esc(p.get("signal",""))} · {esc(p.get("narrative",""))}</div></div>'
-                f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div>'
-                f'<div><div class="front-trade-k">Current</div><div class="front-trade-v">{safe_float(p.get("current_price")):,.6f}</div></div>'
-                f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">{ret:+.2f}%</div></div>'
-                f'<div><div class="front-trade-k">Capital</div><div class="front-trade-v">${safe_float(p.get("allocated_cash")):,.0f}</div></div>'
-                f'<div><div class="front-trade-k">Status</div><div class="front-trade-v">{esc(risk if risk!="NORMAL" else "OPEN")}</div></div>'
-                f'</div></div>',
-                unsafe_allow_html=True,
-            )
-            with st.expander(f"Open {symbol} trade detail"):
-                detail_tabs=st.tabs(["Trade","Evidence","Risk","Journal"])
-                with detail_tabs[0]:
-                    st.json(p,expanded=False)
-                with detail_tabs[1]:
-                    st.json(p.get("observer_evidence") or {},expanded=False)
-                with detail_tabs[2]:
-                    st.json(risk_map.get(symbol,{}) or {},expanded=False)
-                with detail_tabs[3]:
-                    journal=[]
-                    for _,wallet,_ in wallet_defs:
-                        journal.extend([
-                            x for x in (wallet.get("activity_journal") or [])
-                            if str(x.get("symbol","")).upper()==symbol
-                        ])
-                    if journal:
-                        st.dataframe(pd.DataFrame(list(reversed(journal[-100:]))),use_container_width=True,hide_index=True)
-                    else:
-                        st.caption("No journal entries for this trade.")
-
-    with main_tabs[1]:
-        section("Closed trades")
-        closed=[]
-        for wallet_name,wallet,_ in wallet_defs:
-            for p in wallet.get("closed_positions") or []:
-                closed.append((wallet_name,p))
-        closed=sorted(closed,key=lambda x:str(x[1].get("exit_time") or ""),reverse=True)
-        if not closed:
-            st.caption("No closed trades.")
-        for wallet_name,p in closed[:250]:
-            pnl=safe_float(p.get("realised_pnl"))
-            ret=safe_float(p.get("realised_return"))
-            css="profit" if pnl>0 else "loss" if pnl<0 else "watch"
-            st.markdown(
-                f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
-                f'<div><div class="front-trade-title">{esc(p.get("symbol",""))} · {esc(wallet_name)}</div>'
-                f'<div class="front-trade-sub">{esc(p.get("direction",""))} · {esc(p.get("exit_reason",""))}</div></div>'
-                f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div>'
-                f'<div><div class="front-trade-k">Exit</div><div class="front-trade-v">{safe_float(p.get("exit_price")):,.6f}</div></div>'
-                f'<div><div class="front-trade-k">Net P/L</div><div class="front-trade-v">{ret:+.2f}%</div></div>'
-                f'<div><div class="front-trade-k">Result</div><div class="front-trade-v">${pnl:+,.2f}</div></div>'
-                f'<div><div class="front-trade-k">Outcome</div><div class="front-trade-v">{"WIN" if pnl>0 else "LOSS" if pnl<0 else "FLAT"}</div></div>'
-                f'</div></div>',
-                unsafe_allow_html=True,
-            )
-            with st.expander(f"Review {p.get('symbol','')} completed trade"):
-                st.json(p,expanded=False)
-
-    with main_tabs[2]:
-        section("Profit-driven Scalp Wallet")
-        session=scalp_wallet.get("session") or {}; learning_global=scalp_learning.get("global") or {}; promotion=scalp_learning.get("promotion") or {}
-        tiles=[("Equity",f"${wallet_equity(scalp_wallet):,.2f}",f"{wallet_return_pct(scalp_wallet):+.2f}%","good" if wallet_return_pct(scalp_wallet)>0 else "bad"),("Realised",f"${safe_float(scalp_wallet.get('realised_pnl')):+,.2f}","After costs","good" if safe_float(scalp_wallet.get('realised_pnl'))>0 else "bad"),("Open",str(len(scalp_wallet.get("open_positions") or [])),"Maximum 4","info"),("Expectancy",f"{safe_float(learning_global.get('expectancy_pct')):+.2f}%","Per closed scalp","good" if safe_float(learning_global.get('expectancy_pct'))>0 else "bad"),("Status","FROZEN" if session.get("new_entries_frozen") else "ACTIVE",session.get("freeze_reason") or promotion.get("stage","Learning"),"bad" if session.get("new_entries_frozen") else "good")]
-        st.markdown('<div class="performance-strip">'+''.join(f'<div class="performance-card {css}"><div class="performance-label">{label}</div><div class="performance-value">{value}</div><div class="performance-note">{note}</div></div>' for label,value,note,css in tiles)+'</div>',unsafe_allow_html=True)
-        st.markdown('<div class="summary-box"><b>Profit objective:</b> maximise net paper-wallet growth after fees and slippage. Experimental allocation remains 0.25% until positive expectancy is proven.</div>',unsafe_allow_html=True)
-        scalp_tabs=st.tabs(["Open Scalps","Recent Exits","Rejected","Checkpoints","Learning"])
-        with scalp_tabs[0]:
-            positions=scalp_wallet.get("open_positions") or []
-            if positions:
-                for p in positions:
-                    pnl=safe_float(p.get("unrealised_pnl")); css="profit" if pnl>0 else "loss" if pnl<0 else "active"
-                    st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid"><div><div class="front-trade-title">{esc(p.get("symbol",""))} · SCALP {esc(p.get("direction",""))}</div><div class="front-trade-sub">{safe_float(p.get("minutes_open")):.0f} min · {esc(p.get("signal",""))}</div></div><div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div><div><div class="front-trade-k">Current</div><div class="front-trade-v">{safe_float(p.get("current_price")):,.6f}</div></div><div><div class="front-trade-k">P/L</div><div class="front-trade-v">{safe_float(p.get("unrealised_return")):+.2f}%</div></div><div><div class="front-trade-k">Capital</div><div class="front-trade-v">${safe_float(p.get("allocated_cash")):,.0f}</div></div><div><div class="front-trade-k">Status</div><div class="front-trade-v">MANAGE</div></div></div></div>',unsafe_allow_html=True)
-                    with st.expander(f"Open {p.get('symbol','')} scalp detail"): st.json(p,expanded=False)
-            else: st.caption("No qualified scalp is currently open.")
-        with scalp_tabs[1]:
-            closed=scalp_wallet.get("closed_positions") or []
-            st.dataframe(pd.DataFrame(list(reversed(closed[-200:]))),use_container_width=True,hide_index=True) if closed else st.caption("No completed scalps yet.")
-        with scalp_tabs[2]:
-            rejected=scalp_wallet.get("rejected_opportunities") or []
-            st.dataframe(pd.DataFrame(list(reversed(rejected[-300:]))),use_container_width=True,hide_index=True) if rejected else st.caption("No rejected scalp setups yet.")
-        with scalp_tabs[3]:
-            st.dataframe(pd.DataFrame(list(reversed(scalp_checkpoints[-500:]))),use_container_width=True,hide_index=True) if scalp_checkpoints else st.caption("No scalp checkpoints yet.")
-        with scalp_tabs[4]: st.json(scalp_learning,expanded=False)
-
-    with main_tabs[3]:
-        section("Wallet comparison")
+    fund=read_runtime_json(FUND_STATE_FILE,{})
+    core=read_runtime_json(CORE_WALLET_FILE,{})
+    swing=read_runtime_json(SWING_WALLET_FILE,{})
+    scalp=read_runtime_json(SCALP_WALLET_FILE,{})
+    manager=read_runtime_json(PORTFOLIO_MANAGER_FILE,{"actions":[]})
+    lessons=read_runtime_json(TRADE_LESSONS_FILE,{})
+    st.markdown('<div class="summary-box"><b>AI Fund:</b> simple front-line view of what is being bought, held, protected and exited. The detailed reasoning stays inside the platform and is available only when a position is opened.</div>',unsafe_allow_html=True)
+    if fund.get("status")!="ACTIVE":
+        st.warning("V10 AI Fund is awaiting its one-time initialisation workflow. No V10 capital is active yet.")
+    wallets=[("Core",core,"good"),("Swing",swing,"info"),("Scalp",scalp,"warn")]
+    st.markdown('<div class="performance-strip">'+''.join(
+        f'<div class="performance-card {css if wallet_return_pct(w)>=0 else "bad"}"><div class="performance-label">{name} Portfolio</div><div class="performance-value">${wallet_equity(w):,.2f}</div><div class="performance-note">{wallet_return_pct(w):+.2f}% · {len(w.get("open_positions") or [])} open · {len(w.get("closed_positions") or [])} closed</div></div>'
+        for name,w,css in wallets)+'</div>',unsafe_allow_html=True)
+    tabs=st.tabs(["Open Positions","Recent Exits","Wallets","Learning"])
+    with tabs[0]:
         rows=[]
-        for name,wallet,_ in wallet_defs:
-            metrics=wallet.get("metrics") or {}
-            rows.append({
-                "Wallet":name,
-                "Equity":wallet_equity(wallet),
-                "Return %":wallet_return_pct(wallet),
-                "Cash":safe_float(wallet.get("cash")),
-                "Open":len(wallet.get("open_positions") or []),
-                "Closed":len(wallet.get("closed_positions") or []),
-                "Realised P/L":safe_float(wallet.get("realised_pnl")),
-                "Unrealised P/L":safe_float(wallet.get("unrealised_pnl")),
-                "Win rate %":safe_float(metrics.get("win_rate")),
-                "Max drawdown %":safe_float(metrics.get("max_drawdown")),
-            })
-        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
-
-    with main_tabs[4]:
-        section("15-minute Observer")
-        obs_equity=wallet_equity(observer_wallet)
-        obs_ret=wallet_return_pct(observer_wallet)
-        obs_tiles=[
-            ("Equity",f"${obs_equity:,.2f}",f"{obs_ret:+.2f}%","good" if obs_ret>0 else "bad" if obs_ret<0 else "neutral"),
-            ("Cash",f"${safe_float(observer_wallet.get('cash')):,.2f}","Available","info"),
-            ("Open",str(len(observer_wallet.get("open_positions") or [])),"Positions","warn"),
-            ("Closed",str(len(observer_wallet.get("closed_positions") or [])),"Trades","neutral"),
-            ("Latest move",f"${safe_float(observer_wallet.get('equity_change_this_run')):+,.2f}","This run","info"),
-        ]
-        st.markdown(
-            '<div class="performance-strip">'+
-            "".join(
-                f'<div class="performance-card {css}"><div class="performance-label">{label}</div>'
-                f'<div class="performance-value">{value}</div><div class="performance-note">{note}</div></div>'
-                for label,value,note,css in obs_tiles
-            )+
-            '</div>',unsafe_allow_html=True
-        )
-        if observer_wallet.get("equity_history"):
-            hist=pd.DataFrame(observer_wallet["equity_history"])
-            if "recorded_at" in hist.columns and "equity" in hist.columns:
-                hist["recorded_at"]=pd.to_datetime(hist["recorded_at"],errors="coerce")
-                hist=hist.dropna(subset=["recorded_at"]).set_index("recorded_at")
-                if len(hist)>=2:
-                    st.line_chart(hist[["equity"]],use_container_width=True)
-                else:
-                    st.caption("Collecting enough Observer history for a meaningful equity chart.")
-        with st.expander("Observer activity"):
-            activity=observer_wallet.get("activity_journal") or []
-            if activity:
-                st.dataframe(pd.DataFrame(list(reversed(activity[-250:]))),use_container_width=True,hide_index=True)
-            else:
-                st.caption("No Observer activity yet.")
-
-    with main_tabs[5]:
-        section("Reviewed external calls")
-        if external_calls:
-            st.dataframe(pd.DataFrame(external_calls),use_container_width=True,hide_index=True)
-        else:
-            st.caption("No reviewed external calls.")
+        for name,w,_ in wallets:
+            for p in w.get("open_positions") or []: rows.append((name,p))
+        if not rows: st.caption("No V10 positions are open.")
+        for book,p in rows:
+            ret=safe_float(p.get("unrealised_return")); pnl=safe_float(p.get("unrealised_pnl")); css="profit" if pnl>0 else "loss" if pnl<0 else "active"
+            status="PROTECT PROFIT" if ret>=3 else "HOLD"
+            st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid"><div><div class="front-trade-title">{esc(p.get("symbol",""))} · {book}</div><div class="front-trade-sub">{esc(p.get("direction",""))} · {esc(p.get("signal",""))}</div></div><div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div><div><div class="front-trade-k">Current</div><div class="front-trade-v">{safe_float(p.get("current_price")):,.6f}</div></div><div><div class="front-trade-k">P/L</div><div class="front-trade-v">{ret:+.2f}%</div></div><div><div class="front-trade-k">P/L $</div><div class="front-trade-v">${pnl:+,.2f}</div></div><div><div class="front-trade-k">Action</div><div class="front-trade-v">{status}</div></div></div></div>',unsafe_allow_html=True)
+            with st.expander(f'Open {p.get("symbol","")} details'): st.json(p,expanded=False)
+    with tabs[1]:
+        rows=[]
+        for name,w,_ in wallets:
+            for p in w.get("closed_positions") or []: rows.append((name,p))
+        rows=sorted(rows,key=lambda x:str(x[1].get("exit_time") or ""),reverse=True)
+        if not rows: st.caption("No V10 exits yet.")
+        for book,p in rows[:200]:
+            pnl=safe_float(p.get("realised_pnl")); css="profit" if pnl>0 else "loss"
+            st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid"><div><div class="front-trade-title">{esc(p.get("symbol",""))} · {book}</div><div class="front-trade-sub">{esc(p.get("exit_reason",""))}</div></div><div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div><div><div class="front-trade-k">Exit</div><div class="front-trade-v">{safe_float(p.get("exit_price")):,.6f}</div></div><div><div class="front-trade-k">Return</div><div class="front-trade-v">{safe_float(p.get("realised_return")):+.2f}%</div></div><div><div class="front-trade-k">P/L</div><div class="front-trade-v">${pnl:+,.2f}</div></div><div><div class="front-trade-k">Result</div><div class="front-trade-v">{"WIN" if pnl>0 else "LOSS"}</div></div></div></div>',unsafe_allow_html=True)
+            with st.expander(f'Review {p.get("symbol","")} trade'): st.json(p,expanded=False)
+    with tabs[2]:
+        st.dataframe(pd.DataFrame([{"Book":n,"Starting":wallet_start(w),"Equity":wallet_equity(w),"Return %":wallet_return_pct(w),"Cash":safe_float(w.get("cash")),"Open":len(w.get("open_positions") or []),"Closed":len(w.get("closed_positions") or []),"Realised P/L":safe_float(w.get("realised_pnl")),"Unrealised P/L":safe_float(w.get("unrealised_pnl"))} for n,w,_ in wallets]),use_container_width=True,hide_index=True)
+    with tabs[3]:
+        lg=lessons or {}; cols=st.columns(5)
+        vals=[("Trades",lg.get("closed_trades",0)),("Win rate",f'{safe_float(lg.get("win_rate")):.1f}%'),("Net P/L",f'${safe_float(lg.get("net_pnl")):+,.2f}'),("Expectancy",f'{safe_float(lg.get("expectancy_pct")):+.2f}%'),("Profit factor",f'{safe_float(lg.get("profit_factor")):.2f}')]
+        for c,(a,b) in zip(cols,vals):
+            with c: metric(a,str(b),"V10 evidence")
+        with st.expander("Internal learning record"): st.json(lg,expanded=False)
 
 elif selection=="Intelligence":
     external_status=read_runtime_json(EXTERNAL_STATUS_FILE,{})

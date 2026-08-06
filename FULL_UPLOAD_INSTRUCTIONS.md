@@ -1,3 +1,10 @@
-# V9.1.0 complete upload
+# V10.0 complete safe upload
 
-Do not delete data. Upload all extracted files, commit, reboot Streamlit, run Hourly Signal Recorder, then run 15-Minute Market Observer. If the workflow is absent, create `.github/workflows/observer_15m.yml` from `WORKFLOW_SETUP/observer_15m.yml`.
+1. Do not delete the existing data folder.
+2. Upload the complete extracted release.
+3. Commit and reboot Streamlit.
+4. In GitHub Actions run **Initialize V10 AI Fund** once.
+5. Confirm it succeeds and commits the archived baseline.
+6. Run **Hourly Signal Recorder** once.
+7. Run **15-Minute Market Observer** once.
+8. Open Trading Desk and confirm Core, Swing and Scalp starting values.

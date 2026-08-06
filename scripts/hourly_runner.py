@@ -30,6 +30,7 @@ def main() -> int:
     run("research_desk.py")
     run("strategy_lab.py")
     run("risk_guardian.py")
+    run("portfolio_manager.py")
     run("observer_15m.py", required=False)
     return 0
 
