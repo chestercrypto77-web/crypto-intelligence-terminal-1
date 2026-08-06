@@ -1,0 +1,33 @@
+name: Initialize V10 AI Fund
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  initialise:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Bootstrap runtime
+        run: python scripts/bootstrap_runtime.py
+      - name: Archive old wallets and initialise V10
+        run: python scripts/initialize_v10_fund.py
+      - name: Validate V10 baseline
+        run: python scripts/v10_fund_smoke_test.py --runtime
+      - name: Commit V10 baseline
+        run: |
+          git config user.name "AI Fund Initialiser"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git commit -m "Initialise V10 AI Fund baseline" || exit 0
+          git pull --rebase
+          git push
