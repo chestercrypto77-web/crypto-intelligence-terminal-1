@@ -11,3 +11,7 @@ V11.1 changes those behaviours.
 - Legacy Observer learning positions are capped at 2.5% of starting cash.
 - Closed trades get a concise case file: entry quality, exit quality, re-entry status, process quality and one lesson.
 - Raw JSON is removed from the normal Performance Lab review.
+
+
+## V11.1.1 hotfix
+Fixes the Performance Lab NameError by loading trade_reviews before the trade review cards render.

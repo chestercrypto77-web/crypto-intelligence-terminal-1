@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "11.1.0"
+APP_VERSION = "11.1.1"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -2763,6 +2763,7 @@ elif selection=="Performance Lab":
     strategy_lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{}})
     timing=read_runtime_json(SIGNAL_TIMING_FILE,{"assets":{}})
 
+    trade_reviews=read_runtime_json(TRADE_REVIEWS_FILE,{"reviews":[],"summary":{}})
     wallets=[("Research Wallet",research_wallet),("15M Observer",observer_wallet)]
     wallets.extend((wallet.get("name",sid),wallet) for sid,wallet in (strategy_lab.get("strategies") or {}).items())
 
