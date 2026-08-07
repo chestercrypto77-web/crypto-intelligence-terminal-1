@@ -33,6 +33,7 @@ def main() -> int:
     run("investment_committee.py")
     run("portfolio_manager.py")
     run("observer_15m.py", required=False)
+    run("trade_review_engine.py", required=False)
     return 0
 
 

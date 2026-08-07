@@ -322,6 +322,17 @@ def side_from_observer(signal: str) -> str | None:
         return "SHORT"
     return None
 
+def reentry_side(item: dict) -> str | None:
+    """A fresh setup after an exit must re-earn entry; no revenge trading."""
+    signal=str(item.get("signal") or "").upper()
+    direct=side_from_observer(signal)
+    if direct: return direct
+    bull=int(item.get("bullish_conditions") or 0); bear=int(item.get("bearish_conditions") or 0)
+    rvol=float(item.get("rvol") or 0); rvold=float(item.get("rvol_delta") or 0); r1h=float(item.get("return_1h") or 0)
+    if signal=="BUY WATCH" and bull-bear>=5 and rvol>=1.15 and rvold>0 and r1h>0: return "LONG"
+    if signal=="SELL WATCH" and bear-bull>=5 and rvol>=1.15 and rvold>0 and r1h<0: return "SHORT"
+    return None
+
 
 def net_return(direction: str, entry: float, current: float, cost: float) -> float:
     raw = (current / entry - 1) * 100
@@ -352,26 +363,24 @@ def update_wallet(wallet: dict, signals: list[dict], timestamp: str) -> dict:
             position["unrealised_pnl"] = (
                 position["allocated_cash"] * position["unrealised_return"] / 100
             )
-            new_side = side_from_observer(item.get("signal"))
-            reversed_side = new_side is not None and new_side != position["direction"]
-            neutralised = item.get("signal") == "NEUTRAL"
-            invalidated = (
-                position["direction"] == "LONG" and float(item.get("return_1h") or 0) <= -3
-            ) or (
-                position["direction"] == "SHORT" and float(item.get("return_1h") or 0) >= 3
-            )
+            position["maximum_favourable_excursion_pct"]=max(float(position.get("maximum_favourable_excursion_pct") or 0),float(position["unrealised_return"]))
+            position["maximum_adverse_excursion_pct"]=min(float(position.get("maximum_adverse_excursion_pct") or 0),float(position["unrealised_return"]))
+            new_side=side_from_observer(item.get("signal"))
+            reversed_side=new_side is not None and new_side!=position["direction"]
+            invalidated=(position["direction"]=="LONG" and float(item.get("return_1h") or 0)<=-3) or (position["direction"]=="SHORT" and float(item.get("return_1h") or 0)>=3)
+            hard_stop=float(position["unrealised_return"])<=-2.25
+            mfe=float(position.get("maximum_favourable_excursion_pct") or 0)
+            trail_floor=(mfe-3.5 if mfe>=10 else mfe-2.0 if mfe>=5 else 0.50 if mfe>=3 else None)
+            profit_trail=trail_floor is not None and float(position["unrealised_return"])<=trail_floor
         else:
-            reversed_side = neutralised = invalidated = False
+            reversed_side=invalidated=hard_stop=profit_trail=False
 
-        if reversed_side or neutralised or invalidated:
-            position["status"] = "CLOSED"
-            position["exit_time"] = timestamp
-            position["exit_price"] = position["current_price"]
-            position["exit_reason"] = (
-                "Observer reversal" if reversed_side
-                else "Observer returned neutral" if neutralised
-                else "Observer invalidation"
-            )
+        # PYR lesson: NEUTRAL means no fresh edge; it is not proof the existing trade is invalid.
+        if reversed_side or invalidated or hard_stop or profit_trail:
+            position["status"]="CLOSED"
+            position["exit_time"]=timestamp
+            position["exit_price"]=position["current_price"]
+            position["exit_reason"]=("Observer reversal" if reversed_side else "Observer invalidation" if invalidated else "HARD RISK STOP" if hard_stop else "PROFIT TRAIL")
             position["realised_return"] = position["unrealised_return"]
             position["realised_pnl"] = position["unrealised_pnl"]
             wallet["cash"] += position["allocated_cash"] + position["realised_pnl"]
@@ -392,9 +401,23 @@ def update_wallet(wallet: dict, signals: list[dict], timestamp: str) -> dict:
 
     wallet["open_positions"] = keep
     open_symbols = {p["symbol"] for p in keep}
-    candidates = [
-        item for item in signals if side_from_observer(item.get("signal"))
-    ]
+    recent_closed={}
+    for closed in reversed(wallet.get("closed_positions",[])):
+        symbol=str(closed.get("symbol") or "").upper()
+        if symbol in recent_closed: continue
+        try: age_hours=(pd.Timestamp(timestamp)-pd.Timestamp(closed.get("exit_time"))).total_seconds()/3600
+        except Exception: age_hours=999
+        if age_hours<=48: recent_closed[symbol]=closed
+
+    candidates=[]
+    for raw in signals:
+        item=dict(raw); symbol=str(item.get("symbol") or "").upper()
+        direct=side_from_observer(item.get("signal"))
+        fresh=reentry_side(item) if symbol in recent_closed else None
+        if direct or fresh:
+            item["_entry_side"]=direct or fresh
+            item["_reentry"]=bool(fresh and not direct)
+            candidates.append(item)
     candidates.sort(
         key=lambda item: (
             abs(int(item.get("bullish_conditions") or 0) - int(item.get("bearish_conditions") or 0)),
@@ -407,9 +430,8 @@ def update_wallet(wallet: dict, signals: list[dict], timestamp: str) -> dict:
     reserve = float(wallet.get("starting_cash", 100000)) * float(
         wallet.get("minimum_cash_reserve_pct", 20)
     ) / 100
-    target = float(wallet.get("starting_cash", 100000)) * float(
-        wallet.get("position_size_pct", 10)
-    ) / 100
+    # Shadow Observer positions are capped while the strategy is learning.
+    target=float(wallet.get("starting_cash",100000))*min(float(wallet.get("position_size_pct",10)),2.5)/100
 
     for item in candidates:
         symbol = item["symbol"]
@@ -425,7 +447,8 @@ def update_wallet(wallet: dict, signals: list[dict], timestamp: str) -> dict:
             })
             activity["rejected"] += 1
             continue
-        allocation = min(target, max(0.0, wallet["cash"] - reserve))
+        allocation_target=target*(0.50 if item.get("_reentry") else 1.0)
+        allocation=min(allocation_target,max(0.0,wallet["cash"]-reserve))
         if allocation <= 0:
             wallet["rejected_opportunities"].append({
                 "recorded_at": timestamp,
@@ -437,7 +460,7 @@ def update_wallet(wallet: dict, signals: list[dict], timestamp: str) -> dict:
             activity["rejected"] += 1
             continue
 
-        direction = side_from_observer(item["signal"])
+        direction = item.get("_entry_side") or side_from_observer(item["signal"])
         slip = float(wallet.get("slippage_pct_per_side", 0.05)) / 100
         market_price = float(item["price"])
         entry = market_price * (1 + slip if direction == "LONG" else 1 - slip)
@@ -449,6 +472,7 @@ def update_wallet(wallet: dict, signals: list[dict], timestamp: str) -> dict:
             "narrative": item.get("narrative") or "",
             "signal": item["signal"],
             "direction": direction,
+            "entry_type": "RE-ENTRY" if item.get("_reentry") else "INITIAL",
             "entry_time": timestamp,
             "entry_price": entry,
             "market_entry_price": market_price,
@@ -459,6 +483,8 @@ def update_wallet(wallet: dict, signals: list[dict], timestamp: str) -> dict:
             "status": "OPEN",
             "unrealised_return": -round_trip_cost,
             "unrealised_pnl": -allocation * round_trip_cost / 100,
+            "maximum_favourable_excursion_pct": 0.0,
+            "maximum_adverse_excursion_pct": -round_trip_cost,
             "observer_evidence": {
                 "rvol": item.get("rvol"),
                 "rsi": item.get("rsi"),

@@ -1,19 +1,12 @@
-# V11.0.0 complete safe upload
+# V11.1.0 Complete Safe Upload
 
-Do not delete the existing `data` folder.
-
-1. Extract this ZIP.
+1. Extract the ZIP.
 2. GitHub → Add file → Upload files.
-3. Drag every extracted item into the upload area.
-4. Commit.
-5. Reboot Streamlit.
-6. Run Hourly Signal Recorder once.
+3. Upload every extracted item over the current repository.
+4. Do not delete the existing `data` folder.
+5. Commit.
+6. Reboot Streamlit.
+7. Run Hourly Signal Recorder once.
+8. Run 15-Minute Market Observer once.
 
-The workflow should show:
-
-- risk_guardian.py
-- investment_committee.py
-- portfolio_manager.py
-
-The Investment Committee runs before the Portfolio Manager so unapproved entries cannot
-be opened.
+Expected new step: `trade_review_engine.py`.

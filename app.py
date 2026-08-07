@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "11.0.0"
+APP_VERSION = "11.1.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -2823,7 +2823,40 @@ elif selection=="Performance Lab":
                 f'</div></div>',unsafe_allow_html=True
             )
             with st.expander(f"Open {p.get('symbol','')} trade review"):
-                st.json(p,expanded=False)
+                review_index={str(r.get("position_id") or ""):r for r in (trade_reviews.get("reviews") or [])}
+                review=review_index.get(str(p.get("position_id") or ""),{})
+                assessment=review.get("assessment") or {}
+                post=review.get("post_exit") or {}
+                reentry=review.get("reentry") or {}
+                def review_colour(value):
+                    value=str(value).upper()
+                    if any(k in value for k in ("GOOD","SUPPORTED","PROTECTED","CAPTURED")): return "#46d37c"
+                    if any(k in value for k in ("POOR","MISSED","WEAK","BAD")): return "#ff6868"
+                    if any(k in value for k in ("WATCH","MONITOR","PENDING","REVIEW")): return "#f0b84b"
+                    return "#6aa9ff"
+                cards=[
+                    ("Entry quality",assessment.get("entry_quality") or "UNKNOWN"),
+                    ("Exit quality",assessment.get("exit_quality") or "PENDING"),
+                    ("Re-entry",reentry.get("status") or "MONITORING"),
+                    ("Process",assessment.get("process_quality") or "PENDING"),
+                ]
+                st.markdown(
+                    '<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:4px 0 12px 0;">'+
+                    ''.join(
+                        f'<div style="background:#20252d;border:1px solid #343b45;border-left:4px solid {review_colour(v)};border-radius:10px;padding:12px;">'
+                        f'<div style="font-size:11px;color:#94a3b8;text-transform:uppercase;">{esc(k)}</div>'
+                        f'<div style="font-size:16px;font-weight:700;color:#f2f5f8;margin-top:5px;">{esc(v)}</div></div>'
+                        for k,v in cards
+                    )+'</div>',unsafe_allow_html=True
+                )
+                c1,c2,c3=st.columns(3)
+                c1.metric("Best move while held",f"{safe_float(review.get('maximum_favourable_excursion_pct')):+.2f}%")
+                c2.metric("Move after exit",f"{safe_float(post.get('directional_move_since_exit_pct')):+.2f}%")
+                c3.metric("Hours since exit",f"{safe_float(post.get('hours_since_exit')):.1f}")
+                st.markdown(
+                    f'<div class="summary-box"><b>Lesson:</b> {esc(assessment.get("lesson") or "Collecting post-trade evidence.")}</div>',
+                    unsafe_allow_html=True,
+                )
 
     with tabs[1]:
         section("Performance by wallet")
