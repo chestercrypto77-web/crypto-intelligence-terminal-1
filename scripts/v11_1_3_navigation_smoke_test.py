@@ -3,7 +3,7 @@ import json,re
 ROOT=Path(__file__).resolve().parents[1]
 app=(ROOT/"app.py").read_text(encoding="utf-8")
 
-assert 'APP_VERSION = "11.1.3"' in app
+assert 'APP_VERSION = "12.0.0"' in app
 
 m=re.search(r'st\.sidebar\.radio\("Navigation",\[(.*?)\],label_visibility="collapsed"\)',app,re.S)
 assert m, "Navigation missing"

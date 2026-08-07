@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "11.1.3"
+APP_VERSION = "12.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1717,6 +1717,7 @@ SCALP_CHECKPOINTS_FILE = Path(__file__).with_name("data") / "scalp_checkpoints.j
 SCALP_LEARNING_FILE = Path(__file__).with_name("data") / "scalp_learning.json"
 TRADE_LESSONS_FILE = Path(__file__).with_name("data") / "trade_lessons.json"
 TRADE_REVIEWS_FILE = Path(__file__).with_name("data") / "trade_reviews.json"
+LEARNING_STATE_FILE = Path(__file__).with_name("data") / "learning_state.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
 FUND_STATE_FILE = Path(__file__).with_name("data") / "fund_state.json"
 SWING_WALLET_FILE = Path(__file__).with_name("data") / "swing_wallet.json"
@@ -2563,381 +2564,109 @@ elif selection=="Trading Desk":
     swing=read_runtime_json(SWING_WALLET_FILE,{})
     scalp=read_runtime_json(SCALP_WALLET_FILE,{})
     manager=read_runtime_json(PORTFOLIO_MANAGER_FILE,{"actions":[]})
-    lessons=read_runtime_json(TRADE_LESSONS_FILE,{})
-    st.markdown('<div class="summary-box"><b>AI Fund:</b> simple front-line view of what is being bought, held, protected and exited. The detailed reasoning stays inside the platform and is available only when a position is opened.</div>',unsafe_allow_html=True)
-    if fund.get("status")!="ACTIVE":
-        st.warning("V10 AI Fund is awaiting its one-time initialisation workflow. No V10 capital is active yet.")
-    wallets=[("Core",core,"good"),("Swing",swing,"info"),("Scalp",scalp,"warn")]
-    st.markdown('<div class="performance-strip">'+''.join(
-        f'<div class="performance-card {css if wallet_return_pct(w)>=0 else "bad"}"><div class="performance-label">{name} Portfolio</div><div class="performance-value">${wallet_equity(w):,.2f}</div><div class="performance-note">{wallet_return_pct(w):+.2f}% · {len(w.get("open_positions") or [])} open · {len(w.get("closed_positions") or [])} closed</div></div>'
-        for name,w,css in wallets)+'</div>',unsafe_allow_html=True)
-    tabs=st.tabs(["Open Positions","Recent Exits","Wallets","Learning"])
-    with tabs[0]:
-        rows=[]
-        for name,w,_ in wallets:
-            for p in w.get("open_positions") or []: rows.append((name,p))
-        if not rows: st.caption("No V10 positions are open.")
-        for book,p in rows:
-            ret=safe_float(p.get("unrealised_return")); pnl=safe_float(p.get("unrealised_pnl")); css="profit" if pnl>0 else "loss" if pnl<0 else "active"
-            status="PROTECT PROFIT" if ret>=3 else "HOLD"
-            st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid"><div><div class="front-trade-title">{esc(p.get("symbol",""))} · {book}</div><div class="front-trade-sub">{esc(p.get("direction",""))} · {esc(p.get("signal",""))}</div></div><div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div><div><div class="front-trade-k">Current</div><div class="front-trade-v">{safe_float(p.get("current_price")):,.6f}</div></div><div><div class="front-trade-k">P/L</div><div class="front-trade-v">{ret:+.2f}%</div></div><div><div class="front-trade-k">P/L $</div><div class="front-trade-v">${pnl:+,.2f}</div></div><div><div class="front-trade-k">Action</div><div class="front-trade-v">{status}</div></div></div></div>',unsafe_allow_html=True)
-            with st.expander(f'Open {p.get("symbol","")} details'): st.json(p,expanded=False)
-    with tabs[1]:
-        rows=[]
-        for name,w,_ in wallets:
-            for p in w.get("closed_positions") or []: rows.append((name,p))
-        rows=sorted(rows,key=lambda x:str(x[1].get("exit_time") or ""),reverse=True)
-        if not rows: st.caption("No V10 exits yet.")
-        for book,p in rows[:200]:
-            pnl=safe_float(p.get("realised_pnl")); css="profit" if pnl>0 else "loss"
-            st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid"><div><div class="front-trade-title">{esc(p.get("symbol",""))} · {book}</div><div class="front-trade-sub">{esc(p.get("exit_reason",""))}</div></div><div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div><div><div class="front-trade-k">Exit</div><div class="front-trade-v">{safe_float(p.get("exit_price")):,.6f}</div></div><div><div class="front-trade-k">Return</div><div class="front-trade-v">{safe_float(p.get("realised_return")):+.2f}%</div></div><div><div class="front-trade-k">P/L</div><div class="front-trade-v">${pnl:+,.2f}</div></div><div><div class="front-trade-k">Result</div><div class="front-trade-v">{"WIN" if pnl>0 else "LOSS"}</div></div></div></div>',unsafe_allow_html=True)
-            with st.expander(f'Review {p.get("symbol","")} trade'): st.json(p,expanded=False)
-    with tabs[2]:
-        st.dataframe(pd.DataFrame([{"Book":n,"Starting":wallet_start(w),"Equity":wallet_equity(w),"Return %":wallet_return_pct(w),"Cash":safe_float(w.get("cash")),"Open":len(w.get("open_positions") or []),"Closed":len(w.get("closed_positions") or []),"Realised P/L":safe_float(w.get("realised_pnl")),"Unrealised P/L":safe_float(w.get("unrealised_pnl"))} for n,w,_ in wallets]),use_container_width=True,hide_index=True)
-    with tabs[3]:
-        lg=lessons or {}; cols=st.columns(5)
-        vals=[("Trades",lg.get("closed_trades",0)),("Win rate",f'{safe_float(lg.get("win_rate")):.1f}%'),("Net P/L",f'${safe_float(lg.get("net_pnl")):+,.2f}'),("Expectancy",f'{safe_float(lg.get("expectancy_pct")):+.2f}%'),("Profit factor",f'{safe_float(lg.get("profit_factor")):.2f}')]
-        for c,(a,b) in zip(cols,vals):
-            with c: metric(a,str(b),"V10 evidence")
-        with st.expander("Internal learning record"): st.json(lg,expanded=False)
-
-elif selection=="Intelligence":
-    external_status=read_runtime_json(EXTERNAL_STATUS_FILE,{})
-    inbox=read_runtime_json(EXTERNAL_INBOX_FILE,[])
-    external_calls=read_runtime_json(EXTERNAL_CALLS_FILE,[])
-    latest=read_runtime_json(SIGNALS_LATEST_FILE,{"signals":[]})
-
-    st.markdown('<div class="summary-box"><b>Intelligence hub:</b> external research and supporting evidence are collected here. Daily decisions remain on Watch and Trading Desk.</div>',unsafe_allow_html=True)
-    tabs=st.tabs(["Latest Research","External Calls","Market Evidence","Source Health"])
-    with tabs[0]:
-        items=list(reversed(inbox[-100:]))
-        if items:
-            for item in items[:50]:
-                with st.expander(f'{item.get("source_name") or item.get("source_id","Source")} · {item.get("title","Untitled")}'):
-                    st.write(item.get("summary") or "No summary available.")
-                    st.caption(f'Published: {item.get("published_at") or "Unknown"} · Recorded: {item.get("recorded_at") or "Unknown"}')
-        else: st.caption("No external research items.")
-    with tabs[1]:
-        if external_calls: st.dataframe(pd.DataFrame(external_calls),use_container_width=True,hide_index=True)
-        else: st.caption("No reviewed external calls.")
-    with tabs[2]:
-        signals=latest.get("signals") or []
-        if signals:
-            st.dataframe(pd.DataFrame([{
-                "Asset":x.get("symbol"),"Signal":x.get("signal"),"4H %":x.get("return_4h"),
-                "24H %":x.get("return_24h"),"RVOL":x.get("rvol"),"Bullish":x.get("bullish"),
-                "Bearish":x.get("bearish"),"Source":x.get("data_source")
-            } for x in signals]),use_container_width=True,hide_index=True)
-        else: st.caption("No current signal evidence.")
-    with tabs[3]:
-        st.json(external_status,expanded=False)
+    wallets=[("Core",core),("Swing",swing),("Scalp",scalp)]
+    st.markdown('<div class="summary-box"><b>Trading Desk:</b> what we are trading, what it is doing, and what action the engine is taking. Detailed evidence stays behind each position.</div>',unsafe_allow_html=True)
+    open_rows=[(book,p) for book,w in wallets for p in (w.get("open_positions") or [])]
+    c1,c2,c3,c4=st.columns(4)
+    with c1: metric("Active trades",str(len(open_rows)),"Across all books")
+    with c2: metric("Core",f"${wallet_equity(core):,.0f}",f"{wallet_return_pct(core):+.2f}%")
+    with c3: metric("Swing",f"${wallet_equity(swing):,.0f}",f"{wallet_return_pct(swing):+.2f}%")
+    with c4: metric("Scalp",f"${wallet_equity(scalp):,.0f}",f"{wallet_return_pct(scalp):+.2f}%")
+    section("Active trades")
+    if not open_rows: st.caption("No positions are open. Waiting is a valid decision.")
+    for book,p in sorted(open_rows,key=lambda x:safe_float(x[1].get("unrealised_pnl")),reverse=True):
+        ret=safe_float(p.get("unrealised_return")); pnl=safe_float(p.get("unrealised_pnl"))
+        css="profit" if pnl>0 else "loss" if pnl<0 else "active"
+        action="PROTECT PROFIT" if ret>=3 else "REVIEW RISK" if ret<=-1.5 else "HOLD / WATCH"
+        st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
+            f'<div><div class="front-trade-title">{esc(p.get("symbol",""))} · {book}</div><div class="front-trade-sub">{esc(p.get("direction",""))} · {esc(p.get("signal",""))}</div></div>'
+            f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div>'
+            f'<div><div class="front-trade-k">Current</div><div class="front-trade-v">{safe_float(p.get("current_price")):,.6f}</div></div>'
+            f'<div><div class="front-trade-k">Return</div><div class="front-trade-v">{ret:+.2f}%</div></div>'
+            f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">${pnl:+,.2f}</div></div>'
+            f'<div><div class="front-trade-k">Action</div><div class="front-trade-v">{action}</div></div></div></div>',unsafe_allow_html=True)
+        with st.expander(f"Open {p.get('symbol','')} details"):
+            decision=((p.get("committee_snapshot") or {}).get("decision") or {})
+            a,b,c=st.columns(3)
+            with a: metric("Committee",str(decision.get("quality") or "Legacy"),str(decision.get("action") or ""))
+            with b: metric("Best move",f"{safe_float(p.get('maximum_favourable_excursion_pct')):+.2f}%","Since entry")
+            with c: metric("Worst move",f"{safe_float(p.get('maximum_adverse_excursion_pct')):+.2f}%","Since entry")
+    section("Recent decisions")
+    actions=list(reversed((manager.get("actions") or [])[-12:]))
+    if actions:
+        st.dataframe(pd.DataFrame([{"Asset":a.get("symbol"),"Book":a.get("book"),"Action":a.get("action"),
+            "Reason":a.get("reason") or a.get("detail"),"P/L":a.get("pnl")} for a in actions]),
+            use_container_width=True,hide_index=True)
+    else: st.caption("No recent portfolio actions.")
 
 elif selection=="Strategy Lab":
-    lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{},"assumptions":{}})
+    lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{}})
     strategies=lab.get("strategies") or {}
-    assumptions=lab.get("assumptions") or {}
-
-    st.markdown(
-        '<div class="summary-box"><b>Strategy Lab:</b> compare the Champion and Challengers at a glance. '
-        'Only meaningful performance is shown on the front line; trade journals and raw records stay behind each strategy.</div>',
-        unsafe_allow_html=True,
-    )
-
-    if not strategies:
-        st.info("Run Hourly Signal Recorder to initialise the Strategy Lab.")
+    st.markdown('<div class="summary-box"><b>Strategy Lab:</b> which approach is currently doing the best job. This is a competition of decision quality, not a wall of statistics.</div>',unsafe_allow_html=True)
+    if not strategies: st.info("Run Hourly Signal Recorder to initialise the Strategy Lab.")
     else:
-        # Front-line strategy cards
-        cards=[]
-        for sid,wallet in strategies.items():
-            metrics=wallet.get("metrics") or {}
-            role=wallet.get("role","CHALLENGER")
-            css="champion" if role=="CHAMPION" else "challenger"
-            cards.append(
-                f'<div class="strategy-card {css}">'
-                f'<div class="performance-label">{esc(role)} · {esc(wallet.get("name",sid))}</div>'
-                f'<div class="performance-value">${wallet_equity(wallet):,.2f}</div>'
-                f'<div class="performance-note">{wallet_return_pct(wallet):+.2f}% total · '
-                f'{safe_float(wallet.get("equity_change_this_run")):+,.2f} latest · '
-                f'{len(wallet.get("open_positions") or [])} open · {len(wallet.get("closed_positions") or [])} closed</div>'
-                f'<div class="performance-note">Win rate {safe_float(metrics.get("win_rate")):.1f}% · Drawdown {safe_float(metrics.get("max_drawdown")):.2f}%</div>'
-                f'</div>'
-            )
-        st.markdown('<div class="strategy-card-grid">'+"".join(cards)+'</div>',unsafe_allow_html=True)
-
-        # Meaningful equity chart only when history exists
-        section("Wallet equity comparison")
-        frames=[]
-        for sid,wallet in strategies.items():
-            history=pd.DataFrame(wallet.get("equity_history") or [])
-            if len(history)<2 or "recorded_at" not in history.columns or "equity" not in history.columns:
-                continue
-            history["recorded_at"]=pd.to_datetime(history["recorded_at"],errors="coerce")
-            history=history.dropna(subset=["recorded_at"])[["recorded_at","equity"]]
-            history["strategy"]=wallet.get("name",sid)
-            frames.append(history)
-        if frames:
-            curve=pd.concat(frames,ignore_index=True)
-            pivot=curve.pivot_table(index="recorded_at",columns="strategy",values="equity",aggfunc="last")
-            st.line_chart(pivot,use_container_width=True)
-        else:
-            st.caption("Collecting enough history for a meaningful strategy equity chart.")
-
-        section("Strategy detail")
-        choices={f'{wallet.get("name",sid)} · {wallet.get("role","CHALLENGER")}':sid for sid,wallet in strategies.items()}
-        selected_label=st.selectbox("Select strategy",list(choices.keys()))
-        wallet=strategies[choices[selected_label]]
-        metrics=wallet.get("metrics") or {}
-        detail_tiles=[
-            ("Equity",f"${wallet_equity(wallet):,.2f}",f"{wallet_return_pct(wallet):+.2f}%","good" if wallet_return_pct(wallet)>0 else "bad"),
-            ("Latest change",f"${safe_float(wallet.get('equity_change_this_run')):+,.2f}","This run","info"),
-            ("Open",str(len(wallet.get("open_positions") or [])),"Positions","warn"),
-            ("Closed",str(len(wallet.get("closed_positions") or [])),"Trades","neutral"),
-            ("Win rate",f"{safe_float(metrics.get('win_rate')):.1f}%","Closed trades","info"),
-        ]
-        st.markdown(
-            '<div class="performance-strip">'+
-            "".join(
-                f'<div class="performance-card {css}"><div class="performance-label">{label}</div>'
-                f'<div class="performance-value">{value}</div><div class="performance-note">{note}</div></div>'
-                for label,value,note,css in detail_tiles
-            )+
-            '</div>',unsafe_allow_html=True
-        )
-
-        tabs=st.tabs(["Open Trades","Closed Trades","Activity","Rejected","Health"])
-        with tabs[0]:
-            positions=wallet.get("open_positions") or []
-            if positions:
-                for p in positions:
-                    pnl=safe_float(p.get("unrealised_pnl"))
-                    css="profit" if pnl>0 else "loss" if pnl<0 else "active"
-                    st.markdown(
-                        f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
-                        f'<div><div class="front-trade-title">{esc(p.get("symbol",""))}</div><div class="front-trade-sub">{esc(p.get("direction",""))} · {esc(p.get("signal",""))}</div></div>'
-                        f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div>'
-                        f'<div><div class="front-trade-k">Current</div><div class="front-trade-v">{safe_float(p.get("current_price")):,.6f}</div></div>'
-                        f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">{safe_float(p.get("unrealised_return")):+.2f}%</div></div>'
-                        f'<div><div class="front-trade-k">Capital</div><div class="front-trade-v">${safe_float(p.get("allocated_cash")):,.0f}</div></div>'
-                        f'<div><div class="front-trade-k">State</div><div class="front-trade-v">OPEN</div></div>'
-                        f'</div></div>',unsafe_allow_html=True
-                    )
-                    with st.expander(f"Open {p.get('symbol','')} details"): st.json(p,expanded=False)
-            else:
-                st.caption("No open positions.")
-        with tabs[1]:
-            closed=wallet.get("closed_positions") or []
-            if closed:
-                for p in reversed(closed[-200:]):
-                    pnl=safe_float(p.get("realised_pnl"))
-                    css="profit" if pnl>0 else "loss" if pnl<0 else "watch"
-                    st.markdown(
-                        f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
-                        f'<div><div class="front-trade-title">{esc(p.get("symbol",""))}</div><div class="front-trade-sub">{esc(p.get("exit_reason",""))}</div></div>'
-                        f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div>'
-                        f'<div><div class="front-trade-k">Exit</div><div class="front-trade-v">{safe_float(p.get("exit_price")):,.6f}</div></div>'
-                        f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">{safe_float(p.get("realised_return")):+.2f}%</div></div>'
-                        f'<div><div class="front-trade-k">Result</div><div class="front-trade-v">${pnl:+,.2f}</div></div>'
-                        f'<div><div class="front-trade-k">Outcome</div><div class="front-trade-v">{"WIN" if pnl>0 else "LOSS" if pnl<0 else "FLAT"}</div></div>'
-                        f'</div></div>',unsafe_allow_html=True
-                    )
-                    with st.expander(f"Review {p.get('symbol','')} trade"): st.json(p,expanded=False)
-            else:
-                st.caption("No closed trades.")
-        with tabs[2]:
-            journal=wallet.get("activity_journal") or []
-            if journal:
-                st.dataframe(pd.DataFrame(list(reversed(journal[-300:]))),use_container_width=True,hide_index=True)
-            else:
-                st.caption("No activity journal yet.")
-        with tabs[3]:
-            rejected=wallet.get("rejected_opportunities") or []
-            if rejected:
-                st.dataframe(pd.DataFrame(list(reversed(rejected[-200:]))),use_container_width=True,hide_index=True)
-            else:
-                st.caption("No rejected opportunities.")
-        with tabs[4]:
-            st.json(wallet.get("heartbeat") or {},expanded=False)
+        ranked=sorted(strategies.items(),key=lambda x:(wallet_return_pct(x[1]),safe_float((x[1].get("metrics") or {}).get("win_rate"))),reverse=True)
+        section("Strategy competition")
+        for rank,(sid,wallet) in enumerate(ranked,1):
+            metrics=wallet.get("metrics") or {}; positions=wallet.get("open_positions") or []
+            best=max(positions,key=lambda p:safe_float(p.get("unrealised_pnl")),default={})
+            now_state=f'{best.get("symbol")} {best.get("direction")}' if best else "WAITING"
+            css="profit" if wallet_return_pct(wallet)>0 else "loss" if wallet_return_pct(wallet)<0 else "watch"
+            st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
+                f'<div><div class="front-trade-title">#{rank} · {esc(wallet.get("name",sid))}</div><div class="front-trade-sub">{esc(wallet.get("role","CHALLENGER"))}</div></div>'
+                f'<div><div class="front-trade-k">Equity</div><div class="front-trade-v">${wallet_equity(wallet):,.0f}</div></div>'
+                f'<div><div class="front-trade-k">Return</div><div class="front-trade-v">{wallet_return_pct(wallet):+.2f}%</div></div>'
+                f'<div><div class="front-trade-k">Win rate</div><div class="front-trade-v">{safe_float(metrics.get("win_rate")):.1f}%</div></div>'
+                f'<div><div class="front-trade-k">Now</div><div class="front-trade-v">{esc(now_state)}</div></div>'
+                f'<div><div class="front-trade-k">Trades</div><div class="front-trade-v">{len(wallet.get("closed_positions") or [])}</div></div></div></div>',unsafe_allow_html=True)
+            with st.expander(f"Open {wallet.get('name',sid)}"):
+                a,b,c,d=st.columns(4)
+                with a: metric("Open",str(len(positions)),"Current")
+                with b: metric("Closed",str(len(wallet.get("closed_positions") or [])),"Evidence")
+                with c: metric("Drawdown",f"{safe_float(metrics.get('max_drawdown')):.2f}%","Risk")
+                with d: metric("Latest",f"${safe_float(wallet.get('equity_change_this_run')):+,.2f}","Last run")
+                if positions:
+                    for p in positions[:8]: st.write(f'{p.get("symbol")} · {p.get("direction")} · {safe_float(p.get("unrealised_return")):+.2f}%')
+                else: st.caption("No trade is currently good enough for this strategy.")
 
 elif selection=="Performance Lab":
-    research_wallet=read_runtime_json(RESEARCH_WALLET_FILE,{})
-    observer_wallet=read_runtime_json(OBSERVER_WALLET_FILE,{})
-    strategy_lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{}})
-    timing=read_runtime_json(SIGNAL_TIMING_FILE,{"assets":{}})
-
     trade_reviews=read_runtime_json(TRADE_REVIEWS_FILE,{"reviews":[],"summary":{}})
-    wallets=[("Research Wallet",research_wallet),("15M Observer",observer_wallet)]
-    wallets.extend((wallet.get("name",sid),wallet) for sid,wallet in (strategy_lab.get("strategies") or {}).items())
-
-    all_closed=[]
-    for wallet_name,wallet in wallets:
-        for p in wallet.get("closed_positions") or []:
-            all_closed.append((wallet_name,p))
-
-    wins=[x for x in all_closed if safe_float(x[1].get("realised_pnl"))>0]
-    losses=[x for x in all_closed if safe_float(x[1].get("realised_pnl"))<0]
-    total_pnl=sum(safe_float(x[1].get("realised_pnl")) for x in all_closed)
-    avg_return=sum(safe_float(x[1].get("realised_return")) for x in all_closed)/len(all_closed) if all_closed else 0.0
-    win_rate=len(wins)/len(all_closed)*100 if all_closed else 0.0
-
-    st.markdown(
-        '<div class="summary-box"><b>Performance Lab:</b> what worked, what failed and what the platform '
-        'is learning. Front-line results stay simple; complete trade records remain behind each card.</div>',
-        unsafe_allow_html=True,
-    )
-
-    summary_tiles=[
-        ("Closed trades",str(len(all_closed)),"Completed evidence","info"),
-        ("Win rate",f"{win_rate:.1f}%","Profitable trades","good" if win_rate>=50 else "bad"),
-        ("Net realised",f"${total_pnl:+,.2f}","Across wallets","good" if total_pnl>0 else "bad"),
-        ("Average return",f"{avg_return:+.2f}%","Per closed trade","good" if avg_return>0 else "bad"),
-        ("Observer comparisons",str(sum(len((a.get("comparisons") or [])) for a in (timing.get("assets") or {}).values())),"Timing matches","warn"),
-    ]
-    st.markdown(
-        '<div class="performance-strip">'+
-        "".join(
-            f'<div class="performance-card {css}"><div class="performance-label">{label}</div>'
-            f'<div class="performance-value">{value}</div><div class="performance-note">{note}</div></div>'
-            for label,value,note,css in summary_tiles
-        )+
-        '</div>',unsafe_allow_html=True
-    )
-
-    tabs=st.tabs(["Recent Results","By Wallet","Equity","Observer Timing","Learning"])
-
-    with tabs[0]:
-        section("Recent completed trades")
-        recent=sorted(all_closed,key=lambda x:str(x[1].get("exit_time") or ""),reverse=True)
-        if not recent:
-            st.caption("No completed trades yet.")
-        for wallet_name,p in recent[:250]:
-            pnl=safe_float(p.get("realised_pnl"))
-            ret=safe_float(p.get("realised_return"))
-            css="profit" if pnl>0 else "loss" if pnl<0 else "watch"
-            st.markdown(
-                f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
-                f'<div><div class="front-trade-title">{esc(p.get("symbol",""))} · {esc(wallet_name)}</div>'
-                f'<div class="front-trade-sub">{esc(p.get("direction",""))} · {esc(p.get("exit_reason",""))}</div></div>'
-                f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div>'
-                f'<div><div class="front-trade-k">Exit</div><div class="front-trade-v">{safe_float(p.get("exit_price")):,.6f}</div></div>'
-                f'<div><div class="front-trade-k">Return</div><div class="front-trade-v">{ret:+.2f}%</div></div>'
-                f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">${pnl:+,.2f}</div></div>'
-                f'<div><div class="front-trade-k">Result</div><div class="front-trade-v">{"GOOD" if pnl>0 else "BAD" if pnl<0 else "FLAT"}</div></div>'
-                f'</div></div>',unsafe_allow_html=True
-            )
-            with st.expander(f"Open {p.get('symbol','')} trade review"):
-                review_index={str(r.get("position_id") or ""):r for r in (trade_reviews.get("reviews") or [])}
-                review=review_index.get(str(p.get("position_id") or ""),{})
-                assessment=review.get("assessment") or {}
-                post=review.get("post_exit") or {}
-                reentry=review.get("reentry") or {}
-                def review_colour(value):
-                    value=str(value).upper()
-                    if any(k in value for k in ("GOOD","SUPPORTED","PROTECTED","CAPTURED")): return "#46d37c"
-                    if any(k in value for k in ("POOR","MISSED","WEAK","BAD")): return "#ff6868"
-                    if any(k in value for k in ("WATCH","MONITOR","PENDING","REVIEW")): return "#f0b84b"
-                    return "#6aa9ff"
-                cards=[
-                    ("Entry quality",assessment.get("entry_quality") or "UNKNOWN"),
-                    ("Exit quality",assessment.get("exit_quality") or "PENDING"),
-                    ("Re-entry",reentry.get("status") or "MONITORING"),
-                    ("Process",assessment.get("process_quality") or "PENDING"),
-                ]
-                st.markdown(
-                    '<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:4px 0 12px 0;">'+
-                    ''.join(
-                        f'<div style="background:#20252d;border:1px solid #343b45;border-left:4px solid {review_colour(v)};border-radius:10px;padding:12px;">'
-                        f'<div style="font-size:11px;color:#94a3b8;text-transform:uppercase;">{esc(k)}</div>'
-                        f'<div style="font-size:16px;font-weight:700;color:#f2f5f8;margin-top:5px;">{esc(v)}</div></div>'
-                        for k,v in cards
-                    )+'</div>',unsafe_allow_html=True
-                )
-                c1,c2,c3=st.columns(3)
-                c1.metric("Best move while held",f"{safe_float(review.get('maximum_favourable_excursion_pct')):+.2f}%")
-                c2.metric("Move after exit",f"{safe_float(post.get('directional_move_since_exit_pct')):+.2f}%")
-                c3.metric("Hours since exit",f"{safe_float(post.get('hours_since_exit')):.1f}")
-                st.markdown(
-                    f'<div class="summary-box"><b>Lesson:</b> {esc(assessment.get("lesson") or "Collecting post-trade evidence.")}</div>',
-                    unsafe_allow_html=True,
-                )
-
-    with tabs[1]:
-        section("Performance by wallet")
-        rows=[]
-        for name,wallet in wallets:
-            closed=wallet.get("closed_positions") or []
-            wallet_wins=[p for p in closed if safe_float(p.get("realised_pnl"))>0]
-            metrics=wallet.get("metrics") or {}
-            rows.append({
-                "Wallet":name,
-                "Equity":wallet_equity(wallet),
-                "Return %":wallet_return_pct(wallet),
-                "Closed":len(closed),
-                "Win rate %":len(wallet_wins)/len(closed)*100 if closed else safe_float(metrics.get("win_rate")),
-                "Realised P/L":safe_float(wallet.get("realised_pnl")),
-                "Unrealised P/L":safe_float(wallet.get("unrealised_pnl")),
-                "Max drawdown %":safe_float(metrics.get("max_drawdown")),
-            })
-        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
-
-    with tabs[2]:
-        section("Meaningful equity curves")
-        frames=[]
-        for name,wallet in wallets:
-            history=pd.DataFrame(wallet.get("equity_history") or [])
-            if len(history)<2 or "recorded_at" not in history.columns or "equity" not in history.columns:
-                continue
-            history["recorded_at"]=pd.to_datetime(history["recorded_at"],errors="coerce")
-            history=history.dropna(subset=["recorded_at"])[["recorded_at","equity"]]
-            history["wallet"]=name
-            frames.append(history)
-        if frames:
-            curve=pd.concat(frames,ignore_index=True)
-            pivot=curve.pivot_table(index="recorded_at",columns="wallet",values="equity",aggfunc="last")
-            st.line_chart(pivot,use_container_width=True)
-        else:
-            st.caption("Collecting enough wallet history for a meaningful chart.")
-
-    with tabs[3]:
-        section("15-minute Observer versus hourly")
-        rows=[]
-        for symbol,asset in (timing.get("assets") or {}).items():
-            for comp in asset.get("comparisons") or []:
-                observer_price=comp.get("observer_price")
-                hourly_price=comp.get("hourly_price")
-                advantage=None
-                if observer_price and hourly_price:
-                    raw=(safe_float(hourly_price)/safe_float(observer_price)-1)*100 if safe_float(observer_price) else 0
-                    advantage=raw if comp.get("direction")=="LONG" else -raw
-                rows.append({
-                    "Asset":symbol,
-                    "Direction":comp.get("direction"),
-                    "Lead minutes":comp.get("lead_minutes"),
-                    "Observer price":observer_price,
-                    "Hourly price":hourly_price,
-                    "Early price advantage %":advantage,
-                })
-        if rows:
-            st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
-        else:
-            st.caption("Collecting matched Observer and hourly signals.")
-
-    with tabs[4]:
-        section("Current learning evidence")
-        if len(all_closed)<20:
-            st.info(f"Collecting evidence — {len(all_closed)}/20 closed trades before pattern conclusions should be considered.")
-        else:
-            best=sorted(all_closed,key=lambda x:safe_float(x[1].get("realised_return")),reverse=True)[:5]
-            worst=sorted(all_closed,key=lambda x:safe_float(x[1].get("realised_return")))[:5]
-            st.markdown("**Best completed trades**")
-            st.dataframe(pd.DataFrame([{
-                "Wallet":w,"Asset":p.get("symbol"),"Return %":p.get("realised_return"),
-                "P/L":p.get("realised_pnl"),"Exit":p.get("exit_reason")
-            } for w,p in best]),use_container_width=True,hide_index=True)
-            st.markdown("**Worst completed trades**")
-            st.dataframe(pd.DataFrame([{
-                "Wallet":w,"Asset":p.get("symbol"),"Return %":p.get("realised_return"),
-                "P/L":p.get("realised_pnl"),"Exit":p.get("exit_reason")
-            } for w,p in worst]),use_container_width=True,hide_index=True)
+    learning=read_runtime_json(LEARNING_STATE_FILE,{"summary":{},"rule_candidates":[]})
+    reviews=trade_reviews.get("reviews") or []; summary=learning.get("summary") or {}
+    st.markdown('<div class="summary-box"><b>Performance Lab:</b> what the engine learned from real trades. A win is not automatically a good decision and a loss is not automatically a bad decision.</div>',unsafe_allow_html=True)
+    c1,c2,c3,c4,c5=st.columns(5)
+    with c1: metric("Reviewed",str(summary.get("trades_reviewed",len(reviews))),"Cases")
+    with c2: metric("Good process",str(summary.get("good_process",0)),"Repeat")
+    with c3: metric("Poor process",str(summary.get("poor_process",0)),"Correct")
+    with c4: metric("Missed re-entry",str(summary.get("missed_reentries",0)),"Opportunity failures")
+    with c5: metric("Lessons testing",str(summary.get("candidate_lessons",0)),"Sample gated")
+    section("Recent lessons")
+    if not reviews: st.caption("No reviewed trades yet.")
+    for r in list(reversed(reviews[-80:])):
+        pnl=safe_float(r.get("realised_pnl")); ret=safe_float(r.get("realised_return"))
+        a=r.get("assessment") or {}; reentry=r.get("reentry") or {}; process=str(a.get("process_quality") or "PENDING")
+        css="profit" if process=="GOOD" else "loss" if process=="POOR" else "watch"
+        st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
+            f'<div><div class="front-trade-title">{esc(r.get("symbol",""))} · {esc(r.get("wallet",""))}</div><div class="front-trade-sub">{esc(r.get("direction",""))} · {esc(r.get("exit_reason",""))}</div></div>'
+            f'<div><div class="front-trade-k">Result</div><div class="front-trade-v">{ret:+.2f}%</div></div>'
+            f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">${pnl:+,.2f}</div></div>'
+            f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{esc(a.get("entry_quality") or "UNKNOWN")}</div></div>'
+            f'<div><div class="front-trade-k">Process</div><div class="front-trade-v">{esc(process)}</div></div>'
+            f'<div><div class="front-trade-k">Re-entry</div><div class="front-trade-v">{esc(reentry.get("status") or "MONITORING")}</div></div></div></div>',unsafe_allow_html=True)
+        with st.expander(f"Open {r.get('symbol','')} lesson"):
+            st.markdown(f'<div class="summary-box"><b>Lesson:</b> {esc(a.get("lesson") or "Still collecting evidence.")}</div>',unsafe_allow_html=True)
+            x,y,z=st.columns(3)
+            with x: metric("Entry quality",str(a.get("entry_quality") or "UNKNOWN"),"At entry")
+            with y: metric("Exit quality",str(a.get("exit_quality") or "PENDING"),"Management")
+            with z: metric("Move after exit",f"{safe_float((r.get('post_exit') or {}).get('directional_move_since_exit_pct')):+.2f}%","Re-entry evidence")
+    section("Learning under test")
+    candidates=learning.get("rule_candidates") or []
+    if candidates:
+        st.dataframe(pd.DataFrame([{"Evidence":x.get("key"),"Samples":x.get("samples"),"Expectancy %":x.get("expectancy_pct"),
+            "Win rate %":x.get("win_rate"),"Direction":x.get("direction"),"Status":x.get("status")} for x in candidates[:20]]),
+            use_container_width=True,hide_index=True)
+    else: st.caption("No lesson has enough repeated evidence yet. The engine is collecting examples instead of forcing conclusions.")
+    st.caption("Learned rules remain advisory until repeated evidence is strong enough. V12 never rewrites trading rules automatically.")
 
 elif selection=="Settings":
     engine_health=read_runtime_json(ENGINE_HEALTH_FILE,{})

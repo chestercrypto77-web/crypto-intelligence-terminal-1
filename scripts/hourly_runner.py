@@ -34,6 +34,7 @@ def main() -> int:
     run("portfolio_manager.py")
     run("observer_15m.py", required=False)
     run("trade_review_engine.py", required=False)
+    run("learning_engine.py", required=False)
     return 0
 
 
