@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "11.1.1"
+APP_VERSION = "11.1.3"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1716,6 +1716,7 @@ SCALP_WALLET_FILE = Path(__file__).with_name("data") / "scalp_wallet.json"
 SCALP_CHECKPOINTS_FILE = Path(__file__).with_name("data") / "scalp_checkpoints.json"
 SCALP_LEARNING_FILE = Path(__file__).with_name("data") / "scalp_learning.json"
 TRADE_LESSONS_FILE = Path(__file__).with_name("data") / "trade_lessons.json"
+TRADE_REVIEWS_FILE = Path(__file__).with_name("data") / "trade_reviews.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
 FUND_STATE_FILE = Path(__file__).with_name("data") / "fund_state.json"
 SWING_WALLET_FILE = Path(__file__).with_name("data") / "swing_wallet.json"
@@ -1897,16 +1898,16 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Markets","Watch","Trading Desk","Intelligence","Strategy Lab","Performance Lab","Settings"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Trading Desk","Strategy Lab","Performance Lab","Settings"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
 titles = {
     "Today":("Today","Your five-minute market, portfolio and trading briefing."),
+    "Portfolio":("Portfolio","Your holdings, live value, allocation and portfolio structure."),
     "Markets":("Markets","Top projects by narrative with clean price and volume context."),
     "Watch":("Watch","What deserves attention now, with detail hidden behind each asset."),
     "Trading Desk":("Trading Desk","All paper wallets, positions, completed trades and external calls in one place."),
-    "Intelligence":("Intelligence","Research, news, analyst calls and supporting evidence."),
     "Strategy Lab":("Strategy Lab","Champion and challenger strategies, kept separate from daily use."),
     "Performance Lab":("Performance Lab","Trade outcomes, lessons and evidence about what is working."),
     "Settings":("Settings","Workflow status, data health and platform controls."),
