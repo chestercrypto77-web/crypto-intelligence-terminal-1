@@ -1,14 +1,58 @@
-# Crypto Intelligence Terminal V10.0.0
+# Crypto Intelligence Terminal V11.0.0
 
-## AI Fund Reset and Portfolio Manager
+## Investment Committee Foundation
 
-V10 archives the old experimental wallets, preserves accumulated knowledge and begins a clean measurable baseline.
+V11 adds a behind-the-scenes Investment Committee. The visible interface remains
+simple. The committee analyses every asset before the Portfolio Manager may allocate
+capital.
 
-### Starting books
-- Core Portfolio: USD 100,000
-- Swing Portfolio: USD 100,000
-- Scalp Portfolio: USD 25,000
+### Committee members
 
-The evidence ledger, signal history, Observer history and external intelligence are preserved.
+- Technical Analyst
+- Volume and Liquidity Analyst
+- Momentum Analyst
+- News and Fundamental Analyst
+- Macro and Market Regime Analyst
+- Risk Manager
+- Portfolio Fit Analyst
 
-Run the one-time **Initialize V10 AI Fund** GitHub workflow after upload. Then run Hourly Signal Recorder and 15-Minute Market Observer.
+### Decision discipline
+
+The Portfolio Manager no longer opens Core or Swing positions from the hourly signal
+alone.
+
+A trade must have:
+
+- agreement from several independent analyst groups
+- direction aligned with the hourly signal
+- sufficient evidence strength
+- no Risk Manager veto
+- acceptable portfolio concentration
+- the correct permission for Core or Swing
+
+Core requires the strongest alignment and remains Long-only. Swing may take qualified
+Long or Short opportunities.
+
+### Learning
+
+Every new position stores the full committee snapshot available at entry. After trades
+close, the committee learning file measures which analyst conditions were associated
+with positive or negative expectancy. Committee weights are never changed automatically.
+
+### Interface
+
+No new front-line page was added. Committee output is stored behind the scenes in:
+
+- data/committee_latest.json
+- data/committee_history.json
+- data/committee_learning.json
+- data/engine_health.json
+
+### Upload
+
+1. Extract the ZIP.
+2. Upload all extracted files and folders over the current repository.
+3. Commit.
+4. Reboot Streamlit.
+5. Run Hourly Signal Recorder once.
+6. Review the workflow log for `investment_committee.py`.
