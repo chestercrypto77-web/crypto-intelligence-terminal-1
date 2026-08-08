@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-08T07:58:16.363521+00:00",
+  "updated_at": "2026-08-08T10:04:24.834554+00:00",
   "summary": {
-    "trades_reviewed": 83,
+    "trades_reviewed": 84,
     "good_process": 13,
     "poor_process": 1,
     "missed_reentries": 0,
@@ -10,11 +10,11 @@
   },
   "book_learning": {
     "15M Observer": {
-      "samples": 56,
+      "samples": 57,
       "wins": 7,
-      "win_rate": 12.5,
-      "net_pnl": -7000.950040409133,
-      "expectancy_pct": -1.5084055115464043
+      "win_rate": 12.280701754385964,
+      "net_pnl": -7105.573961544942,
+      "expectancy_pct": -1.5553625524917718
     },
     "Core": {
       "samples": 5,
@@ -54,11 +54,11 @@
       "expectancy_pct": -1.4805239570118625
     },
     "exit:HARD RISK STOP": {
-      "samples": 2,
+      "samples": 3,
       "wins": 0,
       "win_rate": 0.0,
-      "net_pnl": -2895.1818206733624,
-      "expectancy_pct": -15.330455441652935
+      "net_pnl": -2999.805741809171,
+      "expectancy_pct": -11.615289242912743
     },
     "exit:PROFIT TRAIL": {
       "samples": 1,
@@ -110,11 +110,11 @@
       "expectancy_pct": -1.5890537540305478
     },
     "entry_quality:WEAK EVIDENCE": {
-      "samples": 29,
+      "samples": 30,
       "wins": 4,
-      "win_rate": 13.793103448275861,
-      "net_pnl": -4071.919039972479,
-      "expectancy_pct": -1.5877847994988952
+      "win_rate": 13.333333333333334,
+      "net_pnl": -4176.542961108288,
+      "expectancy_pct": -1.6743572010300103
     },
     "entry_quality:MIXED": {
       "samples": 2,
@@ -145,11 +145,11 @@
       "expectancy_pct": -3.228254773454797
     },
     "committee:technical:SHORT:3": {
-      "samples": 1,
+      "samples": 2,
       "wins": 0,
       "win_rate": 0.0,
-      "net_pnl": -151.67430725093132,
-      "expectancy_pct": -3.0334861450186263
+      "net_pnl": -313.08704592367116,
+      "expectancy_pct": -3.1308704592367116
     },
     "committee:volume_liquidity:SHORT:3": {
       "samples": 1,
@@ -166,32 +166,32 @@
       "expectancy_pct": -3.0334861450186263
     },
     "committee:news_fundamental:NEUTRAL:1": {
-      "samples": 2,
+      "samples": 3,
       "wins": 0,
       "win_rate": 0.0,
-      "net_pnl": -240.85841548885264,
-      "expectancy_pct": -2.4085841548885263
+      "net_pnl": -402.27115416159245,
+      "expectancy_pct": -2.6818076944106166
     },
     "committee:macro_regime:SHORT:2": {
-      "samples": 1,
+      "samples": 2,
       "wins": 0,
       "win_rate": 0.0,
-      "net_pnl": -151.67430725093132,
-      "expectancy_pct": -3.0334861450186263
+      "net_pnl": -313.08704592367116,
+      "expectancy_pct": -3.1308704592367116
     },
     "committee:risk_manager:APPROVE:2": {
-      "samples": 2,
+      "samples": 3,
       "wins": 0,
       "win_rate": 0.0,
-      "net_pnl": -240.85841548885264,
-      "expectancy_pct": -2.4085841548885263
+      "net_pnl": -402.27115416159245,
+      "expectancy_pct": -2.6818076944106166
     },
     "committee:portfolio_fit:APPROVE:1": {
-      "samples": 2,
+      "samples": 3,
       "wins": 0,
       "win_rate": 0.0,
-      "net_pnl": -240.85841548885264,
-      "expectancy_pct": -2.4085841548885263
+      "net_pnl": -402.27115416159245,
+      "expectancy_pct": -2.6818076944106166
     },
     "committee:technical:LONG:3": {
       "samples": 1,
@@ -220,22 +220,36 @@
       "win_rate": 0.0,
       "net_pnl": -89.18410823792132,
       "expectancy_pct": -1.7836821647584264
+    },
+    "committee:volume_liquidity:SHORT:2": {
+      "samples": 1,
+      "wins": 0,
+      "win_rate": 0.0,
+      "net_pnl": -161.41273867273983,
+      "expectancy_pct": -3.228254773454797
+    },
+    "committee:momentum:SHORT:2": {
+      "samples": 1,
+      "wins": 0,
+      "win_rate": 0.0,
+      "net_pnl": -161.41273867273983,
+      "expectancy_pct": -3.228254773454797
     }
   },
   "rule_candidates": [
+    {
+      "key": "entry_quality:WEAK EVIDENCE",
+      "samples": 30,
+      "expectancy_pct": -1.6743572010300103,
+      "win_rate": 13.333333333333334,
+      "direction": "AVOID / REDUCE",
+      "status": "PROMOTION ELIGIBLE"
+    },
     {
       "key": "entry_quality:SUPPORTED",
       "samples": 25,
       "expectancy_pct": -1.5890537540305478,
       "win_rate": 8.0,
-      "direction": "AVOID / REDUCE",
-      "status": "PROMOTION ELIGIBLE"
-    },
-    {
-      "key": "entry_quality:WEAK EVIDENCE",
-      "samples": 29,
-      "expectancy_pct": -1.5877847994988952,
-      "win_rate": 13.793103448275861,
       "direction": "AVOID / REDUCE",
       "status": "PROMOTION ELIGIBLE"
     },
