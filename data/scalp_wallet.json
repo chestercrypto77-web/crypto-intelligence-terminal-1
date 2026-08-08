@@ -3,49 +3,13 @@
   "name": "Profit-Driven Scalp Wallet",
   "currency": "USD",
   "starting_cash": 25000.0,
-  "cash": 24987.35670864536,
-  "equity": 25049.66920864536,
-  "previous_equity": 25049.85670864536,
-  "equity_change_this_run": -0.1875,
-  "realised_pnl": 49.85670864535501,
-  "unrealised_pnl": -0.18750000000000003,
-  "open_positions": [
-    {
-      "position_id": "SCALP_UOS_2026-08-08T061500+0000",
-      "symbol": "UOS",
-      "name": "Ultra",
-      "narrative": "Gaming",
-      "strategy": "PROFIT_SCALP_V1",
-      "signal": "EARLY BUY",
-      "direction": "LONG",
-      "entry_time": "2026-08-08T06:26:58.113464+00:00",
-      "entry_price": 0.0029473067563958464,
-      "market_entry_price": 0.0029458338394761086,
-      "current_price": 0.0029458338394761086,
-      "allocated_cash": 62.5,
-      "entry_fee": 0.0625,
-      "units": 21184.595008479042,
-      "status": "OPEN",
-      "unrealised_return": -0.30000000000000004,
-      "unrealised_pnl": -0.18750000000000003,
-      "maximum_favourable_excursion_pct": 0.0,
-      "maximum_adverse_excursion_pct": -0.30000000000000004,
-      "minutes_open": 0.0,
-      "profit_objective": {
-        "side": "LONG",
-        "estimated_net_move_pct": 3.7,
-        "estimated_reward_risk": 2.96,
-        "eligible": true,
-        "reasons": []
-      },
-      "entry_evidence": {
-        "rvol": 18.320889690411782,
-        "rvol_delta": 17.865520997009455,
-        "rsi": 76.05456654674323,
-        "return_1h": 3.469908024731194
-      }
-    }
-  ],
+  "cash": 25047.01475476086,
+  "equity": 25047.01475476086,
+  "previous_equity": 25049.66920864536,
+  "equity_change_this_run": -2.654453884497343,
+  "realised_pnl": 47.01475476085947,
+  "unrealised_pnl": 0,
+  "open_positions": [],
   "closed_positions": [
     {
       "position_id": "SCALP_RUNE_2026-08-06T051500+0000",
@@ -406,6 +370,46 @@
       "exit_reason": "TIME EXIT",
       "realised_return": -1.1737147126443912,
       "realised_pnl": -0.7335716954027446
+    },
+    {
+      "position_id": "SCALP_UOS_2026-08-08T061500+0000",
+      "symbol": "UOS",
+      "name": "Ultra",
+      "narrative": "Gaming",
+      "strategy": "PROFIT_SCALP_V1",
+      "signal": "EARLY BUY",
+      "direction": "LONG",
+      "entry_time": "2026-08-08T06:26:58.113464+00:00",
+      "entry_price": 0.0029473067563958464,
+      "market_entry_price": 0.0029458338394761086,
+      "current_price": 0.0028221309185028076,
+      "allocated_cash": 62.5,
+      "entry_fee": 0.0625,
+      "units": 21184.595008479042,
+      "status": "CLOSED",
+      "unrealised_return": -4.5471262151928755,
+      "unrealised_pnl": -2.841953884495547,
+      "maximum_favourable_excursion_pct": 0.0,
+      "maximum_adverse_excursion_pct": -4.5471262151928755,
+      "minutes_open": 91.15928521666666,
+      "profit_objective": {
+        "side": "LONG",
+        "estimated_net_move_pct": 3.7,
+        "estimated_reward_risk": 2.96,
+        "eligible": true,
+        "reasons": []
+      },
+      "entry_evidence": {
+        "rvol": 18.320889690411782,
+        "rvol_delta": 17.865520997009455,
+        "rsi": 76.05456654674323,
+        "return_1h": 3.469908024731194
+      },
+      "exit_time": "2026-08-08T07:58:07.670577+00:00",
+      "exit_price": 0.0028221309185028076,
+      "exit_reason": "STOP LOSS",
+      "realised_return": -4.5471262151928755,
+      "realised_pnl": -2.841953884495547
     }
   ],
   "rejected_opportunities": [
@@ -2666,16 +2670,24 @@
       "realised_pnl": 49.85670864535501,
       "unrealised_pnl": -0.18750000000000003,
       "open_positions": 1
+    },
+    {
+      "recorded_at": "2026-08-08T07:58:07.670577+00:00",
+      "equity": 25047.01475476086,
+      "cash": 25047.01475476086,
+      "realised_pnl": 47.01475476085947,
+      "unrealised_pnl": 0,
+      "open_positions": 0
     }
   ],
   "activity_journal": [],
   "session": {
     "date": "2026-08-08",
     "starting_equity": 25051.46834381941,
-    "realised_pnl": -2.0178695568604312,
-    "consecutive_losses": 2,
-    "new_entries_frozen": false,
-    "freeze_reason": null
+    "realised_pnl": -4.859823441355978,
+    "consecutive_losses": 3,
+    "new_entries_frozen": true,
+    "freeze_reason": "CONSECUTIVE LOSS PAUSE"
   },
   "rules": {
     "base_position_pct": 0.25,
@@ -2693,11 +2705,11 @@
     "wallet_drawdown_freeze_pct": 3.0,
     "consecutive_loss_pause": 3
   },
-  "updated_at": "2026-08-08T06:26:58.113464+00:00",
+  "updated_at": "2026-08-08T07:58:07.670577+00:00",
   "activity": {
     "retained": 0,
-    "closed": 0,
-    "opened": 1,
-    "rejected": 14
+    "closed": 1,
+    "opened": 0,
+    "rejected": 0
   }
 }
