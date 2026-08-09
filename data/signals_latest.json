@@ -1,15 +1,955 @@
 {
-  "generated_at": "2026-08-09T21:54:23.349592+00:00",
+  "generated_at": "2026-08-09T23:53:03.128423+00:00",
   "scan_frequency": "hourly",
   "signal_timeframe": "4h",
-  "btc_reference_return_24h": 0.3536817810011028,
+  "btc_reference_return_24h": -0.10363712694606564,
   "signals": [
     {
-      "signal_id": "BTC_STRONG_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "BTC_BUY_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "BTC",
       "name": "Bitcoin",
       "narrative": "Bitcoin",
+      "tier": "Core",
+      "previous_signal": "STRONG BUY",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "BUY WATCH",
+      "bullish": 6,
+      "bearish": 4,
+      "entry_price": 64841.44921875,
+      "return_4h": -0.44416671779580197,
+      "return_12h": -0.09016881267758237,
+      "return_24h": -0.10363712694606564,
+      "rvol": 6.346461935421432,
+      "rvol_delta": 4.921567872395288,
+      "rsi": 53.915052421050746,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "neutral"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "neutral"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "neutral"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "SOL_BUY_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "SOL",
+      "name": "Solana",
+      "narrative": "Layer 1",
+      "tier": "Core",
+      "previous_signal": "BUY",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "BUY WATCH",
+      "bullish": 7,
+      "bearish": 3,
+      "entry_price": 76.25,
+      "return_4h": -1.192170779803825,
+      "return_12h": -0.23551001499027002,
+      "return_24h": 0.3817810940266675,
+      "rvol": 1.980156932366349,
+      "rvol_delta": 1.525538165989518,
+      "rsi": 60.802945232932686,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bull"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "neutral"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "neutral"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "neutral"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "AVAX_SELL_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "AVAX",
+      "name": "Avalanche",
+      "narrative": "Layer 1",
+      "tier": "Core",
+      "previous_signal": "STRONG BUY",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "SELL WATCH",
+      "bullish": 4,
+      "bearish": 8,
+      "entry_price": 6.421999931335449,
+      "return_4h": -2.1036587293874254,
+      "return_12h": -0.7572285850861782,
+      "return_24h": -0.818532418188922,
+      "rvol": 5.041008312643508,
+      "rvol_delta": 5.041008312643508,
+      "rsi": 42.13192744393837,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bull"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "neutral"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "COTI_SELL_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "COTI",
+      "name": "COTI",
+      "narrative": "Privacy / Payments",
+      "tier": "Core",
+      "previous_signal": "SELL WATCH",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "SELL",
+      "bullish": 3,
+      "bearish": 10,
+      "entry_price": 0.011900000274181366,
+      "return_4h": -3.2520271031535986,
+      "return_12h": -2.459012263686433,
+      "return_24h": -4.03225860964509,
+      "rvol": 1.7752591975759149,
+      "rvol_delta": 0.8480748992274305,
+      "rsi": 40.52994936568052,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "bear"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "neutral"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "bear"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "POL_STRONG_BUY_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "POL",
+      "name": "Polygon Ecosystem Token",
+      "narrative": "Layer 2 / Tokenisation",
+      "tier": "Core",
+      "previous_signal": "BUY",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "STRONG BUY",
+      "bullish": 13,
+      "bearish": 0,
+      "entry_price": 0.07760000228881836,
+      "return_4h": 0.12903444129395147,
+      "return_12h": 0.7792242977948671,
+      "return_24h": 1.703800274450873,
+      "rvol": 1.6176607369233313,
+      "rvol_delta": 0.9846685814043383,
+      "rsi": 70.00937891239643,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bull"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bull"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "neutral"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "bull"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "ZIL_SELL_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "ZIL",
+      "name": "Zilliqa",
+      "narrative": "Layer 1",
+      "tier": "Core",
+      "previous_signal": "STRONG SELL",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "SELL",
+      "bullish": 2,
+      "bearish": 12,
+      "entry_price": 0.002338796854019165,
+      "return_4h": -1.7823495310561155,
+      "return_12h": -2.4895743540759074,
+      "return_24h": -4.101456179526419,
+      "rvol": 2.2322851490884466,
+      "rvol_delta": 1.4290411661906544,
+      "rsi": 29.211838993435165,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "bear"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "bear"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "ONDO_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "ONDO",
+      "name": "Ondo",
+      "narrative": "RWA / Tokenisation",
+      "tier": "Core",
+      "previous_signal": "BUY WATCH",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 7,
+      "entry_price": 0.34755998849868774,
+      "return_4h": -1.1321644070203418,
+      "return_12h": -0.01726651961833081,
+      "return_24h": -1.193999173268534,
+      "rvol": 2.8705529098195033,
+      "rvol_delta": 2.5122721855714336,
+      "rsi": 37.774267611587,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bull"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "neutral"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "bear"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "neutral"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "bear"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "DOT_SELL_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "DOT",
+      "name": "Polkadot",
+      "narrative": "Interoperability",
+      "tier": "Core",
+      "previous_signal": "HOLD",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "SELL",
+      "bullish": 3,
+      "bearish": 11,
+      "entry_price": 0.7982000112533569,
+      "return_4h": -1.1884109621486894,
+      "return_12h": -1.1394571533104747,
+      "return_24h": -2.013255558027094,
+      "rvol": 5.819667589466787,
+      "rvol_delta": 5.282602324210242,
+      "rsi": 33.472479424114326,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "bear"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "bear"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "SUI_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "SUI",
+      "name": "Sui",
+      "narrative": "Layer 1",
+      "tier": "Core",
+      "previous_signal": "BUY",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 6,
+      "entry_price": 0.6855999827384949,
+      "return_4h": -1.706094320783913,
+      "return_12h": -0.9534848696598375,
+      "return_24h": -0.8962150275044656,
+      "rvol": 2.4902452651681015,
+      "rvol_delta": 2.4902452651681015,
+      "rsi": 48.27020199093806,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bull"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "neutral"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "neutral"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "NEAR_SELL_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "NEAR",
+      "name": "NEAR Protocol",
+      "narrative": "AI / Layer 1",
+      "tier": "Core",
+      "previous_signal": "BUY WATCH",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "SELL WATCH",
+      "bullish": 4,
+      "bearish": 8,
+      "entry_price": 1.5988999605178833,
+      "return_4h": -2.1121589099129867,
+      "return_12h": -0.6894443284848228,
+      "return_24h": -0.6832745641926374,
+      "rvol": 1.905303065313417,
+      "rvol_delta": 1.905303065313417,
+      "rsi": 39.50755376453852,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bull"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "neutral"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "SUPER_STRONG_BUY_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "SUPER",
+      "name": "SuperVerse",
+      "narrative": "Gaming",
       "tier": "Core",
       "previous_signal": "STRONG BUY",
       "changed": false,
@@ -17,107 +957,13 @@
       "signal": "STRONG BUY",
       "bullish": 11,
       "bearish": 1,
-      "entry_price": 65138.2890625,
-      "return_4h": 0.011593268323473183,
-      "return_12h": 0.36928385127550367,
-      "return_24h": 0.3536817810011028,
-      "rvol": 1.6991528431499838,
-      "rvol_delta": 0.295021947289563,
-      "rsi": 62.4604806410985,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bear"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "neutral"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "SOL_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "SOL",
-      "name": "Solana",
-      "narrative": "Layer 1",
-      "tier": "Core",
-      "previous_signal": "STRONG BUY",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "BUY",
-      "bullish": 10,
-      "bearish": 3,
-      "entry_price": 77.31999969482422,
-      "return_4h": 0.19437803477786453,
-      "return_12h": 1.1512260927680096,
-      "return_24h": 1.7904168335220128,
-      "rvol": 0.2949432638870175,
-      "rvol_delta": -0.1550492470404763,
-      "rsi": 73.27003703059015,
+      "entry_price": 0.08639000356197357,
+      "return_4h": -1.0083597273874645,
+      "return_12h": 0.13910572129818277,
+      "return_24h": 1.0173109258339696,
+      "rvol": 1.8668642297105404,
+      "rvol_delta": 1.3478786520548194,
+      "rsi": 59.86450364742441,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -147,101 +993,7 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
           "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bull"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "AVAX_STRONG_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "AVAX",
-      "name": "Avalanche",
-      "narrative": "Layer 1",
-      "tier": "Core",
-      "previous_signal": "BUY WATCH",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "STRONG BUY",
-      "bullish": 12,
-      "bearish": 1,
-      "entry_price": 6.565999984741211,
-      "return_4h": 0.0914640550915502,
-      "return_12h": 1.4680851079508228,
-      "return_24h": 1.4054066633041318,
-      "rvol": 1.4556353088304204,
-      "rvol_delta": 1.4556353088304204,
-      "rsi": 55.508028502420366,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "bull"
         },
         {
           "name": "RVOL above normal",
@@ -287,777 +1039,25 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "COTI_SELL_WATCH_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "COTI",
-      "name": "COTI",
-      "narrative": "Privacy / Payments",
-      "tier": "Core",
-      "previous_signal": "HOLD",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "SELL WATCH",
-      "bullish": 4,
-      "bearish": 7,
-      "entry_price": 0.012199999764561653,
-      "return_4h": -0.8130067757883941,
-      "return_12h": 0.0,
-      "return_24h": -1.6129079502574584,
-      "rvol": 1.1577310161198309,
-      "rvol_delta": 0.21947908632504054,
-      "rsi": 42.70412420699311,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bear"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "neutral"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bear"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bear"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "POL_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "POL",
-      "name": "Polygon Ecosystem Token",
-      "narrative": "Layer 2 / Tokenisation",
-      "tier": "Core",
-      "previous_signal": "BUY WATCH",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "BUY",
-      "bullish": 10,
-      "bearish": 1,
-      "entry_price": 0.07800000160932541,
-      "return_4h": 0.6451625928174165,
-      "return_12h": 1.2987039376318732,
-      "return_24h": 2.2280457616011606,
-      "rvol": 0.5224194749848977,
-      "rvol_delta": -0.09399690990516929,
-      "rsi": 72.3754721082145,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "neutral"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bull"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "ZIL_STRONG_SELL_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "ZIL",
-      "name": "Zilliqa",
-      "narrative": "Layer 1",
-      "tier": "Core",
-      "previous_signal": "SELL",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "STRONG SELL",
-      "bullish": 1,
-      "bearish": 11,
-      "entry_price": 0.0023955616634339094,
-      "return_4h": 0.6000495331747624,
-      "return_12h": -0.011933815525566605,
-      "return_24h": -1.7793371785243428,
-      "rvol": 0.5011448440210992,
-      "rvol_delta": -0.37381924795640087,
-      "rsi": 37.155556176362786,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bear"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "neutral"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bear"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bear"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bear"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bear"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "ONDO_BUY_WATCH_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "ONDO",
-      "name": "Ondo",
-      "narrative": "RWA / Tokenisation",
-      "tier": "Core",
-      "previous_signal": "HOLD",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "BUY WATCH",
-      "bullish": 10,
-      "bearish": 2,
-      "entry_price": 0.35740000009536743,
-      "return_4h": 1.6669513743326592,
-      "return_12h": 2.8134139081386955,
-      "return_24h": 1.6033659611829343,
-      "rvol": 1.638351701529858,
-      "rvol_delta": 1.2751196357648797,
-      "rsi": 49.33015224862678,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "neutral"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "neutral"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bull"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "DOT_HOLD_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "DOT",
-      "name": "Polkadot",
-      "narrative": "Interoperability",
-      "tier": "Core",
-      "previous_signal": "SELL WATCH",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "HOLD",
-      "bullish": 6,
-      "bearish": 6,
-      "entry_price": 0.8087999820709229,
-      "return_4h": 0.1237914250623584,
-      "return_12h": 0.17339533279530084,
-      "return_24h": -0.7120069775337412,
-      "rvol": 1.313468377434162,
-      "rvol_delta": 0.7748822146397684,
-      "rsi": 41.74118681522522,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bear"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "neutral"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bear"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bear"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "SUI_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "SUI",
-      "name": "Sui",
-      "narrative": "Layer 1",
-      "tier": "Core",
-      "previous_signal": "STRONG BUY",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "BUY",
-      "bullish": 10,
-      "bearish": 3,
-      "entry_price": 0.7016000151634216,
-      "return_4h": 0.5878171693510348,
-      "return_12h": 1.3579904710067092,
-      "return_24h": 1.416596834974393,
-      "rvol": 0.501486522993166,
-      "rvol_delta": 0.501486522993166,
-      "rsi": 63.13665310260605,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bear"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bull"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "NEAR_BUY_WATCH_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "NEAR",
-      "name": "NEAR Protocol",
-      "narrative": "AI / Layer 1",
-      "tier": "Core",
-      "previous_signal": "BUY WATCH",
-      "changed": false,
-      "data_source": "Yahoo Finance",
-      "signal": "BUY WATCH",
-      "bullish": 9,
-      "bearish": 3,
-      "entry_price": 1.6411999464035034,
-      "return_4h": 0.47753050076368986,
-      "return_12h": 1.9378839640479484,
-      "return_24h": 1.9442169536506126,
-      "rvol": 0.3694131495794873,
-      "rvol_delta": 0.3694131495794873,
-      "rsi": 49.87243677873873,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "neutral"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bull"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "SUPER_STRONG_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "SUPER",
-      "name": "SuperVerse",
-      "narrative": "Gaming",
-      "tier": "Core",
-      "previous_signal": "BUY",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "STRONG BUY",
-      "bullish": 12,
-      "bearish": 0,
-      "entry_price": 0.08705999702215195,
-      "return_4h": -0.24063488816573608,
-      "return_12h": 0.9157296728558473,
-      "return_24h": 1.8007457550334172,
-      "rvol": 1.0312293058885997,
-      "rvol_delta": 0.5124033426634464,
-      "rsi": 65.81951529702407,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "neutral"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bull"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "S_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "S_BUY_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "S",
       "name": "Sonic",
       "narrative": "Layer 1 / DeFi",
       "tier": "Core",
       "previous_signal": "BUY",
-      "changed": false,
+      "changed": true,
       "data_source": "CoinGecko fallback",
-      "signal": "BUY",
-      "bullish": 9,
+      "signal": "BUY WATCH",
+      "bullish": 7,
       "bearish": 3,
-      "entry_price": 0.023881355317089327,
-      "return_4h": -0.8552203019280058,
-      "return_12h": 2.459657219432221,
-      "return_24h": 0.9457151937587005,
-      "rvol": 1.268403031022798,
-      "rvol_delta": -0.2521769361126016,
-      "rsi": 66.9973031465787,
+      "entry_price": 0.023548352381045946,
+      "return_4h": -2.231791953247886,
+      "return_12h": 1.0309541066045425,
+      "return_24h": -0.46187742794087105,
+      "rvol": 1.1080546861647773,
+      "rvol_delta": -0.41252528097062235,
+      "rsi": 60.856496512770114,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -1087,12 +1087,12 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL increasing",
@@ -1133,30 +1133,30 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "AIOZ_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "AIOZ_BUY_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "AIOZ",
       "name": "AIOZ Network",
       "narrative": "AI / DePIN",
       "tier": "Core",
-      "previous_signal": "STRONG BUY",
+      "previous_signal": "BUY",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "BUY",
-      "bullish": 9,
-      "bearish": 2,
-      "entry_price": 0.04740000143647194,
-      "return_4h": -0.4201673437929432,
-      "return_12h": 0.6369455466962437,
-      "return_24h": 1.0661002319132251,
-      "rvol": 2.075043831318631,
-      "rvol_delta": -0.41842361690017693,
-      "rsi": 54.632896734361104,
+      "signal": "BUY WATCH",
+      "bullish": 6,
+      "bearish": 4,
+      "entry_price": 0.04699999839067459,
+      "return_4h": -1.2605098576187856,
+      "return_12h": -0.21231781867248056,
+      "return_24h": 0.21321528055286976,
+      "rvol": 4.1930228170373605,
+      "rvol_delta": 1.767917256492391,
+      "rsi": 49.53233817147656,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -1176,12 +1176,12 @@
         {
           "name": "MACD accelerating",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
@@ -1191,7 +1191,7 @@
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -1201,7 +1201,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -1227,30 +1227,30 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "FIL_BUY_WATCH_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "FIL_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "FIL",
       "name": "Filecoin",
       "narrative": "DePIN / Storage",
       "tier": "Core",
-      "previous_signal": "SELL",
+      "previous_signal": "BUY WATCH",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "BUY WATCH",
-      "bullish": 7,
-      "bearish": 4,
-      "entry_price": 0.7139999866485596,
-      "return_4h": 0.280895255051794,
-      "return_12h": 0.7052179537599068,
-      "return_24h": 0.5633814404394588,
-      "rvol": 0.21340703308579842,
-      "rvol_delta": 0.21340703308579842,
-      "rsi": 55.304252119917365,
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 7,
+      "entry_price": 0.7009999752044678,
+      "return_4h": -1.544949017101005,
+      "return_12h": -1.1283520887603093,
+      "return_24h": -1.267606142233646,
+      "rvol": 1.4281435855349764,
+      "rvol_delta": 1.4281435855349764,
+      "rsi": 45.65767629157395,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -1275,12 +1275,12 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
@@ -1295,56 +1295,56 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
           "group": "Structure",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Higher lows",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "neutral"
+          "state": "bear"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "OM_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "OM_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "OM",
       "name": "MANTRA",
       "narrative": "RWA / Tokenisation",
       "tier": "Core",
-      "previous_signal": "STRONG BUY",
+      "previous_signal": "BUY",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "BUY",
-      "bullish": 10,
-      "bearish": 2,
-      "entry_price": 0.06429512053728104,
-      "return_4h": -2.0493647288292838,
-      "return_12h": 9.260409201173768,
-      "return_24h": 11.44065104400731,
-      "rvol": 0.26744186046511625,
-      "rvol_delta": 0.243884734434492,
-      "rsi": 60.326896031950255,
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 6,
+      "entry_price": 0.05460118129849434,
+      "return_4h": -16.81763172614691,
+      "return_12h": -7.213061244954433,
+      "return_24h": -5.361540023120959,
+      "rvol": 1.0510732790525537,
+      "rvol_delta": 1.0237402060342013,
+      "rsi": 53.048085934402216,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -1369,12 +1369,12 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "neutral"
         },
         {
           "name": "RVOL increasing",
@@ -1389,7 +1389,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -1399,41 +1399,41 @@
         {
           "name": "Higher lows",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "bull"
+          "state": "bear"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
       "signal_id": "USDT_STRONG_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "USDT",
       "name": "Tether USD",
       "narrative": "Stablecoin",
       "tier": "Secondary",
-      "previous_signal": "SELL WATCH",
-      "changed": true,
+      "previous_signal": "STRONG BUY",
+      "changed": false,
       "data_source": "Yahoo Finance",
       "signal": "STRONG BUY",
-      "bullish": 10,
-      "bearish": 2,
-      "entry_price": 0.9993299841880798,
-      "return_4h": 0.006000607576428507,
-      "return_12h": 0.012007901234811769,
-      "return_24h": 0.013010181346784222,
-      "rvol": 1.4867567168554183,
-      "rvol_delta": -0.576135640238133,
-      "rsi": 55.40531536866612,
+      "bullish": 11,
+      "bearish": 1,
+      "entry_price": 0.9993199706077576,
+      "return_4h": 0.004998518040810751,
+      "return_12h": 0.011005751504322703,
+      "return_24h": 0.012008021573151062,
+      "rvol": 5.953616948470341,
+      "rvol_delta": 3.904717095394645,
+      "rsi": 55.03988122743516,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -1473,7 +1473,7 @@
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -1509,30 +1509,30 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "SEI_STRONG_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "SEI_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "SEI",
       "name": "Sei",
       "narrative": "Layer 1 / Trading",
       "tier": "Secondary",
-      "previous_signal": "BUY WATCH",
+      "previous_signal": "STRONG BUY",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "STRONG BUY",
-      "bullish": 12,
-      "bearish": 1,
-      "entry_price": 0.042010001838207245,
-      "return_4h": 0.7434053207684643,
-      "return_12h": 1.15579984578571,
-      "return_24h": 1.326584322116675,
-      "rvol": 1.7564615494735774,
-      "rvol_delta": 1.629682180881745,
-      "rsi": 59.87958507628488,
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 6,
+      "entry_price": 0.04125000163912773,
+      "return_4h": -1.0791370441332493,
+      "return_12h": -0.6742031215296818,
+      "return_24h": -0.5065082960040601,
+      "rvol": 4.560944842776751,
+      "rvol_delta": 4.434423997983327,
+      "rsi": 46.86759639533918,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -1552,12 +1552,12 @@
         {
           "name": "MACD accelerating",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
@@ -1572,12 +1572,12 @@
         {
           "name": "Most recent candles green",
           "group": "Volume",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -1587,12 +1587,12 @@
         {
           "name": "Higher lows",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
@@ -1604,7 +1604,7 @@
     },
     {
       "signal_id": "RUNE_SELL_WATCH_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "RUNE",
       "name": "THORChain",
       "narrative": "DeFi / Interoperability",
@@ -1614,14 +1614,14 @@
       "data_source": "Yahoo Finance",
       "signal": "SELL WATCH",
       "bullish": 4,
-      "bearish": 6,
-      "entry_price": 0.4353224039077759,
-      "return_4h": -0.18424952536767458,
-      "return_12h": 0.567818991370661,
-      "return_24h": -0.2916165547771299,
-      "rvol": 0.45693584875420706,
-      "rvol_delta": -0.12208067936393235,
-      "rsi": 41.14355508133527,
+      "bearish": 9,
+      "entry_price": 0.4302622973918915,
+      "return_4h": -1.3997860699024978,
+      "return_12h": -0.6286659302312647,
+      "return_24h": -1.4506082267664255,
+      "rvol": 1.8339969525177937,
+      "rvol_delta": 1.312726165751882,
+      "rsi": 35.624725018805734,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -1651,17 +1651,17 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -1671,7 +1671,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -1681,51 +1681,51 @@
         {
           "name": "Higher lows",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "neutral"
+          "state": "bear"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "SAND_HOLD_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "SAND_SELL_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "SAND",
       "name": "The Sandbox",
       "narrative": "Gaming / Metaverse",
       "tier": "Secondary",
-      "previous_signal": "SELL WATCH",
+      "previous_signal": "HOLD",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "HOLD",
-      "bullish": 6,
-      "bearish": 5,
-      "entry_price": 0.04179999977350235,
-      "return_4h": 0.23980326894657011,
-      "return_12h": 0.480768412762167,
-      "return_24h": 0.0,
-      "rvol": 1.5004619456652017,
-      "rvol_delta": -0.27362239666300625,
-      "rsi": 53.67042351898036,
+      "signal": "SELL",
+      "bullish": 3,
+      "bearish": 10,
+      "entry_price": 0.041099999099969864,
+      "return_4h": -1.4388553478773325,
+      "return_12h": -1.4388553478773325,
+      "return_24h": -1.674642768721324,
+      "rvol": 4.664108724718415,
+      "rvol_delta": 2.890656592868131,
+      "rsi": 41.37296593036026,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 21 above EMA 55",
@@ -1745,7 +1745,7 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RVOL above normal",
@@ -1755,7 +1755,7 @@
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -1765,7 +1765,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -1780,36 +1780,36 @@
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "neutral"
+          "state": "bear"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "WIN_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "WIN_STRONG_BUY_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "WIN",
       "name": "WINkLink",
       "narrative": "Oracle / Gaming",
       "tier": "Secondary",
       "previous_signal": "BUY",
-      "changed": false,
+      "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "BUY",
+      "signal": "STRONG BUY",
       "bullish": 11,
       "bearish": 1,
-      "entry_price": 3.1575982575304806e-05,
-      "return_4h": -0.0401472942727521,
-      "return_12h": 1.215489869285169,
-      "return_24h": 1.7026488147966923,
-      "rvol": 0.40008217904218163,
-      "rvol_delta": 0.05909241566492196,
-      "rsi": 74.3300605263921,
+      "entry_price": 3.131316043436527e-05,
+      "return_4h": -0.8860530503349562,
+      "return_12h": 0.37034415454100245,
+      "return_24h": 1.2496079903390855,
+      "rvol": 1.1741716871244403,
+      "rvol_delta": 0.8493305687850965,
+      "rsi": 67.92210555555695,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -1834,22 +1834,22 @@
         {
           "name": "MACD accelerating",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -1885,35 +1885,35 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "AR_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "AR_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "AR",
       "name": "Arweave",
       "narrative": "DePIN / Storage",
       "tier": "Secondary",
-      "previous_signal": "STRONG BUY",
+      "previous_signal": "BUY",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "BUY",
-      "bullish": 10,
-      "bearish": 1,
-      "entry_price": 1.8148633241653442,
-      "return_4h": 0.12240913918089014,
-      "return_12h": 0.9568106294667533,
-      "return_24h": 0.95492942653439,
-      "rvol": 0.7094593932744958,
-      "rvol_delta": -1.1434392955383048,
-      "rsi": 56.63254966823558,
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 8,
+      "entry_price": 1.7829501628875732,
+      "return_4h": -1.6625838678843263,
+      "return_12h": -0.8728429949670491,
+      "return_24h": -0.8040679931063832,
+      "rvol": 2.516306317188066,
+      "rvol_delta": 0.6823874708464219,
+      "rsi": 44.076928003707366,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 21 above EMA 55",
@@ -1923,27 +1923,27 @@
         {
           "name": "MACD positive",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "MACD accelerating",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -1953,7 +1953,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -1963,12 +1963,12 @@
         {
           "name": "Higher lows",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
@@ -1979,25 +1979,25 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "BEAM_SELL_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "BEAM_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "BEAM",
       "name": "Beam",
       "narrative": "Gaming",
       "tier": "Secondary",
-      "previous_signal": "SELL WATCH",
+      "previous_signal": "SELL",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "SELL",
-      "bullish": 3,
-      "bearish": 8,
-      "entry_price": 0.008875721134245396,
-      "return_4h": -0.30342376662240156,
-      "return_12h": -0.5129772063369953,
-      "return_24h": 0.043554098410214515,
-      "rvol": 0.6451612903225806,
-      "rvol_delta": -0.44277557551732916,
-      "rsi": 46.885450959918245,
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 6,
+      "entry_price": 0.00885792076587677,
+      "return_4h": -0.5042407819299322,
+      "return_12h": -0.7185004684783336,
+      "return_24h": -0.15955794052687766,
+      "rvol": 1.4265385983635717,
+      "rvol_delta": 0.3398268866518599,
+      "rsi": 46.45873713111939,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -2032,12 +2032,12 @@
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -2074,7 +2074,7 @@
     },
     {
       "signal_id": "SHIB_BUY_WATCH_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "SHIB",
       "name": "Shiba Inu",
       "narrative": "Meme",
@@ -2083,20 +2083,20 @@
       "changed": false,
       "data_source": "Yahoo Finance",
       "signal": "BUY WATCH",
-      "bullish": 10,
-      "bearish": 2,
-      "entry_price": 4.689999968832126e-06,
-      "return_4h": 0.42826097900772186,
-      "return_12h": 1.5151552435669347,
-      "return_24h": 1.2958924038336983,
-      "rvol": 1.972622470819383,
-      "rvol_delta": 1.1440966742826537,
-      "rsi": 49.424725942074055,
+      "bullish": 6,
+      "bearish": 4,
+      "entry_price": 4.609999905369477e-06,
+      "return_4h": -1.2848024122836699,
+      "return_12h": -0.21644793679050922,
+      "return_24h": -0.43197068244905656,
+      "rvol": 4.356081128035336,
+      "rvol_delta": 3.5392496829804054,
+      "rsi": 39.89216455809056,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -2136,12 +2136,12 @@
         {
           "name": "Most recent candles green",
           "group": "Volume",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -2156,7 +2156,7 @@
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "Outperforming Bitcoin",
@@ -2167,30 +2167,30 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "ENJ_HOLD_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "ENJ_SELL_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "ENJ",
       "name": "Enjin Coin",
       "narrative": "Gaming",
       "tier": "Secondary",
-      "previous_signal": "SELL WATCH",
+      "previous_signal": "HOLD",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "HOLD",
-      "bullish": 5,
-      "bearish": 4,
-      "entry_price": 0.02542298100888729,
-      "return_4h": 0.21676532418575256,
-      "return_12h": 0.07193317304843294,
-      "return_24h": -0.08017680478887845,
-      "rvol": 0.8601369205838736,
-      "rvol_delta": -0.08705445986756044,
-      "rsi": 54.3237310334737,
+      "signal": "SELL WATCH",
+      "bullish": 4,
+      "bearish": 10,
+      "entry_price": 0.025087915360927582,
+      "return_4h": -1.1052751182954124,
+      "return_12h": -1.2538637282891285,
+      "return_24h": -1.3859516165628305,
+      "rvol": 3.1191414285813908,
+      "rvol_delta": 2.1713915582658667,
+      "rsi": 43.882765644183365,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -2215,27 +2215,27 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -2250,41 +2250,41 @@
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "neutral"
+          "state": "bear"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "IMX_BUY_WATCH_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "IMX_SELL_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "IMX",
       "name": "Immutable X",
       "narrative": "Gaming / Layer 2",
       "tier": "Secondary",
-      "previous_signal": "HOLD",
+      "previous_signal": "BUY WATCH",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "BUY WATCH",
-      "bullish": 6,
-      "bearish": 4,
-      "entry_price": 0.11190000176429749,
-      "return_4h": -0.08928722293320979,
-      "return_12h": 1.1754065366111455,
-      "return_24h": -0.1784085094272414,
-      "rvol": 0.527310597761112,
-      "rvol_delta": -1.0664516911461175,
-      "rsi": 55.285789891896,
+      "signal": "SELL",
+      "bullish": 3,
+      "bearish": 10,
+      "entry_price": 0.1096000000834465,
+      "return_4h": -2.1428600888774407,
+      "return_12h": -0.9041609470886836,
+      "return_24h": -2.230149569245443,
+      "rvol": 3.2351086822859023,
+      "rvol_delta": 1.6519603045233557,
+      "rsi": 42.945100185684836,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -2299,27 +2299,27 @@
         {
           "name": "MACD positive",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "MACD accelerating",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -2329,7 +2329,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -2339,46 +2339,46 @@
         {
           "name": "Higher lows",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "neutral"
+          "state": "bear"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
       "signal_id": "VET_HOLD_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "VET",
       "name": "VeChain",
       "narrative": "Enterprise / RWA",
       "tier": "Secondary",
-      "previous_signal": "BUY WATCH",
-      "changed": true,
+      "previous_signal": "HOLD",
+      "changed": false,
       "data_source": "Yahoo Finance",
       "signal": "HOLD",
       "bullish": 5,
-      "bearish": 4,
-      "entry_price": 0.0047599999234080315,
-      "return_4h": 0.0,
-      "return_12h": -0.20964520221951055,
-      "return_24h": 0.4219441615110009,
-      "rvol": 1.0094084302945063,
-      "rvol_delta": -0.9329585869952768,
-      "rsi": 61.95481056826275,
+      "bearish": 7,
+      "entry_price": 0.00471000000834465,
+      "return_4h": -1.0504184005864947,
+      "return_12h": -1.2578614510259545,
+      "return_24h": -0.6329064181882171,
+      "rvol": 2.381752584759974,
+      "rvol_delta": 0.4412013695100365,
+      "rsi": 50.69895296756425,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -2408,17 +2408,17 @@
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "12-hour direction positive",
@@ -2433,12 +2433,12 @@
         {
           "name": "Higher lows",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
@@ -2449,124 +2449,30 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "SC_STRONG_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "SC_BUY_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "SC",
       "name": "Siacoin",
-      "narrative": "DePIN / Storage",
-      "tier": "Secondary",
-      "previous_signal": "BUY WATCH",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "STRONG BUY",
-      "bullish": 10,
-      "bearish": 1,
-      "entry_price": 0.0005153515958227217,
-      "return_4h": 2.081365335074792,
-      "return_12h": 1.9614308064106467,
-      "return_24h": -0.0198409337547667,
-      "rvol": 1.4653166879648745,
-      "rvol_delta": 0.3498634513029635,
-      "rsi": 61.45176929664784,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "neutral"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "neutral"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "BTT_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "BTT",
-      "name": "BitTorrent",
       "narrative": "DePIN / Storage",
       "tier": "Secondary",
       "previous_signal": "STRONG BUY",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "BUY",
-      "bullish": 8,
-      "bearish": 3,
-      "entry_price": 2.642321703660855e-07,
-      "return_4h": 0.27601447183029926,
-      "return_12h": -0.00928185941779791,
-      "return_24h": -0.06771904935783946,
-      "rvol": 1.6707883064098439,
-      "rvol_delta": 0.12232850936088013,
-      "rsi": 56.613113165731214,
+      "signal": "BUY WATCH",
+      "bullish": 7,
+      "bearish": 4,
+      "entry_price": 0.0005058321403339505,
+      "return_4h": -0.5737347424726646,
+      "return_12h": 0.03838008858501052,
+      "return_24h": -2.0055079072140214,
+      "rvol": 3.5201281702174256,
+      "rvol_delta": 2.53149552788574,
+      "rsi": 51.476408296063525,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -2576,7 +2482,7 @@
         {
           "name": "EMA 21 above EMA 55",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "MACD positive",
@@ -2606,7 +2512,101 @@
         {
           "name": "Most recent candles green",
           "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
           "state": "bull"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "neutral"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "bear"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "BTT_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "BTT",
+      "name": "BitTorrent",
+      "narrative": "DePIN / Storage",
+      "tier": "Secondary",
+      "previous_signal": "BUY",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 5,
+      "entry_price": 2.632081077535986e-07,
+      "return_4h": -0.11261692459476613,
+      "return_12h": -0.30805983876942555,
+      "return_24h": -0.45501826640738097,
+      "rvol": 3.5473341834250447,
+      "rvol_delta": 2.0164308436424445,
+      "rsi": 49.5887363120918,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "neutral"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "neutral"
         },
         {
           "name": "12-hour direction positive",
@@ -2638,7 +2638,7 @@
     },
     {
       "signal_id": "TLM_SELL_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "TLM",
       "name": "Alien Worlds",
       "narrative": "Gaming",
@@ -2647,15 +2647,15 @@
       "changed": false,
       "data_source": "Yahoo Finance",
       "signal": "SELL",
-      "bullish": 1,
-      "bearish": 9,
-      "entry_price": 0.001605998259037733,
-      "return_4h": 0.3607347506160874,
-      "return_12h": 0.8747353809757108,
-      "return_24h": -2.5842526995592086,
-      "rvol": 0.3384639256551329,
-      "rvol_delta": 0.0768517842624305,
-      "rsi": 48.02586801960442,
+      "bullish": 2,
+      "bearish": 8,
+      "entry_price": 0.0016061988426372409,
+      "return_4h": 0.3732694574952733,
+      "return_12h": 0.3698448957512479,
+      "return_24h": -2.5720858113746803,
+      "rvol": 0.8868570384534046,
+      "rvol_delta": 0.5979782930357342,
+      "rsi": 47.98613315942723,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -2690,12 +2690,12 @@
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "neutral"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -2732,24 +2732,24 @@
     },
     {
       "signal_id": "PYR_SELL_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "PYR",
       "name": "Vulcan Forged",
       "narrative": "Gaming",
       "tier": "Legacy",
-      "previous_signal": "HOLD",
-      "changed": true,
+      "previous_signal": "SELL",
+      "changed": false,
       "data_source": "Yahoo Finance",
       "signal": "SELL",
-      "bullish": 2,
+      "bullish": 3,
       "bearish": 8,
       "entry_price": 0.06199999898672104,
       "return_4h": -3.1250061845636834,
       "return_12h": 0.0,
       "return_24h": -8.823535856903275,
-      "rvol": 0.15511145357927208,
-      "rvol_delta": -0.017829997382446117,
-      "rsi": 41.94109481217561,
+      "rvol": 0.2800176352797706,
+      "rvol_delta": 0.11684997975099376,
+      "rsi": 41.86282097231588,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -2789,7 +2789,7 @@
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -2826,24 +2826,24 @@
     },
     {
       "signal_id": "PAAL_SELL_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "PAAL",
       "name": "PAAL AI",
       "narrative": "AI",
       "tier": "Legacy",
-      "previous_signal": "SELL WATCH",
-      "changed": true,
+      "previous_signal": "SELL",
+      "changed": false,
       "data_source": "Yahoo Finance",
       "signal": "SELL",
       "bullish": 3,
-      "bearish": 10,
-      "entry_price": 0.005415812600404024,
-      "return_4h": -1.2165521831426052,
-      "return_12h": -2.57994138564287,
-      "return_24h": -3.5878522226895804,
-      "rvol": 2.1942210360929004,
-      "rvol_delta": 0.12510174958230946,
-      "rsi": 42.4810622594825,
+      "bearish": 11,
+      "entry_price": 0.005354470573365688,
+      "return_4h": -2.335419724177845,
+      "return_12h": -3.7004430890560713,
+      "return_24h": -4.67986131017879,
+      "rvol": 4.73848779624648,
+      "rvol_delta": 2.66681191681459,
+      "rsi": 39.3715178721936,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -2908,7 +2908,7 @@
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
@@ -2920,24 +2920,24 @@
     },
     {
       "signal_id": "SKL_HOLD_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "SKL",
       "name": "SKALE Network",
       "narrative": "Layer 2",
       "tier": "Legacy",
-      "previous_signal": "BUY WATCH",
-      "changed": true,
+      "previous_signal": "HOLD",
+      "changed": false,
       "data_source": "Yahoo Finance",
       "signal": "HOLD",
-      "bullish": 7,
+      "bullish": 5,
       "bearish": 5,
-      "entry_price": 0.0036959999706596136,
-      "return_4h": 1.371363529921954,
-      "return_12h": 0.8183304912243949,
-      "return_24h": 2.3822702496873127,
-      "rvol": 0.5128230391902587,
-      "rvol_delta": -1.0618134232584766,
-      "rsi": 57.55682040540982,
+      "entry_price": 0.003642000025138259,
+      "return_4h": -0.10971010414094762,
+      "return_12h": -0.6546631227632327,
+      "return_24h": 0.8864268893722826,
+      "rvol": 1.458912033182122,
+      "rvol_delta": -0.08667571973668808,
+      "rsi": 52.04123577960828,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -2967,27 +2967,27 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "neutral"
         },
         {
           "name": "Most recent candles green",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -3007,31 +3007,31 @@
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "bull"
+          "state": "neutral"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "AERO_SELL_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "AERO_STRONG_SELL_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "AERO",
       "name": "Aerodrome Finance",
       "narrative": "DeFi / DEX",
       "tier": "Legacy",
       "previous_signal": "SELL",
-      "changed": false,
+      "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "SELL",
+      "signal": "STRONG SELL",
       "bullish": 2,
-      "bearish": 9,
-      "entry_price": 0.4222800135612488,
-      "return_4h": 0.09244660973408703,
-      "return_12h": 0.028428546609449157,
-      "return_24h": -3.2688072592191753,
-      "rvol": 0.8048945532212656,
-      "rvol_delta": -2.8917571145728673,
-      "rsi": 43.48736482513374,
+      "bearish": 12,
+      "entry_price": 0.4175800085067749,
+      "return_4h": -1.021589077186169,
+      "return_12h": -1.084894614947085,
+      "return_24h": -4.345431963696256,
+      "rvol": 2.429440734324516,
+      "rvol_delta": -1.268566171621667,
+      "rsi": 39.7662068877447,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -3061,12 +3061,12 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
@@ -3081,7 +3081,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -3096,7 +3096,7 @@
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
@@ -3108,29 +3108,29 @@
     },
     {
       "signal_id": "LUNC_HOLD_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "LUNC",
       "name": "Terra Luna Classic",
       "narrative": "Legacy Layer 1",
       "tier": "Legacy",
-      "previous_signal": "BUY WATCH",
-      "changed": true,
+      "previous_signal": "HOLD",
+      "changed": false,
       "data_source": "Yahoo Finance",
       "signal": "HOLD",
-      "bullish": 6,
+      "bullish": 5,
       "bearish": 5,
-      "entry_price": 4.99929919897113e-05,
-      "return_4h": -0.3928987848370147,
-      "return_12h": -0.8213758059183562,
-      "return_24h": 1.9386638230794118,
-      "rvol": 0.801075506726162,
-      "rvol_delta": -0.5121266908224494,
-      "rsi": 55.46449956430876,
+      "entry_price": 4.93379047838971e-05,
+      "return_4h": -1.685473693275985,
+      "return_12h": -1.6808836055325571,
+      "return_24h": 0.6037754660284333,
+      "rvol": 2.716338813469958,
+      "rvol_delta": 1.5240150148164373,
+      "rsi": 47.7820324959555,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -3160,17 +3160,17 @@
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
           "group": "Volume",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "12-hour direction positive",
@@ -3195,36 +3195,36 @@
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "bull"
+          "state": "neutral"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "GALA_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "GALA_SELL_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "GALA",
       "name": "Gala",
       "narrative": "Gaming",
       "tier": "Legacy",
-      "previous_signal": "HOLD",
+      "previous_signal": "BUY",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "BUY",
-      "bullish": 9,
-      "bearish": 3,
-      "entry_price": 0.0018142390763387084,
-      "return_4h": 0.4994600736647259,
-      "return_12h": 0.8324917251295583,
-      "return_24h": 0.15279150562774735,
-      "rvol": 1.39942251602684,
-      "rvol_delta": 0.7311339476455584,
-      "rsi": 58.10326720552456,
+      "signal": "SELL WATCH",
+      "bullish": 4,
+      "bearish": 10,
+      "entry_price": 0.0017676098505035043,
+      "return_4h": -2.083557832414218,
+      "return_12h": -1.765047601110914,
+      "return_24h": -2.4138722005127122,
+      "rvol": 7.213007148202877,
+      "rvol_delta": 6.477897448934326,
+      "rsi": 42.249200717584664,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -3239,7 +3239,7 @@
         {
           "name": "MACD positive",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "MACD accelerating",
@@ -3249,7 +3249,7 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RVOL above normal",
@@ -3269,7 +3269,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -3279,41 +3279,41 @@
         {
           "name": "Higher lows",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "neutral"
+          "state": "bear"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "UOS_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "UOS_STRONG_BUY_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "UOS",
       "name": "Ultra",
       "narrative": "Gaming",
       "tier": "Legacy",
-      "previous_signal": "STRONG BUY",
+      "previous_signal": "BUY",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "BUY",
+      "signal": "STRONG BUY",
       "bullish": 12,
-      "bearish": 2,
-      "entry_price": 0.002896761754527688,
-      "return_4h": 0.2561865894475268,
-      "return_12h": 1.2102113371245782,
-      "return_24h": 3.1163925473721044,
-      "rvol": 0.0043779862772774965,
-      "rvol_delta": -0.45864406576838657,
-      "rsi": 64.10751312977845,
+      "bearish": 0,
+      "entry_price": 0.0028924301732331514,
+      "return_4h": 0.10578765995972184,
+      "return_12h": 1.0695747531999311,
+      "return_24h": 2.964436558052319,
+      "rvol": 1.0252088735234803,
+      "rvol_delta": 0.6631456835187051,
+      "rsi": 63.64623295722532,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -3348,12 +3348,12 @@
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "neutral"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -3378,7 +3378,7 @@
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "Outperforming Bitcoin",
@@ -3389,25 +3389,25 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "UFO_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "UFO_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "UFO",
       "name": "UFO Gaming",
       "narrative": "Gaming",
       "tier": "Legacy",
       "previous_signal": "BUY",
-      "changed": false,
+      "changed": true,
       "data_source": "CoinGecko fallback",
-      "signal": "BUY",
-      "bullish": 8,
-      "bearish": 3,
-      "entry_price": 2.786599379690259e-08,
-      "return_4h": 0.058359426986975826,
-      "return_12h": 0.31914166977529135,
-      "return_24h": 0.8752901095432586,
-      "rvol": 0.38069381574897204,
-      "rvol_delta": 0.0397800909247959,
-      "rsi": 55.000588502028116,
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 4,
+      "entry_price": 2.767325069804833e-08,
+      "return_4h": -0.6289569573789344,
+      "return_12h": -0.3747443039587961,
+      "return_24h": 0.17755737640468006,
+      "rvol": 0.378110796730959,
+      "rvol_delta": 0.03719707190678284,
+      "rsi": 53.58946324566077,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -3437,7 +3437,7 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
@@ -3452,12 +3452,12 @@
         {
           "name": "Most recent candles green",
           "group": "Volume",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -3483,35 +3483,35 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "DENT_SELL_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "DENT_BUY_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "DENT",
       "name": "Dent",
       "narrative": "Telecom / Payments",
       "tier": "Legacy",
-      "previous_signal": "HOLD",
+      "previous_signal": "SELL",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "SELL",
-      "bullish": 3,
-      "bearish": 8,
-      "entry_price": 2.8210819436935708e-05,
-      "return_4h": 1.3027035348943672,
-      "return_12h": 2.7475059532232837,
-      "return_24h": -25.535058879835503,
-      "rvol": 0.6204590687057654,
-      "rvol_delta": -0.19220543341715246,
-      "rsi": 49.469510127388965,
+      "signal": "BUY",
+      "bullish": 9,
+      "bearish": 3,
+      "entry_price": 2.8847176508861594e-05,
+      "return_4h": 3.5878087918951307,
+      "return_12h": 5.072886934813203,
+      "return_24h": -23.849334754398555,
+      "rvol": 5.433178153741342,
+      "rvol_delta": 5.342102295948866,
+      "rsi": 50.572588274141864,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "EMA 9 above EMA 21",
           "group": "Trend",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "EMA 21 above EMA 55",
@@ -3526,22 +3526,22 @@
         {
           "name": "MACD accelerating",
           "group": "Momentum",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -3577,30 +3577,30 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "MEW_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "MEW_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "MEW",
       "name": "Cat in a Dogs World",
       "narrative": "Meme",
       "tier": "Legacy",
-      "previous_signal": "BUY WATCH",
+      "previous_signal": "BUY",
       "changed": true,
       "data_source": "CoinGecko fallback",
-      "signal": "BUY",
-      "bullish": 12,
-      "bearish": 1,
-      "entry_price": 0.00035017571647672895,
-      "return_4h": 1.700267765632435,
-      "return_12h": 2.4690465498172998,
-      "return_24h": 2.934197785449477,
-      "rvol": 0.8598796762651257,
-      "rvol_delta": -0.36926143209323503,
-      "rsi": 70.3133845952305,
+      "signal": "HOLD",
+      "bullish": 5,
+      "bearish": 4,
+      "entry_price": 0.00033997067778515785,
+      "return_4h": -1.231879617276388,
+      "return_12h": -0.5171701851708788,
+      "return_24h": -0.06557467637442471,
+      "rvol": 0.8715880900402857,
+      "rvol_delta": -0.35755301831807507,
+      "rsi": 56.1178504136902,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -3620,12 +3620,12 @@
         {
           "name": "MACD accelerating",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
@@ -3640,12 +3640,12 @@
         {
           "name": "Most recent candles green",
           "group": "Volume",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -3660,36 +3660,224 @@
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "Outperforming Bitcoin",
           "group": "Relative strength",
-          "state": "bull"
+          "state": "neutral"
         }
       ],
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "DOGE_STRONG_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "DOGE_SELL_WATCH_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "DOGE",
       "name": "Dogecoin",
       "narrative": "Meme",
+      "tier": "Legacy",
+      "previous_signal": "STRONG BUY",
+      "changed": true,
+      "data_source": "Yahoo Finance",
+      "signal": "SELL WATCH",
+      "bullish": 4,
+      "bearish": 9,
+      "entry_price": 0.06931000202894211,
+      "return_4h": -1.576249638685967,
+      "return_12h": -1.1833400591096388,
+      "return_24h": -1.5063258464725227,
+      "rvol": 2.871893888405965,
+      "rvol_delta": 2.392777281765255,
+      "rsi": 42.484141178160634,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "bull"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "bear"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "GRT_HOLD_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "GRT",
+      "name": "The Graph",
+      "narrative": "Data / AI",
+      "tier": "Legacy",
+      "previous_signal": "BUY",
+      "changed": true,
+      "data_source": "CoinGecko fallback",
+      "signal": "HOLD",
+      "bullish": 4,
+      "bearish": 4,
+      "entry_price": 0.014472269258953797,
+      "return_4h": -1.4306104860636548,
+      "return_12h": -1.1252231572354776,
+      "return_24h": -0.005263715780212674,
+      "rvol": 0.9791826093378131,
+      "rvol_delta": -0.05595953852033242,
+      "rsi": 46.8887657660937,
+      "checks": [
+        {
+          "name": "Price above EMA 9",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "EMA 9 above EMA 21",
+          "group": "Trend",
+          "state": "bull"
+        },
+        {
+          "name": "EMA 21 above EMA 55",
+          "group": "Trend",
+          "state": "bear"
+        },
+        {
+          "name": "MACD positive",
+          "group": "Momentum",
+          "state": "bull"
+        },
+        {
+          "name": "MACD accelerating",
+          "group": "Momentum",
+          "state": "bear"
+        },
+        {
+          "name": "RSI strengthening",
+          "group": "Momentum",
+          "state": "neutral"
+        },
+        {
+          "name": "RVOL above normal",
+          "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "RVOL increasing",
+          "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "Most recent candles green",
+          "group": "Volume",
+          "state": "neutral"
+        },
+        {
+          "name": "12-hour direction positive",
+          "group": "Structure",
+          "state": "bear"
+        },
+        {
+          "name": "Higher highs",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Higher lows",
+          "group": "Structure",
+          "state": "bull"
+        },
+        {
+          "name": "Breakout",
+          "group": "Structure",
+          "state": "neutral"
+        },
+        {
+          "name": "Outperforming Bitcoin",
+          "group": "Relative strength",
+          "state": "neutral"
+        }
+      ],
+      "candle_time": "2026-08-09T20:00:00+00:00"
+    },
+    {
+      "signal_id": "VRA_STRONG_BUY_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "VRA",
+      "name": "Verasity",
+      "narrative": "Gaming / Advertising",
       "tier": "Legacy",
       "previous_signal": "BUY",
       "changed": true,
       "data_source": "Yahoo Finance",
       "signal": "STRONG BUY",
-      "bullish": 10,
-      "bearish": 1,
-      "entry_price": 0.07056000083684921,
-      "return_4h": 0.19881264698551337,
-      "return_12h": 0.5988083107013376,
-      "return_24h": 0.26999750765015484,
-      "rvol": 0.9342609121637886,
-      "rvol_delta": 0.4530357931535234,
-      "rsi": 55.97626033900756,
+      "bullish": 12,
+      "bearish": 0,
+      "entry_price": 9.9660646810662e-06,
+      "return_4h": -0.087987604051043,
+      "return_12h": 1.8159389859069952,
+      "return_24h": 10.62622346735318,
+      "rvol": 1.9775406752157618,
+      "rvol_delta": 0.15780390228854357,
+      "rsi": 56.80370269705005,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -3714,7 +3902,7 @@
         {
           "name": "MACD accelerating",
           "group": "Momentum",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RSI strengthening",
@@ -3724,7 +3912,7 @@
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "neutral"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
@@ -3734,101 +3922,7 @@
         {
           "name": "Most recent candles green",
           "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
           "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "neutral"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "GRT_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "GRT",
-      "name": "The Graph",
-      "narrative": "Data / AI",
-      "tier": "Legacy",
-      "previous_signal": "BUY WATCH",
-      "changed": true,
-      "data_source": "CoinGecko fallback",
-      "signal": "BUY",
-      "bullish": 9,
-      "bearish": 2,
-      "entry_price": 0.014754739344913169,
-      "return_4h": 0.41650182869650276,
-      "return_12h": 0.8046170229221605,
-      "return_24h": 1.946435858646467,
-      "rvol": 0.9673892742888488,
-      "rvol_delta": -0.06775287356929671,
-      "rsi": 57.47833967737256,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bear"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bear"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "neutral"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "neutral"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bull"
         },
         {
           "name": "12-hour direction positive",
@@ -3859,119 +3953,25 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "VRA_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "VRA",
-      "name": "Verasity",
-      "narrative": "Gaming / Advertising",
+      "signal_id": "VTHO_BUY_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
+      "symbol": "VTHO",
+      "name": "VeThor Token",
+      "narrative": "Enterprise",
       "tier": "Legacy",
       "previous_signal": "STRONG BUY",
       "changed": true,
       "data_source": "Yahoo Finance",
       "signal": "BUY",
-      "bullish": 11,
-      "bearish": 2,
-      "entry_price": 1.0031253623310477e-05,
-      "return_4h": 0.45828625931809697,
-      "return_12h": 2.5449166515972177,
-      "return_24h": 11.349839731455535,
-      "rvol": 0.3144097505763672,
-      "rvol_delta": -1.451219070028409,
-      "rsi": 57.54412411714825,
-      "checks": [
-        {
-          "name": "Price above EMA 9",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 9 above EMA 21",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "EMA 21 above EMA 55",
-          "group": "Trend",
-          "state": "bull"
-        },
-        {
-          "name": "MACD positive",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "MACD accelerating",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RSI strengthening",
-          "group": "Momentum",
-          "state": "bull"
-        },
-        {
-          "name": "RVOL above normal",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "RVOL increasing",
-          "group": "Volume",
-          "state": "bear"
-        },
-        {
-          "name": "Most recent candles green",
-          "group": "Volume",
-          "state": "bull"
-        },
-        {
-          "name": "12-hour direction positive",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher highs",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Higher lows",
-          "group": "Structure",
-          "state": "bull"
-        },
-        {
-          "name": "Breakout",
-          "group": "Structure",
-          "state": "neutral"
-        },
-        {
-          "name": "Outperforming Bitcoin",
-          "group": "Relative strength",
-          "state": "bull"
-        }
-      ],
-      "candle_time": "2026-08-09T20:00:00+00:00"
-    },
-    {
-      "signal_id": "VTHO_STRONG_BUY_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
-      "symbol": "VTHO",
-      "name": "VeThor Token",
-      "narrative": "Enterprise",
-      "tier": "Legacy",
-      "previous_signal": "BUY",
-      "changed": true,
-      "data_source": "Yahoo Finance",
-      "signal": "STRONG BUY",
-      "bullish": 10,
-      "bearish": 2,
-      "entry_price": 0.00034500000765547156,
-      "return_4h": 0.0,
-      "return_12h": 0.5830948318214402,
-      "return_24h": 0.8771911162518409,
-      "rvol": 0.23594475651769695,
-      "rvol_delta": 0.23594475651769695,
-      "rsi": 66.9415683883053,
+      "bullish": 9,
+      "bearish": 1,
+      "entry_price": 0.0003429999924264848,
+      "return_4h": -0.579714546262855,
+      "return_12h": 0.0,
+      "return_24h": 0.2923913654895527,
+      "rvol": 1.5552360149863422,
+      "rvol_delta": 1.5552360149863422,
+      "rsi": 61.08696284867912,
       "checks": [
         {
           "name": "Price above EMA 9",
@@ -4001,12 +4001,12 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "RVOL increasing",
@@ -4021,7 +4021,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "Higher highs",
@@ -4047,30 +4047,30 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     },
     {
-      "signal_id": "XTZ_HOLD_20260809_2000000000",
-      "recorded_at": "2026-08-09T21:54:23.349592+00:00",
+      "signal_id": "XTZ_SELL_20260809_2000000000",
+      "recorded_at": "2026-08-09T23:53:03.128423+00:00",
       "symbol": "XTZ",
       "name": "Tezos",
       "narrative": "Layer 1",
       "tier": "Legacy",
-      "previous_signal": "SELL WATCH",
+      "previous_signal": "HOLD",
       "changed": true,
       "data_source": "Yahoo Finance",
-      "signal": "HOLD",
-      "bullish": 6,
-      "bearish": 6,
-      "entry_price": 0.2053000032901764,
-      "return_4h": 0.6372583966584022,
-      "return_12h": 0.7854674692371777,
-      "return_24h": -1.3928864487819048,
-      "rvol": 0.06185389608409962,
-      "rvol_delta": -0.5710070475494219,
-      "rsi": 56.470581258174725,
+      "signal": "SELL",
+      "bullish": 2,
+      "bearish": 9,
+      "entry_price": 0.2021999955177307,
+      "return_4h": -0.9309173836831497,
+      "return_12h": -0.7363821532521131,
+      "return_24h": -2.8818431634837105,
+      "rvol": 0.9999495432369179,
+      "rvol_delta": 0.371162035917889,
+      "rsi": 48.21367097682133,
       "checks": [
         {
           "name": "Price above EMA 9",
           "group": "Trend",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "EMA 9 above EMA 21",
@@ -4085,7 +4085,7 @@
         {
           "name": "MACD positive",
           "group": "Momentum",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "MACD accelerating",
@@ -4095,17 +4095,17 @@
         {
           "name": "RSI strengthening",
           "group": "Momentum",
-          "state": "bull"
+          "state": "neutral"
         },
         {
           "name": "RVOL above normal",
           "group": "Volume",
-          "state": "bear"
+          "state": "neutral"
         },
         {
           "name": "RVOL increasing",
           "group": "Volume",
-          "state": "bear"
+          "state": "bull"
         },
         {
           "name": "Most recent candles green",
@@ -4115,7 +4115,7 @@
         {
           "name": "12-hour direction positive",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Higher highs",
@@ -4125,12 +4125,12 @@
         {
           "name": "Higher lows",
           "group": "Structure",
-          "state": "bull"
+          "state": "bear"
         },
         {
           "name": "Breakout",
           "group": "Structure",
-          "state": "neutral"
+          "state": "bear"
         },
         {
           "name": "Outperforming Bitcoin",
@@ -4141,6 +4141,6 @@
       "candle_time": "2026-08-09T20:00:00+00:00"
     }
   ],
-  "new_history_records": 44,
-  "new_paper_trades": 8
+  "new_history_records": 34,
+  "new_paper_trades": 10
 }
