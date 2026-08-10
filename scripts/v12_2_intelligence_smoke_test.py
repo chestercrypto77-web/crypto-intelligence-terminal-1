@@ -5,7 +5,7 @@ app=(ROOT/"app.py").read_text(encoding="utf-8")
 runner=(ROOT/"scripts/hourly_runner.py").read_text(encoding="utf-8")
 pm=(ROOT/"scripts/portfolio_manager.py").read_text(encoding="utf-8")
 
-assert 'APP_VERSION = "13.1.0"' in app
+assert 'APP_VERSION = "14.0.0"' in app
 assert 'trade_diagnostics.py' in runner
 assert 'challenger_arena.py' in runner
 assert 'Challenger arena' in app

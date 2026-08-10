@@ -7,7 +7,7 @@ committee=(ROOT/"scripts/investment_committee.py").read_text(encoding="utf-8")
 pm=(ROOT/"scripts/portfolio_manager.py").read_text(encoding="utf-8")
 wf=(ROOT/".github/workflows/observer_15m.yml").read_text(encoding="utf-8")
 
-assert 'APP_VERSION = "13.1.0"' in app
+assert 'APP_VERSION = "14.0.0"' in app
 assert 'market_school.py' in runner and 'intelligence_hub.py' in runner
 assert runner.index('run("market_school.py"') < runner.index('run("investment_committee.py")')
 assert runner.index('run("investment_committee.py")') < runner.index('run("intelligence_hub.py"')

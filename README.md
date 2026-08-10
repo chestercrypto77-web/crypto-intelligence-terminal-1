@@ -1,31 +1,27 @@
-# Crypto Intelligence Terminal V13.1.0 — Microstructure Intelligence
+# Crypto Intelligence Terminal V14.0.0 — Connected Learning Engine
 
-V13.1 adds a dedicated 1-minute / 5-minute execution-timing layer.
+V14 is a backend-first release. The front remains intentionally simple while the engines become more connected.
 
-The important change is semantic: a local top is no longer treated as automatically meaning
-"open a Short", and a local bottom is no longer automatically "open a Long".
+## Architecture
 
-The microstructure observer distinguishes:
+1. 1m/5m Microstructure Observer — execution timing and peak/trough semantics.
+2. 15m Observer — developing setup and scalp evidence.
+3. Hourly signal engine — broader opportunity state.
+4. Risk Guardian — independent veto/risk evidence.
+5. Market School — studies traded and untraded recorded charts.
+6. Investment Committee — specialist votes, including Microstructure and Market Memory.
+7. Intelligence Bus — shared asset dossier.
+8. Portfolio Manager — uses committee, risk, memory and timing evidence.
+9. Trade Replay + Diagnostics + Trade Coach — review every result and aftermath.
+10. Confidence Ledger — evaluates which specialist calls have actually been useful.
+11. Challenger Arena — paper-only strategy competition, now including Micro Timing Confirmation.
+12. Brain Health — detects stale or missing components.
 
-- LONG ENTRY
-- SHORT ENTRY
-- LONG EXIT / PROFIT PROTECT
-- SHORT EXIT / PROFIT PROTECT
-- LONG PULLBACK WATCH
-- SHORT PULLBACK WATCH
-- LONG REVERSAL WATCH
-- SHORT REVERSAL WATCH
-- NO ACTION
+## Important semantic rule
+A local peak warning on an existing Long means PROFIT PROTECT / EXIT REVIEW. It does not automatically mean open a Short. A new Short requires separate downside entry evidence. The same rule applies in reverse at local troughs.
 
-This lets the system learn the difference between:
-1. protect profit on an existing position,
-2. wait through a pullback,
-3. open a new opposite-direction trade,
-4. re-enter the original trend.
+## Learning discipline
+Historical future prices label old examples only. They are never exposed to the current live decision. Agent confidence is sample-gated and advisory; no engine automatically rewrites its own live rules.
 
-The new 5-minute GitHub workflow fetches 1-minute bars and derives 5-minute structure every run.
-GitHub scheduled Actions cannot reliably execute every single minute; 5 minutes is the practical
-cadence in the current infrastructure. Each run still studies the underlying 1-minute bars.
-
-The microstructure analyst is deliberately lower weight than the higher-timeframe Committee.
-1m noise improves timing; it must not become the whole thesis.
+## Design research used
+V14 borrows architectural principles, not source code, from mature open quantitative systems: loosely coupled message/event communication, controller/executor separation, research-to-deployment consistency, repeated backtesting, hyperparameter/challenger comparison and explicit lookahead-bias controls.

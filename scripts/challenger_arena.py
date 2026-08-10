@@ -27,6 +27,10 @@ STRATEGIES={
         "name":"Selective Edge",
         "description":"High-quality committee, strong participation and multi-timeframe agreement.",
     },
+    "MICRO_CONFIRM":{
+        "name":"Micro Timing Confirmation",
+        "description":"Base committee entry only when 1m/5m timing confirms the same direction.",
+    },
 }
 
 def now():return datetime.now(timezone.utc).isoformat()
@@ -51,7 +55,7 @@ def ret(direction,entry,current):
     raw=(current/entry-1)*100
     return (raw if direction=="LONG" else -raw)-COST_PCT
 
-def qualifies(strategy,s,committee):
+def qualifies(strategy,s,committee,micro=None):
     decision=(committee.get("decision") or {})
     d=decision.get("direction")
     signal_side=side(s.get("signal"))
@@ -65,6 +69,9 @@ def qualifies(strategy,s,committee):
     if strategy=="MULTI_TF_CONFIRM": return tf
     if strategy=="SELECTIVE_EDGE":
         return decision.get("quality")=="HIGH QUALITY" and rvol>=1.15 and rvold>0 and tf
+    if strategy=="MICRO_CONFIRM":
+        role=str((micro or {}).get("role_signal") or "NO ACTION")
+        return role==("LONG ENTRY" if d=="LONG" else "SHORT ENTRY")
     return False
 
 def stats(book):
@@ -92,7 +99,9 @@ def main():
         "minimum_profit_factor":1.25,"minimum_expectancy_pct":0.20,"auto_promote":False}})
     signals=read(DATA/"signals_latest.json",{"signals":[]}).get("signals") or []
     committee=read(DATA/"committee_latest.json",{"assets":[]}).get("assets") or []
+    micro=read(DATA/"microstructure_latest.json",{"signals":[]}).get("signals") or []
     cmap={str(x.get("symbol") or "").upper():x for x in committee}
+    mmap={str(x.get("symbol") or "").upper():x for x in micro}
     smap={str(x.get("symbol") or "").upper():x for x in signals}
     timestamp=now()
 
@@ -132,7 +141,7 @@ def main():
         for s in signals:
             symbol=str(s.get("symbol") or "").upper()
             c=cmap.get(symbol) or {}
-            if symbol in open_symbols or not qualifies(sid,s,c):continue
+            if symbol in open_symbols or not qualifies(sid,s,c,mmap.get(symbol)):continue
             agreement=((c.get("decision") or {}).get("agreement") or {})
             strength=max(f(agreement.get("long_votes")),f(agreement.get("short_votes")))
             ranked.append((strength,s,c))

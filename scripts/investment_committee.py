@@ -26,6 +26,7 @@ HEALTH = DATA / "engine_health.json"
 OBSERVER = DATA / "observer_latest.json"
 MARKET_SCHOOL = DATA / "market_school.json"
 MICROSTRUCTURE = DATA / "microstructure_latest.json"
+CONFIDENCE_LEDGER = DATA / "confidence_ledger.json"
 
 
 def now_iso() -> str:
@@ -245,21 +246,15 @@ def market_memory_analyst(item: dict, observer_item: dict, school: dict) -> dict
 
 
 def microstructure_analyst(item: dict, micro_item: dict) -> dict:
-    """1m/5m execution-timing specialist. It is deliberately low weight."""
-    if not micro_item:
-        return vote("NEUTRAL",0,["No 1m/5m microstructure record available"],{})
-    role=str(micro_item.get("role_signal") or "NO ACTION")
-    state=str(micro_item.get("state") or "NEUTRAL")
-    evidence={"role_signal":role,"state":state,"reason":micro_item.get("reason"),
-              "one_minute":micro_item.get("one_minute"),"five_minute":micro_item.get("five_minute")}
-    if role=="LONG ENTRY":return vote("LONG",2,["1m and 5m entry timing agree"],evidence)
-    if role=="SHORT ENTRY":return vote("SHORT",2,["1m and 5m entry timing agree"],evidence)
-    if role in {"LONG REVERSAL WATCH","LONG PULLBACK WATCH"}:return vote("LONG",1,[role.replace("_"," ").title()],evidence)
-    if role in {"SHORT REVERSAL WATCH","SHORT PULLBACK WATCH"}:return vote("SHORT",1,[role.replace("_"," ").title()],evidence)
-    if role=="LONG EXIT / PROFIT PROTECT":return vote("NEUTRAL",1,["Possible local peak: protect Long profit rather than assume new Short"],evidence)
-    if role=="SHORT EXIT / PROFIT PROTECT":return vote("NEUTRAL",1,["Possible local trough: protect Short profit rather than assume new Long"],evidence)
-    return vote("NEUTRAL",0,["1m/5m timing has no clear edge"],evidence)
-
+    if not micro_item:return vote('NEUTRAL',0,['No 1m/5m timing evidence'],{})
+    role=str(micro_item.get('role_signal') or 'NO ACTION'); evidence={'role_signal':role,'state':micro_item.get('state'),'reason':micro_item.get('reason'),'one_minute':micro_item.get('one_minute'),'five_minute':micro_item.get('five_minute')}
+    if role=='LONG ENTRY':return vote('LONG',2,['1m and 5m execution timing agree Long'],evidence)
+    if role=='SHORT ENTRY':return vote('SHORT',2,['1m and 5m execution timing agree Short'],evidence)
+    if role in {'LONG PULLBACK WATCH','LONG REVERSAL WATCH'}:return vote('LONG',1,[role.title()],evidence)
+    if role in {'SHORT PULLBACK WATCH','SHORT REVERSAL WATCH'}:return vote('SHORT',1,[role.title()],evidence)
+    if role=='LONG EXIT / PROFIT PROTECT':return vote('NEUTRAL',1,['Possible local Long exhaustion: management signal, not automatic Short'],evidence)
+    if role=='SHORT EXIT / PROFIT PROTECT':return vote('NEUTRAL',1,['Possible local Short exhaustion: management signal, not automatic Long'],evidence)
+    return vote('NEUTRAL',0,['1m/5m timing not decisive'],evidence)
 
 def news_fundamental_analyst(item: dict, inbox: list[dict], calls: list[dict]) -> dict:
     symbol = str(item.get("symbol") or "").upper()
@@ -516,6 +511,7 @@ def main() -> int:
     market_school = read_json(MARKET_SCHOOL, {})
     micro_payload = read_json(MICROSTRUCTURE, {"signals":[]})
     micro_map = {str(x.get("symbol") or "").upper():x for x in micro_payload.get("signals") or []}
+    confidence_ledger = read_json(CONFIDENCE_LEDGER, {"agents":{}})
     core = read_json(CORE_WALLET, {})
     swing = read_json(SWING_WALLET, {})
     scalp = read_json(SCALP_WALLET, {})
@@ -537,6 +533,9 @@ def main() -> int:
             "risk_manager": risk_manager(item, risk_map, wallets),
             "portfolio_fit": portfolio_fit_analyst(item, wallets),
         }
+        for analyst, report in reports.items():
+            calibration=(confidence_ledger.get('agents') or {}).get(analyst) or {}
+            report['calibration']={'samples':calibration.get('samples',0),'maturity':calibration.get('maturity','EARLY'),'suggested_weight':calibration.get('suggested_weight',1.0),'applied_weight':1.0}
         decision = aggregate_committee(item, reports, regime)
         record = {
             "recorded_at": timestamp,

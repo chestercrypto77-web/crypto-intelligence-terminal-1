@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "13.1.0"
+APP_VERSION = "14.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1722,6 +1722,9 @@ TRADE_DIAGNOSTICS_FILE = Path(__file__).with_name("data") / "trade_diagnostics.j
 CHALLENGER_ARENA_FILE = Path(__file__).with_name("data") / "challenger_arena.json"
 INTELLIGENCE_BUS_FILE = Path(__file__).with_name("data") / "intelligence_bus.json"
 MARKET_SCHOOL_FILE = Path(__file__).with_name("data") / "market_school.json"
+BRAIN_HEALTH_FILE = Path(__file__).with_name("data") / "brain_health.json"
+TRADE_COACH_FILE = Path(__file__).with_name("data") / "trade_coach.json"
+CONFIDENCE_LEDGER_FILE = Path(__file__).with_name("data") / "confidence_ledger.json"
 MICROSTRUCTURE_FILE = Path(__file__).with_name("data") / "microstructure_latest.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
 FUND_STATE_FILE = Path(__file__).with_name("data") / "fund_state.json"
@@ -2641,6 +2644,9 @@ elif selection=="Performance Lab":
     arena=read_runtime_json(CHALLENGER_ARENA_FILE,{"ranking":[]})
     market_school=read_runtime_json(MARKET_SCHOOL_FILE,{"summary":{}})
     intelligence_bus=read_runtime_json(INTELLIGENCE_BUS_FILE,{"messages":[]})
+    brain_health=read_runtime_json(BRAIN_HEALTH_FILE,{"overall":"UNKNOWN","components":{}})
+    trade_coach=read_runtime_json(TRADE_COACH_FILE,{"summary":{}})
+    confidence_ledger=read_runtime_json(CONFIDENCE_LEDGER_FILE,{"agents":{}})
     microstructure=read_runtime_json(MICROSTRUCTURE_FILE,{"signals":[]})
     reviews=trade_reviews.get("reviews") or []
     diagnostic_index={str(x.get("position_id") or ""):x for x in (diagnostics.get("diagnostics") or [])}
@@ -2660,11 +2666,18 @@ elif selection=="Performance Lab":
     with c5: metric("Lessons testing",str(summary.get("candidate_lessons",0)),"Sample gated")
 
     school_summary=market_school.get("summary") or {}
-    s1,s2,s3,s4=st.columns(4)
+    s1,s2,s3=st.columns(3)
     with s1: metric("Charts studied",str(school_summary.get("assets_studied",0)),"Tracked assets")
     with s2: metric("Snapshots learned",str(school_summary.get("labelled_snapshots",0)),"Historical states")
     with s3: metric("Large moves studied",str(school_summary.get("large_moves_studied",0)),"Not just trades")
-    with s4: metric("1m/5m watched",str(len(microstructure.get("signals") or [])),"Execution timing")
+
+    bh=brain_health.get("components") or {}
+    coach_summary=trade_coach.get("summary") or {}
+    b1,b2,b3,b4=st.columns(4)
+    with b1: metric("Brain health",str(brain_health.get("overall","UNKNOWN")),"Connected engines")
+    with b2: metric("1m/5m watched",str(len(microstructure.get("signals") or [])),"Execution timing")
+    with b3: metric("Trades coached",str(coach_summary.get("cases",0)),"Every result reviewed")
+    with b4: metric("Agents calibrated",str(len(confidence_ledger.get("agents") or {})),"Sample gated")
 
     section("Trade replays")
     if not reviews:

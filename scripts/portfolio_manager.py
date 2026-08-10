@@ -44,7 +44,20 @@ def candidate_quality(s,book,committee_map,intelligence_map=None):
         eligible=permitted and aligned and call in {'BUY','STRONG BUY','SELL','STRONG SELL'}
         score=max(f((decision.get('agreement') or {}).get('long_votes')),f((decision.get('agreement') or {}).get('short_votes')))*3+diff+rvol*2+abs(r4)
         reasons=[] if eligible else ['COMMITTEE SWING APPROVAL REQUIRED']
-    memory=((intelligence_map.get(str(s.get('symbol') or '').upper()) or {}).get('market_memory') or {})
+    dossier=intelligence_map.get(str(s.get('symbol') or '').upper()) or {}
+    micro=str(dossier.get('microstructure_signal') or 'NO ACTION')
+    # Entry timing is allowed to delay an entry, but a profit-protect signal is never interpreted as the opposite trade.
+    if direction=='LONG':
+        if micro=='LONG ENTRY': score+=4.0
+        elif micro in {'SHORT ENTRY','LONG EXIT / PROFIT PROTECT'}:
+            eligible=False; reasons.append('MICROSTRUCTURE SAYS WAIT — LONG TIMING UNFAVOURABLE')
+        elif micro in {'LONG PULLBACK WATCH','LONG REVERSAL WATCH'}: score+=1.0
+    elif direction=='SHORT':
+        if micro=='SHORT ENTRY': score+=4.0
+        elif micro in {'LONG ENTRY','SHORT EXIT / PROFIT PROTECT'}:
+            eligible=False; reasons.append('MICROSTRUCTURE SAYS WAIT — SHORT TIMING UNFAVOURABLE')
+        elif micro in {'SHORT PULLBACK WATCH','SHORT REVERSAL WATCH'}: score+=1.0
+    memory=(dossier.get('market_memory') or {})
     if str(memory.get('maturity'))=='MATURE':
         md=str(memory.get('direction') or 'NEUTRAL')
         if md==direction:
@@ -78,7 +91,11 @@ def update_wallet(wallet,signals,risk_map,book,committee_map,intelligence_map=No
             elif mfe>=10 and mfe-ret>=f(rules.get('trailing_drawdown_from_peak_pct'),6): reason='CORE PROFIT PROTECTION'
         if reason:
             p.update({'status':'CLOSED','exit_time':now(),'exit_price':price,'exit_reason':reason,'realised_return':ret,'realised_pnl':p['unrealised_pnl']}); wallet['cash']+=f(p['allocated_cash'])+f(p['realised_pnl']); wallet['realised_pnl']=f(wallet.get('realised_pnl'))+f(p['realised_pnl']); wallet.setdefault('closed_positions',[]).append(p); action='EXIT'; journal(wallet,'CLOSED',sym,reason,pnl=p['realised_pnl'],return_pct=ret)
-        else: keep.append(p); action='PROTECT PROFIT' if ret>=3 else 'HOLD'
+        else:
+            keep.append(p)
+            micro=str(((intelligence_map or {}).get(sym,{}) or {}).get('microstructure_signal') or '')
+            exhaustion=(p['direction']=='LONG' and micro=='LONG EXIT / PROFIT PROTECT') or (p['direction']=='SHORT' and micro=='SHORT EXIT / PROFIT PROTECT')
+            action='PROTECT PROFIT' if ret>=3 or (ret>0 and exhaustion) else 'HOLD'
         actions.append({'book':book,'symbol':sym,'action':action,'pnl_pct':ret,'pnl':p.get('unrealised_pnl') if not reason else p.get('realised_pnl'),'reason':reason or 'POSITION VALID'})
     wallet['open_positions']=keep; open_syms={p['symbol'] for p in keep}
     ranked=[]
@@ -94,7 +111,7 @@ def update_wallet(wallet,signals,risk_map,book,committee_map,intelligence_map=No
         if str((risk_map.get(sym) or {}).get('state','NORMAL')) not in {'NORMAL','CAUTION'}: continue
         alloc=min(target,max(0.0,f(wallet.get('cash'))-reserve)); entry=f(s.get('entry_price'))
         if alloc<=0 or entry<=0: continue
-        p={'position_id':f'{book}_{sym}_{str(s.get("recorded_at") or now()).replace(":","")}','book':book,'symbol':sym,'name':s.get('name') or sym,'narrative':s.get('narrative') or '','direction':d,'signal':s.get('signal'),'entry_time':s.get('recorded_at') or now(),'entry_price':entry,'current_price':entry,'allocated_cash':alloc,'units':alloc/entry,'status':'OPEN','unrealised_return':-0.30,'unrealised_pnl':-alloc*0.003,'maximum_favourable_excursion_pct':0.0,'maximum_adverse_excursion_pct':-0.30,'case_id':f'{book}_{sym}_{str(s.get("recorded_at") or now()).replace(":","")}','committee_snapshot':committee,'shared_intelligence':(intelligence_map or {}).get(sym,{}),'entry_snapshot':{'rvol':s.get('rvol'),'rvol_delta':s.get('rvol_delta'),'return_4h':s.get('return_4h'),'return_12h':s.get('return_12h'),'return_24h':s.get('return_24h'),'bullish':s.get('bullish'),'bearish':s.get('bearish'),'signal':s.get('signal')}}
+        p={'position_id':f'{book}_{sym}_{str(s.get("recorded_at") or now()).replace(":","")}','book':book,'symbol':sym,'name':s.get('name') or sym,'narrative':s.get('narrative') or '','direction':d,'signal':s.get('signal'),'entry_time':s.get('recorded_at') or now(),'entry_price':entry,'current_price':entry,'allocated_cash':alloc,'units':alloc/entry,'status':'OPEN','unrealised_return':-0.30,'unrealised_pnl':-alloc*0.003,'maximum_favourable_excursion_pct':0.0,'maximum_adverse_excursion_pct':-0.30,'case_id':f'{book}_{sym}_{str(s.get("recorded_at") or now()).replace(":","")}','committee_snapshot':committee,'shared_intelligence':(intelligence_map or {}).get(sym,{}),'microstructure_at_entry':((intelligence_map or {}).get(sym,{}) or {}).get('microstructure_signal'),'entry_snapshot':{'rvol':s.get('rvol'),'rvol_delta':s.get('rvol_delta'),'return_4h':s.get('return_4h'),'return_12h':s.get('return_12h'),'return_24h':s.get('return_24h'),'bullish':s.get('bullish'),'bearish':s.get('bearish'),'signal':s.get('signal')}}
         wallet['cash']-=alloc; wallet['open_positions'].append(p); open_syms.add(sym); journal(wallet,'OPENED',sym,s.get('signal'),allocation=alloc); actions.append({'book':book,'symbol':sym,'action':'BUY' if d=='LONG' else 'SHORT','pnl_pct':-0.30,'pnl':-alloc*0.003,'reason':'QUALIFIED ENTRY'})
     wallet['unrealised_pnl']=sum(f(p.get('unrealised_pnl')) for p in wallet['open_positions']); wallet['equity']=f(wallet.get('cash'))+sum(f(p.get('allocated_cash'))+f(p.get('unrealised_pnl')) for p in wallet['open_positions']); wallet['previous_equity']=previous; wallet['equity_change_this_run']=wallet['equity']-previous; wallet['updated_at']=now(); wallet.setdefault('equity_history',[]).append({'recorded_at':now(),'equity':wallet['equity'],'cash':wallet['cash'],'realised_pnl':wallet.get('realised_pnl',0),'unrealised_pnl':wallet['unrealised_pnl'],'open_positions':len(wallet['open_positions'])}); wallet['equity_history']=wallet['equity_history'][-20000:]; wallet['closed_positions']=wallet.get('closed_positions',[])[-20000:]; wallet['rejected_opportunities']=wallet.get('rejected_opportunities',[])[-20000:]
     return wallet,actions

@@ -241,7 +241,11 @@ def review_trade(wallet,p,current,observer_history=None,signal_history=None,revi
 
     return {
         "position_id":p.get("position_id"),
+        "case_id":p.get("case_id") or p.get("position_id"),
         "wallet":wallet,
+        "entry_snapshot":p.get("entry_snapshot") or {},
+        "committee_snapshot":p.get("committee_snapshot") or {},
+        "shared_intelligence":p.get("shared_intelligence") or {},
         "symbol":symbol,
         "direction":direction,
         "entry_price":p.get("entry_price"),

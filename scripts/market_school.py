@@ -79,6 +79,33 @@ def summarize(samples):
         }
     return out
 
+def build_micro_learning(history):
+    """Retrospective labels for 1m/5m states. Future movement labels old examples only."""
+    by={}
+    for r in history:
+        sym=str(r.get('symbol') or '').upper()
+        if not sym:continue
+        by.setdefault(sym,[]).append(r)
+    groups={}
+    events=[]
+    for sym,rows in by.items():
+        rows=sorted(rows,key=lambda x:str(x.get('recorded_at') or ''))
+        for i,r in enumerate(rows):
+            price=f(r.get('price'))
+            if price<=0:continue
+            role=str(r.get('role_signal') or 'NO ACTION')
+            future=None
+            if i+3<len(rows):future=f(rows[i+3].get('price'))
+            if not future:continue
+            move=(future/price-1)*100
+            g=groups.setdefault(role,{'samples':0,'sum_15m':0.0,'up':0,'down':0})
+            g['samples']+=1; g['sum_15m']+=move; g['up']+=1 if move>0 else 0; g['down']+=1 if move<0 else 0
+            if abs(move)>=3:events.append({'symbol':sym,'recorded_at':r.get('recorded_at'),'role_signal':role,'forward_15m_pct':move,'state':r.get('state')})
+    summary={}
+    for role,g in groups.items():
+        n=g['samples']; summary[role]={'samples':n,'avg_forward_15m_pct':g['sum_15m']/n if n else 0,'up_rate_pct':g['up']/n*100 if n else 0,'down_rate_pct':g['down']/n*100 if n else 0}
+    return {'patterns':summary,'large_15m_moves':sorted(events,key=lambda x:abs(f(x.get('forward_15m_pct'))),reverse=True)[:1000],'snapshots':len(history)}
+
 def main():
     history=read(DATA/"observer_history.json",[])
     micro_history=read(DATA/"microstructure_history.json",[])
@@ -174,13 +201,13 @@ def main():
             "labelled_snapshots":labelled,
             "global_patterns":len(global_patterns),
             "large_moves_studied":len(large_moves),
-            "purpose":"Study every recorded tracked chart, not only trades.",
-            "microstructure_snapshots":len(micro_history)
+            "purpose":"Study every recorded tracked chart, not only trades."
         },
         "global_patterns":global_patterns,
         "asset_patterns":asset_patterns,
         "large_moves":large_moves,
         "asset_memory":asset_memory,
+        "microstructure_learning": build_micro_learning(micro_history),
         "method":{
             "source":"observer_history.json",
             "horizons":["1h","4h","12h","24h"],

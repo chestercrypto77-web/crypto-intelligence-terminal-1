@@ -32,6 +32,8 @@ def main():
     diagnostics=read(DATA/"trade_diagnostics.json",{})
     learning=read(DATA/"learning_state.json",{})
     arena=read(DATA/"challenger_arena.json",{})
+    coach=read(DATA/"trade_coach.json",{})
+    confidence=read(DATA/"confidence_ledger.json",{})
     omap={str(x.get("symbol") or "").upper():x for x in observer}
     mmap={str(x.get("symbol") or "").upper():x for x in micro}
     cmap={str(x.get("symbol") or "").upper():x for x in committee.get("assets") or []}
@@ -57,6 +59,7 @@ def main():
             "observer_signal":o.get("signal"),
             "microstructure_signal":m.get("role_signal"),
             "microstructure_state":m.get("state"),
+            "microstructure_reason":m.get("reason"),
             "committee_decision":c.get("decision") or {},
             "risk_state":(rmap.get(symbol) or {}).get("state","NORMAL"),
             "market_memory":{
@@ -80,6 +83,8 @@ def main():
         "global_learning":learning.get("summary") or {},
         "diagnostics_summary":diagnostics.get("summary") or {},
         "challenger_leader":(arena.get("ranking") or [None])[0],
+        "trade_coach_summary":coach.get("summary") or {},
+        "agent_confidence":confidence.get("agents") or {},
         "assets":assets,
         "messages":messages[-1000:],
         "principle":"Agents share evidence through this bus. Mature evidence may influence decisions; immature evidence remains observational."
