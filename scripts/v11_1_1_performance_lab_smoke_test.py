@@ -10,5 +10,5 @@ use_match=re.search(r'trade_reviews\.get\("reviews"\)',section)
 assert load_match, "Performance Lab does not load trade_reviews"
 assert use_match, "Performance Lab does not use trade_reviews"
 assert load_match.start() < use_match.start(), "trade_reviews is used before it is loaded"
-assert 'APP_VERSION = "13.0.0"' in app
+assert 'APP_VERSION = "13.1.0"' in app
 print(json.dumps({"status":"passed","tests":["trade_reviews loaded","load occurs before use","version 11.1.1"]},indent=2))

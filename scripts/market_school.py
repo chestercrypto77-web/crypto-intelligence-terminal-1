@@ -81,6 +81,7 @@ def summarize(samples):
 
 def main():
     history=read(DATA/"observer_history.json",[])
+    micro_history=read(DATA/"microstructure_history.json",[])
     by_symbol=defaultdict(list)
     for raw in history:
         symbol=str(raw.get("symbol") or "").upper()
@@ -173,7 +174,8 @@ def main():
             "labelled_snapshots":labelled,
             "global_patterns":len(global_patterns),
             "large_moves_studied":len(large_moves),
-            "purpose":"Study every recorded tracked chart, not only trades."
+            "purpose":"Study every recorded tracked chart, not only trades.",
+            "microstructure_snapshots":len(micro_history)
         },
         "global_patterns":global_patterns,
         "asset_patterns":asset_patterns,

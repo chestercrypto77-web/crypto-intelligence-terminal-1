@@ -25,6 +25,7 @@ def current_pattern(obs):
 def main():
     signals=read(DATA/"signals_latest.json",{"signals":[]}).get("signals") or []
     observer=read(DATA/"observer_latest.json",{"signals":[]}).get("signals") or []
+    micro=read(DATA/"microstructure_latest.json",{"signals":[]}).get("signals") or []
     committee=read(DATA/"committee_latest.json",{"assets":[]})
     risk=read(DATA/"risk_guardian.json",{"asset_checks":[]})
     school=read(DATA/"market_school.json",{})
@@ -32,6 +33,7 @@ def main():
     learning=read(DATA/"learning_state.json",{})
     arena=read(DATA/"challenger_arena.json",{})
     omap={str(x.get("symbol") or "").upper():x for x in observer}
+    mmap={str(x.get("symbol") or "").upper():x for x in micro}
     cmap={str(x.get("symbol") or "").upper():x for x in committee.get("assets") or []}
     rmap={str(x.get("symbol") or "").upper():x for x in risk.get("asset_checks") or []}
     smap={str(x.get("symbol") or "").upper():x for x in signals}
@@ -39,6 +41,7 @@ def main():
     messages=[]
     for symbol,s in smap.items():
         o=omap.get(symbol,{})
+        m=mmap.get(symbol,{})
         c=cmap.get(symbol,{})
         pkey=current_pattern(o) if o else None
         asset_patterns=(school.get("asset_patterns") or {}).get(symbol,{})
@@ -52,6 +55,8 @@ def main():
             "symbol":symbol,
             "hourly_signal":s.get("signal"),
             "observer_signal":o.get("signal"),
+            "microstructure_signal":m.get("role_signal"),
+            "microstructure_state":m.get("state"),
             "committee_decision":c.get("decision") or {},
             "risk_state":(rmap.get(symbol) or {}).get("state","NORMAL"),
             "market_memory":{
@@ -62,6 +67,7 @@ def main():
                 "technical_return_4h":s.get("return_4h"),"technical_return_24h":s.get("return_24h"),
                 "rvol":o.get("rvol",s.get("rvol")),"rvol_delta":o.get("rvol_delta",s.get("rvol_delta")),
                 "rsi":o.get("rsi"),"macd_histogram":o.get("macd_histogram"),
+                "micro_1m":m.get("one_minute"),"micro_5m":m.get("five_minute"),
             }
         }
         assets[symbol]=asset

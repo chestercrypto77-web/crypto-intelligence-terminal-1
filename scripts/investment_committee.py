@@ -25,6 +25,7 @@ COMMITTEE_LEARNING = DATA / "committee_learning.json"
 HEALTH = DATA / "engine_health.json"
 OBSERVER = DATA / "observer_latest.json"
 MARKET_SCHOOL = DATA / "market_school.json"
+MICROSTRUCTURE = DATA / "microstructure_latest.json"
 
 
 def now_iso() -> str:
@@ -243,6 +244,23 @@ def market_memory_analyst(item: dict, observer_item: dict, school: dict) -> dict
     return vote("NEUTRAL",1,[f"{samples} prior matches are not directionally decisive"],evidence)
 
 
+def microstructure_analyst(item: dict, micro_item: dict) -> dict:
+    """1m/5m execution-timing specialist. It is deliberately low weight."""
+    if not micro_item:
+        return vote("NEUTRAL",0,["No 1m/5m microstructure record available"],{})
+    role=str(micro_item.get("role_signal") or "NO ACTION")
+    state=str(micro_item.get("state") or "NEUTRAL")
+    evidence={"role_signal":role,"state":state,"reason":micro_item.get("reason"),
+              "one_minute":micro_item.get("one_minute"),"five_minute":micro_item.get("five_minute")}
+    if role=="LONG ENTRY":return vote("LONG",2,["1m and 5m entry timing agree"],evidence)
+    if role=="SHORT ENTRY":return vote("SHORT",2,["1m and 5m entry timing agree"],evidence)
+    if role in {"LONG REVERSAL WATCH","LONG PULLBACK WATCH"}:return vote("LONG",1,[role.replace("_"," ").title()],evidence)
+    if role in {"SHORT REVERSAL WATCH","SHORT PULLBACK WATCH"}:return vote("SHORT",1,[role.replace("_"," ").title()],evidence)
+    if role=="LONG EXIT / PROFIT PROTECT":return vote("NEUTRAL",1,["Possible local peak: protect Long profit rather than assume new Short"],evidence)
+    if role=="SHORT EXIT / PROFIT PROTECT":return vote("NEUTRAL",1,["Possible local trough: protect Short profit rather than assume new Long"],evidence)
+    return vote("NEUTRAL",0,["1m/5m timing has no clear edge"],evidence)
+
+
 def news_fundamental_analyst(item: dict, inbox: list[dict], calls: list[dict]) -> dict:
     symbol = str(item.get("symbol") or "").upper()
     name = str(item.get("name") or "").lower()
@@ -367,7 +385,7 @@ def aggregate_committee(item: dict, reports: dict, regime: dict) -> dict:
     neutral_votes = 0
     independent_long = []
     independent_short = []
-    for name in ("technical", "volume_liquidity", "momentum", "market_memory", "news_fundamental", "macro_regime"):
+    for name in ("technical", "volume_liquidity", "momentum", "microstructure", "market_memory", "news_fundamental", "macro_regime"):
         report = reports.get(name) or vote("NEUTRAL", 0, [f"{name} report unavailable"], {})
         strength = int(report.get("strength") or 0)
         direction = report.get("direction")
@@ -496,6 +514,8 @@ def main() -> int:
     observer_payload = read_json(OBSERVER, {"signals":[]})
     observer_map = {str(x.get("symbol") or "").upper():x for x in observer_payload.get("signals") or []}
     market_school = read_json(MARKET_SCHOOL, {})
+    micro_payload = read_json(MICROSTRUCTURE, {"signals":[]})
+    micro_map = {str(x.get("symbol") or "").upper():x for x in micro_payload.get("signals") or []}
     core = read_json(CORE_WALLET, {})
     swing = read_json(SWING_WALLET, {})
     scalp = read_json(SCALP_WALLET, {})
@@ -510,6 +530,7 @@ def main() -> int:
             "technical": technical_analyst(item),
             "volume_liquidity": volume_liquidity_analyst(item),
             "momentum": momentum_analyst(item),
+            "microstructure": microstructure_analyst(item, micro_map.get(str(item.get("symbol") or "").upper(),{})),
             "market_memory": market_memory_analyst(item, observer_map.get(str(item.get("symbol") or "").upper(),{}), market_school),
             "news_fundamental": news_fundamental_analyst(item, inbox, calls),
             "macro_regime": macro_regime_analyst(item, regime),

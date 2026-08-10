@@ -1,21 +1,22 @@
-# V13.0.0 Complete Safe Upload
+# V13.1.0 Complete Safe Upload
 
-1. Extract the ZIP.
-2. GitHub → Add file → Upload files.
-3. Upload every extracted item over the repository.
-4. Do not delete your existing `data` folder.
+1. Extract this ZIP.
+2. GitHub -> Add file -> Upload files.
+3. Upload everything over the repository.
+4. Do not delete your existing data folder.
 5. Commit.
 6. Reboot Streamlit.
-7. Run Hourly Signal Recorder once.
-8. Run 15-Minute Market Observer once.
+7. Open GitHub Actions.
 
-New engines:
-- `market_school.py`
-- `intelligence_hub.py`
+A new workflow should appear automatically:
+`5-Minute Microstructure Observer`
+
+Run it manually once with `Run workflow`.
+
+Also run:
+- Hourly Signal Recorder once
+- 15-Minute Market Observer once
 
 New protected records:
-- `data/market_school.json`
-- `data/intelligence_bus.json`
-
-The first useful Market School statistics require historical Observer records. Evidence becomes
-more useful as the 15-minute history grows.
+- data/microstructure_latest.json
+- data/microstructure_history.json

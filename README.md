@@ -1,45 +1,31 @@
-# Crypto Intelligence Terminal V13.0.0 — Connected Intelligence & Market School
+# Crypto Intelligence Terminal V13.1.0 — Microstructure Intelligence
 
-V13 changes the architecture from several useful engines into one connected learning system.
+V13.1 adds a dedicated 1-minute / 5-minute execution-timing layer.
 
-## Market School
+The important change is semantic: a local top is no longer treated as automatically meaning
+"open a Short", and a local bottom is no longer automatically "open a Long".
 
-`market_school.py` studies every chart state recorded in `observer_history.json`, not just
-positions the system happened to trade. It labels what subsequently happened over 1H, 4H,
-12H and 24H and builds repeated-pattern evidence from:
+The microstructure observer distinguishes:
 
-- Observer state
-- relative volume and its acceleration
-- RSI zone
-- MACD state
-- breakout / breakdown / range structure
-- bullish vs bearish condition alignment
+- LONG ENTRY
+- SHORT ENTRY
+- LONG EXIT / PROFIT PROTECT
+- SHORT EXIT / PROFIT PROTECT
+- LONG PULLBACK WATCH
+- SHORT PULLBACK WATCH
+- LONG REVERSAL WATCH
+- SHORT REVERSAL WATCH
+- NO ACTION
 
-It also records large moves of 8%+ so missed opportunities become training examples.
+This lets the system learn the difference between:
+1. protect profit on an existing position,
+2. wait through a pullback,
+3. open a new opposite-direction trade,
+4. re-enter the original trend.
 
-Future prices are used only to label historical examples. The live committee never receives
-the future label for the current setup.
+The new 5-minute GitHub workflow fetches 1-minute bars and derives 5-minute structure every run.
+GitHub scheduled Actions cannot reliably execute every single minute; 5 minutes is the practical
+cadence in the current infrastructure. Each run still studies the underlying 1-minute bars.
 
-## Shared Intelligence Bus
-
-`intelligence_hub.py` connects current Observer evidence, hourly signals, Investment Committee,
-Risk Guardian, Market School, Diagnostics, Learning Engine and Challenger Arena into one
-structured asset dossier.
-
-## Market Memory analyst
-
-The Investment Committee now has an independent Market Memory analyst. It only votes when
-historical analogues have enough samples. Immature evidence remains neutral.
-
-## Feedback upstream
-
-The Portfolio Manager reads the shared bus. Mature historical evidence may modestly boost or
-reduce candidate ranking, but it cannot override the Risk Guardian or Committee permissions.
-
-Every new Core/Swing position stores its `case_id`, committee snapshot, entry features and
-shared-intelligence snapshot so later diagnostics can identify which specialist was right or
-wrong.
-
-This release borrows architectural lessons, not code, from production/open quantitative
-frameworks: event/message-bus communication, modular controllers/executors, research-to-live
-consistency, ensemble decision making, backtesting discipline and anti-lookahead validation.
+The microstructure analyst is deliberately lower weight than the higher-timeframe Committee.
+1m noise improves timing; it must not become the whole thesis.

@@ -30,6 +30,7 @@ def main() -> int:
     run("research_desk.py")
     run("strategy_lab.py")
     run("risk_guardian.py")
+    run("microstructure_observer.py", required=False)
     run("market_school.py", required=False)
     run("investment_committee.py")
     run("intelligence_hub.py", required=False)
