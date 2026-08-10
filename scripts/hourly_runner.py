@@ -35,6 +35,8 @@ def main() -> int:
     run("observer_15m.py", required=False)
     run("trade_review_engine.py", required=False)
     run("learning_engine.py", required=False)
+    run("trade_diagnostics.py", required=False)
+    run("challenger_arena.py", required=False)
     return 0
 
 

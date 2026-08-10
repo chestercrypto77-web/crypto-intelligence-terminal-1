@@ -1,21 +1,42 @@
-# Crypto Intelligence Terminal V12.1.0 — Trade Replay & Learning
+# Crypto Intelligence Terminal V12.2.0 — Diagnostics & Challenger Arena
 
-V12.1 makes the Performance Lab useful for human review without exposing the entire engine.
+V12.2 makes intelligence improvement an operating loop rather than a slogan.
 
-Each completed trade can now show:
+## Every loss becomes homework
 
-- a price replay from before entry through the period after exit
-- entry, exit and first fresh re-entry-evidence markers
-- why the AI entered, in plain English
-- why it exited
-- what happened after the exit
-- what the engine learned
-- the AI decision-state path as conditions changed
-- the best same-direction move available after exit
-- the approximate value of that move on the original paper capital
+`trade_diagnostics.py` classifies every completed result using the evidence that was
+actually captured. Examples:
 
-The replay is reconstructed from records the platform actually captured. It does not invent
-historical prices. Legacy trades with insufficient history clearly say so.
+- ENTRY NEVER WORKED
+- WEAK ENTRY / FAST ADVERSE MOVE
+- WINNER GIVEN BACK
+- CONTROLLED RISK LOSS
+- EXIT / RE-ENTRY FAILURE
+- PROFIT UNDER-CAPTURED
+- WIN — PROCESS REVIEW
 
-The V12 learning engine remains sample-gated. Trade Replay improves evidence quality; it does
-not allow hindsight to automatically rewrite trading rules.
+MFE (maximum favourable excursion), MAE (maximum adverse excursion), exit behaviour and
+post-exit movement are kept separate so the engine can distinguish entry mistakes from
+management mistakes.
+
+## Winner vs loser comparison
+
+The engine compares captured entry conditions across winners and losers: participation,
+volume change, multi-timeframe returns and bullish/bearish evidence. Legacy trades with
+missing snapshots are not silently invented.
+
+## Challenger Arena
+
+Four shadow strategies now compete with identical position sizing and trade management:
+
+- Base Committee
+- Volume Confirmation
+- Multi-Timeframe Confirmation
+- Selective Edge
+
+Because management is held constant, the experiment primarily tests entry selectivity.
+They use shadow paper only. They cannot touch Core, Swing or Scalp capital and cannot
+change live rules.
+
+A challenger is only marked eligible for human review after at least 30 closed trades,
+55% win rate, profit factor >= 1.25 and expectancy >= +0.20%. Promotion is never automatic.

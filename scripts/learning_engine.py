@@ -24,6 +24,7 @@ def summarise(rows):
 def main():
     reviews=read(DATA/"trade_reviews.json",{"reviews":[]}).get("reviews") or []
     committee=read(DATA/"committee_learning.json",{})
+    diagnostics=read(DATA/"trade_diagnostics.json",{"summary":{},"diagnostics":[]})
     prior=read(OUT,{"promoted_lessons":[],"guardrails":{"minimum_samples_for_candidate":8,
         "minimum_samples_for_promotion":20,"minimum_expectancy_pct":0.25,"auto_modify_live_rules":False}})
     g=prior.get("guardrails") or {}; min_c=int(g.get("minimum_samples_for_candidate",8))
@@ -57,7 +58,7 @@ def main():
     candidates.sort(key=lambda x:(x["status"]=="PROMOTION ELIGIBLE",abs(x["expectancy_pct"]),x["samples"]),reverse=True)
     payload={"updated_at":now(),"summary":{"trades_reviewed":len(reviews),"good_process":good,
         "poor_process":poor,"missed_reentries":missed,"candidate_lessons":len(candidates),
-        "promoted_lessons":len(promoted)},"book_learning":book_learning,"condition_learning":conditions,
+        "promoted_lessons":len(promoted),"small_losses":int((diagnostics.get("summary") or {}).get("small_losses") or 0),"diagnosed_trades":int((diagnostics.get("summary") or {}).get("trades_reviewed") or 0)},"book_learning":book_learning,"condition_learning":conditions,
         "rule_candidates":candidates[:100],"promoted_lessons":promoted[-200:],
         "guardrails":{"minimum_samples_for_candidate":min_c,"minimum_samples_for_promotion":min_p,
         "minimum_expectancy_pct":min_e,"auto_modify_live_rules":False},

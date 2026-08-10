@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "12.1.0"
+APP_VERSION = "12.2.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1718,6 +1718,8 @@ SCALP_LEARNING_FILE = Path(__file__).with_name("data") / "scalp_learning.json"
 TRADE_LESSONS_FILE = Path(__file__).with_name("data") / "trade_lessons.json"
 TRADE_REVIEWS_FILE = Path(__file__).with_name("data") / "trade_reviews.json"
 LEARNING_STATE_FILE = Path(__file__).with_name("data") / "learning_state.json"
+TRADE_DIAGNOSTICS_FILE = Path(__file__).with_name("data") / "trade_diagnostics.json"
+CHALLENGER_ARENA_FILE = Path(__file__).with_name("data") / "challenger_arena.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
 FUND_STATE_FILE = Path(__file__).with_name("data") / "fund_state.json"
 SWING_WALLET_FILE = Path(__file__).with_name("data") / "swing_wallet.json"
@@ -2632,7 +2634,10 @@ elif selection=="Strategy Lab":
 elif selection=="Performance Lab":
     trade_reviews=read_runtime_json(TRADE_REVIEWS_FILE,{"reviews":[],"summary":{}})
     learning=read_runtime_json(LEARNING_STATE_FILE,{"summary":{},"rule_candidates":[]})
+    diagnostics=read_runtime_json(TRADE_DIAGNOSTICS_FILE,{"summary":{},"diagnostics":[],"winner_loser_comparison":{}})
+    arena=read_runtime_json(CHALLENGER_ARENA_FILE,{"ranking":[]})
     reviews=trade_reviews.get("reviews") or []
+    diagnostic_index={str(x.get("position_id") or ""):x for x in (diagnostics.get("diagnostics") or [])}
     summary=learning.get("summary") or {}
 
     st.markdown(
@@ -2676,6 +2681,7 @@ elif selection=="Performance Lab":
             with st.expander(f"Replay {r.get('symbol','')} trade"):
                 decision=r.get("decision_replay") or {}
                 post=r.get("post_exit") or {}
+                diagnostic=diagnostic_index.get(str(r.get("position_id") or ""),{})
                 replay=r.get("replay") or {}
                 path=pd.DataFrame(replay.get("price_path") or [])
                 events=pd.DataFrame(replay.get("events") or [])
@@ -2754,6 +2760,15 @@ elif selection=="Performance Lab":
                 else:
                     st.caption("Price replay history was not recorded for this legacy trade. New reviews will build the timeline automatically.")
 
+                # Compact diagnosis: this is the engine's homework on the result.
+                if diagnostic:
+                    d1,d2,d3,d4=st.columns(4)
+                    with d1: metric("Diagnosis",str(diagnostic.get("category") or "REVIEW"),str(diagnostic.get("severity") or ""))
+                    with d2: metric("Best while held",f"{safe_float(diagnostic.get('mfe_pct')):+.2f}%","MFE")
+                    with d3: metric("Worst while held",f"{safe_float(diagnostic.get('mae_pct')):+.2f}%","MAE")
+                    with d4: metric("Best after exit",f"{safe_float(diagnostic.get('post_exit_best_pct')):+.2f}%","Same direction")
+                    st.caption(str(diagnostic.get("next_question") or ""))
+
                 # Four plain-English parts of the case file.
                 left,right=st.columns(2)
                 with left:
@@ -2806,6 +2821,23 @@ elif selection=="Performance Lab":
         )
     else:
         st.caption("No lesson has enough repeated evidence yet. The engine is collecting examples instead of forcing conclusions.")
+
+    section("Challenger arena")
+    ranking=arena.get("ranking") or []
+    if not ranking:
+        st.caption("Shadow challengers have not accumulated results yet. Run the Hourly Signal Recorder to begin the competition.")
+    else:
+        arena_rows=[{
+            "Strategy":x.get("name"),
+            "Trades":x.get("closed_trades"),
+            "Win rate %":round(safe_float(x.get("win_rate_pct")),1),
+            "Expectancy %":round(safe_float(x.get("expectancy_pct")),2),
+            "Profit factor":round(safe_float(x.get("profit_factor")),2),
+            "Net P/L":round(safe_float(x.get("net_pnl")),2),
+            "Status":x.get("promotion_status"),
+        } for x in ranking]
+        st.dataframe(pd.DataFrame(arena_rows),use_container_width=True,hide_index=True)
+        st.caption("This is paper-only self competition. Every challenger uses the same trade management so we can learn whether stricter entry filters improve results.")
 
     st.caption("Trade replay is evidence, not hindsight permission: learned rules remain sample-gated and never rewrite trading logic automatically.")
 

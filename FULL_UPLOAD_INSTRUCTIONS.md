@@ -1,4 +1,4 @@
-# V12.1.0 Complete Safe Upload
+# V12.2.0 Complete Safe Upload
 
 1. Extract the ZIP.
 2. GitHub → Add file → Upload files.
@@ -9,7 +9,13 @@
 7. Run Hourly Signal Recorder once.
 8. Run 15-Minute Market Observer once.
 
-Then open Performance Lab and expand a trade.
+New hourly steps:
+- `trade_diagnostics.py`
+- `challenger_arena.py`
 
-The review engine will rebuild visual trade replays from the existing protected
-`observer_history.json` and `signal_history.json` records where available.
+New protected records:
+- `data/trade_diagnostics.json`
+- `data/challenger_arena.json`
+
+Performance Lab will show the diagnosis inside each trade replay and a compact Challenger
+Arena table at the bottom.
