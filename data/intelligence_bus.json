@@ -1,25 +1,25 @@
 {
-  "updated_at": "2026-08-10T17:40:30.395545+00:00",
+  "updated_at": "2026-08-10T18:06:21.021654+00:00",
   "market_regime": "RISK OFF",
   "global_learning": {
-    "trades_reviewed": 93,
+    "trades_reviewed": 95,
     "good_process": 14,
-    "poor_process": 3,
-    "missed_reentries": 2,
+    "poor_process": 2,
+    "missed_reentries": 3,
     "candidate_lessons": 4,
     "promoted_lessons": 6,
-    "small_losses": 65,
-    "diagnosed_trades": 92
+    "small_losses": 67,
+    "diagnosed_trades": 95
   },
   "diagnostics_summary": {
-    "trades_reviewed": 93,
+    "trades_reviewed": 95,
     "wins": 15,
-    "losses": 78,
-    "small_losses": 66,
-    "win_rate_pct": 16.129032258064516,
-    "small_loss_share_pct": 84.61538461538461,
+    "losses": 80,
+    "small_losses": 67,
+    "win_rate_pct": 15.789473684210526,
+    "small_loss_share_pct": 83.75,
     "categories": {
-      "ENTRY NEVER WORKED": 71,
+      "ENTRY NEVER WORKED": 73,
       "WIN — PROCESS REVIEW": 15,
       "SMALL LOSS — REVIEW": 3,
       "WEAK ENTRY / FAST ADVERSE MOVE": 1,
@@ -29,23 +29,23 @@
   "challenger_leader": {
     "strategy_id": "BASE_COMMITTEE",
     "name": "Base Committee",
-    "equity": 100090.74342153907,
-    "return_pct": 0.09074342153907455,
-    "closed_trades": 1,
-    "wins": 1,
-    "win_rate_pct": 100.0,
-    "expectancy_pct": 8.425285608932553,
-    "profit_factor": 999.0,
-    "net_pnl": 84.25285608932552,
+    "equity": 100066.63588497974,
+    "return_pct": 0.06663588497974882,
+    "closed_trades": 3,
+    "wins": 2,
+    "win_rate_pct": 66.66666666666666,
+    "expectancy_pct": 2.7924586895028636,
+    "profit_factor": 14.90184437267028,
+    "net_pnl": 83.77376068508589,
     "promotion_status": "LEARNING"
   },
   "trade_coach_summary": {
-    "cases": 93,
+    "cases": 95,
     "wins": 15,
-    "losses": 78,
+    "losses": 80,
     "avg_win_capture_pct": 44.54049674191028,
     "diagnoses": {
-      "ENTRY NEVER DEVELOPED": 71,
+      "ENTRY NEVER DEVELOPED": 73,
       "WIN THEN MISSED CONTINUATION": 5,
       "WIN — REPEATABLE PROCESS REVIEW": 10,
       "CONTROLLED LOSS / REVIEW": 4,
@@ -56,7 +56,86 @@
   "assets": {
     "BTC": {
       "symbol": "BTC",
-      "hourly_signal": "BUY",
+      "hourly_signal": "SELL",
+      "observer_signal": "SELL WATCH",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "SHORT",
+        "direction": "SHORT",
+        "quality": "HIGH QUALITY",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": true,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 10; Neutral weight 1",
+          "4 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 10,
+          "neutral_weight": 1,
+          "independent_support": 4,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "SELL_WATCH|RVOL_NORMAL|RSI_OVERSOLD|MACD_MIXED|RANGE|BEARISH",
+        "samples": 0,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.0,
+        "4h_up_rate_pct": 0.0,
+        "4h_down_rate_pct": 0.0
+      },
+      "communication": {
+        "technical_return_4h": -0.628932270956073,
+        "technical_return_24h": -1.9942760561704298,
+        "rvol": 0.8796331685495854,
+        "rvol_delta": -1.5835564538310547,
+        "rsi": 24.165500364957694,
+        "macd_histogram": -26.473909936354715,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 63834.69921875,
+          "ema9": 63860.81834224452,
+          "ema21": 63865.739554756874,
+          "rsi": 43.57010103042327,
+          "rsi_delta": -5.2576826474371074,
+          "macd": -1.7106090479920781,
+          "macd_delta": -5.908837231044151,
+          "rvol": 0.0,
+          "rvol_delta": -0.12849148675698807,
+          "atr_pct": 0.04131284571922173,
+          "return_5bars": -0.13755643189982125,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 63834.69921875,
+          "ema9": 63860.82140481351,
+          "ema21": 63929.68024900791,
+          "rsi": 37.49531920265252,
+          "rsi_delta": 1.9157915802618461,
+          "macd": 20.711774020456886,
+          "macd_delta": -1.1781907692358118,
+          "rvol": 0.0,
+          "rvol_delta": -1.001730224780449,
+          "atr_pct": 0.11425646043573708,
+          "return_5bars": -0.06910054269609889,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "SOL": {
+      "symbol": "SOL",
+      "hourly_signal": "HOLD",
       "observer_signal": "NEUTRAL",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
@@ -71,233 +150,72 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 5; Short votes 2; Neutral weight 2",
-          "3 independent analyst groups support LONG",
-          "Committee contains directional disagreement"
+          "Long votes 1; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 5,
-          "short_votes": 2,
-          "neutral_weight": 2,
-          "independent_support": 3,
-          "conflicts": [
-            "Committee contains directional disagreement"
-          ]
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_NORMAL|RSI_BEAR|MACD_MIXED|RANGE|MIXED",
-        "samples": 6,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.6134990978857557,
-        "4h_up_rate_pct": 83.33333333333334,
-        "4h_down_rate_pct": 16.666666666666664
-      },
-      "communication": {
-        "technical_return_4h": 0.025692248143305285,
-        "technical_return_24h": 0.257675147302594,
-        "rvol": 1.081115239922719,
-        "rvol_delta": -0.6827269437773238,
-        "rsi": 26.459069408945297,
-        "macd_histogram": -44.73230064816349,
-        "micro_1m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 63893.921875,
-          "ema9": 63888.92448186063,
-          "ema21": 63884.85350556673,
-          "rsi": 52.27349935861277,
-          "rsi_delta": 1.9999141708537067,
-          "macd": 0.3138194089036168,
-          "macd_delta": -1.4087991222051874,
-          "rvol": 0.0,
-          "rvol_delta": -0.19684111268269683,
-          "atr_pct": 0.04275536632512098,
-          "return_5bars": -0.01242139129852271,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 63893.921875,
-          "ema9": 63890.04242573092,
-          "ema21": 63979.7249568532,
-          "rsi": 39.3722247539591,
-          "rsi_delta": 3.232021777765816,
-          "macd": 24.157477485699047,
-          "macd_delta": 10.673299594692423,
-          "rvol": 0.0,
-          "rvol_delta": -0.4185425308909508,
-          "atr_pct": 0.13687062299863156,
-          "return_5bars": 0.0573177238269329,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "SOL": {
-      "symbol": "SOL",
-      "hourly_signal": "BUY WATCH",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 5",
-          "1 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 5,
+          "long_votes": 1,
+          "short_votes": 0,
+          "neutral_weight": 6,
           "independent_support": 1,
           "conflicts": []
         }
       },
       "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
-        "samples": 8,
+        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+        "samples": 4,
         "maturity": "EARLY",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": -0.2612267612492711,
-        "4h_up_rate_pct": 12.5,
-        "4h_down_rate_pct": 87.5
+        "4h_avg_return_pct": 0.29589357419973206,
+        "4h_up_rate_pct": 75.0,
+        "4h_down_rate_pct": 25.0
       },
       "communication": {
-        "technical_return_4h": -0.05223415326573999,
-        "technical_return_24h": 0.3276969419318876,
-        "rvol": 0.49690261164240745,
-        "rvol_delta": -1.7210244692843721,
-        "rsi": 42.9300984586232,
-        "macd_histogram": -0.004944810957163037,
+        "technical_return_4h": 0.01316625787612935,
+        "technical_return_24h": -1.6198004790196063,
+        "rvol": 0.08368659886272649,
+        "rvol_delta": -1.485879027685732,
+        "rsi": 41.65465936891279,
+        "macd_histogram": 0.015502674116339543,
         "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 75.98999786376953,
-          "ema9": 75.95785322900991,
-          "ema21": 75.9184503437521,
-          "rsi": 64.3166808748958,
-          "rsi_delta": 1.2562261779521435,
-          "macd": 0.0030244939519409528,
-          "macd_delta": 0.0019721818152510437,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 75.91999816894531,
+          "ema9": 75.90804489395858,
+          "ema21": 75.90493922919333,
+          "rsi": 53.74915539181845,
+          "rsi_delta": 3.8700671380791434,
+          "macd": 0.0024235618231149025,
+          "macd_delta": 0.0007917384892264102,
           "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.04793884069028317,
-          "return_5bars": 0.03949286421596199,
+          "rvol_delta": -0.24942605346959934,
+          "atr_pct": 0.04327783627241993,
+          "return_5bars": -0.013172838390973496,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 75.98999786376953,
-          "ema9": 75.86871335968624,
-          "ema21": 75.86302469471347,
-          "rsi": 54.44681803772443,
-          "rsi_delta": 4.58428342418344,
-          "macd": 0.05328050155131428,
-          "macd_delta": 0.009397108543509641,
-          "rvol": 0.2183254692523074,
-          "rvol_delta": -1.143391766917909,
-          "atr_pct": 0.18235505573511454,
-          "return_5bars": 0.09220191848324788,
-          "breakout": true,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 75.91999816894531,
+          "ema9": 75.89653897250066,
+          "ema21": 75.88148566800484,
+          "rsi": 51.33502069117573,
+          "rsi_delta": 1.6096878034248263,
+          "macd": 0.026684848742765034,
+          "macd_delta": -0.009990271772801033,
+          "rvol": 0.0,
+          "rvol_delta": -0.715559567581849,
+          "atr_pct": 0.13548047255963236,
+          "return_5bars": -0.026342206765628262,
+          "breakout": false,
           "breakdown": false
         }
       }
     },
     "AVAX": {
       "symbol": "AVAX",
-      "hourly_signal": "HOLD",
+      "hourly_signal": "SELL WATCH",
       "observer_signal": "NEUTRAL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
-          "conflicts": []
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_1_5_2|RSI_MID|MACD_MIXED|RANGE|MIXED",
-        "samples": 10,
-        "maturity": "DEVELOPING",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.12566907792989523,
-        "4h_up_rate_pct": 50.0,
-        "4h_down_rate_pct": 40.0
-      },
-      "communication": {
-        "technical_return_4h": 0.3703729595067484,
-        "technical_return_24h": 0.3858634822374363,
-        "rvol": 1.7155419055508443,
-        "rvol_delta": -0.2759359305069278,
-        "rsi": 49.350039127040034,
-        "macd_histogram": -0.0019364100294332505,
-        "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 6.48799991607666,
-          "ema9": 6.486407693332303,
-          "ema21": 6.478677806706812,
-          "rsi": 66.0928815900836,
-          "rsi_delta": -5.196577626761879,
-          "macd": -0.0004863897398546327,
-          "macd_delta": -0.0009688097415156485,
-          "rvol": 1.2315905573114105,
-          "rvol_delta": 1.2315905573114105,
-          "atr_pct": 0.07046041853611454,
-          "return_5bars": 0.015414329004403982,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 6.48799991607666,
-          "ema9": 6.468106449335765,
-          "ema21": 6.465180918108434,
-          "rsi": 57.68318264590079,
-          "rsi_delta": 5.682006226546747,
-          "macd": 0.008294118738348929,
-          "macd_delta": 0.0030458270279508665,
-          "rvol": 3.4826592300061767,
-          "rvol_delta": 3.0634785377229123,
-          "atr_pct": 0.25651783676105017,
-          "return_5bars": 0.40235257378431477,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "COTI": {
-      "symbol": "COTI",
-      "hourly_signal": "SELL",
-      "observer_signal": "EARLY BUY",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
       "microstructure_reason": "1m/5m evidence not aligned enough",
@@ -311,96 +229,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 1; Short votes 2; Neutral weight 5",
-          "1 independent analyst groups support SHORT",
-          "Committee contains directional disagreement"
-        ],
-        "agreement": {
-          "long_votes": 1,
-          "short_votes": 2,
-          "neutral_weight": 5,
-          "independent_support": 1,
-          "conflicts": [
-            "Committee contains directional disagreement"
-          ]
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "EARLY_BUY|RVOL_1_15_1_5|RSI_MID|MACD_MIXED|RANGE|BULLISH",
-        "samples": 0,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.0,
-        "4h_up_rate_pct": 0.0,
-        "4h_down_rate_pct": 0.0
-      },
-      "communication": {
-        "technical_return_4h": 0.884954220551859,
-        "technical_return_24h": -10.236217874045739,
-        "rvol": 1.421182442856228,
-        "rvol_delta": 1.060239482241106,
-        "rsi": 58.19997093844012,
-        "macd_histogram": 2.7214915937381754e-05,
-        "micro_1m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.011699999682605267,
-          "ema9": 0.011701281621448,
-          "ema21": 0.011707022524687593,
-          "rsi": 44.82419534737589,
-          "rsi_delta": -7.105427357601002e-15,
-          "macd": -2.7321955075440854e-06,
-          "macd_delta": 2.1241022741264113e-06,
-          "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.0,
-          "return_5bars": 0.0,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.011699999682605267,
-          "ema9": 0.01170194460518049,
-          "ema21": 0.01166388682214392,
-          "rsi": 57.620610054657995,
-          "rsi_delta": 0.0,
-          "macd": -4.399908773748768e-06,
-          "macd_delta": -8.100112549581133e-06,
-          "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.42735085013549035,
-          "return_5bars": -0.8474640481875739,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "POL": {
-      "symbol": "POL",
-      "hourly_signal": "BUY WATCH",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": null,
-      "microstructure_state": null,
-      "microstructure_reason": null,
-      "committee_decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL"
+          "Long votes 0; Short votes 3; Neutral weight 3",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
+          "short_votes": 3,
+          "neutral_weight": 3,
+          "independent_support": 2,
           "conflicts": []
         }
       },
@@ -410,46 +246,204 @@
         "samples": 6,
         "maturity": "EARLY",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.4377966460491008,
+        "4h_avg_return_pct": 0.3468229123191428,
         "4h_up_rate_pct": 83.33333333333334,
         "4h_down_rate_pct": 16.666666666666664
       },
       "communication": {
-        "technical_return_4h": 0.0,
-        "technical_return_24h": -0.5147996632759333,
-        "rvol": 0.40178377259367376,
-        "rvol_delta": -1.4211220966441664,
-        "rsi": 44.02760243386751,
-        "macd_histogram": 1.9074430028918156e-05,
-        "micro_1m": null,
-        "micro_5m": null
+        "technical_return_4h": -0.10797423564097297,
+        "technical_return_24h": -1.2804895024225993,
+        "rvol": 0.585725522600329,
+        "rvol_delta": -0.6867333720281189,
+        "rsi": 45.92354251028123,
+        "macd_histogram": 0.0005462802203115204,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 6.47599983215332,
+          "ema9": 6.478106686791076,
+          "ema21": 6.479048491829423,
+          "rsi": 46.29231708742708,
+          "rsi_delta": -3.49093140863188,
+          "macd": -0.0004618958645738821,
+          "macd_delta": -0.00010920101075481204,
+          "rvol": 0.0,
+          "rvol_delta": -0.35772126722545816,
+          "atr_pct": 0.06397309414813962,
+          "return_5bars": -0.1233863909032018,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 6.47599983215332,
+          "ema9": 6.475590890194324,
+          "ema21": 6.4711606560029855,
+          "rsi": 51.66902647393159,
+          "rsi_delta": 2.025894323478475,
+          "macd": 0.0037715212367528082,
+          "macd_delta": -0.0022557389010398167,
+          "rvol": 0.0,
+          "rvol_delta": -0.2832644931016527,
+          "atr_pct": 0.20405111317475477,
+          "return_5bars": -0.23109448339606598,
+          "breakout": false,
+          "breakdown": false
+        }
       }
     },
-    "ZIL": {
-      "symbol": "ZIL",
-      "hourly_signal": "SELL",
-      "observer_signal": "EARLY SELL",
+    "COTI": {
+      "symbol": "COTI",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": "SELL WATCH",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
       "microstructure_reason": "1m/5m evidence not aligned enough",
       "committee_decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL"
+          "Long votes 0; Short votes 3; Neutral weight 3",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
+          "short_votes": 3,
+          "neutral_weight": 3,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
+        "samples": 4,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.5824581846042981,
+        "4h_up_rate_pct": 25.0,
+        "4h_down_rate_pct": 50.0
+      },
+      "communication": {
+        "technical_return_4h": -0.854699425978922,
+        "technical_return_24h": -5.691055002247292,
+        "rvol": 0.0,
+        "rvol_delta": -2.050138196393271,
+        "rsi": 51.59195238127055,
+        "macd_histogram": 9.516117111211267e-06,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.011599999852478504,
+          "ema9": 0.011646380151318905,
+          "ema21": 0.011661894553698838,
+          "rsi": 33.49431630545084,
+          "rsi_delta": -24.515496311257515,
+          "macd": -2.4636711424583265e-06,
+          "macd_delta": -6.780920210708598e-06,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.18472875258343094,
+          "return_5bars": -0.854699425978922,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.011599999852478504,
+          "ema9": 0.011651837077732858,
+          "ema21": 0.01165270795984327,
+          "rsi": 43.73710440026105,
+          "rsi_delta": -13.883505654396942,
+          "macd": -2.0225226389721602e-05,
+          "macd_delta": -1.32534097282049e-05,
+          "rvol": 0.0,
+          "rvol_delta": -0.5723601985284228,
+          "atr_pct": 0.30788240125471633,
+          "return_5bars": -0.854699425978922,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "POL": {
+      "symbol": "POL",
+      "hourly_signal": "HOLD",
+      "observer_signal": "SELL WATCH",
+      "microstructure_signal": null,
+      "microstructure_state": null,
+      "microstructure_reason": null,
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 5; Neutral weight 3",
+          "2 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 5,
+          "neutral_weight": 3,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|BEARISH",
+        "samples": 8,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.7518937570726316,
+        "4h_up_rate_pct": 62.5,
+        "4h_down_rate_pct": 25.0
+      },
+      "communication": {
+        "technical_return_4h": -0.25872696271721507,
+        "technical_return_24h": -0.516128151523465,
+        "rvol": 0.1814794264521216,
+        "rvol_delta": -0.7937427786327247,
+        "rsi": 43.71053440497076,
+        "macd_histogram": 2.477469849329904e-05,
+        "micro_1m": null,
+        "micro_5m": null
+      }
+    },
+    "ZIL": {
+      "symbol": "ZIL",
+      "hourly_signal": "HOLD",
+      "observer_signal": "EARLY SELL",
+      "microstructure_signal": "SHORT ENTRY",
+      "microstructure_state": "CONFIRMED",
+      "microstructure_reason": "1m and 5m trend plus participation agree downward",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 4; Neutral weight 6",
+          "2 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 4,
+          "neutral_weight": 6,
+          "independent_support": 2,
           "conflicts": []
         }
       },
@@ -464,41 +458,41 @@
         "4h_down_rate_pct": 41.66666666666667
       },
       "communication": {
-        "technical_return_4h": 0.6100246859151115,
-        "technical_return_24h": -0.8474080916109794,
-        "rvol": 0.008359669997222452,
-        "rvol_delta": -0.9477692600015322,
-        "rsi": 36.34482717228637,
-        "macd_histogram": -3.3397451214761812e-06,
+        "technical_return_4h": -0.7303134493031105,
+        "technical_return_24h": 0.43030112278781285,
+        "rvol": 0.20196596741509035,
+        "rvol_delta": 0.19993685529255453,
+        "rsi": 31.394179443841665,
+        "macd_histogram": -4.225516539444055e-06,
         "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 0.002402032259851694,
-          "ema9": 0.0024053994480254734,
-          "ema21": 0.0024096130012542425,
-          "rsi": 23.995128640865047,
-          "rsi_delta": -2.0967312791343744,
-          "macd": -8.197200589689994e-07,
-          "macd_delta": 1.831127244137434e-07,
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 0.0023915194906294346,
+          "ema9": 0.0023959798351498316,
+          "ema21": 0.0024004833809107462,
+          "rsi": 15.562711254315673,
+          "rsi_delta": -0.612874263515053,
+          "macd": -2.337593406210332e-07,
+          "macd_delta": 9.653866586691092e-08,
           "rvol": 0.0,
           "rvol_delta": 0.0,
-          "atr_pct": 0.052888153754229464,
-          "return_5bars": -0.1857998381169068,
+          "atr_pct": 0.04093991798608983,
+          "return_5bars": -0.18772077938231657,
           "breakout": false,
           "breakdown": true
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.002402032259851694,
-          "ema9": 0.0024089719154750337,
-          "ema21": 0.002413936636920378,
-          "rsi": 32.922264606818786,
-          "rsi_delta": -2.1248682780498456,
-          "macd": -1.304949294525331e-06,
-          "macd_delta": -6.245914318378018e-07,
-          "rvol": 0.0,
-          "rvol_delta": -1.2591884497478327,
-          "atr_pct": 0.12246915700071521,
-          "return_5bars": -0.5077776201544149,
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.0023915194906294346,
+          "ema9": 0.0023997670792194076,
+          "ema21": 0.002407065980545219,
+          "rsi": 25.085167392266456,
+          "rsi_delta": -5.125000401147901,
+          "macd": -1.674799650059858e-06,
+          "macd_delta": -1.8601606060716234e-07,
+          "rvol": 1.8838168600013676,
+          "rvol_delta": 1.8130348877363445,
+          "atr_pct": 0.11049855768707878,
+          "return_5bars": -0.4352487301771957,
           "breakout": false,
           "breakdown": true
         }
@@ -506,7 +500,719 @@
     },
     "ONDO": {
       "symbol": "ONDO",
-      "hourly_signal": "BUY WATCH",
+      "hourly_signal": "SELL",
+      "observer_signal": "EARLY SELL",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 5; Neutral weight 4",
+          "2 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 5,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
+        "samples": 24,
+        "maturity": "MATURE",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.2867400139190665,
+        "4h_up_rate_pct": 66.66666666666666,
+        "4h_down_rate_pct": 33.33333333333333
+      },
+      "communication": {
+        "technical_return_4h": -0.741404148183511,
+        "technical_return_24h": -2.124939331834208,
+        "rvol": 0.0,
+        "rvol_delta": -1.3296451062327115,
+        "rsi": 35.919802284001605,
+        "macd_histogram": -0.00010588629981342292,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.3440699875354767,
+          "ema9": 0.3444251419908968,
+          "ema21": 0.3447939003410797,
+          "rsi": 32.1584567074505,
+          "rsi_delta": 0.8374824477814684,
+          "macd": -5.118254270271321e-05,
+          "macd_delta": -2.600557861202321e-05,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.0695460553358377,
+          "return_5bars": -0.20304165720855805,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.3440699875354767,
+          "ema9": 0.34488610528670727,
+          "ema21": 0.3454488683559702,
+          "rsi": 38.23396015799852,
+          "rsi_delta": -3.1340071949944743,
+          "macd": -0.00013328096667163407,
+          "macd_delta": -0.00012994164424851013,
+          "rvol": 0.0,
+          "rvol_delta": -0.38344216734075964,
+          "atr_pct": 0.23354984416296024,
+          "return_5bars": -0.48014899695485447,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "DOT": {
+      "symbol": "DOT",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": "SELL WATCH",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 1; Short votes 5; Neutral weight 2",
+          "3 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
+        ],
+        "agreement": {
+          "long_votes": 1,
+          "short_votes": 5,
+          "neutral_weight": 2,
+          "independent_support": 3,
+          "conflicts": [
+            "Committee contains directional disagreement"
+          ]
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|MIXED",
+        "samples": 46,
+        "maturity": "MATURE",
+        "direction": "LONG",
+        "4h_avg_return_pct": 0.3977579757574693,
+        "4h_up_rate_pct": 69.56521739130434,
+        "4h_down_rate_pct": 28.26086956521739
+      },
+      "communication": {
+        "technical_return_4h": -0.06230044215564945,
+        "technical_return_24h": -0.7056192393582461,
+        "rvol": 0.09817750121291437,
+        "rvol_delta": -0.8962226546361993,
+        "rsi": 39.65799983850644,
+        "macd_histogram": -0.00042118289410104817,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.8021000027656555,
+          "ema9": 0.8041520477172435,
+          "ema21": 0.804764174340289,
+          "rsi": 30.088740017273196,
+          "rsi_delta": -15.422250757330858,
+          "macd": -0.00044867431087998867,
+          "macd_delta": -0.00022145736908767247,
+          "rvol": 0.0,
+          "rvol_delta": -2.451714623571147,
+          "atr_pct": 0.07925665055910605,
+          "return_5bars": -0.39736676700201645,
+          "breakout": false,
+          "breakdown": true
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.8021000027656555,
+          "ema9": 0.80398143946804,
+          "ema21": 0.8038728963685192,
+          "rsi": 43.68670031304297,
+          "rsi_delta": -12.750703836733337,
+          "macd": 0.00037620301964054275,
+          "macd_delta": -0.0005911684927921677,
+          "rvol": 0.0,
+          "rvol_delta": -0.5989594284119624,
+          "atr_pct": 0.2163965904746264,
+          "return_5bars": -0.3849947894050576,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "SUI": {
+      "symbol": "SUI",
+      "hourly_signal": "SELL",
+      "observer_signal": "EARLY SELL",
+      "microstructure_signal": null,
+      "microstructure_state": null,
+      "microstructure_reason": null,
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 5; Neutral weight 4",
+          "2 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 5,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
+        "samples": 4,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.34045685808050674,
+        "4h_up_rate_pct": 75.0,
+        "4h_down_rate_pct": 25.0
+      },
+      "communication": {
+        "technical_return_4h": -0.3040820897358021,
+        "technical_return_24h": -1.290323076833677,
+        "rvol": 0.17992937752642918,
+        "rvol_delta": -1.9650969362451765,
+        "rsi": 44.665970808905215,
+        "macd_histogram": -6.842728669017879e-05,
+        "micro_1m": null,
+        "micro_5m": null
+      }
+    },
+    "NEAR": {
+      "symbol": "NEAR",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": "EARLY SELL",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 3; Neutral weight 4",
+          "2 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 3,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
+        "samples": 24,
+        "maturity": "MATURE",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.2867400139190665,
+        "4h_up_rate_pct": 66.66666666666666,
+        "4h_down_rate_pct": 33.33333333333333
+      },
+      "communication": {
+        "technical_return_4h": -0.637331930645435,
+        "technical_return_24h": -1.6897227489922617,
+        "rvol": 0.18383631356802652,
+        "rvol_delta": -1.7405210783620852,
+        "rsi": 32.021637532962174,
+        "macd_histogram": -0.002110012991915612,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 1.6058000326156616,
+          "ema9": 1.6068022736945535,
+          "ema21": 1.6078778249802361,
+          "rsi": 40.644394293090684,
+          "rsi_delta": -5.9797836099735875,
+          "macd": 0.0001232925779614917,
+          "macd_delta": -3.710419889273219e-05,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.0765078090800579,
+          "return_5bars": -0.12439197924195566,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 1.6058000326156616,
+          "ema9": 1.608289607353598,
+          "ema21": 1.6118787201977267,
+          "rsi": 38.44988292311109,
+          "rsi_delta": -0.45649011710140996,
+          "macd": 0.0005831358687673014,
+          "macd_delta": -0.00047775330944594546,
+          "rvol": 0.0,
+          "rvol_delta": -0.2287458806827664,
+          "atr_pct": 0.2757840246213852,
+          "return_5bars": -0.3722498398388563,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "SUPER": {
+      "symbol": "SUPER",
+      "hourly_signal": "STRONG BUY",
+      "observer_signal": "NEUTRAL",
+      "microstructure_signal": null,
+      "microstructure_state": null,
+      "microstructure_reason": null,
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 2; Short votes 5; Neutral weight 3",
+          "2 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
+        ],
+        "agreement": {
+          "long_votes": 2,
+          "short_votes": 5,
+          "neutral_weight": 3,
+          "independent_support": 2,
+          "conflicts": [
+            "Committee contains directional disagreement"
+          ]
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|MIXED",
+        "samples": 4,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.6402996661592109,
+        "4h_up_rate_pct": 100.0,
+        "4h_down_rate_pct": 0.0
+      },
+      "communication": {
+        "technical_return_4h": -0.30347487482781377,
+        "technical_return_24h": 1.6385898928736875,
+        "rvol": 0.09374983651325942,
+        "rvol_delta": -1.3968897671431015,
+        "rsi": 56.32169644613741,
+        "macd_histogram": -5.081668416527003e-05,
+        "micro_1m": null,
+        "micro_5m": null
+      }
+    },
+    "S": {
+      "symbol": "S",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": "SELL WATCH",
+      "microstructure_signal": null,
+      "microstructure_state": null,
+      "microstructure_reason": null,
+      "committee_decision": {
+        "action": "SHORT",
+        "direction": "SHORT",
+        "quality": "QUALIFIED",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": true,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 6; Neutral weight 2",
+          "3 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 6,
+          "neutral_weight": 2,
+          "independent_support": 3,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "SELL_WATCH|RVOL_NORMAL|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
+        "samples": 4,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.31563416679228906,
+        "4h_up_rate_pct": 75.0,
+        "4h_down_rate_pct": 25.0
+      },
+      "communication": {
+        "technical_return_4h": -1.0320270329949088,
+        "technical_return_24h": -2.228344269170124,
+        "rvol": 0.9602928084474701,
+        "rvol_delta": -0.07795302105127833,
+        "rsi": 36.39404360375461,
+        "macd_histogram": -6.075469988414206e-06,
+        "micro_1m": null,
+        "micro_5m": null
+      }
+    },
+    "AIOZ": {
+      "symbol": "AIOZ",
+      "hourly_signal": "BUY",
+      "observer_signal": "SELL WATCH",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 2; Short votes 2; Neutral weight 4",
+          "1 independent analyst groups support NEUTRAL",
+          "Committee contains directional disagreement"
+        ],
+        "agreement": {
+          "long_votes": 2,
+          "short_votes": 2,
+          "neutral_weight": 4,
+          "independent_support": 1,
+          "conflicts": [
+            "Committee contains directional disagreement"
+          ]
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
+        "samples": 4,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.2670998869104768,
+        "4h_up_rate_pct": 50.0,
+        "4h_down_rate_pct": 50.0
+      },
+      "communication": {
+        "technical_return_4h": -1.7341047100877138,
+        "technical_return_24h": 7.142852670720035,
+        "rvol": 0.187036006542133,
+        "rvol_delta": 0.04462139028832754,
+        "rsi": 41.10117826289083,
+        "macd_histogram": -0.0004443595008641373,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.050999999046325684,
+          "ema9": 0.05098710898345558,
+          "ema21": 0.05107634209507555,
+          "rsi": 39.87477555341958,
+          "rsi_delta": 0.0,
+          "macd": 4.202630242354676e-05,
+          "macd_delta": 5.043526106432412e-06,
+          "rvol": 0.0,
+          "rvol_delta": -8.73278134630379,
+          "atr_pct": 0.0700281544297939,
+          "return_5bars": 0.0,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.050999999046325684,
+          "ema9": 0.05121037018243727,
+          "ema21": 0.05162159197873563,
+          "rsi": 37.68883004688584,
+          "rsi_delta": 3.120011444472553,
+          "macd": 5.105151165776551e-07,
+          "macd_delta": 5.964195947105451e-06,
+          "rvol": 0.0,
+          "rvol_delta": -1.1184768607244966,
+          "atr_pct": 0.6722682998784866,
+          "return_5bars": -0.7782088194873582,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "FIL": {
+      "symbol": "FIL",
+      "hourly_signal": "SELL",
+      "observer_signal": "NEUTRAL",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 2; Neutral weight 6",
+          "1 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 6,
+          "independent_support": 1,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+        "samples": 8,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.3145607814851667,
+        "4h_up_rate_pct": 50.0,
+        "4h_down_rate_pct": 37.5
+      },
+      "communication": {
+        "technical_return_4h": 0.4304105109409262,
+        "technical_return_24h": -1.685396644626902,
+        "rvol": 0.002339257285811755,
+        "rvol_delta": -0.5277655466799968,
+        "rsi": 52.16185221143396,
+        "macd_histogram": 0.0004933651369445381,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.699999988079071,
+          "ema9": 0.6997596389038838,
+          "ema21": 0.6995577276415952,
+          "rsi": 72.50950131624356,
+          "rsi_delta": 0.0,
+          "macd": 6.49027677198237e-05,
+          "macd_delta": 2.208001080939909e-05,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.010203950432922531,
+          "return_5bars": 0.0,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.699999988079071,
+          "ema9": 0.6992549421926648,
+          "ema21": 0.6984047584057786,
+          "rsi": 57.99913754727016,
+          "rsi_delta": 3.577342571223511,
+          "macd": 0.0002772952785448129,
+          "macd_delta": -0.00010735993722793237,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.10204011253989664,
+          "return_5bars": 0.0,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "OM": {
+      "symbol": "OM",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": "SELL WATCH",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 5; Neutral weight 4",
+          "2 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 5,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_OVERSOLD|MACD_MIXED|RANGE|BEARISH",
+        "samples": 3,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.040504976720678876,
+        "4h_up_rate_pct": 33.33333333333333,
+        "4h_down_rate_pct": 66.66666666666666
+      },
+      "communication": {
+        "technical_return_4h": -1.754837412910204,
+        "technical_return_24h": -88.07179002362744,
+        "rvol": 0.0,
+        "rvol_delta": -0.04828366654092795,
+        "rsi": 15.416834234756507,
+        "macd_histogram": 8.6270597778291e-05,
+        "micro_1m": {
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 0.007829716429114342,
+          "ema9": 0.007831731923021593,
+          "ema21": 0.00785257739022621,
+          "rsi": 0.1892021564941473,
+          "rsi_delta": 0.0,
+          "macd": 4.056963142895587e-06,
+          "macd_delta": 1.976381368510674e-06,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.0,
+          "return_5bars": 0.0,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.007829716429114342,
+          "ema9": 0.00785317137591222,
+          "ema21": 0.007893447165363452,
+          "rsi": 6.167579000527269,
+          "rsi_delta": 0.0,
+          "macd": -1.2293530294528533e-05,
+          "macd_delta": 5.7038304950809184e-06,
+          "rvol": 0.0,
+          "rvol_delta": -0.045836516424751714,
+          "atr_pct": 0.12758442878291662,
+          "return_5bars": 0.0,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "USDT": {
+      "symbol": "USDT",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": "EARLY SELL",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 1; Short votes 5; Neutral weight 3",
+          "2 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
+        ],
+        "agreement": {
+          "long_votes": 1,
+          "short_votes": 5,
+          "neutral_weight": 3,
+          "independent_support": 2,
+          "conflicts": [
+            "Committee contains directional disagreement"
+          ]
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
+        "samples": 103,
+        "maturity": "MATURE",
+        "direction": "LONG",
+        "4h_avg_return_pct": 6.460338353372241,
+        "4h_up_rate_pct": 63.10679611650486,
+        "4h_down_rate_pct": 35.92233009708738
+      },
+      "communication": {
+        "technical_return_4h": -0.013012134277590182,
+        "technical_return_24h": -0.035025415197609266,
+        "rvol": 0.3598418480778693,
+        "rvol_delta": -0.9722077455779203,
+        "rsi": 37.620700225340286,
+        "macd_histogram": -1.1169524592216578e-05,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.9989200234413147,
+          "ema9": 0.9989205118960636,
+          "ema21": 0.9989315400945467,
+          "rsi": 47.9794256142097,
+          "rsi_delta": 0.46111363002475514,
+          "macd": -3.445174971110507e-06,
+          "macd_delta": 2.4372291173763382e-06,
+          "rvol": 0.0,
+          "rvol_delta": -0.047073123566949364,
+          "atr_pct": 0.005863340113986195,
+          "return_5bars": 0.005006486951097955,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.9989200234413147,
+          "ema9": 0.9989318834914297,
+          "ema21": 0.9989565537285701,
+          "rsi": 45.79787378308825,
+          "rsi_delta": -4.867739674853432,
+          "macd": 8.427668493765164e-07,
+          "macd_delta": -2.975387991674221e-06,
+          "rvol": 0.0,
+          "rvol_delta": -1.0373676986751248,
+          "atr_pct": 0.009796385296210854,
+          "return_5bars": -0.005000019391487864,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "SEI": {
+      "symbol": "SEI",
+      "hourly_signal": "HOLD",
       "observer_signal": "SELL WATCH",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
@@ -535,195 +1241,64 @@
       "risk_state": "NORMAL",
       "market_memory": {
         "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
-        "samples": 3,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.6716685269504197,
-        "4h_up_rate_pct": 100.0,
-        "4h_down_rate_pct": 0.0
-      },
-      "communication": {
-        "technical_return_4h": 0.8129376937820787,
-        "technical_return_24h": 0.955040868781043,
-        "rvol": 0.5993463968321888,
-        "rvol_delta": -0.3585915765634474,
-        "rsi": 41.99276952976556,
-        "macd_histogram": -1.3161474637692246e-05,
-        "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 0.3459399938583374,
-          "ema9": 0.34612189272756394,
-          "ema21": 0.3460547749969551,
-          "rsi": 48.79033182543981,
-          "rsi_delta": -0.8361444453879372,
-          "macd": -7.232201834184203e-05,
-          "macd_delta": -5.4973476183019574e-05,
-          "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.08238411691428708,
-          "return_5bars": -0.23072432517174946,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.3459399938583374,
-          "ema9": 0.3459415904039424,
-          "ema21": 0.34607992207535615,
-          "rsi": 48.09653797557758,
-          "rsi_delta": -0.14726985732898612,
-          "macd": 0.00013058707451456806,
-          "macd_delta": 9.294692722383634e-05,
-          "rvol": 0.8113578009364144,
-          "rvol_delta": -0.4353109203964598,
-          "atr_pct": 0.28122236315075283,
-          "return_5bars": -0.02890318775634615,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "DOT": {
-      "symbol": "DOT",
-      "hourly_signal": "HOLD",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "LONG",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 4; Short votes 0; Neutral weight 6",
-          "2 independent analyst groups support LONG"
-        ],
-        "agreement": {
-          "long_votes": 4,
-          "short_votes": 0,
-          "neutral_weight": 6,
-          "independent_support": 2,
-          "conflicts": []
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_NORMAL|RSI_MID|MACD_MIXED|RANGE|MIXED",
-        "samples": 60,
+        "samples": 77,
         "maturity": "MATURE",
-        "direction": "LONG",
-        "4h_avg_return_pct": 17560.576909784635,
-        "4h_up_rate_pct": 66.66666666666666,
-        "4h_down_rate_pct": 33.33333333333333
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.9613617321140405,
+        "4h_up_rate_pct": 57.14285714285714,
+        "4h_down_rate_pct": 40.25974025974026
       },
       "communication": {
-        "technical_return_4h": 0.9391425842934398,
-        "technical_return_24h": -0.44460927267758743,
-        "rvol": 0.781187284712833,
-        "rvol_delta": -1.3831211872244284,
-        "rsi": 48.60588365943355,
-        "macd_histogram": -0.0006359646937546554,
+        "technical_return_4h": 0.0,
+        "technical_return_24h": -0.14389268162732227,
+        "rvol": 0.0,
+        "rvol_delta": -0.046810602044093916,
+        "rsi": 47.9922483041862,
+        "macd_histogram": -3.8049679578119867e-06,
         "micro_1m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.8061000108718872,
-          "ema9": 0.8057718543440118,
-          "ema21": 0.8046502282097288,
-          "rsi": 68.47298627431107,
-          "rsi_delta": -2.0663413218571236,
-          "macd": 2.2994508724976563e-05,
-          "macd_delta": -8.592266908755727e-05,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.04163999855518341,
+          "ema9": 0.04161391449956762,
+          "ema21": 0.04163327866949781,
+          "rsi": 50.13447403627726,
+          "rsi_delta": 12.22695661527758,
+          "macd": -2.3183791018948827e-06,
+          "macd_delta": 5.780716751292328e-06,
           "rvol": 0.0,
           "rvol_delta": 0.0,
-          "atr_pct": 0.05848231008489196,
-          "return_5bars": 0.07449285917091597,
+          "atr_pct": 0.05146046261389627,
+          "return_5bars": 0.12021428076864904,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.8061000108718872,
-          "ema9": 0.8039693595248953,
-          "ema21": 0.8036732884994746,
-          "rsi": 55.88131889527256,
-          "rsi_delta": 2.4529061015281783,
-          "macd": 0.001083280561524498,
-          "macd_delta": 0.0003286620767307222,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.04163999855518341,
+          "ema9": 0.04163769426051318,
+          "ema21": 0.04164052432125761,
+          "rsi": 49.68046641777412,
+          "rsi_delta": -1.7101037679247852,
+          "macd": -6.335332721080237e-07,
+          "macd_delta": -1.0253706493110997e-05,
           "rvol": 0.0,
-          "rvol_delta": -0.32576194916885004,
-          "atr_pct": 0.24101922156020192,
-          "return_5bars": 0.6367055969580093,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.19726926038287312,
+          "return_5bars": -0.14389268162732227,
           "breakout": false,
           "breakdown": false
         }
       }
     },
-    "SUI": {
-      "symbol": "SUI",
-      "hourly_signal": "SELL WATCH",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": null,
-      "microstructure_state": null,
-      "microstructure_reason": null,
-      "committee_decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 9",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 9,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
-        "samples": 11,
-        "maturity": "DEVELOPING",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.045013415819983305,
-        "4h_up_rate_pct": 54.54545454545454,
-        "4h_down_rate_pct": 45.45454545454545
-      },
-      "communication": {
-        "technical_return_4h": 0.1162134771094836,
-        "technical_return_24h": -0.419015234106912,
-        "rvol": 0.6302194294612872,
-        "rvol_delta": 0.29610477000388213,
-        "rsi": 45.94178854775009,
-        "macd_histogram": -0.00014763482072988878,
-        "micro_1m": null,
-        "micro_5m": null
-      }
-    },
-    "NEAR": {
-      "symbol": "NEAR",
-      "hourly_signal": "BUY WATCH",
+    "RUNE": {
+      "symbol": "RUNE",
+      "hourly_signal": "SELL",
       "observer_signal": "SELL WATCH",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
       "microstructure_reason": "1m/5m evidence not aligned enough",
       "committee_decision": {
         "action": "WATCH",
-        "direction": "LONG",
+        "direction": "SHORT",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -731,15 +1306,18 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 4; Short votes 0; Neutral weight 4",
-          "3 independent analyst groups support LONG"
+          "Long votes 1; Short votes 5; Neutral weight 4",
+          "2 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 4,
-          "short_votes": 0,
+          "long_votes": 1,
+          "short_votes": 5,
           "neutral_weight": 4,
-          "independent_support": 3,
-          "conflicts": []
+          "independent_support": 2,
+          "conflicts": [
+            "Committee contains directional disagreement"
+          ]
         }
       },
       "risk_state": "NORMAL",
@@ -753,53 +1331,53 @@
         "4h_down_rate_pct": 28.26086956521739
       },
       "communication": {
-        "technical_return_4h": 1.6464731790216902,
-        "technical_return_24h": 0.7327176621032772,
-        "rvol": 0.22383137742492024,
-        "rvol_delta": -1.5523516273905704,
-        "rsi": 36.6762643930656,
-        "macd_histogram": -0.002490521390244473,
+        "technical_return_4h": -0.1905149178644261,
+        "technical_return_24h": -1.8798193981546585,
+        "rvol": 0.011145653642223577,
+        "rvol_delta": -1.3447991842258344,
+        "rsi": 26.7194562221613,
+        "macd_histogram": -0.00012558572524863144,
         "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 1.6151000261306763,
-          "ema9": 1.6152554266039245,
-          "ema21": 1.6140635671611023,
-          "rsi": 56.42393280206844,
-          "rsi_delta": 0.18064075797361312,
-          "macd": -0.00028510928863553493,
-          "macd_delta": -0.00023428164309663977,
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 0.42792758345603943,
+          "ema9": 0.4278798389550887,
+          "ema21": 0.4279626447297238,
+          "rsi": 47.540548756315,
+          "rsi_delta": 13.505042474662652,
+          "macd": -1.364114324784112e-05,
+          "macd_delta": 5.2239842210748054e-05,
           "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.09154611536907774,
-          "return_5bars": -0.07424121254648863,
+          "rvol_delta": -1.5919249106078663,
+          "atr_pct": 0.029996895198724838,
+          "return_5bars": 0.05053786981727981,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 1.6151000261306763,
-          "ema9": 1.6126588908970225,
-          "ema21": 1.61561166030915,
-          "rsi": 46.657168190575405,
-          "rsi_delta": 2.0244555528666908,
-          "macd": 0.002014870434980001,
-          "macd_delta": 0.0009663574675897691,
-          "rvol": 0.1751296910090759,
-          "rvol_delta": -0.32969790887785855,
-          "atr_pct": 0.37016541502555794,
-          "return_5bars": 0.24205878707950212,
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.42792758345603943,
+          "ema9": 0.4280092408772714,
+          "ema21": 0.4282895536119166,
+          "rsi": 38.46031917842,
+          "rsi_delta": 2.267176090976527,
+          "macd": 0.00010783754552463963,
+          "macd_delta": -4.66348459087398e-05,
+          "rvol": 0.023771090820022326,
+          "rvol_delta": -0.1753891895027547,
+          "atr_pct": 0.052519563595890155,
+          "return_5bars": -0.11403619830180345,
           "breakout": false,
           "breakdown": false
         }
       }
     },
-    "SUPER": {
-      "symbol": "SUPER",
-      "hourly_signal": "BUY WATCH",
-      "observer_signal": "SELL WATCH",
-      "microstructure_signal": null,
-      "microstructure_state": null,
-      "microstructure_reason": null,
+    "SAND": {
+      "symbol": "SAND",
+      "hourly_signal": "HOLD",
+      "observer_signal": "EARLY SELL",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
       "committee_decision": {
         "action": "WATCH",
         "direction": "SHORT",
@@ -810,94 +1388,149 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
+          "Long votes 0; Short votes 2; Neutral weight 5",
           "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 6,
+          "neutral_weight": 5,
           "independent_support": 1,
           "conflicts": []
         }
       },
       "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|MIXED",
-        "samples": 47,
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
+        "samples": 69,
         "maturity": "MATURE",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": 22419.706809293257,
-        "4h_up_rate_pct": 55.319148936170215,
-        "4h_down_rate_pct": 42.5531914893617
+        "4h_avg_return_pct": 0.030347537835965752,
+        "4h_up_rate_pct": 55.072463768115945,
+        "4h_down_rate_pct": 40.57971014492754
       },
       "communication": {
-        "technical_return_4h": -0.16143497911955684,
-        "technical_return_24h": -0.09231120008170723,
-        "rvol": 0.02302653344802488,
-        "rvol_delta": -0.5496316423023118,
-        "rsi": 53.08248511766773,
-        "macd_histogram": -5.2970725855598665e-05,
-        "micro_1m": null,
-        "micro_5m": null
+        "technical_return_4h": -0.2409589669581047,
+        "technical_return_24h": -0.7194276739386662,
+        "rvol": 0.17521812676710774,
+        "rvol_delta": -0.47665125266562797,
+        "rsi": 42.30474725538415,
+        "macd_histogram": -1.2389765175218007e-05,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.0414000004529953,
+          "ema9": 0.04143368874332608,
+          "ema21": 0.041474136444399755,
+          "rsi": 5.477595306505606,
+          "rsi_delta": 0.0,
+          "macd": -1.0031333386308133e-05,
+          "macd_delta": -3.8684972020588257e-07,
+          "rvol": 0.0,
+          "rvol_delta": -0.2820721453756442,
+          "atr_pct": 0.01725292725801309,
+          "return_5bars": -0.2409589669581047,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.0414000004529953,
+          "ema9": 0.04148081348522419,
+          "ema21": 0.04150334869329198,
+          "rsi": 39.197501761794804,
+          "rsi_delta": -7.315098129562109,
+          "macd": -1.6651456071517073e-06,
+          "macd_delta": -2.1127435605160398e-05,
+          "rvol": 0.0,
+          "rvol_delta": -1.0404028081227055,
+          "atr_pct": 0.08626656449413259,
+          "return_5bars": -0.480768412762167,
+          "breakout": false,
+          "breakdown": false
+        }
       }
     },
-    "S": {
-      "symbol": "S",
+    "WIN": {
+      "symbol": "WIN",
       "hourly_signal": "BUY",
-      "observer_signal": "SELL WATCH",
-      "microstructure_signal": null,
-      "microstructure_state": null,
-      "microstructure_reason": null,
+      "observer_signal": "EARLY BUY",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
       "committee_decision": {
-        "action": "WATCH",
+        "action": "BUY",
         "direction": "LONG",
-        "quality": "BUILDING",
+        "quality": "QUALIFIED",
         "book_permissions": {
           "CORE": false,
-          "SWING": false,
+          "SWING": true,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 5; Short votes 2; Neutral weight 4",
-          "2 independent analyst groups support LONG",
-          "Committee contains directional disagreement",
-          "Risk Manager requests caution"
+          "Long votes 6; Short votes 0; Neutral weight 4",
+          "3 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 5,
-          "short_votes": 2,
+          "long_votes": 6,
+          "short_votes": 0,
           "neutral_weight": 4,
-          "independent_support": 2,
-          "conflicts": [
-            "Committee contains directional disagreement",
-            "Risk Manager requests caution"
-          ]
+          "independent_support": 3,
+          "conflicts": []
         }
       },
-      "risk_state": "CAUTION",
+      "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_NORMAL|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
-        "samples": 4,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.31563416679228906,
-        "4h_up_rate_pct": 75.0,
-        "4h_down_rate_pct": 25.0
+        "pattern": "EARLY_BUY|RVOL_WEAK|RSI_OVERBOUGHT|MACD_UP|BREAKOUT|BULLISH",
+        "samples": 10,
+        "maturity": "DEVELOPING",
+        "direction": "LONG",
+        "4h_avg_return_pct": 1.723818300219968,
+        "4h_up_rate_pct": 60.0,
+        "4h_down_rate_pct": 40.0
       },
       "communication": {
-        "technical_return_4h": 1.245330012453283,
-        "technical_return_24h": 4.858125537403257,
-        "rvol": 0.9449829113734945,
-        "rvol_delta": -0.0939988725533697,
-        "rsi": 38.82808128621985,
-        "macd_histogram": -6.859948795408542e-06,
-        "micro_1m": null,
-        "micro_5m": null
+        "technical_return_4h": 2.3604440950373506,
+        "technical_return_24h": 2.9707500587928592,
+        "rvol": 0.08303215227415621,
+        "rvol_delta": -0.44968376626622303,
+        "rsi": 75.62898521594983,
+        "macd_histogram": 4.7581082168061396e-08,
+        "micro_1m": {
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 3.252708484069444e-05,
+          "ema9": 3.2347256065512524e-05,
+          "ema21": 3.222573726760566e-05,
+          "rsi": 90.13697815987723,
+          "rsi_delta": 6.024809432599852,
+          "macd": 1.6620266764973068e-08,
+          "macd_delta": 6.5359125954883005e-09,
+          "rvol": 0.0,
+          "rvol_delta": -0.2451119122912796,
+          "atr_pct": 0.10892865191673923,
+          "return_5bars": 0.647167114351288,
+          "breakout": true,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 3.252708484069444e-05,
+          "ema9": 3.2254235646178744e-05,
+          "ema21": 3.209248669149123e-05,
+          "rsi": 84.18576313077433,
+          "rsi_delta": 8.52603215113534,
+          "macd": 6.20088321650709e-08,
+          "macd_delta": 9.765782197171125e-09,
+          "rvol": 0.0,
+          "rvol_delta": -3.8214842244600455,
+          "atr_pct": 0.21261978097344073,
+          "return_5bars": 1.2004296586726415,
+          "breakout": true,
+          "breakdown": false
+        }
       }
     },
-    "AIOZ": {
-      "symbol": "AIOZ",
+    "AR": {
+      "symbol": "AR",
       "hourly_signal": "STRONG BUY",
       "observer_signal": "EARLY SELL",
       "microstructure_signal": "NO ACTION",
@@ -929,697 +1562,50 @@
       },
       "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
-        "samples": 69,
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
+        "samples": 24,
         "maturity": "MATURE",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.030347537835965752,
-        "4h_up_rate_pct": 55.072463768115945,
-        "4h_down_rate_pct": 40.57971014492754
+        "4h_avg_return_pct": -0.2867400139190665,
+        "4h_up_rate_pct": 66.66666666666666,
+        "4h_down_rate_pct": 33.33333333333333
       },
       "communication": {
-        "technical_return_4h": -1.6032037198554727,
-        "technical_return_24h": 3.8054982607304666,
-        "rvol": 0.23880994133407663,
-        "rvol_delta": -0.18495438802032693,
-        "rsi": 43.66908668434394,
-        "macd_histogram": -0.00048545887695466045,
+        "technical_return_4h": -0.7382849586804463,
+        "technical_return_24h": -0.01976907926598548,
+        "rvol": 0.0,
+        "rvol_delta": -0.24140425197182747,
+        "rsi": 39.5111780134036,
+        "macd_histogram": -0.002708053003925404,
         "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 0.051500000059604645,
-          "ema9": 0.051843802018727944,
-          "ema21": 0.05187034628278797,
-          "rsi": 40.20813493360199,
-          "rsi_delta": -12.494198730898304,
-          "macd": -4.193838546946365e-05,
-          "macd_delta": -5.178246755809327e-05,
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 1.812286138534546,
+          "ema9": 1.815289641596172,
+          "ema21": 1.8177231109717218,
+          "rsi": 24.7914699508828,
+          "rsi_delta": -2.2490863988897445,
+          "macd": -0.0010391955727426568,
+          "macd_delta": -0.0001896019102213439,
           "rvol": 0.0,
           "rvol_delta": 0.0,
-          "atr_pct": 0.24965335166279493,
-          "return_5bars": -0.9615403903129871,
+          "atr_pct": 0.045938227726450474,
+          "return_5bars": -0.23470430440409862,
           "breakout": false,
           "breakdown": true
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.051500000059604645,
-          "ema9": 0.05178062628117672,
-          "ema21": 0.052085388870098774,
-          "rsi": 40.80785088072093,
-          "rsi_delta": 0.003035423785235025,
-          "macd": 8.415477785245955e-05,
-          "macd_delta": 2.4019350198843463e-05,
-          "rvol": 0.03794728478272782,
-          "rvol_delta": -0.6191515172573623,
-          "atr_pct": 0.9153932115724526,
-          "return_5bars": 0.1945558286952087,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "FIL": {
-      "symbol": "FIL",
-      "hourly_signal": "SELL WATCH",
-      "observer_signal": "BUY WATCH",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
-          "conflicts": []
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "BUY_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
-        "samples": 5,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": -0.1051314899115452,
-        "4h_up_rate_pct": 20.0,
-        "4h_down_rate_pct": 80.0
-      },
-      "communication": {
-        "technical_return_4h": 0.42734491203051395,
-        "technical_return_24h": -0.7042247017941761,
-        "rvol": 0.24292233312050604,
-        "rvol_delta": -0.7531903608613572,
-        "rsi": 52.19300831106095,
-        "macd_histogram": 0.00036328690010802565,
-        "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 0.699999988079071,
-          "ema9": 0.6997596893271683,
-          "ema21": 0.699098546111658,
-          "rsi": 83.65453337368155,
-          "rsi_delta": 0.0,
-          "macd": -2.22048960428422e-05,
-          "macd_delta": -4.148070002111062e-05,
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 1.812286138534546,
+          "ema9": 1.8175420823929762,
+          "ema21": 1.8205092366021354,
+          "rsi": 33.43016439941552,
+          "rsi_delta": -11.259848634044587,
+          "macd": -0.00031529985377325067,
+          "macd_delta": -0.0011139872755756897,
           "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.010203950432922531,
-          "return_5bars": 0.0,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.699999988079071,
-          "ema9": 0.6983492544845484,
-          "ema21": 0.6975380367161805,
-          "rsi": 58.4046618067305,
-          "rsi_delta": 2.589032787978283,
-          "macd": 0.0006012951890627383,
-          "macd_delta": 0.00014723975156952294,
-          "rvol": 0.30531886167953215,
-          "rvol_delta": -1.4996584256152872,
-          "atr_pct": 0.224489342366981,
-          "return_5bars": 0.14305967439662837,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "OM": {
-      "symbol": "OM",
-      "hourly_signal": "STRONG SELL",
-      "observer_signal": "SELL WATCH",
-      "microstructure_signal": "SHORT EXIT / PROFIT PROTECT",
-      "microstructure_state": "EXHAUSTION",
-      "microstructure_reason": "1m bounced while 5m remains broadly down; possible local trough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 3; Neutral weight 7",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 3,
-          "neutral_weight": 7,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_OVERSOLD|MACD_MIXED|RANGE|BEARISH",
-        "samples": 3,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": -0.040504976720678876,
-        "4h_up_rate_pct": 33.33333333333333,
-        "4h_down_rate_pct": 66.66666666666666
-      },
-      "communication": {
-        "technical_return_4h": 0.0,
-        "technical_return_24h": -87.1457887997144,
-        "rvol": 0.024322270078540664,
-        "rvol_delta": 0.024322270078540664,
-        "rsi": 15.416834234756507,
-        "macd_histogram": 0.00010829648677509367,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 0.007829716429114342,
-          "ema9": 0.007859045725595901,
-          "ema21": 0.007901463918186944,
-          "rsi": 0.1892021564941473,
-          "rsi_delta": 0.0,
-          "macd": -1.3052574989546881e-05,
-          "macd_delta": 4.004878335428804e-06,
-          "rvol": 0.0,
-          "rvol_delta": -0.046012269938650305,
-          "atr_pct": 0.12758442878291662,
-          "return_5bars": 0.0,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.007829716429114342,
-          "ema9": 0.007901295246246533,
-          "ema21": 0.007932355417150896,
-          "rsi": 6.167579000527269,
-          "rsi_delta": -72.74205359884932,
-          "macd": -1.831560571800666e-05,
-          "macd_delta": -1.6110424725516452e-05,
-          "rvol": 0.0,
-          "rvol_delta": -19.830899308224442,
-          "atr_pct": 0.12758442878291662,
-          "return_5bars": -1.754837412910204,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "USDT": {
-      "symbol": "USDT",
-      "hourly_signal": "HOLD",
-      "observer_signal": "EARLY SELL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 1; Short votes 2; Neutral weight 4",
-          "1 independent analyst groups support SHORT",
-          "Committee contains directional disagreement"
-        ],
-        "agreement": {
-          "long_votes": 1,
-          "short_votes": 2,
-          "neutral_weight": 4,
-          "independent_support": 1,
-          "conflicts": [
-            "Committee contains directional disagreement"
-          ]
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
-        "samples": 103,
-        "maturity": "MATURE",
-        "direction": "LONG",
-        "4h_avg_return_pct": 6.460338353372241,
-        "4h_up_rate_pct": 63.10679611650486,
-        "4h_down_rate_pct": 35.92233009708738
-      },
-      "communication": {
-        "technical_return_4h": -0.00400275384692117,
-        "technical_return_24h": -0.014005254714311022,
-        "rvol": 0.496907686830363,
-        "rvol_delta": -1.2760443898154459,
-        "rsi": 34.696001255114055,
-        "macd_histogram": -1.5837505416334345e-05,
-        "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 0.9988600015640259,
-          "ema9": 0.9989279303847131,
-          "ema21": 0.9989331734063126,
-          "rsi": 39.53432700227858,
-          "rsi_delta": -12.163396722174973,
-          "macd": 1.8107576597618014e-06,
-          "macd_delta": -4.051847442119492e-06,
-          "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.008008924985740361,
-          "return_5bars": -0.007005080891375748,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.9988600015640259,
-          "ema9": 0.9989282989551042,
-          "ema21": 0.9989709113776887,
-          "rsi": 39.14210512048292,
-          "rsi_delta": 3.0376072306627364,
-          "macd": -1.0636698209849398e-05,
-          "macd_delta": 2.0207896899859162e-06,
-          "rvol": 0.4202939249274548,
-          "rvol_delta": -1.6664299998378482,
-          "atr_pct": 0.0090821806065011,
-          "return_5bars": -0.009009761569489516,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "SEI": {
-      "symbol": "SEI",
-      "hourly_signal": "SELL WATCH",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
-        "samples": 7,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.3116994089182629,
-        "4h_up_rate_pct": 57.14285714285714,
-        "4h_down_rate_pct": 42.857142857142854
-      },
-      "communication": {
-        "technical_return_4h": 0.21760884270105585,
-        "technical_return_24h": -0.7185572106453209,
-        "rvol": 0.4186856198786965,
-        "rvol_delta": -0.8467287041320464,
-        "rsi": 50.26038938684238,
-        "macd_histogram": -2.604838361407095e-06,
-        "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 0.041689999401569366,
-          "ema9": 0.041706896945875226,
-          "ema21": 0.04169730077729678,
-          "rsi": 50.386903067477256,
-          "rsi_delta": -12.828885407743847,
-          "macd": -8.53391665166018e-06,
-          "macd_delta": -6.8390370960106675e-06,
-          "rvol": 0.0,
-          "rvol_delta": -3.193595866114635,
-          "atr_pct": 0.05482685831327972,
-          "return_5bars": -0.11979119810475725,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.041689999401569366,
-          "ema9": 0.041668792302195896,
-          "ema21": 0.04164857435469877,
-          "rsi": 53.25978103590631,
-          "rsi_delta": -4.786281076372269,
-          "macd": 2.1069255104169686e-05,
-          "macd_delta": -1.9759303564915065e-07,
-          "rvol": 1.3971371658868763,
-          "rvol_delta": -0.6501308635986469,
-          "atr_pct": 0.2210198949627176,
-          "return_5bars": -0.02398658037929824,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "RUNE": {
-      "symbol": "RUNE",
-      "hourly_signal": "STRONG SELL",
-      "observer_signal": "SELL WATCH",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 5; Neutral weight 5",
-          "2 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 5,
-          "neutral_weight": 5,
-          "independent_support": 2,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
-        "samples": 34,
-        "maturity": "MATURE",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.2268715652661702,
-        "4h_up_rate_pct": 55.88235294117647,
-        "4h_down_rate_pct": 41.17647058823529
-      },
-      "communication": {
-        "technical_return_4h": -0.06048540519913992,
-        "technical_return_24h": 0.11205839161234632,
-        "rvol": 0.11401527059861429,
-        "rvol_delta": -3.316238930319933,
-        "rsi": 29.30133247201678,
-        "macd_histogram": -0.00022015298800023234,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 0.4283403754234314,
-          "ema9": 0.4281952527289321,
-          "ema21": 0.428122498019694,
-          "rsi": 58.61601427444606,
-          "rsi_delta": 7.177556222820066,
-          "macd": 7.555612359698365e-05,
-          "macd_delta": -5.233279373972194e-06,
-          "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.019420722749070248,
-          "return_5bars": 0.03481416252937297,
-          "breakout": true,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.4283403754234314,
-          "ema9": 0.4281474839550373,
-          "ema21": 0.428489710786924,
-          "rsi": 41.79643259169415,
-          "rsi_delta": 3.4687585547560644,
-          "macd": 0.00017072099629430613,
-          "macd_delta": 4.9156704006116385e-05,
-          "rvol": 0.0,
-          "rvol_delta": -0.11610689030043868,
-          "atr_pct": 0.04830878692732798,
-          "return_5bars": 0.15578701080851687,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "SAND": {
-      "symbol": "SAND",
-      "hourly_signal": "SELL WATCH",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
-        "samples": 8,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.2113518037612408,
-        "4h_up_rate_pct": 50.0,
-        "4h_down_rate_pct": 25.0
-      },
-      "communication": {
-        "technical_return_4h": 0.48426069311688913,
-        "technical_return_24h": -0.47962440499210723,
-        "rvol": 0.5567752176045675,
-        "rvol_delta": -1.540602340924772,
-        "rsi": 48.10563377088233,
-        "macd_histogram": -8.54298406309509e-06,
-        "micro_1m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.041600000113248825,
-          "ema9": 0.041599630470625586,
-          "ema21": 0.04158409298038525,
-          "rsi": 86.88901792551023,
-          "rsi_delta": 0.0,
-          "macd": -8.001974590320684e-06,
-          "macd_delta": 5.908654698241568e-07,
-          "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.0,
-          "return_5bars": 0.0,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.041600000113248825,
-          "ema9": 0.04155131169269571,
-          "ema21": 0.0415333445002391,
-          "rsi": 54.68372781575325,
-          "rsi_delta": -7.105427357601002e-15,
-          "macd": 3.5045523280773246e-05,
-          "macd_delta": -7.472917335396811e-07,
-          "rvol": 0.0,
-          "rvol_delta": -0.01996074758017753,
-          "atr_pct": 0.10302180273474941,
-          "return_5bars": 0.0,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "WIN": {
-      "symbol": "WIN",
-      "hourly_signal": "BUY",
-      "observer_signal": "BUY WATCH",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 5",
-          "1 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 5,
-          "independent_support": 1,
-          "conflicts": []
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "BUY_WATCH|RVOL_WEAK|RSI_BULL|MACD_MIXED|RANGE|MIXED",
-        "samples": 3,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.017999371359800342,
-        "4h_up_rate_pct": 66.66666666666666,
-        "4h_down_rate_pct": 33.33333333333333
-      },
-      "communication": {
-        "technical_return_4h": -0.5228025375035861,
-        "technical_return_24h": 0.778525269340391,
-        "rvol": 0.6442691584776109,
-        "rvol_delta": 0.35809257980592746,
-        "rsi": 62.310022504047076,
-        "macd_histogram": -9.97916429159395e-09,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 3.206858309567906e-05,
-          "ema9": 3.206349460314757e-05,
-          "ema21": 3.198972981677465e-05,
-          "rsi": 67.40187825284089,
-          "rsi_delta": -5.4076451741798195,
-          "macd": 5.004315825920903e-09,
-          "macd_delta": -1.5357719046245786e-08,
-          "rvol": 0.0,
-          "rvol_delta": -1.2688553682342503,
-          "atr_pct": 0.12596383593026225,
-          "return_5bars": -0.008643662952956266,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 3.206858309567906e-05,
-          "ema9": 3.199720742430764e-05,
-          "ema21": 3.192627891367118e-05,
-          "rsi": 64.30343729447361,
-          "rsi_delta": -11.811782142508463,
-          "macd": 4.3548732043503376e-08,
-          "macd_delta": -3.2240195361197688e-09,
-          "rvol": 0.5379952221163539,
-          "rvol_delta": 0.5379952221163539,
-          "atr_pct": 0.1292318248805215,
-          "return_5bars": 0.830636873839552,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "AR": {
-      "symbol": "AR",
-      "hourly_signal": "SELL WATCH",
-      "observer_signal": "EARLY SELL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
-          "conflicts": []
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
-        "samples": 3,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.31024633632589227,
-        "4h_up_rate_pct": 66.66666666666666,
-        "4h_down_rate_pct": 33.33333333333333
-      },
-      "communication": {
-        "technical_return_4h": 0.04644173040917465,
-        "technical_return_24h": 0.12589980431245706,
-        "rvol": 0.04024000398684149,
-        "rvol_delta": -1.924683204552859,
-        "rsi": 46.00525697437795,
-        "macd_histogram": -0.0024258605024415963,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 1.8227179050445557,
-          "ema9": 1.8214097777438636,
-          "ema21": 1.8206318763472218,
-          "rsi": 58.27660068860644,
-          "rsi_delta": 8.014415216991232,
-          "macd": 0.0006818552482538848,
-          "macd_delta": -4.0526206841506635e-05,
-          "rvol": 0.0,
-          "rvol_delta": -0.7187045738818837,
-          "atr_pct": 0.050639321728799036,
-          "return_5bars": 0.07423394780872172,
-          "breakout": true,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 1.8227179050445557,
-          "ema9": 1.8211996308856673,
-          "ema21": 1.8229679547879543,
-          "rsi": 47.448658904471024,
-          "rsi_delta": 2.05541733465504,
-          "macd": 0.000781538730232097,
-          "macd_delta": 0.0005235294755564172,
-          "rvol": 0.031355776547453494,
-          "rvol_delta": -0.04314380861978128,
-          "atr_pct": 0.13321861583667646,
-          "return_5bars": 0.16700105748119753,
+          "rvol_delta": -0.11132669879618619,
+          "atr_pct": 0.1298606646140923,
+          "return_5bars": -0.5729890886098099,
           "breakout": false,
           "breakdown": false
         }
@@ -1627,14 +1613,14 @@
     },
     "BEAM": {
       "symbol": "BEAM",
-      "hourly_signal": "SELL WATCH",
+      "hourly_signal": "SELL",
       "observer_signal": "NEUTRAL",
-      "microstructure_signal": "LONG ENTRY",
-      "microstructure_state": "CONFIRMED",
-      "microstructure_reason": "1m and 5m trend plus participation agree upward",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
       "committee_decision": {
         "action": "WATCH",
-        "direction": "LONG",
+        "direction": "SHORT",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -1642,14 +1628,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 2; Short votes 0; Neutral weight 9",
-          "1 independent analyst groups support LONG"
+          "Long votes 0; Short votes 5; Neutral weight 4",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
-          "long_votes": 2,
-          "short_votes": 0,
-          "neutral_weight": 9,
-          "independent_support": 1,
+          "long_votes": 0,
+          "short_votes": 5,
+          "neutral_weight": 4,
+          "independent_support": 2,
           "conflicts": []
         }
       },
@@ -1664,53 +1650,214 @@
         "4h_down_rate_pct": 43.60189573459716
       },
       "communication": {
-        "technical_return_4h": 0.043417051203431534,
-        "technical_return_24h": 0.42695158802821265,
-        "rvol": 0.7287784679089027,
-        "rvol_delta": -0.4938128942173432,
-        "rsi": 44.941405638052146,
-        "macd_histogram": 4.372800715088233e-06,
+        "technical_return_4h": -0.16077534427292317,
+        "technical_return_24h": -3.128868639948079,
+        "rvol": 0.03292181069958848,
+        "rvol_delta": -0.5441273696282805,
+        "rsi": 44.85277327233063,
+        "macd_histogram": 7.72596176168662e-06,
         "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 0.008626340888440609,
-          "ema9": 0.008617707058294248,
-          "ema21": 0.008604283095720066,
-          "rsi": 67.7444685235063,
-          "rsi_delta": 3.138986576056652,
-          "macd": 3.6967928503378035e-06,
-          "macd_delta": -1.6954453958201392e-06,
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 0.008624179288744926,
+          "ema9": 0.008623569186119923,
+          "ema21": 0.008617910869651912,
+          "rsi": 61.186256488357905,
+          "rsi_delta": 0.45301413934739543,
+          "macd": -1.5120146130602652e-06,
+          "macd_delta": -4.532285205619406e-07,
           "rvol": 0.0,
           "rvol_delta": 0.0,
-          "atr_pct": 0.07150211712432367,
-          "return_5bars": 0.039994556506495194,
+          "atr_pct": 0.022829794927242245,
+          "return_5bars": -0.022273313967891006,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.008626340888440609,
-          "ema9": 0.008606246148018524,
-          "ema21": 0.008602413529304994,
-          "rsi": 57.73752116891647,
-          "rsi_delta": 1.4281106261963288,
-          "macd": 8.12776185631027e-06,
-          "macd_delta": 2.8551595728075914e-06,
-          "rvol": 2.4043715846994536,
-          "rvol_delta": 2.1731577118670837,
-          "atr_pct": 0.1618213520220578,
-          "return_5bars": 0.7150279056496789,
-          "breakout": true,
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.008624179288744926,
+          "ema9": 0.008618701449289555,
+          "ema21": 0.008610927713663771,
+          "rsi": 56.17351550895479,
+          "rsi_delta": 0.2847379353424273,
+          "macd": 5.466087462372169e-06,
+          "macd_delta": -2.087655974400829e-06,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.11930702574539354,
+          "return_5bars": -0.01725377736796485,
+          "breakout": false,
           "breakdown": false
         }
       }
     },
     "SHIB": {
       "symbol": "SHIB",
-      "hourly_signal": "BUY WATCH",
+      "hourly_signal": "SELL",
+      "observer_signal": "NEUTRAL",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 1; Short votes 2; Neutral weight 5",
+          "1 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
+        ],
+        "agreement": {
+          "long_votes": 1,
+          "short_votes": 2,
+          "neutral_weight": 5,
+          "independent_support": 1,
+          "conflicts": [
+            "Committee contains directional disagreement"
+          ]
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+        "samples": 6,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.10426557435123292,
+        "4h_up_rate_pct": 33.33333333333333,
+        "4h_down_rate_pct": 50.0
+      },
+      "communication": {
+        "technical_return_4h": 0.43384476463963484,
+        "technical_return_24h": -0.8565316956456903,
+        "rvol": 0.020374246124897456,
+        "rvol_delta": -0.9150077095894326,
+        "rsi": 42.75626436733211,
+        "macd_histogram": 1.0784584371553404e-09,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 4.630000148608815e-06,
+          "ema9": 4.629579020973352e-06,
+          "ema21": 4.629451603051765e-06,
+          "rsi": 51.94058790355876,
+          "rsi_delta": 0.0,
+          "macd": 1.1263008372240147e-10,
+          "macd_delta": 1.0350366229362232e-10,
+          "rvol": 0.0,
+          "rvol_delta": -3.588333731771456,
+          "atr_pct": 0.030855750300412457,
+          "return_5bars": 0.0,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 4.630000148608815e-06,
+          "ema9": 4.629387577604877e-06,
+          "ema21": 4.629681990407375e-06,
+          "rsi": 49.16265157947808,
+          "rsi_delta": 0.0,
+          "macd": 1.0414032808280188e-09,
+          "macd_delta": -1.5414547567285697e-10,
+          "rvol": 0.0,
+          "rvol_delta": -0.4220343098832259,
+          "atr_pct": 0.12342159809354651,
+          "return_5bars": 0.0,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "ENJ": {
+      "symbol": "ENJ",
+      "hourly_signal": "SELL",
       "observer_signal": "EARLY SELL",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
       "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "SHORT",
+        "direction": "SHORT",
+        "quality": "QUALIFIED",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": true,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 8; Neutral weight 3",
+          "3 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 8,
+          "neutral_weight": 3,
+          "independent_support": 3,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
+        "samples": 24,
+        "maturity": "MATURE",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.2867400139190665,
+        "4h_up_rate_pct": 66.66666666666666,
+        "4h_down_rate_pct": 33.33333333333333
+      },
+      "communication": {
+        "technical_return_4h": -0.6220304192271819,
+        "technical_return_24h": -1.4389760676309038,
+        "rvol": 0.010091453800063072,
+        "rvol_delta": -3.0473209607427902,
+        "rsi": 25.15132219360075,
+        "macd_histogram": -1.7603943185435218e-05,
+        "micro_1m": {
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 0.02500295266509056,
+          "ema9": 0.025004662916386144,
+          "ema21": 0.025015973540952804,
+          "rsi": 40.8981131325776,
+          "rsi_delta": 2.4620667901496844,
+          "macd": 5.005380638202229e-07,
+          "macd_delta": 8.652667218808548e-07,
+          "rvol": 0.0,
+          "rvol_delta": -1.1341092827246144,
+          "atr_pct": 0.030343695349128418,
+          "return_5bars": -0.005177273957424067,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.02500295266509056,
+          "ema9": 0.02501720066282247,
+          "ema21": 0.02505366302976846,
+          "rsi": 32.74579136578279,
+          "rsi_delta": -0.5615065799686505,
+          "macd": 5.4522139618725805e-06,
+          "macd_delta": -1.1666577161511502e-06,
+          "rvol": 0.01636851433939969,
+          "rvol_delta": -0.09503694377474277,
+          "atr_pct": 0.07259254459917662,
+          "return_5bars": -0.025516162321526092,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "IMX": {
+      "symbol": "IMX",
+      "hourly_signal": "BUY WATCH",
+      "observer_signal": "NEUTRAL",
+      "microstructure_signal": null,
+      "microstructure_state": null,
+      "microstructure_reason": null,
       "committee_decision": {
         "action": "NO TRADE",
         "direction": "NEUTRAL",
@@ -1734,185 +1881,21 @@
       },
       "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
-        "samples": 69,
-        "maturity": "MATURE",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.030347537835965752,
-        "4h_up_rate_pct": 55.072463768115945,
-        "4h_down_rate_pct": 40.57971014492754
-      },
-      "communication": {
-        "technical_return_4h": 0.43011276365323425,
-        "technical_return_24h": 1.0822593699859162,
-        "rvol": 0.20157677038270808,
-        "rvol_delta": -0.6737845829941601,
-        "rsi": 42.75626436733211,
-        "macd_histogram": -6.851593478222844e-11,
-        "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 4.630000148608815e-06,
-          "ema9": 4.629443423756246e-06,
-          "ema21": 4.6290225971718805e-06,
-          "rsi": 52.28361454049858,
-          "rsi_delta": 0.0,
-          "macd": 3.892537289314892e-10,
-          "macd_delta": -5.686767573508296e-11,
-          "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.030855750300412457,
-          "return_5bars": 0.0,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 4.630000148608815e-06,
-          "ema9": 4.627663375675089e-06,
-          "ema21": 4.629436511947318e-06,
-          "rsi": 49.16265157947808,
-          "rsi_delta": 6.0446438603684385,
-          "macd": 1.031881417742125e-09,
-          "macd_delta": 4.756905211460677e-11,
-          "rvol": 0.17322488849063675,
-          "rvol_delta": -0.08157700032929269,
-          "atr_pct": 0.20055746607431932,
-          "return_5bars": 0.0,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "ENJ": {
-      "symbol": "ENJ",
-      "hourly_signal": "HOLD",
-      "observer_signal": "SELL WATCH",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 6,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_1_5_2|RSI_OVERSOLD|MACD_MIXED|BREAKDOWN|BEARISH",
-        "samples": 0,
+        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+        "samples": 5,
         "maturity": "EARLY",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.0,
-        "4h_up_rate_pct": 0.0,
-        "4h_down_rate_pct": 0.0
+        "4h_avg_return_pct": 0.0716611037782866,
+        "4h_up_rate_pct": 40.0,
+        "4h_down_rate_pct": 20.0
       },
       "communication": {
-        "technical_return_4h": -0.11297423743488189,
-        "technical_return_24h": -0.7308710350912406,
-        "rvol": 1.5106802978286022,
-        "rvol_delta": -5.0532509532542065,
-        "rsi": 23.717093459817093,
-        "macd_histogram": -2.4830042574692718e-05,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 0.025010712444782257,
-          "ema9": 0.025027762071636813,
-          "ema21": 0.02504052585625959,
-          "rsi": 40.234458086590585,
-          "rsi_delta": 5.780546003002094,
-          "macd": -2.2521844882205037e-06,
-          "macd_delta": -3.0035820040643303e-06,
-          "rvol": 0.0,
-          "rvol_delta": -4.247151885718986,
-          "atr_pct": 0.05698210417859401,
-          "return_5bars": -0.15709382301615227,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.025010712444782257,
-          "ema9": 0.02504321206206727,
-          "ema21": 0.025083172453577857,
-          "rsi": 31.856872425636013,
-          "rsi_delta": -6.112165332055703,
-          "macd": 7.737598237651194e-06,
-          "macd_delta": -1.3677115648138755e-06,
-          "rvol": 0.7314373125616408,
-          "rvol_delta": 0.7314373125616408,
-          "atr_pct": 0.10933937953543356,
-          "return_5bars": -0.16936420173105926,
-          "breakout": false,
-          "breakdown": true
-        }
-      }
-    },
-    "IMX": {
-      "symbol": "IMX",
-      "hourly_signal": "SELL",
-      "observer_signal": "EARLY BUY",
-      "microstructure_signal": null,
-      "microstructure_state": null,
-      "microstructure_reason": null,
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 8",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 8,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "EARLY_BUY|RVOL_WEAK|RSI_BULL|MACD_UP|BREAKOUT|BULLISH",
-        "samples": 22,
-        "maturity": "MATURE",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": -0.4148309247036695,
-        "4h_up_rate_pct": 45.45454545454545,
-        "4h_down_rate_pct": 54.54545454545454
-      },
-      "communication": {
-        "technical_return_4h": 0.3619903339336705,
-        "technical_return_24h": -0.627237427445293,
-        "rvol": 0.002131189633571933,
-        "rvol_delta": -0.6850837094657538,
-        "rsi": 60.314466708472885,
-        "macd_histogram": 0.00012497664249960967,
+        "technical_return_4h": 0.6295003735675708,
+        "technical_return_24h": -0.08928722293320979,
+        "rvol": 0.0009942056452239294,
+        "rvol_delta": -0.23151540263179868,
+        "rsi": 55.55029961910576,
+        "macd_histogram": 0.0001095267156576918,
         "micro_1m": null,
         "micro_5m": null
       }
@@ -1935,45 +1918,42 @@
         },
         "reasons": [
           "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
           "neutral_weight": 8,
           "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       },
-      "risk_state": "CAUTION",
+      "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "NEUTRAL|RVOL_NORMAL|RSI_BEAR|MACD_MIXED|RANGE|MIXED",
-        "samples": 6,
-        "maturity": "EARLY",
+        "pattern": "NEUTRAL|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|MIXED",
+        "samples": 13,
+        "maturity": "DEVELOPING",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.6134990978857557,
-        "4h_up_rate_pct": 83.33333333333334,
-        "4h_down_rate_pct": 16.666666666666664
+        "4h_avg_return_pct": -0.23775515761246002,
+        "4h_up_rate_pct": 53.84615384615385,
+        "4h_down_rate_pct": 46.15384615384615
       },
       "communication": {
-        "technical_return_4h": 0.21276758062107604,
-        "technical_return_24h": -1.4644365323159159,
-        "rvol": 0.8764533647596253,
-        "rvol_delta": -3.3095384586317977,
-        "rsi": 37.05945455144197,
-        "macd_histogram": -6.337087827044615e-07,
+        "technical_return_4h": 0.0,
+        "technical_return_24h": -1.8907511644956299,
+        "rvol": 0.2389189253917219,
+        "rvol_delta": -4.928653942625551,
+        "rsi": 39.47209370644522,
+        "macd_histogram": 7.234583652268045e-07,
         "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
+          "time": "2026-08-10T18:05:00+00:00",
           "price": 0.004670000169426203,
-          "ema9": 0.0046699953118926815,
-          "ema21": 0.004669110041263021,
-          "rsi": 60.30433913840618,
+          "ema9": 0.004670292957479474,
+          "ema21": 0.004671202571988644,
+          "rsi": 40.09088629911918,
           "rsi_delta": 0.0,
-          "macd": -4.99286528337274e-07,
-          "macd_delta": 5.384623174958298e-08,
+          "macd": -3.7142200445454693e-07,
+          "macd_delta": 2.766941716426683e-07,
           "rvol": 0.0,
           "rvol_delta": 0.0,
           "atr_pct": 0.0,
@@ -1982,18 +1962,18 @@
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
+          "time": "2026-08-10T18:05:00+00:00",
           "price": 0.004670000169426203,
-          "ema9": 0.004666769159889405,
-          "ema21": 0.004668157853086971,
-          "rsi": 49.61918020608262,
-          "rsi_delta": 0.0,
-          "macd": 2.6100895412554023e-06,
-          "macd_delta": 4.5930170837681853e-07,
-          "rvol": 0.037472997398933124,
-          "rvol_delta": -0.03611875489868956,
-          "atr_pct": 0.16824773316335725,
-          "return_5bars": 0.0,
+          "ema9": 0.004670627682225666,
+          "ema21": 0.0046701455789618235,
+          "rsi": 48.76469184674575,
+          "rsi_delta": 1.4210854715202004e-14,
+          "macd": 1.558845047871836e-06,
+          "macd_delta": -1.2311221705126287e-06,
+          "rvol": 0.0,
+          "rvol_delta": -0.03679187817258883,
+          "atr_pct": 0.15295099546884092,
+          "return_5bars": -0.21366690072449623,
           "breakout": false,
           "breakdown": false
         }
@@ -2001,11 +1981,93 @@
     },
     "SC": {
       "symbol": "SC",
-      "hourly_signal": "SELL WATCH",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": "LONG ENTRY",
-      "microstructure_state": "CONFIRMED",
-      "microstructure_reason": "1m and 5m trend plus participation agree upward",
+      "hourly_signal": "HOLD",
+      "observer_signal": "EARLY BUY",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 2; Short votes 0; Neutral weight 7",
+          "1 independent analyst groups support LONG",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 2,
+          "short_votes": 0,
+          "neutral_weight": 7,
+          "independent_support": 1,
+          "conflicts": [
+            "Risk Manager requests caution"
+          ]
+        }
+      },
+      "risk_state": "CAUTION",
+      "market_memory": {
+        "pattern": "EARLY_BUY|RVOL_WEAK|RSI_BULL|MACD_UP|BREAKOUT|BULLISH",
+        "samples": 22,
+        "maturity": "MATURE",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.4148309247036695,
+        "4h_up_rate_pct": 45.45454545454545,
+        "4h_down_rate_pct": 54.54545454545454
+      },
+      "communication": {
+        "technical_return_4h": 1.685917363658107,
+        "technical_return_24h": 1.7330721595710363,
+        "rvol": 0.4186208739689169,
+        "rvol_delta": -0.05791072561688493,
+        "rsi": 61.53340359361705,
+        "macd_histogram": 6.697522761927248e-07,
+        "micro_1m": {
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 0.0005135932588018477,
+          "ema9": 0.0005090001348727108,
+          "ema21": 0.0005076208533843663,
+          "rsi": 78.6093251481994,
+          "rsi_delta": 19.87169166406437,
+          "macd": 6.659609263377592e-07,
+          "macd_delta": 6.796911701819224e-07,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.20772289732953145,
+          "return_5bars": 1.5469002724577408,
+          "breakout": true,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.0005135932588018477,
+          "ema9": 0.0005081809840631493,
+          "ema21": 0.0005070488693638696,
+          "rsi": 71.55834118485922,
+          "rsi_delta": 22.97664644964368,
+          "macd": 5.506390923353336e-07,
+          "macd_delta": 4.7415267392651365e-07,
+          "rvol": 0.0,
+          "rvol_delta": -1.120629276439847,
+          "atr_pct": 0.23391846950958933,
+          "return_5bars": 1.385843752229876,
+          "breakout": true,
+          "breakdown": false
+        }
+      }
+    },
+    "BTT": {
+      "symbol": "BTT",
+      "hourly_signal": "SELL",
+      "observer_signal": "EARLY SELL",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
       "committee_decision": {
         "action": "WATCH",
         "direction": "SHORT",
@@ -2016,14 +2078,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 2; Short votes 4; Neutral weight 4",
+          "Long votes 1; Short votes 5; Neutral weight 3",
           "2 independent analyst groups support SHORT",
           "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 2,
-          "short_votes": 4,
-          "neutral_weight": 4,
+          "long_votes": 1,
+          "short_votes": 5,
+          "neutral_weight": 3,
           "independent_support": 2,
           "conflicts": [
             "Committee contains directional disagreement"
@@ -2032,59 +2094,59 @@
       },
       "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
-        "samples": 4,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.5334827378111806,
-        "4h_up_rate_pct": 100.0,
-        "4h_down_rate_pct": 0.0
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
+        "samples": 103,
+        "maturity": "MATURE",
+        "direction": "LONG",
+        "4h_avg_return_pct": 6.460338353372241,
+        "4h_up_rate_pct": 63.10679611650486,
+        "4h_down_rate_pct": 35.92233009708738
       },
       "communication": {
-        "technical_return_4h": -1.1011473106716907,
-        "technical_return_24h": 0.47963491400402347,
-        "rvol": 0.16048965422737863,
-        "rvol_delta": -0.06316222332716986,
-        "rsi": 49.8921911582493,
-        "macd_histogram": 1.459256514337926e-07,
+        "technical_return_4h": -0.2528826327393152,
+        "technical_return_24h": -0.5183118182623181,
+        "rvol": 0.01817789806239595,
+        "rvol_delta": -0.582530977206601,
+        "rsi": 39.876672514581244,
+        "macd_histogram": -1.2392964659023343e-10,
         "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 0.0005065674777142704,
-          "ema9": 0.0005060100681811726,
-          "ema21": 0.0005059691611384265,
-          "rsi": 58.65134591686796,
-          "rsi_delta": 10.388361407099062,
-          "macd": 2.435093820051617e-08,
-          "macd_delta": 4.990281750942562e-08,
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 2.621390819967928e-07,
+          "ema9": 2.6215425447049507e-07,
+          "ema21": 2.6230102651899485e-07,
+          "rsi": 41.944619708233674,
+          "rsi_delta": -1.2909812034529509,
+          "macd": 3.029829850471477e-11,
+          "macd_delta": 1.2392640080992428e-11,
           "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.05677014792395735,
-          "return_5bars": 0.15008537098026853,
-          "breakout": true,
+          "rvol_delta": -0.13309725868490138,
+          "atr_pct": 0.012188984382905388,
+          "return_5bars": 0.024476891840330417,
+          "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.0005065674777142704,
-          "ema9": 0.0005061326742920776,
-          "ema21": 0.0005059899960768278,
-          "rsi": 53.87974226464453,
-          "rsi_delta": 0.7425185207652163,
-          "macd": 2.6790977459148742e-08,
-          "macd_delta": -3.336151222935652e-08,
-          "rvol": 1.448357736446379,
-          "rvol_delta": 1.448357736446379,
-          "atr_pct": 0.14483331328223004,
-          "return_5bars": 0.1708002970560063,
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 2.621390819967928e-07,
+          "ema9": 2.622823053167628e-07,
+          "ema21": 2.6258393782868595e-07,
+          "rsi": 42.405399080473565,
+          "rsi_delta": 0.4112546443304623,
+          "macd": -6.347976878537381e-11,
+          "macd_delta": 3.717638874337179e-11,
+          "rvol": 0.14452007188433386,
+          "rvol_delta": -0.7361799038721732,
+          "atr_pct": 0.1659332856512924,
+          "return_5bars": -0.03439054917794282,
           "breakout": false,
           "breakdown": false
         }
       }
     },
-    "BTT": {
-      "symbol": "BTT",
-      "hourly_signal": "BUY WATCH",
-      "observer_signal": "EARLY SELL",
+    "TLM": {
+      "symbol": "TLM",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": "BUY WATCH",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
       "microstructure_reason": "1m/5m evidence not aligned enough",
@@ -2098,229 +2160,145 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 6",
+          "Long votes 0; Short votes 0; Neutral weight 9",
           "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
-          "neutral_weight": 6,
+          "neutral_weight": 9,
           "independent_support": 0,
           "conflicts": []
         }
       },
       "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|BEARISH",
-        "samples": 6,
-        "maturity": "EARLY",
+        "pattern": "BUY_WATCH|RVOL_WEAK|RSI_BULL|MACD_UP|RANGE|BULLISH",
+        "samples": 105,
+        "maturity": "MATURE",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.13788326038755758,
-        "4h_up_rate_pct": 100.0,
-        "4h_down_rate_pct": 0.0
+        "4h_avg_return_pct": -0.03024452104487964,
+        "4h_up_rate_pct": 44.761904761904766,
+        "4h_down_rate_pct": 54.285714285714285
       },
       "communication": {
-        "technical_return_4h": 0.29069387782416634,
-        "technical_return_24h": 0.06465886043389713,
-        "rvol": 0.07585973246562745,
-        "rvol_delta": -0.4098680600058786,
-        "rsi": 40.5134731986698,
-        "macd_histogram": -7.262875567590517e-11,
+        "technical_return_4h": 0.7294091559218563,
+        "technical_return_24h": -0.7277041174802434,
+        "rvol": 0.0,
+        "rvol_delta": -1.4527182430331262,
+        "rsi": 61.1345194962929,
+        "macd_histogram": 1.953125930456519e-06,
         "micro_1m": {
-          "time": "2026-08-10T17:37:00+00:00",
-          "price": 2.6222355131721997e-07,
-          "ema9": 2.623962963112835e-07,
-          "ema21": 2.6268302864237093e-07,
-          "rsi": 41.57149234990413,
-          "rsi_delta": -1.9224925634414518,
-          "macd": -6.789524843868964e-11,
-          "macd_delta": 3.5012057303528144e-11,
-          "rvol": 0.8041332037444371,
-          "rvol_delta": 0.2910072883104208,
-          "atr_pct": 0.11251997946153083,
-          "return_5bars": -0.03212651758517371,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 2.6222355131721997e-07,
-          "ema9": 2.625904485455843e-07,
-          "ema21": 2.628590830566542e-07,
-          "rsi": 42.82133605172863,
-          "rsi_delta": -0.5956162719953042,
-          "macd": -1.0913553269399156e-10,
-          "macd_delta": -2.4222257175420695e-11,
-          "rvol": 0.2634195386248115,
-          "rvol_delta": -0.6424707336846615,
-          "atr_pct": 0.21908175279709363,
-          "return_5bars": -0.6228246162158224,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "TLM": {
-      "symbol": "TLM",
-      "hourly_signal": "SELL WATCH",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 6,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
-        "samples": 5,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": -0.45464193382708684,
-        "4h_up_rate_pct": 40.0,
-        "4h_down_rate_pct": 60.0
-      },
-      "communication": {
-        "technical_return_4h": -0.32756632565218435,
-        "technical_return_24h": -0.9673277647765266,
-        "rvol": 0.26827404396170873,
-        "rvol_delta": -0.08405283489510301,
-        "rsi": 49.74536139608842,
-        "macd_histogram": 3.8997048324284715e-07,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 0.001575997332111001,
-          "ema9": 0.0015742365899429828,
-          "ema21": 0.0015738668321908908,
-          "rsi": 63.45382373901697,
-          "rsi_delta": 18.1782640578079,
-          "macd": 3.119971653437131e-07,
-          "macd_delta": 1.718723281398283e-07,
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 0.0015885807806625962,
+          "ema9": 0.0015880364144630944,
+          "ema21": 0.0015838447217923432,
+          "rsi": 71.78411315249748,
+          "rsi_delta": -14.561013670646446,
+          "macd": 5.928149875796762e-07,
+          "macd_delta": -8.114919861780765e-07,
           "rvol": 0.0,
           "rvol_delta": 0.0,
-          "atr_pct": 0.03798911059028979,
-          "return_5bars": 0.16751665584664455,
-          "breakout": true,
+          "atr_pct": 0.09474863729706152,
+          "return_5bars": 0.04426761835447657,
+          "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.001575997332111001,
-          "ema9": 0.0015740007202213315,
-          "ema21": 0.001574403465121919,
-          "rsi": 54.48557463105009,
-          "rsi_delta": 4.016574558188502,
-          "macd": 1.1176431243520877e-07,
-          "macd_delta": 2.621074234125075e-07,
-          "rvol": 0.9693441851548477,
-          "rvol_delta": -2.223972944088854,
-          "atr_pct": 0.07509655723896327,
-          "return_5bars": 0.12930992081421344,
-          "breakout": true,
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.0015885807806625962,
+          "ema9": 0.0015838735821354847,
+          "ema21": 0.0015797802900190052,
+          "rsi": 69.49201586539044,
+          "rsi_delta": -3.827513907124981,
+          "macd": 1.8789970700608764e-06,
+          "macd_delta": 4.96884570321996e-07,
+          "rvol": 0.0,
+          "rvol_delta": -2.9569373344625394,
+          "atr_pct": 0.13494623439218134,
+          "return_5bars": 0.5369439131989617,
+          "breakout": false,
           "breakdown": false
         }
       }
     },
     "PYR": {
       "symbol": "PYR",
-      "hourly_signal": "STRONG SELL",
-      "observer_signal": "EARLY BUY",
+      "hourly_signal": "BUY WATCH",
+      "observer_signal": "BUY WATCH",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
       "microstructure_reason": "1m/5m evidence not aligned enough",
       "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
+        "action": "BUY",
+        "direction": "LONG",
+        "quality": "QUALIFIED",
         "book_permissions": {
           "CORE": false,
-          "SWING": false,
-          "SCALP": false
+          "SWING": true,
+          "SCALP": true
         },
         "reasons": [
-          "Long votes 0; Short votes 3; Neutral weight 7",
-          "2 independent analyst groups support SHORT",
-          "Portfolio Fit requests reduced or no additional exposure",
+          "Long votes 7; Short votes 0; Neutral weight 4",
+          "3 independent analyst groups support LONG",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 0,
-          "short_votes": 3,
-          "neutral_weight": 7,
-          "independent_support": 2,
+          "long_votes": 7,
+          "short_votes": 0,
+          "neutral_weight": 4,
+          "independent_support": 3,
           "conflicts": [
-            "Portfolio Fit requests reduced or no additional exposure",
             "Risk Manager requests caution"
           ]
         }
       },
       "risk_state": "CAUTION",
       "market_memory": {
-        "pattern": "EARLY_BUY|RVOL_2PLUS|RSI_BULL|MACD_UP|RANGE|BULLISH",
-        "samples": 28,
+        "pattern": "BUY_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|BULLISH",
+        "samples": 134,
         "maturity": "MATURE",
-        "direction": "SHORT",
-        "4h_avg_return_pct": -0.12190761516149838,
-        "4h_up_rate_pct": 35.714285714285715,
-        "4h_down_rate_pct": 60.71428571428571
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.845485853346384,
+        "4h_up_rate_pct": 38.80597014925373,
+        "4h_down_rate_pct": 58.2089552238806
       },
       "communication": {
-        "technical_return_4h": 3.278689025166659,
-        "technical_return_24h": 0.0,
-        "rvol": 16.24483242630944,
-        "rvol_delta": 16.13272742128807,
-        "rsi": 67.61497895397791,
-        "macd_histogram": 0.0011293650413841346,
+        "technical_return_4h": 13.114749993633424,
+        "technical_return_24h": 7.812492178345942,
+        "rvol": 0.5179776181191742,
+        "rvol_delta": -2.342510160532277,
+        "rsi": 57.389555934159574,
+        "macd_histogram": 0.0010472168080659023,
         "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 0.07100000232458115,
-          "ema9": 0.07408282736253785,
-          "ema21": 0.07244981583741196,
-          "rsi": 49.05683724129047,
-          "rsi_delta": -7.217569603918051,
-          "macd": -0.000611407416805708,
-          "macd_delta": -0.0006695728838533323,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.0689999982714653,
+          "ema9": 0.0704857111148538,
+          "ema21": 0.07119267691824274,
+          "rsi": 42.4742116243014,
+          "rsi_delta": -2.2237206367934874,
+          "macd": -0.0003944444379508686,
+          "macd_delta": -0.00011690699209899254,
           "rvol": 0.0,
           "rvol_delta": 0.0,
-          "atr_pct": 4.0241416492943465,
-          "return_5bars": -7.792204273633696,
+          "atr_pct": 1.2422362595826153,
+          "return_5bars": -2.8169070248374006,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.07100000232458115,
-          "ema9": 0.069375297193134,
-          "ema21": 0.06603239401808973,
-          "rsi": 65.64635966593832,
-          "rsi_delta": -27.56239170973319,
-          "macd": 0.0014270933201090078,
-          "macd_delta": 0.0005524089326675898,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.0689999982714653,
+          "ema9": 0.07011418885189691,
+          "ema21": 0.06796576692401521,
+          "rsi": 53.94205606785709,
+          "rsi_delta": -7.794034326412159,
+          "macd": 7.350169773779648e-05,
+          "macd_delta": -0.000697838051379279,
           "rvol": 0.0,
-          "rvol_delta": -16.924356494686005,
-          "atr_pct": 3.621730482586382,
-          "return_5bars": 14.51613465314363,
+          "rvol_delta": -1.4987877770202553,
+          "atr_pct": 5.797101773437217,
+          "return_5bars": 2.985069481666458,
           "breakout": false,
           "breakdown": false
         }
@@ -2365,41 +2343,41 @@
         "4h_down_rate_pct": 55.55555555555556
       },
       "communication": {
-        "technical_return_4h": 0.3523442996881787,
-        "technical_return_24h": -4.39877277132763,
-        "rvol": 0.19813253786477558,
-        "rvol_delta": -0.19605106316577675,
-        "rsi": 48.82300113340492,
-        "macd_histogram": 3.503305042756256e-06,
+        "technical_return_4h": 0.07317539049485067,
+        "technical_return_24h": -6.017819017308302,
+        "rvol": 0.11163329064203074,
+        "rvol_delta": -0.19933054619556745,
+        "rsi": 49.20457365508925,
+        "macd_histogram": 4.291246167381113e-06,
         "micro_1m": {
-          "time": "2026-08-10T17:37:00+00:00",
-          "price": 0.005155563820153475,
-          "ema9": 0.005137389131476247,
-          "ema21": 0.005126055828493361,
-          "rsi": 54.439402758567994,
-          "rsi_delta": 3.0889029848690086,
-          "macd": 5.14197453762465e-06,
-          "macd_delta": 3.1761337151158436e-06,
+          "time": "2026-08-10T18:04:00+00:00",
+          "price": 0.005152582656592131,
+          "ema9": 0.005108011192851563,
+          "ema21": 0.005113894710447337,
+          "rsi": 53.939293809345806,
+          "rsi_delta": 8.652082622876087,
+          "macd": -1.8270412210190133e-06,
+          "macd_delta": 2.5803019661932576e-06,
           "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.591713544582847,
-          "return_5bars": 0.6881248735883805,
+          "rvol_delta": -0.6350120594693833,
+          "atr_pct": 0.7618376611046981,
+          "return_5bars": 1.2467665797711192,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.005155563820153475,
-          "ema9": 0.005131647752139485,
-          "ema21": 0.005129795601044657,
-          "rsi": 52.52372769127108,
-          "rsi_delta": -0.6602775764705413,
-          "macd": 7.69255916801402e-06,
-          "macd_delta": 3.3397999910287774e-06,
-          "rvol": 0.0,
-          "rvol_delta": -0.9360340823451607,
-          "atr_pct": 0.9855520401482196,
-          "return_5bars": 1.8646076651502863,
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.005152582656592131,
+          "ema9": 0.005118490671344978,
+          "ema21": 0.005122876731545465,
+          "rsi": 52.86978949942941,
+          "rsi_delta": 8.129072045008442,
+          "macd": 1.6115489996809587e-06,
+          "macd_delta": -1.937189711521229e-06,
+          "rvol": 0.4326012559391302,
+          "rvol_delta": -3.767076576994233,
+          "atr_pct": 1.0437178281046116,
+          "return_5bars": -0.06388996691792936,
           "breakout": false,
           "breakdown": false
         }
@@ -2407,8 +2385,8 @@
     },
     "SKL": {
       "symbol": "SKL",
-      "hourly_signal": "HOLD",
-      "observer_signal": "SELL WATCH",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": "NEUTRAL",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
       "microstructure_reason": "1m/5m evidence not aligned enough",
@@ -2422,66 +2400,63 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 1; Short votes 0; Neutral weight 7",
-          "1 independent analyst groups support LONG",
-          "Risk Manager requests caution"
+          "Long votes 2; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 1,
+          "long_votes": 2,
           "short_votes": 0,
-          "neutral_weight": 7,
+          "neutral_weight": 6,
           "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       },
-      "risk_state": "CAUTION",
+      "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|MIXED",
-        "samples": 46,
-        "maturity": "MATURE",
-        "direction": "LONG",
-        "4h_avg_return_pct": 0.3977579757574693,
-        "4h_up_rate_pct": 69.56521739130434,
-        "4h_down_rate_pct": 28.26086956521739
+        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+        "samples": 5,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.0568506692369275,
+        "4h_up_rate_pct": 40.0,
+        "4h_down_rate_pct": 60.0
       },
       "communication": {
-        "technical_return_4h": 0.02727045593726718,
-        "technical_return_24h": -1.2385599381224632,
-        "rvol": 0.5896625191601518,
-        "rvol_delta": -1.3778001594064908,
-        "rsi": 38.86617308701184,
-        "macd_histogram": -1.1975696336277552e-06,
+        "technical_return_4h": 0.027824364062656315,
+        "technical_return_24h": -1.3987974418771087,
+        "rvol": 0.0,
+        "rvol_delta": -3.859661833624957,
+        "rsi": 41.36084241273176,
+        "macd_histogram": 4.823818544967224e-07,
         "micro_1m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.0035920001100748777,
-          "ema9": 0.0035917616180983236,
-          "ema21": 0.0035904520127308117,
-          "rsi": 64.55322687670662,
-          "rsi_delta": 0.0,
-          "macd": 4.9095205569951695e-08,
-          "macd_delta": -2.3343746368182765e-07,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.003594999900087714,
+          "ema9": 0.003595228388212399,
+          "ema21": 0.0035942752658076295,
+          "rsi": 56.823944320362074,
+          "rsi_delta": -7.105427357601002e-15,
+          "macd": -1.3708786149666988e-08,
+          "macd_delta": -3.472920607752046e-07,
           "rvol": 0.0,
-          "rvol_delta": -1.1346633416458851,
-          "atr_pct": 0.013919001403252763,
-          "return_5bars": -0.055642249810050615,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.019868554723238282,
+          "return_5bars": -0.08338029204392194,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.0035920001100748777,
-          "ema9": 0.0035901937316473957,
-          "ema21": 0.003592748854240456,
-          "rsi": 46.619697157275155,
-          "rsi_delta": 3.4920110066012526,
-          "macd": 1.6564301777098183e-06,
-          "macd_delta": 8.019846393495739e-07,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.003594999900087714,
+          "ema9": 0.0035933707700564928,
+          "ema21": 0.0035935436585466138,
+          "rsi": 50.0849277502474,
+          "rsi_delta": 3.0844674292931415,
+          "macd": 1.8182528256299692e-06,
+          "macd_delta": 1.4347408916359754e-07,
           "rvol": 0.0,
           "rvol_delta": 0.0,
-          "atr_pct": 0.1551059103914478,
-          "return_5bars": 0.08358937783683462,
+          "atr_pct": 0.10728991794063458,
+          "return_5bars": 0.0,
           "breakout": false,
           "breakdown": false
         }
@@ -2489,11 +2464,482 @@
     },
     "AERO": {
       "symbol": "AERO",
-      "hourly_signal": "STRONG SELL",
-      "observer_signal": "SELL WATCH",
+      "hourly_signal": "SELL",
+      "observer_signal": "EARLY SELL",
       "microstructure_signal": null,
       "microstructure_state": null,
       "microstructure_reason": null,
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 5; Neutral weight 5",
+          "2 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 5,
+          "neutral_weight": 5,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
+        "samples": 69,
+        "maturity": "MATURE",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.030347537835965752,
+        "4h_up_rate_pct": 55.072463768115945,
+        "4h_down_rate_pct": 40.57971014492754
+      },
+      "communication": {
+        "technical_return_4h": -0.13507300268075229,
+        "technical_return_24h": -1.8654125141218225,
+        "rvol": 0.24178018112593377,
+        "rvol_delta": -0.27135530119325024,
+        "rsi": 40.17003295255034,
+        "macd_histogram": -8.925511233356183e-05,
+        "micro_1m": null,
+        "micro_5m": null
+      }
+    },
+    "LUNC": {
+      "symbol": "LUNC",
+      "hourly_signal": "BUY WATCH",
+      "observer_signal": "EARLY SELL",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 0; Neutral weight 8",
+          "0 independent analyst groups support NEUTRAL"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 8,
+          "independent_support": 0,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|BEARISH",
+        "samples": 6,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": -0.15948992363286618,
+        "4h_up_rate_pct": 16.666666666666664,
+        "4h_down_rate_pct": 83.33333333333334
+      },
+      "communication": {
+        "technical_return_4h": 0.2920291591487434,
+        "technical_return_24h": -0.34237753162579265,
+        "rvol": 0.0,
+        "rvol_delta": -0.6352243449046665,
+        "rsi": 47.80589211597106,
+        "macd_histogram": -2.055540139542141e-09,
+        "micro_1m": {
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 5.001834870199673e-05,
+          "ema9": 5.002679154361043e-05,
+          "ema21": 5.0036587360038916e-05,
+          "rsi": 44.125024899970064,
+          "rsi_delta": 0.5683709934041588,
+          "macd": -1.4573458707976744e-09,
+          "macd_delta": -2.0852674826008805e-09,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.02219963508249099,
+          "return_5bars": -0.05950371171301594,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 5.001834870199673e-05,
+          "ema9": 5.003627498586861e-05,
+          "ema21": 5.0044943272578614e-05,
+          "rsi": 47.03882874333672,
+          "rsi_delta": -2.3833984863123945,
+          "macd": -6.4417225911879415e-09,
+          "macd_delta": -2.370028287833086e-10,
+          "rvol": 0.0,
+          "rvol_delta": -0.18908944956685583,
+          "atr_pct": 0.07095040985656108,
+          "return_5bars": -0.050865313708936544,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "GALA": {
+      "symbol": "GALA",
+      "hourly_signal": "HOLD",
+      "observer_signal": "EARLY SELL",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 2; Neutral weight 5",
+          "1 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 5,
+          "independent_support": 1,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
+        "samples": 69,
+        "maturity": "MATURE",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.030347537835965752,
+        "4h_up_rate_pct": 55.072463768115945,
+        "4h_down_rate_pct": 40.57971014492754
+      },
+      "communication": {
+        "technical_return_4h": -0.08083749030822762,
+        "technical_return_24h": 0.06851212166061327,
+        "rvol": 0.0,
+        "rvol_delta": -1.5471516911928838,
+        "rsi": 42.904211087264365,
+        "macd_histogram": -5.701710422756599e-07,
+        "micro_1m": {
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 0.0018064595060423017,
+          "ema9": 0.00180754954019188,
+          "ema21": 0.0018079158202628678,
+          "rsi": 43.35391676480014,
+          "rsi_delta": -0.48729772903094215,
+          "macd": -3.681486790592832e-07,
+          "macd_delta": 4.3041437381481847e-08,
+          "rvol": 0.0,
+          "rvol_delta": -0.9479839950754078,
+          "atr_pct": 0.037261931636551456,
+          "return_5bars": -0.0691391512357753,
+          "breakout": false,
+          "breakdown": true
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.0018064595060423017,
+          "ema9": 0.001807847425990504,
+          "ema21": 0.0018081326155939244,
+          "rsi": 45.09151064529728,
+          "rsi_delta": -4.34481944876449,
+          "macd": 3.207349657013539e-07,
+          "macd_delta": -4.619790739805916e-07,
+          "rvol": 0.0,
+          "rvol_delta": -0.047275279490650225,
+          "atr_pct": 0.10597847759224793,
+          "return_5bars": -0.12512221782478017,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "UOS": {
+      "symbol": "UOS",
+      "hourly_signal": "BUY",
+      "observer_signal": "SELL WATCH",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 2; Short votes 2; Neutral weight 6",
+          "1 independent analyst groups support NEUTRAL",
+          "Committee contains directional disagreement",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 2,
+          "short_votes": 2,
+          "neutral_weight": 6,
+          "independent_support": 1,
+          "conflicts": [
+            "Committee contains directional disagreement",
+            "Risk Manager requests caution"
+          ]
+        }
+      },
+      "risk_state": "CAUTION",
+      "market_memory": {
+        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
+        "samples": 102,
+        "maturity": "MATURE",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.4070120259505665,
+        "4h_up_rate_pct": 50.0,
+        "4h_down_rate_pct": 48.03921568627451
+      },
+      "communication": {
+        "technical_return_4h": -1.1862979677616514,
+        "technical_return_24h": 0.3849648319601551,
+        "rvol": 0.0,
+        "rvol_delta": -0.3289500033375609,
+        "rsi": 45.63087915894374,
+        "macd_histogram": -3.18754112352969e-06,
+        "micro_1m": {
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 0.0029004826210439205,
+          "ema9": 0.0029011717397080285,
+          "ema21": 0.0029034179764410115,
+          "rsi": 46.786549891803176,
+          "rsi_delta": 8.665211500237533,
+          "macd": -1.7642725710444446e-07,
+          "macd_delta": -4.007327822032332e-07,
+          "rvol": 0.0,
+          "rvol_delta": -0.6060606060606061,
+          "atr_pct": 0.13672166572215844,
+          "return_5bars": -0.22283805755568542,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 0.0029004826210439205,
+          "ema9": 0.002905521341792501,
+          "ema21": 0.0029103741262964957,
+          "rsi": 36.54571432854822,
+          "rsi_delta": -5.60538609818348,
+          "macd": -3.318754698451839e-07,
+          "macd_delta": 3.0244775730749093e-07,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.2563950515734978,
+          "return_5bars": -0.22568297572830298,
+          "breakout": false,
+          "breakdown": false
+        }
+      }
+    },
+    "UFO": {
+      "symbol": "UFO",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": "NEUTRAL",
+      "microstructure_signal": null,
+      "microstructure_state": null,
+      "microstructure_reason": null,
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 5; Neutral weight 2",
+          "3 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 5,
+          "neutral_weight": 2,
+          "independent_support": 3,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": "NEUTRAL|RVOL_NORMAL|RSI_OVERSOLD|MACD_UP|RANGE|MIXED",
+        "samples": 0,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.0,
+        "4h_up_rate_pct": 0.0,
+        "4h_down_rate_pct": 0.0
+      },
+      "communication": {
+        "technical_return_4h": -1.0318184585916157,
+        "technical_return_24h": -3.1613249966323087,
+        "rvol": 1.094785992026208,
+        "rvol_delta": -0.040609897616287416,
+        "rsi": 23.5050904118241,
+        "macd_histogram": 8.521702994859144e-12,
+        "micro_1m": null,
+        "micro_5m": null
+      }
+    },
+    "DENT": {
+      "symbol": "DENT",
+      "hourly_signal": "STRONG SELL",
+      "observer_signal": "SELL WATCH",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 5; Neutral weight 4",
+          "2 independent analyst groups support SHORT",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 5,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": [
+            "Risk Manager requests caution"
+          ]
+        }
+      },
+      "risk_state": "CAUTION",
+      "market_memory": {
+        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|BREAKDOWN|BEARISH",
+        "samples": 0,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.0,
+        "4h_up_rate_pct": 0.0,
+        "4h_down_rate_pct": 0.0
+      },
+      "communication": {
+        "technical_return_4h": -0.4154542458888355,
+        "technical_return_24h": -5.031841737709675,
+        "rvol": 0.022893735602585445,
+        "rvol_delta": -0.05874478949464324,
+        "rsi": 41.171207748858976,
+        "macd_histogram": 4.11542020685595e-09,
+        "micro_1m": {
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 2.6446772608323954e-05,
+          "ema9": 2.6495582173837376e-05,
+          "ema21": 2.6534278185389804e-05,
+          "rsi": 26.94972736584252,
+          "rsi_delta": -11.882350383052561,
+          "macd": -6.294427693473005e-09,
+          "macd_delta": -9.740201429790196e-09,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.03511181134509739,
+          "return_5bars": -0.3810445854984801,
+          "breakout": false,
+          "breakdown": true
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 2.6446772608323954e-05,
+          "ema9": 2.6522908549637062e-05,
+          "ema21": 2.6584353645072754e-05,
+          "rsi": 37.45926724529445,
+          "rsi_delta": -5.595877036676782,
+          "macd": -7.505995276241276e-09,
+          "macd_delta": -5.473022409744683e-09,
+          "rvol": 0.0,
+          "rvol_delta": -0.13531095498308612,
+          "atr_pct": 0.16924708593827814,
+          "return_5bars": -0.3162479063814061,
+          "breakout": false,
+          "breakdown": true
+        }
+      }
+    },
+    "MEW": {
+      "symbol": "MEW",
+      "hourly_signal": "SELL WATCH",
+      "observer_signal": null,
+      "microstructure_signal": null,
+      "microstructure_state": null,
+      "microstructure_reason": null,
+      "committee_decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 3; Neutral weight 3",
+          "2 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 3,
+          "neutral_weight": 3,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      },
+      "risk_state": "NORMAL",
+      "market_memory": {
+        "pattern": null,
+        "samples": 0,
+        "maturity": "EARLY",
+        "direction": "NEUTRAL",
+        "4h_avg_return_pct": 0.0,
+        "4h_up_rate_pct": 0.0,
+        "4h_down_rate_pct": 0.0
+      },
+      "communication": {
+        "technical_return_4h": -0.23522308223735688,
+        "technical_return_24h": -1.6982966394551435,
+        "rvol": 1.2881073276298904,
+        "rvol_delta": 0.3474022526686291,
+        "rsi": null,
+        "macd_histogram": null,
+        "micro_1m": null,
+        "micro_5m": null
+      }
+    },
+    "DOGE": {
+      "symbol": "DOGE",
+      "hourly_signal": "SELL",
+      "observer_signal": "SELL WATCH",
+      "microstructure_signal": "NO ACTION",
+      "microstructure_state": "NEUTRAL",
+      "microstructure_reason": "1m/5m evidence not aligned enough",
       "committee_decision": {
         "action": "WATCH",
         "direction": "SHORT",
@@ -2517,32 +2963,62 @@
       },
       "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
-        "samples": 3,
+        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|BEARISH",
+        "samples": 8,
         "maturity": "EARLY",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": -0.5747286615253514,
-        "4h_up_rate_pct": 33.33333333333333,
-        "4h_down_rate_pct": 66.66666666666666
+        "4h_avg_return_pct": 0.7518937570726316,
+        "4h_up_rate_pct": 62.5,
+        "4h_down_rate_pct": 25.0
       },
       "communication": {
-        "technical_return_4h": -0.30917215206668347,
-        "technical_return_24h": -2.5140091502189876,
-        "rvol": 0.02397490185006019,
-        "rvol_delta": -0.3056696002208044,
-        "rsi": 40.53869988815686,
-        "macd_histogram": -0.000141238509767121,
-        "micro_1m": null,
-        "micro_5m": null
+        "technical_return_4h": -0.014363854633514528,
+        "technical_return_24h": -1.1644362887515913,
+        "rvol": 0.0,
+        "rvol_delta": -0.1713250951792853,
+        "rsi": 44.54733505663291,
+        "macd_histogram": 3.365031185821848e-06,
+        "micro_1m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.06960000097751617,
+          "ema9": 0.06958127270761229,
+          "ema21": 0.06959437498399636,
+          "rsi": 49.59876767677232,
+          "rsi_delta": 7.1565960418271,
+          "macd": 6.222528763492575e-06,
+          "macd_delta": 5.0048773123953975e-06,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.036948578668725016,
+          "return_5bars": 0.0,
+          "breakout": false,
+          "breakdown": false
+        },
+        "micro_5m": {
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.06960000097751617,
+          "ema9": 0.06960998681251153,
+          "ema21": 0.06961821747748662,
+          "rsi": 48.364133210062356,
+          "rsi_delta": 2.526398000317137,
+          "macd": -2.4514398990242048e-06,
+          "macd_delta": -5.393539402710196e-06,
+          "rvol": 0.0,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.1200740873979395,
+          "return_5bars": -0.15779711634427152,
+          "breakout": false,
+          "breakdown": false
+        }
       }
     },
-    "LUNC": {
-      "symbol": "LUNC",
-      "hourly_signal": "SELL WATCH",
-      "observer_signal": "EARLY SELL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
+    "GRT": {
+      "symbol": "GRT",
+      "hourly_signal": "SELL",
+      "observer_signal": null,
+      "microstructure_signal": null,
+      "microstructure_state": null,
+      "microstructure_reason": null,
       "committee_decision": {
         "action": "WATCH",
         "direction": "SHORT",
@@ -2553,75 +3029,42 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 4; Neutral weight 5",
-          "2 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 5; Neutral weight 3",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 4,
-          "neutral_weight": 5,
+          "short_votes": 5,
+          "neutral_weight": 3,
           "independent_support": 2,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       },
-      "risk_state": "CAUTION",
+      "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
-        "samples": 69,
-        "maturity": "MATURE",
+        "pattern": null,
+        "samples": 0,
+        "maturity": "EARLY",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.030347537835965752,
-        "4h_up_rate_pct": 55.072463768115945,
-        "4h_down_rate_pct": 40.57971014492754
+        "4h_avg_return_pct": 0.0,
+        "4h_up_rate_pct": 0.0,
+        "4h_down_rate_pct": 0.0
       },
       "communication": {
-        "technical_return_4h": -0.35291493766431703,
-        "technical_return_24h": -0.8511743284966067,
-        "rvol": 0.014793456702423265,
-        "rvol_delta": -0.23204622937249766,
-        "rsi": 49.41302228869215,
-        "macd_histogram": 2.4235784141020633e-09,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 5.0052116421284154e-05,
-          "ema9": 5.004498713281074e-05,
-          "ema21": 5.0050379708952164e-05,
-          "rsi": 49.60682727305171,
-          "rsi_delta": 0.6713148019502242,
-          "macd": 6.1038897397805475e-09,
-          "macd_delta": 1.0298983227137135e-09,
-          "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.03962773550862011,
-          "return_5bars": 0.02907470884212504,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 5.0052116421284154e-05,
-          "ema9": 5.00485156343931e-05,
-          "ema21": 5.00526594705314e-05,
-          "rsi": 50.01968931359269,
-          "rsi_delta": 2.0580127550803198,
-          "macd": -8.572961899106042e-09,
-          "macd_delta": 4.6105330108002565e-09,
-          "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.10787057010184259,
-          "return_5bars": 0.0642428593912614,
-          "breakout": false,
-          "breakdown": false
-        }
+        "technical_return_4h": -0.17877220274677974,
+        "technical_return_24h": -1.867651840843254,
+        "rvol": 0.9645278288932561,
+        "rvol_delta": 0.030446803377702558,
+        "rsi": null,
+        "macd_histogram": null,
+        "micro_1m": null,
+        "micro_5m": null
       }
     },
-    "GALA": {
-      "symbol": "GALA",
+    "VRA": {
+      "symbol": "VRA",
       "hourly_signal": "SELL WATCH",
-      "observer_signal": "SELL WATCH",
+      "observer_signal": "NEUTRAL",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
       "microstructure_reason": "1m/5m evidence not aligned enough",
@@ -2648,528 +3091,50 @@
       },
       "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
-        "samples": 102,
+        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+        "samples": 211,
         "maturity": "MATURE",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.4070120259505665,
-        "4h_up_rate_pct": 50.0,
-        "4h_down_rate_pct": 48.03921568627451
+        "4h_avg_return_pct": 0.16282922837029554,
+        "4h_up_rate_pct": 50.23696682464455,
+        "4h_down_rate_pct": 43.60189573459716
       },
       "communication": {
-        "technical_return_4h": 0.398175966784553,
-        "technical_return_24h": -0.3891667265036425,
-        "rvol": 0.028449737726654184,
-        "rvol_delta": -1.1721013336312995,
-        "rsi": 44.31670037774836,
-        "macd_histogram": -8.072706825437236e-07,
+        "technical_return_4h": 0.4605201666384673,
+        "technical_return_24h": -1.3202735654554432,
+        "rvol": 0.0,
+        "rvol_delta": -0.09485572774004727,
+        "rsi": 47.52435730766916,
+        "macd_histogram": 5.341800071456634e-09,
         "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 0.0018071392551064491,
-          "ema9": 0.0018084263963518445,
-          "ema21": 0.0018079681274862478,
-          "rsi": 47.77778890865033,
-          "rsi_delta": -2.7980775155909257,
-          "macd": -2.7303314199084846e-07,
-          "macd_delta": -3.9297316153232075e-07,
+          "time": "2026-08-10T18:03:00+00:00",
+          "price": 9.853655683400575e-06,
+          "ema9": 9.85003150116209e-06,
+          "ema21": 9.846957188139133e-06,
+          "rsi": 56.688119562115226,
+          "rsi_delta": -5.568750752521609,
+          "macd": 3.0033616503317325e-10,
+          "macd_delta": 6.85346627863555e-10,
           "rvol": 0.0,
-          "rvol_delta": -0.1939658453652719,
-          "atr_pct": 0.07325989392325165,
-          "return_5bars": -0.1506821347952214,
-          "breakout": false,
-          "breakdown": true
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.0018071392551064491,
-          "ema9": 0.0018079116993725052,
-          "ema21": 0.0018081672023309413,
-          "rsi": 47.02448461912948,
-          "rsi_delta": -4.604852126231542,
-          "macd": 8.34255305127133e-07,
-          "macd_delta": -2.9239835054896766e-07,
-          "rvol": 0.0,
-          "rvol_delta": -0.5287740637602332,
-          "atr_pct": 0.130371616117346,
-          "return_5bars": -0.23186156895137477,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "UOS": {
-      "symbol": "UOS",
-      "hourly_signal": "BUY",
-      "observer_signal": "EARLY SELL",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "LONG",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 3; Short votes 0; Neutral weight 6",
-          "1 independent analyst groups support LONG",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 3,
-          "short_votes": 0,
-          "neutral_weight": 6,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|BEARISH",
-        "samples": 4,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": -0.13088785456470964,
-        "4h_up_rate_pct": 0.0,
-        "4h_down_rate_pct": 100.0
-      },
-      "communication": {
-        "technical_return_4h": 0.0063654311335481495,
-        "technical_return_24h": 2.0755019198493097,
-        "rvol": 0.004980544747081712,
-        "rvol_delta": -0.0022519108976239042,
-        "rsi": 44.70083130105813,
-        "macd_histogram": -3.4674731899022695e-06,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 0.002906952751800418,
-          "ema9": 0.002905557107670858,
-          "ema21": 0.0029071342140597925,
-          "rsi": 48.5575539832363,
-          "rsi_delta": -0.021788555704141288,
-          "macd": 1.2435317374198906e-06,
-          "macd_delta": 3.7017522424197887e-07,
-          "rvol": 0.0,
-          "rvol_delta": -0.2127659574468085,
-          "atr_pct": 0.22401775056724288,
-          "return_5bars": -0.009001800440178176,
+          "rvol_delta": -10.971428571428572,
+          "atr_pct": 0.0382446009671772,
+          "return_5bars": 0.12291019174082152,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.002906952751800418,
-          "ema9": 0.0029092187400897463,
-          "ema21": 0.002914346931332455,
-          "rsi": 39.01636120475293,
-          "rsi_delta": 0.15182218553533744,
-          "macd": -8.451204714386267e-07,
-          "macd_delta": 6.713086540421163e-07,
-          "rvol": 0.0,
-          "rvol_delta": -0.08298755186721991,
-          "atr_pct": 0.2241653531089312,
-          "return_5bars": 0.2829227176163185,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "UFO": {
-      "symbol": "UFO",
-      "hourly_signal": "SELL WATCH",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": null,
-      "microstructure_state": null,
-      "microstructure_reason": null,
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 5",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 5,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_NORMAL|RSI_OVERSOLD|MACD_MIXED|RANGE|MIXED",
-        "samples": 0,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.0,
-        "4h_up_rate_pct": 0.0,
-        "4h_down_rate_pct": 0.0
-      },
-      "communication": {
-        "technical_return_4h": -0.2016495580104416,
-        "technical_return_24h": 0.013281982795509961,
-        "rvol": 1.115899976200532,
-        "rvol_delta": -0.04243752446071092,
-        "rsi": 23.927102006676748,
-        "macd_histogram": -2.8835613317226914e-12,
-        "micro_1m": null,
-        "micro_5m": null
-      }
-    },
-    "DENT": {
-      "symbol": "DENT",
-      "hourly_signal": "HOLD",
-      "observer_signal": "SELL WATCH",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 7",
-          "1 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 7,
-          "independent_support": 1,
-          "conflicts": []
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
-        "samples": 18,
-        "maturity": "DEVELOPING",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.30298006529502025,
-        "4h_up_rate_pct": 44.44444444444444,
-        "4h_down_rate_pct": 55.55555555555556
-      },
-      "communication": {
-        "technical_return_4h": -1.978353375709685,
-        "technical_return_24h": -0.2081632855231219,
-        "rvol": 0.0007418207863300336,
-        "rvol_delta": -0.007949825282278526,
-        "rsi": 42.65489495688396,
-        "macd_histogram": 6.315721221722e-09,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 2.6530729883234017e-05,
-          "ema9": 2.6554426581751612e-05,
-          "ema21": 2.6593902677987816e-05,
-          "rsi": 37.863693414577945,
-          "rsi_delta": -1.6336374542618302,
-          "macd": -7.2378192743448265e-09,
-          "macd_delta": 2.644652962595892e-09,
-          "rvol": 0.0,
-          "rvol_delta": -0.17650639074863053,
-          "atr_pct": 0.12497164365505792,
-          "return_5bars": -0.07470372512208279,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 2.6530729883234017e-05,
-          "ema9": 2.6586807214805184e-05,
-          "ema21": 2.663654514326782e-05,
-          "rsi": 41.81664704173857,
-          "rsi_delta": -0.7814045345557616,
-          "macd": -3.249458260982106e-09,
-          "macd_delta": -9.52211693630193e-09,
-          "rvol": 0.0,
-          "rvol_delta": -0.13071895424836602,
-          "atr_pct": 0.29320027262836323,
-          "return_5bars": -0.029637251420466804,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "MEW": {
-      "symbol": "MEW",
-      "hourly_signal": "BUY WATCH",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": null,
-      "microstructure_state": null,
-      "microstructure_reason": null,
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 3; Neutral weight 4",
-          "2 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 3,
-          "neutral_weight": 4,
-          "independent_support": 2,
-          "conflicts": []
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_NORMAL|RSI_MID|MACD_UP|RANGE|MIXED",
-        "samples": 4,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": -0.8164325616713014,
-        "4h_up_rate_pct": 25.0,
-        "4h_down_rate_pct": 75.0
-      },
-      "communication": {
-        "technical_return_4h": -0.3860770208201747,
-        "technical_return_24h": 0.5186084414811276,
-        "rvol": 1.1408342493196164,
-        "rvol_delta": 0.003055916441697226,
-        "rsi": 45.353544341393466,
-        "macd_histogram": 2.5081976994211475e-07,
-        "micro_1m": null,
-        "micro_5m": null
-      }
-    },
-    "DOGE": {
-      "symbol": "DOGE",
-      "hourly_signal": "SELL",
-      "observer_signal": "BUY WATCH",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 7",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 7,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "BUY_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
-        "samples": 3,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.23871972856997678,
-        "4h_up_rate_pct": 100.0,
-        "4h_down_rate_pct": 0.0
-      },
-      "communication": {
-        "technical_return_4h": 0.12929609834038125,
-        "technical_return_24h": -0.5706124238906263,
-        "rvol": 0.0673294017634679,
-        "rvol_delta": -0.3998936902833961,
-        "rsi": 49.21498891726225,
-        "macd_histogram": 9.222222617279646e-06,
-        "micro_1m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.06972000002861023,
-          "ema9": 0.06971441237882783,
-          "ema21": 0.0696992547394953,
-          "rsi": 57.13194593841482,
-          "rsi_delta": 1.89614929234736,
-          "macd": -5.423821528728968e-06,
-          "macd_delta": -7.485199595731192e-07,
-          "rvol": 0.0,
-          "rvol_delta": -6.461406518010292,
-          "atr_pct": 0.035856796922063235,
-          "return_5bars": 0.01434324912856777,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:40:00+00:00",
-          "price": 0.06972000002861023,
-          "ema9": 0.06967657790203832,
-          "ema21": 0.06964560924091788,
-          "rsi": 54.32148493941901,
-          "rsi_delta": -0.18226647623222192,
-          "macd": 2.448516165229104e-05,
-          "macd_delta": -1.0992760902252981e-06,
-          "rvol": 0.0,
-          "rvol_delta": -0.08535624299335132,
-          "atr_pct": 0.15162520788927392,
-          "return_5bars": 0.10049993234038102,
-          "breakout": false,
-          "breakdown": false
-        }
-      }
-    },
-    "GRT": {
-      "symbol": "GRT",
-      "hourly_signal": "SELL",
-      "observer_signal": "NEUTRAL",
-      "microstructure_signal": null,
-      "microstructure_state": null,
-      "microstructure_reason": null,
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 7",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 7,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      },
-      "risk_state": "CAUTION",
-      "market_memory": {
-        "pattern": "NEUTRAL|RVOL_NORMAL|RSI_BEAR|MACD_MIXED|RANGE|MIXED",
-        "samples": 6,
-        "maturity": "EARLY",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.6134990978857557,
-        "4h_up_rate_pct": 83.33333333333334,
-        "4h_down_rate_pct": 16.666666666666664
-      },
-      "communication": {
-        "technical_return_4h": 0.2067539627842896,
-        "technical_return_24h": -1.0884353741496544,
-        "rvol": 1.0369345051194128,
-        "rvol_delta": -0.002259658414319299,
-        "rsi": 38.589294566682945,
-        "macd_histogram": -3.93457046140509e-06,
-        "micro_1m": null,
-        "micro_5m": null
-      }
-    },
-    "VRA": {
-      "symbol": "VRA",
-      "hourly_signal": "STRONG BUY",
-      "observer_signal": "SELL WATCH",
-      "microstructure_signal": "NO ACTION",
-      "microstructure_state": "NEUTRAL",
-      "microstructure_reason": "1m/5m evidence not aligned enough",
-      "committee_decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 2; Short votes 3; Neutral weight 4",
-          "2 independent analyst groups support SHORT",
-          "Committee contains directional disagreement"
-        ],
-        "agreement": {
-          "long_votes": 2,
-          "short_votes": 3,
-          "neutral_weight": 4,
-          "independent_support": 2,
-          "conflicts": [
-            "Committee contains directional disagreement"
-          ]
-        }
-      },
-      "risk_state": "NORMAL",
-      "market_memory": {
-        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
-        "samples": 18,
-        "maturity": "DEVELOPING",
-        "direction": "NEUTRAL",
-        "4h_avg_return_pct": 0.30298006529502025,
-        "4h_up_rate_pct": 44.44444444444444,
-        "4h_down_rate_pct": 55.55555555555556
-      },
-      "communication": {
-        "technical_return_4h": -0.6374056944464579,
-        "technical_return_24h": 5.432724245439324,
-        "rvol": 0.03286867204695525,
-        "rvol_delta": -0.4362458380061469,
-        "rsi": 47.62864966640039,
-        "macd_histogram": 3.352639984632673e-09,
-        "micro_1m": {
-          "time": "2026-08-10T17:38:00+00:00",
-          "price": 9.855225471255835e-06,
-          "ema9": 9.851032511435385e-06,
-          "ema21": 9.843998743518256e-06,
-          "rsi": 60.00222806674074,
-          "rsi_delta": -0.69294194217062,
-          "macd": 2.2159762250712724e-09,
-          "macd_delta": -9.590118392170573e-10,
+          "time": "2026-08-10T18:00:00+00:00",
+          "price": 9.853655683400575e-06,
+          "ema9": 9.84683281571316e-06,
+          "ema21": 9.842411872266754e-06,
+          "rsi": 53.28484244312388,
+          "rsi_delta": 4.9598048985695655,
+          "macd": 2.8013948056583545e-09,
+          "macd_delta": -5.30660166519423e-10,
           "rvol": 0.0,
           "rvol_delta": 0.0,
-          "atr_pct": 0.04851120698991695,
-          "return_5bars": -0.05911083433619568,
-          "breakout": false,
-          "breakdown": false
-        },
-        "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 9.855225471255835e-06,
-          "ema9": 9.844413878864773e-06,
-          "ema21": 9.839485453207754e-06,
-          "rsi": 53.66513111714989,
-          "rsi_delta": 2.7286180752602647,
-          "macd": 5.462247590242938e-09,
-          "macd_delta": 1.7520995606206616e-09,
-          "rvol": 0.04167824395665463,
-          "rvol_delta": 0.04167824395665463,
-          "atr_pct": 0.136454702405864,
-          "return_5bars": 0.4783786127020129,
+          "atr_pct": 0.11285219675144587,
+          "return_5bars": 0.004329068262665103,
           "breakout": false,
           "breakdown": false
         }
@@ -3184,7 +3149,7 @@
       "microstructure_reason": "1m/5m evidence not aligned enough",
       "committee_decision": {
         "action": "WATCH",
-        "direction": "LONG",
+        "direction": "SHORT",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -3192,21 +3157,21 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 1; Short votes 0; Neutral weight 7",
-          "1 independent analyst groups support LONG",
-          "Risk Manager requests caution"
+          "Long votes 1; Short votes 4; Neutral weight 4",
+          "2 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
           "long_votes": 1,
-          "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 1,
+          "short_votes": 4,
+          "neutral_weight": 4,
+          "independent_support": 2,
           "conflicts": [
-            "Risk Manager requests caution"
+            "Committee contains directional disagreement"
           ]
         }
       },
-      "risk_state": "CAUTION",
+      "risk_state": "NORMAL",
       "market_memory": {
         "pattern": "NEUTRAL|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|MIXED",
         "samples": 13,
@@ -3217,41 +3182,41 @@
         "4h_down_rate_pct": 23.076923076923077
       },
       "communication": {
-        "technical_return_4h": 0.0,
-        "technical_return_24h": -0.8695633835015926,
-        "rvol": 0.5240989585044519,
-        "rvol_delta": 0.15069616361550825,
-        "rsi": 39.18326022886496,
-        "macd_histogram": -1.3009963176382908e-07,
+        "technical_return_4h": -0.5882312155531588,
+        "technical_return_24h": -2.028984040134607,
+        "rvol": 0.3718182503202472,
+        "rvol_delta": 0.11190599680141755,
+        "rsi": 37.29018522493929,
+        "macd_histogram": -1.3764821037858533e-07,
         "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 0.00033999999868683517,
-          "ema9": 0.0003398926238513889,
-          "ema21": 0.0003396157293283898,
-          "rsi": 98.81165703838693,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.0003380000125616789,
+          "ema9": 0.0003381714855411516,
+          "ema21": 0.0003386687532030421,
+          "rsi": 7.26434799722756,
           "rsi_delta": 0.0,
-          "macd": 5.012461647579073e-08,
-          "macd_delta": -4.5637496854943255e-08,
+          "macd": -9.149505017017361e-08,
+          "macd_delta": 9.201714435342758e-08,
           "rvol": 0.0,
           "rvol_delta": 0.0,
-          "atr_pct": 0.021008563410832962,
+          "atr_pct": 0.04226513209694296,
           "return_5bars": 0.0,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.00033999999868683517,
-          "ema9": 0.0003394089910591229,
-          "ema21": 0.000339587451610131,
-          "rsi": 57.86912659123742,
-          "rsi_delta": 54.8783655831207,
-          "macd": 1.6887893846431077e-07,
-          "macd_delta": 1.3142276063544475e-07,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.0003380000125616789,
+          "ema9": 0.0003388690763542,
+          "ema21": 0.0003392697596693872,
+          "rsi": 21.929803163161935,
+          "rsi_delta": -35.93932342807548,
+          "macd": -7.034603939510812e-08,
+          "macd_delta": -2.706399815281699e-07,
           "rvol": 0.0,
-          "rvol_delta": -0.7288123828694384,
-          "atr_pct": 0.042017126821665925,
-          "return_5bars": 0.29498750466927515,
+          "rvol_delta": 0.0,
+          "atr_pct": 0.06339800566685755,
+          "return_5bars": -0.5882312155531588,
           "breakout": false,
           "breakdown": false
         }
@@ -3260,7 +3225,7 @@
     "XTZ": {
       "symbol": "XTZ",
       "hourly_signal": "SELL",
-      "observer_signal": "NEUTRAL",
+      "observer_signal": "SELL WATCH",
       "microstructure_signal": "NO ACTION",
       "microstructure_state": "NEUTRAL",
       "microstructure_reason": "1m/5m evidence not aligned enough",
@@ -3274,66 +3239,66 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 5; Neutral weight 4",
-          "2 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
+          "Long votes 1; Short votes 2; Neutral weight 5",
+          "1 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 0,
-          "short_votes": 5,
-          "neutral_weight": 4,
-          "independent_support": 2,
+          "long_votes": 1,
+          "short_votes": 2,
+          "neutral_weight": 5,
+          "independent_support": 1,
           "conflicts": [
-            "Risk Manager requests caution"
+            "Committee contains directional disagreement"
           ]
         }
       },
-      "risk_state": "CAUTION",
+      "risk_state": "NORMAL",
       "market_memory": {
-        "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
-        "samples": 3,
+        "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|BEARISH",
+        "samples": 8,
         "maturity": "EARLY",
         "direction": "NEUTRAL",
-        "4h_avg_return_pct": -0.34256165005170924,
-        "4h_up_rate_pct": 0.0,
-        "4h_down_rate_pct": 100.0
+        "4h_avg_return_pct": 0.7518937570726316,
+        "4h_up_rate_pct": 62.5,
+        "4h_down_rate_pct": 25.0
       },
       "communication": {
-        "technical_return_4h": -0.2976166937945113,
-        "technical_return_24h": -1.8075174650059256,
-        "rvol": 0.25334072426021126,
-        "rvol_delta": -1.7457301315143656,
-        "rsi": 46.894191352307445,
-        "macd_histogram": 7.365647540112674e-05,
+        "technical_return_4h": 0.10070664219654635,
+        "technical_return_24h": -2.5490189776517624,
+        "rvol": 0.12866351138156412,
+        "rvol_delta": -0.5472091777418704,
+        "rsi": 43.56530022886649,
+        "macd_histogram": 0.00010690460182865918,
         "micro_1m": {
-          "time": "2026-08-10T17:39:00+00:00",
-          "price": 0.19920000433921814,
-          "ema9": 0.19913412291394128,
-          "ema21": 0.19903475119132535,
-          "rsi": 63.1715118179082,
-          "rsi_delta": 4.482796002750582,
-          "macd": -1.753574283705012e-05,
-          "macd_delta": -1.003579606410955e-05,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.1987999975681305,
+          "ema9": 0.19889801314355052,
+          "ema21": 0.19898214766538125,
+          "rsi": 26.669897305341863,
+          "rsi_delta": 0.0,
+          "macd": -4.178428234836683e-05,
+          "macd_delta": -2.8319166104578372e-06,
           "rvol": 0.0,
-          "rvol_delta": 0.0,
-          "atr_pct": 0.03227142186676109,
-          "return_5bars": -0.10029513118365863,
+          "rvol_delta": -0.05432300555248419,
+          "atr_pct": 0.010779142066169166,
+          "return_5bars": -0.15068059986341753,
           "breakout": false,
           "breakdown": false
         },
         "micro_5m": {
-          "time": "2026-08-10T17:35:00+00:00",
-          "price": 0.19920000433921814,
-          "ema9": 0.19888981398957895,
-          "ema21": 0.19872560254599683,
-          "rsi": 56.53715218779823,
-          "rsi_delta": 2.9462255041074386,
-          "macd": 0.00018222855861054285,
-          "macd_delta": 1.6397239258522688e-05,
-          "rvol": 0.26917444295172044,
-          "rvol_delta": 0.11608499724680349,
-          "atr_pct": 0.16135978094182132,
-          "return_5bars": 0.050226866621128075,
+          "time": "2026-08-10T18:05:00+00:00",
+          "price": 0.1987999975681305,
+          "ema9": 0.19893526269525244,
+          "ema21": 0.19883603206978465,
+          "rsi": 49.143662482210786,
+          "rsi_delta": -5.436854703166908,
+          "macd": 4.2158817032790814e-05,
+          "macd_delta": -7.926942583688548e-05,
+          "rvol": 0.0,
+          "rvol_delta": -2.5810322753243775,
+          "atr_pct": 0.1437192172320131,
+          "return_5bars": -0.2008066076175763,
           "breakout": false,
           "breakdown": false
         }
@@ -3345,12 +3310,6 @@
       "source": "MARKET_SCHOOL",
       "symbol": "DOT",
       "type": "MATURE_PATTERN",
-      "message": "60 historical matches favour LONG; 4H average +17560.58%."
-    },
-    {
-      "source": "MARKET_SCHOOL",
-      "symbol": "NEAR",
-      "type": "MATURE_PATTERN",
       "message": "46 historical matches favour LONG; 4H average +0.40%."
     },
     {
@@ -3361,15 +3320,15 @@
     },
     {
       "source": "MARKET_SCHOOL",
-      "symbol": "PYR",
+      "symbol": "RUNE",
       "type": "MATURE_PATTERN",
-      "message": "28 historical matches favour SHORT; 4H average -0.12%."
+      "message": "46 historical matches favour LONG; 4H average +0.40%."
     },
     {
       "source": "MARKET_SCHOOL",
-      "symbol": "SKL",
+      "symbol": "BTT",
       "type": "MATURE_PATTERN",
-      "message": "46 historical matches favour LONG; 4H average +0.40%."
+      "message": "103 historical matches favour LONG; 4H average +6.46%."
     }
   ],
   "principle": "Agents share evidence through this bus. Mature evidence may influence decisions; immature evidence remains observational."
