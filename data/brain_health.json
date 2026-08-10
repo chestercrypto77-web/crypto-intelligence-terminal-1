@@ -1,22 +1,22 @@
 {
-  "updated_at": "2026-08-10T05:26:30.325974+00:00",
-  "overall": "PASS",
+  "updated_at": "2026-08-10T10:02:04.476192+00:00",
+  "overall": "CAUTION",
   "components": {
     "microstructure": {
       "status": "PASS",
-      "age_minutes": 1.6,
-      "timestamp": "2026-08-10T05:24:53.959167+00:00",
+      "age_minutes": 0.2,
+      "timestamp": "2026-08-10T10:01:52.736771+00:00",
       "freshness_limit_minutes": 15
     },
     "observer_15m": {
-      "status": "PASS",
-      "age_minutes": 1.4,
+      "status": "STALE",
+      "age_minutes": 277.0,
       "timestamp": "2026-08-10T05:25:04.747696+00:00",
       "freshness_limit_minutes": 35
     },
     "hourly_signals": {
-      "status": "PASS",
-      "age_minutes": 13.3,
+      "status": "STALE",
+      "age_minutes": 288.8,
       "timestamp": "2026-08-10T05:13:14.830365+00:00",
       "freshness_limit_minutes": 90
     },
@@ -29,33 +29,39 @@
     "market_school": {
       "status": "PASS",
       "age_minutes": 0.0,
-      "timestamp": "2026-08-10T05:26:28.753997+00:00",
+      "timestamp": "2026-08-10T10:02:03.999109+00:00",
       "freshness_limit_minutes": 180
     },
     "intelligence_bus": {
       "status": "PASS",
       "age_minutes": 0.0,
-      "timestamp": "2026-08-10T05:26:29.927492+00:00",
+      "timestamp": "2026-08-10T10:02:04.120526+00:00",
       "freshness_limit_minutes": 35
     },
     "trade_coach": {
-      "status": "PASS",
-      "age_minutes": 0.0,
+      "status": "STALE",
+      "age_minutes": 275.6,
       "timestamp": "2026-08-10T05:26:29.733868+00:00",
       "freshness_limit_minutes": 180
     },
     "confidence_ledger": {
-      "status": "PASS",
-      "age_minutes": 0.0,
+      "status": "STALE",
+      "age_minutes": 275.6,
       "timestamp": "2026-08-10T05:26:29.784830+00:00",
       "freshness_limit_minutes": 180
     },
     "learning": {
-      "status": "PASS",
-      "age_minutes": 0.0,
+      "status": "STALE",
+      "age_minutes": 275.6,
       "timestamp": "2026-08-10T05:26:29.836571+00:00",
       "freshness_limit_minutes": 180
     }
   },
-  "warnings": []
+  "warnings": [
+    "observer_15m: STALE",
+    "hourly_signals: STALE",
+    "trade_coach: STALE",
+    "confidence_ledger: STALE",
+    "learning: STALE"
+  ]
 }
