@@ -1,0 +1,49 @@
+name: 5-Minute Microstructure Observer
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: five-minute-microstructure
+  cancel-in-progress: false
+
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Observe underlying 1m bars and compare 1m/5m structure
+        run: |
+          python scripts/bootstrap_runtime.py
+          python scripts/microstructure_observer.py
+          python scripts/market_school.py
+          python scripts/intelligence_hub.py
+          python scripts/brain_health.py
+      - name: Verify JSON
+        run: |
+          python - <<'PY2'
+          import json
+          from pathlib import Path
+          for name in ["microstructure_latest.json","microstructure_history.json","market_school.json","intelligence_bus.json","brain_health.json","engine_health.json"]:
+              json.loads((Path("data")/name).read_text())
+              print("PASS",name)
+          PY2
+      - name: Commit learning records
+        run: |
+          git config user.name "Microstructure Observer"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/microstructure_latest.json data/microstructure_history.json data/market_school.json data/intelligence_bus.json data/brain_health.json data/engine_health.json
+          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update 1m/5m microstructure intelligence"; git pull --rebase; git push; fi
