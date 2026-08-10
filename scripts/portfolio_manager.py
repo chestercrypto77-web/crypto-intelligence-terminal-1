@@ -26,7 +26,8 @@ def journal(w,event,symbol,detail,**extra): w.setdefault('activity_journal',[]).
 def committee_record(committee_map,symbol):
     return committee_map.get(str(symbol or '').upper(),{})
 
-def candidate_quality(s,book,committee_map):
+def candidate_quality(s,book,committee_map,intelligence_map=None):
+    intelligence_map=intelligence_map or {}
     call=str(s.get('signal') or 'HOLD').upper(); rvol=f(s.get('rvol')); diff=abs(f(s.get('bullish'))-f(s.get('bearish'))); r4=f(s.get('return_4h')); r24=f(s.get('return_24h'))
     committee=committee_record(committee_map,s.get('symbol'))
     decision=committee.get('decision') or {}
@@ -43,9 +44,17 @@ def candidate_quality(s,book,committee_map):
         eligible=permitted and aligned and call in {'BUY','STRONG BUY','SELL','STRONG SELL'}
         score=max(f((decision.get('agreement') or {}).get('long_votes')),f((decision.get('agreement') or {}).get('short_votes')))*3+diff+rvol*2+abs(r4)
         reasons=[] if eligible else ['COMMITTEE SWING APPROVAL REQUIRED']
+    memory=((intelligence_map.get(str(s.get('symbol') or '').upper()) or {}).get('market_memory') or {})
+    if str(memory.get('maturity'))=='MATURE':
+        md=str(memory.get('direction') or 'NEUTRAL')
+        if md==direction:
+            score+=3.0
+        elif md in {'LONG','SHORT'} and direction in {'LONG','SHORT'} and md!=direction:
+            score-=3.0
+            reasons.append('MATURE MARKET MEMORY CONFLICT')
     return eligible,score,reasons,committee
 
-def update_wallet(wallet,signals,risk_map,book,committee_map):
+def update_wallet(wallet,signals,risk_map,book,committee_map,intelligence_map=None):
     rules=wallet.get('rules') or {}; previous=f(wallet.get('equity'),f(wallet.get('starting_cash'),100000)); current={str(s.get('symbol','')).upper():s for s in signals}; actions=[]; keep=[]
     for p in wallet.get('open_positions',[]):
         sym=p['symbol']; s=current.get(sym,{}); price=f(s.get('entry_price'),f(p.get('current_price'),p['entry_price'])); p['current_price']=price; ret=dret(p['direction'],f(p['entry_price']),price)-0.30; p['unrealised_return']=ret; p['unrealised_pnl']=f(p['allocated_cash'])*ret/100; p['maximum_favourable_excursion_pct']=max(f(p.get('maximum_favourable_excursion_pct')),ret); p['maximum_adverse_excursion_pct']=min(f(p.get('maximum_adverse_excursion_pct')),ret)
@@ -74,7 +83,7 @@ def update_wallet(wallet,signals,risk_map,book,committee_map):
     wallet['open_positions']=keep; open_syms={p['symbol'] for p in keep}
     ranked=[]
     for s in signals:
-        ok,score,reasons,committee=candidate_quality(s,book,committee_map)
+        ok,score,reasons,committee=candidate_quality(s,book,committee_map,intelligence_map)
         if ok: ranked.append((score,s,committee))
         elif str(s.get('signal','')).upper() in {'BUY','STRONG BUY','SELL','STRONG SELL'}: wallet.setdefault('rejected_opportunities',[]).append({'recorded_at':now(),'symbol':s.get('symbol'),'signal':s.get('signal'),'reason':' | '.join(reasons)})
     ranked.sort(reverse=True,key=lambda x:x[0]); reserve=f(wallet.get('starting_cash'))*f(rules.get('minimum_cash_reserve_pct'))/100; target=f(wallet.get('starting_cash'))*f(rules.get('position_size_pct'))/100
@@ -85,7 +94,7 @@ def update_wallet(wallet,signals,risk_map,book,committee_map):
         if str((risk_map.get(sym) or {}).get('state','NORMAL')) not in {'NORMAL','CAUTION'}: continue
         alloc=min(target,max(0.0,f(wallet.get('cash'))-reserve)); entry=f(s.get('entry_price'))
         if alloc<=0 or entry<=0: continue
-        p={'position_id':f'{book}_{sym}_{str(s.get("recorded_at") or now()).replace(":","")}','book':book,'symbol':sym,'name':s.get('name') or sym,'narrative':s.get('narrative') or '','direction':d,'signal':s.get('signal'),'entry_time':s.get('recorded_at') or now(),'entry_price':entry,'current_price':entry,'allocated_cash':alloc,'units':alloc/entry,'status':'OPEN','unrealised_return':-0.30,'unrealised_pnl':-alloc*0.003,'maximum_favourable_excursion_pct':0.0,'maximum_adverse_excursion_pct':-0.30,'committee_snapshot':committee,'entry_snapshot':{'rvol':s.get('rvol'),'rvol_delta':s.get('rvol_delta'),'return_4h':s.get('return_4h'),'return_12h':s.get('return_12h'),'return_24h':s.get('return_24h'),'bullish':s.get('bullish'),'bearish':s.get('bearish'),'signal':s.get('signal')}}
+        p={'position_id':f'{book}_{sym}_{str(s.get("recorded_at") or now()).replace(":","")}','book':book,'symbol':sym,'name':s.get('name') or sym,'narrative':s.get('narrative') or '','direction':d,'signal':s.get('signal'),'entry_time':s.get('recorded_at') or now(),'entry_price':entry,'current_price':entry,'allocated_cash':alloc,'units':alloc/entry,'status':'OPEN','unrealised_return':-0.30,'unrealised_pnl':-alloc*0.003,'maximum_favourable_excursion_pct':0.0,'maximum_adverse_excursion_pct':-0.30,'case_id':f'{book}_{sym}_{str(s.get("recorded_at") or now()).replace(":","")}','committee_snapshot':committee,'shared_intelligence':(intelligence_map or {}).get(sym,{}),'entry_snapshot':{'rvol':s.get('rvol'),'rvol_delta':s.get('rvol_delta'),'return_4h':s.get('return_4h'),'return_12h':s.get('return_12h'),'return_24h':s.get('return_24h'),'bullish':s.get('bullish'),'bearish':s.get('bearish'),'signal':s.get('signal')}}
         wallet['cash']-=alloc; wallet['open_positions'].append(p); open_syms.add(sym); journal(wallet,'OPENED',sym,s.get('signal'),allocation=alloc); actions.append({'book':book,'symbol':sym,'action':'BUY' if d=='LONG' else 'SHORT','pnl_pct':-0.30,'pnl':-alloc*0.003,'reason':'QUALIFIED ENTRY'})
     wallet['unrealised_pnl']=sum(f(p.get('unrealised_pnl')) for p in wallet['open_positions']); wallet['equity']=f(wallet.get('cash'))+sum(f(p.get('allocated_cash'))+f(p.get('unrealised_pnl')) for p in wallet['open_positions']); wallet['previous_equity']=previous; wallet['equity_change_this_run']=wallet['equity']-previous; wallet['updated_at']=now(); wallet.setdefault('equity_history',[]).append({'recorded_at':now(),'equity':wallet['equity'],'cash':wallet['cash'],'realised_pnl':wallet.get('realised_pnl',0),'unrealised_pnl':wallet['unrealised_pnl'],'open_positions':len(wallet['open_positions'])}); wallet['equity_history']=wallet['equity_history'][-20000:]; wallet['closed_positions']=wallet.get('closed_positions',[])[-20000:]; wallet['rejected_opportunities']=wallet.get('rejected_opportunities',[])[-20000:]
     return wallet,actions
@@ -106,8 +115,9 @@ def main():
     if fund.get('status')!='ACTIVE': print(json.dumps({'status':'SKIPPED','reason':'V10 FUND NOT INITIALISED'},indent=2)); return 0
     signals=read(DATA/'signals_latest.json',{'signals':[]}).get('signals') or []; risks=read(DATA/'risk_guardian.json',{'asset_checks':[]}); risk_map={str(x.get('symbol','')).upper():x for x in risks.get('asset_checks',[])}
     committee_payload=read(DATA/'committee_latest.json',{'assets':[]}); committee_map={str(x.get('symbol','')).upper():x for x in committee_payload.get('assets',[])}
+    intelligence=read(DATA/'intelligence_bus.json',{'assets':{}}); intelligence_map=intelligence.get('assets') or {}
     core=read(DATA/'core_wallet.json',{}); swing=read(DATA/'swing_wallet.json',{}); scalp=read(DATA/'scalp_wallet.json',{})
-    core,ca=update_wallet(core,signals,risk_map,'CORE',committee_map); swing,sa=update_wallet(swing,signals,risk_map,'SWING',committee_map); lesson=lessons(core,swing,scalp)
+    core,ca=update_wallet(core,signals,risk_map,'CORE',committee_map,intelligence_map); swing,sa=update_wallet(swing,signals,risk_map,'SWING',committee_map,intelligence_map); lesson=lessons(core,swing,scalp)
     mgr={'updated_at':now(),'objective':fund.get('objective'),'wallets':{'CORE':{'equity':core.get('equity'),'open':len(core.get('open_positions',[])),'closed':len(core.get('closed_positions',[]))},'SWING':{'equity':swing.get('equity'),'open':len(swing.get('open_positions',[])),'closed':len(swing.get('closed_positions',[]))},'SCALP':{'equity':scalp.get('equity'),'open':len(scalp.get('open_positions',[])),'closed':len(scalp.get('closed_positions',[]))}},'actions':ca+sa,'health':{'signals_checked':len(signals),'committee_assets':len(committee_map),'actions':len(ca)+len(sa)}}
     for n,p in [('core_wallet.json',core),('swing_wallet.json',swing),('portfolio_manager.json',mgr),('trade_lessons.json',lesson)]: write(DATA/n,p)
     health=read(DATA/'engine_health.json',{}); health['portfolio_manager']={'updated_at':mgr['updated_at'],'wallets':mgr['wallets'],'actions':len(mgr['actions'])}; write(DATA/'engine_health.json',health)

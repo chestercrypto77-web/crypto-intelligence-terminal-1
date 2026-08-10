@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "12.2.0"
+APP_VERSION = "13.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1720,6 +1720,8 @@ TRADE_REVIEWS_FILE = Path(__file__).with_name("data") / "trade_reviews.json"
 LEARNING_STATE_FILE = Path(__file__).with_name("data") / "learning_state.json"
 TRADE_DIAGNOSTICS_FILE = Path(__file__).with_name("data") / "trade_diagnostics.json"
 CHALLENGER_ARENA_FILE = Path(__file__).with_name("data") / "challenger_arena.json"
+INTELLIGENCE_BUS_FILE = Path(__file__).with_name("data") / "intelligence_bus.json"
+MARKET_SCHOOL_FILE = Path(__file__).with_name("data") / "market_school.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
 FUND_STATE_FILE = Path(__file__).with_name("data") / "fund_state.json"
 SWING_WALLET_FILE = Path(__file__).with_name("data") / "swing_wallet.json"
@@ -2636,6 +2638,8 @@ elif selection=="Performance Lab":
     learning=read_runtime_json(LEARNING_STATE_FILE,{"summary":{},"rule_candidates":[]})
     diagnostics=read_runtime_json(TRADE_DIAGNOSTICS_FILE,{"summary":{},"diagnostics":[],"winner_loser_comparison":{}})
     arena=read_runtime_json(CHALLENGER_ARENA_FILE,{"ranking":[]})
+    market_school=read_runtime_json(MARKET_SCHOOL_FILE,{"summary":{}})
+    intelligence_bus=read_runtime_json(INTELLIGENCE_BUS_FILE,{"messages":[]})
     reviews=trade_reviews.get("reviews") or []
     diagnostic_index={str(x.get("position_id") or ""):x for x in (diagnostics.get("diagnostics") or [])}
     summary=learning.get("summary") or {}
@@ -2652,6 +2656,12 @@ elif selection=="Performance Lab":
     with c3: metric("Poor process",str(summary.get("poor_process",0)),"Correct")
     with c4: metric("Missed re-entry",str(summary.get("missed_reentries",0)),"Opportunity failures")
     with c5: metric("Lessons testing",str(summary.get("candidate_lessons",0)),"Sample gated")
+
+    school_summary=market_school.get("summary") or {}
+    s1,s2,s3=st.columns(3)
+    with s1: metric("Charts studied",str(school_summary.get("assets_studied",0)),"Tracked assets")
+    with s2: metric("Snapshots learned",str(school_summary.get("labelled_snapshots",0)),"Historical states")
+    with s3: metric("Large moves studied",str(school_summary.get("large_moves_studied",0)),"Not just trades")
 
     section("Trade replays")
     if not reviews:

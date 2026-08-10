@@ -13,7 +13,7 @@ def runtime_test():
   init.DATA=d; init.TEMPLATES=d/'templates'; init.main()
   fund=json.loads((d/'fund_state.json').read_text()); assert fund['status']=='ACTIVE'; assert json.loads((d/'core_wallet.json').read_text())['equity']==100000; assert json.loads((d/'swing_wallet.json').read_text())['equity']==100000; assert json.loads((d/'scalp_wallet.json').read_text())['equity']==25000; assert json.loads((d/'evidence_ledger.json').read_text())==[{'id':1}]; assert list((d/'archive').glob('pre_v10_*'))
 def static_test():
- app=(ROOT/'app.py').read_text(); assert 'APP_VERSION = "12.2.0"' in app; assert 'Trading Desk:' in app; assert 'PROTECT PROFIT' in app
+ app=(ROOT/'app.py').read_text(); assert 'APP_VERSION = "13.0.0"' in app; assert 'Trading Desk:' in app; assert 'PROTECT PROFIT' in app
  runner=(ROOT/'scripts/hourly_runner.py').read_text(); assert 'portfolio_manager.py' in runner
  for n in ['core_wallet','swing_wallet','fund_state','portfolio_manager','trade_lessons']: assert (ROOT/'data/templates'/f'{n}.template.json').exists()
 if __name__=='__main__':

@@ -30,13 +30,17 @@ def main() -> int:
     run("research_desk.py")
     run("strategy_lab.py")
     run("risk_guardian.py")
+    run("market_school.py", required=False)
     run("investment_committee.py")
+    run("intelligence_hub.py", required=False)
     run("portfolio_manager.py")
     run("observer_15m.py", required=False)
     run("trade_review_engine.py", required=False)
     run("learning_engine.py", required=False)
     run("trade_diagnostics.py", required=False)
     run("challenger_arena.py", required=False)
+    run("market_school.py", required=False)
+    run("intelligence_hub.py", required=False)
     return 0
 
 

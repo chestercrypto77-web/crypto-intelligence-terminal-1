@@ -23,6 +23,8 @@ COMMITTEE_LATEST = DATA / "committee_latest.json"
 COMMITTEE_HISTORY = DATA / "committee_history.json"
 COMMITTEE_LEARNING = DATA / "committee_learning.json"
 HEALTH = DATA / "engine_health.json"
+OBSERVER = DATA / "observer_latest.json"
+MARKET_SCHOOL = DATA / "market_school.json"
 
 
 def now_iso() -> str:
@@ -199,6 +201,48 @@ def momentum_analyst(item: dict) -> dict:
     return vote("NEUTRAL", 1, ["Momentum is not accelerating clearly"], {"acceleration": acceleration})
 
 
+def market_memory_analyst(item: dict, observer_item: dict, school: dict) -> dict:
+    """Independent historical analogue analyst.
+
+    It only votes when the current pattern has repeated prior examples. It never sees
+    future information from the current setup.
+    """
+    if not observer_item:
+        return vote("NEUTRAL", 0, ["No 15M pattern snapshot is available"], {})
+    signal=str(observer_item.get("signal") or "NEUTRAL").upper().replace(" ","_")
+    rvol=number(observer_item.get("rvol"))
+    rvb="RVOL_2PLUS" if rvol>=2 else "RVOL_1_5_2" if rvol>=1.5 else "RVOL_1_15_1_5" if rvol>=1.15 else "RVOL_WEAK" if rvol<0.75 else "RVOL_NORMAL"
+    rsi=number(observer_item.get("rsi"),50)
+    rsib="RSI_OVERBOUGHT" if rsi>=75 else "RSI_BULL" if rsi>=60 else "RSI_OVERSOLD" if rsi<=25 else "RSI_BEAR" if rsi<=40 else "RSI_MID"
+    mh=number(observer_item.get("macd_histogram")); md=number(observer_item.get("macd_delta"))
+    macd="MACD_UP" if mh>0 and md>=0 else "MACD_DOWN" if mh<0 and md<=0 else "MACD_MIXED"
+    structure="BREAKOUT" if observer_item.get("breakout") else "BREAKDOWN" if observer_item.get("breakdown") else "RANGE"
+    bull=number(observer_item.get("bullish_conditions")); bear=number(observer_item.get("bearish_conditions"))
+    align="BULLISH" if bull-bear>=5 else "BEARISH" if bear-bull>=5 else "MIXED"
+    key="|".join([signal,rvb,rsib,macd,structure,align])
+    symbol=str(item.get("symbol") or "").upper()
+    stats=((school.get("asset_patterns") or {}).get(symbol) or {}).get(key)
+    source="asset"
+    if not stats:
+        stats=(school.get("global_patterns") or {}).get(key)
+        source="global"
+    p4=(stats or {}).get("4h") or {}
+    samples=int(p4.get("samples") or 0)
+    avg=number(p4.get("avg_return_pct")); up=number(p4.get("up_rate_pct")); down=number(p4.get("down_rate_pct"))
+    evidence={"pattern":key,"source":source,"samples":samples,"avg_4h":avg,"up_rate":up,"down_rate":down}
+    if samples<10:
+        return vote("NEUTRAL",0,[f"Only {samples} historical pattern match(es); not enough evidence"],evidence)
+    if samples>=20 and up>=65 and avg>0.5:
+        return vote("LONG",2,[f"{samples} prior matches favour upside",f"Historical 4H average {avg:+.2f}%"],evidence)
+    if samples>=20 and down>=65 and avg<-0.5:
+        return vote("SHORT",2,[f"{samples} prior matches favour downside",f"Historical 4H average {avg:+.2f}%"],evidence)
+    if up>=60 and avg>0:
+        return vote("LONG",1,[f"Developing historical edge across {samples} matches"],evidence)
+    if down>=60 and avg<0:
+        return vote("SHORT",1,[f"Developing historical downside edge across {samples} matches"],evidence)
+    return vote("NEUTRAL",1,[f"{samples} prior matches are not directionally decisive"],evidence)
+
+
 def news_fundamental_analyst(item: dict, inbox: list[dict], calls: list[dict]) -> dict:
     symbol = str(item.get("symbol") or "").upper()
     name = str(item.get("name") or "").lower()
@@ -323,8 +367,8 @@ def aggregate_committee(item: dict, reports: dict, regime: dict) -> dict:
     neutral_votes = 0
     independent_long = []
     independent_short = []
-    for name in ("technical", "volume_liquidity", "momentum", "news_fundamental", "macro_regime"):
-        report = reports[name]
+    for name in ("technical", "volume_liquidity", "momentum", "market_memory", "news_fundamental", "macro_regime"):
+        report = reports.get(name) or vote("NEUTRAL", 0, [f"{name} report unavailable"], {})
         strength = int(report.get("strength") or 0)
         direction = report.get("direction")
         if direction == "LONG":
@@ -449,6 +493,9 @@ def main() -> int:
     }
     inbox = read_json(EXTERNAL_INBOX, [])
     calls = read_json(EXTERNAL_CALLS, [])
+    observer_payload = read_json(OBSERVER, {"signals":[]})
+    observer_map = {str(x.get("symbol") or "").upper():x for x in observer_payload.get("signals") or []}
+    market_school = read_json(MARKET_SCHOOL, {})
     core = read_json(CORE_WALLET, {})
     swing = read_json(SWING_WALLET, {})
     scalp = read_json(SCALP_WALLET, {})
@@ -463,6 +510,7 @@ def main() -> int:
             "technical": technical_analyst(item),
             "volume_liquidity": volume_liquidity_analyst(item),
             "momentum": momentum_analyst(item),
+            "market_memory": market_memory_analyst(item, observer_map.get(str(item.get("symbol") or "").upper(),{}), market_school),
             "news_fundamental": news_fundamental_analyst(item, inbox, calls),
             "macro_regime": macro_regime_analyst(item, regime),
             "risk_manager": risk_manager(item, risk_map, wallets),

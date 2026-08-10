@@ -1,42 +1,45 @@
-# Crypto Intelligence Terminal V12.2.0 — Diagnostics & Challenger Arena
+# Crypto Intelligence Terminal V13.0.0 — Connected Intelligence & Market School
 
-V12.2 makes intelligence improvement an operating loop rather than a slogan.
+V13 changes the architecture from several useful engines into one connected learning system.
 
-## Every loss becomes homework
+## Market School
 
-`trade_diagnostics.py` classifies every completed result using the evidence that was
-actually captured. Examples:
+`market_school.py` studies every chart state recorded in `observer_history.json`, not just
+positions the system happened to trade. It labels what subsequently happened over 1H, 4H,
+12H and 24H and builds repeated-pattern evidence from:
 
-- ENTRY NEVER WORKED
-- WEAK ENTRY / FAST ADVERSE MOVE
-- WINNER GIVEN BACK
-- CONTROLLED RISK LOSS
-- EXIT / RE-ENTRY FAILURE
-- PROFIT UNDER-CAPTURED
-- WIN — PROCESS REVIEW
+- Observer state
+- relative volume and its acceleration
+- RSI zone
+- MACD state
+- breakout / breakdown / range structure
+- bullish vs bearish condition alignment
 
-MFE (maximum favourable excursion), MAE (maximum adverse excursion), exit behaviour and
-post-exit movement are kept separate so the engine can distinguish entry mistakes from
-management mistakes.
+It also records large moves of 8%+ so missed opportunities become training examples.
 
-## Winner vs loser comparison
+Future prices are used only to label historical examples. The live committee never receives
+the future label for the current setup.
 
-The engine compares captured entry conditions across winners and losers: participation,
-volume change, multi-timeframe returns and bullish/bearish evidence. Legacy trades with
-missing snapshots are not silently invented.
+## Shared Intelligence Bus
 
-## Challenger Arena
+`intelligence_hub.py` connects current Observer evidence, hourly signals, Investment Committee,
+Risk Guardian, Market School, Diagnostics, Learning Engine and Challenger Arena into one
+structured asset dossier.
 
-Four shadow strategies now compete with identical position sizing and trade management:
+## Market Memory analyst
 
-- Base Committee
-- Volume Confirmation
-- Multi-Timeframe Confirmation
-- Selective Edge
+The Investment Committee now has an independent Market Memory analyst. It only votes when
+historical analogues have enough samples. Immature evidence remains neutral.
 
-Because management is held constant, the experiment primarily tests entry selectivity.
-They use shadow paper only. They cannot touch Core, Swing or Scalp capital and cannot
-change live rules.
+## Feedback upstream
 
-A challenger is only marked eligible for human review after at least 30 closed trades,
-55% win rate, profit factor >= 1.25 and expectancy >= +0.20%. Promotion is never automatic.
+The Portfolio Manager reads the shared bus. Mature historical evidence may modestly boost or
+reduce candidate ranking, but it cannot override the Risk Guardian or Committee permissions.
+
+Every new Core/Swing position stores its `case_id`, committee snapshot, entry features and
+shared-intelligence snapshot so later diagnostics can identify which specialist was right or
+wrong.
+
+This release borrows architectural lessons, not code, from production/open quantitative
+frameworks: event/message-bus communication, modular controllers/executors, research-to-live
+consistency, ensemble decision making, backtesting discipline and anti-lookahead validation.
