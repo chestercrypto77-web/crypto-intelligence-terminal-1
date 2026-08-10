@@ -1,58 +1,57 @@
 {
-  "generated_at": "2026-08-10T00:34:36.058883+00:00",
+  "generated_at": "2026-08-10T01:43:03.642363+00:00",
   "objective": "Allocate capital only when independent evidence aligns and expected value justifies risk.",
   "market_regime": {
     "state": "RISK OFF",
-    "btc_4h": -0.115790880780553,
-    "btc_24h": 0.36808737935785096,
+    "btc_4h": 0.10225124410701003,
+    "btc_24h": 0.27810510065320315,
     "eth_4h": 0.0,
-    "bullish_breadth": 29.545454545454547,
-    "bearish_breadth": 54.54545454545454,
+    "bullish_breadth": 25.0,
+    "bearish_breadth": 56.81818181818182,
     "risk_on_points": 0,
     "risk_off_points": 2
   },
   "assets": [
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "BTC",
       "name": "Bitcoin",
       "narrative": "Bitcoin",
-      "price": 64973.25,
+      "price": 64915.0,
       "signal": "HOLD",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Technical structure is not decisive"
           ],
           "evidence": {
             "spread": 1.0,
-            "r4": -0.115790880780553,
-            "r12": -0.30953328350353804,
-            "r24": 0.36808737935785096
+            "r4": 0.10225124410701003,
+            "r12": -0.3989080598343464,
+            "r24": 0.27810510065320315
           }
         },
         "volume_liquidity": {
-          "direction": "SHORT",
-          "strength": 3,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "Relative volume is high and accelerating",
-            "Participation agrees with 4H price direction"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 2.077962142871813,
-            "rvol_delta": 0.8801969780740349
+            "rvol": 1.1346141425999456,
+            "rvol_delta": -0.06315102219783242
           }
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.012613119612706988
+            "acceleration": 0.2352205973851255
           }
         },
         "news_fundamental": {
@@ -69,7 +68,7 @@
           }
         },
         "macro_regime": {
-          "direction": "SHORT",
+          "direction": "LONG",
           "strength": 2,
           "reasons": [
             "Broad market regime is RISK OFF",
@@ -101,51 +100,52 @@
         }
       },
       "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 7; Neutral weight 2",
-          "3 independent analyst groups support SHORT",
+          "Long votes 2; Short votes 2; Neutral weight 4",
+          "1 independent analyst groups support NEUTRAL",
+          "Committee contains directional disagreement",
           "Portfolio Fit requests reduced or no additional exposure"
         ],
         "agreement": {
-          "long_votes": 0,
-          "short_votes": 7,
-          "neutral_weight": 2,
-          "independent_support": 3,
+          "long_votes": 2,
+          "short_votes": 2,
+          "neutral_weight": 4,
+          "independent_support": 1,
           "conflicts": [
+            "Committee contains directional disagreement",
             "Portfolio Fit requests reduced or no additional exposure"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "SOL",
       "name": "Solana",
       "narrative": "Layer 1",
-      "price": 76.54000091552734,
+      "price": 76.5199966430664,
       "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
             "Hourly signal is BUY",
-            "Bullish conditions materially exceed bearish conditions",
-            "Negative 4H and 12H structure"
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
             "spread": 6.0,
-            "r4": -0.6876849375833993,
-            "r12": -1.0599789146259364,
-            "r24": 0.8033723270115534
+            "r4": 0.40676756635324995,
+            "r12": -1.0858375913362583,
+            "r24": 0.7770266502295842
           }
         },
         "volume_liquidity": {
@@ -155,18 +155,18 @@
             "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.7649716089521702,
-            "rvol_delta": 0.5811741054207865
+            "rvol": 1.1356005200173338,
+            "rvol_delta": 0.9518030164859501
           }
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.3343586327080872
+            "acceleration": 0.7687134301320027
           }
         },
         "news_fundamental": {
@@ -183,11 +183,11 @@
           }
         },
         "macro_regime": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
             "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
+            "Asset direction conflicts with broad market regime"
           ],
           "evidence": {}
         },
@@ -216,7 +216,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "SHORT",
+        "direction": "LONG",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -224,14 +224,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 4",
-          "1 independent analyst groups support SHORT",
+          "Long votes 2; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG",
           "Portfolio Fit requests reduced or no additional exposure"
         ],
         "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 4,
+          "long_votes": 2,
+          "short_votes": 0,
+          "neutral_weight": 6,
           "independent_support": 1,
           "conflicts": [
             "Portfolio Fit requests reduced or no additional exposure"
@@ -240,231 +240,12 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "AVAX",
       "name": "Avalanche",
       "narrative": "Layer 1",
-      "price": 6.446000099182129,
+      "price": 6.460000038146973,
       "signal": "HOLD",
-      "reports": {
-        "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -2.0,
-            "r4": -1.572754474799054,
-            "r12": -1.5577239137553933,
-            "r24": -0.1548908344968014
-          }
-        },
-        "volume_liquidity": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Relative volume is high and accelerating",
-            "Participation agrees with 4H price direction"
-          ],
-          "evidence": {
-            "rvol": 1.6185205827845426,
-            "rvol_delta": 1.383990472389582
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -1.053513170213923
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 2
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 6; Neutral weight 2",
-          "3 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 6,
-          "neutral_weight": 2,
-          "independent_support": 3,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "COTI",
-      "name": "COTI",
-      "narrative": "Privacy / Payments",
-      "price": 0.01209999993443489,
-      "signal": "SELL",
-      "reports": {
-        "technical": {
-          "direction": "SHORT",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -7.0,
-            "r4": -1.6260135515767993,
-            "r12": -3.9682546135392016,
-            "r24": 0.0
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.37499786330431056,
-            "rvol_delta": -0.2821416763382191
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -0.30326201373039874
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 7; Neutral weight 3",
-          "3 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 7,
-          "neutral_weight": 3,
-          "independent_support": 3,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "POL",
-      "name": "Polygon Ecosystem Token",
-      "narrative": "Layer 2 / Tokenisation",
-      "price": 0.07769999653100967,
-      "signal": "BUY WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
@@ -473,31 +254,31 @@
             "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": 4.0,
-            "r4": 0.0,
-            "r12": 0.7782039501218918,
-            "r24": 1.3037738598280724
+            "spread": -1.0,
+            "r4": 0.685787866768317,
+            "r12": -1.3439190990544692,
+            "r24": 0.06196076537092754
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
+          "direction": "LONG",
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Participation is above normal"
           ],
           "evidence": {
-            "rvol": 0.5388903152242827,
-            "rvol_delta": -0.976170394450152
+            "rvol": 1.1507911177226466,
+            "rvol_delta": 0.916261007327686
           }
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.25940131670729727
+            "acceleration": 1.1337608997864734
           }
         },
         "news_fundamental": {
@@ -540,38 +321,38 @@
             "No obvious portfolio concentration conflict"
           ],
           "evidence": {
-            "same_narrative_positions": 0
+            "same_narrative_positions": 2
           }
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL"
+          "Long votes 1; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 1,
           "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
+          "neutral_weight": 6,
+          "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "ZIL",
-      "name": "Zilliqa",
-      "narrative": "Layer 1",
-      "price": 0.002346673747524619,
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "COTI",
+      "name": "COTI",
+      "narrative": "Privacy / Payments",
+      "price": 0.011699999682605267,
       "signal": "STRONG SELL",
       "reports": {
         "technical": {
@@ -584,9 +365,9 @@
           ],
           "evidence": {
             "spread": -14.0,
-            "r4": -1.363583739282992,
-            "r12": -2.024020375032809,
-            "r24": -2.833150627272596
+            "r4": -2.5000034924596237,
+            "r12": -7.14285978266036,
+            "r24": -3.305787223116252
           }
         },
         "volume_liquidity": {
@@ -596,8 +377,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.11540355899105906,
-            "rvol_delta": -1.1901974142983114
+            "rvol": 0.0,
+            "rvol_delta": -0.6571395396425297
           }
         },
         "momentum": {
@@ -607,7 +388,7 @@
             "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": -0.6889102809387223
+            "acceleration": -0.119050231572837
           }
         },
         "news_fundamental": {
@@ -650,7 +431,7 @@
             "No obvious portfolio concentration conflict"
           ],
           "evidence": {
-            "same_narrative_positions": 2
+            "same_narrative_positions": 0
           }
         }
       },
@@ -680,245 +461,25 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "ONDO",
-      "name": "Ondo",
-      "narrative": "RWA / Tokenisation",
-      "price": 0.34992000460624695,
-      "signal": "SELL WATCH",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "POL",
+      "name": "Polygon Ecosystem Token",
+      "narrative": "Layer 2 / Tokenisation",
+      "price": 0.07760000228881836,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -3.0,
-            "r4": -0.42116772355792476,
-            "r12": -1.1022529973099382,
-            "r24": 0.3441128878288513
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
+          "direction": "LONG",
           "strength": 2,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "rvol": 0.14962545992163073,
-            "rvol_delta": -0.1392503659999345
-          }
-        },
-        "momentum": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Momentum is not accelerating clearly"
-          ],
-          "evidence": {
-            "acceleration": -0.05375005778794534
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is CAUTION"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 5",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 5,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "DOT",
-      "name": "Polkadot",
-      "narrative": "Interoperability",
-      "price": 0.7993000149726868,
-      "signal": "SELL",
-      "reports": {
-        "technical": {
-          "direction": "SHORT",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -7.0,
-            "r4": -1.0644877390687424,
-            "r12": -1.4669634358726147,
-            "r24": -1.5155266201633877
-          }
-        },
-        "volume_liquidity": {
-          "direction": "SHORT",
-          "strength": 1,
-          "reasons": [
-            "Participation is above normal"
-          ],
-          "evidence": {
-            "rvol": 1.2798946644823563,
-            "rvol_delta": 1.2798946644823563
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -0.5754999271112042
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "HIGH QUALITY",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 8; Neutral weight 1",
-          "4 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 8,
-          "neutral_weight": 1,
-          "independent_support": 4,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "SUI",
-      "name": "Sui",
-      "narrative": "Layer 1",
-      "price": 0.6886000037193298,
-      "signal": "HOLD",
-      "reports": {
-        "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": 0.0,
-            "r4": -1.1200435343295512,
-            "r12": -1.7688975640150484,
-            "r24": -0.14500973588642552
+            "spread": 7.0,
+            "r4": 0.0,
+            "r12": 0.6485097341205837,
+            "r24": 1.1734032735926991
           }
         },
         "volume_liquidity": {
@@ -928,231 +489,8 @@
             "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.8109062086443338,
-            "rvol_delta": 0.403894786532131
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -0.5304110129912017
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 2
-          }
-        }
-      },
-      "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 4; Neutral weight 3",
-          "2 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 4,
-          "neutral_weight": 3,
-          "independent_support": 2,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "NEAR",
-      "name": "NEAR Protocol",
-      "narrative": "AI / Layer 1",
-      "price": 1.6030999422073364,
-      "signal": "SELL",
-      "reports": {
-        "technical": {
-          "direction": "SHORT",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -7.0,
-            "r4": -1.6442749114432775,
-            "r12": -1.9090773683828943,
-            "r24": -0.7184008073777282
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.3481126280204602,
-            "rvol_delta": 0.3416150197107927
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -1.0079157886489796
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is CAUTION"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 7; Neutral weight 3",
-          "3 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 7,
-          "neutral_weight": 3,
-          "independent_support": 3,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "SUPER",
-      "name": "SuperVerse",
-      "narrative": "Gaming",
-      "price": 0.08709999918937683,
-      "signal": "STRONG BUY",
-      "reports": {
-        "technical": {
-          "direction": "LONG",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is STRONG BUY",
-            "Bullish conditions materially exceed bearish conditions",
-            "Positive 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": 8.0,
-            "r4": 0.022964352206766847,
-            "r12": 0.7169288513484195,
-            "r24": 1.2202241927851798
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.47738226530006017,
-            "rvol_delta": 0.47738226530006017
+            "rvol": 0.9119273805612643,
+            "rvol_delta": -0.6031333291131703
           }
         },
         "momentum": {
@@ -1162,7 +500,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -0.21601193157603968
+            "acceleration": -0.2161699113735279
           }
         },
         "news_fundamental": {
@@ -1219,48 +557,49 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 3; Short votes 0; Neutral weight 6",
+          "Long votes 2; Short votes 0; Neutral weight 5",
           "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 3,
+          "long_votes": 2,
           "short_votes": 0,
-          "neutral_weight": 6,
+          "neutral_weight": 5,
           "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "S",
-      "name": "Sonic",
-      "narrative": "Layer 1 / DeFi",
-      "price": 0.02387160314918927,
-      "signal": "BUY WATCH",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "ZIL",
+      "name": "Zilliqa",
+      "narrative": "Layer 1",
+      "price": 0.0023532516788691282,
+      "signal": "STRONG SELL",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Bullish conditions materially exceed bearish conditions"
+            "Hourly signal is STRONG SELL",
+            "Bearish conditions materially exceed bullish conditions"
           ],
           "evidence": {
-            "spread": 5.0,
-            "r4": 0.4747090183718772,
-            "r12": -0.23243547850574364,
-            "r24": 2.1955589573143364
+            "spread": -13.0,
+            "r4": 0.5782247903852955,
+            "r12": -1.7493851522780934,
+            "r24": -2.560783467240113
           }
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Volume is ordinary"
+            "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 1.1374214753435978,
-            "rvol_delta": -0.046064165019951586
+            "rvol": 0.3825732953744262,
+            "rvol_delta": -0.9230276779149443
           }
         },
         "momentum": {
@@ -1270,7 +609,668 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.5521875112071251
+            "acceleration": 1.1613531744779935
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 2
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 2; Neutral weight 7",
+          "1 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 7,
+          "independent_support": 1,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "ONDO",
+      "name": "Ondo",
+      "narrative": "RWA / Tokenisation",
+      "price": 0.34797000885009766,
+      "signal": "SELL",
+      "reports": {
+        "technical": {
+          "direction": "SHORT",
+          "strength": 3,
+          "reasons": [
+            "Hourly signal is SELL",
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
+          ],
+          "evidence": {
+            "spread": -5.0,
+            "r4": -0.017237615954646124,
+            "r12": -1.6533794959649128,
+            "r24": -0.21507375971938636
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.02488361967915871,
+            "rvol_delta": -0.26399220624240655
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Momentum is not accelerating clearly"
+          ],
+          "evidence": {
+            "acceleration": 0.5338888827003249
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "SHORT",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction agrees with broad risk reduction"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "CAUTION",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is CAUTION"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "CAUTION"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 5; Neutral weight 4",
+          "2 independent analyst groups support SHORT",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 5,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": [
+            "Risk Manager requests caution"
+          ]
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "DOT",
+      "name": "Polkadot",
+      "narrative": "Interoperability",
+      "price": 0.7979999780654907,
+      "signal": "SELL",
+      "reports": {
+        "technical": {
+          "direction": "SHORT",
+          "strength": 3,
+          "reasons": [
+            "Hourly signal is SELL",
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
+          ],
+          "evidence": {
+            "spread": -7.0,
+            "r4": -0.08764203958190331,
+            "r12": -1.6272243913485696,
+            "r24": -1.6757085891127232
+          }
+        },
+        "volume_liquidity": {
+          "direction": "SHORT",
+          "strength": 3,
+          "reasons": [
+            "Relative volume is high and accelerating",
+            "Participation agrees with 4H price direction"
+          ],
+          "evidence": {
+            "rvol": 3.2198499993055876,
+            "rvol_delta": 3.2198499993055876
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Momentum is not accelerating clearly"
+          ],
+          "evidence": {
+            "acceleration": 0.4547660908676199
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "SHORT",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction agrees with broad risk reduction"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "SHORT",
+        "direction": "SHORT",
+        "quality": "QUALIFIED",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": true,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 8; Neutral weight 2",
+          "3 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 8,
+          "neutral_weight": 2,
+          "independent_support": 3,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "SUI",
+      "name": "Sui",
+      "narrative": "Layer 1",
+      "price": 0.6898000240325928,
+      "signal": "HOLD",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Technical structure is not decisive"
+          ],
+          "evidence": {
+            "spread": 0.0,
+            "r4": 0.5246285654425531,
+            "r12": -1.5977106373802896,
+            "r24": 0.029007133196334856
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.7051028212685386,
+            "rvol_delta": 0.2980913991563358
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 1.0571987779026495
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 2
+          }
+        }
+      },
+      "decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 0; Neutral weight 8",
+          "0 independent analyst groups support NEUTRAL"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 8,
+          "independent_support": 0,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "NEAR",
+      "name": "NEAR Protocol",
+      "narrative": "AI / Layer 1",
+      "price": 1.6068999767303467,
+      "signal": "SELL",
+      "reports": {
+        "technical": {
+          "direction": "SHORT",
+          "strength": 2,
+          "reasons": [
+            "Hourly signal is SELL",
+            "Bearish conditions materially exceed bullish conditions"
+          ],
+          "evidence": {
+            "spread": -5.0,
+            "r4": 0.6073090697801931,
+            "r12": -1.676559805016986,
+            "r24": -0.4830608298139194
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.405521579690506,
+            "rvol_delta": 0.3990239713808385
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 1.1661623381191886
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 2; Neutral weight 7",
+          "1 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 7,
+          "independent_support": 1,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "SUPER",
+      "name": "SuperVerse",
+      "narrative": "Gaming",
+      "price": 0.08727999776601791,
+      "signal": "STRONG BUY",
+      "reports": {
+        "technical": {
+          "direction": "LONG",
+          "strength": 3,
+          "reasons": [
+            "Hourly signal is STRONG BUY",
+            "Bullish conditions materially exceed bearish conditions",
+            "Positive 4H and 12H structure"
+          ],
+          "evidence": {
+            "spread": 10.0,
+            "r4": 0.9717732968561821,
+            "r12": 0.9250678181179639,
+            "r24": 1.429403256522943
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Volume is ordinary"
+          ],
+          "evidence": {
+            "rvol": 1.1140390627341799,
+            "rvol_delta": 1.1140390627341799
+          }
+        },
+        "momentum": {
+          "direction": "LONG",
+          "strength": 2,
+          "reasons": [
+            "Positive momentum is accelerating"
+          ],
+          "evidence": {
+            "acceleration": 0.6634173574835274
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 5; Short votes 0; Neutral weight 4",
+          "2 independent analyst groups support LONG"
+        ],
+        "agreement": {
+          "long_votes": 5,
+          "short_votes": 0,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "S",
+      "name": "Sonic",
+      "narrative": "Layer 1 / DeFi",
+      "price": 0.024024971420577995,
+      "signal": "BUY",
+      "reports": {
+        "technical": {
+          "direction": "LONG",
+          "strength": 3,
+          "reasons": [
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions",
+            "Positive 4H and 12H structure"
+          ],
+          "evidence": {
+            "spread": 7.0,
+            "r4": 1.120230491903751,
+            "r12": 0.408542792442268,
+            "r24": 2.8521364030323015
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Volume is ordinary"
+          ],
+          "evidence": {
+            "rvol": 1.090889723356186,
+            "rvol_delta": -0.09259591700736336
+          }
+        },
+        "momentum": {
+          "direction": "LONG",
+          "strength": 2,
+          "reasons": [
+            "Positive momentum is accelerating"
+          ],
+          "evidence": {
+            "acceleration": 0.9840495610896616
           }
         },
         "news_fundamental": {
@@ -1319,7 +1319,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "SHORT",
+        "direction": "LONG",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -1327,24 +1327,27 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
-          "1 independent analyst groups support SHORT"
+          "Long votes 5; Short votes 2; Neutral weight 3",
+          "2 independent analyst groups support LONG",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 5,
           "short_votes": 2,
-          "neutral_weight": 6,
-          "independent_support": 1,
-          "conflicts": []
+          "neutral_weight": 3,
+          "independent_support": 2,
+          "conflicts": [
+            "Committee contains directional disagreement"
+          ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "AIOZ",
       "name": "AIOZ Network",
       "narrative": "AI / DePIN",
-      "price": 0.04690000042319298,
+      "price": 0.046799998730421066,
       "signal": "SELL WATCH",
       "reports": {
         "technical": {
@@ -1354,10 +1357,10 @@
             "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -2.0,
-            "r4": -1.4705896163952792,
-            "r12": -0.845664529967205,
-            "r24": 0.0
+            "spread": -3.0,
+            "r4": -0.2132232236024878,
+            "r12": -1.0570846003980283,
+            "r24": -0.2132232236024878
           }
         },
         "volume_liquidity": {
@@ -1367,18 +1370,18 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.5383384482185511,
-            "rvol_delta": -2.1568067994995617
+            "rvol": 0.633682380036859,
+            "rvol_delta": -2.0614628676812536
           }
         },
         "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "Negative momentum is accelerating"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -1.1887014397395441
+            "acceleration": 0.13913830986352166
           }
         },
         "news_fundamental": {
@@ -1435,20 +1438,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 4; Neutral weight 4",
-          "2 independent analyst groups support SHORT"
+          "Long votes 0; Short votes 2; Neutral weight 5",
+          "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 4,
-          "neutral_weight": 4,
-          "independent_support": 2,
+          "short_votes": 2,
+          "neutral_weight": 5,
+          "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "FIL",
       "name": "Filecoin",
       "narrative": "DePIN / Storage",
@@ -1456,38 +1459,37 @@
       "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "SHORT",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
+            "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": -5.0,
-            "r4": -1.404493018136388,
+            "spread": -2.0,
+            "r4": 0.2857191270712267,
             "r12": -1.404493018136388,
             "r24": -0.9873017725194222
           }
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.6943012422884093,
-            "rvol_delta": 0.6943012422884093
+            "rvol": 0.9085934516015826,
+            "rvol_delta": 0.9085934516015826
           }
         },
         "momentum": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
-            "Negative momentum is accelerating"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.936328678757592
+            "acceleration": 0.7538834664500227
           }
         },
         "news_fundamental": {
@@ -1495,229 +1497,6 @@
           "strength": 1,
           "reasons": [
             "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 2
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 6; Neutral weight 3",
-          "3 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 6,
-          "neutral_weight": 3,
-          "independent_support": 3,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "OM",
-      "name": "MANTRA",
-      "narrative": "RWA / Tokenisation",
-      "price": 0.051275428384542465,
-      "signal": "HOLD",
-      "reports": {
-        "technical": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative 4H and 12H structure",
-            "Move is extended; short timing risk elevated"
-          ],
-          "evidence": {
-            "spread": -2.0,
-            "r4": -21.8851132869749,
-            "r12": -22.40830418695413,
-            "r24": -12.330706997349628
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.32245379473063307,
-            "rvol_delta": 0.279384100133922
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -14.41567855799019
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is CAUTION"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 6; Neutral weight 3",
-          "3 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 6,
-          "neutral_weight": 3,
-          "independent_support": 3,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "USDT",
-      "name": "Tether USD",
-      "narrative": "Stablecoin",
-      "price": 0.9993199706077576,
-      "signal": "STRONG BUY",
-      "reports": {
-        "technical": {
-          "direction": "LONG",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is STRONG BUY",
-            "Bullish conditions materially exceed bearish conditions",
-            "Positive 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": 9.0,
-            "r4": 0.016011336312460323,
-            "r12": 0.010003501523780933,
-            "r24": 0.01701370671221003
-          }
-        },
-        "volume_liquidity": {
-          "direction": "LONG",
-          "strength": 3,
-          "reasons": [
-            "Relative volume is high and accelerating",
-            "Participation agrees with 4H price direction"
-          ],
-          "evidence": {
-            "rvol": 3.196749192228692,
-            "rvol_delta": 2.3957596078861307
-          }
-        },
-        "momentum": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Momentum is not accelerating clearly"
-          ],
-          "evidence": {
-            "acceleration": 0.012676835804533345
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "13 recent matched research item(s)",
             "0 active reviewed external call(s)",
             "No decisive verified catalyst alignment"
           ],
@@ -1739,118 +1518,6 @@
           "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is NORMAL",
-            "Existing exposure in Profit-Driven Scalp Wallet"
-          ],
-          "evidence": {
-            "existing_exposure": 62.5,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Asset is already held in another active book"
-          ],
-          "evidence": {
-            "same_narrative_positions": 1
-          }
-        }
-      },
-      "decision": {
-        "action": "WATCH",
-        "direction": "LONG",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 6; Short votes 0; Neutral weight 4",
-          "2 independent analyst groups support LONG",
-          "Portfolio Fit requests reduced or no additional exposure"
-        ],
-        "agreement": {
-          "long_votes": 6,
-          "short_votes": 0,
-          "neutral_weight": 4,
-          "independent_support": 2,
-          "conflicts": [
-            "Portfolio Fit requests reduced or no additional exposure"
-          ]
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "SEI",
-      "name": "Sei",
-      "narrative": "Layer 1 / Trading",
-      "price": 0.04142000153660774,
-      "signal": "SELL WATCH",
-      "reports": {
-        "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -2.0,
-            "r4": -0.6952743831232788,
-            "r12": -0.8616495083071385,
-            "r24": -0.28887590129110796
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Volume is ordinary"
-          ],
-          "evidence": {
-            "rvol": 0.8195561999769189,
-            "rvol_delta": 0.373512627283995
-          }
-        },
-        "momentum": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Momentum is not accelerating clearly"
-          ],
-          "evidence": {
-            "acceleration": -0.4080578803542327
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
             "Risk Guardian state is NORMAL"
           ],
           "evidence": {
@@ -1865,38 +1532,38 @@
             "No obvious portfolio concentration conflict"
           ],
           "evidence": {
-            "same_narrative_positions": 0
+            "same_narrative_positions": 1
           }
         }
       },
       "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 4",
-          "1 independent analyst groups support SHORT"
+          "Long votes 0; Short votes 0; Neutral weight 7",
+          "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 4,
-          "independent_support": 1,
+          "short_votes": 0,
+          "neutral_weight": 7,
+          "independent_support": 0,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "RUNE",
-      "name": "THORChain",
-      "narrative": "DeFi / Interoperability",
-      "price": 0.4321557283401489,
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "OM",
+      "name": "MANTRA",
+      "narrative": "RWA / Tokenisation",
+      "price": 0.008288136683404446,
       "signal": "SELL",
       "reports": {
         "technical": {
@@ -1905,34 +1572,36 @@
           "reasons": [
             "Hourly signal is SELL",
             "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
+            "Negative 4H and 12H structure",
+            "Move is extended; short timing risk elevated"
           ],
           "evidence": {
-            "spread": -6.0,
-            "r4": -0.887835634759826,
-            "r12": -1.1071006593091792,
-            "r24": 0.2160617139099097
+            "spread": -7.0,
+            "r4": -84.82530888827503,
+            "r12": -87.45811394157886,
+            "r24": -85.82917576243116
           }
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.016281635979102507,
-            "rvol_delta": -1.304931951897199
+            "rvol": 0.9282854022570077,
+            "rvol_delta": 0.8852157076602967
           }
         },
         "momentum": {
           "direction": "SHORT",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Negative momentum is accelerating"
+            "Negative momentum is accelerating",
+            "Downside is extended and short chasing risk is elevated"
           ],
           "evidence": {
-            "acceleration": -0.5188020816567662
+            "acceleration": -55.672604241082084
           }
         },
         "news_fundamental": {
@@ -1986,17 +1655,17 @@
         "book_permissions": {
           "CORE": false,
           "SWING": true,
-          "SCALP": true
+          "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 7; Neutral weight 3",
+          "Long votes 0; Short votes 6; Neutral weight 2",
           "3 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 7,
-          "neutral_weight": 3,
+          "short_votes": 6,
+          "neutral_weight": 2,
           "independent_support": 3,
           "conflicts": [
             "Risk Manager requests caution"
@@ -2005,55 +1674,54 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "SAND",
-      "name": "The Sandbox",
-      "narrative": "Gaming / Metaverse",
-      "price": 0.041200000792741776,
-      "signal": "SELL",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "USDT",
+      "name": "Tether USD",
+      "narrative": "Stablecoin",
+      "price": 0.9992300271987915,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "SHORT",
-          "strength": 3,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": -7.0,
-            "r4": -1.1990431453812844,
-            "r12": -0.9615368255243228,
-            "r24": -1.4354042679706525
+            "spread": 7.0,
+            "r4": -0.007002487016172232,
+            "r12": 0.0010021396875448119,
+            "r24": 0.008011713925148989
           }
         },
         "volume_liquidity": {
           "direction": "SHORT",
-          "strength": 2,
+          "strength": 3,
           "reasons": [
             "Relative volume is high and accelerating",
             "Participation agrees with 4H price direction"
           ],
           "evidence": {
-            "rvol": 1.6359303526723497,
-            "rvol_delta": 0.5961243761356523
+            "rvol": 2.7428603679873573,
+            "rvol_delta": 1.9418707836447957
           }
         },
         "momentum": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
-            "Negative momentum is accelerating"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.8785308702065102
+            "acceleration": -0.0073365335786871695
           }
         },
         "news_fundamental": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "0 recent matched research item(s)",
+            "13 recent matched research item(s)",
             "0 active reviewed external call(s)",
             "No decisive verified catalyst alignment"
           ],
@@ -2094,47 +1762,49 @@
         }
       },
       "decision": {
-        "action": "SHORT",
+        "action": "WATCH",
         "direction": "SHORT",
-        "quality": "HIGH QUALITY",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
-          "SWING": true,
-          "SCALP": true
+          "SWING": false,
+          "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 9; Neutral weight 1",
-          "4 independent analyst groups support SHORT"
+          "Long votes 2; Short votes 5; Neutral weight 3",
+          "2 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 0,
-          "short_votes": 9,
-          "neutral_weight": 1,
-          "independent_support": 4,
-          "conflicts": []
+          "long_votes": 2,
+          "short_votes": 5,
+          "neutral_weight": 3,
+          "independent_support": 2,
+          "conflicts": [
+            "Committee contains directional disagreement"
+          ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "WIN",
-      "name": "WINkLink",
-      "narrative": "Oracle / Gaming",
-      "price": 3.12987067445647e-05,
-      "signal": "BUY",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "SEI",
+      "name": "Sei",
+      "narrative": "Layer 1 / Trading",
+      "price": 0.0413299985229969,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "LONG",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "Hourly signal is BUY",
-            "Bullish conditions materially exceed bearish conditions"
+            "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": 5.0,
-            "r4": -0.421159969489715,
-            "r12": 0.008009174864342938,
-            "r24": 1.0568578828378916
+            "spread": -4.0,
+            "r4": 0.21823300191738948,
+            "r12": -1.077070801828195,
+            "r24": -0.5055417952186225
           }
         },
         "volume_liquidity": {
@@ -2144,8 +1814,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.07123450903984771,
-            "rvol_delta": -0.14059597351833192
+            "rvol": 0.12713556497851297,
+            "rvol_delta": -0.3189080077144109
           }
         },
         "momentum": {
@@ -2155,14 +1825,14 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.423829694444496
+            "acceleration": 0.5772566025267878
           }
         },
         "news_fundamental": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "2 recent matched research item(s)",
+            "0 recent matched research item(s)",
             "0 active reviewed external call(s)",
             "No decisive verified catalyst alignment"
           ],
@@ -2172,11 +1842,11 @@
           }
         },
         "macro_regime": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
             "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
+            "Asset direction conflicts with broad market regime"
           ],
           "evidence": {}
         },
@@ -2212,42 +1882,41 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 2; Short votes 2; Neutral weight 5",
-          "1 independent analyst groups support NEUTRAL",
-          "Committee contains directional disagreement",
+          "Long votes 0; Short votes 0; Neutral weight 8",
+          "0 independent analyst groups support NEUTRAL",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 2,
-          "short_votes": 2,
-          "neutral_weight": 5,
-          "independent_support": 1,
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 8,
+          "independent_support": 0,
           "conflicts": [
-            "Committee contains directional disagreement",
             "Risk Manager requests caution"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "AR",
-      "name": "Arweave",
-      "narrative": "DePIN / Storage",
-      "price": 1.7904661893844604,
-      "signal": "SELL WATCH",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "RUNE",
+      "name": "THORChain",
+      "narrative": "DeFi / Interoperability",
+      "price": 0.4320789873600006,
+      "signal": "SELL",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Hourly signal is SELL",
+            "Bearish conditions materially exceed bullish conditions"
           ],
           "evidence": {
-            "spread": -2.0,
-            "r4": -1.1396033148913132,
-            "r12": -0.7727552634901325,
-            "r24": 0.05739827910420381
+            "spread": -6.0,
+            "r4": 0.41503670703377793,
+            "r12": -1.1246617779694934,
+            "r24": 0.1982656318538778
           }
         },
         "volume_liquidity": {
@@ -2257,18 +1926,18 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.4815463897445022,
-            "rvol_delta": -0.06448422118286384
+            "rvol": 0.0,
+            "rvol_delta": -1.3212135878763014
           }
         },
         "momentum": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
-            "Negative momentum is accelerating"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.8820182270612691
+            "acceleration": 0.7899239663569424
           }
         },
         "news_fundamental": {
@@ -2285,11 +1954,123 @@
           }
         },
         "macro_regime": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
             "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "CAUTION",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is CAUTION"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "CAUTION"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 2; Neutral weight 7",
+          "1 independent analyst groups support SHORT",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 7,
+          "independent_support": 1,
+          "conflicts": [
+            "Risk Manager requests caution"
+          ]
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "SAND",
+      "name": "The Sandbox",
+      "narrative": "Gaming / Metaverse",
+      "price": 0.0414000004529953,
+      "signal": "SELL",
+      "reports": {
+        "technical": {
+          "direction": "SHORT",
+          "strength": 2,
+          "reasons": [
+            "Hourly signal is SELL",
+            "Bearish conditions materially exceed bullish conditions"
+          ],
+          "evidence": {
+            "spread": -7.0,
+            "r4": 0.7299303153163628,
+            "r12": -0.480768412762167,
+            "r24": -0.9569361786470942
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Volume is ordinary"
+          ],
+          "evidence": {
+            "rvol": 1.0743123686996379,
+            "rvol_delta": 0.03450639216294049
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 0.8901864529037518
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
           ],
           "evidence": {}
         },
@@ -2311,7 +2092,7 @@
             "No obvious portfolio concentration conflict"
           ],
           "evidence": {
-            "same_narrative_positions": 2
+            "same_narrative_positions": 0
           }
         }
       },
@@ -2325,37 +2106,37 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 4; Neutral weight 4",
-          "2 independent analyst groups support SHORT"
+          "Long votes 0; Short votes 2; Neutral weight 6",
+          "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 4,
-          "neutral_weight": 4,
-          "independent_support": 2,
+          "short_votes": 2,
+          "neutral_weight": 6,
+          "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "BEAM",
-      "name": "Beam",
-      "narrative": "Gaming",
-      "price": 0.008864794857800007,
-      "signal": "SELL WATCH",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "WIN",
+      "name": "WINkLink",
+      "narrative": "Oracle / Gaming",
+      "price": 3.124685463262722e-05,
+      "signal": "BUY WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": -2.0,
-            "r4": -0.3728859790120054,
-            "r12": -0.7306933551259553,
-            "r24": 0.04131558231217358
+            "spread": 3.0,
+            "r4": 0.018794856125037285,
+            "r12": -0.15767263840353873,
+            "r24": 0.8894384571805913
           }
         },
         "volume_liquidity": {
@@ -2365,8 +2146,335 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.18931710615280595,
-            "rvol_delta": 0.18931710615280595
+            "rvol": 0.0,
+            "rvol_delta": -0.21183048255817963
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 0.0713524022595502
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "2 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "CAUTION",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is CAUTION"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "CAUTION"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 0; Neutral weight 8",
+          "0 independent analyst groups support NEUTRAL",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 8,
+          "independent_support": 0,
+          "conflicts": [
+            "Risk Manager requests caution"
+          ]
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "AR",
+      "name": "Arweave",
+      "narrative": "DePIN / Storage",
+      "price": 1.7930679321289062,
+      "signal": "SELL WATCH",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Technical structure is not decisive"
+          ],
+          "evidence": {
+            "spread": -2.0,
+            "r4": 0.5597549021508552,
+            "r12": -0.6285672494549144,
+            "r24": 0.20279259682112194
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Volume is ordinary"
+          ],
+          "evidence": {
+            "rvol": 0.9460943231255826,
+            "rvol_delta": 0.40006371219821657
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 0.7692773186358267
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 1
+          }
+        }
+      },
+      "decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 0; Neutral weight 7",
+          "0 independent analyst groups support NEUTRAL"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 7,
+          "independent_support": 0,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "BEAM",
+      "name": "Beam",
+      "narrative": "Gaming",
+      "price": 0.008859464898705482,
+      "signal": "SELL WATCH",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Technical structure is not decisive"
+          ],
+          "evidence": {
+            "spread": -2.0,
+            "r4": 0.0304420149017659,
+            "r12": -0.7903790390302423,
+            "r24": -0.018834272069045976
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.37433155080213903,
+            "rvol_delta": 0.37433155080213903
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 0.29390169457851334
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 0; Neutral weight 8",
+          "0 independent analyst groups support NEUTRAL"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 8,
+          "independent_support": 0,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "SHIB",
+      "name": "Shiba Inu",
+      "narrative": "Meme",
+      "price": 4.630000148608815e-06,
+      "signal": "HOLD",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Technical structure is not decisive"
+          ],
+          "evidence": {
+            "spread": 0.0,
+            "r4": 0.43384476463963484,
+            "r12": 0.0,
+            "r24": 0.43384476463963484
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Volume is ordinary"
+          ],
+          "evidence": {
+            "rvol": 0.8766524921623299,
+            "rvol_delta": 0.6732843058670606
           }
         },
         "momentum": {
@@ -2376,7 +2484,447 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -0.12932152730335358
+            "acceleration": 0.43384476463963484
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 0; Neutral weight 6",
+          "0 independent analyst groups support NEUTRAL"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 6,
+          "independent_support": 0,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "ENJ",
+      "name": "Enjin Coin",
+      "narrative": "Gaming",
+      "price": 0.025202687829732895,
+      "signal": "SELL WATCH",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Bearish conditions materially exceed bullish conditions"
+          ],
+          "evidence": {
+            "spread": -6.0,
+            "r4": 0.49443631949717126,
+            "r12": -0.5813131144282724,
+            "r24": -1.8475219502315343
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.4289864428663654,
+            "rvol_delta": 0.4097360535239305
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 0.6882073576399287
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 0; Neutral weight 8",
+          "0 independent analyst groups support NEUTRAL"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 8,
+          "independent_support": 0,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "IMX",
+      "name": "Immutable X",
+      "narrative": "Gaming / Layer 2",
+      "price": 0.1103999987244606,
+      "signal": "STRONG SELL",
+      "reports": {
+        "technical": {
+          "direction": "SHORT",
+          "strength": 2,
+          "reasons": [
+            "Hourly signal is STRONG SELL",
+            "Bearish conditions materially exceed bullish conditions"
+          ],
+          "evidence": {
+            "spread": -11.0,
+            "r4": 0.821918125126353,
+            "r12": -0.8086256436669048,
+            "r24": -1.516502238796491
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.04523490092250704,
+            "rvol_delta": -1.1900800222172019
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 1.0914600063486546
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "CAUTION",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is CAUTION"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "CAUTION"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 2; Neutral weight 7",
+          "1 independent analyst groups support SHORT",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 7,
+          "independent_support": 1,
+          "conflicts": [
+            "Risk Manager requests caution"
+          ]
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "VET",
+      "name": "VeChain",
+      "narrative": "Enterprise / RWA",
+      "price": 0.004720000084489584,
+      "signal": "SELL WATCH",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Bearish conditions materially exceed bullish conditions"
+          ],
+          "evidence": {
+            "spread": -6.0,
+            "r4": 0.21231584134218107,
+            "r12": -1.0482162488064328,
+            "r24": -1.4613792303601048
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.0,
+            "rvol_delta": -2.0548079499630734
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 0.561721257610992
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "CAUTION",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is CAUTION"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "CAUTION"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 0; Neutral weight 8",
+          "0 independent analyst groups support NEUTRAL",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 8,
+          "independent_support": 0,
+          "conflicts": [
+            "Risk Manager requests caution"
+          ]
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "SC",
+      "name": "Siacoin",
+      "narrative": "DePIN / Storage",
+      "price": 0.0005133723607286811,
+      "signal": "BUY",
+      "reports": {
+        "technical": {
+          "direction": "LONG",
+          "strength": 2,
+          "reasons": [
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
+          ],
+          "evidence": {
+            "spread": 6.0,
+            "r4": -0.09198225150348627,
+            "r12": 1.1116043320491764,
+            "r24": 0.12758229841587365
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.23238497636322708,
+            "rvol_delta": -1.3922676832547005
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": -0.4625170288532117
           }
         },
         "news_fundamental": {
@@ -2419,497 +2967,56 @@
             "No obvious portfolio concentration conflict"
           ],
           "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 5",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 5,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "SHIB",
-      "name": "Shiba Inu",
-      "narrative": "Meme",
-      "price": 4.630000148608815e-06,
-      "signal": "BUY WATCH",
-      "reports": {
-        "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Technical structure is not decisive"
-          ],
-          "evidence": {
-            "spread": 3.0,
-            "r4": -0.6437700391355938,
-            "r12": 0.0,
-            "r24": 0.43384476463963484
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Volume is ordinary"
-          ],
-          "evidence": {
-            "rvol": 0.9004465253874427,
-            "rvol_delta": 0.6970783390921735
-          }
-        },
-        "momentum": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Momentum is not accelerating clearly"
-          ],
-          "evidence": {
-            "acceleration": -0.6437700391355938
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 4",
-          "1 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 4,
-          "independent_support": 1,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "ENJ",
-      "name": "Enjin Coin",
-      "narrative": "Gaming",
-      "price": 0.025142690166831017,
-      "signal": "SELL WATCH",
-      "reports": {
-        "technical": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -7.0,
-            "r4": -1.0010146047639945,
-            "r12": -0.8179898094778704,
-            "r24": -2.0811843012791376
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.3759980336793213,
-            "rvol_delta": 0.3567476443368863
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -0.7283513349380377
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 6; Neutral weight 3",
-          "3 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 6,
-          "neutral_weight": 3,
-          "independent_support": 3,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "IMX",
-      "name": "Immutable X",
-      "narrative": "Gaming / Layer 2",
-      "price": 0.10999999940395355,
-      "signal": "STRONG SELL",
-      "reports": {
-        "technical": {
-          "direction": "SHORT",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is STRONG SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -11.0,
-            "r4": -1.7857178494485204,
-            "r12": -1.1680140748363654,
-            "r24": -1.8733259040209727
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.5242662466766707,
-            "rvol_delta": -0.7110486764630383
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -1.3963798245030652
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 7; Neutral weight 3",
-          "3 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 7,
-          "neutral_weight": 3,
-          "independent_support": 3,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "VET",
-      "name": "VeChain",
-      "narrative": "Enterprise / RWA",
-      "price": 0.004730000160634518,
-      "signal": "SELL WATCH",
-      "reports": {
-        "technical": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -6.0,
-            "r4": -0.42104604782469135,
-            "r12": -0.8385710465869223,
-            "r24": -1.2526093800901306
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.2503154115972343,
-            "rvol_delta": -1.804492538365839
-          }
-        },
-        "momentum": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Momentum is not accelerating clearly"
-          ],
-          "evidence": {
-            "acceleration": -0.14152236562905057
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is CAUTION",
-            "Existing exposure in CORE"
-          ],
-          "evidence": {
-            "existing_exposure": 10000.0,
-            "risk_state": "CAUTION"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Asset is already held in another active book"
-          ],
-          "evidence": {
             "same_narrative_positions": 1
           }
         }
       },
       "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 4; Neutral weight 4",
-          "2 independent analyst groups support SHORT",
-          "Portfolio Fit requests reduced or no additional exposure",
+          "Long votes 2; Short votes 2; Neutral weight 5",
+          "1 independent analyst groups support NEUTRAL",
+          "Committee contains directional disagreement",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 0,
-          "short_votes": 4,
-          "neutral_weight": 4,
-          "independent_support": 2,
+          "long_votes": 2,
+          "short_votes": 2,
+          "neutral_weight": 5,
+          "independent_support": 1,
           "conflicts": [
-            "Portfolio Fit requests reduced or no additional exposure",
+            "Committee contains directional disagreement",
             "Risk Manager requests caution"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "SC",
-      "name": "Siacoin",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "BTT",
+      "name": "BitTorrent",
       "narrative": "DePIN / Storage",
-      "price": 0.0005058494862169027,
-      "signal": "SELL",
+      "price": 2.6361854565948306e-07,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "SHORT",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions"
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -6.0,
-            "r4": 0.20329081840610996,
-            "r12": -0.37006856127707044,
-            "r24": -1.3396708971585403
+            "spread": -4.0,
+            "r4": -0.0520146378048425,
+            "r12": -0.23942959376022088,
+            "r24": -0.08411018736168563
           }
         },
         "volume_liquidity": {
@@ -2919,120 +3026,8 @@
             "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.9424208295150086,
-            "rvol_delta": -0.682231830102919
-          }
-        },
-        "momentum": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "4H and 12H momentum disagree"
-          ],
-          "evidence": {
-            "acceleration": 0.32664700549846676
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction conflicts with broad market regime"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL",
-            "Existing exposure in CORE"
-          ],
-          "evidence": {
-            "existing_exposure": 10000.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Asset is already held in another active book"
-          ],
-          "evidence": {
-            "same_narrative_positions": 2
-          }
-        }
-      },
-      "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
-          "1 independent analyst groups support SHORT",
-          "Portfolio Fit requests reduced or no additional exposure"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 6,
-          "independent_support": 1,
-          "conflicts": [
-            "Portfolio Fit requests reduced or no additional exposure"
-          ]
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "BTT",
-      "name": "BitTorrent",
-      "narrative": "DePIN / Storage",
-      "price": 2.635157727581827e-07,
-      "signal": "HOLD",
-      "reports": {
-        "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": 0.0,
-            "r4": -0.28372713410534933,
-            "r12": -0.2783217105131519,
-            "r24": -0.12306285609886558
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.7203478913066947,
-            "rvol_delta": -2.2230551507872045
+            "rvol": 0.9985714873895274,
+            "rvol_delta": -1.9448315547043715
           }
         },
         "momentum": {
@@ -3042,7 +3037,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -0.19095323060096536
+            "acceleration": 0.02779522678189779
           }
         },
         "news_fundamental": {
@@ -3086,7 +3081,7 @@
             "Asset is already held in another active book"
           ],
           "evidence": {
-            "same_narrative_positions": 2
+            "same_narrative_positions": 1
           }
         }
       },
@@ -3100,14 +3095,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 5",
+          "Long votes 0; Short votes 2; Neutral weight 4",
           "1 independent analyst groups support SHORT",
           "Portfolio Fit requests reduced or no additional exposure"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 5,
+          "neutral_weight": 4,
           "independent_support": 1,
           "conflicts": [
             "Portfolio Fit requests reduced or no additional exposure"
@@ -3116,11 +3111,11 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "TLM",
       "name": "Alien Worlds",
       "narrative": "Gaming",
-      "price": 0.0016160173108801246,
+      "price": 0.0016157677164301276,
       "signal": "SELL",
       "reports": {
         "technical": {
@@ -3132,10 +3127,10 @@
             "Bearish conditions materially exceed bullish conditions"
           ],
           "evidence": {
-            "spread": -6.0,
-            "r4": 1.1519229928443453,
-            "r12": 0.8967586090701696,
-            "r24": -4.264934626418649
+            "spread": -5.0,
+            "r4": 0.4646421449846283,
+            "r12": 0.8811750687194975,
+            "r24": -4.279720941408261
           }
         },
         "volume_liquidity": {
@@ -3145,18 +3140,130 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.12537180383543103,
-            "rvol_delta": -0.7152967132536941
+            "rvol": 0.027963253344986696,
+            "rvol_delta": -0.8127052637441384
           }
         },
         "momentum": {
-          "direction": "LONG",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "Positive momentum is accelerating"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 0.8530034564876221
+            "acceleration": 0.17091712207812915
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "CAUTION",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is CAUTION"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "CAUTION"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 0; Neutral weight 7",
+          "0 independent analyst groups support NEUTRAL",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 0,
+          "neutral_weight": 7,
+          "independent_support": 0,
+          "conflicts": [
+            "Risk Manager requests caution"
+          ]
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "PYR",
+      "name": "Vulcan Forged",
+      "narrative": "Gaming",
+      "price": 0.06300000101327896,
+      "signal": "SELL",
+      "reports": {
+        "technical": {
+          "direction": "SHORT",
+          "strength": 2,
+          "reasons": [
+            "Hourly signal is SELL",
+            "Bearish conditions materially exceed bullish conditions"
+          ],
+          "evidence": {
+            "spread": -6.0,
+            "r4": 0.0,
+            "r12": -3.0769179629149046,
+            "r24": -1.5625030922818417
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.0,
+            "rvol_delta": -0.18474070365119613
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Momentum is not accelerating clearly"
+          ],
+          "evidence": {
+            "acceleration": 1.0256393209716348
           }
         },
         "news_fundamental": {
@@ -3205,7 +3312,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "LONG",
+        "direction": "SHORT",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -3213,13 +3320,13 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 2; Short votes 0; Neutral weight 6",
-          "1 independent analyst groups support LONG",
+          "Long votes 0; Short votes 2; Neutral weight 6",
+          "1 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 2,
-          "short_votes": 0,
+          "long_votes": 0,
+          "short_votes": 2,
           "neutral_weight": 6,
           "independent_support": 1,
           "conflicts": [
@@ -3229,161 +3336,46 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "PYR",
-      "name": "Vulcan Forged",
-      "narrative": "Gaming",
-      "price": 0.06400000303983688,
-      "signal": "SELL",
-      "reports": {
-        "technical": {
-          "direction": "SHORT",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -5.0,
-            "r4": -1.5384532502414006,
-            "r12": -1.5384532502414006,
-            "r24": 0.0
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.04111959013856824,
-            "rvol_delta": -0.1436211135126279
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -1.0256355001609339
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is CAUTION"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 7; Neutral weight 3",
-          "3 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 7,
-          "neutral_weight": 3,
-          "independent_support": 3,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "PAAL",
       "name": "PAAL AI",
       "narrative": "AI",
-      "price": 0.0053521194495260715,
-      "signal": "SELL",
+      "price": 0.005358339287340641,
+      "signal": "STRONG SELL",
       "reports": {
         "technical": {
           "direction": "SHORT",
-          "strength": 3,
+          "strength": 2,
           "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
+            "Hourly signal is STRONG SELL",
+            "Bearish conditions materially exceed bullish conditions"
           ],
           "evidence": {
-            "spread": -9.0,
-            "r4": -3.1006620651745975,
-            "r12": -1.9186621138367888,
-            "r24": -4.472507145286442
+            "spread": -10.0,
+            "r4": 0.31587400016024336,
+            "r12": -1.8046792291046554,
+            "r24": -4.361492150574131
           }
         },
         "volume_liquidity": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Participation is above normal",
-            "Volume acceleration is not confirmed"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 1.2861517147355626,
-            "rvol_delta": -2.099092526010928
+            "rvol": 1.0821385156621075,
+            "rvol_delta": -2.303105725084383
           }
         },
         "momentum": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
-            "Negative momentum is accelerating"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -2.461108027229001
+            "acceleration": 0.9174337431951285
           }
         },
         "news_fundamental": {
@@ -3400,11 +3392,11 @@
           }
         },
         "macro_regime": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
             "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
+            "Asset direction conflicts with broad market regime"
           ],
           "evidence": {}
         },
@@ -3431,33 +3423,33 @@
         }
       },
       "decision": {
-        "action": "SHORT",
+        "action": "WATCH",
         "direction": "SHORT",
-        "quality": "HIGH QUALITY",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
-          "SWING": true,
+          "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 8; Neutral weight 1",
-          "4 independent analyst groups support SHORT"
+          "Long votes 0; Short votes 2; Neutral weight 6",
+          "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 8,
-          "neutral_weight": 1,
-          "independent_support": 4,
+          "short_votes": 2,
+          "neutral_weight": 6,
+          "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "SKL",
       "name": "SKALE Network",
       "narrative": "Layer 2",
-      "price": 0.0036730000283569098,
+      "price": 0.003671000013127923,
       "signal": "BUY WATCH",
       "reports": {
         "technical": {
@@ -3468,9 +3460,9 @@
           ],
           "evidence": {
             "spread": 2.0,
-            "r4": 0.7405368170314564,
-            "r12": 0.7405368170314564,
-            "r24": 0.768175034474261
+            "r4": 0.685681764960977,
+            "r12": 0.685681764960977,
+            "r24": 0.713304932892389
           }
         },
         "volume_liquidity": {
@@ -3480,8 +3472,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.6349927373255981,
-            "rvol_delta": 0.2790805737483585
+            "rvol": 0.5076762529185852,
+            "rvol_delta": 0.15176408934134555
           }
         },
         "momentum": {
@@ -3491,7 +3483,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 0.49369121135430427
+            "acceleration": 0.4571211766406513
           }
         },
         "news_fundamental": {
@@ -3561,26 +3553,25 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "AERO",
       "name": "Aerodrome Finance",
       "narrative": "DeFi / DEX",
-      "price": 0.4187900125980377,
-      "signal": "SELL",
+      "price": 0.41874998807907104,
+      "signal": "STRONG SELL",
       "reports": {
         "technical": {
           "direction": "SHORT",
-          "strength": 3,
+          "strength": 2,
           "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
+            "Hourly signal is STRONG SELL",
+            "Bearish conditions materially exceed bullish conditions"
           ],
           "evidence": {
-            "spread": -9.0,
-            "r4": -0.6641494794401903,
-            "r12": -1.5815919813319423,
-            "r24": -3.0713305054489326
+            "spread": -11.0,
+            "r4": 0.4702558828105774,
+            "r12": -1.5909980065950013,
+            "r24": -3.0805941537067616
           }
         },
         "volume_liquidity": {
@@ -3590,18 +3581,18 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.7383750723782904,
-            "rvol_delta": 0.2349294860274571
+            "rvol": 0.0,
+            "rvol_delta": -0.5034455863508333
           }
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.13695215232954283
+            "acceleration": 1.0005885516755777
           }
         },
         "news_fundamental": {
@@ -3618,24 +3609,24 @@
           }
         },
         "macro_regime": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
             "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
+            "Asset direction conflicts with broad market regime"
           ],
           "evidence": {}
         },
         "risk_manager": {
-          "direction": "APPROVE",
+          "direction": "CAUTION",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is NORMAL",
+            "Risk Guardian state is CAUTION",
             "Existing exposure in SWING"
           ],
           "evidence": {
             "existing_exposure": 5000.0,
-            "risk_state": "NORMAL"
+            "risk_state": "CAUTION"
           }
         },
         "portfolio_fit": {
@@ -3659,130 +3650,16 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 5; Neutral weight 4",
-          "2 independent analyst groups support SHORT",
-          "Portfolio Fit requests reduced or no additional exposure"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 5,
-          "neutral_weight": 4,
-          "independent_support": 2,
-          "conflicts": [
-            "Portfolio Fit requests reduced or no additional exposure"
-          ]
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "LUNC",
-      "name": "Terra Luna Classic",
-      "narrative": "Legacy Layer 1",
-      "price": 4.954704490955919e-05,
-      "signal": "SELL",
-      "reports": {
-        "technical": {
-          "direction": "SHORT",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -6.0,
-            "r4": -1.2021310250637907,
-            "r12": -1.3015447219752674,
-            "r24": 0.49883458174186934
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Participation is too weak for a high-quality entry"
-          ],
-          "evidence": {
-            "rvol": 0.1429555813280594,
-            "rvol_delta": -1.7090675426183743
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -0.7682827844053681
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is CAUTION",
-            "Existing exposure in CORE, SWING"
-          ],
-          "evidence": {
-            "existing_exposure": 15000.0,
-            "risk_state": "CAUTION"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "CAUTION",
-          "strength": 2,
-          "reasons": [
-            "Asset is already held in another active book"
-          ],
-          "evidence": {
-            "same_narrative_positions": 2
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 7; Neutral weight 3",
-          "3 independent analyst groups support SHORT",
+          "Long votes 0; Short votes 2; Neutral weight 7",
+          "1 independent analyst groups support SHORT",
           "Portfolio Fit requests reduced or no additional exposure",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 7,
-          "neutral_weight": 3,
-          "independent_support": 3,
+          "short_votes": 2,
+          "neutral_weight": 7,
+          "independent_support": 1,
           "conflicts": [
             "Portfolio Fit requests reduced or no additional exposure",
             "Risk Manager requests caution"
@@ -3791,137 +3668,25 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "GALA",
-      "name": "Gala",
-      "narrative": "Gaming",
-      "price": 0.0017780549824237823,
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "LUNC",
+      "name": "Terra Luna Classic",
+      "narrative": "Legacy Layer 1",
+      "price": 4.9544451030669734e-05,
       "signal": "SELL",
       "reports": {
         "technical": {
           "direction": "SHORT",
-          "strength": 3,
+          "strength": 2,
           "reasons": [
             "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
-            "Negative 4H and 12H structure"
+            "Bearish conditions materially exceed bullish conditions"
           ],
           "evidence": {
-            "spread": -8.0,
-            "r4": -1.4242308675067261,
-            "r12": -1.776001547570294,
-            "r24": -1.2789213224718043
-          }
-        },
-        "volume_liquidity": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Relative volume is high and accelerating",
-            "Participation agrees with 4H price direction"
-          ],
-          "evidence": {
-            "rvol": 1.8866792960639547,
-            "rvol_delta": 1.041038371338116
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -0.8322303516499615
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "SHORT",
-        "direction": "SHORT",
-        "quality": "HIGH QUALITY",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 0; Short votes 9; Neutral weight 1",
-          "4 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 9,
-          "neutral_weight": 1,
-          "independent_support": 4,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "UOS",
-      "name": "Ultra",
-      "narrative": "Gaming",
-      "price": 0.0028926744125783443,
-      "signal": "BUY",
-      "reports": {
-        "technical": {
-          "direction": "LONG",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is BUY",
-            "Bullish conditions materially exceed bearish conditions",
-            "Positive 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": 10.0,
-            "r4": 0.12040453538524343,
-            "r12": 0.4334973792506691,
-            "r24": 2.0636270776132504
+            "spread": -6.0,
+            "r4": 0.4893466132865232,
+            "r12": -1.3067117675586104,
+            "r24": 0.49357328299213243
           }
         },
         "volume_liquidity": {
@@ -3931,25 +3696,25 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.016089616126045446,
-            "rvol_delta": 0.012953568686200538
+            "rvol": 0.002337729703263842,
+            "rvol_delta": -1.84968539424317
           }
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.024094591031646267
+            "acceleration": 0.9249172024727266
           }
         },
         "news_fundamental": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "3 recent matched research item(s)",
+            "0 recent matched research item(s)",
             "0 active reviewed external call(s)",
             "No decisive verified catalyst alignment"
           ],
@@ -3991,7 +3756,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "LONG",
+        "direction": "SHORT",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -3999,14 +3764,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 3; Short votes 0; Neutral weight 6",
-          "1 independent analyst groups support LONG",
+          "Long votes 0; Short votes 2; Neutral weight 7",
+          "1 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 3,
-          "short_votes": 0,
-          "neutral_weight": 6,
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 7,
           "independent_support": 1,
           "conflicts": [
             "Risk Manager requests caution"
@@ -4015,35 +3780,36 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "UFO",
-      "name": "UFO Gaming",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "GALA",
+      "name": "Gala",
       "narrative": "Gaming",
-      "price": 2.7756044248668698e-08,
-      "signal": "BUY WATCH",
+      "price": 0.001781183062121272,
+      "signal": "SELL",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is SELL",
+            "Bearish conditions materially exceed bullish conditions"
           ],
           "evidence": {
-            "spread": 3.0,
-            "r4": -0.047378565834832465,
-            "r12": 0.04370723846289781,
-            "r24": 0.8050918653513595
+            "spread": -5.0,
+            "r4": 1.0170670542490656,
+            "r12": -1.6031989636218102,
+            "r24": -1.105244239941705
           }
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.4470823503650854,
-            "rvol_delta": 0.0825096190011676
+            "rvol": 1.1330035334942172,
+            "rvol_delta": 0.2873626087683785
           }
         },
         "momentum": {
@@ -4053,7 +3819,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.06194764532246507
+            "acceleration": 1.5514667087896692
           }
         },
         "news_fundamental": {
@@ -4070,11 +3836,11 @@
           }
         },
         "macro_regime": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 2,
           "reasons": [
             "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
+            "Asset direction conflicts with broad market regime"
           ],
           "evidence": {}
         },
@@ -4123,448 +3889,11 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "DENT",
-      "name": "Dent",
-      "narrative": "Telecom / Payments",
-      "price": 2.852985380741302e-05,
-      "signal": "STRONG BUY",
-      "reports": {
-        "technical": {
-          "direction": "LONG",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is STRONG BUY",
-            "Bullish conditions materially exceed bearish conditions",
-            "Positive 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": 8.0,
-            "r4": 2.4439330959329375,
-            "r12": 2.496860944582857,
-            "r24": 0.4888857082137932
-          }
-        },
-        "volume_liquidity": {
-          "direction": "LONG",
-          "strength": 3,
-          "reasons": [
-            "Relative volume is high and accelerating",
-            "Participation agrees with 4H price direction"
-          ],
-          "evidence": {
-            "rvol": 18.421447285614178,
-            "rvol_delta": 18.370156738866417
-          }
-        },
-        "momentum": {
-          "direction": "LONG",
-          "strength": 2,
-          "reasons": [
-            "Positive momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": 1.6116461144053185
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction conflicts with broad market regime"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "BUY",
-        "direction": "LONG",
-        "quality": "QUALIFIED",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": true,
-          "SCALP": true
-        },
-        "reasons": [
-          "Long votes 8; Short votes 0; Neutral weight 3",
-          "3 independent analyst groups support LONG"
-        ],
-        "agreement": {
-          "long_votes": 8,
-          "short_votes": 0,
-          "neutral_weight": 3,
-          "independent_support": 3,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "MEW",
-      "name": "Cat in a Dogs World",
-      "narrative": "Meme",
-      "price": 0.00034421503838053766,
-      "signal": "BUY",
-      "reports": {
-        "technical": {
-          "direction": "LONG",
-          "strength": 3,
-          "reasons": [
-            "Hourly signal is BUY",
-            "Bullish conditions materially exceed bearish conditions",
-            "Positive 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": 8.0,
-            "r4": 0.059677773943223045,
-            "r12": 0.15949776505033153,
-            "r24": 1.2707588021716676
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Volume is ordinary"
-          ],
-          "evidence": {
-            "rvol": 0.9759212869111656,
-            "rvol_delta": 0.02893965236421736
-          }
-        },
-        "momentum": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Momentum is not accelerating clearly"
-          ],
-          "evidence": {
-            "acceleration": 0.006511852259779204
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "NEUTRAL",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction conflicts with broad market regime"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "WATCH",
-        "direction": "LONG",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 3; Short votes 0; Neutral weight 5",
-          "1 independent analyst groups support LONG"
-        ],
-        "agreement": {
-          "long_votes": 3,
-          "short_votes": 0,
-          "neutral_weight": 5,
-          "independent_support": 1,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "DOGE",
-      "name": "Dogecoin",
-      "narrative": "Meme",
-      "price": 0.06955999881029129,
-      "signal": "HOLD",
-      "reports": {
-        "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -3.0,
-            "r4": -1.0807791450713422,
-            "r12": -1.5288773290975555,
-            "r24": -0.5575420220204852
-          }
-        },
-        "volume_liquidity": {
-          "direction": "SHORT",
-          "strength": 1,
-          "reasons": [
-            "Participation is above normal"
-          ],
-          "evidence": {
-            "rvol": 1.2751350369608712,
-            "rvol_delta": 1.2751350369608712
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -0.5711533687054904
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 5; Neutral weight 2",
-          "3 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 5,
-          "neutral_weight": 2,
-          "independent_support": 3,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "GRT",
-      "name": "The Graph",
-      "narrative": "Data / AI",
-      "price": 0.014461848249485994,
-      "signal": "SELL WATCH",
-      "reports": {
-        "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Negative 4H and 12H structure"
-          ],
-          "evidence": {
-            "spread": -4.0,
-            "r4": -0.8037337612985085,
-            "r12": -1.7045505439873487,
-            "r24": -0.910829837994831
-          }
-        },
-        "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "Volume is ordinary"
-          ],
-          "evidence": {
-            "rvol": 0.9281746107462802,
-            "rvol_delta": -0.07083408488008136
-          }
-        },
-        "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Negative momentum is accelerating"
-          ],
-          "evidence": {
-            "acceleration": -0.23555024663605895
-          }
-        },
-        "news_fundamental": {
-          "direction": "NEUTRAL",
-          "strength": 1,
-          "reasons": [
-            "0 recent matched research item(s)",
-            "0 active reviewed external call(s)",
-            "No decisive verified catalyst alignment"
-          ],
-          "evidence": {
-            "positive_mentions": 0,
-            "negative_mentions": 0
-          }
-        },
-        "macro_regime": {
-          "direction": "SHORT",
-          "strength": 2,
-          "reasons": [
-            "Broad market regime is RISK OFF",
-            "Asset direction agrees with broad risk reduction"
-          ],
-          "evidence": {}
-        },
-        "risk_manager": {
-          "direction": "APPROVE",
-          "strength": 2,
-          "reasons": [
-            "Risk Guardian state is NORMAL"
-          ],
-          "evidence": {
-            "existing_exposure": 0.0,
-            "risk_state": "NORMAL"
-          }
-        },
-        "portfolio_fit": {
-          "direction": "APPROVE",
-          "strength": 1,
-          "reasons": [
-            "No obvious portfolio concentration conflict"
-          ],
-          "evidence": {
-            "same_narrative_positions": 0
-          }
-        }
-      },
-      "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
-        "book_permissions": {
-          "CORE": false,
-          "SWING": false,
-          "SCALP": false
-        },
-        "reasons": [
-          "Long votes 0; Short votes 4; Neutral weight 3",
-          "2 independent analyst groups support SHORT"
-        ],
-        "agreement": {
-          "long_votes": 0,
-          "short_votes": 4,
-          "neutral_weight": 3,
-          "independent_support": 2,
-          "conflicts": []
-        }
-      }
-    },
-    {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
-      "symbol": "VRA",
-      "name": "Verasity",
-      "narrative": "Gaming / Advertising",
-      "price": 9.931409294949844e-06,
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "UOS",
+      "name": "Ultra",
+      "narrative": "Gaming",
+      "price": 0.0028802803717553616,
       "signal": "BUY",
       "reports": {
         "technical": {
@@ -4575,10 +3904,10 @@
             "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": 9.0,
-            "r4": -0.23883041615254674,
-            "r12": 4.992643101837113,
-            "r24": 10.97959870625942
+            "spread": 7.0,
+            "r4": -0.4302342137655457,
+            "r12": 0.003176959814377156,
+            "r24": 1.6263221548604267
           }
         },
         "volume_liquidity": {
@@ -4588,8 +3917,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.07223736045963418,
-            "rvol_delta": -0.035881731407727324
+            "rvol": 0.001025197899808874,
+            "rvol_delta": -0.0021108495400360343
           }
         },
         "momentum": {
@@ -4599,14 +3928,14 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -1.9030447834315845
+            "acceleration": -0.4312932003703381
           }
         },
         "news_fundamental": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "0 recent matched research item(s)",
+            "3 recent matched research item(s)",
             "0 active reviewed external call(s)",
             "No decisive verified catalyst alignment"
           ],
@@ -4674,7 +4003,666 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "UFO",
+      "name": "UFO Gaming",
+      "narrative": "Gaming",
+      "price": 2.7698191677975434e-08,
+      "signal": "HOLD",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Negative 4H and 12H structure"
+          ],
+          "evidence": {
+            "spread": 1.0,
+            "r4": -0.255712147006959,
+            "r12": -0.16481619497654698,
+            "r24": 0.5949814601677872
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.4461712747412459,
+            "rvol_delta": 0.08159854337732808
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Momentum is not accelerating clearly"
+          ],
+          "evidence": {
+            "acceleration": -0.20077341534811
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "SHORT",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction agrees with broad risk reduction"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 2; Neutral weight 5",
+          "1 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 5,
+          "independent_support": 1,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "DENT",
+      "name": "Dent",
+      "narrative": "Telecom / Payments",
+      "price": 2.8117277906858362e-05,
+      "signal": "HOLD",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Technical structure is not decisive"
+          ],
+          "evidence": {
+            "spread": 1.0,
+            "r4": -1.1324748495269765,
+            "r12": 1.0146334157040027,
+            "r24": -0.96430409067777
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.41997026759167494,
+            "rvol_delta": 0.368679720843913
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": -1.4706859880949774
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "SHORT",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction agrees with broad risk reduction"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL",
+            "Existing exposure in SWING"
+          ],
+          "evidence": {
+            "existing_exposure": 5000.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "CAUTION",
+          "strength": 2,
+          "reasons": [
+            "Asset is already held in another active book"
+          ],
+          "evidence": {
+            "same_narrative_positions": 1
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 2; Neutral weight 6",
+          "1 independent analyst groups support SHORT",
+          "Portfolio Fit requests reduced or no additional exposure"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 6,
+          "independent_support": 1,
+          "conflicts": [
+            "Portfolio Fit requests reduced or no additional exposure"
+          ]
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "MEW",
+      "name": "Cat in a Dogs World",
+      "narrative": "Meme",
+      "price": 0.00034567269563647095,
+      "signal": "STRONG BUY",
+      "reports": {
+        "technical": {
+          "direction": "LONG",
+          "strength": 3,
+          "reasons": [
+            "Hourly signal is STRONG BUY",
+            "Bullish conditions materially exceed bearish conditions",
+            "Positive 4H and 12H structure"
+          ],
+          "evidence": {
+            "spread": 11.0,
+            "r4": 0.48340334973371313,
+            "r12": 0.5836460514086372,
+            "r24": 1.6996129773883206
+          }
+        },
+        "volume_liquidity": {
+          "direction": "LONG",
+          "strength": 1,
+          "reasons": [
+            "Participation is above normal"
+          ],
+          "evidence": {
+            "rvol": 1.2124258303368776,
+            "rvol_delta": 0.2654441957899293
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Momentum is not accelerating clearly"
+          ],
+          "evidence": {
+            "acceleration": 0.2888546659308341
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 4; Short votes 0; Neutral weight 4",
+          "2 independent analyst groups support LONG"
+        ],
+        "agreement": {
+          "long_votes": 4,
+          "short_votes": 0,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "DOGE",
+      "name": "Dogecoin",
+      "narrative": "Meme",
+      "price": 0.0696600005030632,
+      "signal": "HOLD",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Technical structure is not decisive"
+          ],
+          "evidence": {
+            "spread": -1.0,
+            "r4": 0.5194763865524532,
+            "r12": -1.3873120742864287,
+            "r24": -0.414580344313753
+          }
+        },
+        "volume_liquidity": {
+          "direction": "LONG",
+          "strength": 1,
+          "reasons": [
+            "Participation is above normal"
+          ],
+          "evidence": {
+            "rvol": 1.2023823238656284,
+            "rvol_delta": 1.2023823238656284
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "4H and 12H momentum disagree"
+          ],
+          "evidence": {
+            "acceleration": 0.9819137446479294
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 1; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG"
+        ],
+        "agreement": {
+          "long_votes": 1,
+          "short_votes": 0,
+          "neutral_weight": 6,
+          "independent_support": 1,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "GRT",
+      "name": "The Graph",
+      "narrative": "Data / AI",
+      "price": 0.01451259145116216,
+      "signal": "SELL WATCH",
+      "reports": {
+        "technical": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Negative 4H and 12H structure"
+          ],
+          "evidence": {
+            "spread": -3.0,
+            "r4": -0.45567754770547975,
+            "r12": -1.359655083217104,
+            "r24": -0.5631493991800185
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Volume is ordinary"
+          ],
+          "evidence": {
+            "rvol": 0.9722661431633789,
+            "rvol_delta": -0.026742552462982627
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Momentum is not accelerating clearly"
+          ],
+          "evidence": {
+            "acceleration": -0.0024591866331117873
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "SHORT",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction agrees with broad risk reduction"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "APPROVE",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is NORMAL"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "NORMAL"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 0; Short votes 2; Neutral weight 4",
+          "1 independent analyst groups support SHORT"
+        ],
+        "agreement": {
+          "long_votes": 0,
+          "short_votes": 2,
+          "neutral_weight": 4,
+          "independent_support": 1,
+          "conflicts": []
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
+      "symbol": "VRA",
+      "name": "Verasity",
+      "narrative": "Gaming / Advertising",
+      "price": 1.0000564543588553e-05,
+      "signal": "BUY",
+      "reports": {
+        "technical": {
+          "direction": "LONG",
+          "strength": 3,
+          "reasons": [
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions",
+            "Positive 4H and 12H structure"
+          ],
+          "evidence": {
+            "spread": 10.0,
+            "r4": 0.15370445497904228,
+            "r12": 5.7237369600506405,
+            "r24": 11.752381451831905
+          }
+        },
+        "volume_liquidity": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Participation is too weak for a high-quality entry"
+          ],
+          "evidence": {
+            "rvol": 0.04358407908039091,
+            "rvol_delta": -0.0645350127869706
+          }
+        },
+        "momentum": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "Momentum is not accelerating clearly"
+          ],
+          "evidence": {
+            "acceleration": -1.7542078650378379
+          }
+        },
+        "news_fundamental": {
+          "direction": "NEUTRAL",
+          "strength": 1,
+          "reasons": [
+            "0 recent matched research item(s)",
+            "0 active reviewed external call(s)",
+            "No decisive verified catalyst alignment"
+          ],
+          "evidence": {
+            "positive_mentions": 0,
+            "negative_mentions": 0
+          }
+        },
+        "macro_regime": {
+          "direction": "NEUTRAL",
+          "strength": 2,
+          "reasons": [
+            "Broad market regime is RISK OFF",
+            "Asset direction conflicts with broad market regime"
+          ],
+          "evidence": {}
+        },
+        "risk_manager": {
+          "direction": "CAUTION",
+          "strength": 2,
+          "reasons": [
+            "Risk Guardian state is CAUTION"
+          ],
+          "evidence": {
+            "existing_exposure": 0.0,
+            "risk_state": "CAUTION"
+          }
+        },
+        "portfolio_fit": {
+          "direction": "APPROVE",
+          "strength": 1,
+          "reasons": [
+            "No obvious portfolio concentration conflict"
+          ],
+          "evidence": {
+            "same_narrative_positions": 0
+          }
+        }
+      },
+      "decision": {
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
+        "book_permissions": {
+          "CORE": false,
+          "SWING": false,
+          "SCALP": false
+        },
+        "reasons": [
+          "Long votes 3; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG",
+          "Risk Manager requests caution"
+        ],
+        "agreement": {
+          "long_votes": 3,
+          "short_votes": 0,
+          "neutral_weight": 6,
+          "independent_support": 1,
+          "conflicts": [
+            "Risk Manager requests caution"
+          ]
+        }
+      }
+    },
+    {
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "VTHO",
       "name": "VeThor Token",
       "narrative": "Enterprise",
@@ -4688,8 +4676,8 @@
             "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -1.0,
-            "r4": -0.8695633835015926,
+            "spread": 1.0,
+            "r4": -0.2915389308287608,
             "r12": -0.5813913153831507,
             "r24": -0.2915389308287608
           }
@@ -4701,18 +4689,18 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.6585979371984739,
-            "rvol_delta": 0.6585979371984739
+            "rvol": 0.7083699939820721,
+            "rvol_delta": 0.7083699939820721
           }
         },
         "momentum": {
-          "direction": "SHORT",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "Negative momentum is accelerating"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -0.6757662783738757
+            "acceleration": -0.09774182570104392
           }
         },
         "news_fundamental": {
@@ -4770,15 +4758,15 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 4; Neutral weight 4",
-          "2 independent analyst groups support SHORT",
+          "Long votes 0; Short votes 2; Neutral weight 5",
+          "1 independent analyst groups support SHORT",
           "Portfolio Fit requests reduced or no additional exposure"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 4,
-          "neutral_weight": 4,
-          "independent_support": 2,
+          "short_votes": 2,
+          "neutral_weight": 5,
+          "independent_support": 1,
           "conflicts": [
             "Portfolio Fit requests reduced or no additional exposure"
           ]
@@ -4786,26 +4774,24 @@
       }
     },
     {
-      "recorded_at": "2026-08-10T00:34:36.058883+00:00",
+      "recorded_at": "2026-08-10T01:43:03.642363+00:00",
       "symbol": "XTZ",
       "name": "Tezos",
       "narrative": "Layer 1",
-      "price": 0.20229999721050262,
-      "signal": "SELL",
+      "price": 0.20170000195503235,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "SHORT",
-          "strength": 3,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions",
             "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -7.0,
-            "r4": -0.6872895220187525,
-            "r12": -0.8819209633933012,
-            "r24": -0.833332846367274
+            "spread": -4.0,
+            "r4": -0.2472767427210587,
+            "r12": -1.1758921842204062,
+            "r24": -1.1274481731760377
           }
         },
         "volume_liquidity": {
@@ -4815,8 +4801,8 @@
             "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 1.0804056992155955,
-            "rvol_delta": 0.7633679676079945
+            "rvol": 0.9834298583734493,
+            "rvol_delta": 0.6663921267658484
           }
         },
         "momentum": {
@@ -4826,7 +4812,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -0.39331586755431874
+            "acceleration": 0.14468731868574336
           }
         },
         "news_fundamental": {
@@ -4883,14 +4869,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 5; Neutral weight 3",
-          "2 independent analyst groups support SHORT"
+          "Long votes 0; Short votes 2; Neutral weight 4",
+          "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 5,
-          "neutral_weight": 3,
-          "independent_support": 2,
+          "short_votes": 2,
+          "neutral_weight": 4,
+          "independent_support": 1,
           "conflicts": []
         }
       }
@@ -4899,9 +4885,9 @@
   "health": {
     "assets_checked": 44,
     "qualified_core": 0,
-    "qualified_swing": 15,
-    "qualified_scalp": 14,
-    "no_trade": 4,
-    "watch": 23
+    "qualified_swing": 3,
+    "qualified_scalp": 1,
+    "no_trade": 14,
+    "watch": 27
   }
 }
