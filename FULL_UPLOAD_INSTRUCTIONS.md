@@ -1,4 +1,4 @@
-# V12.0.0 Complete Safe Upload
+# V12.1.0 Complete Safe Upload
 
 1. Extract the ZIP.
 2. GitHub → Add file → Upload files.
@@ -9,5 +9,7 @@
 7. Run Hourly Signal Recorder once.
 8. Run 15-Minute Market Observer once.
 
-New behind-the-scenes step: `learning_engine.py`
-New protected record: `data/learning_state.json`
+Then open Performance Lab and expand a trade.
+
+The review engine will rebuild visual trade replays from the existing protected
+`observer_history.json` and `signal_history.json` records where available.

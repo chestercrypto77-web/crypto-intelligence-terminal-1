@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "12.0.0"
+APP_VERSION = "12.1.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -2632,41 +2632,182 @@ elif selection=="Strategy Lab":
 elif selection=="Performance Lab":
     trade_reviews=read_runtime_json(TRADE_REVIEWS_FILE,{"reviews":[],"summary":{}})
     learning=read_runtime_json(LEARNING_STATE_FILE,{"summary":{},"rule_candidates":[]})
-    reviews=trade_reviews.get("reviews") or []; summary=learning.get("summary") or {}
-    st.markdown('<div class="summary-box"><b>Performance Lab:</b> what the engine learned from real trades. A win is not automatically a good decision and a loss is not automatically a bad decision.</div>',unsafe_allow_html=True)
+    reviews=trade_reviews.get("reviews") or []
+    summary=learning.get("summary") or {}
+
+    st.markdown(
+        '<div class="summary-box"><b>Performance Lab:</b> replay the trade, understand the AI decision, '
+        'see what happened afterwards, and keep the lesson. The technical detail stays behind the scenes.</div>',
+        unsafe_allow_html=True,
+    )
+
     c1,c2,c3,c4,c5=st.columns(5)
-    with c1: metric("Reviewed",str(summary.get("trades_reviewed",len(reviews))),"Cases")
+    with c1: metric("Reviewed",str(summary.get("trades_reviewed",len(reviews))),"Trade cases")
     with c2: metric("Good process",str(summary.get("good_process",0)),"Repeat")
     with c3: metric("Poor process",str(summary.get("poor_process",0)),"Correct")
     with c4: metric("Missed re-entry",str(summary.get("missed_reentries",0)),"Opportunity failures")
     with c5: metric("Lessons testing",str(summary.get("candidate_lessons",0)),"Sample gated")
-    section("Recent lessons")
-    if not reviews: st.caption("No reviewed trades yet.")
-    for r in list(reversed(reviews[-80:])):
-        pnl=safe_float(r.get("realised_pnl")); ret=safe_float(r.get("realised_return"))
-        a=r.get("assessment") or {}; reentry=r.get("reentry") or {}; process=str(a.get("process_quality") or "PENDING")
-        css="profit" if process=="GOOD" else "loss" if process=="POOR" else "watch"
-        st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
-            f'<div><div class="front-trade-title">{esc(r.get("symbol",""))} · {esc(r.get("wallet",""))}</div><div class="front-trade-sub">{esc(r.get("direction",""))} · {esc(r.get("exit_reason",""))}</div></div>'
-            f'<div><div class="front-trade-k">Result</div><div class="front-trade-v">{ret:+.2f}%</div></div>'
-            f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">${pnl:+,.2f}</div></div>'
-            f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{esc(a.get("entry_quality") or "UNKNOWN")}</div></div>'
-            f'<div><div class="front-trade-k">Process</div><div class="front-trade-v">{esc(process)}</div></div>'
-            f'<div><div class="front-trade-k">Re-entry</div><div class="front-trade-v">{esc(reentry.get("status") or "MONITORING")}</div></div></div></div>',unsafe_allow_html=True)
-        with st.expander(f"Open {r.get('symbol','')} lesson"):
-            st.markdown(f'<div class="summary-box"><b>Lesson:</b> {esc(a.get("lesson") or "Still collecting evidence.")}</div>',unsafe_allow_html=True)
-            x,y,z=st.columns(3)
-            with x: metric("Entry quality",str(a.get("entry_quality") or "UNKNOWN"),"At entry")
-            with y: metric("Exit quality",str(a.get("exit_quality") or "PENDING"),"Management")
-            with z: metric("Move after exit",f"{safe_float((r.get('post_exit') or {}).get('directional_move_since_exit_pct')):+.2f}%","Re-entry evidence")
+
+    section("Trade replays")
+    if not reviews:
+        st.caption("No reviewed trades yet.")
+    else:
+        # Most recent cases first; each card remains concise until opened.
+        for r in list(reversed(reviews[-100:])):
+            pnl=safe_float(r.get("realised_pnl"))
+            ret=safe_float(r.get("realised_return"))
+            a=r.get("assessment") or {}
+            reentry=r.get("reentry") or {}
+            process=str(a.get("process_quality") or "PENDING")
+            css="profit" if process=="GOOD" else "loss" if process=="POOR" else "watch"
+
+            st.markdown(
+                f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
+                f'<div><div class="front-trade-title">{esc(r.get("symbol",""))} · {esc(r.get("wallet",""))}</div>'
+                f'<div class="front-trade-sub">{esc(r.get("direction",""))} · {esc(r.get("exit_reason",""))}</div></div>'
+                f'<div><div class="front-trade-k">Result</div><div class="front-trade-v">{ret:+.2f}%</div></div>'
+                f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">${pnl:+,.2f}</div></div>'
+                f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{esc(a.get("entry_quality") or "UNKNOWN")}</div></div>'
+                f'<div><div class="front-trade-k">Process</div><div class="front-trade-v">{esc(process)}</div></div>'
+                f'<div><div class="front-trade-k">Re-entry</div><div class="front-trade-v">{esc(reentry.get("status") or "MONITORING")}</div></div>'
+                f'</div></div>',unsafe_allow_html=True
+            )
+
+            with st.expander(f"Replay {r.get('symbol','')} trade"):
+                decision=r.get("decision_replay") or {}
+                post=r.get("post_exit") or {}
+                replay=r.get("replay") or {}
+                path=pd.DataFrame(replay.get("price_path") or [])
+                events=pd.DataFrame(replay.get("events") or [])
+
+                # Trade story headline metrics.
+                q1,q2,q3,q4=st.columns(4)
+                with q1: metric("Entry",f"{safe_float(r.get('entry_price')):,.6f}",str(r.get("direction") or ""))
+                with q2: metric("Exit",f"{safe_float(r.get('exit_price')):,.6f}",f"{ret:+.2f}%")
+                with q3: metric("Best after exit",f"{safe_float(post.get('best_directional_move_pct')):+.2f}%","Same trade direction")
+                with q4:
+                    missed=safe_float(post.get("missed_move_value_on_original_capital"))
+                    metric("Move value",f"${missed:,.0f}","Same original capital" if missed else "No positive post-exit move")
+
+                # Visual replay. Vega-Lite is built into Streamlit; no new dependency.
+                if not path.empty and {"time","price"}.issubset(path.columns):
+                    path["time"]=pd.to_datetime(path["time"],errors="coerce",utc=True)
+                    path=path.dropna(subset=["time","price"]).sort_values("time")
+                    if not path.empty:
+                        chart_rows=[]
+                        for _,row in path.iterrows():
+                            chart_rows.append({
+                                "time":row["time"].isoformat(),
+                                "price":safe_float(row["price"]),
+                                "kind":"PRICE",
+                                "label":str(row.get("state") or ""),
+                            })
+                        for _,ev in events.iterrows() if not events.empty else []:
+                            chart_rows.append({
+                                "time":str(ev.get("time") or ""),
+                                "price":safe_float(ev.get("price")),
+                                "kind":str(ev.get("event") or "EVENT"),
+                                "label":str(ev.get("label") or ""),
+                            })
+                        chart_df=pd.DataFrame(chart_rows)
+                        st.vega_lite_chart(
+                            chart_df,
+                            {
+                                "height":320,
+                                "layer":[
+                                    {
+                                        "transform":[{"filter":"datum.kind === 'PRICE'"}],
+                                        "mark":{"type":"line","strokeWidth":2},
+                                        "encoding":{
+                                            "x":{"field":"time","type":"temporal","title":None},
+                                            "y":{"field":"price","type":"quantitative","title":"Price","scale":{"zero":False}},
+                                            "tooltip":[
+                                                {"field":"time","type":"temporal","title":"Time"},
+                                                {"field":"price","type":"quantitative","title":"Price","format":".6f"}
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "transform":[{"filter":"datum.kind !== 'PRICE'"}],
+                                        "mark":{"type":"point","filled":True,"size":130},
+                                        "encoding":{
+                                            "x":{"field":"time","type":"temporal"},
+                                            "y":{"field":"price","type":"quantitative"},
+                                            "color":{
+                                                "field":"kind","type":"nominal",
+                                                "scale":{"domain":["ENTRY","EXIT","REENTRY"],"range":["#46d37c","#ff6868","#f0b84b"]},
+                                                "legend":{"title":None}
+                                            },
+                                            "tooltip":[
+                                                {"field":"kind","type":"nominal","title":"Event"},
+                                                {"field":"label","type":"nominal","title":"Meaning"},
+                                                {"field":"time","type":"temporal","title":"Time"},
+                                                {"field":"price","type":"quantitative","title":"Price","format":".6f"}
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            use_container_width=True,
+                        )
+                        st.caption("Green = entry · Red = exit · Yellow = first fresh same-direction re-entry evidence.")
+                else:
+                    st.caption("Price replay history was not recorded for this legacy trade. New reviews will build the timeline automatically.")
+
+                # Four plain-English parts of the case file.
+                left,right=st.columns(2)
+                with left:
+                    st.markdown("**Why the AI entered**")
+                    reasons=decision.get("why_entered") or ["Entry evidence was not captured for this legacy trade."]
+                    for reason in reasons[:5]:
+                        st.write(f"• {reason}")
+                    st.markdown("**Why the AI exited**")
+                    for reason in (decision.get("why_exited") or [r.get("exit_reason") or "Unknown"])[:3]:
+                        st.write(f"• {reason}")
+                with right:
+                    st.markdown("**What happened afterwards**")
+                    st.write(decision.get("what_happened_next") or "Still collecting post-exit evidence.")
+                    st.markdown("**What we learned**")
+                    st.markdown(
+                        f'<div class="summary-box">{esc(a.get("lesson") or "Still collecting evidence.")}</div>',
+                        unsafe_allow_html=True,
+                    )
+
+                # Compact decision timeline: only changed states are useful to a human.
+                decision_path=replay.get("decision_path") or []
+                changed=[]
+                last=None
+                for d in decision_path:
+                    state=str(d.get("state") or "")
+                    if state and state!=last:
+                        changed.append({
+                            "Time":str(d.get("time") or "")[:16].replace("T"," "),
+                            "AI state":state,
+                            "Price":safe_float(d.get("price")),
+                        })
+                        last=state
+                if changed:
+                    st.markdown("**AI decision path**")
+                    st.dataframe(pd.DataFrame(changed[-12:]),use_container_width=True,hide_index=True)
+
     section("Learning under test")
     candidates=learning.get("rule_candidates") or []
     if candidates:
-        st.dataframe(pd.DataFrame([{"Evidence":x.get("key"),"Samples":x.get("samples"),"Expectancy %":x.get("expectancy_pct"),
-            "Win rate %":x.get("win_rate"),"Direction":x.get("direction"),"Status":x.get("status")} for x in candidates[:20]]),
-            use_container_width=True,hide_index=True)
-    else: st.caption("No lesson has enough repeated evidence yet. The engine is collecting examples instead of forcing conclusions.")
-    st.caption("Learned rules remain advisory until repeated evidence is strong enough. V12 never rewrites trading rules automatically.")
+        st.dataframe(
+            pd.DataFrame([{
+                "Evidence":x.get("key"),
+                "Samples":x.get("samples"),
+                "Expectancy %":x.get("expectancy_pct"),
+                "Win rate %":x.get("win_rate"),
+                "Direction":x.get("direction"),
+                "Status":x.get("status"),
+            } for x in candidates[:20]]),
+            use_container_width=True,hide_index=True,
+        )
+    else:
+        st.caption("No lesson has enough repeated evidence yet. The engine is collecting examples instead of forcing conclusions.")
+
+    st.caption("Trade replay is evidence, not hindsight permission: learned rules remain sample-gated and never rewrite trading logic automatically.")
 
 elif selection=="Settings":
     engine_health=read_runtime_json(ENGINE_HEALTH_FILE,{})
