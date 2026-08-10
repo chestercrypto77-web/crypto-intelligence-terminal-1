@@ -1,7 +1,13 @@
 {
-  "updated_at": "2026-08-10T05:11:49.354484+00:00",
+  "updated_at": "2026-08-10T05:13:35.282588+00:00",
   "baseline_id": "V10_20260810T051149Z",
-  "assumptions": {},
+  "assumptions": {
+    "position_size_pct": 10.0,
+    "max_positions": 8,
+    "minimum_cash_reserve_pct": 20.0,
+    "fee_pct_per_side": 0.1,
+    "slippage_pct_per_side": 0.05
+  },
   "strategies": {
     "conviction_v1": {
       "strategy_id": "conviction_v1",
@@ -10,20 +16,568 @@
       "version": "1.0.0",
       "status": "COLLECTING V10 EVIDENCE",
       "starting_capital": 100000.0,
-      "cash": 100000.0,
-      "equity": 100000.0,
+      "cash": 20000.0,
+      "equity": 99760.0,
       "previous_equity": 100000.0,
-      "equity_change_this_run": 0.0,
+      "equity_change_this_run": -240.0,
       "realised_pnl": 0.0,
-      "unrealised_pnl": 0.0,
-      "open_positions": [],
+      "unrealised_pnl": -240.00000000000003,
+      "open_positions": [
+        {
+          "position_id": "conviction_v1_OM_STRONG_SELL_20260810_0400000000",
+          "strategy_id": "conviction_v1",
+          "symbol": "OM",
+          "name": "MANTRA",
+          "narrative": "RWA / Tokenisation",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.007561190599575639,
+          "market_entry_price": 0.007564973086118698,
+          "current_price": 0.007564973086118698,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 1321220.496750958,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "conviction_v1_UOS_BUY_20260810_0400000000",
+          "strategy_id": "conviction_v1",
+          "symbol": "UOS",
+          "name": "Ultra",
+          "narrative": "Gaming",
+          "signal": "BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.002902219387236982,
+          "market_entry_price": 0.0029007690027356148,
+          "current_price": 0.0029007690027356148,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 3442193.2552489913,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "conviction_v1_VRA_STRONG_BUY_20260810_0400000000",
+          "strategy_id": "conviction_v1",
+          "symbol": "VRA",
+          "name": "Verasity",
+          "narrative": "Gaming / Advertising",
+          "signal": "STRONG BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 1.0055912328880367e-05,
+          "market_entry_price": 1.0050886885437649e-05,
+          "current_price": 1.0050886885437649e-05,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 993445415.3213859,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "conviction_v1_AIOZ_STRONG_BUY_20260810_0400000000",
+          "strategy_id": "conviction_v1",
+          "symbol": "AIOZ",
+          "name": "AIOZ Network",
+          "narrative": "AI / DePIN",
+          "signal": "STRONG BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.04912455041147768,
+          "market_entry_price": 0.04910000041127205,
+          "current_price": 0.04910000041127205,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 203360.63976813294,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "conviction_v1_COTI_SELL_20260810_0400000000",
+          "strategy_id": "conviction_v1",
+          "symbol": "COTI",
+          "name": "COTI",
+          "narrative": "Privacy / Payments",
+          "signal": "SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.011394300192128868,
+          "market_entry_price": 0.01140000019222498,
+          "current_price": 0.01140000019222498,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 876754.1517732742,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "conviction_v1_AERO_STRONG_SELL_20260810_0400000000",
+          "strategy_id": "conviction_v1",
+          "symbol": "AERO",
+          "name": "Aerodrome Finance",
+          "narrative": "DeFi / DEX",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.4189704157859087,
+          "market_entry_price": 0.4191800057888031,
+          "current_price": 0.4191800057888031,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 23844.165658476537,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "conviction_v1_RUNE_STRONG_SELL_20260810_0400000000",
+          "strategy_id": "conviction_v1",
+          "symbol": "RUNE",
+          "name": "THORChain",
+          "narrative": "DeFi / Interoperability",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.4318835607618094,
+          "market_entry_price": 0.4320996105670929,
+          "current_price": 0.4320996105670929,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 23131.23468366892,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "conviction_v1_PYR_STRONG_SELL_20260810_0400000000",
+          "strategy_id": "conviction_v1",
+          "symbol": "PYR",
+          "name": "Vulcan Forged",
+          "narrative": "Gaming",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.06296850101277232,
+          "market_entry_price": 0.06300000101327896,
+          "current_price": 0.06300000101327896,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 158650.75139669693,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        }
+      ],
       "closed_positions": [],
-      "rejected_opportunities": [],
-      "equity_history": [],
-      "activity_journal": [],
-      "heartbeat": {},
-      "activity": {},
-      "metrics": {}
+      "rejected_opportunities": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.280721+00:00",
+          "symbol": "PAAL",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.005327209830284119
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280728+00:00",
+          "symbol": "S",
+          "signal": "BUY",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.02439
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280735+00:00",
+          "symbol": "GRT",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.01454
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280740+00:00",
+          "symbol": "XTZ",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.20100000500679016
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280746+00:00",
+          "symbol": "BTC",
+          "signal": "BUY",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 64937.76953125
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280754+00:00",
+          "symbol": "WIN",
+          "signal": "BUY",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 3.125179136986844e-05
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280759+00:00",
+          "symbol": "ZIL",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.0023973656352609396
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280764+00:00",
+          "symbol": "DOGE",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.06970000267028809
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280770+00:00",
+          "symbol": "IMX",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.11089999973773956
+        }
+      ],
+      "equity_history": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.280784+00:00",
+          "equity": 99760.0,
+          "previous_equity": 100000.0,
+          "equity_change": -240.0,
+          "cash": 20000.0,
+          "realised_pnl": 0.0,
+          "unrealised_pnl": -240.00000000000003,
+          "open_positions": 8
+        }
+      ],
+      "activity_journal": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.280473+00:00",
+          "event": "FILTERED",
+          "symbol": "SOL",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280495+00:00",
+          "event": "FILTERED",
+          "symbol": "POL",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280502+00:00",
+          "event": "FILTERED",
+          "symbol": "ONDO",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280526+00:00",
+          "event": "FILTERED",
+          "symbol": "SUI",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280532+00:00",
+          "event": "FILTERED",
+          "symbol": "NEAR",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280536+00:00",
+          "event": "FILTERED",
+          "symbol": "SUPER",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280544+00:00",
+          "event": "FILTERED",
+          "symbol": "FIL",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280550+00:00",
+          "event": "FILTERED",
+          "symbol": "SEI",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280555+00:00",
+          "event": "FILTERED",
+          "symbol": "SAND",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280559+00:00",
+          "event": "FILTERED",
+          "symbol": "AR",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280563+00:00",
+          "event": "FILTERED",
+          "symbol": "BEAM",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280566+00:00",
+          "event": "FILTERED",
+          "symbol": "SHIB",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280582+00:00",
+          "event": "FILTERED",
+          "symbol": "VET",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280586+00:00",
+          "event": "FILTERED",
+          "symbol": "SC",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280590+00:00",
+          "event": "FILTERED",
+          "symbol": "BTT",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280593+00:00",
+          "event": "FILTERED",
+          "symbol": "TLM",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280599+00:00",
+          "event": "FILTERED",
+          "symbol": "LUNC",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280603+00:00",
+          "event": "FILTERED",
+          "symbol": "GALA",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280607+00:00",
+          "event": "FILTERED",
+          "symbol": "UFO",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280611+00:00",
+          "event": "FILTERED",
+          "symbol": "MEW",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280619+00:00",
+          "event": "FILTERED",
+          "symbol": "VTHO",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280655+00:00",
+          "event": "OPENED",
+          "symbol": "OM",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.007561190599575639,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280668+00:00",
+          "event": "OPENED",
+          "symbol": "UOS",
+          "detail": "BUY",
+          "direction": "LONG",
+          "entry_price": 0.002902219387236982,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280679+00:00",
+          "event": "OPENED",
+          "symbol": "VRA",
+          "detail": "STRONG BUY",
+          "direction": "LONG",
+          "entry_price": 1.0055912328880367e-05,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280688+00:00",
+          "event": "OPENED",
+          "symbol": "AIOZ",
+          "detail": "STRONG BUY",
+          "direction": "LONG",
+          "entry_price": 0.04912455041147768,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280696+00:00",
+          "event": "OPENED",
+          "symbol": "COTI",
+          "detail": "SELL",
+          "direction": "SHORT",
+          "entry_price": 0.011394300192128868,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280703+00:00",
+          "event": "OPENED",
+          "symbol": "AERO",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.4189704157859087,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280711+00:00",
+          "event": "OPENED",
+          "symbol": "RUNE",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.4318835607618094,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280718+00:00",
+          "event": "OPENED",
+          "symbol": "PYR",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.06296850101277232,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280725+00:00",
+          "event": "REJECTED",
+          "symbol": "PAAL",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280732+00:00",
+          "event": "REJECTED",
+          "symbol": "S",
+          "detail": "Wallet capacity",
+          "signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280737+00:00",
+          "event": "REJECTED",
+          "symbol": "GRT",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280743+00:00",
+          "event": "REJECTED",
+          "symbol": "XTZ",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280751+00:00",
+          "event": "REJECTED",
+          "symbol": "BTC",
+          "detail": "Wallet capacity",
+          "signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280756+00:00",
+          "event": "REJECTED",
+          "symbol": "WIN",
+          "detail": "Wallet capacity",
+          "signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280761+00:00",
+          "event": "REJECTED",
+          "symbol": "ZIL",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280767+00:00",
+          "event": "REJECTED",
+          "symbol": "DOGE",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280773+00:00",
+          "event": "REJECTED",
+          "symbol": "IMX",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        }
+      ],
+      "heartbeat": {
+        "last_run": "2026-08-10T05:13:35.280784+00:00",
+        "market_snapshot": "2026-08-10T05:13:14.830365+00:00",
+        "wallet_updated": true,
+        "signals_checked": 44,
+        "positions_evaluated": 0,
+        "database_saved": true
+      },
+      "activity": {
+        "retained": 0,
+        "closed": 0,
+        "opened": 8,
+        "rejected_capacity": 9,
+        "rejected_cash_reserve": 0,
+        "rejected_existing": 0,
+        "filtered_by_strategy": 21,
+        "signals_checked": 44,
+        "positions_evaluated": 0
+      },
+      "metrics": {
+        "return_pct": -0.23999999999999577,
+        "closed_trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0,
+        "average_return": 0.0,
+        "average_winner": 0.0,
+        "average_loser": 0.0,
+        "profit_factor": 0.0,
+        "max_drawdown": 0.0
+      },
+      "updated_at": "2026-08-10T05:13:35.280784+00:00"
     },
     "closed_candle_challenger": {
       "strategy_id": "closed_candle_challenger",
@@ -37,15 +591,322 @@
       "previous_equity": 100000.0,
       "equity_change_this_run": 0.0,
       "realised_pnl": 0.0,
-      "unrealised_pnl": 0.0,
+      "unrealised_pnl": 0,
       "open_positions": [],
       "closed_positions": [],
       "rejected_opportunities": [],
-      "equity_history": [],
-      "activity_journal": [],
-      "heartbeat": {},
-      "activity": {},
-      "metrics": {}
+      "equity_history": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.282079+00:00",
+          "equity": 100000.0,
+          "previous_equity": 100000.0,
+          "equity_change": 0.0,
+          "cash": 100000.0,
+          "realised_pnl": 0.0,
+          "unrealised_pnl": 0,
+          "open_positions": 0
+        }
+      ],
+      "activity_journal": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.280943+00:00",
+          "event": "FILTERED",
+          "symbol": "BTC",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.280984+00:00",
+          "event": "FILTERED",
+          "symbol": "SOL",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281036+00:00",
+          "event": "FILTERED",
+          "symbol": "COTI",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281064+00:00",
+          "event": "FILTERED",
+          "symbol": "POL",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281091+00:00",
+          "event": "FILTERED",
+          "symbol": "ZIL",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281116+00:00",
+          "event": "FILTERED",
+          "symbol": "ONDO",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281160+00:00",
+          "event": "FILTERED",
+          "symbol": "SUI",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281186+00:00",
+          "event": "FILTERED",
+          "symbol": "NEAR",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281211+00:00",
+          "event": "FILTERED",
+          "symbol": "SUPER",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281238+00:00",
+          "event": "FILTERED",
+          "symbol": "S",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281264+00:00",
+          "event": "FILTERED",
+          "symbol": "AIOZ",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281289+00:00",
+          "event": "FILTERED",
+          "symbol": "FIL",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281313+00:00",
+          "event": "FILTERED",
+          "symbol": "OM",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281357+00:00",
+          "event": "FILTERED",
+          "symbol": "SEI",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281382+00:00",
+          "event": "FILTERED",
+          "symbol": "RUNE",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281406+00:00",
+          "event": "FILTERED",
+          "symbol": "SAND",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281430+00:00",
+          "event": "FILTERED",
+          "symbol": "WIN",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281459+00:00",
+          "event": "FILTERED",
+          "symbol": "AR",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281486+00:00",
+          "event": "FILTERED",
+          "symbol": "BEAM",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281540+00:00",
+          "event": "FILTERED",
+          "symbol": "SHIB",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281594+00:00",
+          "event": "FILTERED",
+          "symbol": "IMX",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281620+00:00",
+          "event": "FILTERED",
+          "symbol": "VET",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281646+00:00",
+          "event": "FILTERED",
+          "symbol": "SC",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281671+00:00",
+          "event": "FILTERED",
+          "symbol": "BTT",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281695+00:00",
+          "event": "FILTERED",
+          "symbol": "TLM",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281719+00:00",
+          "event": "FILTERED",
+          "symbol": "PYR",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281743+00:00",
+          "event": "FILTERED",
+          "symbol": "PAAL",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281786+00:00",
+          "event": "FILTERED",
+          "symbol": "AERO",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281812+00:00",
+          "event": "FILTERED",
+          "symbol": "LUNC",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281836+00:00",
+          "event": "FILTERED",
+          "symbol": "GALA",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281867+00:00",
+          "event": "FILTERED",
+          "symbol": "UOS",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281897+00:00",
+          "event": "FILTERED",
+          "symbol": "UFO",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281946+00:00",
+          "event": "FILTERED",
+          "symbol": "MEW",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281971+00:00",
+          "event": "FILTERED",
+          "symbol": "DOGE",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.281995+00:00",
+          "event": "FILTERED",
+          "symbol": "GRT",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282020+00:00",
+          "event": "FILTERED",
+          "symbol": "VRA",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282044+00:00",
+          "event": "FILTERED",
+          "symbol": "VTHO",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282069+00:00",
+          "event": "FILTERED",
+          "symbol": "XTZ",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        }
+      ],
+      "heartbeat": {
+        "last_run": "2026-08-10T05:13:35.282079+00:00",
+        "market_snapshot": "2026-08-10T05:13:14.830365+00:00",
+        "wallet_updated": true,
+        "signals_checked": 44,
+        "positions_evaluated": 0,
+        "database_saved": true
+      },
+      "activity": {
+        "retained": 0,
+        "closed": 0,
+        "opened": 0,
+        "rejected_capacity": 0,
+        "rejected_cash_reserve": 0,
+        "rejected_existing": 0,
+        "filtered_by_strategy": 38,
+        "signals_checked": 44,
+        "positions_evaluated": 0
+      },
+      "metrics": {
+        "return_pct": 0.0,
+        "closed_trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0,
+        "average_return": 0.0,
+        "average_winner": 0.0,
+        "average_loser": 0.0,
+        "profit_factor": 0.0,
+        "max_drawdown": 0.0
+      },
+      "updated_at": "2026-08-10T05:13:35.282079+00:00"
     },
     "rvol_150_challenger": {
       "strategy_id": "rvol_150_challenger",
@@ -54,20 +915,540 @@
       "version": "0.1.0",
       "status": "COLLECTING V10 EVIDENCE",
       "starting_capital": 100000.0,
-      "cash": 100000.0,
-      "equity": 100000.0,
+      "cash": 20000.0,
+      "equity": 99760.0,
       "previous_equity": 100000.0,
-      "equity_change_this_run": 0.0,
+      "equity_change_this_run": -240.0,
       "realised_pnl": 0.0,
-      "unrealised_pnl": 0.0,
-      "open_positions": [],
+      "unrealised_pnl": -240.00000000000003,
+      "open_positions": [
+        {
+          "position_id": "rvol_150_challenger_OM_STRONG_SELL_20260810_0400000000",
+          "strategy_id": "rvol_150_challenger",
+          "symbol": "OM",
+          "name": "MANTRA",
+          "narrative": "RWA / Tokenisation",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.007561190599575639,
+          "market_entry_price": 0.007564973086118698,
+          "current_price": 0.007564973086118698,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 1321220.496750958,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "rvol_150_challenger_VRA_STRONG_BUY_20260810_0400000000",
+          "strategy_id": "rvol_150_challenger",
+          "symbol": "VRA",
+          "name": "Verasity",
+          "narrative": "Gaming / Advertising",
+          "signal": "STRONG BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 1.0055912328880367e-05,
+          "market_entry_price": 1.0050886885437649e-05,
+          "current_price": 1.0050886885437649e-05,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 993445415.3213859,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "rvol_150_challenger_AIOZ_STRONG_BUY_20260810_0400000000",
+          "strategy_id": "rvol_150_challenger",
+          "symbol": "AIOZ",
+          "name": "AIOZ Network",
+          "narrative": "AI / DePIN",
+          "signal": "STRONG BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.04912455041147768,
+          "market_entry_price": 0.04910000041127205,
+          "current_price": 0.04910000041127205,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 203360.63976813294,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "rvol_150_challenger_COTI_SELL_20260810_0400000000",
+          "strategy_id": "rvol_150_challenger",
+          "symbol": "COTI",
+          "name": "COTI",
+          "narrative": "Privacy / Payments",
+          "signal": "SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.011394300192128868,
+          "market_entry_price": 0.01140000019222498,
+          "current_price": 0.01140000019222498,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 876754.1517732742,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "rvol_150_challenger_AERO_STRONG_SELL_20260810_0400000000",
+          "strategy_id": "rvol_150_challenger",
+          "symbol": "AERO",
+          "name": "Aerodrome Finance",
+          "narrative": "DeFi / DEX",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.4189704157859087,
+          "market_entry_price": 0.4191800057888031,
+          "current_price": 0.4191800057888031,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 23844.165658476537,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "rvol_150_challenger_RUNE_STRONG_SELL_20260810_0400000000",
+          "strategy_id": "rvol_150_challenger",
+          "symbol": "RUNE",
+          "name": "THORChain",
+          "narrative": "DeFi / Interoperability",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.4318835607618094,
+          "market_entry_price": 0.4320996105670929,
+          "current_price": 0.4320996105670929,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 23131.23468366892,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "rvol_150_challenger_PYR_STRONG_SELL_20260810_0400000000",
+          "strategy_id": "rvol_150_challenger",
+          "symbol": "PYR",
+          "name": "Vulcan Forged",
+          "narrative": "Gaming",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.06296850101277232,
+          "market_entry_price": 0.06300000101327896,
+          "current_price": 0.06300000101327896,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 158650.75139669693,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "rvol_150_challenger_PAAL_SELL_20260810_0400000000",
+          "strategy_id": "rvol_150_challenger",
+          "symbol": "PAAL",
+          "name": "PAAL AI",
+          "narrative": "AI",
+          "signal": "SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.005324546225368977,
+          "market_entry_price": 0.005327209830284119,
+          "current_price": 0.005327209830284119,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 1876216.2214692237,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        }
+      ],
       "closed_positions": [],
-      "rejected_opportunities": [],
-      "equity_history": [],
-      "activity_journal": [],
-      "heartbeat": {},
-      "activity": {},
-      "metrics": {}
+      "rejected_opportunities": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.282300+00:00",
+          "symbol": "GRT",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.01454
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282306+00:00",
+          "symbol": "XTZ",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.20100000500679016
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282312+00:00",
+          "symbol": "ZIL",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.0023973656352609396
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282319+00:00",
+          "symbol": "DOGE",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.06970000267028809
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282326+00:00",
+          "symbol": "IMX",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.11089999973773956
+        }
+      ],
+      "equity_history": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.282337+00:00",
+          "equity": 99760.0,
+          "previous_equity": 100000.0,
+          "equity_change": -240.0,
+          "cash": 20000.0,
+          "realised_pnl": 0.0,
+          "unrealised_pnl": -240.00000000000003,
+          "open_positions": 8
+        }
+      ],
+      "activity_journal": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.282107+00:00",
+          "event": "FILTERED",
+          "symbol": "BTC",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282113+00:00",
+          "event": "FILTERED",
+          "symbol": "SOL",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282120+00:00",
+          "event": "FILTERED",
+          "symbol": "POL",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282125+00:00",
+          "event": "FILTERED",
+          "symbol": "ONDO",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282130+00:00",
+          "event": "FILTERED",
+          "symbol": "SUI",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282134+00:00",
+          "event": "FILTERED",
+          "symbol": "NEAR",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282141+00:00",
+          "event": "FILTERED",
+          "symbol": "SUPER",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282145+00:00",
+          "event": "FILTERED",
+          "symbol": "S",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282150+00:00",
+          "event": "FILTERED",
+          "symbol": "FIL",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282156+00:00",
+          "event": "FILTERED",
+          "symbol": "SEI",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282161+00:00",
+          "event": "FILTERED",
+          "symbol": "SAND",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282165+00:00",
+          "event": "FILTERED",
+          "symbol": "WIN",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282169+00:00",
+          "event": "FILTERED",
+          "symbol": "AR",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282172+00:00",
+          "event": "FILTERED",
+          "symbol": "BEAM",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282176+00:00",
+          "event": "FILTERED",
+          "symbol": "SHIB",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282182+00:00",
+          "event": "FILTERED",
+          "symbol": "VET",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282185+00:00",
+          "event": "FILTERED",
+          "symbol": "SC",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282189+00:00",
+          "event": "FILTERED",
+          "symbol": "BTT",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282193+00:00",
+          "event": "FILTERED",
+          "symbol": "TLM",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282199+00:00",
+          "event": "FILTERED",
+          "symbol": "LUNC",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282203+00:00",
+          "event": "FILTERED",
+          "symbol": "GALA",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282207+00:00",
+          "event": "FILTERED",
+          "symbol": "UOS",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282210+00:00",
+          "event": "FILTERED",
+          "symbol": "UFO",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282217+00:00",
+          "event": "FILTERED",
+          "symbol": "MEW",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282223+00:00",
+          "event": "FILTERED",
+          "symbol": "VTHO",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282243+00:00",
+          "event": "OPENED",
+          "symbol": "OM",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.007561190599575639,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282252+00:00",
+          "event": "OPENED",
+          "symbol": "VRA",
+          "detail": "STRONG BUY",
+          "direction": "LONG",
+          "entry_price": 1.0055912328880367e-05,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282259+00:00",
+          "event": "OPENED",
+          "symbol": "AIOZ",
+          "detail": "STRONG BUY",
+          "direction": "LONG",
+          "entry_price": 0.04912455041147768,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282266+00:00",
+          "event": "OPENED",
+          "symbol": "COTI",
+          "detail": "SELL",
+          "direction": "SHORT",
+          "entry_price": 0.011394300192128868,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282278+00:00",
+          "event": "OPENED",
+          "symbol": "AERO",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.4189704157859087,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282284+00:00",
+          "event": "OPENED",
+          "symbol": "RUNE",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.4318835607618094,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282291+00:00",
+          "event": "OPENED",
+          "symbol": "PYR",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.06296850101277232,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282297+00:00",
+          "event": "OPENED",
+          "symbol": "PAAL",
+          "detail": "SELL",
+          "direction": "SHORT",
+          "entry_price": 0.005324546225368977,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282303+00:00",
+          "event": "REJECTED",
+          "symbol": "GRT",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282309+00:00",
+          "event": "REJECTED",
+          "symbol": "XTZ",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282316+00:00",
+          "event": "REJECTED",
+          "symbol": "ZIL",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282322+00:00",
+          "event": "REJECTED",
+          "symbol": "DOGE",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282329+00:00",
+          "event": "REJECTED",
+          "symbol": "IMX",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        }
+      ],
+      "heartbeat": {
+        "last_run": "2026-08-10T05:13:35.282337+00:00",
+        "market_snapshot": "2026-08-10T05:13:14.830365+00:00",
+        "wallet_updated": true,
+        "signals_checked": 44,
+        "positions_evaluated": 0,
+        "database_saved": true
+      },
+      "activity": {
+        "retained": 0,
+        "closed": 0,
+        "opened": 8,
+        "rejected_capacity": 5,
+        "rejected_cash_reserve": 0,
+        "rejected_existing": 0,
+        "filtered_by_strategy": 25,
+        "signals_checked": 44,
+        "positions_evaluated": 0
+      },
+      "metrics": {
+        "return_pct": -0.23999999999999577,
+        "closed_trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0,
+        "average_return": 0.0,
+        "average_winner": 0.0,
+        "average_loser": 0.0,
+        "profit_factor": 0.0,
+        "max_drawdown": 0.0
+      },
+      "updated_at": "2026-08-10T05:13:35.282337+00:00"
     },
     "btc_confirmed_challenger": {
       "strategy_id": "btc_confirmed_challenger",
@@ -76,20 +1457,468 @@
       "version": "0.1.0",
       "status": "COLLECTING V10 EVIDENCE",
       "starting_capital": 100000.0,
-      "cash": 100000.0,
-      "equity": 100000.0,
+      "cash": 40000.0,
+      "equity": 99820.0,
       "previous_equity": 100000.0,
-      "equity_change_this_run": 0.0,
+      "equity_change_this_run": -180.0,
       "realised_pnl": 0.0,
-      "unrealised_pnl": 0.0,
-      "open_positions": [],
+      "unrealised_pnl": -180.00000000000003,
+      "open_positions": [
+        {
+          "position_id": "btc_confirmed_challenger_UOS_BUY_20260810_0400000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "UOS",
+          "name": "Ultra",
+          "narrative": "Gaming",
+          "signal": "BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.002902219387236982,
+          "market_entry_price": 0.0029007690027356148,
+          "current_price": 0.0029007690027356148,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 3442193.2552489913,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "btc_confirmed_challenger_VRA_STRONG_BUY_20260810_0400000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "VRA",
+          "name": "Verasity",
+          "narrative": "Gaming / Advertising",
+          "signal": "STRONG BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 1.0055912328880367e-05,
+          "market_entry_price": 1.0050886885437649e-05,
+          "current_price": 1.0050886885437649e-05,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 993445415.3213859,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "btc_confirmed_challenger_AIOZ_STRONG_BUY_20260810_0400000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "AIOZ",
+          "name": "AIOZ Network",
+          "narrative": "AI / DePIN",
+          "signal": "STRONG BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.04912455041147768,
+          "market_entry_price": 0.04910000041127205,
+          "current_price": 0.04910000041127205,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 203360.63976813294,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "btc_confirmed_challenger_S_BUY_20260810_0400000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "S",
+          "name": "Sonic",
+          "narrative": "Layer 1 / DeFi",
+          "signal": "BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 0.024402194999999998,
+          "market_entry_price": 0.02439,
+          "current_price": 0.02439,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 409389.40124033927,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "btc_confirmed_challenger_BTC_BUY_20260810_0400000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "BTC",
+          "name": "Bitcoin",
+          "narrative": "Bitcoin",
+          "signal": "BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 64970.23841601562,
+          "market_entry_price": 64937.76953125,
+          "current_price": 64937.76953125,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 0.1537627111052342,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "btc_confirmed_challenger_WIN_BUY_20260810_0400000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "WIN",
+          "name": "WINkLink",
+          "narrative": "Oracle / Gaming",
+          "signal": "BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:14.830365+00:00",
+          "entry_price": 3.126741726555337e-05,
+          "market_entry_price": 3.125179136986844e-05,
+          "current_price": 3.125179136986844e-05,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 319501924.8041879,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        }
+      ],
       "closed_positions": [],
       "rejected_opportunities": [],
-      "equity_history": [],
-      "activity_journal": [],
-      "heartbeat": {},
-      "activity": {},
-      "metrics": {}
+      "equity_history": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.282579+00:00",
+          "equity": 99820.0,
+          "previous_equity": 100000.0,
+          "equity_change": -180.0,
+          "cash": 40000.0,
+          "realised_pnl": 0.0,
+          "unrealised_pnl": -180.00000000000003,
+          "open_positions": 6
+        }
+      ],
+      "activity_journal": [
+        {
+          "recorded_at": "2026-08-10T05:13:35.282362+00:00",
+          "event": "FILTERED",
+          "symbol": "SOL",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282368+00:00",
+          "event": "FILTERED",
+          "symbol": "COTI",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282372+00:00",
+          "event": "FILTERED",
+          "symbol": "POL",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282376+00:00",
+          "event": "FILTERED",
+          "symbol": "ZIL",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282380+00:00",
+          "event": "FILTERED",
+          "symbol": "ONDO",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282384+00:00",
+          "event": "FILTERED",
+          "symbol": "SUI",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282388+00:00",
+          "event": "FILTERED",
+          "symbol": "NEAR",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282392+00:00",
+          "event": "FILTERED",
+          "symbol": "SUPER",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282397+00:00",
+          "event": "FILTERED",
+          "symbol": "FIL",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282401+00:00",
+          "event": "FILTERED",
+          "symbol": "OM",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282406+00:00",
+          "event": "FILTERED",
+          "symbol": "SEI",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282409+00:00",
+          "event": "FILTERED",
+          "symbol": "RUNE",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282413+00:00",
+          "event": "FILTERED",
+          "symbol": "SAND",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282417+00:00",
+          "event": "FILTERED",
+          "symbol": "AR",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282421+00:00",
+          "event": "FILTERED",
+          "symbol": "BEAM",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282425+00:00",
+          "event": "FILTERED",
+          "symbol": "SHIB",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282429+00:00",
+          "event": "FILTERED",
+          "symbol": "IMX",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282433+00:00",
+          "event": "FILTERED",
+          "symbol": "VET",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282437+00:00",
+          "event": "FILTERED",
+          "symbol": "SC",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282441+00:00",
+          "event": "FILTERED",
+          "symbol": "BTT",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282447+00:00",
+          "event": "FILTERED",
+          "symbol": "TLM",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282451+00:00",
+          "event": "FILTERED",
+          "symbol": "PYR",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282455+00:00",
+          "event": "FILTERED",
+          "symbol": "PAAL",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282459+00:00",
+          "event": "FILTERED",
+          "symbol": "AERO",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282463+00:00",
+          "event": "FILTERED",
+          "symbol": "LUNC",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282466+00:00",
+          "event": "FILTERED",
+          "symbol": "GALA",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282471+00:00",
+          "event": "FILTERED",
+          "symbol": "UFO",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282476+00:00",
+          "event": "FILTERED",
+          "symbol": "MEW",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282481+00:00",
+          "event": "FILTERED",
+          "symbol": "DOGE",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282485+00:00",
+          "event": "FILTERED",
+          "symbol": "GRT",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282492+00:00",
+          "event": "FILTERED",
+          "symbol": "VTHO",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282496+00:00",
+          "event": "FILTERED",
+          "symbol": "XTZ",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282532+00:00",
+          "event": "OPENED",
+          "symbol": "UOS",
+          "detail": "BUY",
+          "direction": "LONG",
+          "entry_price": 0.002902219387236982,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282541+00:00",
+          "event": "OPENED",
+          "symbol": "VRA",
+          "detail": "STRONG BUY",
+          "direction": "LONG",
+          "entry_price": 1.0055912328880367e-05,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282548+00:00",
+          "event": "OPENED",
+          "symbol": "AIOZ",
+          "detail": "STRONG BUY",
+          "direction": "LONG",
+          "entry_price": 0.04912455041147768,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282557+00:00",
+          "event": "OPENED",
+          "symbol": "S",
+          "detail": "BUY",
+          "direction": "LONG",
+          "entry_price": 0.024402194999999998,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282563+00:00",
+          "event": "OPENED",
+          "symbol": "BTC",
+          "detail": "BUY",
+          "direction": "LONG",
+          "entry_price": 64970.23841601562,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-10T05:13:35.282571+00:00",
+          "event": "OPENED",
+          "symbol": "WIN",
+          "detail": "BUY",
+          "direction": "LONG",
+          "entry_price": 3.126741726555337e-05,
+          "allocated_cash": 10000.0
+        }
+      ],
+      "heartbeat": {
+        "last_run": "2026-08-10T05:13:35.282579+00:00",
+        "market_snapshot": "2026-08-10T05:13:14.830365+00:00",
+        "wallet_updated": true,
+        "signals_checked": 44,
+        "positions_evaluated": 0,
+        "database_saved": true
+      },
+      "activity": {
+        "retained": 0,
+        "closed": 0,
+        "opened": 6,
+        "rejected_capacity": 0,
+        "rejected_cash_reserve": 0,
+        "rejected_existing": 0,
+        "filtered_by_strategy": 32,
+        "signals_checked": 44,
+        "positions_evaluated": 0
+      },
+      "metrics": {
+        "return_pct": -0.18000000000000238,
+        "closed_trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0,
+        "average_return": 0.0,
+        "average_winner": 0.0,
+        "average_loser": 0.0,
+        "profit_factor": 0.0,
+        "max_drawdown": 0.0
+      },
+      "updated_at": "2026-08-10T05:13:35.282579+00:00"
     }
+  },
+  "market_snapshot": "2026-08-10T05:13:14.830365+00:00",
+  "heartbeat": {
+    "last_run": "2026-08-10T05:13:35.282588+00:00",
+    "market_snapshot": "2026-08-10T05:13:14.830365+00:00",
+    "strategies_expected": 4,
+    "strategies_updated": 4,
+    "database_saved": true
   }
 }
