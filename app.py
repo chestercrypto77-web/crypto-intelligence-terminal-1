@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "15.0.0"
+APP_VERSION = "15.1.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1731,6 +1731,7 @@ WINNER_SCHOOL_FILE = Path(__file__).with_name("data") / "winner_school.json"
 FAILURE_SCHOOL_FILE = Path(__file__).with_name("data") / "failure_school.json"
 AI_SCORECARD_FILE = Path(__file__).with_name("data") / "ai_scorecard.json"
 COMMITTEE_MEMORY_FILE = Path(__file__).with_name("data") / "committee_memory.json"
+STRATEGY_BRAIN_STATUS_FILE = Path(__file__).with_name("data") / "strategy_brain_status.json"
 
 MICROSTRUCTURE_FILE = Path(__file__).with_name("data") / "microstructure_latest.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
@@ -2615,34 +2616,88 @@ elif selection=="Trading Desk":
     else: st.caption("No recent portfolio actions.")
 
 elif selection=="Strategy Lab":
+    brain=read_runtime_json(STRATEGY_BRAIN_STATUS_FILE,{"strategies":[],"discoveries":[],"brains":[],"summary":{},"network":{}})
     lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{}})
-    strategies=lab.get("strategies") or {}
-    st.markdown('<div class="summary-box"><b>Strategy Lab:</b> which approach is currently doing the best job. This is a competition of decision quality, not a wall of statistics.</div>',unsafe_allow_html=True)
-    if not strategies: st.info("Run Hourly Signal Recorder to initialise the Strategy Lab.")
+    brain_strategies=brain.get("strategies") or []
+    st.markdown('<div class="summary-box"><b>Strategy Lab:</b> see what the AI is testing, how much evidence each experiment has, and what the connected brain has actually learned. Small samples are never treated as proof.</div>',unsafe_allow_html=True)
+
+    if not brain_strategies:
+        st.info("Run Hourly Signal Recorder once to build the new Strategy Brain status. Existing strategy history will be preserved.")
+        # Safe fallback to the raw lab so the page is never blank.
+        raw=lab.get("strategies") or {}
+        if raw:
+            st.caption(f"{len(raw)} strategy wallets are already present and will be summarised after the next hourly run.")
     else:
-        ranked=sorted(strategies.items(),key=lambda x:(wallet_return_pct(x[1]),safe_float((x[1].get("metrics") or {}).get("win_rate"))),reverse=True)
-        section("Strategy competition")
-        for rank,(sid,wallet) in enumerate(ranked,1):
-            metrics=wallet.get("metrics") or {}; positions=wallet.get("open_positions") or []
-            best=max(positions,key=lambda p:safe_float(p.get("unrealised_pnl")),default={})
-            now_state=f'{best.get("symbol")} {best.get("direction")}' if best else "WAITING"
-            css="profit" if wallet_return_pct(wallet)>0 else "loss" if wallet_return_pct(wallet)<0 else "watch"
-            st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
-                f'<div><div class="front-trade-title">#{rank} · {esc(wallet.get("name",sid))}</div><div class="front-trade-sub">{esc(wallet.get("role","CHALLENGER"))}</div></div>'
-                f'<div><div class="front-trade-k">Equity</div><div class="front-trade-v">${wallet_equity(wallet):,.0f}</div></div>'
-                f'<div><div class="front-trade-k">Return</div><div class="front-trade-v">{wallet_return_pct(wallet):+.2f}%</div></div>'
-                f'<div><div class="front-trade-k">Win rate</div><div class="front-trade-v">{safe_float(metrics.get("win_rate")):.1f}%</div></div>'
-                f'<div><div class="front-trade-k">Now</div><div class="front-trade-v">{esc(now_state)}</div></div>'
-                f'<div><div class="front-trade-k">Trades</div><div class="front-trade-v">{len(wallet.get("closed_positions") or [])}</div></div></div></div>',unsafe_allow_html=True)
-            with st.expander(f"Open {wallet.get('name',sid)}"):
+        summary=brain.get("summary") or {}
+        x1,x2,x3,x4=st.columns(4)
+        with x1: metric("Experiments",str(summary.get("strategies",0)),"Champion + challengers")
+        with x2: metric("Review ready",str(summary.get("strategies_review_ready",0)),"Enough evidence for formal review")
+        with x3: metric("Brains active",f"{summary.get('brains_active',0)}/{summary.get('brains_total',0)}","Connected learning modules")
+        with x4: metric("Discoveries",str(summary.get("discoveries",0)),"Current evidence worth watching")
+
+        section("Current approach and experiments")
+        st.caption("The Champion is the current baseline. Challengers test one idea at a time. They are judged on completed evidence—not tiny changes in an open paper position.")
+        for row in brain_strategies:
+            role=str(row.get("role") or "CHALLENGER")
+            stage=str(row.get("evidence_stage") or "NOT TESTED")
+            completed=int(row.get("completed_trades") or 0)
+            open_n=int(row.get("open_positions") or 0)
+            progress=safe_float(row.get("evidence_progress_pct"))
+            ret=safe_float(row.get("paper_return_pct"))
+            css="profit" if row.get("promotion_status")=="ELIGIBLE FOR REVIEW" else "watch" if role=="CHAMPION" else "loss" if completed>=30 and safe_float(row.get("expectancy_pct"))<=0 else "watch"
+            badge="CHAMPION" if role=="CHAMPION" else stage
+            wr="—" if row.get("win_rate_pct") is None else f"{safe_float(row.get('win_rate_pct')):.1f}%"
+            exp="—" if row.get("expectancy_pct") is None else f"{safe_float(row.get('expectancy_pct')):+.2f}%"
+            st.markdown(
+                f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
+                f'<div><div class="front-trade-title">{esc(row.get("name"))}</div><div class="front-trade-sub">{esc(badge)}</div></div>'
+                f'<div><div class="front-trade-k">Evidence</div><div class="front-trade-v">{completed}/30 trades</div></div>'
+                f'<div><div class="front-trade-k">Win rate</div><div class="front-trade-v">{wr}</div></div>'
+                f'<div><div class="front-trade-k">Avg trade</div><div class="front-trade-v">{exp}</div></div>'
+                f'<div><div class="front-trade-k">Open now</div><div class="front-trade-v">{open_n}</div></div>'
+                f'<div><div class="front-trade-k">Paper return</div><div class="front-trade-v">{ret:+.2f}%</div></div>'
+                f'</div></div>',unsafe_allow_html=True)
+            st.progress(min(1.0,max(0.0,progress/100.0)),text=f"Evidence maturity: {stage} · {completed} completed trades")
+            st.caption(str(row.get("current_conclusion") or "Collecting evidence."))
+            with st.expander(f"What is {row.get('name')} testing?"):
+                st.write(row.get("purpose") or "Alternative decision rule.")
                 a,b,c,d=st.columns(4)
-                with a: metric("Open",str(len(positions)),"Current")
-                with b: metric("Closed",str(len(wallet.get("closed_positions") or [])),"Evidence")
-                with c: metric("Drawdown",f"{safe_float(metrics.get('max_drawdown')):.2f}%","Risk")
-                with d: metric("Latest",f"${safe_float(wallet.get('equity_change_this_run')):+,.2f}","Last run")
-                if positions:
-                    for p in positions[:8]: st.write(f'{p.get("symbol")} · {p.get("direction")} · {safe_float(p.get("unrealised_return")):+.2f}%')
-                else: st.caption("No trade is currently good enough for this strategy.")
+                with a: metric("Market snapshots",str(row.get("market_snapshots",0)),"Runs observed since V15.1")
+                with b: metric("Signals checked",str(row.get("signals_checked",0)),"Candidates reviewed since V15.1")
+                with c: metric("Entries",str(row.get("entries_opened",0)),"Paper entries since V15.1")
+                with d: metric("Filtered",str(row.get("filtered_by_strategy",0)),"Signals rejected by its rule")
+                st.caption(f"Completed trades: {completed} · Max drawdown {safe_float(row.get('max_drawdown_pct')):.2f}% · Profit factor {row.get('profit_factor_display','—')}")
+                st.caption("Important: open-position gains can move paper equity, but they do not count as completed evidence or win-rate evidence.")
+
+        section("What the AI has discovered")
+        st.caption("Only findings supported by data already collected are shown here. Early evidence stays labelled as learning.")
+        discoveries=brain.get("discoveries") or []
+        if not discoveries:
+            st.info("No evidence-based discoveries are mature enough to summarise yet. The engines are still collecting examples.")
+        else:
+            for d in discoveries[:10]:
+                st.markdown(f'<div class="summary-box"><b>{esc(d.get("title","Finding"))}</b> · {esc(d.get("status","LEARNING"))}<br>{esc(d.get("finding",""))}</div>',unsafe_allow_html=True)
+
+        section("Connected brain status")
+        st.caption("This is the map of the behind-the-scenes learning system: what each brain does, how much evidence it has, and where it is up to.")
+        brains=brain.get("brains") or []
+        for i in range(0,len(brains),2):
+            cols=st.columns(2)
+            for col,b in zip(cols,brains[i:i+2]):
+                with col:
+                    status=str(b.get("status") or "WAITING")
+                    css="profit" if status in {"HEALTHY","MATURE EVIDENCE","REVIEW READY"} else "watch" if status not in {"WAITING"} else "loss"
+                    st.markdown(
+                        f'<div class="front-trade-card {css}">'
+                        f'<div class="front-trade-title">{esc(b.get("name"))}</div>'
+                        f'<div class="front-trade-sub">{esc(status)} · {esc(b.get("evidence"))}</div>'
+                        f'<div style="margin-top:.55rem">{esc(b.get("finding"))}</div></div>',unsafe_allow_html=True)
+                    with st.expander(f"What does {b.get('name')} do?"):
+                        st.write(b.get("purpose") or "")
+
+        with st.expander("How all the brains work together"):
+            st.write((brain.get("network") or {}).get("flow",""))
+            st.caption((brain.get("network") or {}).get("principle",""))
 
 elif selection=="Performance Lab":
     trade_reviews=read_runtime_json(TRADE_REVIEWS_FILE,{"reviews":[],"summary":{}})

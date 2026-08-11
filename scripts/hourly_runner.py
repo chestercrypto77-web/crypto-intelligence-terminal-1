@@ -51,8 +51,9 @@ def main() -> int:
     run("committee_memory.py", required=False)
     run("learning_engine.py", required=False)
     run("challenger_arena.py", required=False)
-    run("cross_learning_bus.py", required=False)
     run("ai_scorecard.py", required=False)
+    run("strategy_brain_status.py", required=False)
+    run("cross_learning_bus.py", required=False)
     # Feed the new evidence back upstream for the next decision cycle.
     run("market_school.py", required=False)
     run("confidence_ledger.py", required=False)

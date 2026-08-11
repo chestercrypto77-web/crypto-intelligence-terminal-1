@@ -31,7 +31,10 @@ def main():
     patterns=read(DATA/"pattern_miner.json",{"patterns":[],"summary":{}})
     management=read(DATA/"management_challenger.json",{"policies":[]})
     memory=read(DATA/"committee_memory.json",{"advisories":[]})
+    strategy_brain=read(DATA/"strategy_brain_status.json",{"discoveries":[],"summary":{}})
     messages=[]
+    for x in (strategy_brain.get("discoveries") or [])[:10]:
+        messages.append({"source":"STRATEGY_BRAIN","message":str(x.get("finding") or "")})
     for x in (memory.get("advisories") or [])[:30]:messages.append({"source":"COMMITTEE_MEMORY","message":x})
     for x in (patterns.get("patterns") or [])[:20]:
         if x.get("candidate")!="OBSERVE" and int(x.get("samples") or 0)>=12:

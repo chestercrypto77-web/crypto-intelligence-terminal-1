@@ -402,6 +402,21 @@ def main() -> int:
         lab["strategies"][strategy_id] = update_strategy_wallet(
             wallet, strategy, signals, btc_signal, assumptions, snapshot_time
         )
+        wallet = lab["strategies"][strategy_id]
+        activity = wallet.get("activity") or {}
+        evidence = wallet.setdefault("evidence", {
+            "market_snapshots": 0,
+            "signals_checked": 0,
+            "filtered_by_strategy": 0,
+            "entries_opened": 0,
+            "positions_closed": 0,
+        })
+        evidence["market_snapshots"] = int(evidence.get("market_snapshots") or 0) + 1
+        evidence["signals_checked"] = int(evidence.get("signals_checked") or 0) + int(activity.get("signals_checked") or 0)
+        evidence["filtered_by_strategy"] = int(evidence.get("filtered_by_strategy") or 0) + int(activity.get("filtered_by_strategy") or 0)
+        evidence["entries_opened"] = int(evidence.get("entries_opened") or 0) + int(activity.get("opened") or 0)
+        evidence["positions_closed"] = len(wallet.get("closed_positions") or [])
+        wallet["description"] = strategy.get("description") or ""
 
     lab["updated_at"] = now_iso()
     lab["market_snapshot"] = snapshot_time
