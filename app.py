@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "15.1.0"
+APP_VERSION = "16.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1732,6 +1732,7 @@ FAILURE_SCHOOL_FILE = Path(__file__).with_name("data") / "failure_school.json"
 AI_SCORECARD_FILE = Path(__file__).with_name("data") / "ai_scorecard.json"
 COMMITTEE_MEMORY_FILE = Path(__file__).with_name("data") / "committee_memory.json"
 STRATEGY_BRAIN_STATUS_FILE = Path(__file__).with_name("data") / "strategy_brain_status.json"
+ACTIVE_TRADE_CASEFILES_FILE = Path(__file__).with_name("data") / "active_trade_casefiles.json"
 
 MICROSTRUCTURE_FILE = Path(__file__).with_name("data") / "microstructure_latest.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
@@ -2580,40 +2581,137 @@ elif selection=="Trading Desk":
     swing=read_runtime_json(SWING_WALLET_FILE,{})
     scalp=read_runtime_json(SCALP_WALLET_FILE,{})
     manager=read_runtime_json(PORTFOLIO_MANAGER_FILE,{"actions":[]})
+    casefiles=read_runtime_json(ACTIVE_TRADE_CASEFILES_FILE,{"summary":{},"positions":[],"portfolio":{}})
     wallets=[("Core",core),("Swing",swing),("Scalp",scalp)]
-    st.markdown('<div class="summary-box"><b>Trading Desk:</b> what we are trading, what it is doing, and what action the engine is taking. Detailed evidence stays behind each position.</div>',unsafe_allow_html=True)
-    open_rows=[(book,p) for book,w in wallets for p in (w.get("open_positions") or [])]
-    c1,c2,c3,c4=st.columns(4)
-    with c1: metric("Active trades",str(len(open_rows)),"Across all books")
-    with c2: metric("Core",f"${wallet_equity(core):,.0f}",f"{wallet_return_pct(core):+.2f}%")
-    with c3: metric("Swing",f"${wallet_equity(swing):,.0f}",f"{wallet_return_pct(swing):+.2f}%")
-    with c4: metric("Scalp",f"${wallet_equity(scalp):,.0f}",f"{wallet_return_pct(scalp):+.2f}%")
-    section("Active trades")
-    if not open_rows: st.caption("No positions are open. Waiting is a valid decision.")
-    for book,p in sorted(open_rows,key=lambda x:safe_float(x[1].get("unrealised_pnl")),reverse=True):
-        ret=safe_float(p.get("unrealised_return")); pnl=safe_float(p.get("unrealised_pnl"))
-        css="profit" if pnl>0 else "loss" if pnl<0 else "active"
-        action="PROTECT PROFIT" if ret>=3 else "REVIEW RISK" if ret<=-1.5 else "HOLD / WATCH"
-        st.markdown(f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
-            f'<div><div class="front-trade-title">{esc(p.get("symbol",""))} · {book}</div><div class="front-trade-sub">{esc(p.get("direction",""))} · {esc(p.get("signal",""))}</div></div>'
-            f'<div><div class="front-trade-k">Entry</div><div class="front-trade-v">{safe_float(p.get("entry_price")):,.6f}</div></div>'
-            f'<div><div class="front-trade-k">Current</div><div class="front-trade-v">{safe_float(p.get("current_price")):,.6f}</div></div>'
-            f'<div><div class="front-trade-k">Return</div><div class="front-trade-v">{ret:+.2f}%</div></div>'
-            f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">${pnl:+,.2f}</div></div>'
-            f'<div><div class="front-trade-k">Action</div><div class="front-trade-v">{action}</div></div></div></div>',unsafe_allow_html=True)
-        with st.expander(f"Open {p.get('symbol','')} details"):
-            decision=((p.get("committee_snapshot") or {}).get("decision") or {})
-            a,b,c=st.columns(3)
-            with a: metric("Committee",str(decision.get("quality") or "Legacy"),str(decision.get("action") or ""))
-            with b: metric("Best move",f"{safe_float(p.get('maximum_favourable_excursion_pct')):+.2f}%","Since entry")
-            with c: metric("Worst move",f"{safe_float(p.get('maximum_adverse_excursion_pct')):+.2f}%","Since entry")
-    section("Recent decisions")
-    actions=list(reversed((manager.get("actions") or [])[-12:]))
-    if actions:
-        st.dataframe(pd.DataFrame([{"Asset":a.get("symbol"),"Book":a.get("book"),"Action":a.get("action"),
-            "Reason":a.get("reason") or a.get("detail"),"P/L":a.get("pnl")} for a in actions]),
-            use_container_width=True,hide_index=True)
-    else: st.caption("No recent portfolio actions.")
+    st.markdown('<div class="summary-box"><b>Trading Desk:</b> your live AI operations centre — where the money is, how much is at risk, what each trade is trying to achieve, and what the engine is thinking now.</div>',unsafe_allow_html=True)
+
+    cases=casefiles.get("positions") or []
+    summary=casefiles.get("summary") or {}
+    if not cases:
+        # Fall back gracefully before the first V16 observer/hourly run.
+        open_rows=[(book,p) for book,w in wallets for p in (w.get("open_positions") or [])]
+        if open_rows:
+            st.info("V16 case files are initialising. Run the 15-Minute Market Observer once to populate capital, risk, mission and learning context.")
+        else:
+            st.caption("No positions are open. Waiting is a valid decision.")
+    else:
+        # 15-second portfolio overview.
+        capital=safe_float(summary.get("capital_working"))
+        cash=safe_float(summary.get("available_cash"))
+        total=safe_float(summary.get("total_equity"))
+        exposure=capital/total*100 if total>0 else 0
+        planned_risk=safe_float(summary.get("planned_max_loss_usd"))
+        open_pnl=safe_float(summary.get("open_pnl_usd"))
+        protected=safe_float(summary.get("estimated_protected_profit_usd"))
+        peak=safe_float(summary.get("aggregate_peak_profit_usd"))
+        missions=(casefiles.get("portfolio") or {}).get("missions") or {}
+
+        c1,c2,c3,c4=st.columns(4)
+        with c1:
+            metric("Open positions",str(len(cases)),f"${capital:,.0f} working · {exposure:.1f}% exposure")
+        with c2:
+            metric("Cash waiting",f"${cash:,.0f}",f"Open P/L ${open_pnl:+,.0f}")
+        with c3:
+            metric("Planned trade risk",f"${planned_risk:,.0f}",f"Rule-based maximum-at-entry estimate")
+        with c4:
+            metric("Profit protection",f"${protected:,.0f}",f"Peak open profit ${peak:,.0f}")
+
+        if missions:
+            mission_text=" · ".join(f"{k.title()} {v}" for k,v in sorted(missions.items(),key=lambda x:x[1],reverse=True)[:4])
+            st.caption("AI management now: "+mission_text)
+
+        section("Active trades")
+        st.caption("Each card answers: how much capital is committed, what the planned risk is, what the trade has made, and what the AI is trying to do next.")
+        for c in cases:
+            pnl=safe_float(c.get("pnl_usd"));ret=safe_float(c.get("return_pct"))
+            alloc=safe_float(c.get("allocated_cash"));risk=c.get("risk") or {}
+            planned=safe_float(risk.get("planned_max_loss_usd"))
+            protected_trade=safe_float(risk.get("estimated_protected_profit_usd"))
+            mission=str(c.get("mission") or "HOLD / MONITOR")
+            health=str(c.get("health") or "NORMAL")
+            css="profit" if pnl>0 else "loss" if pnl<0 else "active"
+            st.markdown(
+                f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
+                f'<div><div class="front-trade-title">{esc(c.get("symbol",""))} · {esc(c.get("book",""))}</div><div class="front-trade-sub">{esc(c.get("direction",""))} · Health {esc(health)}</div></div>'
+                f'<div><div class="front-trade-k">Capital</div><div class="front-trade-v">${alloc:,.0f}</div></div>'
+                f'<div><div class="front-trade-k">Planned risk</div><div class="front-trade-v">${planned:,.0f}</div></div>'
+                f'<div><div class="front-trade-k">P/L</div><div class="front-trade-v">${pnl:+,.2f}</div></div>'
+                f'<div><div class="front-trade-k">Protected</div><div class="front-trade-v">${protected_trade:,.0f}</div></div>'
+                f'<div><div class="front-trade-k">Mission</div><div class="front-trade-v">{esc(mission)}</div></div>'
+                f'</div></div>',unsafe_allow_html=True)
+
+            with st.expander(f"Open {c.get('symbol','')} trade case"):
+                # Trade summary.
+                st.caption("Trade Summary — the money committed and how the position currently stands.")
+                a,b,c2,d=st.columns(4)
+                with a: metric("Capital",f"${alloc:,.0f}",f"{safe_float(c.get('allocation_pct_of_book')):.1f}% of {c.get('book')} book")
+                with b: metric("Entry",f"{safe_float(c.get('entry_price')):,.6f}",str(c.get("direction") or ""))
+                with c2: metric("Current",f"{safe_float(c.get('current_price')):,.6f}",f"{ret:+.2f}%")
+                with d: metric("Current P/L",f"${pnl:+,.2f}",f"Peak ${safe_float(c.get('peak_profit_usd')):+,.0f}")
+
+                # Risk / protection.
+                st.caption("Risk & Protection — rule-based estimates from the wallet's own stop and profit-protection settings.")
+                r1,r2,r3,r4=st.columns(4)
+                with r1: metric("Planned max loss",f"${planned:,.0f}",f"{safe_float(risk.get('stop_loss_pct')):.2f}% initial stop rule")
+                with r2: metric("Downside to stop",f"${safe_float(risk.get('downside_from_mark_to_original_stop_usd')):,.0f}","From current mark to original stop")
+                with r3: metric("Protected profit",f"${protected_trade:,.0f}","Estimated rule-based trail floor")
+                with r4: metric("Giveback",f"${safe_float(c.get('profit_giveback_usd')):,.0f}","Peak open profit less current P/L")
+                st.caption(str(risk.get("note") or ""))
+
+                # Mission / thought.
+                st.markdown(f'<div class="summary-box"><b>Current Mission: {esc(mission)}</b><br>{esc(c.get("mission_reason",""))}</div>',unsafe_allow_html=True)
+                st.caption("Current Engine Thinking — short explanation generated from fresh committee, volume, risk and 1m/5m evidence.")
+                for thought in (c.get("current_thinking") or []):
+                    st.write("• "+str(thought))
+
+                # Committee.
+                decision=(c.get("committee") or {}).get("decision") or {}
+                st.caption("Brain Consensus — the current committee view, with detailed specialist reports kept behind the dropdown.")
+                q1,q2,q3=st.columns(3)
+                with q1: metric("Committee direction",str(decision.get("direction") or "NEUTRAL"),str(decision.get("quality") or ""))
+                with q2: metric("Risk Guardian",str(c.get("risk_state") or "NORMAL"),"Portfolio risk context")
+                with q3: metric("Microstructure",str(c.get("microstructure_signal") or "NO ACTION"),"1m/5m timing")
+                reports=(c.get("committee") or {}).get("reports") or {}
+                if reports:
+                    with st.expander("Open specialist committee reports"):
+                        rows=[]
+                        for name,rep in reports.items():
+                            rows.append({"Brain":str(name).replace("_"," ").title(),"View":(rep or {}).get("direction"),
+                                         "Strength":(rep or {}).get("strength"),
+                                         "Why":"; ".join(str(x) for x in ((rep or {}).get("reasons") or [])[:3])})
+                        st.dataframe(pd.DataFrame(rows),use_container_width=True,hide_index=True)
+
+                # Historical analogues.
+                st.caption("Learning Context — similar validated winners and known failure patterns. Similarity is descriptive, not a promise of the same outcome.")
+                winner=(c.get("winner_school") or {}).get("best_match")
+                warnings=(c.get("failure_school") or {}).get("warnings") or []
+                l1,l2=st.columns(2)
+                with l1:
+                    if winner:
+                        st.markdown(f'<div class="summary-box"><b>Closest Winner School match</b><br>{esc(winner.get("symbol",""))} · similarity {safe_float(winner.get("similarity_pct")):.0f}% · historical result {safe_float(winner.get("return_pct")):+.2f}%</div>',unsafe_allow_html=True)
+                    else:
+                        st.info("Winner School does not yet have a comparable validated example.")
+                with l2:
+                    if warnings:
+                        w=warnings[0]
+                        st.markdown(f'<div class="summary-box"><b>Failure School warning</b><br>{esc(w.get("failure_mode",""))} · similarity {safe_float(w.get("similarity_pct")):.0f}%</div>',unsafe_allow_html=True)
+                    else:
+                        st.info("No close Failure School warning is currently recorded.")
+
+                # Trade lifecycle.
+                stage=str(c.get("stage") or "MANAGE")
+                st.caption("Trade Lifecycle — where this position currently sits.")
+                lifecycle=["ENTRY","CONFIRM","MANAGE","PROTECT","EXIT","REVIEW","RE-ENTRY WATCH"]
+                st.write("  →  ".join((f"**{x}**" if x==stage else x) for x in lifecycle))
+
+        section("Recent decisions")
+        actions=list(reversed((manager.get("actions") or [])[-12:]))
+        if actions:
+            st.dataframe(pd.DataFrame([{"Asset":a.get("symbol"),"Book":a.get("book"),"Action":a.get("action"),
+                "Reason":a.get("reason") or a.get("detail"),"P/L":a.get("pnl")} for a in actions]),
+                use_container_width=True,hide_index=True)
+        else:
+            st.caption("No recent portfolio actions.")
 
 elif selection=="Strategy Lab":
     brain=read_runtime_json(STRATEGY_BRAIN_STATUS_FILE,{"strategies":[],"discoveries":[],"brains":[],"summary":{},"network":{}})

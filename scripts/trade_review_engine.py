@@ -305,6 +305,15 @@ def main():
         review_trade(name,p,current,observer_history,signal_history)
         for name,w in wallets for p in (w.get("closed_positions") or [])
     ]
+    thought_history=read(DATA/"active_trade_thought_history.json",{"records":[]}).get("records") or []
+    thoughts_by_case={}
+    for row in thought_history:
+        key=str(row.get("case_id") or row.get("position_id") or "")
+        if key:thoughts_by_case.setdefault(key,[]).append(row)
+    for review in reviews:
+        key=str(review.get("case_id") or review.get("position_id") or "")
+        review["management_thought_history"]=(thoughts_by_case.get(key) or [])[-600:]
+        review["decision_replay"]["management_observations"]=len(review["management_thought_history"])
     payload={
         "updated_at":now(),
         "reviews":reviews[-20000:],

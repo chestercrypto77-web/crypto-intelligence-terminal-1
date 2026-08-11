@@ -32,6 +32,7 @@ def main():
       'pattern_miner':('pattern_miner.json','updated_at',180),
       'committee_memory':('committee_memory.json','updated_at',180),
       'ai_scorecard':('ai_scorecard.json','updated_at',180),
+      'active_trade_casefiles':('active_trade_casefiles.json','updated_at',60),
     }
     components={}; warnings=[]
     for name,(fn,key,limit) in specs.items():

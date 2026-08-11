@@ -37,6 +37,7 @@ def main() -> int:
     run("investment_committee.py")
     run("intelligence_hub.py", required=False)
     run("portfolio_manager.py")
+    run("active_trade_casefiles.py", required=False)
     run("trade_review_engine.py", required=False)
     run("trade_integrity.py", required=False)
     run("profit_capture_engine.py", required=False)
