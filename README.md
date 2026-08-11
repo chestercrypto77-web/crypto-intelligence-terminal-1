@@ -1,27 +1,40 @@
-# Crypto Intelligence Terminal V14.0.0 — Connected Learning Engine
+# Crypto Intelligence Terminal V15.0.0 — AI Intelligence Evolution
 
-V14 is a backend-first release. The front remains intentionally simple while the engines become more connected.
+V15 focuses on the brain, not adding more front-end clutter.
 
-## Architecture
+## New connected learning loop
 
-1. 1m/5m Microstructure Observer — execution timing and peak/trough semantics.
-2. 15m Observer — developing setup and scalp evidence.
-3. Hourly signal engine — broader opportunity state.
-4. Risk Guardian — independent veto/risk evidence.
-5. Market School — studies traded and untraded recorded charts.
-6. Investment Committee — specialist votes, including Microstructure and Market Memory.
-7. Intelligence Bus — shared asset dossier.
-8. Portfolio Manager — uses committee, risk, memory and timing evidence.
-9. Trade Replay + Diagnostics + Trade Coach — review every result and aftermath.
-10. Confidence Ledger — evaluates which specialist calls have actually been useful.
-11. Challenger Arena — paper-only strategy competition, now including Micro Timing Confirmation.
-12. Brain Health — detects stale or missing components.
+Trade → Integrity Gate → Profit Capture → Trade DNA → Winner/Failure School → Peak/Trough Study → Pattern Miner → Management Challengers → Committee Memory → Cross-Learning → AI Scorecard → shared intelligence.
 
-## Important semantic rule
-A local peak warning on an existing Long means PROFIT PROTECT / EXIT REVIEW. It does not automatically mean open a Short. A new Short requires separate downside entry evidence. The same rule applies in reverse at local troughs.
+### Trade Integrity
+Recalculates Long/Short return from entry and exit, checks P/L signs and replay markers, and quarantines suspect records. Downstream learning engines are gated to validated records when integrity evidence is available.
 
-## Learning discipline
-Historical future prices label old examples only. They are never exposed to the current live decision. Agent confidence is sample-gated and advisory; no engine automatically rewrites its own live rules.
+### Winner School
+Studies profitable trades as carefully as failures. The goal is to identify repeatable fingerprints behind clean 2–5%+ bread-and-butter wins.
 
-## Design research used
-V14 borrows architectural principles, not source code, from mature open quantitative systems: loosely coupled message/event communication, controller/executor separation, research-to-deployment consistency, repeated backtesting, hyperparameter/challenger comparison and explicit lookahead-bias controls.
+### Failure School
+Separates losing entries from poor management, winner give-backs and low-capture wins.
+
+### Profit Capture
+Measures MFE, MAE, giveback and how much of a winning move was actually banked.
+
+### Trade DNA
+Converts validated trades into comparable categorical fingerprints: direction, trend alignment, participation, volume acceleration, condition alignment, entry quality and capture outcome.
+
+### Peak / Trough Intelligence
+Labels historical local extrema from chronological replay paths and preserves microstructure roles for later comparison. Historical extrema never leak into live decisions.
+
+### Pattern Miner
+Finds repeated Trade DNA signatures. Candidate patterns require samples; nothing rewrites live rules automatically.
+
+### Management Challenger
+Replays recorded chronological paths under several shadow-only exit policies. This tests profit protection without changing main wallets.
+
+### Committee Memory
+Tracks which specialists are demonstrating useful evidence and generates advisory memory. Agent weights remain unchanged automatically.
+
+### Cross-Learning
+Shares mature lessons back upstream through the existing connected intelligence system.
+
+### AI Scorecard
+Summarises evidence maturity and decision quality. It is not a promise of profitability.

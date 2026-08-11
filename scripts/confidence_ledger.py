@@ -16,6 +16,10 @@ def f(v,d=0.0):
 
 def main():
     reviews=read(DATA/'trade_reviews.json',{'reviews':[]}).get('reviews') or []
+    integrity=read(DATA/'trade_integrity.json',{'records':[]})
+    valid_keys={str(x.get('trade_key')) for x in integrity.get('records') or [] if x.get('status')=='VALIDATED'}
+    if valid_keys:
+        reviews=[r for r in reviews if str(r.get('position_id') or r.get('case_id') or f"{r.get('wallet','')}_{r.get('symbol','')}_{r.get('entry_time','')}") in valid_keys]
     raw=defaultdict(lambda:{'samples':0,'hits':0,'returns':[],'strength':[]})
     for r in reviews:
         e=f(r.get('entry_price')); x=f(r.get('exit_price'))

@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "14.0.0"
+APP_VERSION = "15.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1725,6 +1725,13 @@ MARKET_SCHOOL_FILE = Path(__file__).with_name("data") / "market_school.json"
 BRAIN_HEALTH_FILE = Path(__file__).with_name("data") / "brain_health.json"
 TRADE_COACH_FILE = Path(__file__).with_name("data") / "trade_coach.json"
 CONFIDENCE_LEDGER_FILE = Path(__file__).with_name("data") / "confidence_ledger.json"
+TRADE_INTEGRITY_FILE = Path(__file__).with_name("data") / "trade_integrity.json"
+PROFIT_CAPTURE_FILE = Path(__file__).with_name("data") / "profit_capture.json"
+WINNER_SCHOOL_FILE = Path(__file__).with_name("data") / "winner_school.json"
+FAILURE_SCHOOL_FILE = Path(__file__).with_name("data") / "failure_school.json"
+AI_SCORECARD_FILE = Path(__file__).with_name("data") / "ai_scorecard.json"
+COMMITTEE_MEMORY_FILE = Path(__file__).with_name("data") / "committee_memory.json"
+
 MICROSTRUCTURE_FILE = Path(__file__).with_name("data") / "microstructure_latest.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
 FUND_STATE_FILE = Path(__file__).with_name("data") / "fund_state.json"
@@ -1916,9 +1923,9 @@ titles = {
     "Portfolio":("Portfolio","Your holdings, live value, allocation and portfolio structure."),
     "Markets":("Markets","Top projects by narrative with clean price and volume context."),
     "Watch":("Watch","What deserves attention now, with detail hidden behind each asset."),
-    "Trading Desk":("Trading Desk","All paper wallets, positions, completed trades and external calls in one place."),
-    "Strategy Lab":("Strategy Lab","Champion and challenger strategies, kept separate from daily use."),
-    "Performance Lab":("Performance Lab","Trade outcomes, lessons and evidence about what is working."),
+    "Trading Desk":("Trading Desk","See what the AI is trading, protecting, exiting or preparing to act on."),
+    "Strategy Lab":("Strategy Lab","Compare the current approach with experimental challengers to see what is actually improving."),
+    "Performance Lab":("Performance Lab","Replay trades, understand what happened, and see what the AI is learning from winners and mistakes."),
     "Settings":("Settings","Workflow status, data health and platform controls."),
 }
 page_header(*titles[selection])
@@ -2647,6 +2654,12 @@ elif selection=="Performance Lab":
     brain_health=read_runtime_json(BRAIN_HEALTH_FILE,{"overall":"UNKNOWN","components":{}})
     trade_coach=read_runtime_json(TRADE_COACH_FILE,{"summary":{}})
     confidence_ledger=read_runtime_json(CONFIDENCE_LEDGER_FILE,{"agents":{}})
+    trade_integrity=read_runtime_json(TRADE_INTEGRITY_FILE,{"summary":{},"records":[]})
+    profit_capture=read_runtime_json(PROFIT_CAPTURE_FILE,{"summary":{},"records":[]})
+    winner_school=read_runtime_json(WINNER_SCHOOL_FILE,{"summary":{}})
+    failure_school=read_runtime_json(FAILURE_SCHOOL_FILE,{"summary":{}})
+    ai_scorecard=read_runtime_json(AI_SCORECARD_FILE,{"metrics":{},"status":"LEARNING"})
+    committee_memory=read_runtime_json(COMMITTEE_MEMORY_FILE,{"summary":{},"advisories":[]})
     microstructure=read_runtime_json(MICROSTRUCTURE_FILE,{"signals":[]})
     reviews=trade_reviews.get("reviews") or []
     diagnostic_index={str(x.get("position_id") or ""):x for x in (diagnostics.get("diagnostics") or [])}
@@ -2678,6 +2691,16 @@ elif selection=="Performance Lab":
     with b2: metric("1m/5m watched",str(len(microstructure.get("signals") or [])),"Execution timing")
     with b3: metric("Trades coached",str(coach_summary.get("cases",0)),"Every result reviewed")
     with b4: metric("Agents calibrated",str(len(confidence_ledger.get("agents") or {})),"Sample gated")
+
+    integrity_summary=trade_integrity.get("summary") or {}
+    capture_summary=profit_capture.get("summary") or {}
+    score_metrics=ai_scorecard.get("metrics") or {}
+    st.markdown('<div class="summary-box"><b>AI Learning Brain:</b> validates data first, studies winners and failures separately, tests better exits, and only promotes lessons after repeated evidence.</div>',unsafe_allow_html=True)
+    a1,a2,a3,a4=st.columns(4)
+    with a1: metric("Data integrity",f"{safe_float(integrity_summary.get('validation_rate_pct'),100):.1f}%","Only validated trades teach")
+    with a2: metric("Winner capture",f"{safe_float(capture_summary.get('avg_winner_capture_pct')):.1f}%","How much of good moves we bank")
+    with a3: metric("Winner school",str((winner_school.get("summary") or {}).get("winners",0)),"Successful trades studied")
+    with a4: metric("AI maturity",str(ai_scorecard.get("status") or "LEARNING"),f"Decision quality {safe_float(ai_scorecard.get('decision_quality_score')):.0f}/100")
 
     section("Trade replays")
     if not reviews:
@@ -2786,6 +2809,12 @@ elif selection=="Performance Lab":
                 else:
                     st.caption("Price replay history was not recorded for this legacy trade. New reviews will build the timeline automatically.")
 
+                integrity_index={str(x.get("trade_key") or ""):x for x in (trade_integrity.get("records") or [])}
+                current_trade_key=str(r.get("position_id") or r.get("case_id") or f"{r.get('wallet','')}_{r.get('symbol','')}_{r.get('entry_time','')}")
+                iv=integrity_index.get(current_trade_key,{})
+                if iv:
+                    st.caption(f"Trade integrity: {iv.get('status','UNKNOWN')} · confidence {safe_float(iv.get('confidence_pct')):.1f}% · independent gross return {safe_float(iv.get('independent_gross_return_pct')):+.2f}%")
+
                 # Compact diagnosis: this is the engine's homework on the result.
                 if diagnostic:
                     d1,d2,d3,d4=st.columns(4)
@@ -2832,6 +2861,7 @@ elif selection=="Performance Lab":
                     st.dataframe(pd.DataFrame(changed[-12:]),use_container_width=True,hide_index=True)
 
     section("Learning under test")
+    st.caption("Repeated evidence the AI is testing before it is allowed to influence future decisions.")
     candidates=learning.get("rule_candidates") or []
     if candidates:
         st.dataframe(
@@ -2849,6 +2879,7 @@ elif selection=="Performance Lab":
         st.caption("No lesson has enough repeated evidence yet. The engine is collecting examples instead of forcing conclusions.")
 
     section("Challenger arena")
+    st.caption("Paper-only alternatives compete with the current approach; nothing is promoted from one lucky result.")
     ranking=arena.get("ranking") or []
     if not ranking:
         st.caption("Shadow challengers have not accumulated results yet. Run the Hourly Signal Recorder to begin the competition.")

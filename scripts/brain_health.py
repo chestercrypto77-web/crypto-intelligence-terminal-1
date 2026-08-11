@@ -25,6 +25,13 @@ def main():
       'trade_coach':('trade_coach.json','updated_at',180),
       'confidence_ledger':('confidence_ledger.json','updated_at',180),
       'learning':('learning_state.json','updated_at',180),
+      'trade_integrity':('trade_integrity.json','updated_at',180),
+      'profit_capture':('profit_capture.json','updated_at',180),
+      'winner_school':('winner_school.json','updated_at',180),
+      'failure_school':('failure_school.json','updated_at',180),
+      'pattern_miner':('pattern_miner.json','updated_at',180),
+      'committee_memory':('committee_memory.json','updated_at',180),
+      'ai_scorecard':('ai_scorecard.json','updated_at',180),
     }
     components={}; warnings=[]
     for name,(fn,key,limit) in specs.items():

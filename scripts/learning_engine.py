@@ -23,6 +23,10 @@ def summarise(rows):
             "expectancy_pct":sum(num(r.get("realised_return")) for r in rows)/len(rows)}
 def main():
     reviews=read(DATA/"trade_reviews.json",{"reviews":[]}).get("reviews") or []
+    integrity=read(DATA/'trade_integrity.json',{'records':[]})
+    valid_keys={str(x.get('trade_key')) for x in integrity.get('records') or [] if x.get('status')=='VALIDATED'}
+    if valid_keys:
+        reviews=[r for r in reviews if str(r.get('position_id') or r.get('case_id') or f"{r.get('wallet','')}_{r.get('symbol','')}_{r.get('entry_time','')}") in valid_keys]
     committee=read(DATA/"committee_learning.json",{})
     diagnostics=read(DATA/"trade_diagnostics.json",{"summary":{},"diagnostics":[]})
     prior=read(OUT,{"promoted_lessons":[],"guardrails":{"minimum_samples_for_candidate":8,

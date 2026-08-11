@@ -30,6 +30,10 @@ def grade(r):
 
 def main():
     reviews=read(DATA/'trade_reviews.json',{'reviews':[]}).get('reviews') or []
+    integrity=read(DATA/'trade_integrity.json',{'records':[]})
+    valid_keys={str(x.get('trade_key')) for x in integrity.get('records') or [] if x.get('status')=='VALIDATED'}
+    if valid_keys:
+        reviews=[r for r in reviews if str(r.get('position_id') or r.get('case_id') or f"{r.get('wallet','')}_{r.get('symbol','')}_{r.get('entry_time','')}") in valid_keys]
     cases=[grade(r) for r in reviews]; counts=defaultdict(int); lessons=[]
     for c in cases:
         counts[c['diagnosis']]+=1
