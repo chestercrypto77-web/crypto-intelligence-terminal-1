@@ -33,6 +33,8 @@ def main():
     learning=read(DATA/"learning_state.json",{})
     arena=read(DATA/"challenger_arena.json",{})
     feedback=read(DATA/"intelligence_feedback.json",{"summary":{},"messages":[]})
+    external=read(DATA/"external_attention.json",{"summary":{},"assets":{}})
+    attention=read(DATA/"adaptive_attention.json",{"assets":[]})
     coach=read(DATA/"trade_coach.json",{})
     confidence=read(DATA/"confidence_ledger.json",{})
     omap={str(x.get("symbol") or "").upper():x for x in observer}
@@ -82,6 +84,7 @@ def main():
         "updated_at":now(),
         "market_regime":(committee.get("market_regime") or {}).get("state","UNKNOWN"),
         "global_learning":learning.get("summary") or {},
+        "external_attention":(external.get("assets") or {}).get(symbol,{}),
         "cross_learning":feedback.get("summary") or {},
         "diagnostics_summary":diagnostics.get("summary") or {},
         "challenger_leader":(arena.get("ranking") or [None])[0],
@@ -89,6 +92,7 @@ def main():
         "agent_confidence":confidence.get("agents") or {},
         "assets":assets,
         "messages":(messages + (feedback.get("messages") or []))[-1000:],
+        "input_receipts":{"learning_feedback_messages":len(feedback.get("messages") or []),"external_attention_assets":len(external.get("assets") or {}),"adaptive_attention_assets":len(attention.get("assets") or [])},
         "principle":"Agents share evidence through this bus. Mature evidence may influence decisions; immature evidence remains observational."
     }
     write(OUT,payload)

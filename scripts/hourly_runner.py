@@ -26,14 +26,17 @@ def run(script_name: str, required: bool = True) -> bool:
 def main() -> int:
     run("bootstrap_runtime.py")
     run("external_intelligence.py")
+    run("external_attention.py", required=False)
     run("signal_recorder.py")
     run("research_desk.py")
     run("strategy_lab.py")
+    run("strategy_integrity.py", required=False)
     run("microstructure_observer.py", required=False)
     run("observer_15m.py", required=False)
     run("risk_guardian.py")
     run("market_school.py", required=False)
     run("move_phase_intelligence.py", required=False)
+    run("adaptive_attention.py", required=False)
     run("confidence_ledger.py", required=False)
     run("investment_committee.py")
     run("intelligence_hub.py", required=False)
@@ -62,6 +65,9 @@ def main() -> int:
     run("market_school.py", required=False)
     run("confidence_ledger.py", required=False)
     run("intelligence_hub.py", required=False)
+    run("collect_brain_receipts.py", required=False)
+    run("observer_audit.py", required=False)
+    run("brain_audit.py", required=False)
     run("brain_health.py", required=False)
     return 0
 

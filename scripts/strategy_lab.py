@@ -23,6 +23,7 @@ DEFAULT_ASSUMPTIONS = {
     "minimum_cash_reserve_pct": 20.0,
     "fee_pct_per_side": 0.10,
     "slippage_pct_per_side": 0.05,
+    "strategy_stop_loss_pct": 5.0,
 }
 
 
@@ -191,6 +192,9 @@ def update_strategy_wallet(
             position["unrealised_pnl"] = position["allocated_cash"] * position["unrealised_return"] / 100
 
         should_close, reason = exit_decision(position, live_signal)
+        stop=float(assumptions.get("strategy_stop_loss_pct",5.0))
+        if float(position.get("unrealised_return") or 0) <= -stop:
+            should_close, reason = True, "Strategy Lab risk stop"
         if should_close:
             position["status"] = "CLOSED"
             position["exit_time"] = now_iso()

@@ -27,6 +27,7 @@ OBSERVER = DATA / "observer_latest.json"
 MARKET_SCHOOL = DATA / "market_school.json"
 MICROSTRUCTURE = DATA / "microstructure_latest.json"
 CONFIDENCE_LEDGER = DATA / "confidence_ledger.json"
+EXTERNAL_ATTENTION = DATA / "external_attention.json"
 
 
 def now_iso() -> str:
@@ -256,6 +257,23 @@ def microstructure_analyst(item: dict, micro_item: dict) -> dict:
     if role=='SHORT EXIT / PROFIT PROTECT':return vote('NEUTRAL',1,['Possible local Short exhaustion: management signal, not automatic Long'],evidence)
     return vote('NEUTRAL',0,['1m/5m timing not decisive'],evidence)
 
+
+def external_attention_analyst(item: dict, attention: dict) -> dict:
+    symbol=str(item.get("symbol") or "").upper()
+    row=(attention.get("assets") or {}).get(symbol) or {}
+    score=number(row.get("attention_score"))
+    pos=int(row.get("positive") or 0);neg=int(row.get("negative") or 0)
+    reasons=[f"External attention score {score:.0f}/100 from {int(row.get('events') or 0)} recent event(s)"]
+    if score<25:
+        return vote("NEUTRAL",0,reasons+["No meaningful external attention acceleration"],{"attention_score":score})
+    # Attention alone cannot choose direction. Tone must agree with market direction.
+    r4=number(item.get("return_4h"))
+    if pos>=neg+2 and r4>0:
+        return vote("LONG",1 if score<60 else 2,reasons+["Verified headline tone and price direction lean positive"],{"attention_score":score,"positive":pos,"negative":neg})
+    if neg>=pos+2 and r4<0:
+        return vote("SHORT",1 if score<60 else 2,reasons+["Verified headline tone and price direction lean negative"],{"attention_score":score,"positive":pos,"negative":neg})
+    return vote("NEUTRAL",1,reasons+["Attention is elevated but direction is not sufficiently confirmed"],{"attention_score":score,"positive":pos,"negative":neg})
+
 def news_fundamental_analyst(item: dict, inbox: list[dict], calls: list[dict]) -> dict:
     symbol = str(item.get("symbol") or "").upper()
     name = str(item.get("name") or "").lower()
@@ -380,7 +398,7 @@ def aggregate_committee(item: dict, reports: dict, regime: dict) -> dict:
     neutral_votes = 0
     independent_long = []
     independent_short = []
-    for name in ("technical", "volume_liquidity", "momentum", "microstructure", "market_memory", "news_fundamental", "macro_regime"):
+    for name in ("technical", "volume_liquidity", "momentum", "microstructure", "market_memory", "external_attention", "news_fundamental", "macro_regime"):
         report = reports.get(name) or vote("NEUTRAL", 0, [f"{name} report unavailable"], {})
         strength = int(report.get("strength") or 0)
         direction = report.get("direction")
@@ -506,6 +524,7 @@ def main() -> int:
     }
     inbox = read_json(EXTERNAL_INBOX, [])
     calls = read_json(EXTERNAL_CALLS, [])
+    external_attention = read_json(EXTERNAL_ATTENTION, {"assets":{}})
     observer_payload = read_json(OBSERVER, {"signals":[]})
     observer_map = {str(x.get("symbol") or "").upper():x for x in observer_payload.get("signals") or []}
     market_school = read_json(MARKET_SCHOOL, {})
@@ -528,6 +547,7 @@ def main() -> int:
             "momentum": momentum_analyst(item),
             "microstructure": microstructure_analyst(item, micro_map.get(str(item.get("symbol") or "").upper(),{})),
             "market_memory": market_memory_analyst(item, observer_map.get(str(item.get("symbol") or "").upper(),{}), market_school),
+            "external_attention": external_attention_analyst(item, external_attention),
             "news_fundamental": news_fundamental_analyst(item, inbox, calls),
             "macro_regime": macro_regime_analyst(item, regime),
             "risk_manager": risk_manager(item, risk_map, wallets),

@@ -36,6 +36,11 @@ def main():
       'time_intelligence':('time_intelligence.json','updated_at',180),
       'move_phase':('move_phase_intelligence.json','updated_at',60),
       'learning_evidence':('learning_evidence_centre.json','updated_at',180),
+      'observer_audit':('observer_audit.json','updated_at',30),
+      'adaptive_attention':('adaptive_attention.json','updated_at',30),
+      'external_attention':('external_attention.json','updated_at',180),
+      'brain_audit':('brain_audit.json','updated_at',30),
+      'strategy_integrity':('strategy_integrity.json','updated_at',180),
     }
     components={}; warnings=[]
     for name,(fn,key,limit) in specs.items():

@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "17.0.0"
+APP_VERSION = "18.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1736,6 +1736,11 @@ ACTIVE_TRADE_CASEFILES_FILE = Path(__file__).with_name("data") / "active_trade_c
 TIME_INTELLIGENCE_FILE = Path(__file__).with_name("data") / "time_intelligence.json"
 MOVE_PHASE_FILE = Path(__file__).with_name("data") / "move_phase_intelligence.json"
 LEARNING_EVIDENCE_FILE = Path(__file__).with_name("data") / "learning_evidence_centre.json"
+OBSERVER_AUDIT_FILE = Path(__file__).with_name("data") / "observer_audit.json"
+ADAPTIVE_ATTENTION_FILE = Path(__file__).with_name("data") / "adaptive_attention.json"
+EXTERNAL_ATTENTION_FILE = Path(__file__).with_name("data") / "external_attention.json"
+BRAIN_AUDIT_FILE = Path(__file__).with_name("data") / "brain_audit.json"
+STRATEGY_INTEGRITY_FILE = Path(__file__).with_name("data") / "strategy_integrity.json"
 
 MICROSTRUCTURE_FILE = Path(__file__).with_name("data") / "microstructure_latest.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
@@ -1919,7 +1924,7 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Trading Desk","Strategy Lab","Performance Lab","Learning Evidence","Settings"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Trading Desk","Strategy Lab","Performance Lab","Learning Evidence","Brain Audit","Settings"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
@@ -1932,6 +1937,7 @@ titles = {
     "Strategy Lab":("Strategy Lab","Compare the current approach with experimental challengers to see what is actually improving."),
     "Performance Lab":("Performance Lab","Replay trades, understand what happened, and see what the AI is learning from winners and mistakes."),
     "Learning Evidence":("Learning Evidence","Audit what the AI believes, the trades supporting it, the counter-evidence, and whether the sample is strong enough."),
+    "Brain Audit":("Brain Audit","Verify observer coverage, engine freshness, communication links and external-intelligence health without exposing the technical clutter on daily pages."),
     "Settings":("Settings","Workflow status, data health and platform controls."),
 }
 page_header(*titles[selection])
@@ -2731,6 +2737,10 @@ elif selection=="Strategy Lab":
     lab=read_runtime_json(STRATEGY_LAB_FILE,{"strategies":{}})
     brain_strategies=brain.get("strategies") or []
     st.markdown('<div class="summary-box"><b>Strategy Lab:</b> see what the AI is testing, how much evidence each experiment has, and what the connected brain has actually learned. Small samples are never treated as proof.</div>',unsafe_allow_html=True)
+    strategy_integrity=read_runtime_json(STRATEGY_INTEGRITY_FILE,{"summary":{},"flagged_trades":[]})
+    si=strategy_integrity.get("summary") or {}
+    if int(si.get("flagged_trades") or 0)>0:
+        st.warning(f"Strategy integrity audit has quarantined {int(si.get('flagged_trades') or 0)} extreme trade record(s). Strategy conclusions should be treated as provisional until those records are reviewed.")
 
     if not brain_strategies:
         st.info("Run Hourly Signal Recorder once to build the new Strategy Brain status. Existing strategy history will be preserved.")
@@ -3150,6 +3160,97 @@ elif selection=="Learning Evidence":
         st.dataframe(pd.DataFrame([{"Brain":x.get("name"),"What it does":x.get("purpose"),"Evidence source":x.get("source_file"),
             "Last updated":x.get("updated_at")} for x in brains]),use_container_width=True,hide_index=True)
     st.caption("Guardrails: no lesson is promoted from one trade; counter-evidence remains visible; future timestamps are never fed into a live decision.")
+
+elif selection=="Brain Audit":
+    audit=read_runtime_json(BRAIN_AUDIT_FILE,{"summary":{},"engines":[],"links":[],"alerts":[]})
+    observer=read_runtime_json(OBSERVER_AUDIT_FILE,{"summary":{},"runs":[],"gaps":[]})
+    attention=read_runtime_json(ADAPTIVE_ATTENTION_FILE,{"summary":{},"assets":[]})
+    external=read_runtime_json(EXTERNAL_ATTENTION_FILE,{"summary":{},"source_health":[],"assets":{}})
+    strategy_integrity=read_runtime_json(STRATEGY_INTEGRITY_FILE,{"summary":{},"strategies":[],"flagged_trades":[]})
+    st.markdown('<div class="summary-box"><b>Brain Audit:</b> this page does not tell you what the AI hopes it is doing. It checks observable outputs, scan coverage and producer→consumer receipts so you can verify what is actually happening behind the scenes.</div>',unsafe_allow_html=True)
+
+    bs=audit.get("summary") or {}
+    c1,c2,c3,c4=st.columns(4)
+    with c1: metric("Brain health",f"{safe_float(bs.get('brain_health_score')):.0f}%","Verification score")
+    with c2: metric("Engines fresh",f"{bs.get('engines_pass',0)}/{bs.get('engines_total',0)}","Observable outputs")
+    with c3: metric("Links verified",f"{bs.get('links_verified',0)}/{bs.get('links_total',0)}","Producer → consumer receipts")
+    with c4: metric("Audit alerts",str(bs.get("alerts",0)),"Anything needing investigation")
+
+    section("Observer verification")
+    st.caption("This is the answer to 'are the 5-minute and 15-minute scans really happening?'. It compares completed recorded outputs against the theoretical daily schedule and checks how many expected assets were actually analysed.")
+    osum=observer.get("summary") or {}
+    ocols=st.columns(2)
+    for col,mode in zip(ocols,["5M","15M"]):
+        with col:
+            r=osum.get(mode) or {}
+            st.markdown(f'<div class="summary-box"><b>{mode} Observer · {esc(r.get("status","WAITING"))}</b><br>'
+                        f'Recorded runs 24h: {int(r.get("recorded_runs_24h") or 0)} / {int(r.get("expected_runs_24h") or 0)}<br>'
+                        f'Schedule completion: {safe_float(r.get("schedule_completion_pct")):.1f}%<br>'
+                        f'Average asset coverage: {safe_float(r.get("average_asset_coverage_pct")):.1f}%<br>'
+                        f'Largest recorded gap: {safe_float(r.get("largest_recorded_gap_minutes")):.1f} min</div>',unsafe_allow_html=True)
+    with st.expander("Show observer run history and gaps"):
+        runs=observer.get("runs") or []
+        if runs:st.dataframe(pd.DataFrame(runs[-500:]),use_container_width=True,hide_index=True)
+        gaps=observer.get("gaps") or []
+        if gaps:
+            st.write("**Detected gaps**")
+            st.dataframe(pd.DataFrame(gaps[-100:]),use_container_width=True,hide_index=True)
+
+    section("Adaptive attention")
+    st.caption("Every holding keeps baseline 1m/5m coverage. This engine decides where deeper phase, external and committee analysis should concentrate when activity becomes unusual.")
+    asum=attention.get("summary") or {}
+    ac1,ac2,ac3=st.columns(3)
+    with ac1: metric("Critical",str(asum.get("critical",0)),"Maximum scrutiny")
+    with ac2: metric("High",str(asum.get("high",0)),"Deep scrutiny")
+    with ac3: metric("Elevated",str(asum.get("elevated",0)),"Above baseline")
+    assets=attention.get("assets") or []
+    if assets:
+        st.dataframe(pd.DataFrame([{"Asset":x.get("symbol"),"Priority":x.get("priority_score"),"Attention":x.get("attention_level"),
+            "Depth":x.get("analysis_depth"),"Phase":x.get("phase"),"RVOL":x.get("rvol"),
+            "External":x.get("external_attention"),"Why":"; ".join(x.get("reasons") or [])} for x in assets[:50]]),
+            use_container_width=True,hide_index=True)
+
+    section("External intelligence")
+    st.caption("News/social attention is evidence, not an automatic trade call. CoinGecko trending measures search attention; configured public feeds and optional NewsAPI provide headlines/content.")
+    xsum=external.get("summary") or {}
+    x1,x2,x3=st.columns(3)
+    with x1: metric("External events",str(xsum.get("events",0)),"Stored recent evidence")
+    with x2: metric("Assets mentioned",str(xsum.get("assets_with_attention",0)),"Mapped to assets")
+    with x3: metric("Healthy sources",f"{xsum.get('healthy_sources',0)}/{xsum.get('sources',0)}","Source health")
+    sh=external.get("source_health") or []
+    if sh:st.dataframe(pd.DataFrame(sh),use_container_width=True,hide_index=True)
+
+    section("Brain communication")
+    st.caption("A green link means the downstream engine recorded that it actually consumed records from the upstream engine. Script presence alone does not count as proof.")
+    links=audit.get("links") or []
+    if links:
+        st.dataframe(pd.DataFrame([{"Producer":x.get("producer"),"Consumer":x.get("consumer"),"Receipts 24h":x.get("receipts_24h"),
+            "Records consumed":x.get("records_consumed"),"Status":x.get("status"),"Last receipt":x.get("last_receipt")} for x in links]),
+            use_container_width=True,hide_index=True)
+
+    section("Engine freshness")
+    engines=audit.get("engines") or []
+    if engines:
+        st.dataframe(pd.DataFrame([{"Engine":x.get("engine"),"Status":x.get("status"),"Age min":x.get("age_minutes"),
+            "Limit min":x.get("freshness_limit_minutes"),"Output":x.get("source_file")} for x in engines]),
+            use_container_width=True,hide_index=True)
+
+    section("Strategy data integrity")
+    st.caption("Extreme strategy returns are audited separately so bad simulation data cannot quietly masquerade as a useful strategy conclusion.")
+    sis=strategy_integrity.get("summary") or {}
+    s1,s2=st.columns(2)
+    with s1:metric("Flagged trades",str(sis.get("flagged_trades",0)),"Quarantined for review")
+    with s2:metric("Strategies quarantined",str(sis.get("strategies_quarantined",0)),"Conclusions provisional")
+    if strategy_integrity.get("strategies"):
+        st.dataframe(pd.DataFrame(strategy_integrity.get("strategies")),use_container_width=True,hide_index=True)
+    if strategy_integrity.get("flagged_trades"):
+        with st.expander("Show flagged strategy trades"):
+            st.dataframe(pd.DataFrame(strategy_integrity.get("flagged_trades")),use_container_width=True,hide_index=True)
+
+    alerts=audit.get("alerts") or []
+    if alerts:
+        section("Needs attention")
+        for a in alerts[:25]:st.warning(str(a))
 
 elif selection=="Settings":
     engine_health=read_runtime_json(ENGINE_HEALTH_FILE,{})

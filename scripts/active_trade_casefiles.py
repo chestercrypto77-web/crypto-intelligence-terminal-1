@@ -300,6 +300,7 @@ def main():
                  "planned_max_loss_usd":portfolio_planned_risk,"open_pnl_usd":open_pnl,
                  "estimated_protected_profit_usd":protected,"aggregate_peak_profit_usd":peak},
       "portfolio":{"missions":missions},
+      "input_receipts":{"move_phase_assets":len(phases),"active_positions":len(positions)},
       "positions":sorted(positions,key=lambda x:x["pnl_usd"],reverse=True)
     }
     write(OUT,payload)
