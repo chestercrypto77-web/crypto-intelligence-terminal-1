@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-08-12T14:35:02.871202+00:00",
+  "updated_at": "2026-08-12T18:12:26.757683+00:00",
   "summary": {
     "5M": {
       "expected_runs_24h": 288,
-      "recorded_runs_24h": 3,
-      "schedule_completion_pct": 1.0416666666666665,
-      "average_asset_coverage_pct": 77.03703703703705,
+      "recorded_runs_24h": 4,
+      "schedule_completion_pct": 1.3888888888888888,
+      "average_asset_coverage_pct": 77.22222222222223,
       "largest_recorded_gap_minutes": 285.2849129166667,
       "status": "FAIL"
     },
     "15M": {
       "expected_runs_24h": 96,
-      "recorded_runs_24h": 3,
-      "schedule_completion_pct": 3.125,
-      "average_asset_coverage_pct": 91.85185185185185,
+      "recorded_runs_24h": 4,
+      "schedule_completion_pct": 4.166666666666666,
+      "average_asset_coverage_pct": 92.77777777777777,
       "largest_recorded_gap_minutes": 285.36290655,
       "status": "FAIL"
     }
@@ -132,6 +132,42 @@
         "GRT"
       ],
       "providers": {}
+    },
+    {
+      "mode": "5M",
+      "audit_time": "2026-08-12T18:12:26.757683+00:00",
+      "source_generated_at": "2026-08-12T18:11:59.113899+00:00",
+      "requested": 45,
+      "analysed": 35,
+      "coverage_pct": 77.77777777777779,
+      "unavailable": [
+        "POL",
+        "SUI",
+        "SUPER",
+        "S",
+        "ONE",
+        "IMX",
+        "AERO",
+        "UFO",
+        "MEW",
+        "GRT"
+      ],
+      "providers": {
+        "Yahoo 1m": 35
+      }
+    },
+    {
+      "mode": "15M",
+      "audit_time": "2026-08-12T18:12:26.757683+00:00",
+      "source_generated_at": "2026-08-12T18:12:09.681184+00:00",
+      "requested": 45,
+      "analysed": 43,
+      "coverage_pct": 95.55555555555556,
+      "unavailable": [
+        "ONE",
+        "GRT"
+      ],
+      "providers": {}
     }
   ],
   "gaps": [
@@ -148,6 +184,12 @@
       "gap_minutes": 285.2849129166667
     },
     {
+      "mode": "5M",
+      "from": "2026-08-12T14:34:26.178500+00:00",
+      "to": "2026-08-12T18:11:59.113899+00:00",
+      "gap_minutes": 217.54892331666667
+    },
+    {
       "mode": "15M",
       "from": "2026-08-12T08:51:54.160492+00:00",
       "to": "2026-08-12T09:49:19.441176+00:00",
@@ -158,6 +200,12 @@
       "from": "2026-08-12T09:49:19.441176+00:00",
       "to": "2026-08-12T14:34:41.215569+00:00",
       "gap_minutes": 285.36290655
+    },
+    {
+      "mode": "15M",
+      "from": "2026-08-12T14:34:41.215569+00:00",
+      "to": "2026-08-12T18:12:09.681184+00:00",
+      "gap_minutes": 217.47442691666666
     }
   ],
   "note": "Recorded runs prove completed observer outputs. A missing scheduled GitHub run produces a measurable gap rather than being silently assumed successful."
