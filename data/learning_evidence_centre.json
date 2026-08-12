@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-08-12T08:52:06.557520+00:00",
+  "updated_at": "2026-08-12T09:49:41.905363+00:00",
   "summary": {
-    "lessons": 6,
+    "lessons": 12,
     "accepted_or_eligible": 0,
-    "waiting": 6,
-    "brains": 9
+    "waiting": 12,
+    "brains": 11
   },
   "lessons": [
     {
@@ -81,7 +81,7 @@
       "brain": "Time Intelligence",
       "claim": "Compare how long profitable and losing trades are typically held before changing live duration rules.",
       "status": "BUILDING",
-      "samples": 129,
+      "samples": 133,
       "minimum_samples": 30,
       "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
@@ -1090,9 +1090,9 @@
         }
       ],
       "metrics": {
-        "avg_winner_holding_hours": 18.62999041675505,
-        "avg_loser_holding_hours": 8.49995683772326,
-        "avg_winner_time_to_mfe_hours": 14.136558567260101
+        "avg_winner_holding_hours": 18.255908495157005,
+        "avg_loser_holding_hours": 8.729441840068182,
+        "avg_winner_time_to_mfe_hours": 13.923616196932368
       }
     },
     {
@@ -1110,6 +1110,2468 @@
       "metrics": {
         "validation_rate_pct": 100,
         "quarantined": 0
+      }
+    },
+    {
+      "lesson_id": "REFLECT_0",
+      "title": "Weak Participation",
+      "brain": "Trade Reflection",
+      "claim": "Treat weak participation as a caution flag when context matches.",
+      "status": "ELIGIBLE FOR FORMAL REVIEW",
+      "samples": 130,
+      "minimum_samples": 30,
+      "sample_gate_met": true,
+      "promotion_state": "TESTING / WAITING",
+      "supporting_evidence": [
+        {
+          "trade_key": "OBSERVER_TLM_2026-08-05T15:45:00+00:00",
+          "symbol": "TLM",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-05T15:51:59.020558+00:00",
+          "exit_time": "2026-08-05T23:42:51.421226+00:00",
+          "realised_return_pct": -6.062549575380782,
+          "realised_pnl": -606.2549575380782,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_TLM_2026-08-05T15:45:00+00:00",
+            "symbol": "TLM",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -6.062549575380782,
+            "reverse_same_exit_gross_pct": 5.762549575380782,
+            "reverse_mfe_pct": 12.383144595033391,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 11.825099150761563,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -12.383144595033391,
+            "loss_avoided_pct": 6.320595019652609,
+            "estimated_capital_saved_usd": 632.0595019652609,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_IMX_2026-08-05T15:45:00+00:00",
+          "symbol": "IMX",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-05T15:51:59.020558+00:00",
+          "exit_time": "2026-08-05T23:42:51.421226+00:00",
+          "realised_return_pct": -0.2596094897545307,
+          "realised_pnl": -25.96094897545307,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_IMX_2026-08-05T15:45:00+00:00",
+            "symbol": "IMX",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -0.2596094897545307,
+            "reverse_same_exit_gross_pct": -0.04039051024546936,
+            "reverse_mfe_pct": 1.1344286168021633,
+            "reverse_mae_pct": -1.124844114553869,
+            "difference_pct": 0.21921897950906133,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.1344286168021633,
+            "loss_avoided_pct": 0.8748191270476326,
+            "estimated_capital_saved_usd": 87.48191270476327,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_AR_2026-08-05T20:30:00+00:00",
+          "symbol": "AR",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-05T20:45:19.603164+00:00",
+          "exit_time": "2026-08-05T23:42:51.421226+00:00",
+          "realised_return_pct": -1.58056142641102,
+          "realised_pnl": -158.05614264110199,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_AR_2026-08-05T20:30:00+00:00",
+            "symbol": "AR",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -1.58056142641102,
+            "reverse_same_exit_gross_pct": 1.2805614264110199,
+            "reverse_mfe_pct": 3.748199557438936,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 2.8611228528220396,
+            "status": "REVERSE BETTER",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -3.748199557438936,
+            "loss_avoided_pct": 2.167638131027916,
+            "estimated_capital_saved_usd": 216.76381310279157,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_ONDO_2026-08-05T15:45:00+00:00",
+          "symbol": "ONDO",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-05T15:51:59.020558+00:00",
+          "exit_time": "2026-08-06T00:15:22.192886+00:00",
+          "realised_return_pct": 1.0298505008035865,
+          "realised_pnl": 102.98505008035865,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "MIXED PROCESS",
+            "risk_management": "GOOD",
+            "market_reading": "GOOD",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_ONDO_2026-08-05T15:45:00+00:00",
+            "symbol": "ONDO",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": 1.0298505008035865,
+            "reverse_same_exit_gross_pct": -1.3298505008035866,
+            "reverse_mfe_pct": 0.8204325737267482,
+            "reverse_mae_pct": -8.714673132260886,
+            "difference_pct": -2.3597010016071733,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -0.8204325737267482,
+            "loss_avoided_pct": 1.8502830745303347,
+            "estimated_capital_saved_usd": 185.02830745303348,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "MEDIUM",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_DOGE_2026-08-05T15:45:00+00:00",
+          "symbol": "DOGE",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-05T15:51:59.020558+00:00",
+          "exit_time": "2026-08-06T00:15:22.192886+00:00",
+          "realised_return_pct": -0.694181753594669,
+          "realised_pnl": -69.4181753594669,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_DOGE_2026-08-05T15:45:00+00:00",
+            "symbol": "DOGE",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -0.694181753594669,
+            "reverse_same_exit_gross_pct": 0.394181753594669,
+            "reverse_mfe_pct": 1.0538190687194193,
+            "reverse_mae_pct": -1.0684950801469917,
+            "difference_pct": 1.088363507189338,
+            "status": "REVERSE BETTER",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.0538190687194193,
+            "loss_avoided_pct": 0.3596373151247503,
+            "estimated_capital_saved_usd": 35.96373151247503,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_VET_2026-08-05T20:30:00+00:00",
+          "symbol": "VET",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-05T20:45:19.603164+00:00",
+          "exit_time": "2026-08-06T00:15:22.192886+00:00",
+          "realised_return_pct": -0.7780297552351765,
+          "realised_pnl": -77.80297552351765,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_VET_2026-08-05T20:30:00+00:00",
+            "symbol": "VET",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -0.7780297552351765,
+            "reverse_same_exit_gross_pct": 0.47802975523517643,
+            "reverse_mfe_pct": 1.5481566457385187,
+            "reverse_mae_pct": -0.3780697638974484,
+            "difference_pct": 1.256059510470353,
+            "status": "REVERSE BETTER",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.5481566457385187,
+            "loss_avoided_pct": 0.7701268905033423,
+            "estimated_capital_saved_usd": 77.01268905033423,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_SUPER_2026-08-05T23:30:00+00:00",
+          "symbol": "SUPER",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-05T23:42:51.421226+00:00",
+          "exit_time": "2026-08-06T00:15:22.192886+00:00",
+          "realised_return_pct": -0.2440423249783994,
+          "realised_pnl": -24.40423249783994,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_SUPER_2026-08-05T23:30:00+00:00",
+            "symbol": "SUPER",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -0.2440423249783994,
+            "reverse_same_exit_gross_pct": -0.05595767502160065,
+            "reverse_mfe_pct": 1.8507693154191096,
+            "reverse_mae_pct": -0.5738352241860145,
+            "difference_pct": 0.18808464995679874,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.8507693154191096,
+            "loss_avoided_pct": 1.6067269904407102,
+            "estimated_capital_saved_usd": 160.672699044071,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_SC_2026-08-05T20:30:00+00:00",
+          "symbol": "SC",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-05T20:45:19.603164+00:00",
+          "exit_time": "2026-08-06T01:55:55.132785+00:00",
+          "realised_return_pct": -0.37658961075496244,
+          "realised_pnl": -37.658961075496244,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_SC_2026-08-05T20:30:00+00:00",
+            "symbol": "SC",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -0.37658961075496244,
+            "reverse_same_exit_gross_pct": 0.0765896107549624,
+            "reverse_mfe_pct": 0.714221526701353,
+            "reverse_mae_pct": -0.4559257238756387,
+            "difference_pct": 0.45317922150992485,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -0.714221526701353,
+            "loss_avoided_pct": 0.3376319159463905,
+            "estimated_capital_saved_usd": 33.76319159463905,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_ENJ_2026-08-06T00:00:00+00:00",
+          "symbol": "ENJ",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T00:15:22.192886+00:00",
+          "exit_time": "2026-08-06T01:55:55.132785+00:00",
+          "realised_return_pct": -1.418140758638453,
+          "realised_pnl": -141.8140758638453,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_ENJ_2026-08-06T00:00:00+00:00",
+            "symbol": "ENJ",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -1.418140758638453,
+            "reverse_same_exit_gross_pct": 1.1181407586384529,
+            "reverse_mfe_pct": 1.2911734545965836,
+            "reverse_mae_pct": -1.4611417231802148,
+            "difference_pct": 2.5362815172769055,
+            "status": "REVERSE BETTER",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.2911734545965836,
+            "loss_avoided_pct": 0,
+            "estimated_capital_saved_usd": 0.0,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_XTZ_2026-08-06T00:15:00+00:00",
+          "symbol": "XTZ",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-06T00:15:22.192886+00:00",
+          "exit_time": "2026-08-06T01:55:55.132785+00:00",
+          "realised_return_pct": -0.5024654204285215,
+          "realised_pnl": -49.9016481035504,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_XTZ_2026-08-06T00:15:00+00:00",
+            "symbol": "XTZ",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -0.5024654204285215,
+            "reverse_same_exit_gross_pct": 0.20246542042852145,
+            "reverse_mfe_pct": 2.793906925094336,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 0.7049308408570429,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -2.793906925094336,
+            "loss_avoided_pct": 2.2914415046658148,
+            "estimated_capital_saved_usd": 227.5712973803935,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_RUNE_2026-08-05T20:30:00+00:00",
+          "symbol": "RUNE",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-05T20:45:19.603164+00:00",
+          "exit_time": "2026-08-06T04:40:01.408384+00:00",
+          "realised_return_pct": -1.3828276296799167,
+          "realised_pnl": -138.2827629679917,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_RUNE_2026-08-05T20:30:00+00:00",
+            "symbol": "RUNE",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -1.3828276296799167,
+            "reverse_same_exit_gross_pct": 1.0828276296799166,
+            "reverse_mfe_pct": 1.671241322042727,
+            "reverse_mae_pct": -1.6173469716416644,
+            "difference_pct": 2.465655259359833,
+            "status": "REVERSE BETTER",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.671241322042727,
+            "loss_avoided_pct": 0.2884136923628102,
+            "estimated_capital_saved_usd": 28.84136923628102,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_SAND_2026-08-06T01:45:00+00:00",
+          "symbol": "SAND",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-06T01:55:55.132785+00:00",
+          "exit_time": "2026-08-06T04:40:01.408384+00:00",
+          "realised_return_pct": -0.8333576403301788,
+          "realised_pnl": -83.33576403301788,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_SAND_2026-08-06T01:45:00+00:00",
+            "symbol": "SAND",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -0.8333576403301788,
+            "reverse_same_exit_gross_pct": 0.5333576403301787,
+            "reverse_mfe_pct": 1.7416937112835207,
+            "reverse_mae_pct": -1.1583110584470813,
+            "difference_pct": 1.3667152806603575,
+            "status": "REVERSE BETTER",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.7416937112835207,
+            "loss_avoided_pct": 0.9083360709533419,
+            "estimated_capital_saved_usd": 90.83360709533419,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_SKL_2026-08-06T01:45:00+00:00",
+          "symbol": "SKL",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-06T01:55:55.132785+00:00",
+          "exit_time": "2026-08-06T04:40:01.408384+00:00",
+          "realised_return_pct": -0.377824620389988,
+          "realised_pnl": -36.656487927237826,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_SKL_2026-08-06T01:45:00+00:00",
+            "symbol": "SKL",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -0.377824620389988,
+            "reverse_same_exit_gross_pct": 0.07782462038998794,
+            "reverse_mfe_pct": 1.5511973656766154,
+            "reverse_mae_pct": -2.535319103027145,
+            "difference_pct": 0.45564924077997593,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.5511973656766154,
+            "loss_avoided_pct": 1.1733727452866274,
+            "estimated_capital_saved_usd": 113.84044752656075,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_AR_2026-08-05T23:30:00+00:00",
+          "symbol": "AR",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-05T23:42:51.421226+00:00",
+          "exit_time": "2026-08-06T04:50:32.697862+00:00",
+          "realised_return_pct": -0.3975826623250909,
+          "realised_pnl": -36.61628157986907,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_AR_2026-08-05T23:30:00+00:00",
+            "symbol": "AR",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -0.3975826623250909,
+            "reverse_same_exit_gross_pct": 0.09758266232509083,
+            "reverse_mfe_pct": 1.29719784160105,
+            "reverse_mae_pct": -2.4508730912356835,
+            "difference_pct": 0.4951653246501817,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.29719784160105,
+            "loss_avoided_pct": 0.899615179275959,
+            "estimated_capital_saved_usd": 82.8521106158257,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_UOS_2026-08-06T00:00:00+00:00",
+          "symbol": "UOS",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-06T00:15:22.192886+00:00",
+          "exit_time": "2026-08-06T04:50:32.697862+00:00",
+          "realised_return_pct": -0.049415409499708796,
+          "realised_pnl": -4.94154094997088,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_UOS_2026-08-06T00:00:00+00:00",
+            "symbol": "UOS",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -0.049415409499708796,
+            "reverse_same_exit_gross_pct": -0.25058459050029125,
+            "reverse_mfe_pct": 2.9684238988052503,
+            "reverse_mae_pct": -0.9104908264081946,
+            "difference_pct": -0.20116918100058245,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -2.9684238988052503,
+            "loss_avoided_pct": 2.9190084893055417,
+            "estimated_capital_saved_usd": 291.90084893055416,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_PYR_2026-08-06T01:45:00+00:00",
+          "symbol": "PYR",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T01:55:55.132785+00:00",
+          "exit_time": "2026-08-06T04:50:32.697862+00:00",
+          "realised_return_pct": -4.695626395855423,
+          "realised_pnl": -469.5626395855423,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_PYR_2026-08-06T01:45:00+00:00",
+            "symbol": "PYR",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -4.695626395855423,
+            "reverse_same_exit_gross_pct": 4.395626395855423,
+            "reverse_mfe_pct": 4.395626395855423,
+            "reverse_mae_pct": -31.818149522221105,
+            "difference_pct": 9.091252791710847,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -4.395626395855423,
+            "loss_avoided_pct": 0,
+            "estimated_capital_saved_usd": 0.0,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_AVAX_2026-08-06T04:30:00+00:00",
+          "symbol": "AVAX",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T04:40:01.408384+00:00",
+          "exit_time": "2026-08-06T04:50:32.697862+00:00",
+          "realised_return_pct": -0.5598586614798726,
+          "realised_pnl": -52.8714282137669,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_AVAX_2026-08-06T04:30:00+00:00",
+            "symbol": "AVAX",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -0.5598586614798726,
+            "reverse_same_exit_gross_pct": 0.2598586614798726,
+            "reverse_mfe_pct": 4.412573934510622,
+            "reverse_mae_pct": -0.30982961355427996,
+            "difference_pct": 0.8197173229597452,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -4.412573934510622,
+            "loss_avoided_pct": 3.852715273030749,
+            "estimated_capital_saved_usd": 363.8392562288718,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_VTHO_2026-08-05T23:30:00+00:00",
+          "symbol": "VTHO",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-05T23:42:51.421226+00:00",
+          "exit_time": "2026-08-06T05:27:50.876037+00:00",
+          "realised_return_pct": -0.9563845757542764,
+          "realised_pnl": -95.63845757542764,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_VTHO_2026-08-05T23:30:00+00:00",
+            "symbol": "VTHO",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -0.9563845757542764,
+            "reverse_same_exit_gross_pct": 0.6563845757542763,
+            "reverse_mfe_pct": 2.172296719505651,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 1.6127691515085527,
+            "status": "REVERSE BETTER",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -2.172296719505651,
+            "loss_avoided_pct": 1.2159121437513745,
+            "estimated_capital_saved_usd": 121.59121437513744,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_NEAR_2026-08-06T04:30:00+00:00",
+          "symbol": "NEAR",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T04:40:01.408384+00:00",
+          "exit_time": "2026-08-06T05:27:50.876037+00:00",
+          "realised_return_pct": -0.5465885873908725,
+          "realised_pnl": -54.65885873908724,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_NEAR_2026-08-06T04:30:00+00:00",
+            "symbol": "NEAR",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -0.5465885873908725,
+            "reverse_same_exit_gross_pct": 0.24658858739087242,
+            "reverse_mfe_pct": 8.203733881638197,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 0.7931771747817449,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -8.203733881638197,
+            "loss_avoided_pct": 7.657145294247324,
+            "estimated_capital_saved_usd": 765.7145294247325,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_COTI_2026-08-06T04:45:00+00:00",
+          "symbol": "COTI",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T04:50:32.697862+00:00",
+          "exit_time": "2026-08-06T05:27:50.876037+00:00",
+          "realised_return_pct": -2.461598213224492,
+          "realised_pnl": -246.15982132244918,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_COTI_2026-08-06T04:45:00+00:00",
+            "symbol": "COTI",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -2.461598213224492,
+            "reverse_same_exit_gross_pct": 2.1615982132244915,
+            "reverse_mfe_pct": 11.311950120616421,
+            "reverse_mae_pct": -7.692632464632343,
+            "difference_pct": 4.623196426448983,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -11.311950120616421,
+            "loss_avoided_pct": 8.850351907391929,
+            "estimated_capital_saved_usd": 885.0351907391929,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        }
+      ],
+      "counter_evidence": [],
+      "metrics": {
+        "loss_rate_pct": 83.07692307692308,
+        "reverse_superior_rate_pct": 17.692307692307693
+      }
+    },
+    {
+      "lesson_id": "REFLECT_1",
+      "title": "Opposite Direction Outperformed",
+      "brain": "Trade Reflection",
+      "claim": "Treat opposite direction outperformed as a caution flag when context matches.",
+      "status": "TESTING",
+      "samples": 24,
+      "minimum_samples": 30,
+      "sample_gate_met": false,
+      "promotion_state": "TESTING / WAITING",
+      "supporting_evidence": [
+        {
+          "trade_key": "OBSERVER_TLM_2026-08-05T15:45:00+00:00",
+          "symbol": "TLM",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-05T15:51:59.020558+00:00",
+          "exit_time": "2026-08-05T23:42:51.421226+00:00",
+          "realised_return_pct": -6.062549575380782,
+          "realised_pnl": -606.2549575380782,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_TLM_2026-08-05T15:45:00+00:00",
+            "symbol": "TLM",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -6.062549575380782,
+            "reverse_same_exit_gross_pct": 5.762549575380782,
+            "reverse_mfe_pct": 12.383144595033391,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 11.825099150761563,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -12.383144595033391,
+            "loss_avoided_pct": 6.320595019652609,
+            "estimated_capital_saved_usd": 632.0595019652609,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_PYR_2026-08-06T01:45:00+00:00",
+          "symbol": "PYR",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T01:55:55.132785+00:00",
+          "exit_time": "2026-08-06T04:50:32.697862+00:00",
+          "realised_return_pct": -4.695626395855423,
+          "realised_pnl": -469.5626395855423,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_PYR_2026-08-06T01:45:00+00:00",
+            "symbol": "PYR",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -4.695626395855423,
+            "reverse_same_exit_gross_pct": 4.395626395855423,
+            "reverse_mfe_pct": 4.395626395855423,
+            "reverse_mae_pct": -31.818149522221105,
+            "difference_pct": 9.091252791710847,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -4.395626395855423,
+            "loss_avoided_pct": 0,
+            "estimated_capital_saved_usd": 0.0,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_COTI_2026-08-06T04:45:00+00:00",
+          "symbol": "COTI",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T04:50:32.697862+00:00",
+          "exit_time": "2026-08-06T05:27:50.876037+00:00",
+          "realised_return_pct": -2.461598213224492,
+          "realised_pnl": -246.15982132244918,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_COTI_2026-08-06T04:45:00+00:00",
+            "symbol": "COTI",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -2.461598213224492,
+            "reverse_same_exit_gross_pct": 2.1615982132244915,
+            "reverse_mfe_pct": 11.311950120616421,
+            "reverse_mae_pct": -7.692632464632343,
+            "difference_pct": 4.623196426448983,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -11.311950120616421,
+            "loss_avoided_pct": 8.850351907391929,
+            "estimated_capital_saved_usd": 885.0351907391929,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_SKL_2026-08-06T04:45:00+00:00",
+          "symbol": "SKL",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T04:50:32.697862+00:00",
+          "exit_time": "2026-08-07T01:53:02.367515+00:00",
+          "realised_return_pct": -2.5882849313157763,
+          "realised_pnl": -258.82849313157766,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_SKL_2026-08-06T04:45:00+00:00",
+            "symbol": "SKL",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -2.5882849313157763,
+            "reverse_same_exit_gross_pct": 2.288284931315776,
+            "reverse_mfe_pct": 3.117286936904562,
+            "reverse_mae_pct": -1.5803953840340723,
+            "difference_pct": 4.876569862631552,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -3.117286936904562,
+            "loss_avoided_pct": 0.5290020055887856,
+            "estimated_capital_saved_usd": 52.90020055887856,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_SOL_2026-08-06T05:15:00+00:00",
+          "symbol": "SOL",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T05:27:50.876037+00:00",
+          "exit_time": "2026-08-07T01:53:02.367515+00:00",
+          "realised_return_pct": -2.359492250229322,
+          "realised_pnl": -235.9492250229322,
+          "exit_reason": "Observer returned neutral",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_SOL_2026-08-06T05:15:00+00:00",
+            "symbol": "SOL",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -2.359492250229322,
+            "reverse_same_exit_gross_pct": 2.0594922502293223,
+            "reverse_mfe_pct": 2.140419520360415,
+            "reverse_mae_pct": -3.132889891466606,
+            "difference_pct": 4.418984500458644,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -2.140419520360415,
+            "loss_avoided_pct": 0,
+            "estimated_capital_saved_usd": 0.0,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_AVAX_2026-08-06T07:30:00+00:00",
+          "symbol": "AVAX",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-06T10:17:36.561301+00:00",
+          "exit_time": "2026-08-07T04:14:56.396234+00:00",
+          "realised_return_pct": -4.573209470167638,
+          "realised_pnl": -453.2651714060849,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_AVAX_2026-08-06T07:30:00+00:00",
+            "symbol": "AVAX",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -4.573209470167638,
+            "reverse_same_exit_gross_pct": 4.273209470167638,
+            "reverse_mfe_pct": 4.512830015837965,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 8.846418940335276,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -4.512830015837965,
+            "loss_avoided_pct": 0,
+            "estimated_capital_saved_usd": 0.0,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_SKL_2026-08-07T04:00:00+00:00",
+          "symbol": "SKL",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-07T04:14:56.396234+00:00",
+          "exit_time": "2026-08-07T06:59:12.848684+00:00",
+          "realised_return_pct": -3.2607810319292048,
+          "realised_pnl": -216.40948367650114,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_SKL_2026-08-07T04:00:00+00:00",
+            "symbol": "SKL",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -3.2607810319292048,
+            "reverse_same_exit_gross_pct": 2.960781031929205,
+            "reverse_mfe_pct": 4.9012850448778345,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 6.22156206385841,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -4.9012850448778345,
+            "loss_avoided_pct": 1.6405040129486297,
+            "estimated_capital_saved_usd": 108.8759481041869,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_DENT_2026-08-07T06:15:00+00:00",
+          "symbol": "DENT",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-07T06:16:54.763775+00:00",
+          "exit_time": "2026-08-07T06:59:12.848684+00:00",
+          "realised_return_pct": -28.38212064787621,
+          "realised_pnl": -2838.212064787621,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_DENT_2026-08-07T06:15:00+00:00",
+            "symbol": "DENT",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -28.38212064787621,
+            "reverse_same_exit_gross_pct": 28.08212064787621,
+            "reverse_mfe_pct": 28.57760385221543,
+            "reverse_mae_pct": -0.4034895045306186,
+            "difference_pct": 56.464241295752416,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -28.57760385221543,
+            "loss_avoided_pct": 0.19548320433921873,
+            "estimated_capital_saved_usd": 19.548320433921873,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_OM_2026-08-07T06:00:00+00:00",
+          "symbol": "OM",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-07T06:16:54.763775+00:00",
+          "exit_time": "2026-08-07T09:43:34.320359+00:00",
+          "realised_return_pct": -4.275644125102618,
+          "realised_pnl": -427.5644125102618,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_OM_2026-08-07T06:00:00+00:00",
+            "symbol": "OM",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -4.275644125102618,
+            "reverse_same_exit_gross_pct": 3.9756441251026176,
+            "reverse_mfe_pct": 87.90410097014917,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 8.251288250205235,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -87.90410097014917,
+            "loss_avoided_pct": 83.62845684504656,
+            "estimated_capital_saved_usd": 8362.845684504655,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_UOS_2026-08-08T06:15:00+00:00",
+          "symbol": "UOS",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-08T06:26:58.113464+00:00",
+          "exit_time": "2026-08-08T07:58:07.670577+00:00",
+          "realised_return_pct": -4.5471262151928755,
+          "realised_pnl": -113.67815537982189,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_UOS_2026-08-08T06:15:00+00:00",
+            "symbol": "UOS",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -4.5471262151928755,
+            "reverse_same_exit_gross_pct": 4.247126215192876,
+            "reverse_mfe_pct": 5.5200013873903275,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 8.79425243038575,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -5.5200013873903275,
+            "loss_avoided_pct": 0.972875172197452,
+            "estimated_capital_saved_usd": 24.321879304936303,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_PAAL_2026-08-08T06:15:00+00:00",
+          "symbol": "PAAL",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-08T06:26:58.113464+00:00",
+          "exit_time": "2026-08-08T10:04:13.570883+00:00",
+          "realised_return_pct": -4.184956845432352,
+          "realised_pnl": -104.62392113580881,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_PAAL_2026-08-08T06:15:00+00:00",
+            "symbol": "PAAL",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -4.184956845432352,
+            "reverse_same_exit_gross_pct": 3.8849568454323524,
+            "reverse_mfe_pct": 3.8849568454323524,
+            "reverse_mae_pct": -3.2465341199172992,
+            "difference_pct": 8.069913690864706,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -3.8849568454323524,
+            "loss_avoided_pct": 0,
+            "estimated_capital_saved_usd": 0.0,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_IMX_2026-08-07T17:30:00+00:00",
+          "symbol": "IMX",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-07T17:36:03.126291+00:00",
+          "exit_time": "2026-08-08T15:04:03.578365+00:00",
+          "realised_return_pct": -2.910722892199657,
+          "realised_pnl": -72.76807230499143,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_IMX_2026-08-07T17:30:00+00:00",
+            "symbol": "IMX",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -2.910722892199657,
+            "reverse_same_exit_gross_pct": 2.6107228921996573,
+            "reverse_mfe_pct": 3.4338038668289883,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 5.521445784399314,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -3.4338038668289883,
+            "loss_avoided_pct": 0.5230809746293312,
+            "estimated_capital_saved_usd": 13.07702436573328,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_XTZ_2026-08-08T20:00:00+00:00",
+          "symbol": "XTZ",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-08T20:04:26.972371+00:00",
+          "exit_time": "2026-08-09T04:05:11.032074+00:00",
+          "realised_return_pct": -3.205688796323325,
+          "realised_pnl": -80.14221990808312,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_XTZ_2026-08-08T20:00:00+00:00",
+            "symbol": "XTZ",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -3.205688796323325,
+            "reverse_same_exit_gross_pct": 2.9056887963233247,
+            "reverse_mfe_pct": 5.856594694471095,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 6.111377592646649,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -5.856594694471095,
+            "loss_avoided_pct": 2.6509058981477702,
+            "estimated_capital_saved_usd": 66.27264745369425,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_AIOZ_2026-08-09T22:45:00+00:00",
+          "symbol": "AIOZ",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-09T22:57:56.759848+00:00",
+          "exit_time": "2026-08-10T04:15:27.660271+00:00",
+          "realised_return_pct": -5.003514547971643,
+          "realised_pnl": -125.08786369929108,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_AIOZ_2026-08-09T22:45:00+00:00",
+            "symbol": "AIOZ",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -5.003514547971643,
+            "reverse_same_exit_gross_pct": 4.703514547971643,
+            "reverse_mfe_pct": 16.125720433105627,
+            "reverse_mae_pct": -1.0075883945953379,
+            "difference_pct": 9.707029095943287,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -16.125720433105627,
+            "loss_avoided_pct": 11.122205885133983,
+            "estimated_capital_saved_usd": 278.0551471283496,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_BEAM_2026-08-08T21:45:00+00:00",
+          "symbol": "BEAM",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-08T21:50:25.868749+00:00",
+          "exit_time": "2026-08-10T05:13:47.069952+00:00",
+          "realised_return_pct": -633.0263361826512,
+          "realised_pnl": -15825.65840456628,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_BEAM_2026-08-08T21:45:00+00:00",
+            "symbol": "BEAM",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -633.0263361826512,
+            "reverse_same_exit_gross_pct": 632.7263361826513,
+            "reverse_mfe_pct": 632.7263361826513,
+            "reverse_mae_pct": -8.458911161605432,
+            "difference_pct": 1265.7526723653025,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -632.7263361826513,
+            "loss_avoided_pct": 0,
+            "estimated_capital_saved_usd": 0.0,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_PYR_2026-08-10T05:00:00+00:00",
+          "symbol": "PYR",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-10T05:13:47.069952+00:00",
+          "exit_time": "2026-08-10T14:34:32.222230+00:00",
+          "realised_return_pct": -3.4734148758104544,
+          "realised_pnl": -86.83537189526136,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_PYR_2026-08-10T05:00:00+00:00",
+            "symbol": "PYR",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -3.4734148758104544,
+            "reverse_same_exit_gross_pct": 3.173414875810454,
+            "reverse_mfe_pct": 6.296853668641456,
+            "reverse_mae_pct": -10.882062600857623,
+            "difference_pct": 6.646829751620908,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -6.296853668641456,
+            "loss_avoided_pct": 2.823438792831001,
+            "estimated_capital_saved_usd": 70.58596982077502,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_COTI_2026-08-10T04:15:00+00:00",
+          "symbol": "COTI",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T04:15:27.660271+00:00",
+          "exit_time": "2026-08-10T17:40:16.947843+00:00",
+          "realised_return_pct": -2.9829158905921522,
+          "realised_pnl": -74.5728972648038,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_COTI_2026-08-10T04:15:00+00:00",
+            "symbol": "COTI",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -2.9829158905921522,
+            "reverse_same_exit_gross_pct": 2.6829158905921524,
+            "reverse_mfe_pct": 12.336865457406375,
+            "reverse_mae_pct": -17.50261353573156,
+            "difference_pct": 5.665831781184305,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -12.336865457406375,
+            "loss_avoided_pct": 9.353949566814222,
+            "estimated_capital_saved_usd": 233.84873917035554,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_LUNC_2026-08-09T23:45:00+00:00",
+          "symbol": "LUNC",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-09T23:53:20.744529+00:00",
+          "exit_time": "2026-08-11T01:47:06.738132+00:00",
+          "realised_return_pct": -3.3716436238160448,
+          "realised_pnl": -84.29109059540112,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "NORMAL",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_LUNC_2026-08-09T23:45:00+00:00",
+            "symbol": "LUNC",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -3.3716436238160448,
+            "reverse_same_exit_gross_pct": 3.071643623816045,
+            "reverse_mfe_pct": 8.062422365814626,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 6.44328724763209,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -8.062422365814626,
+            "loss_avoided_pct": 4.690778741998582,
+            "estimated_capital_saved_usd": 117.26946854996453,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_NEAR_2026-08-11T14:45:00+00:00",
+          "symbol": "NEAR",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-11T14:45:34.497694+00:00",
+          "exit_time": "2026-08-11T23:24:31.402400+00:00",
+          "realised_return_pct": -3.296629452193655,
+          "realised_pnl": -82.41573630484137,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_NEAR_2026-08-11T14:45:00+00:00",
+            "symbol": "NEAR",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -3.296629452193655,
+            "reverse_same_exit_gross_pct": 2.9966294521936554,
+            "reverse_mfe_pct": 7.538240963956411,
+            "reverse_mae_pct": -0.12292599754485378,
+            "difference_pct": 6.293258904387311,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -7.538240963956411,
+            "loss_avoided_pct": 4.2416115117627555,
+            "estimated_capital_saved_usd": 106.04028779406889,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_SC_2026-08-12T05:00:00+00:00",
+          "symbol": "SC",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-12T05:12:09.663857+00:00",
+          "exit_time": "2026-08-12T08:50:18.338443+00:00",
+          "realised_return_pct": -5.812559725781118,
+          "realised_pnl": -145.31399314452796,
+          "exit_reason": "Observer reversal",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "WEAK",
+            "trade_management": "REVIEW",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_SC_2026-08-12T05:00:00+00:00",
+            "symbol": "SC",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -5.812559725781118,
+            "reverse_same_exit_gross_pct": 5.512559725781118,
+            "reverse_mfe_pct": 6.026190239092277,
+            "reverse_mae_pct": -1.9271114014169477,
+            "difference_pct": 11.325119451562237,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -6.026190239092277,
+            "loss_avoided_pct": 0.21363051331115912,
+            "estimated_capital_saved_usd": 5.340762832778978,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        }
+      ],
+      "counter_evidence": [],
+      "metrics": {
+        "loss_rate_pct": 100.0,
+        "reverse_superior_rate_pct": 100.0
+      }
+    },
+    {
+      "lesson_id": "REFLECT_2",
+      "title": "Committee Flipped",
+      "brain": "Trade Reflection",
+      "claim": "Treat committee flipped as a caution flag when context matches.",
+      "status": "WAITING FOR EVIDENCE",
+      "samples": 2,
+      "minimum_samples": 30,
+      "sample_gate_met": false,
+      "promotion_state": "TESTING / WAITING",
+      "supporting_evidence": [
+        {
+          "trade_key": "SWING_ENJ_2026-08-10T180539.276474+0000",
+          "symbol": "ENJ",
+          "wallet": "Swing",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T18:05:39.276474+00:00",
+          "exit_time": "2026-08-12T05:49:51.470017+00:00",
+          "realised_return_pct": 0.26301113327976716,
+          "realised_pnl": 13.15055666398836,
+          "exit_reason": "SIGNAL REVERSAL",
+          "process_grade": {
+            "overall": "MIXED PROCESS",
+            "risk_management": "GOOD",
+            "market_reading": "GOOD",
+            "trade_management": "REVIEW",
+            "entry_quality": "QUALIFIED"
+          },
+          "first_failure_warning": {
+            "time": "2026-08-11T11:09:16.263200+00:00",
+            "price": 0.02474338188767433,
+            "return_pct": 0.7381604960547075,
+            "reasons": [
+              "Committee direction conflicted with the open thesis.",
+              "Engine thought history contained an early warning: conflict."
+            ]
+          },
+          "missed_clues": [
+            "COMMITTEE_FLIPPED"
+          ],
+          "reverse_trade": {
+            "trade_key": "SWING_ENJ_2026-08-10T180539.276474+0000",
+            "symbol": "ENJ",
+            "wallet": "Swing",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": 0.26301113327976716,
+            "reverse_same_exit_gross_pct": -0.5630111332797672,
+            "reverse_mfe_pct": 1.5392869653033214,
+            "reverse_mae_pct": -2.229665632101896,
+            "difference_pct": -0.8260222665595343,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.5392869653033214,
+            "loss_avoided_pct": 1.8022980985830885,
+            "estimated_capital_saved_usd": 90.11490492915442,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "MEDIUM",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": {
+              "time": "2026-08-11T11:09:16.263200+00:00",
+              "price": 0.02474338188767433,
+              "return_pct": 0.7381604960547075,
+              "reasons": [
+                "Committee direction conflicted with the open thesis.",
+                "Engine thought history contained an early warning: conflict."
+              ]
+            },
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "SWING_BTC_2026-08-10T180539.276474+0000",
+          "symbol": "BTC",
+          "wallet": "Swing",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T18:05:39.276474+00:00",
+          "exit_time": "2026-08-12T09:49:39.786125+00:00",
+          "realised_return_pct": -0.5621572767416148,
+          "realised_pnl": -28.107863837080735,
+          "exit_reason": "SIGNAL REVERSAL",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "NORMAL",
+            "entry_quality": "HIGH QUALITY"
+          },
+          "first_failure_warning": {
+            "time": "2026-08-11T11:09:16.263200+00:00",
+            "price": 64297.48046875,
+            "return_pct": -1.0294616948312794,
+            "reasons": [
+              "Committee direction conflicted with the open thesis.",
+              "Engine thought history contained an early warning: conflict."
+            ]
+          },
+          "missed_clues": [
+            "COMMITTEE_FLIPPED"
+          ],
+          "reverse_trade": {
+            "trade_key": "SWING_BTC_2026-08-10T180539.276474+0000",
+            "symbol": "BTC",
+            "wallet": "Swing",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -0.5621572767416148,
+            "reverse_same_exit_gross_pct": 0.2621572767416147,
+            "reverse_mfe_pct": 1.7755695291719276,
+            "reverse_mae_pct": -0.5358193897369801,
+            "difference_pct": 0.8243145534832295,
+            "status": "NO CLEAR REVERSE EDGE",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -1.7755695291719276,
+            "loss_avoided_pct": 1.2134122524303128,
+            "estimated_capital_saved_usd": 60.67061262151564,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": {
+              "time": "2026-08-11T11:09:16.263200+00:00",
+              "price": 64297.48046875,
+              "return_pct": -1.0294616948312794,
+              "reasons": [
+                "Committee direction conflicted with the open thesis.",
+                "Engine thought history contained an early warning: conflict."
+              ]
+            },
+            "would_opposite_trade_have_been_better": false,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        }
+      ],
+      "counter_evidence": [],
+      "metrics": {
+        "loss_rate_pct": 50.0,
+        "reverse_superior_rate_pct": 0.0
+      }
+    },
+    {
+      "lesson_id": "REFLECT_3",
+      "title": "Rvol Fading At Entry",
+      "brain": "Trade Reflection",
+      "claim": "Treat rvol fading at entry as a caution flag when context matches.",
+      "status": "WAITING FOR EVIDENCE",
+      "samples": 1,
+      "minimum_samples": 30,
+      "sample_gate_met": false,
+      "promotion_state": "TESTING / WAITING",
+      "supporting_evidence": [
+        {
+          "trade_key": "SWING_PYR_2026-08-10T202507.829372+0000",
+          "symbol": "PYR",
+          "wallet": "Swing",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T20:25:07.829372+00:00",
+          "exit_time": "2026-08-11T14:45:45.587079+00:00",
+          "realised_return_pct": -1.9129065208083216,
+          "realised_pnl": -95.64532604041608,
+          "exit_reason": "SIGNAL REVERSAL",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "REVIEW",
+            "entry_quality": "QUALIFIED"
+          },
+          "first_failure_warning": {
+            "time": "2026-08-11T11:09:16.263200+00:00",
+            "price": 0.06300000101327896,
+            "return_pct": -1.9129065208083216,
+            "reasons": [
+              "Engine thought history contained an early warning: fading."
+            ]
+          },
+          "missed_clues": [
+            "RVOL_FADING_AT_ENTRY",
+            "WEAK_PARTICIPATION",
+            "MOMENTUM_OR_VOLUME_FADING"
+          ],
+          "reverse_trade": {
+            "trade_key": "SWING_PYR_2026-08-10T202507.829372+0000",
+            "symbol": "PYR",
+            "wallet": "Swing",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -1.9129065208083216,
+            "reverse_same_exit_gross_pct": 1.6129065208083215,
+            "reverse_mfe_pct": 14.51613465314363,
+            "reverse_mae_pct": -3.2258070330838273,
+            "difference_pct": 3.525813041616643,
+            "status": "REVERSE BETTER",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -14.51613465314363,
+            "loss_avoided_pct": 12.603228132335309,
+            "estimated_capital_saved_usd": 630.1614066167655,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": {
+              "time": "2026-08-11T11:09:16.263200+00:00",
+              "price": 0.06300000101327896,
+              "return_pct": -1.9129065208083216,
+              "reasons": [
+                "Engine thought history contained an early warning: fading."
+              ]
+            },
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        }
+      ],
+      "counter_evidence": [],
+      "metrics": {
+        "loss_rate_pct": 100.0,
+        "reverse_superior_rate_pct": 0.0
+      }
+    },
+    {
+      "lesson_id": "REFLECT_4",
+      "title": "Momentum Or Volume Fading",
+      "brain": "Trade Reflection",
+      "claim": "Treat momentum or volume fading as a caution flag when context matches.",
+      "status": "WAITING FOR EVIDENCE",
+      "samples": 1,
+      "minimum_samples": 30,
+      "sample_gate_met": false,
+      "promotion_state": "TESTING / WAITING",
+      "supporting_evidence": [
+        {
+          "trade_key": "SWING_PYR_2026-08-10T202507.829372+0000",
+          "symbol": "PYR",
+          "wallet": "Swing",
+          "direction": "SHORT",
+          "entry_time": "2026-08-10T20:25:07.829372+00:00",
+          "exit_time": "2026-08-11T14:45:45.587079+00:00",
+          "realised_return_pct": -1.9129065208083216,
+          "realised_pnl": -95.64532604041608,
+          "exit_reason": "SIGNAL REVERSAL",
+          "process_grade": {
+            "overall": "POOR PROCESS REVIEW",
+            "risk_management": "REVIEW",
+            "market_reading": "REVIEW",
+            "trade_management": "REVIEW",
+            "entry_quality": "QUALIFIED"
+          },
+          "first_failure_warning": {
+            "time": "2026-08-11T11:09:16.263200+00:00",
+            "price": 0.06300000101327896,
+            "return_pct": -1.9129065208083216,
+            "reasons": [
+              "Engine thought history contained an early warning: fading."
+            ]
+          },
+          "missed_clues": [
+            "RVOL_FADING_AT_ENTRY",
+            "WEAK_PARTICIPATION",
+            "MOMENTUM_OR_VOLUME_FADING"
+          ],
+          "reverse_trade": {
+            "trade_key": "SWING_PYR_2026-08-10T202507.829372+0000",
+            "symbol": "PYR",
+            "wallet": "Swing",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -1.9129065208083216,
+            "reverse_same_exit_gross_pct": 1.6129065208083215,
+            "reverse_mfe_pct": 14.51613465314363,
+            "reverse_mae_pct": -3.2258070330838273,
+            "difference_pct": 3.525813041616643,
+            "status": "REVERSE BETTER",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -14.51613465314363,
+            "loss_avoided_pct": 12.603228132335309,
+            "estimated_capital_saved_usd": 630.1614066167655,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": false,
+            "what_was_first_failure_clue": {
+              "time": "2026-08-11T11:09:16.263200+00:00",
+              "price": 0.06300000101327896,
+              "return_pct": -1.9129065208083216,
+              "reasons": [
+                "Engine thought history contained an early warning: fading."
+              ]
+            },
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        }
+      ],
+      "counter_evidence": [],
+      "metrics": {
+        "loss_rate_pct": 100.0,
+        "reverse_superior_rate_pct": 0.0
+      }
+    },
+    {
+      "lesson_id": "REFLECT_5",
+      "title": "Risk State Degraded",
+      "brain": "Trade Reflection",
+      "claim": "Treat risk state degraded as a caution flag when context matches.",
+      "status": "WAITING FOR EVIDENCE",
+      "samples": 1,
+      "minimum_samples": 30,
+      "sample_gate_met": false,
+      "promotion_state": "TESTING / WAITING",
+      "supporting_evidence": [
+        {
+          "trade_key": "SWING_LUNC_2026-08-11T144511.448158+0000",
+          "symbol": "LUNC",
+          "wallet": "Swing",
+          "direction": "LONG",
+          "entry_time": "2026-08-11T14:45:11.448158+00:00",
+          "exit_time": "2026-08-12T05:49:51.470116+00:00",
+          "realised_return_pct": -4.618503767411097,
+          "realised_pnl": -230.92518837055485,
+          "exit_reason": "STOP LOSS",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "QUALIFIED"
+          },
+          "first_failure_warning": {
+            "time": "2026-08-11T14:45:45.674373+00:00",
+            "price": 5.328907718649134e-05,
+            "return_pct": -0.3,
+            "reasons": [
+              "Risk Guardian moved to CAUTION.",
+              "Engine thought history contained an early warning: risk."
+            ]
+          },
+          "missed_clues": [
+            "OPPOSITE_DIRECTION_OUTPERFORMED",
+            "RISK_STATE_DEGRADED"
+          ],
+          "reverse_trade": {
+            "trade_key": "SWING_LUNC_2026-08-11T144511.448158+0000",
+            "symbol": "LUNC",
+            "wallet": "Swing",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -4.618503767411097,
+            "reverse_same_exit_gross_pct": 4.318503767411097,
+            "reverse_mfe_pct": 6.451001127117095,
+            "reverse_mae_pct": 0.0,
+            "difference_pct": 8.937007534822193,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -6.451001127117095,
+            "loss_avoided_pct": 1.8324973597059984,
+            "estimated_capital_saved_usd": 91.62486798529991,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": {
+              "time": "2026-08-11T14:45:45.674373+00:00",
+              "price": 5.328907718649134e-05,
+              "return_pct": -0.3,
+              "reasons": [
+                "Risk Guardian moved to CAUTION.",
+                "Engine thought history contained an early warning: risk."
+              ]
+            },
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        }
+      ],
+      "counter_evidence": [],
+      "metrics": {
+        "loss_rate_pct": 100.0,
+        "reverse_superior_rate_pct": 100.0
       }
     }
   ],
@@ -1146,22 +3608,22 @@
         "low_or_poor_capture": 0,
         "winners_given_back": 0
       },
-      "updated_at": "2026-08-12T08:52:05.858665+00:00"
+      "updated_at": "2026-08-12T09:49:41.177548+00:00"
     },
     {
       "name": "Time Intelligence",
       "source_file": "time_intelligence.json",
       "purpose": "Measures how trade outcomes change through time.",
       "summary": {
-        "trades_timed": 129,
-        "avg_winner_holding_hours": 18.62999041675505,
-        "avg_loser_holding_hours": 8.49995683772326,
-        "avg_winner_time_to_mfe_hours": 14.136558567260101,
-        "avg_peak_to_exit_hours": 5.726244293322567,
-        "overheld_reviews": 80,
-        "reentry_delays_measured": 121
+        "trades_timed": 133,
+        "avg_winner_holding_hours": 18.255908495157005,
+        "avg_loser_holding_hours": 8.729441840068182,
+        "avg_winner_time_to_mfe_hours": 13.923616196932368,
+        "avg_peak_to_exit_hours": 5.7603514494110275,
+        "overheld_reviews": 81,
+        "reentry_delays_measured": 123
       },
-      "updated_at": "2026-08-12T08:52:05.924750+00:00"
+      "updated_at": "2026-08-12T09:49:41.247596+00:00"
     },
     {
       "name": "Move Phase",
@@ -1170,13 +3632,13 @@
       "summary": {
         "assets": 45,
         "phase_counts": {
-          "RESET / REVERSAL": 4,
-          "BASE / OBSERVING": 39,
-          "EXHAUSTION": 1,
+          "BASE / OBSERVING": 18,
+          "RESET / REVERSAL": 25,
+          "IGNITION": 1,
           "OBSERVING": 1
         }
       },
-      "updated_at": "2026-08-12T08:52:03.343084+00:00"
+      "updated_at": "2026-08-12T09:49:38.361837+00:00"
     },
     {
       "name": "Pattern Miner",
@@ -1186,7 +3648,7 @@
         "patterns": 0,
         "candidate_patterns": 0
       },
-      "updated_at": "2026-08-12T08:52:06.065495+00:00"
+      "updated_at": "2026-08-12T09:49:41.393289+00:00"
     },
     {
       "name": "Management Challenger",
@@ -1196,18 +3658,40 @@
         "policies": 4,
         "samples_required": 30
       },
-      "updated_at": "2026-08-12T08:52:06.117503+00:00"
+      "updated_at": "2026-08-12T09:49:41.447391+00:00"
     },
     {
       "name": "Committee Memory",
       "source_file": "committee_memory.json",
       "purpose": "Tracks specialist evidence over repeated outcomes.",
       "summary": {
-        "agents": 5,
+        "agents": 6,
         "advisories": 0,
         "mature_patterns": 0
       },
-      "updated_at": "2026-08-12T08:52:06.327388+00:00"
+      "updated_at": "2026-08-12T09:49:41.662889+00:00"
+    },
+    {
+      "name": "Trade Reflection",
+      "source_file": "trade_reflections.json",
+      "purpose": "Grades process, finds first failure clues and studies whether the opposite direction was superior.",
+      "summary": {
+        "reflections": 133,
+        "good_process_wrong_direction": 11,
+        "high_value_lessons": 107,
+        "stop_losses_praised": 14
+      },
+      "updated_at": "2026-08-12T09:49:41.051737+00:00"
+    },
+    {
+      "name": "Missed Clue Miner",
+      "source_file": "missed_clues.json",
+      "purpose": "Finds repeated clues the engine may have overlooked before failed trades.",
+      "summary": {
+        "clues": 6,
+        "mature": 1
+      },
+      "updated_at": "2026-08-12T09:49:41.093865+00:00"
     }
   ],
   "rules": {
