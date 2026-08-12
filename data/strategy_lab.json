@@ -1,12 +1,13 @@
 {
-  "updated_at": "2026-08-12T05:49:29.380822+00:00",
+  "updated_at": "2026-08-12T08:51:45.902670+00:00",
   "baseline_id": "V10_20260810T051149Z",
   "assumptions": {
     "position_size_pct": 10.0,
     "max_positions": 8,
     "minimum_cash_reserve_pct": 20.0,
     "fee_pct_per_side": 0.1,
-    "slippage_pct_per_side": 0.05
+    "slippage_pct_per_side": 0.05,
+    "strategy_stop_loss_pct": 5.0
   },
   "strategies": {
     "conviction_v1": {
@@ -16,12 +17,12 @@
       "version": "1.0.0",
       "status": "COLLECTING V10 EVIDENCE",
       "starting_capital": 100000.0,
-      "cash": -13040.604621725468,
-      "equity": 27980.010321774127,
-      "previous_equity": 27838.098931680026,
-      "equity_change_this_run": 141.91139009410108,
-      "realised_pnl": -73660.12295104483,
-      "unrealised_pnl": 1640.133272818964,
+      "cash": -2935.3855153672685,
+      "equity": 28282.938532715678,
+      "previous_equity": 27980.010321774127,
+      "equity_change_this_run": 302.9282109415508,
+      "realised_pnl": -73554.90384468663,
+      "unrealised_pnl": 1837.8423774023197,
       "open_positions": [
         {
           "position_id": "conviction_v1_COTI_SELL_20260810_0400000000",
@@ -34,14 +35,14 @@
           "entry_time": "2026-08-10T05:13:14.830365+00:00",
           "entry_price": 0.011394300192128868,
           "market_entry_price": 0.01140000019222498,
-          "current_price": 0.009800000116229057,
+          "current_price": 0.009499999694526196,
           "allocated_cash": 10000.0,
           "entry_fee": 10.0,
           "units": 876754.1517732742,
           "status": "OPEN",
-          "gross_return": 13.992084191367415,
-          "unrealised_return": 13.692084191367414,
-          "unrealised_pnl": 1369.2084191367414
+          "gross_return": 16.62498324303626,
+          "unrealised_return": 16.32498324303626,
+          "unrealised_pnl": 1632.498324303626
         },
         {
           "position_id": "conviction_v1_ENJ_STRONG_SELL_20260811_0000000000",
@@ -54,34 +55,14 @@
           "entry_time": "2026-08-11T01:46:44.926642+00:00",
           "entry_price": 0.024774853557348254,
           "market_entry_price": 0.02478724718093872,
-          "current_price": 0.02486218325793743,
+          "current_price": 0.02462461031973362,
           "allocated_cash": 10000.0,
           "entry_fee": 10.0,
           "units": 403231.4450164309,
           "status": "OPEN",
-          "gross_return": -0.35249330692117553,
-          "unrealised_return": -0.6524933069211756,
-          "unrealised_pnl": -65.24933069211755
-        },
-        {
-          "position_id": "conviction_v1_DOGE_STRONG_BUY_20260811_0800000000",
-          "strategy_id": "conviction_v1",
-          "symbol": "DOGE",
-          "name": "Dogecoin",
-          "narrative": "Meme",
-          "signal": "STRONG BUY",
-          "direction": "LONG",
-          "entry_time": "2026-08-11T11:08:42.492533+00:00",
-          "entry_price": 0.07060528451576828,
-          "market_entry_price": 0.07056999951601028,
-          "current_price": 0.07212000340223312,
-          "allocated_cash": 10000.0,
-          "entry_fee": 10.0,
-          "units": 141490.82563032422,
-          "status": "OPEN",
-          "gross_return": 2.145333592029597,
-          "unrealised_return": 1.8453335920295968,
-          "unrealised_pnl": 184.5333592029597
+          "gross_return": 0.6064344124854459,
+          "unrealised_return": 0.3064344124854459,
+          "unrealised_pnl": 30.64344124854459
         },
         {
           "position_id": "conviction_v1_SAND_SELL_20260811_0800000000",
@@ -94,14 +75,14 @@
           "entry_time": "2026-08-11T11:08:42.492533+00:00",
           "entry_price": 0.040679649779573085,
           "market_entry_price": 0.040699999779462814,
-          "current_price": 0.039900001138448715,
+          "current_price": 0.039799999445676804,
           "allocated_cash": 9380.48167068063,
           "entry_fee": 9.38048167068063,
           "units": 230363.36939448194,
           "status": "OPEN",
-          "gross_return": 1.916556915678913,
-          "unrealised_return": 1.616556915678913,
-          "unrealised_pnl": 151.64082517138056
+          "gross_return": 2.1623842355152023,
+          "unrealised_return": 1.8623842355152023,
+          "unrealised_pnl": 174.70061185014913
         }
       ],
       "closed_positions": [
@@ -329,6 +310,31 @@
           "exit_reason": "Base signal returned to HOLD",
           "realised_return": 1.185030765823192,
           "realised_pnl": 118.50307658231921
+        },
+        {
+          "position_id": "conviction_v1_DOGE_STRONG_BUY_20260811_0800000000",
+          "strategy_id": "conviction_v1",
+          "symbol": "DOGE",
+          "name": "Dogecoin",
+          "narrative": "Meme",
+          "signal": "STRONG BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-11T11:08:42.492533+00:00",
+          "entry_price": 0.07060528451576828,
+          "market_entry_price": 0.07056999951601028,
+          "current_price": 0.07156000286340714,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 141490.82563032422,
+          "status": "CLOSED",
+          "gross_return": 1.3521910635819978,
+          "unrealised_return": 1.0521910635819978,
+          "unrealised_pnl": 105.21910635819977,
+          "exit_time": "2026-08-12T08:51:45.900304+00:00",
+          "exit_price": 0.07156000286340714,
+          "exit_reason": "Base signal returned to HOLD",
+          "realised_return": 1.0521910635819978,
+          "realised_pnl": 105.21910635819977
         }
       ],
       "rejected_opportunities": [
@@ -2018,6 +2024,167 @@
           "signal": "SELL",
           "reason": "CASH RESERVE",
           "entry_price": 0.41791000962257385
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900425+00:00",
+          "symbol": "GALA",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.0016904229996725917
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900439+00:00",
+          "symbol": "BEAM",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.007988166064023972
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900448+00:00",
+          "symbol": "ZIL",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.0023037358187139034
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900456+00:00",
+          "symbol": "SKL",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.003461000043898821
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900463+00:00",
+          "symbol": "SC",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.00046473563998006284
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900470+00:00",
+          "symbol": "GRT",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.013697921362849736
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900477+00:00",
+          "symbol": "AVAX",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 6.2270002365112305
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900484+00:00",
+          "symbol": "PAAL",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.004938993602991104
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900491+00:00",
+          "symbol": "UOS",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.002805768046528101
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900501+00:00",
+          "symbol": "S",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.022801298709825578
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900510+00:00",
+          "symbol": "USDT",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.9989500045776367
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900517+00:00",
+          "symbol": "FIL",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.6980000138282776
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900524+00:00",
+          "symbol": "SEI",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.03979000076651573
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900531+00:00",
+          "symbol": "DOT",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.7853000164031982
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900538+00:00",
+          "symbol": "ONDO",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.33258000016212463
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900545+00:00",
+          "symbol": "SHIB",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 4.44999977844418e-06
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900552+00:00",
+          "symbol": "XTZ",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.1941000074148178
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900561+00:00",
+          "symbol": "PYR",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.05999999865889549
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900569+00:00",
+          "symbol": "NEAR",
+          "signal": "BUY",
+          "reason": "CASH RESERVE",
+          "entry_price": 1.6383999586105347
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900576+00:00",
+          "symbol": "VET",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.004610000178217888
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900583+00:00",
+          "symbol": "AERO",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.4157800078392029
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900590+00:00",
+          "symbol": "TLM",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.0015370426699519157
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900597+00:00",
+          "symbol": "BTT",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 2.621248427203682e-07
         }
       ],
       "equity_history": [
@@ -2150,6 +2317,16 @@
           "realised_pnl": -73660.12295104483,
           "unrealised_pnl": 1640.133272818964,
           "open_positions": 4
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900612+00:00",
+          "equity": 28282.938532715678,
+          "previous_equity": 27980.010321774127,
+          "equity_change": 302.9282109415508,
+          "cash": -2935.3855153672685,
+          "realised_pnl": -73554.90384468663,
+          "unrealised_pnl": 1837.8423774023197,
+          "open_positions": 3
         }
       ],
       "activity_journal": [
@@ -5988,46 +6165,302 @@
           "symbol": "AERO",
           "detail": "Cash reserve",
           "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900268+00:00",
+          "event": "RETAINED",
+          "symbol": "COTI",
+          "detail": "Position revalued",
+          "return_pct": 16.32498324303626,
+          "current_price": 0.009499999694526196
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900294+00:00",
+          "event": "RETAINED",
+          "symbol": "ENJ",
+          "detail": "Position revalued",
+          "return_pct": 0.3064344124854459,
+          "current_price": 0.02462461031973362
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900310+00:00",
+          "event": "CLOSED",
+          "symbol": "DOGE",
+          "detail": "Base signal returned to HOLD",
+          "return_pct": 1.0521910635819978,
+          "pnl": 105.21910635819977
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900318+00:00",
+          "event": "RETAINED",
+          "symbol": "SAND",
+          "detail": "Position revalued",
+          "return_pct": 1.8623842355152023,
+          "current_price": 0.039799999445676804
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900327+00:00",
+          "event": "FILTERED",
+          "symbol": "BTC",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900340+00:00",
+          "event": "FILTERED",
+          "symbol": "SUI",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900346+00:00",
+          "event": "FILTERED",
+          "symbol": "SUPER",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900358+00:00",
+          "event": "FILTERED",
+          "symbol": "RUNE",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900363+00:00",
+          "event": "FILTERED",
+          "symbol": "WIN",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900376+00:00",
+          "event": "FILTERED",
+          "symbol": "UFO",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900381+00:00",
+          "event": "FILTERED",
+          "symbol": "DENT",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900386+00:00",
+          "event": "FILTERED",
+          "symbol": "MEW",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900392+00:00",
+          "event": "FILTERED",
+          "symbol": "VTHO",
+          "detail": "4H Conviction V1 entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900428+00:00",
+          "event": "REJECTED",
+          "symbol": "GALA",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900442+00:00",
+          "event": "REJECTED",
+          "symbol": "BEAM",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900451+00:00",
+          "event": "REJECTED",
+          "symbol": "ZIL",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900458+00:00",
+          "event": "REJECTED",
+          "symbol": "SKL",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900465+00:00",
+          "event": "REJECTED",
+          "symbol": "SC",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900472+00:00",
+          "event": "REJECTED",
+          "symbol": "GRT",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900480+00:00",
+          "event": "REJECTED",
+          "symbol": "AVAX",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900487+00:00",
+          "event": "REJECTED",
+          "symbol": "PAAL",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900496+00:00",
+          "event": "REJECTED",
+          "symbol": "UOS",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900504+00:00",
+          "event": "REJECTED",
+          "symbol": "S",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900513+00:00",
+          "event": "REJECTED",
+          "symbol": "USDT",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900520+00:00",
+          "event": "REJECTED",
+          "symbol": "FIL",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900527+00:00",
+          "event": "REJECTED",
+          "symbol": "SEI",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900534+00:00",
+          "event": "REJECTED",
+          "symbol": "DOT",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900540+00:00",
+          "event": "REJECTED",
+          "symbol": "ONDO",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900547+00:00",
+          "event": "REJECTED",
+          "symbol": "SHIB",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900555+00:00",
+          "event": "REJECTED",
+          "symbol": "XTZ",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900564+00:00",
+          "event": "REJECTED",
+          "symbol": "PYR",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900571+00:00",
+          "event": "REJECTED",
+          "symbol": "NEAR",
+          "detail": "Cash reserve",
+          "signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900578+00:00",
+          "event": "REJECTED",
+          "symbol": "VET",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900585+00:00",
+          "event": "REJECTED",
+          "symbol": "AERO",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900592+00:00",
+          "event": "REJECTED",
+          "symbol": "TLM",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900599+00:00",
+          "event": "REJECTED",
+          "symbol": "BTT",
+          "detail": "Cash reserve",
+          "signal": "SELL"
         }
       ],
       "heartbeat": {
-        "last_run": "2026-08-12T05:49:29.379167+00:00",
-        "market_snapshot": "2026-08-12T05:49:13.980264+00:00",
+        "last_run": "2026-08-12T08:51:45.900612+00:00",
+        "market_snapshot": "2026-08-12T08:51:32.310983+00:00",
         "wallet_updated": true,
         "signals_checked": 44,
-        "positions_evaluated": 7,
+        "positions_evaluated": 4,
         "database_saved": true
       },
       "activity": {
-        "retained": 4,
-        "closed": 3,
+        "retained": 3,
+        "closed": 1,
         "opened": 0,
         "rejected_capacity": 0,
-        "rejected_cash_reserve": 17,
+        "rejected_cash_reserve": 23,
         "rejected_existing": 3,
-        "filtered_by_strategy": 12,
+        "filtered_by_strategy": 9,
         "signals_checked": 44,
-        "positions_evaluated": 7
+        "positions_evaluated": 4
       },
       "metrics": {
-        "return_pct": -72.01998967822587,
-        "closed_trades": 9,
-        "wins": 3,
+        "return_pct": -71.71706146728431,
+        "closed_trades": 10,
+        "wins": 4,
         "losses": 4,
-        "win_rate": 33.33333333333333,
-        "average_return": -81.8445810567165,
-        "average_winner": 1.9668095707181275,
+        "win_rate": 40.0,
+        "average_return": -73.55490384468666,
+        "average_winner": 1.738154943934095,
         "average_loser": -185.67095581688645,
-        "profit_factor": 0.00794473843013651,
+        "profit_factor": 0.009361480024093316,
         "max_drawdown": 72.21421498118032
       },
-      "updated_at": "2026-08-12T05:49:29.379167+00:00",
+      "updated_at": "2026-08-12T08:51:45.900612+00:00",
       "evidence": {
-        "market_snapshots": 7,
-        "signals_checked": 308,
-        "filtered_by_strategy": 89,
+        "market_snapshots": 8,
+        "signals_checked": 352,
+        "filtered_by_strategy": 98,
         "entries_opened": 2,
-        "positions_closed": 9
+        "positions_closed": 10
       },
       "description": "Current production four-hour checklist."
     },
@@ -6170,6 +6603,16 @@
         },
         {
           "recorded_at": "2026-08-12T05:49:29.380208+00:00",
+          "equity": 100000.0,
+          "previous_equity": 100000.0,
+          "equity_change": 0.0,
+          "cash": 100000.0,
+          "realised_pnl": 0.0,
+          "unrealised_pnl": 0,
+          "open_positions": 0
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901929+00:00",
           "equity": 100000.0,
           "previous_equity": 100000.0,
           "equity_change": 0.0,
@@ -9602,11 +10045,256 @@
           "symbol": "XTZ",
           "detail": "Closed Candle Confirmation entry rule did not pass",
           "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900772+00:00",
+          "event": "FILTERED",
+          "symbol": "BTC",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900842+00:00",
+          "event": "FILTERED",
+          "symbol": "AVAX",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900873+00:00",
+          "event": "FILTERED",
+          "symbol": "COTI",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900920+00:00",
+          "event": "FILTERED",
+          "symbol": "ZIL",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900948+00:00",
+          "event": "FILTERED",
+          "symbol": "ONDO",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.900975+00:00",
+          "event": "FILTERED",
+          "symbol": "DOT",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901002+00:00",
+          "event": "FILTERED",
+          "symbol": "SUI",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901029+00:00",
+          "event": "FILTERED",
+          "symbol": "NEAR",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901055+00:00",
+          "event": "FILTERED",
+          "symbol": "SUPER",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901082+00:00",
+          "event": "FILTERED",
+          "symbol": "S",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901127+00:00",
+          "event": "FILTERED",
+          "symbol": "FIL",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901202+00:00",
+          "event": "FILTERED",
+          "symbol": "USDT",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901232+00:00",
+          "event": "FILTERED",
+          "symbol": "SEI",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901262+00:00",
+          "event": "FILTERED",
+          "symbol": "RUNE",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901291+00:00",
+          "event": "FILTERED",
+          "symbol": "SAND",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901317+00:00",
+          "event": "FILTERED",
+          "symbol": "WIN",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901360+00:00",
+          "event": "FILTERED",
+          "symbol": "BEAM",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901386+00:00",
+          "event": "FILTERED",
+          "symbol": "SHIB",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901412+00:00",
+          "event": "FILTERED",
+          "symbol": "ENJ",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901456+00:00",
+          "event": "FILTERED",
+          "symbol": "VET",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901483+00:00",
+          "event": "FILTERED",
+          "symbol": "SC",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901508+00:00",
+          "event": "FILTERED",
+          "symbol": "BTT",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901533+00:00",
+          "event": "FILTERED",
+          "symbol": "TLM",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901558+00:00",
+          "event": "FILTERED",
+          "symbol": "PYR",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901590+00:00",
+          "event": "FILTERED",
+          "symbol": "PAAL",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901616+00:00",
+          "event": "FILTERED",
+          "symbol": "SKL",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901642+00:00",
+          "event": "FILTERED",
+          "symbol": "AERO",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901684+00:00",
+          "event": "FILTERED",
+          "symbol": "GALA",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901714+00:00",
+          "event": "FILTERED",
+          "symbol": "UOS",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901741+00:00",
+          "event": "FILTERED",
+          "symbol": "UFO",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901767+00:00",
+          "event": "FILTERED",
+          "symbol": "DENT",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901796+00:00",
+          "event": "FILTERED",
+          "symbol": "MEW",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901845+00:00",
+          "event": "FILTERED",
+          "symbol": "GRT",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901890+00:00",
+          "event": "FILTERED",
+          "symbol": "VTHO",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901917+00:00",
+          "event": "FILTERED",
+          "symbol": "XTZ",
+          "detail": "Closed Candle Confirmation entry rule did not pass",
+          "base_signal": "SELL"
         }
       ],
       "heartbeat": {
-        "last_run": "2026-08-12T05:49:29.380208+00:00",
-        "market_snapshot": "2026-08-12T05:49:13.980264+00:00",
+        "last_run": "2026-08-12T08:51:45.901929+00:00",
+        "market_snapshot": "2026-08-12T08:51:32.310983+00:00",
         "wallet_updated": true,
         "signals_checked": 44,
         "positions_evaluated": 0,
@@ -9619,7 +10307,7 @@
         "rejected_capacity": 0,
         "rejected_cash_reserve": 0,
         "rejected_existing": 0,
-        "filtered_by_strategy": 32,
+        "filtered_by_strategy": 35,
         "signals_checked": 44,
         "positions_evaluated": 0
       },
@@ -9635,11 +10323,11 @@
         "profit_factor": 0.0,
         "max_drawdown": 0.0
       },
-      "updated_at": "2026-08-12T05:49:29.380208+00:00",
+      "updated_at": "2026-08-12T08:51:45.901929+00:00",
       "evidence": {
-        "market_snapshots": 7,
-        "signals_checked": 308,
-        "filtered_by_strategy": 266,
+        "market_snapshots": 8,
+        "signals_checked": 352,
+        "filtered_by_strategy": 301,
         "entries_opened": 0,
         "positions_closed": 0
       },
@@ -9652,12 +10340,12 @@
       "version": "0.1.0",
       "status": "COLLECTING V10 EVIDENCE",
       "starting_capital": 100000.0,
-      "cash": -22653.15368447145,
-      "equity": 28974.893467886483,
-      "previous_equity": 28614.670000325947,
-      "equity_change_this_run": 360.22346756053594,
-      "realised_pnl": -73272.67201379081,
-      "unrealised_pnl": 2247.5654816773012,
+      "cash": -12547.93457811325,
+      "equity": 29364.493658493586,
+      "previous_equity": 28974.893467886483,
+      "equity_change_this_run": 389.6001906071033,
+      "realised_pnl": -73167.45290743261,
+      "unrealised_pnl": 2531.9465659262073,
       "open_positions": [
         {
           "position_id": "rvol_150_challenger_COTI_SELL_20260810_0400000000",
@@ -9670,14 +10358,14 @@
           "entry_time": "2026-08-10T05:13:14.830365+00:00",
           "entry_price": 0.011394300192128868,
           "market_entry_price": 0.01140000019222498,
-          "current_price": 0.009800000116229057,
+          "current_price": 0.009499999694526196,
           "allocated_cash": 10000.0,
           "entry_fee": 10.0,
           "units": 876754.1517732742,
           "status": "OPEN",
-          "gross_return": 13.992084191367415,
-          "unrealised_return": 13.692084191367414,
-          "unrealised_pnl": 1369.2084191367414
+          "gross_return": 16.62498324303626,
+          "unrealised_return": 16.32498324303626,
+          "unrealised_pnl": 1632.498324303626
         },
         {
           "position_id": "rvol_150_challenger_PAAL_SELL_20260810_0400000000",
@@ -9690,14 +10378,14 @@
           "entry_time": "2026-08-10T05:13:14.830365+00:00",
           "entry_price": 0.005324546225368977,
           "market_entry_price": 0.005327209830284119,
-          "current_price": 0.00498514249920845,
+          "current_price": 0.004938993602991104,
           "allocated_cash": 10000.0,
           "entry_fee": 10.0,
           "units": 1876216.2214692237,
           "status": "OPEN",
-          "gross_return": 6.374322088583373,
-          "unrealised_return": 6.074322088583373,
-          "unrealised_pnl": 607.4322088583373
+          "gross_return": 7.241041885238875,
+          "unrealised_return": 6.941041885238875,
+          "unrealised_pnl": 694.1041885238876
         },
         {
           "position_id": "rvol_150_challenger_ENJ_STRONG_SELL_20260811_0000000000",
@@ -9710,34 +10398,14 @@
           "entry_time": "2026-08-11T01:46:44.926642+00:00",
           "entry_price": 0.024774853557348254,
           "market_entry_price": 0.02478724718093872,
-          "current_price": 0.02486218325793743,
+          "current_price": 0.02462461031973362,
           "allocated_cash": 10000.0,
           "entry_fee": 10.0,
           "units": 403231.4450164309,
           "status": "OPEN",
-          "gross_return": -0.35249330692117553,
-          "unrealised_return": -0.6524933069211756,
-          "unrealised_pnl": -65.24933069211755
-        },
-        {
-          "position_id": "rvol_150_challenger_DOGE_STRONG_BUY_20260811_0800000000",
-          "strategy_id": "rvol_150_challenger",
-          "symbol": "DOGE",
-          "name": "Dogecoin",
-          "narrative": "Meme",
-          "signal": "STRONG BUY",
-          "direction": "LONG",
-          "entry_time": "2026-08-11T11:08:42.492533+00:00",
-          "entry_price": 0.07060528451576828,
-          "market_entry_price": 0.07056999951601028,
-          "current_price": 0.07212000340223312,
-          "allocated_cash": 10000.0,
-          "entry_fee": 10.0,
-          "units": 141490.82563032422,
-          "status": "OPEN",
-          "gross_return": 2.145333592029597,
-          "unrealised_return": 1.8453335920295968,
-          "unrealised_pnl": 184.5333592029597
+          "gross_return": 0.6064344124854459,
+          "unrealised_return": 0.3064344124854459,
+          "unrealised_pnl": 30.64344124854459
         },
         {
           "position_id": "rvol_150_challenger_SAND_SELL_20260811_0800000000",
@@ -9750,14 +10418,14 @@
           "entry_time": "2026-08-11T11:08:42.492533+00:00",
           "entry_price": 0.040679649779573085,
           "market_entry_price": 0.040699999779462814,
-          "current_price": 0.039900001138448715,
+          "current_price": 0.039799999445676804,
           "allocated_cash": 9380.48167068063,
           "entry_fee": 9.38048167068063,
           "units": 230363.36939448194,
           "status": "OPEN",
-          "gross_return": 1.916556915678913,
-          "unrealised_return": 1.616556915678913,
-          "unrealised_pnl": 151.64082517138056
+          "gross_return": 2.1623842355152023,
+          "unrealised_return": 1.8623842355152023,
+          "unrealised_pnl": 174.70061185014913
         }
       ],
       "closed_positions": [
@@ -9960,6 +10628,31 @@
           "exit_reason": "Base signal returned to HOLD",
           "realised_return": 1.185030765823192,
           "realised_pnl": 118.50307658231921
+        },
+        {
+          "position_id": "rvol_150_challenger_DOGE_STRONG_BUY_20260811_0800000000",
+          "strategy_id": "rvol_150_challenger",
+          "symbol": "DOGE",
+          "name": "Dogecoin",
+          "narrative": "Meme",
+          "signal": "STRONG BUY",
+          "direction": "LONG",
+          "entry_time": "2026-08-11T11:08:42.492533+00:00",
+          "entry_price": 0.07060528451576828,
+          "market_entry_price": 0.07056999951601028,
+          "current_price": 0.07156000286340714,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 141490.82563032422,
+          "status": "CLOSED",
+          "gross_return": 1.3521910635819978,
+          "unrealised_return": 1.0521910635819978,
+          "unrealised_pnl": 105.21910635819977,
+          "exit_time": "2026-08-12T08:51:45.901994+00:00",
+          "exit_price": 0.07156000286340714,
+          "exit_reason": "Base signal returned to HOLD",
+          "realised_return": 1.0521910635819978,
+          "realised_pnl": 105.21910635819977
         }
       ],
       "rejected_opportunities": [
@@ -11404,6 +12097,153 @@
           "signal": "SELL",
           "reason": "CASH RESERVE",
           "entry_price": 0.41791000962257385
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902109+00:00",
+          "symbol": "GALA",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.0016904229996725917
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902119+00:00",
+          "symbol": "BEAM",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.007988166064023972
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902126+00:00",
+          "symbol": "ZIL",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.0023037358187139034
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902133+00:00",
+          "symbol": "SKL",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.003461000043898821
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902141+00:00",
+          "symbol": "SC",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.00046473563998006284
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902148+00:00",
+          "symbol": "GRT",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.013697921362849736
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902185+00:00",
+          "symbol": "AVAX",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 6.2270002365112305
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902197+00:00",
+          "symbol": "UOS",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.002805768046528101
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902204+00:00",
+          "symbol": "S",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.022801298709825578
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902212+00:00",
+          "symbol": "USDT",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.9989500045776367
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902219+00:00",
+          "symbol": "FIL",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.6980000138282776
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902226+00:00",
+          "symbol": "SEI",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.03979000076651573
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902233+00:00",
+          "symbol": "DOT",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.7853000164031982
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902245+00:00",
+          "symbol": "ONDO",
+          "signal": "STRONG SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.33258000016212463
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902252+00:00",
+          "symbol": "SHIB",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 4.44999977844418e-06
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902262+00:00",
+          "symbol": "XTZ",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.1941000074148178
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902269+00:00",
+          "symbol": "PYR",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.05999999865889549
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902276+00:00",
+          "symbol": "VET",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.004610000178217888
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902283+00:00",
+          "symbol": "AERO",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.4157800078392029
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902290+00:00",
+          "symbol": "TLM",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 0.0015370426699519157
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902298+00:00",
+          "symbol": "BTT",
+          "signal": "SELL",
+          "reason": "CASH RESERVE",
+          "entry_price": 2.621248427203682e-07
         }
       ],
       "equity_history": [
@@ -11536,6 +12376,16 @@
           "realised_pnl": -73272.67201379081,
           "unrealised_pnl": 2247.5654816773012,
           "open_positions": 5
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902310+00:00",
+          "equity": 29364.493658493586,
+          "previous_equity": 28974.893467886483,
+          "equity_change": 389.6001906071033,
+          "cash": -12547.93457811325,
+          "realised_pnl": -73167.45290743261,
+          "unrealised_pnl": 2531.9465659262073,
+          "open_positions": 4
         }
       ],
       "activity_journal": [
@@ -15311,46 +16161,303 @@
           "symbol": "AERO",
           "detail": "Cash reserve",
           "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901971+00:00",
+          "event": "RETAINED",
+          "symbol": "COTI",
+          "detail": "Position revalued",
+          "return_pct": 16.32498324303626,
+          "current_price": 0.009499999694526196
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901980+00:00",
+          "event": "RETAINED",
+          "symbol": "PAAL",
+          "detail": "Position revalued",
+          "return_pct": 6.941041885238875,
+          "current_price": 0.004938993602991104
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901987+00:00",
+          "event": "RETAINED",
+          "symbol": "ENJ",
+          "detail": "Position revalued",
+          "return_pct": 0.3064344124854459,
+          "current_price": 0.02462461031973362
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.901999+00:00",
+          "event": "CLOSED",
+          "symbol": "DOGE",
+          "detail": "Base signal returned to HOLD",
+          "return_pct": 1.0521910635819978,
+          "pnl": 105.21910635819977
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902006+00:00",
+          "event": "RETAINED",
+          "symbol": "SAND",
+          "detail": "Position revalued",
+          "return_pct": 1.8623842355152023,
+          "current_price": 0.039799999445676804
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902014+00:00",
+          "event": "FILTERED",
+          "symbol": "BTC",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902026+00:00",
+          "event": "FILTERED",
+          "symbol": "SUI",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902032+00:00",
+          "event": "FILTERED",
+          "symbol": "NEAR",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902038+00:00",
+          "event": "FILTERED",
+          "symbol": "SUPER",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902048+00:00",
+          "event": "FILTERED",
+          "symbol": "RUNE",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902053+00:00",
+          "event": "FILTERED",
+          "symbol": "WIN",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902068+00:00",
+          "event": "FILTERED",
+          "symbol": "UFO",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902074+00:00",
+          "event": "FILTERED",
+          "symbol": "DENT",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902079+00:00",
+          "event": "FILTERED",
+          "symbol": "MEW",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902086+00:00",
+          "event": "FILTERED",
+          "symbol": "VTHO",
+          "detail": "RVOL 1.50 Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902113+00:00",
+          "event": "REJECTED",
+          "symbol": "GALA",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902121+00:00",
+          "event": "REJECTED",
+          "symbol": "BEAM",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902129+00:00",
+          "event": "REJECTED",
+          "symbol": "ZIL",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902136+00:00",
+          "event": "REJECTED",
+          "symbol": "SKL",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902143+00:00",
+          "event": "REJECTED",
+          "symbol": "SC",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902177+00:00",
+          "event": "REJECTED",
+          "symbol": "GRT",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902187+00:00",
+          "event": "REJECTED",
+          "symbol": "AVAX",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902199+00:00",
+          "event": "REJECTED",
+          "symbol": "UOS",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902207+00:00",
+          "event": "REJECTED",
+          "symbol": "S",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902214+00:00",
+          "event": "REJECTED",
+          "symbol": "USDT",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902221+00:00",
+          "event": "REJECTED",
+          "symbol": "FIL",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902228+00:00",
+          "event": "REJECTED",
+          "symbol": "SEI",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902235+00:00",
+          "event": "REJECTED",
+          "symbol": "DOT",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902248+00:00",
+          "event": "REJECTED",
+          "symbol": "ONDO",
+          "detail": "Cash reserve",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902257+00:00",
+          "event": "REJECTED",
+          "symbol": "SHIB",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902264+00:00",
+          "event": "REJECTED",
+          "symbol": "XTZ",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902271+00:00",
+          "event": "REJECTED",
+          "symbol": "PYR",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902279+00:00",
+          "event": "REJECTED",
+          "symbol": "VET",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902286+00:00",
+          "event": "REJECTED",
+          "symbol": "AERO",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902293+00:00",
+          "event": "REJECTED",
+          "symbol": "TLM",
+          "detail": "Cash reserve",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902300+00:00",
+          "event": "REJECTED",
+          "symbol": "BTT",
+          "detail": "Cash reserve",
+          "signal": "SELL"
         }
       ],
       "heartbeat": {
-        "last_run": "2026-08-12T05:49:29.380522+00:00",
-        "market_snapshot": "2026-08-12T05:49:13.980264+00:00",
+        "last_run": "2026-08-12T08:51:45.902310+00:00",
+        "market_snapshot": "2026-08-12T08:51:32.310983+00:00",
         "wallet_updated": true,
         "signals_checked": 44,
-        "positions_evaluated": 7,
+        "positions_evaluated": 5,
         "database_saved": true
       },
       "activity": {
-        "retained": 5,
-        "closed": 2,
+        "retained": 4,
+        "closed": 1,
         "opened": 0,
         "rejected_capacity": 0,
-        "rejected_cash_reserve": 11,
-        "rejected_existing": 3,
-        "filtered_by_strategy": 18,
+        "rejected_cash_reserve": 21,
+        "rejected_existing": 4,
+        "filtered_by_strategy": 10,
         "signals_checked": 44,
-        "positions_evaluated": 7
+        "positions_evaluated": 5
       },
       "metrics": {
-        "return_pct": -71.02510653211351,
-        "closed_trades": 8,
-        "wins": 3,
+        "return_pct": -70.63550634150641,
+        "closed_trades": 9,
+        "wins": 4,
         "losses": 3,
-        "win_rate": 37.5,
-        "average_return": -91.59084001723853,
-        "average_winner": 1.9668095707181275,
+        "win_rate": 44.44444444444444,
+        "average_return": -81.29716989714737,
+        "average_winner": 1.738154943934095,
         "average_loser": -246.26977129833517,
-        "profit_factor": 0.007986402717430969,
+        "profit_factor": 0.009410574075037228,
         "max_drawdown": 71.59862775671812
       },
-      "updated_at": "2026-08-12T05:49:29.380522+00:00",
+      "updated_at": "2026-08-12T08:51:45.902310+00:00",
       "evidence": {
-        "market_snapshots": 7,
-        "signals_checked": 308,
-        "filtered_by_strategy": 102,
+        "market_snapshots": 8,
+        "signals_checked": 352,
+        "filtered_by_strategy": 112,
         "entries_opened": 2,
-        "positions_closed": 8
+        "positions_closed": 9
       },
       "description": "Requires RVOL >= 1.50 for bullish calls."
     },
@@ -15361,12 +16468,12 @@
       "version": "0.1.0",
       "status": "COLLECTING V10 EVIDENCE",
       "starting_capital": 100000.0,
-      "cash": 58724.853576214184,
-      "equity": 98418.51515471133,
-      "previous_equity": 98267.55682368737,
-      "equity_change_this_run": 150.95833102396864,
+      "cash": 20000.0,
+      "equity": 98680.00745836622,
+      "previous_equity": 98418.51515471133,
+      "equity_change_this_run": 261.4923036548862,
       "realised_pnl": -2160.5780884026512,
-      "unrealised_pnl": 579.0932431139813,
+      "unrealised_pnl": 840.5855467688621,
       "open_positions": [
         {
           "position_id": "btc_confirmed_challenger_PAAL_SELL_20260810_1600000000",
@@ -15379,14 +16486,14 @@
           "entry_time": "2026-08-10T18:05:39.276474+00:00",
           "entry_price": 0.005150006365263835,
           "market_entry_price": 0.005152582656592131,
-          "current_price": 0.00498514249920845,
+          "current_price": 0.004938993602991104,
           "allocated_cash": 10000.0,
           "entry_fee": 10.0,
           "units": 1939803.4276969698,
           "status": "OPEN",
-          "gross_return": 3.2012361609370377,
-          "unrealised_return": 2.901236160937038,
-          "unrealised_pnl": 290.1236160937038
+          "gross_return": 4.097330125570064,
+          "unrealised_return": 3.797330125570064,
+          "unrealised_pnl": 379.7330125570064
         },
         {
           "position_id": "btc_confirmed_challenger_GRT_SELL_20260810_1600000000",
@@ -15399,14 +16506,14 @@
           "entry_time": "2026-08-10T18:05:39.276474+00:00",
           "entry_price": 0.014400897415411437,
           "market_entry_price": 0.014408101466144508,
-          "current_price": 0.013878482006012782,
+          "current_price": 0.013697921362849736,
           "allocated_cash": 10000.0,
           "entry_fee": 10.0,
           "units": 693706.7678371893,
           "status": "OPEN",
-          "gross_return": 3.6276587099327684,
-          "unrealised_return": 3.327658709932768,
-          "unrealised_pnl": 332.76587099327685
+          "gross_return": 4.881473926822055,
+          "unrealised_return": 4.5814739268220555,
+          "unrealised_pnl": 458.1473926822055
         },
         {
           "position_id": "btc_confirmed_challenger_GALA_STRONG_SELL_20260811_1600000000",
@@ -15419,14 +16526,14 @@
           "entry_time": "2026-08-11T18:11:00.446904+00:00",
           "entry_price": 0.0017010786416940392,
           "market_entry_price": 0.0017019296064972878,
-          "current_price": 0.0017161502037197351,
+          "current_price": 0.0016904229996725917,
           "allocated_cash": 9114.56833538317,
           "entry_fee": 9.11456833538317,
           "units": 5352752.979121538,
           "status": "OPEN",
-          "gross_return": -0.8860003092324265,
-          "unrealised_return": -1.1860003092324265,
-          "unrealised_pnl": -108.09880864284523
+          "gross_return": 0.626405020924603,
+          "unrealised_return": 0.326405020924603,
+          "unrealised_pnl": 29.750408682294673
         },
         {
           "position_id": "btc_confirmed_challenger_SAND_STRONG_SELL_20260811_2000000000",
@@ -15439,14 +16546,94 @@
           "entry_time": "2026-08-11T23:24:08.827215+00:00",
           "entry_price": 0.04027985045872629,
           "market_entry_price": 0.040300000458955765,
-          "current_price": 0.039900001138448715,
+          "current_price": 0.039799999445676804,
           "allocated_cash": 10000.0,
           "entry_fee": 10.0,
           "units": 248014.82344718464,
           "status": "OPEN",
-          "gross_return": 0.9430256466984588,
-          "unrealised_return": 0.6430256466984587,
-          "unrealised_pnl": 64.30256466984588
+          "gross_return": 1.19129293575998,
+          "unrealised_return": 0.8912929357599799,
+          "unrealised_pnl": 89.129293575998
+        },
+        {
+          "position_id": "btc_confirmed_challenger_COTI_STRONG_SELL_20260812_0800000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "COTI",
+          "name": "COTI",
+          "narrative": "Privacy / Payments",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-12T08:51:32.310983+00:00",
+          "entry_price": 0.009495249694678933,
+          "market_entry_price": 0.009499999694526196,
+          "current_price": 0.009499999694526196,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 1052105.033698937,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "btc_confirmed_challenger_BEAM_STRONG_SELL_20260812_0800000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "BEAM",
+          "name": "Beam",
+          "narrative": "Gaming",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-12T08:51:32.310983+00:00",
+          "entry_price": 0.00798417198099196,
+          "market_entry_price": 0.007988166064023972,
+          "current_price": 0.007988166064023972,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 1251225.5527289927,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "btc_confirmed_challenger_ZIL_STRONG_SELL_20260812_0800000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "ZIL",
+          "name": "Zilliqa",
+          "narrative": "Layer 1",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-12T08:51:32.310983+00:00",
+          "entry_price": 0.0023025839508045466,
+          "market_entry_price": 0.0023037358187139034,
+          "current_price": 0.0023037358187139034,
+          "allocated_cash": 10000.0,
+          "entry_fee": 10.0,
+          "units": 4338604.026363248,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -30.000000000000004
+        },
+        {
+          "position_id": "btc_confirmed_challenger_SKL_STRONG_SELL_20260812_0800000000",
+          "strategy_id": "btc_confirmed_challenger",
+          "symbol": "SKL",
+          "name": "SKALE Network",
+          "narrative": "Layer 2",
+          "signal": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_time": "2026-08-12T08:51:32.310983+00:00",
+          "entry_price": 0.0034592695438768715,
+          "market_entry_price": 0.003461000043898821,
+          "current_price": 0.003461000043898821,
+          "allocated_cash": 8724.853576214184,
+          "entry_fee": 8.724853576214183,
+          "units": 2519644.280991655,
+          "status": "OPEN",
+          "gross_return": 0.0,
+          "unrealised_return": -0.30000000000000004,
+          "unrealised_pnl": -26.174560728642554
         }
       ],
       "closed_positions": [
@@ -16817,6 +18004,125 @@
           "signal": "SELL",
           "reason": "WALLET CAPACITY",
           "entry_price": 0.024752676486968994
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902519+00:00",
+          "symbol": "SC",
+          "signal": "STRONG SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.00046473563998006284
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902527+00:00",
+          "symbol": "AVAX",
+          "signal": "STRONG SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 6.2270002365112305
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902535+00:00",
+          "symbol": "UOS",
+          "signal": "STRONG SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.002805768046528101
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902542+00:00",
+          "symbol": "S",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.022801298709825578
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902551+00:00",
+          "symbol": "USDT",
+          "signal": "STRONG SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.9989500045776367
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902557+00:00",
+          "symbol": "FIL",
+          "signal": "STRONG SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.6980000138282776
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902566+00:00",
+          "symbol": "SEI",
+          "signal": "STRONG SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.03979000076651573
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902572+00:00",
+          "symbol": "DOT",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.7853000164031982
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902578+00:00",
+          "symbol": "ONDO",
+          "signal": "STRONG SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.33258000016212463
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902585+00:00",
+          "symbol": "SHIB",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 4.44999977844418e-06
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902593+00:00",
+          "symbol": "XTZ",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.1941000074148178
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902599+00:00",
+          "symbol": "PYR",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.05999999865889549
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902608+00:00",
+          "symbol": "VET",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.004610000178217888
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902614+00:00",
+          "symbol": "AERO",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.4157800078392029
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902620+00:00",
+          "symbol": "TLM",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.0015370426699519157
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902627+00:00",
+          "symbol": "BTT",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 2.621248427203682e-07
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902634+00:00",
+          "symbol": "ENJ",
+          "signal": "SELL",
+          "reason": "WALLET CAPACITY",
+          "entry_price": 0.02462461031973362
         }
       ],
       "equity_history": [
@@ -16949,6 +18255,16 @@
           "realised_pnl": -2160.5780884026512,
           "unrealised_pnl": 579.0932431139813,
           "open_positions": 4
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902646+00:00",
+          "equity": 98680.00745836622,
+          "previous_equity": 98418.51515471133,
+          "equity_change": 261.4923036548862,
+          "cash": 20000.0,
+          "realised_pnl": -2160.5780884026512,
+          "unrealised_pnl": 840.5855467688621,
+          "open_positions": 8
         }
       ],
       "activity_journal": [
@@ -20940,29 +22256,286 @@
           "symbol": "XTZ",
           "detail": "BTC Confirmation Challenger entry rule did not pass",
           "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902350+00:00",
+          "event": "RETAINED",
+          "symbol": "PAAL",
+          "detail": "Position revalued",
+          "return_pct": 3.797330125570064,
+          "current_price": 0.004938993602991104
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902359+00:00",
+          "event": "RETAINED",
+          "symbol": "GRT",
+          "detail": "Position revalued",
+          "return_pct": 4.5814739268220555,
+          "current_price": 0.013697921362849736
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902365+00:00",
+          "event": "RETAINED",
+          "symbol": "GALA",
+          "detail": "Position revalued",
+          "return_pct": 0.326405020924603,
+          "current_price": 0.0016904229996725917
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902371+00:00",
+          "event": "RETAINED",
+          "symbol": "SAND",
+          "detail": "Position revalued",
+          "return_pct": 0.8912929357599799,
+          "current_price": 0.039799999445676804
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902382+00:00",
+          "event": "FILTERED",
+          "symbol": "BTC",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902395+00:00",
+          "event": "FILTERED",
+          "symbol": "SUI",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902400+00:00",
+          "event": "FILTERED",
+          "symbol": "NEAR",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902405+00:00",
+          "event": "FILTERED",
+          "symbol": "SUPER",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902416+00:00",
+          "event": "FILTERED",
+          "symbol": "RUNE",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902421+00:00",
+          "event": "FILTERED",
+          "symbol": "WIN",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902437+00:00",
+          "event": "FILTERED",
+          "symbol": "UFO",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "BUY WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902442+00:00",
+          "event": "FILTERED",
+          "symbol": "DENT",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902447+00:00",
+          "event": "FILTERED",
+          "symbol": "MEW",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902454+00:00",
+          "event": "FILTERED",
+          "symbol": "VTHO",
+          "detail": "BTC Confirmation Challenger entry rule did not pass",
+          "base_signal": "SELL WATCH"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902483+00:00",
+          "event": "OPENED",
+          "symbol": "COTI",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.009495249694678933,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902494+00:00",
+          "event": "OPENED",
+          "symbol": "BEAM",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.00798417198099196,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902504+00:00",
+          "event": "OPENED",
+          "symbol": "ZIL",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.0023025839508045466,
+          "allocated_cash": 10000.0
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902514+00:00",
+          "event": "OPENED",
+          "symbol": "SKL",
+          "detail": "STRONG SELL",
+          "direction": "SHORT",
+          "entry_price": 0.0034592695438768715,
+          "allocated_cash": 8724.853576214184
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902522+00:00",
+          "event": "REJECTED",
+          "symbol": "SC",
+          "detail": "Wallet capacity",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902530+00:00",
+          "event": "REJECTED",
+          "symbol": "AVAX",
+          "detail": "Wallet capacity",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902538+00:00",
+          "event": "REJECTED",
+          "symbol": "UOS",
+          "detail": "Wallet capacity",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902544+00:00",
+          "event": "REJECTED",
+          "symbol": "S",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902553+00:00",
+          "event": "REJECTED",
+          "symbol": "USDT",
+          "detail": "Wallet capacity",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902561+00:00",
+          "event": "REJECTED",
+          "symbol": "FIL",
+          "detail": "Wallet capacity",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902568+00:00",
+          "event": "REJECTED",
+          "symbol": "SEI",
+          "detail": "Wallet capacity",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902574+00:00",
+          "event": "REJECTED",
+          "symbol": "DOT",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902581+00:00",
+          "event": "REJECTED",
+          "symbol": "ONDO",
+          "detail": "Wallet capacity",
+          "signal": "STRONG SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902588+00:00",
+          "event": "REJECTED",
+          "symbol": "SHIB",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902595+00:00",
+          "event": "REJECTED",
+          "symbol": "XTZ",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902604+00:00",
+          "event": "REJECTED",
+          "symbol": "PYR",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902610+00:00",
+          "event": "REJECTED",
+          "symbol": "VET",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902617+00:00",
+          "event": "REJECTED",
+          "symbol": "AERO",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902623+00:00",
+          "event": "REJECTED",
+          "symbol": "TLM",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902630+00:00",
+          "event": "REJECTED",
+          "symbol": "BTT",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
+        },
+        {
+          "recorded_at": "2026-08-12T08:51:45.902636+00:00",
+          "event": "REJECTED",
+          "symbol": "ENJ",
+          "detail": "Wallet capacity",
+          "signal": "SELL"
         }
       ],
       "heartbeat": {
-        "last_run": "2026-08-12T05:49:29.380800+00:00",
-        "market_snapshot": "2026-08-12T05:49:13.980264+00:00",
+        "last_run": "2026-08-12T08:51:45.902646+00:00",
+        "market_snapshot": "2026-08-12T08:51:32.310983+00:00",
         "wallet_updated": true,
         "signals_checked": 44,
-        "positions_evaluated": 8,
+        "positions_evaluated": 4,
         "database_saved": true
       },
       "activity": {
         "retained": 4,
-        "closed": 4,
-        "opened": 0,
-        "rejected_capacity": 0,
+        "closed": 0,
+        "opened": 4,
+        "rejected_capacity": 17,
         "rejected_cash_reserve": 0,
-        "rejected_existing": 0,
-        "filtered_by_strategy": 32,
+        "rejected_existing": 4,
+        "filtered_by_strategy": 10,
         "signals_checked": 44,
-        "positions_evaluated": 8
+        "positions_evaluated": 4
       },
       "metrics": {
-        "return_pct": -1.581484845288661,
+        "return_pct": -1.3199925416337743,
         "closed_trades": 9,
         "wins": 2,
         "losses": 6,
@@ -20973,21 +22546,21 @@
         "profit_factor": 0.09576828127044285,
         "max_drawdown": 1.555242613016063
       },
-      "updated_at": "2026-08-12T05:49:29.380800+00:00",
+      "updated_at": "2026-08-12T08:51:45.902646+00:00",
       "evidence": {
-        "market_snapshots": 7,
-        "signals_checked": 308,
-        "filtered_by_strategy": 167,
-        "entries_opened": 2,
+        "market_snapshots": 8,
+        "signals_checked": 352,
+        "filtered_by_strategy": 177,
+        "entries_opened": 6,
         "positions_closed": 9
       },
       "description": "Requires positive BTC confirmation."
     }
   },
-  "market_snapshot": "2026-08-12T05:49:13.980264+00:00",
+  "market_snapshot": "2026-08-12T08:51:32.310983+00:00",
   "heartbeat": {
-    "last_run": "2026-08-12T05:49:29.380822+00:00",
-    "market_snapshot": "2026-08-12T05:49:13.980264+00:00",
+    "last_run": "2026-08-12T08:51:45.902670+00:00",
+    "market_snapshot": "2026-08-12T08:51:32.310983+00:00",
     "strategies_expected": 4,
     "strategies_updated": 4,
     "database_saved": true

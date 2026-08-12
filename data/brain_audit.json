@@ -1,7 +1,191 @@
 {
-  "updated_at": null,
-  "summary": {},
-  "engines": [],
-  "links": [],
-  "alerts": []
+  "updated_at": "2026-08-12T08:52:07.597583+00:00",
+  "summary": {
+    "brain_health_score": 10,
+    "engines_pass": 10,
+    "engines_total": 14,
+    "links_verified": 2,
+    "links_total": 4,
+    "alerts": 6
+  },
+  "engines": [
+    {
+      "engine": "5m Microstructure",
+      "source_file": "microstructure_latest.json",
+      "last_output": "2026-08-12T08:51:46.426414+00:00",
+      "age_minutes": 0.3525987333333333,
+      "freshness_limit_minutes": 10,
+      "status": "PASS"
+    },
+    {
+      "engine": "15m Observer",
+      "source_file": "observer_latest.json",
+      "last_output": "2026-08-12T08:51:54.160492+00:00",
+      "age_minutes": 0.22370821666666665,
+      "freshness_limit_minutes": 30,
+      "status": "PASS"
+    },
+    {
+      "engine": "Market School",
+      "source_file": "market_school.json",
+      "last_output": "2026-08-12T08:52:07.285986+00:00",
+      "age_minutes": 0.005086983333333334,
+      "freshness_limit_minutes": 180,
+      "status": "PASS"
+    },
+    {
+      "engine": "Move Phase",
+      "source_file": "move_phase_intelligence.json",
+      "last_output": "2026-08-12T08:52:03.343084+00:00",
+      "age_minutes": 0.07081233333333332,
+      "freshness_limit_minutes": 30,
+      "status": "PASS"
+    },
+    {
+      "engine": "External Attention",
+      "source_file": "external_attention.json",
+      "last_output": null,
+      "age_minutes": null,
+      "freshness_limit_minutes": 180,
+      "status": "STALE"
+    },
+    {
+      "engine": "Investment Committee",
+      "source_file": "committee_latest.json",
+      "last_output": "2026-08-12T08:52:03.584524+00:00",
+      "age_minutes": 0.06682658333333333,
+      "freshness_limit_minutes": 180,
+      "status": "PASS"
+    },
+    {
+      "engine": "Intelligence Bus",
+      "source_file": "intelligence_bus.json",
+      "last_output": "2026-08-12T08:52:07.477368+00:00",
+      "age_minutes": 0.001969283333333333,
+      "freshness_limit_minutes": 180,
+      "status": "PASS"
+    },
+    {
+      "engine": "Trade Integrity",
+      "source_file": "trade_integrity.json",
+      "last_output": null,
+      "age_minutes": null,
+      "freshness_limit_minutes": 180,
+      "status": "STALE"
+    },
+    {
+      "engine": "Winner School",
+      "source_file": "winner_school.json",
+      "last_output": null,
+      "age_minutes": null,
+      "freshness_limit_minutes": 360,
+      "status": "STALE"
+    },
+    {
+      "engine": "Failure School",
+      "source_file": "failure_school.json",
+      "last_output": null,
+      "age_minutes": null,
+      "freshness_limit_minutes": 360,
+      "status": "STALE"
+    },
+    {
+      "engine": "Pattern Miner",
+      "source_file": "pattern_miner.json",
+      "last_output": "2026-08-12T08:52:06.065495+00:00",
+      "age_minutes": 0.025505866666666665,
+      "freshness_limit_minutes": 360,
+      "status": "PASS"
+    },
+    {
+      "engine": "Time Intelligence",
+      "source_file": "time_intelligence.json",
+      "last_output": "2026-08-12T08:52:05.924750+00:00",
+      "age_minutes": 0.02786688333333333,
+      "freshness_limit_minutes": 360,
+      "status": "PASS"
+    },
+    {
+      "engine": "Strategy Brain",
+      "source_file": "strategy_brain_status.json",
+      "last_output": "2026-08-12T08:52:06.522110+00:00",
+      "age_minutes": 0.017913866666666667,
+      "freshness_limit_minutes": 360,
+      "status": "PASS"
+    },
+    {
+      "engine": "Learning Evidence",
+      "source_file": "learning_evidence_centre.json",
+      "last_output": "2026-08-12T08:52:06.557520+00:00",
+      "age_minutes": 0.017330433333333332,
+      "freshness_limit_minutes": 360,
+      "status": "PASS"
+    }
+  ],
+  "links": [
+    {
+      "producer": "External Attention",
+      "consumer": "Investment Committee",
+      "receipts_24h": 0,
+      "records_consumed": 0,
+      "status": "UNVERIFIED",
+      "last_receipt": null
+    },
+    {
+      "producer": "Learning Feedback",
+      "consumer": "Intelligence Bus",
+      "receipts_24h": 1,
+      "records_consumed": 1,
+      "status": "PASS",
+      "last_receipt": "2026-08-12T08:52:07.520938+00:00"
+    },
+    {
+      "producer": "Move Phase",
+      "consumer": "Active Trade Casefiles",
+      "receipts_24h": 0,
+      "records_consumed": 0,
+      "status": "UNVERIFIED",
+      "last_receipt": null
+    },
+    {
+      "producer": "Investment Committee",
+      "consumer": "Portfolio Manager",
+      "receipts_24h": 1,
+      "records_consumed": 44,
+      "status": "PASS",
+      "last_receipt": "2026-08-12T08:52:07.521595+00:00"
+    }
+  ],
+  "alerts": [
+    "External Attention: STALE (1000000000 min old)",
+    "Trade Integrity: STALE (1000000000 min old)",
+    "Winner School: STALE (1000000000 min old)",
+    "Failure School: STALE (1000000000 min old)",
+    "Communication link unverified: External Attention → Investment Committee",
+    "Communication link unverified: Move Phase → Active Trade Casefiles"
+  ],
+  "observer_summary": {
+    "5M": {
+      "expected_runs_24h": 288,
+      "recorded_runs_24h": 1,
+      "schedule_completion_pct": 0.3472222222222222,
+      "average_asset_coverage_pct": 75.55555555555556,
+      "largest_recorded_gap_minutes": 0,
+      "status": "FAIL"
+    },
+    "15M": {
+      "expected_runs_24h": 96,
+      "recorded_runs_24h": 1,
+      "schedule_completion_pct": 1.0416666666666665,
+      "average_asset_coverage_pct": 91.11111111111111,
+      "largest_recorded_gap_minutes": 0,
+      "status": "FAIL"
+    }
+  },
+  "strategy_integrity_summary": {
+    "strategies": 4,
+    "flagged_trades": 2,
+    "strategies_quarantined": 2
+  },
+  "principle": "PASS means an observable output or receipt exists. The audit does not infer communication merely because two scripts are present."
 }

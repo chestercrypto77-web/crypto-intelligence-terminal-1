@@ -1,6 +1,73 @@
 {
-  "updated_at": null,
-  "summary": {},
-  "strategies": [],
-  "flagged_trades": []
+  "updated_at": "2026-08-12T08:51:45.996480+00:00",
+  "summary": {
+    "strategies": 4,
+    "flagged_trades": 2,
+    "strategies_quarantined": 2
+  },
+  "strategies": [
+    {
+      "strategy_id": "conviction_v1",
+      "name": "4H Conviction V1",
+      "closed_trades": 10,
+      "raw_average_return_pct": -73.55490384468666,
+      "audited_average_return_pct": -0.8597581865230531,
+      "flagged_trades": 1,
+      "evidence_status": "QUARANTINED / REVIEW"
+    },
+    {
+      "strategy_id": "closed_candle_challenger",
+      "name": "Closed Candle Confirmation",
+      "closed_trades": 0,
+      "raw_average_return_pct": 0,
+      "audited_average_return_pct": 0,
+      "flagged_trades": 0,
+      "evidence_status": "CLEAN"
+    },
+    {
+      "strategy_id": "rvol_150_challenger",
+      "name": "RVOL 1.50 Challenger",
+      "closed_trades": 9,
+      "raw_average_return_pct": -81.29716989714737,
+      "audited_average_return_pct": -0.48291428827090527,
+      "flagged_trades": 1,
+      "evidence_status": "QUARANTINED / REVIEW"
+    },
+    {
+      "strategy_id": "btc_confirmed_challenger",
+      "name": "BTC Confirmation Challenger",
+      "closed_trades": 9,
+      "raw_average_return_pct": -2.40552098656398,
+      "audited_average_return_pct": -2.40552098656398,
+      "flagged_trades": 0,
+      "evidence_status": "CLEAN"
+    }
+  ],
+  "flagged_trades": [
+    {
+      "strategy_id": "conviction_v1",
+      "symbol": "OM",
+      "position_id": "conviction_v1_OM_STRONG_SELL_20260810_0400000000",
+      "realised_return": -727.8112147681591,
+      "realised_pnl": -72781.1214768159,
+      "allocated_cash": 10000.0,
+      "reasons": [
+        "Return magnitude >100%: inspect leverage/gap/stop behaviour",
+        "Loss exceeded allocated capital in non-leveraged Strategy Lab simulation"
+      ]
+    },
+    {
+      "strategy_id": "rvol_150_challenger",
+      "symbol": "OM",
+      "position_id": "rvol_150_challenger_OM_STRONG_SELL_20260810_0400000000",
+      "realised_return": -727.8112147681591,
+      "realised_pnl": -72781.1214768159,
+      "allocated_cash": 10000.0,
+      "reasons": [
+        "Return magnitude >100%: inspect leverage/gap/stop behaviour",
+        "Loss exceeded allocated capital in non-leveraged Strategy Lab simulation"
+      ]
+    }
+  ],
+  "rule": "Extreme strategy-return records remain visible but are quarantined from trustworthy Strategy Lab conclusions until reviewed."
 }

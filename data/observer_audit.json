@@ -1,6 +1,64 @@
 {
-  "updated_at": null,
-  "summary": {},
-  "runs": [],
-  "gaps": []
+  "updated_at": "2026-08-12T08:52:07.551199+00:00",
+  "summary": {
+    "5M": {
+      "expected_runs_24h": 288,
+      "recorded_runs_24h": 1,
+      "schedule_completion_pct": 0.3472222222222222,
+      "average_asset_coverage_pct": 75.55555555555556,
+      "largest_recorded_gap_minutes": 0,
+      "status": "FAIL"
+    },
+    "15M": {
+      "expected_runs_24h": 96,
+      "recorded_runs_24h": 1,
+      "schedule_completion_pct": 1.0416666666666665,
+      "average_asset_coverage_pct": 91.11111111111111,
+      "largest_recorded_gap_minutes": 0,
+      "status": "FAIL"
+    }
+  },
+  "runs": [
+    {
+      "mode": "5M",
+      "audit_time": "2026-08-12T08:52:07.551199+00:00",
+      "source_generated_at": "2026-08-12T08:51:46.426414+00:00",
+      "requested": 45,
+      "analysed": 34,
+      "coverage_pct": 75.55555555555556,
+      "unavailable": [
+        "POL",
+        "SUI",
+        "SUPER",
+        "S",
+        "OM",
+        "ONE",
+        "IMX",
+        "AERO",
+        "UFO",
+        "MEW",
+        "GRT"
+      ],
+      "providers": {
+        "Yahoo 1m": 34
+      }
+    },
+    {
+      "mode": "15M",
+      "audit_time": "2026-08-12T08:52:07.551199+00:00",
+      "source_generated_at": "2026-08-12T08:51:54.160492+00:00",
+      "requested": 45,
+      "analysed": 41,
+      "coverage_pct": 91.11111111111111,
+      "unavailable": [
+        "ONE",
+        "UFO",
+        "MEW",
+        "GRT"
+      ],
+      "providers": {}
+    }
+  ],
+  "gaps": [],
+  "note": "Recorded runs prove completed observer outputs. A missing scheduled GitHub run produces a measurable gap rather than being silently assumed successful."
 }
