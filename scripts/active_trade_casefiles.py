@@ -194,6 +194,8 @@ def planned_risk(book,wallet,position,ret,mfe):
 
 def main():
     market=current_market()
+    phases=read(DATA/"move_phase_intelligence.json",{"records":[]}).get("records") or []
+    phase_map={str(x.get("symbol") or "").upper():x for x in phases}
     risks=read(DATA/"risk_guardian.json",{"asset_checks":[]}).get("asset_checks") or []
     riskmap={str(x.get("symbol") or "").upper():x for x in risks}
     wallets=[
@@ -236,6 +238,11 @@ def main():
             best,similar=winner_similarity(p)
             warnings=failure_warnings(p)
             thoughts=plain_thoughts(p,ctx,committee,risk_state,mission_name,ret,mfe)
+            phase_now=(phase_map.get(symbol) or {}).get("phase")
+            held_hours=hours(p.get("entry_time"),timestamp)
+            if phase_now: thoughts.insert(0,f"Timed move phase is {str(phase_now).lower()}.")
+            if held_hours is not None: thoughts.append(f"Trade has been open for {held_hours:.1f} hours.")
+            thoughts=thoughts[:7]
             case={
               "case_id":p.get("case_id") or p.get("position_id"),
               "position_id":p.get("position_id"),"symbol":symbol,"name":p.get("name") or symbol,
@@ -255,6 +262,8 @@ def main():
               "winner_school":{"best_match":best,"similar_trades":similar},
               "failure_school":{"warnings":warnings},
               "stage":"PROTECT" if mission_name=="PROTECT WINNER" else "RISK REVIEW" if "RISK" in mission_name or "DEFEND" in mission_name else "MANAGE",
+              "move_phase":phase_map.get(symbol,{}) or {},
+              "holding_hours":hours(p.get("entry_time"),timestamp),
               "recorded_at":timestamp,
             }
             positions.append(case)

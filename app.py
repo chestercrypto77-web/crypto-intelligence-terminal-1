@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "16.0.0"
+APP_VERSION = "17.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1733,6 +1733,9 @@ AI_SCORECARD_FILE = Path(__file__).with_name("data") / "ai_scorecard.json"
 COMMITTEE_MEMORY_FILE = Path(__file__).with_name("data") / "committee_memory.json"
 STRATEGY_BRAIN_STATUS_FILE = Path(__file__).with_name("data") / "strategy_brain_status.json"
 ACTIVE_TRADE_CASEFILES_FILE = Path(__file__).with_name("data") / "active_trade_casefiles.json"
+TIME_INTELLIGENCE_FILE = Path(__file__).with_name("data") / "time_intelligence.json"
+MOVE_PHASE_FILE = Path(__file__).with_name("data") / "move_phase_intelligence.json"
+LEARNING_EVIDENCE_FILE = Path(__file__).with_name("data") / "learning_evidence_centre.json"
 
 MICROSTRUCTURE_FILE = Path(__file__).with_name("data") / "microstructure_latest.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
@@ -1916,7 +1919,7 @@ portfolio = build_portfolio(market_rows, portfolio_intraday)
 st.sidebar.markdown("## ◈ Intelligence Desk")
 st.sidebar.caption(f"Version {APP_VERSION}")
 st.sidebar.markdown("---")
-selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Trading Desk","Strategy Lab","Performance Lab","Settings"],label_visibility="collapsed")
+selection = st.sidebar.radio("Navigation",["Today","Portfolio","Markets","Watch","Trading Desk","Strategy Lab","Performance Lab","Learning Evidence","Settings"],label_visibility="collapsed")
 st.sidebar.markdown("---")
 st.sidebar.caption(f"{source} · portfolio prices 5 min · hourly moves 2 min")
 
@@ -1928,6 +1931,7 @@ titles = {
     "Trading Desk":("Trading Desk","See what the AI is trading, protecting, exiting or preparing to act on."),
     "Strategy Lab":("Strategy Lab","Compare the current approach with experimental challengers to see what is actually improving."),
     "Performance Lab":("Performance Lab","Replay trades, understand what happened, and see what the AI is learning from winners and mistakes."),
+    "Learning Evidence":("Learning Evidence","Audit what the AI believes, the trades supporting it, the counter-evidence, and whether the sample is strong enough."),
     "Settings":("Settings","Workflow status, data health and platform controls."),
 }
 page_header(*titles[selection])
@@ -2698,6 +2702,15 @@ elif selection=="Trading Desk":
                     else:
                         st.info("No close Failure School warning is currently recorded.")
 
+                # Time and move phase.
+                st.caption("Time Intelligence — how long the trade has been alive and what phase the current move appears to be in.")
+                ti1,ti2=st.columns(2)
+                phase=c.get("move_phase") or {}
+                with ti1: metric("Time in trade",f"{safe_float(c.get('holding_hours')):.1f} h","Measured from recorded entry time")
+                with ti2: metric("Move phase",str(phase.get("phase") or "OBSERVING"),"Timed momentum state")
+                if phase.get("reasons"):
+                    st.caption(" · ".join(str(x) for x in phase.get("reasons")[:3]))
+
                 # Trade lifecycle.
                 stage=str(c.get("stage") or "MANAGE")
                 st.caption("Trade Lifecycle — where this position currently sits.")
@@ -3050,6 +3063,93 @@ elif selection=="Performance Lab":
         st.caption("This is paper-only self competition. Every challenger uses the same trade management so we can learn whether stricter entry filters improve results.")
 
     st.caption("Trade replay is evidence, not hindsight permission: learned rules remain sample-gated and never rewrite trading logic automatically.")
+
+elif selection=="Learning Evidence":
+    evidence=read_runtime_json(LEARNING_EVIDENCE_FILE,{"summary":{},"lessons":[],"brains":[],"rules":{}})
+    timing=read_runtime_json(TIME_INTELLIGENCE_FILE,{"summary":{},"records":[]})
+    phases=read_runtime_json(MOVE_PHASE_FILE,{"summary":{},"records":[]})
+    st.markdown('<div class="summary-box"><b>Learning Evidence Centre:</b> every important AI lesson should be traceable to supporting trades, counter-examples and a visible sample gate. This page is for checking that the engine is teaching itself from real evidence rather than one lucky trade.</div>',unsafe_allow_html=True)
+    es=evidence.get("summary") or {}
+    ts=timing.get("summary") or {}
+    pcounts=(phases.get("summary") or {}).get("phase_counts") or {}
+    c1,c2,c3,c4=st.columns(4)
+    with c1: metric("Lessons tracked",str(es.get("lessons",0)),"Claims currently under audit")
+    with c2: metric("Evidence-ready",str(es.get("accepted_or_eligible",0)),"Passed their visible sample gate")
+    with c3: metric("Trades timed",str(ts.get("trades_timed",0)),"Entry-to-exit time analysed")
+    with c4: metric("Move phases live",str(sum(pcounts.values())),"Assets with current timed phase")
+
+    section("What the AI currently believes")
+    st.caption("Open any lesson to see the claim, sample count, supporting examples and counter-evidence. A lesson with too few samples stays TESTING / WAITING.")
+    lessons=evidence.get("lessons") or []
+    if not lessons:
+        st.info("Run the 15-Minute Market Observer or Nightly Deep Learning Review once to build the evidence register.")
+    for item in lessons[:100]:
+        status=str(item.get("promotion_state") or "TESTING / WAITING")
+        css="profit" if status=="ELIGIBLE / ACCEPTED" else "watch"
+        samples=int(item.get("samples") or 0);minimum=int(item.get("minimum_samples") or 0)
+        st.markdown(
+            f'<div class="front-trade-card {css}"><div class="front-trade-grid">'
+            f'<div><div class="front-trade-title">{esc(item.get("title","Lesson"))}</div><div class="front-trade-sub">{esc(item.get("brain",""))}</div></div>'
+            f'<div><div class="front-trade-k">State</div><div class="front-trade-v">{esc(status)}</div></div>'
+            f'<div><div class="front-trade-k">Evidence</div><div class="front-trade-v">{samples}/{minimum}</div></div>'
+            f'<div><div class="front-trade-k">Supports</div><div class="front-trade-v">{len(item.get("supporting_evidence") or [])}</div></div>'
+            f'<div><div class="front-trade-k">Counters</div><div class="front-trade-v">{len(item.get("counter_evidence") or [])}</div></div>'
+            f'<div><div class="front-trade-k">Brain status</div><div class="front-trade-v">{esc(item.get("status",""))}</div></div>'
+            f'</div></div>',unsafe_allow_html=True)
+        with st.expander(f"Show evidence — {item.get('title','Lesson')}"):
+            st.write("**AI claim:** "+str(item.get("claim") or ""))
+            st.caption(f"Sample gate: {samples} collected · {minimum} required · {'PASSED' if item.get('sample_gate_met') else 'NOT YET PASSED'}")
+            metrics=item.get("metrics") or {}
+            if metrics:
+                st.json(metrics,expanded=False)
+            sup=item.get("supporting_evidence") or []
+            cnt=item.get("counter_evidence") or []
+            a,b=st.columns(2)
+            with a:
+                st.write("**Supporting examples**")
+                if sup: st.dataframe(pd.DataFrame(sup[:20]),use_container_width=True,hide_index=True)
+                else: st.caption("No individual examples linked yet.")
+            with b:
+                st.write("**Counter-examples**")
+                if cnt: st.dataframe(pd.DataFrame(cnt[:20]),use_container_width=True,hide_index=True)
+                else: st.caption("No counter-examples linked yet.")
+
+    section("Time Intelligence")
+    st.caption("Time is treated as part of Trade DNA: entry time, exit time, total hold, time to best move, peak-to-exit delay and re-entry delay.")
+    t1,t2,t3,t4=st.columns(4)
+    with t1: metric("Winner hold",f"{safe_float(ts.get('avg_winner_holding_hours')):.1f} h","Average validated winner")
+    with t2: metric("Loser hold",f"{safe_float(ts.get('avg_loser_holding_hours')):.1f} h","Average validated loser")
+    with t3: metric("Winner time to peak",f"{safe_float(ts.get('avg_winner_time_to_mfe_hours')):.1f} h","Average time to MFE")
+    with t4: metric("Peak → exit",f"{safe_float(ts.get('avg_peak_to_exit_hours')):.1f} h","How long profit is held after best move")
+    with st.expander("Show timed trade records"):
+        rows=timing.get("records") or []
+        if rows:
+            simple=[{"Asset":x.get("symbol"),"Book":x.get("wallet"),"Entry":x.get("entry_time"),"Exit":x.get("exit_time"),
+                     "Held h":x.get("holding_hours"),"To peak h":x.get("time_to_mfe_hours"),
+                     "Peak→exit h":x.get("peak_to_exit_hours"),"Re-entry delay h":x.get("exit_to_reentry_hours"),
+                     "Return %":x.get("realised_return_pct"),"Capture %":x.get("capture_efficiency_pct"),
+                     "Holding assessment":(x.get("timing_assessment") or {}).get("holding_time")} for x in rows[-500:]]
+            st.dataframe(pd.DataFrame(simple),use_container_width=True,hide_index=True)
+        else: st.caption("No completed timed trades yet.")
+
+    section("Current move phases")
+    st.caption("The engine watches for IGNITION → ACCELERATION → TRENDING → EXTENSION → EXHAUSTION → RESET/REVERSAL. These labels describe momentum behaviour; they do not claim a token is being manipulated.")
+    phase_rows=phases.get("records") or []
+    if phase_rows:
+        st.dataframe(pd.DataFrame([{"Asset":x.get("symbol"),"Phase":x.get("phase"),
+            "Why":"; ".join(str(r) for r in (x.get("reasons") or [])[:2]),
+            "Recent move %":(x.get("metrics") or {}).get("recent_move_pct"),
+            "RVOL":(x.get("metrics") or {}).get("rvol"),
+            "RVOL Δ":(x.get("metrics") or {}).get("rvol_delta")} for x in phase_rows]),
+            use_container_width=True,hide_index=True)
+
+    section("Brain audit map")
+    st.caption("This tells you which stored evidence file each learning brain is actually using.")
+    brains=evidence.get("brains") or []
+    if brains:
+        st.dataframe(pd.DataFrame([{"Brain":x.get("name"),"What it does":x.get("purpose"),"Evidence source":x.get("source_file"),
+            "Last updated":x.get("updated_at")} for x in brains]),use_container_width=True,hide_index=True)
+    st.caption("Guardrails: no lesson is promoted from one trade; counter-evidence remains visible; future timestamps are never fed into a live decision.")
 
 elif selection=="Settings":
     engine_health=read_runtime_json(ENGINE_HEALTH_FILE,{})

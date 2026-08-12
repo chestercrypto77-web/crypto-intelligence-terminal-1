@@ -33,6 +33,9 @@ def main():
       'committee_memory':('committee_memory.json','updated_at',180),
       'ai_scorecard':('ai_scorecard.json','updated_at',180),
       'active_trade_casefiles':('active_trade_casefiles.json','updated_at',60),
+      'time_intelligence':('time_intelligence.json','updated_at',180),
+      'move_phase':('move_phase_intelligence.json','updated_at',60),
+      'learning_evidence':('learning_evidence_centre.json','updated_at',180),
     }
     components={}; warnings=[]
     for name,(fn,key,limit) in specs.items():

@@ -33,6 +33,7 @@ def main() -> int:
     run("observer_15m.py", required=False)
     run("risk_guardian.py")
     run("market_school.py", required=False)
+    run("move_phase_intelligence.py", required=False)
     run("confidence_ledger.py", required=False)
     run("investment_committee.py")
     run("intelligence_hub.py", required=False)
@@ -41,6 +42,7 @@ def main() -> int:
     run("trade_review_engine.py", required=False)
     run("trade_integrity.py", required=False)
     run("profit_capture_engine.py", required=False)
+    run("time_intelligence.py", required=False)
     run("trade_dna.py", required=False)
     run("winner_failure_school.py", required=False)
     run("peak_trough_intelligence.py", required=False)
@@ -54,6 +56,7 @@ def main() -> int:
     run("challenger_arena.py", required=False)
     run("ai_scorecard.py", required=False)
     run("strategy_brain_status.py", required=False)
+    run("learning_evidence_centre.py", required=False)
     run("cross_learning_bus.py", required=False)
     # Feed the new evidence back upstream for the next decision cycle.
     run("market_school.py", required=False)
