@@ -41,6 +41,9 @@ def main():
       'external_attention':('external_attention.json','updated_at',180),
       'brain_audit':('brain_audit.json','updated_at',30),
       'strategy_integrity':('strategy_integrity.json','updated_at',180),
+      'trade_reflection':('trade_reflections.json','updated_at',180),
+      'missed_clues':('missed_clues.json','updated_at',180),
+      'promotion_board':('lesson_promotion_board.json','updated_at',180),
     }
     components={}; warnings=[]
     for name,(fn,key,limit) in specs.items():

@@ -49,6 +49,8 @@ def main():
     capture=read(DATA/"profit_capture.json",{"records":[],"summary":{}})
     integrity=read(DATA/"trade_integrity.json",{"records":[],"summary":{}})
     memory=read(DATA/"committee_memory.json",{"agents":{},"advisories":[]})
+    reflections=read(DATA/"trade_reflections.json",{"records":[],"summary":{}})
+    promotions=read(DATA/"lesson_promotion_board.json",{"lessons":[]})
 
     lessons=[]
     # Pattern Miner claims
@@ -101,6 +103,16 @@ def main():
         {"validation_rate_pct":f((integrity.get("summary") or {}).get("validation_rate_pct"),100),
          "quarantined":len(invalid)}))
 
+    # Reflection-derived candidate lessons.
+    reflection_rows=reflections.get("records") or []
+    for i,p in enumerate((promotions.get("lessons") or [])[:100]):
+        clue=str(p.get("lesson_id") or "").replace("MISSED_","")
+        support=[x for x in reflection_rows if clue in (x.get("missed_clues") or [])][:20]
+        lessons.append(lesson("REFLECT_"+str(i),clue.replace("_"," ").title(),"Trade Reflection",
+            str(p.get("claim") or ""),str(p.get("state") or "WAITING"),
+            int(p.get("samples") or 0),30,support,[],
+            {"loss_rate_pct":f(p.get("loss_rate_pct")),"reverse_superior_rate_pct":f(p.get("reverse_superior_rate_pct"))}))
+
     # Brain status with exact source.
     brains=[]
     source_map=[
@@ -113,6 +125,8 @@ def main():
       ("Pattern Miner","pattern_miner.json","Finds repeated Trade DNA signatures."),
       ("Management Challenger","management_challenger.json","Tests alternative exit policies in shadow replay."),
       ("Committee Memory","committee_memory.json","Tracks specialist evidence over repeated outcomes."),
+      ("Trade Reflection","trade_reflections.json","Grades process, finds first failure clues and studies whether the opposite direction was superior."),
+      ("Missed Clue Miner","missed_clues.json","Finds repeated clues the engine may have overlooked before failed trades."),
     ]
     for name,source,purpose in source_map:
         data=read(DATA/source,{})

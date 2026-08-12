@@ -40,6 +40,9 @@ ENGINES=[
  ("Time Intelligence","time_intelligence.json","updated_at",360),
  ("Strategy Brain","strategy_brain_status.json","updated_at",360),
  ("Learning Evidence","learning_evidence_centre.json","updated_at",360),
+ ("Trade Reflection","trade_reflections.json","updated_at",360),
+ ("Missed Clue Miner","missed_clues.json","updated_at",360),
+ ("Lesson Promotion Board","lesson_promotion_board.json","updated_at",360),
 ]
 def age_minutes(v):
     t=parse(v)

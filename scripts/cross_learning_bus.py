@@ -32,7 +32,11 @@ def main():
     management=read(DATA/"management_challenger.json",{"policies":[]})
     memory=read(DATA/"committee_memory.json",{"advisories":[]})
     strategy_brain=read(DATA/"strategy_brain_status.json",{"discoveries":[],"summary":{}})
+    reflection_board=read(DATA/"lesson_promotion_board.json",{"lessons":[]})
     messages=[]
+    for x in (reflection_board.get("lessons") or [])[:20]:
+        if x.get("state")=="ELIGIBLE FOR FORMAL REVIEW":
+            messages.append({"source":"TRADE_REFLECTION","message":str(x.get("claim") or "")})
     for x in (strategy_brain.get("discoveries") or [])[:10]:
         messages.append({"source":"STRATEGY_BRAIN","message":str(x.get("finding") or "")})
     for x in (memory.get("advisories") or [])[:30]:messages.append({"source":"COMMITTEE_MEMORY","message":x})
