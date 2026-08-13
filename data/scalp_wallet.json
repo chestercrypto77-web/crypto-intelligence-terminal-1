@@ -3,13 +3,49 @@
   "name": "Profit-Driven Scalp Wallet",
   "currency": "USD",
   "starting_cash": 25000.0,
-  "cash": 25043.52812077373,
-  "equity": 25043.52812077373,
+  "cash": 24981.02812077373,
+  "equity": 25043.34062077373,
   "previous_equity": 25043.52812077373,
-  "equity_change_this_run": 0.0,
+  "equity_change_this_run": -0.1875,
   "realised_pnl": 43.528120773736795,
-  "unrealised_pnl": 0,
-  "open_positions": [],
+  "unrealised_pnl": -0.18750000000000003,
+  "open_positions": [
+    {
+      "position_id": "SCALP_LUNC_2026-08-13T041500+0000",
+      "symbol": "LUNC",
+      "name": "Terra Luna Classic",
+      "narrative": "Legacy Layer 1",
+      "strategy": "PROFIT_SCALP_V1",
+      "signal": "EARLY BUY",
+      "direction": "LONG",
+      "entry_time": "2026-08-13T04:21:35.406924+00:00",
+      "entry_price": 4.940871181315742e-05,
+      "market_entry_price": 4.9384019803255796e-05,
+      "current_price": 4.9384019803255796e-05,
+      "allocated_cash": 62.5,
+      "entry_fee": 0.0625,
+      "units": 1263694.1484350346,
+      "status": "OPEN",
+      "unrealised_return": -0.30000000000000004,
+      "unrealised_pnl": -0.18750000000000003,
+      "maximum_favourable_excursion_pct": 0.0,
+      "maximum_adverse_excursion_pct": -0.30000000000000004,
+      "minutes_open": 0.0,
+      "profit_objective": {
+        "side": "LONG",
+        "estimated_net_move_pct": 2.701001463014716,
+        "estimated_reward_risk": 2.160801170411773,
+        "eligible": true,
+        "reasons": []
+      },
+      "entry_evidence": {
+        "rvol": 5.28714494716388,
+        "rvol_delta": 5.264143078262032,
+        "rsi": 53.87064202739418,
+        "return_1h": 0.1363741415389086
+      }
+    }
+  ],
   "closed_positions": [
     {
       "position_id": "SCALP_OM_2026-03-02T024500+0000",
@@ -3284,6 +3320,46 @@
       "reason": "PARTICIPATION TOO LOW | VOLUME NOT ACCELERATING | EXPECTED NET MOVE TOO SMALL | REWARD/RISK BELOW MINIMUM",
       "estimated_net_move_pct": 0.41999999999999993,
       "estimated_reward_risk": 0.33599999999999997
+    },
+    {
+      "recorded_at": "2026-08-13T04:21:35.406924+00:00",
+      "symbol": "NEAR",
+      "signal": "EARLY BUY",
+      "reason": "REWARD/RISK BELOW MINIMUM",
+      "estimated_net_move_pct": 0.8992486016693915,
+      "estimated_reward_risk": 0.7193988813355132
+    },
+    {
+      "recorded_at": "2026-08-13T04:21:35.406924+00:00",
+      "symbol": "POL",
+      "signal": "EARLY SELL",
+      "reason": "PARTICIPATION TOO LOW | VOLUME NOT ACCELERATING | REWARD/RISK BELOW MINIMUM",
+      "estimated_net_move_pct": 0.78,
+      "estimated_reward_risk": 0.624
+    },
+    {
+      "recorded_at": "2026-08-13T04:21:35.406924+00:00",
+      "symbol": "TLM",
+      "signal": "EARLY SELL",
+      "reason": "PARTICIPATION TOO LOW | VOLUME NOT ACCELERATING | REWARD/RISK BELOW MINIMUM",
+      "estimated_net_move_pct": 0.6842755961719796,
+      "estimated_reward_risk": 0.5474204769375837
+    },
+    {
+      "recorded_at": "2026-08-13T04:21:35.406924+00:00",
+      "symbol": "SKL",
+      "signal": "EARLY SELL",
+      "reason": "PARTICIPATION TOO LOW | VOLUME NOT ACCELERATING | EXPECTED NET MOVE TOO SMALL | REWARD/RISK BELOW MINIMUM",
+      "estimated_net_move_pct": 0.5399999999999999,
+      "estimated_reward_risk": 0.43199999999999994
+    },
+    {
+      "recorded_at": "2026-08-13T04:21:35.406924+00:00",
+      "symbol": "RUNE",
+      "signal": "EARLY BUY",
+      "reason": "PARTICIPATION TOO LOW | VOLUME NOT ACCELERATING | EXPECTED NET MOVE TOO SMALL | REWARD/RISK BELOW MINIMUM",
+      "estimated_net_move_pct": 0.41999999999999993,
+      "estimated_reward_risk": 0.33599999999999997
     }
   ],
   "equity_history": [
@@ -3622,16 +3698,24 @@
       "realised_pnl": 43.528120773736795,
       "unrealised_pnl": 0,
       "open_positions": 0
+    },
+    {
+      "recorded_at": "2026-08-13T04:21:35.406924+00:00",
+      "equity": 25043.34062077373,
+      "cash": 24981.02812077373,
+      "realised_pnl": 43.528120773736795,
+      "unrealised_pnl": -0.18750000000000003,
+      "open_positions": 1
     }
   ],
   "activity_journal": [],
   "session": {
-    "date": "2026-08-12",
-    "starting_equity": 25051.32988598164,
-    "realised_pnl": -7.801765207902259,
-    "consecutive_losses": 5,
-    "new_entries_frozen": true,
-    "freeze_reason": "CONSECUTIVE LOSS PAUSE"
+    "date": "2026-08-13",
+    "starting_equity": 25043.52812077373,
+    "realised_pnl": 0.0,
+    "consecutive_losses": 0,
+    "new_entries_frozen": false,
+    "freeze_reason": null
   },
   "rules": {
     "base_position_pct": 0.25,
@@ -3649,11 +3733,11 @@
     "wallet_drawdown_freeze_pct": 3.0,
     "consecutive_loss_pause": 3
   },
-  "updated_at": "2026-08-12T23:25:01.038993+00:00",
+  "updated_at": "2026-08-13T04:21:35.406924+00:00",
   "activity": {
     "retained": 0,
     "closed": 0,
-    "opened": 0,
-    "rejected": 0
+    "opened": 1,
+    "rejected": 5
   }
 }
