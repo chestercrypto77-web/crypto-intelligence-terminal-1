@@ -3,49 +3,13 @@
   "name": "Profit-Driven Scalp Wallet",
   "currency": "USD",
   "starting_cash": 25000.0,
-  "cash": 24980.133035161864,
-  "equity": 25042.445535161864,
-  "previous_equity": 25042.633035161864,
-  "equity_change_this_run": -0.1875,
-  "realised_pnl": 42.63303516186796,
-  "unrealised_pnl": -0.18750000000000003,
-  "open_positions": [
-    {
-      "position_id": "SCALP_VTHO_2026-08-13T153000+0000",
-      "symbol": "VTHO",
-      "name": "VeThor Token",
-      "narrative": "Enterprise",
-      "strategy": "PROFIT_SCALP_V1",
-      "signal": "EARLY BUY",
-      "direction": "LONG",
-      "entry_time": "2026-08-13T15:36:20.624873+00:00",
-      "entry_price": 0.0003241619932668982,
-      "market_entry_price": 0.0003239999932702631,
-      "current_price": 0.0003239999932702631,
-      "allocated_cash": 62.5,
-      "entry_fee": 0.0625,
-      "units": 192612.03132037813,
-      "status": "OPEN",
-      "unrealised_return": -0.30000000000000004,
-      "unrealised_pnl": -0.18750000000000003,
-      "maximum_favourable_excursion_pct": 0.0,
-      "maximum_adverse_excursion_pct": -0.30000000000000004,
-      "minutes_open": 0.0,
-      "profit_objective": {
-        "side": "LONG",
-        "estimated_net_move_pct": 3.5834231477355845,
-        "estimated_reward_risk": 2.8667385181884675,
-        "eligible": true,
-        "reasons": []
-      },
-      "entry_evidence": {
-        "rvol": 6.547747353907978,
-        "rvol_delta": 5.522892524174587,
-        "rsi": 73.84327553005006,
-        "return_1h": 0.30959989439725
-      }
-    }
-  ],
+  "cash": 25041.643081173344,
+  "equity": 25041.643081173344,
+  "previous_equity": 25042.445535161864,
+  "equity_change_this_run": -0.8024539885191189,
+  "realised_pnl": 41.6430811733479,
+  "unrealised_pnl": 0,
+  "open_positions": [],
   "closed_positions": [
     {
       "position_id": "SCALP_OM_2026-03-02T024500+0000",
@@ -566,6 +530,46 @@
       "exit_reason": "OBSERVER REVERSAL",
       "realised_return": -0.6190346745876705,
       "realised_pnl": -0.386896671617294
+    },
+    {
+      "position_id": "SCALP_VTHO_2026-08-13T153000+0000",
+      "symbol": "VTHO",
+      "name": "VeThor Token",
+      "narrative": "Enterprise",
+      "strategy": "PROFIT_SCALP_V1",
+      "signal": "EARLY BUY",
+      "direction": "LONG",
+      "entry_time": "2026-08-13T15:36:20.624873+00:00",
+      "entry_price": 0.0003241619932668982,
+      "market_entry_price": 0.0003239999932702631,
+      "current_price": 0.00031999999191612005,
+      "allocated_cash": 62.5,
+      "entry_fee": 0.0625,
+      "units": 192612.03132037813,
+      "status": "CLOSED",
+      "unrealised_return": -1.5839263816320945,
+      "unrealised_pnl": -0.989953988520059,
+      "maximum_favourable_excursion_pct": 0.0,
+      "maximum_adverse_excursion_pct": -1.5839263816320945,
+      "minutes_open": 156.91647501666665,
+      "profit_objective": {
+        "side": "LONG",
+        "estimated_net_move_pct": 3.5834231477355845,
+        "estimated_reward_risk": 2.8667385181884675,
+        "eligible": true,
+        "reasons": []
+      },
+      "entry_evidence": {
+        "rvol": 6.547747353907978,
+        "rvol_delta": 5.522892524174587,
+        "rsi": 73.84327553005006,
+        "return_1h": 0.30959989439725
+      },
+      "exit_time": "2026-08-13T18:13:15.613374+00:00",
+      "exit_price": 0.00031999999191612005,
+      "exit_reason": "STOP LOSS",
+      "realised_return": -1.5839263816320945,
+      "realised_pnl": -0.989953988520059
     }
   ],
   "rejected_opportunities": [
@@ -4298,16 +4302,24 @@
       "realised_pnl": 42.63303516186796,
       "unrealised_pnl": -0.18750000000000003,
       "open_positions": 1
+    },
+    {
+      "recorded_at": "2026-08-13T18:13:15.613374+00:00",
+      "equity": 25041.643081173344,
+      "cash": 25041.643081173344,
+      "realised_pnl": 41.6430811733479,
+      "unrealised_pnl": 0,
+      "open_positions": 0
     }
   ],
   "activity_journal": [],
   "session": {
     "date": "2026-08-13",
     "starting_equity": 25043.52812077373,
-    "realised_pnl": -0.8950856118688368,
-    "consecutive_losses": 2,
-    "new_entries_frozen": false,
-    "freeze_reason": null
+    "realised_pnl": -1.8850396003888958,
+    "consecutive_losses": 3,
+    "new_entries_frozen": true,
+    "freeze_reason": "CONSECUTIVE LOSS PAUSE"
   },
   "rules": {
     "base_position_pct": 0.25,
@@ -4325,11 +4337,11 @@
     "wallet_drawdown_freeze_pct": 3.0,
     "consecutive_loss_pause": 3
   },
-  "updated_at": "2026-08-13T15:36:20.624873+00:00",
+  "updated_at": "2026-08-13T18:13:15.613374+00:00",
   "activity": {
     "retained": 0,
-    "closed": 0,
-    "opened": 1,
-    "rejected": 9
+    "closed": 1,
+    "opened": 0,
+    "rejected": 0
   }
 }

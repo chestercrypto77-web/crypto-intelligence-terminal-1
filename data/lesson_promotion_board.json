@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-13T09:50:53.069945+00:00",
+  "updated_at": "2026-08-13T18:13:34.141268+00:00",
   "summary": {
-    "lessons": 6,
+    "lessons": 7,
     "eligible": 1
   },
   "lessons": [
@@ -9,9 +9,9 @@
       "lesson_id": "MISSED_WEAK_PARTICIPATION",
       "claim": "Treat weak participation as a caution flag when context matches.",
       "source": "Trade Reflection Engine",
-      "samples": 151,
-      "loss_rate_pct": 84.10596026490066,
-      "reverse_superior_rate_pct": 15.894039735099339,
+      "samples": 153,
+      "loss_rate_pct": 84.31372549019608,
+      "reverse_superior_rate_pct": 16.33986928104575,
       "state": "ELIGIBLE FOR FORMAL REVIEW",
       "auto_promoted": false,
       "requirements": {
@@ -24,7 +24,7 @@
       "lesson_id": "MISSED_OPPOSITE_DIRECTION_OUTPERFORMED",
       "claim": "Treat opposite direction outperformed as a caution flag when context matches.",
       "source": "Trade Reflection Engine",
-      "samples": 28,
+      "samples": 29,
       "loss_rate_pct": 100.0,
       "reverse_superior_rate_pct": 100.0,
       "state": "TESTING",
@@ -87,6 +87,21 @@
       "samples": 1,
       "loss_rate_pct": 100.0,
       "reverse_superior_rate_pct": 100.0,
+      "state": "WAITING FOR EVIDENCE",
+      "auto_promoted": false,
+      "requirements": {
+        "minimum_samples": 30,
+        "minimum_loss_association_pct": 65,
+        "out_of_sample_required_before_live_rule_change": true
+      }
+    },
+    {
+      "lesson_id": "MISSED_MICROSTRUCTURE_REVERSAL",
+      "claim": "Treat microstructure reversal as a caution flag when context matches.",
+      "source": "Trade Reflection Engine",
+      "samples": 1,
+      "loss_rate_pct": 0.0,
+      "reverse_superior_rate_pct": 0.0,
       "state": "WAITING FOR EVIDENCE",
       "auto_promoted": false,
       "requirements": {

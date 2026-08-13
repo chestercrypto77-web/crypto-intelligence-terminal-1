@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-13T09:50:54.264276+00:00",
+  "updated_at": "2026-08-13T18:13:35.416811+00:00",
   "summary": {
-    "trades_simulated": 130
+    "trades_simulated": 135
   },
   "records": [
     {
@@ -1554,6 +1554,48 @@
           "return_pct": -3.2607810319292048,
           "difference_vs_actual_pct": 0.0,
           "triggered": false
+        }
+      ],
+      "guardrail": "Counterfactuals are post-trade research only and never rewrite the historical trade."
+    },
+    {
+      "experience_id": "OBSERVER_DENT_2026-08-07T06:15:00+00:00",
+      "symbol": "DENT",
+      "split": "TRAIN",
+      "actual_return_pct": -28.38212064787621,
+      "variants": [
+        {
+          "variant": "ENTRY_DELAY_5M",
+          "return_pct": 0.0,
+          "difference_vs_actual_pct": 28.38212064787621
+        },
+        {
+          "variant": "ENTRY_DELAY_15M",
+          "return_pct": 0.0,
+          "difference_vs_actual_pct": 28.38212064787621
+        },
+        {
+          "variant": "ENTRY_DELAY_30M",
+          "return_pct": 0.0,
+          "difference_vs_actual_pct": 28.38212064787621
+        },
+        {
+          "variant": "HARD_STOP_2PCT",
+          "return_pct": -2.0,
+          "difference_vs_actual_pct": 26.38212064787621,
+          "triggered": true
+        },
+        {
+          "variant": "HARD_STOP_3PCT",
+          "return_pct": -3.0,
+          "difference_vs_actual_pct": 25.38212064787621,
+          "triggered": true
+        },
+        {
+          "variant": "HARD_STOP_5PCT",
+          "return_pct": -5.0,
+          "difference_vs_actual_pct": 23.38212064787621,
+          "triggered": true
         }
       ],
       "guardrail": "Counterfactuals are post-trade research only and never rewrite the historical trade."
@@ -4751,6 +4793,48 @@
       "guardrail": "Counterfactuals are post-trade research only and never rewrite the historical trade."
     },
     {
+      "experience_id": "OBSERVER_BEAM_2026-08-13T05:45:00+00:00",
+      "symbol": "BEAM",
+      "split": "TRAIN",
+      "actual_return_pct": -2.5388102781262463,
+      "variants": [
+        {
+          "variant": "ENTRY_DELAY_5M",
+          "return_pct": -2.0730605693401793,
+          "difference_vs_actual_pct": 0.4657497087860669
+        },
+        {
+          "variant": "ENTRY_DELAY_15M",
+          "return_pct": -2.0730605693401793,
+          "difference_vs_actual_pct": 0.4657497087860669
+        },
+        {
+          "variant": "ENTRY_DELAY_30M",
+          "return_pct": -2.0730605693401793,
+          "difference_vs_actual_pct": 0.4657497087860669
+        },
+        {
+          "variant": "HARD_STOP_2PCT",
+          "return_pct": -2.0,
+          "difference_vs_actual_pct": 0.5388102781262463,
+          "triggered": true
+        },
+        {
+          "variant": "HARD_STOP_3PCT",
+          "return_pct": -2.5388102781262463,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        },
+        {
+          "variant": "HARD_STOP_5PCT",
+          "return_pct": -2.5388102781262463,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        }
+      ],
+      "guardrail": "Counterfactuals are post-trade research only and never rewrite the historical trade."
+    },
+    {
       "experience_id": "SWING_WIN_2026-08-10T180539.276474+0000",
       "symbol": "WIN",
       "split": "VALIDATION",
@@ -4956,6 +5040,90 @@
           "return_pct": -5.0,
           "difference_vs_actual_pct": 29.993875223683723,
           "triggered": true
+        }
+      ],
+      "guardrail": "Counterfactuals are post-trade research only and never rewrite the historical trade."
+    },
+    {
+      "experience_id": "SWING_GALA_2026-08-11T071707.201918+0000",
+      "symbol": "GALA",
+      "split": "VALIDATION",
+      "actual_return_pct": 4.781382868210927,
+      "variants": [
+        {
+          "variant": "ENTRY_DELAY_5M",
+          "return_pct": 5.442947927158537,
+          "difference_vs_actual_pct": 0.6615650589476099
+        },
+        {
+          "variant": "ENTRY_DELAY_15M",
+          "return_pct": 5.442947927158537,
+          "difference_vs_actual_pct": 0.6615650589476099
+        },
+        {
+          "variant": "ENTRY_DELAY_30M",
+          "return_pct": 5.442947927158537,
+          "difference_vs_actual_pct": 0.6615650589476099
+        },
+        {
+          "variant": "HARD_STOP_2PCT",
+          "return_pct": 4.781382868210927,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        },
+        {
+          "variant": "HARD_STOP_3PCT",
+          "return_pct": 4.781382868210927,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        },
+        {
+          "variant": "HARD_STOP_5PCT",
+          "return_pct": 4.781382868210927,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        }
+      ],
+      "guardrail": "Counterfactuals are post-trade research only and never rewrite the historical trade."
+    },
+    {
+      "experience_id": "SWING_S_2026-08-12T181140.340711+0000",
+      "symbol": "S",
+      "split": "TRAIN",
+      "actual_return_pct": -0.547014207759766,
+      "variants": [
+        {
+          "variant": "ENTRY_DELAY_5M",
+          "return_pct": -0.37545358725896705,
+          "difference_vs_actual_pct": 0.1715606205007989
+        },
+        {
+          "variant": "ENTRY_DELAY_15M",
+          "return_pct": -0.37545358725896705,
+          "difference_vs_actual_pct": 0.1715606205007989
+        },
+        {
+          "variant": "ENTRY_DELAY_30M",
+          "return_pct": -0.37545358725896705,
+          "difference_vs_actual_pct": 0.1715606205007989
+        },
+        {
+          "variant": "HARD_STOP_2PCT",
+          "return_pct": -0.547014207759766,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        },
+        {
+          "variant": "HARD_STOP_3PCT",
+          "return_pct": -0.547014207759766,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        },
+        {
+          "variant": "HARD_STOP_5PCT",
+          "return_pct": -0.547014207759766,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
         }
       ],
       "guardrail": "Counterfactuals are post-trade research only and never rewrite the historical trade."
@@ -5458,6 +5626,48 @@
         {
           "variant": "HARD_STOP_5PCT",
           "return_pct": -0.6190346745876705,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        }
+      ],
+      "guardrail": "Counterfactuals are post-trade research only and never rewrite the historical trade."
+    },
+    {
+      "experience_id": "SCALP_VTHO_2026-08-13T153000+0000",
+      "symbol": "VTHO",
+      "split": "TRAIN",
+      "actual_return_pct": -1.5839263816320945,
+      "variants": [
+        {
+          "variant": "ENTRY_DELAY_5M",
+          "return_pct": 0.0,
+          "difference_vs_actual_pct": 1.5839263816320945
+        },
+        {
+          "variant": "ENTRY_DELAY_15M",
+          "return_pct": 0.0,
+          "difference_vs_actual_pct": 1.5839263816320945
+        },
+        {
+          "variant": "ENTRY_DELAY_30M",
+          "return_pct": 0.0,
+          "difference_vs_actual_pct": 1.5839263816320945
+        },
+        {
+          "variant": "HARD_STOP_2PCT",
+          "return_pct": -1.5839263816320945,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        },
+        {
+          "variant": "HARD_STOP_3PCT",
+          "return_pct": -1.5839263816320945,
+          "difference_vs_actual_pct": 0.0,
+          "triggered": false
+        },
+        {
+          "variant": "HARD_STOP_5PCT",
+          "return_pct": -1.5839263816320945,
           "difference_vs_actual_pct": 0.0,
           "triggered": false
         }
