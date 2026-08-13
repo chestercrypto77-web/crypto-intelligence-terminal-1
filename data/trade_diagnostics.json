@@ -1,16 +1,16 @@
 {
-  "updated_at": "2026-08-13T21:28:10.602889+00:00",
+  "updated_at": "2026-08-13T22:27:00.382010+00:00",
   "summary": {
-    "trades_reviewed": 167,
+    "trades_reviewed": 169,
     "wins": 28,
-    "losses": 139,
-    "small_losses": 115,
-    "win_rate_pct": 16.766467065868262,
-    "small_loss_share_pct": 82.73381294964028,
+    "losses": 141,
+    "small_losses": 117,
+    "win_rate_pct": 16.56804733727811,
+    "small_loss_share_pct": 82.97872340425532,
     "categories": {
       "ENTRY NEVER WORKED": 124,
       "WIN — PROCESS REVIEW": 27,
-      "SMALL LOSS — REVIEW": 9,
+      "SMALL LOSS — REVIEW": 11,
       "WEAK ENTRY / FAST ADVERSE MOVE": 1,
       "EXIT / RE-ENTRY FAILURE": 5,
       "PROFIT UNDER-CAPTURED": 1
@@ -20,13 +20,13 @@
     "features": {
       "rvol": {
         "winner_avg": 2.1043749007716035,
-        "loser_avg": 2.7314112273633495,
-        "difference": -0.627036326591746
+        "loser_avg": 2.692453295346594,
+        "difference": -0.5880783945749903
       },
       "rvol_delta": {
         "winner_avg": 1.4321002517275525,
-        "loser_avg": 1.9543829662623597,
-        "difference": -0.5222827145348072
+        "loser_avg": 1.9337292565033541,
+        "difference": -0.5016290047758016
       },
       "return_1h": {
         "winner_avg": 0.0,
@@ -35,28 +35,28 @@
       },
       "return_4h": {
         "winner_avg": -0.2801311667511112,
-        "loser_avg": 0.49185932895435547,
-        "difference": -0.7719904957054666
+        "loser_avg": 0.19722789152592451,
+        "difference": -0.47735905827703573
       },
       "return_12h": {
         "winner_avg": -0.3725607384379992,
-        "loser_avg": 0.6645930658996033,
-        "difference": -1.0371538043376025
+        "loser_avg": 0.37429975723538195,
+        "difference": -0.7468604956733811
       },
       "return_24h": {
         "winner_avg": 0.6236750945189421,
-        "loser_avg": -0.47261197141523753,
-        "difference": 1.0962870659341797
+        "loser_avg": -0.5891818146878519,
+        "difference": 1.212856909206794
       },
       "bullish": {
         "winner_avg": 6.0,
-        "loser_avg": 6.125,
-        "difference": -0.125
+        "loser_avg": 5.777777777777778,
+        "difference": 0.22222222222222232
       },
       "bearish": {
         "winner_avg": 11.0,
-        "loser_avg": 8.833333333333334,
-        "difference": 2.166666666666666
+        "loser_avg": 9.0,
+        "difference": 2.0
       }
     },
     "warning": "Feature comparison is descriptive evidence, not proof of causation. Missing legacy snapshots are excluded."
@@ -3737,12 +3737,38 @@
       "pnl": -101.64188593991874,
       "mfe_pct": 0.0,
       "mae_pct": -4.06567543759675,
-      "post_exit_best_pct": 0.0,
+      "post_exit_best_pct": 3.5645475628056422,
       "entry_quality": "SUPPORTED",
       "exit_reason": "HARD RISK STOP",
       "category": "ENTRY NEVER WORKED",
       "severity": "HIGH",
       "next_question": "Study entry timing and confirmation. The trade never developed meaningful favourable excursion.",
+      "entry_features": {
+        "rvol": 0.0,
+        "rvol_delta": 0.0,
+        "return_1h": 0.0,
+        "return_4h": 0.0,
+        "return_12h": 0.0,
+        "return_24h": 0.0,
+        "bullish": 0.0,
+        "bearish": 0.0
+      }
+    },
+    {
+      "position_id": "OBSERVER_AR_2026-08-13T08:15:00+00:00",
+      "symbol": "AR",
+      "wallet": "15M Observer",
+      "direction": "SHORT",
+      "return_pct": -0.0082123301159307,
+      "pnl": -0.20530825289826748,
+      "mfe_pct": 0.592669594721851,
+      "mae_pct": -0.513015820099205,
+      "post_exit_best_pct": -0.0,
+      "entry_quality": "WEAK EVIDENCE",
+      "exit_reason": "Observer reversal",
+      "category": "SMALL LOSS — REVIEW",
+      "severity": "LOW",
+      "next_question": "Compare against winning entries before changing any rule.",
       "entry_features": {
         "rvol": 0.0,
         "rvol_delta": 0.0,
@@ -4038,6 +4064,32 @@
         "return_24h": 6.824255904639798,
         "bullish": 13.0,
         "bearish": 0.0
+      }
+    },
+    {
+      "position_id": "SWING_VET_2026-08-12T181140.340711+0000",
+      "symbol": "VET",
+      "wallet": "Swing",
+      "direction": "SHORT",
+      "return_pct": -0.3,
+      "pnl": -15.0,
+      "mfe_pct": 2.1282539829715956,
+      "mae_pct": -0.9622464137656437,
+      "post_exit_best_pct": -0.0,
+      "entry_quality": "HIGH QUALITY",
+      "exit_reason": "SIGNAL REVERSAL",
+      "category": "SMALL LOSS — REVIEW",
+      "severity": "LOW",
+      "next_question": "Compare against winning entries before changing any rule.",
+      "entry_features": {
+        "rvol": 2.3807898392125475,
+        "rvol_delta": 1.7684995784313087,
+        "return_1h": 0.0,
+        "return_4h": -2.159823607901523,
+        "return_12h": -1.9480467120783884,
+        "return_24h": -1.5217405608687673,
+        "bullish": 3.0,
+        "bearish": 10.0
       }
     },
     {

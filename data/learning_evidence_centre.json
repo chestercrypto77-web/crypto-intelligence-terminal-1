@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13T20:07:19.181440+00:00",
+  "updated_at": "2026-08-13T22:27:00.899262+00:00",
   "summary": {
     "lessons": 13,
     "accepted_or_eligible": 0,
@@ -81,7 +81,7 @@
       "brain": "Time Intelligence",
       "claim": "Compare how long profitable and losing trades are typically held before changing live duration rules.",
       "status": "BUILDING",
-      "samples": 165,
+      "samples": 169,
       "minimum_samples": 30,
       "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
@@ -1091,7 +1091,7 @@
       ],
       "metrics": {
         "avg_winner_holding_hours": 19.744278364722224,
-        "avg_loser_holding_hours": 8.492301084933091,
+        "avg_loser_holding_hours": 8.820323110951536,
         "avg_winner_time_to_mfe_hours": 14.833981837748016
       }
     },
@@ -1118,7 +1118,7 @@
       "brain": "Trade Reflection",
       "claim": "Treat weak participation as a caution flag when context matches.",
       "status": "ELIGIBLE FOR FORMAL REVIEW",
-      "samples": 156,
+      "samples": 159,
       "minimum_samples": 30,
       "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
@@ -2129,8 +2129,8 @@
       ],
       "counter_evidence": [],
       "metrics": {
-        "loss_rate_pct": 83.97435897435898,
-        "reverse_superior_rate_pct": 16.025641025641026
+        "loss_rate_pct": 84.27672955974843,
+        "reverse_superior_rate_pct": 16.352201257861633
       }
     },
     {
@@ -2138,10 +2138,10 @@
       "title": "Opposite Direction Outperformed",
       "brain": "Trade Reflection",
       "claim": "Treat opposite direction outperformed as a caution flag when context matches.",
-      "status": "TESTING",
-      "samples": 29,
+      "status": "ELIGIBLE FOR FORMAL REVIEW",
+      "samples": 30,
       "minimum_samples": 30,
-      "sample_gate_met": false,
+      "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
       "supporting_evidence": [
         {
@@ -3538,16 +3538,16 @@
             "opposite_direction": "SHORT",
             "actual_return_pct": -4.618503767411097,
             "reverse_same_exit_gross_pct": 4.318503767411097,
-            "reverse_mfe_pct": 8.275804393640351,
+            "reverse_mfe_pct": 8.408266253595198,
             "reverse_mae_pct": 0.0,
             "difference_pct": 8.937007534822193,
             "status": "REVERSE CLEARLY SUPERIOR",
             "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
           },
           "stop_loss_value": {
-            "worst_observed_same_direction_pct": -8.275804393640351,
-            "loss_avoided_pct": 3.6573006262292544,
-            "estimated_capital_saved_usd": 182.86503131146273,
+            "worst_observed_same_direction_pct": -8.408266253595198,
+            "loss_avoided_pct": 3.7897624861841006,
+            "estimated_capital_saved_usd": 189.488124309205,
             "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
           },
           "lesson_value": "HIGH",
@@ -3690,22 +3690,22 @@
         "low_or_poor_capture": 0,
         "winners_given_back": 0
       },
-      "updated_at": "2026-08-13T20:07:17.620760+00:00"
+      "updated_at": "2026-08-13T22:26:59.305362+00:00"
     },
     {
       "name": "Time Intelligence",
       "source_file": "time_intelligence.json",
       "purpose": "Measures how trade outcomes change through time.",
       "summary": {
-        "trades_timed": 165,
+        "trades_timed": 169,
         "avg_winner_holding_hours": 19.744278364722224,
-        "avg_loser_holding_hours": 8.492301084933091,
+        "avg_loser_holding_hours": 8.820323110951536,
         "avg_winner_time_to_mfe_hours": 14.833981837748016,
-        "avg_peak_to_exit_hours": 5.790440956488216,
-        "overheld_reviews": 106,
-        "reentry_delays_measured": 158
+        "avg_peak_to_exit_hours": 5.9533579457692305,
+        "overheld_reviews": 109,
+        "reentry_delays_measured": 161
       },
-      "updated_at": "2026-08-13T20:07:17.701916+00:00"
+      "updated_at": "2026-08-13T22:26:59.385425+00:00"
     },
     {
       "name": "Move Phase",
@@ -3714,13 +3714,14 @@
       "summary": {
         "assets": 45,
         "phase_counts": {
-          "RESET / REVERSAL": 14,
-          "BASE / OBSERVING": 29,
-          "TRENDING": 1,
+          "BASE / OBSERVING": 32,
+          "IGNITION": 1,
+          "RESET / REVERSAL": 10,
+          "EXHAUSTION": 1,
           "OBSERVING": 1
         }
       },
-      "updated_at": "2026-08-13T20:07:13.475269+00:00"
+      "updated_at": "2026-08-13T22:26:55.116101+00:00"
     },
     {
       "name": "Pattern Miner",
@@ -3730,7 +3731,7 @@
         "patterns": 0,
         "candidate_patterns": 0
       },
-      "updated_at": "2026-08-13T20:07:18.544959+00:00"
+      "updated_at": "2026-08-13T22:27:00.249829+00:00"
     },
     {
       "name": "Management Challenger",
@@ -3740,7 +3741,7 @@
         "policies": 4,
         "samples_required": 30
       },
-      "updated_at": "2026-08-13T20:07:18.606729+00:00"
+      "updated_at": "2026-08-13T22:27:00.313660+00:00"
     },
     {
       "name": "Committee Memory",
@@ -3751,19 +3752,19 @@
         "advisories": 0,
         "mature_patterns": 0
       },
-      "updated_at": "2026-08-13T20:07:18.853780+00:00"
+      "updated_at": "2026-08-13T22:27:00.568961+00:00"
     },
     {
       "name": "Trade Reflection",
       "source_file": "trade_reflections.json",
       "purpose": "Grades process, finds first failure clues and studies whether the opposite direction was superior.",
       "summary": {
-        "reflections": 165,
-        "good_process_wrong_direction": 15,
-        "high_value_lessons": 132,
-        "stop_losses_praised": 20
+        "reflections": 169,
+        "good_process_wrong_direction": 16,
+        "high_value_lessons": 136,
+        "stop_losses_praised": 21
       },
-      "updated_at": "2026-08-13T20:07:16.839485+00:00"
+      "updated_at": "2026-08-13T22:26:58.511017+00:00"
     },
     {
       "name": "Missed Clue Miner",
@@ -3771,34 +3772,34 @@
       "purpose": "Finds repeated clues the engine may have overlooked before failed trades.",
       "summary": {
         "clues": 7,
-        "mature": 1
+        "mature": 2
       },
-      "updated_at": "2026-08-13T20:07:16.885434+00:00"
+      "updated_at": "2026-08-13T22:26:58.557083+00:00"
     },
     {
       "name": "Experience Store",
       "source_file": "learning_experience_store.json",
       "purpose": "Separates validated experience into train, validation and locked holdout datasets.",
       "summary": {
-        "experiences": 1044,
-        "allowed": 1044,
+        "experiences": 1055,
+        "allowed": 1055,
         "quarantined": 0,
-        "train": 619,
-        "validation": 220,
-        "holdout": 205
+        "train": 625,
+        "validation": 228,
+        "holdout": 202
       },
-      "updated_at": "2026-08-13T20:07:17.788664+00:00"
+      "updated_at": "2026-08-13T22:26:59.471064+00:00"
     },
     {
       "name": "Reward Engine",
       "source_file": "learning_rewards.json",
       "purpose": "Scores process dimensions separately instead of treating profit/loss as the only reward.",
       "summary": {
-        "rewarded_trades": 165,
-        "positive_process": 48,
+        "rewarded_trades": 169,
+        "positive_process": 49,
         "negative_process": 2
       },
-      "updated_at": "2026-08-13T20:07:18.097507+00:00"
+      "updated_at": "2026-08-13T22:26:59.784467+00:00"
     },
     {
       "name": "Adversarial Learning",
@@ -3808,7 +3809,7 @@
         "lessons_challenged": 7,
         "surviving": 1
       },
-      "updated_at": "2026-08-13T20:07:18.308439+00:00"
+      "updated_at": "2026-08-13T22:26:59.998270+00:00"
     },
     {
       "name": "Learning Curriculum",
@@ -3817,9 +3818,9 @@
       "summary": {
         "current_level": 0,
         "current_name": "TRUST THE DATA",
-        "average_process_reward": 0.09049888262001357
+        "average_process_reward": 0.08869892045721996
       },
-      "updated_at": "2026-08-13T20:07:18.351959+00:00"
+      "updated_at": "2026-08-13T22:27:00.042990+00:00"
     },
     {
       "name": "Learning Governor",
@@ -3830,7 +3831,7 @@
         "holdout_review_eligible": 1,
         "live_promoted": 0
       },
-      "updated_at": "2026-08-13T20:07:18.384550+00:00"
+      "updated_at": "2026-08-13T22:27:00.076063+00:00"
     }
   ],
   "rules": {
