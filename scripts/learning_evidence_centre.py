@@ -127,6 +127,11 @@ def main():
       ("Committee Memory","committee_memory.json","Tracks specialist evidence over repeated outcomes."),
       ("Trade Reflection","trade_reflections.json","Grades process, finds first failure clues and studies whether the opposite direction was superior."),
       ("Missed Clue Miner","missed_clues.json","Finds repeated clues the engine may have overlooked before failed trades."),
+      ("Experience Store","learning_experience_store.json","Separates validated experience into train, validation and locked holdout datasets."),
+      ("Reward Engine","learning_rewards.json","Scores process dimensions separately instead of treating profit/loss as the only reward."),
+      ("Adversarial Learning","adversarial_learning.json","Actively searches for counterexamples that can disprove candidate lessons."),
+      ("Learning Curriculum","learning_curriculum.json","Locks advanced learning until foundational competencies pass measurable gates."),
+      ("Learning Governor","learning_governor.json","Controls lesson maturity; V21 does not automatically promote any lesson into live trading rules."),
     ]
     for name,source,purpose in source_map:
         data=read(DATA/source,{})

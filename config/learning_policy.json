@@ -1,0 +1,30 @@
+{
+  "version": "21.0.0",
+  "dataset_split": {"train_pct": 60, "validation_pct": 20, "holdout_pct": 20},
+  "promotion_gates": {
+    "minimum_train_examples": 20,
+    "minimum_validation_examples": 8,
+    "minimum_validation_support_rate_pct": 60,
+    "minimum_holdout_examples": 8,
+    "minimum_holdout_support_rate_pct": 55,
+    "minimum_counterexample_search": 5
+  },
+  "reward_weights": {
+    "direction_accuracy": 1.0,
+    "risk_discipline": 1.4,
+    "stop_compliance": 1.4,
+    "entry_quality": 0.8,
+    "profit_capture": 0.8,
+    "holding_time": 0.7,
+    "reentry_recognition": 0.4,
+    "data_integrity": 2.0
+  },
+  "rules": {
+    "single_trade_can_change_live_policy": false,
+    "holdout_visible_to_discovery": false,
+    "counter_evidence_required": true,
+    "out_of_sample_required": true,
+    "live_rule_auto_promotion": false,
+    "quarantined_data_can_teach": false
+  }
+}

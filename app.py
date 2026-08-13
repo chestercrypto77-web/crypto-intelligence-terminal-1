@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "20.0.0"
+APP_VERSION = "21.0.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -1741,6 +1741,9 @@ ADAPTIVE_ATTENTION_FILE = Path(__file__).with_name("data") / "adaptive_attention
 EXTERNAL_ATTENTION_FILE = Path(__file__).with_name("data") / "external_attention.json"
 BRAIN_AUDIT_FILE = Path(__file__).with_name("data") / "brain_audit.json"
 STRATEGY_INTEGRITY_FILE = Path(__file__).with_name("data") / "strategy_integrity.json"
+LEARNING_GOVERNOR_FILE = Path(__file__).with_name("data") / "learning_governor.json"
+LEARNING_CURRICULUM_FILE = Path(__file__).with_name("data") / "learning_curriculum.json"
+LEARNING_EXPERIENCE_FILE = Path(__file__).with_name("data") / "learning_experience_store.json"
 
 MICROSTRUCTURE_FILE = Path(__file__).with_name("data") / "microstructure_latest.json"
 PORTFOLIO_MANAGER_FILE = Path(__file__).with_name("data") / "portfolio_manager.json"
@@ -3167,6 +3170,9 @@ elif selection=="Brain Audit":
     attention=read_runtime_json(ADAPTIVE_ATTENTION_FILE,{"summary":{},"assets":[]})
     external=read_runtime_json(EXTERNAL_ATTENTION_FILE,{"summary":{},"source_health":[],"assets":{}})
     strategy_integrity=read_runtime_json(STRATEGY_INTEGRITY_FILE,{"summary":{},"strategies":[],"flagged_trades":[]})
+    learning_governor=read_runtime_json(LEARNING_GOVERNOR_FILE,{"summary":{},"lessons":[]})
+    learning_curriculum=read_runtime_json(LEARNING_CURRICULUM_FILE,{"summary":{},"stages":[]})
+    learning_experience=read_runtime_json(LEARNING_EXPERIENCE_FILE,{"summary":{},"records":[]})
     st.markdown('<div class="summary-box"><b>Brain Audit:</b> this page does not tell you what the AI hopes it is doing. It checks observable outputs, scan coverage and producer→consumer receipts so you can verify what is actually happening behind the scenes.</div>',unsafe_allow_html=True)
 
     bs=audit.get("summary") or {}
@@ -3246,6 +3252,18 @@ elif selection=="Brain Audit":
     if strategy_integrity.get("flagged_trades"):
         with st.expander("Show flagged strategy trades"):
             st.dataframe(pd.DataFrame(strategy_integrity.get("flagged_trades")),use_container_width=True,hide_index=True)
+
+    section("Learning governance")
+    st.caption("V21 separates experience collection from behavioural change. Holdout data stays locked from discovery, candidate lessons are attacked with counter-evidence, and live auto-promotion is disabled.")
+    lg=learning_governor.get("summary") or {}
+    lc=learning_curriculum.get("summary") or {}
+    le=learning_experience.get("summary") or {}
+    g1,g2,g3,g4=st.columns(4)
+    with g1: metric("Learning experiences",str(le.get("allowed",0)),"Validated and allowed")
+    with g2: metric("Current curriculum",f"Level {lc.get('current_level',0)}",str(lc.get("current_name") or "Foundation"))
+    with g3: metric("Holdout-review eligible",str(lg.get("holdout_review_eligible",0)),"Passed train + validation challenge")
+    with g4: metric("Live lessons promoted",str(lg.get("live_promoted",0)),"Must remain 0 in V21")
+    st.caption(f"Dataset split · Train {le.get('train',0)} · Validation {le.get('validation',0)} · Holdout {le.get('holdout',0)}")
 
     alerts=audit.get("alerts") or []
     if alerts:
