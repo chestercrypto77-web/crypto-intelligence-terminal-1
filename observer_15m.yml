@@ -1,0 +1,69 @@
+name: 15-Minute Market Observer
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "2,17,32,47 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fifteen-minute-market-observer
+  cancel-in-progress: false
+
+jobs:
+  observe-and-decide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Mark 15m workflow start
+        run: python scripts/workflow_heartbeat.py 15M START
+      - name: Decision loop
+        run: |
+          python scripts/bootstrap_runtime.py
+          python scripts/ensure_microstructure_fresh.py
+          python scripts/observer_15m.py
+          python scripts/risk_guardian.py
+          python scripts/move_phase_intelligence.py
+          python scripts/adaptive_attention.py
+          python scripts/investment_committee.py
+          python scripts/intelligence_hub.py
+          python scripts/portfolio_manager.py
+          python scripts/stop_execution_guard.py
+          python scripts/active_trade_casefiles.py
+          python scripts/collect_brain_receipts.py
+      - name: Mark completed market decision cycle
+        run: python scripts/workflow_heartbeat.py 15M COMPLETE
+      - name: Verify orchestration
+        run: |
+          python scripts/observer_audit.py
+          python scripts/runtime_watchdog.py
+          python scripts/brain_audit.py
+          python scripts/brain_health.py
+      - name: Verify critical JSON
+        run: |
+          python - <<'PY2'
+          import json
+          from pathlib import Path
+          for name in ["observer_latest.json","observer_history.json","heartbeat_15m.json","portfolio_manager.json","active_trade_casefiles.json","observer_audit.json","runtime_watchdog.json","brain_audit.json"]:
+              json.loads((Path("data")/name).read_text())
+              print("PASS",name)
+          PY2
+      - name: Commit 15m runtime state
+        run: |
+          git config user.name "Market Observer Recorder"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/*.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "15m verified decision and portfolio cycle"
+          git pull --rebase
+          git push

@@ -1,13 +1,23 @@
-V21 ONE CLEAN UPDATE — Learning Architecture V2
+V21.5 ONE CLEAN RELIABILITY REPAIR
 
+This release fixes observation/orchestration/trusted-learning faults. It does not delete or replace your runtime history.
+
+UPLOAD
 1. Extract this ZIP.
-2. Upload the complete extracted contents to the repository root.
-3. Confirm the .github folder is included.
-4. Commit to main.
+2. In the GitHub repository root, upload the complete extracted contents in one batch.
+3. Confirm .github/workflows is included.
+4. Commit directly to main.
 5. Reboot Streamlit.
-6. Run 15-Minute Market Observer once.
-7. Run Nightly Deep Learning Review once.
-8. Open Brain Audit and check Learning governance.
 
-V21 deliberately does NOT automatically promote any learned lesson into live trading behaviour.
-Existing runtime learning/trade histories are not included or overwritten.
+FIRST VERIFICATION (run sequentially, not all at once)
+1. Run 5-Minute Microstructure Observer manually and WAIT for it to finish green.
+2. Run 15-Minute Market Observer manually and WAIT for it to finish green.
+3. Open Trading Desk: it should show a verified refresh/reconciliation line or an explicit stale-state error.
+4. Open Brain Audit. Heartbeat history begins with this release, so 24h schedule-completion percentages need time to accumulate.
+5. Run Hourly Signal Recorder once after the 15m workflow finishes.
+6. Run Nightly Deep Learning Review once later, after the critical loops are confirmed healthy.
+
+IMPORTANT
+- Do NOT delete existing data/*.json runtime histories.
+- Missing Trade Integrity and Winner/Failure executors are restored in this release.
+- Hard stops are now enforced in the paper-wallet execution guard instead of being alerts only.

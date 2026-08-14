@@ -14,7 +14,7 @@ import yfinance as yf
 
 
 APP_NAME = "Crypto Intelligence Terminal"
-APP_VERSION = "21.0.0"
+APP_VERSION = "21.5.0"
 CURRENCY = "aud"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/coins/markets"
 
@@ -2600,6 +2600,19 @@ elif selection=="Trading Desk":
 
     cases=casefiles.get("positions") or []
     summary=casefiles.get("summary") or {}
+    # Reliability repair: never present an old case-file snapshot as if it were live.
+    case_stamp=casefiles.get("updated_at")
+    wallet_open=sum(len(w.get("open_positions") or []) for _,w in wallets)
+    case_open=len(cases)
+    try:
+        case_age=(pd.Timestamp.now(tz="UTC")-pd.Timestamp(case_stamp)).total_seconds()/60 if case_stamp else 1e9
+    except Exception:
+        case_age=1e9
+    stale_case=case_age>35 or wallet_open!=case_open
+    if stale_case:
+        st.error(f"TRADING DESK STATE NOT VERIFIED — case files are {case_age:.0f} min old; wallets show {wallet_open} open position(s), this page has {case_open}. Do not treat the cards below as current until the 15-minute decision pipeline refreshes.")
+    else:
+        st.caption(f"Trading engine state verified · last case-file refresh {case_age:.1f} min ago · {case_open} open position(s) reconciled with wallets")
     if not cases:
         # Fall back gracefully before the first V16 observer/hourly run.
         open_rows=[(book,p) for book,w in wallets for p in (w.get("open_positions") or [])]
