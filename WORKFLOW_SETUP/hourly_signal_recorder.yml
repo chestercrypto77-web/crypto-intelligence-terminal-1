@@ -13,37 +13,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  scan-and-record:
+  scan-and-learn:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run stable hourly platform runner
+      - run: pip install -r requirements.txt
+      - run: python scripts/workflow_heartbeat.py HOURLY START
+      - name: Run hourly intelligence and trusted-learning chain
         run: python scripts/hourly_runner.py
-
+      - run: python scripts/workflow_heartbeat.py HOURLY COMPLETE
       - name: Commit persistent runtime data
         run: |
           git config user.name "Crypto Intelligence Recorder"
           git config user.email "actions@users.noreply.github.com"
           git add data/*.json
-          if git diff --cached --quiet; then
-            echo "No runtime changes to commit."
-          else
-            git commit -m "Update hourly intelligence records"
-            git pull --rebase
-            git push
-          fi
+          if git diff --cached --quiet; then echo "No runtime changes to commit."; exit 0; fi
+          git commit -m "Hourly intelligence and learning records"
+          git pull --rebase
+          git push

@@ -574,6 +574,11 @@ def main() -> int:
         "objective": "Allocate capital only when independent evidence aligns and expected value justifies risk.",
         "market_regime": regime,
         "assets": assets,
+        "input_receipts": {
+            "external_attention_events": int(((external_attention.get("summary") or {}).get("events_24h") or 0)),
+            "external_attention_assets": len(external_attention.get("assets") or {}),
+            "external_attention_updated_at": external_attention.get("updated_at"),
+        },
         "health": {
             "assets_checked": len(assets),
             "qualified_core": sum(1 for row in assets if row["decision"]["book_permissions"]["CORE"]),

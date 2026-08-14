@@ -130,7 +130,18 @@ def lessons(core,swing,scalp):
 def main():
     fund=read(DATA/'fund_state.json',{}); 
     if fund.get('status')!='ACTIVE': print(json.dumps({'status':'SKIPPED','reason':'V10 FUND NOT INITIALISED'},indent=2)); return 0
-    signals=read(DATA/'signals_latest.json',{'signals':[]}).get('signals') or []; risks=read(DATA/'risk_guardian.json',{'asset_checks':[]}); risk_map={str(x.get('symbol','')).upper():x for x in risks.get('asset_checks',[])}
+    signals=read(DATA/'signals_latest.json',{'signals':[]}).get('signals') or []
+    # Hourly signals own direction/entry eligibility; fresh 15m observations own the current mark.
+    observer=read(DATA/'observer_latest.json',{'signals':[]}).get('signals') or []
+    omap={str(x.get('symbol') or '').upper():x for x in observer}
+    merged=[]
+    for row in signals:
+        x=dict(row);o=omap.get(str(row.get('symbol') or '').upper())
+        if o and f(o.get('price'))>0:
+            x['entry_price']=f(o.get('price'));x['mark_source']='observer_15m';x['mark_recorded_at']=o.get('recorded_at')
+        merged.append(x)
+    signals=merged
+    risks=read(DATA/'risk_guardian.json',{'asset_checks':[]}); risk_map={str(x.get('symbol','')).upper():x for x in risks.get('asset_checks',[])}
     committee_payload=read(DATA/'committee_latest.json',{'assets':[]}); committee_map={str(x.get('symbol','')).upper():x for x in committee_payload.get('assets',[])}
     intelligence=read(DATA/'intelligence_bus.json',{'assets':{}}); intelligence_map=intelligence.get('assets') or {}
     core=read(DATA/'core_wallet.json',{}); swing=read(DATA/'swing_wallet.json',{}); scalp=read(DATA/'scalp_wallet.json',{})

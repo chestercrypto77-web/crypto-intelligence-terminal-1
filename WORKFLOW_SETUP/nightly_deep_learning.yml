@@ -15,7 +15,7 @@ concurrency:
 jobs:
   learn:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,21 +25,36 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Rebuild learning evidence without opening trades
+      - run: python scripts/workflow_heartbeat.py NIGHTLY START
+      - name: Deep learning only — no new positions opened
         run: |
           python scripts/bootstrap_runtime.py
-          python scripts/market_school.py
           python scripts/trade_review_engine.py
-          python scripts/trade_diagnostics.py
-          python scripts/trade_coach.py
-          python scripts/confidence_ledger.py
-          python scripts/learning_engine.py
-          python scripts/challenger_arena.py
-          python scripts/intelligence_hub.py
+          python scripts/trade_integrity.py
+          python scripts/winner_failure_school.py
+          python scripts/trade_reflection_engine.py
+          python scripts/profit_capture_engine.py
+          python scripts/time_intelligence.py
+          python scripts/experience_store.py
+          python scripts/reward_engine.py
+          python scripts/counterfactual_lab.py
+          python scripts/missed_clue_miner.py
+          python scripts/lesson_promotion_board.py
+          python scripts/adversarial_learning_challenger.py
+          python scripts/curriculum_engine.py
+          python scripts/learning_governor.py
+          python scripts/market_school.py
+          python scripts/pattern_miner.py
+          python scripts/learning_evidence_centre.py
+          python scripts/cross_learning_bus.py
           python scripts/brain_health.py
+      - run: python scripts/workflow_heartbeat.py NIGHTLY COMPLETE
       - name: Commit learning records
         run: |
           git config user.name "Intelligence Learning Engine"
           git config user.email "actions@users.noreply.github.com"
           git add data/*.json
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Nightly intelligence learning review"; git pull --rebase; git push; fi
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Nightly validated learning review"
+          git pull --rebase
+          git push

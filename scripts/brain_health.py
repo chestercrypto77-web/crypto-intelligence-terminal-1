@@ -42,6 +42,7 @@ def main():
       'brain_audit':('brain_audit.json','updated_at',30),
       'strategy_integrity':('strategy_integrity.json','updated_at',180),
       'market_truth':('market_truth.json','updated_at',30),
+      'runtime_watchdog':('runtime_watchdog.json','updated_at',30),
       'decision_truth':('decision_truth_replay.json','updated_at',180),
       'major_move_forensics':('major_move_forensics.json','updated_at',180),
       'experience_store':('learning_experience_store.json','updated_at',180),

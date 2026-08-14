@@ -15,7 +15,7 @@ concurrency:
 jobs:
   observe:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,25 +25,34 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Observe underlying 1m bars and compare 1m/5m structure
+      - name: Mark 5m workflow start
+        run: python scripts/workflow_heartbeat.py 5M START
+      - name: Fast market loop — microstructure and hard stops only
         run: |
           python scripts/bootstrap_runtime.py
           python scripts/microstructure_observer.py
-          python scripts/market_school.py
-          python scripts/intelligence_hub.py
-          python scripts/brain_health.py
-      - name: Verify JSON
+          python scripts/stop_execution_guard.py
+      - name: Mark completed market observation
+        run: python scripts/workflow_heartbeat.py 5M COMPLETE
+      - name: Refresh audit/watchdog
+        run: |
+          python scripts/observer_audit.py
+          python scripts/runtime_watchdog.py
+      - name: Verify critical JSON
         run: |
           python - <<'PY2'
           import json
           from pathlib import Path
-          for name in ["microstructure_latest.json","microstructure_history.json","market_school.json","intelligence_bus.json","brain_health.json","engine_health.json"]:
+          for name in ["microstructure_latest.json","microstructure_history.json","heartbeat_5m.json","observer_audit.json","runtime_watchdog.json","stop_execution_alerts.json"]:
               json.loads((Path("data")/name).read_text())
               print("PASS",name)
           PY2
-      - name: Commit learning records
+      - name: Commit 5m runtime evidence
         run: |
           git config user.name "Microstructure Observer"
           git config user.email "actions@users.noreply.github.com"
-          git add data/microstructure_latest.json data/microstructure_history.json data/market_school.json data/intelligence_bus.json data/brain_health.json data/engine_health.json
-          if git diff --cached --quiet; then echo "No changes"; else git commit -m "Update 1m/5m microstructure intelligence"; git pull --rebase; git push; fi
+          git add data/microstructure_latest.json data/microstructure_history.json data/heartbeat_5m.json data/observer_audit.json data/runtime_watchdog.json data/stop_execution_alerts.json data/core_wallet.json data/swing_wallet.json data/scalp_wallet.json data/observer_wallet.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "5m market observation and stop protection"
+          git pull --rebase
+          git push

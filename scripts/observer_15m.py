@@ -7,6 +7,7 @@ import json
 import math
 import time
 from typing import Any
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import numpy as np
 import pandas as pd
@@ -716,13 +717,25 @@ def main() -> int:
     provider_counts = {}
     new_events = 0
 
+    # Fetch market data concurrently. Signal/wallet state updates remain sequential and deterministic.
+    fetch_results = {}
+    workers = min(8, max(2, len(holdings)))
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {}
+        for holding in holdings:
+            symbol = str(holding.get("symbol") or "").upper()
+            futures[pool.submit(fetch_15m, symbol, YAHOO_TICKERS.get(symbol, f"{symbol}-USD"), holding.get("coin_id"))] = holding
+        for fut in as_completed(futures):
+            holding = futures[fut]
+            symbol = str(holding.get("symbol") or "").upper()
+            try:
+                fetch_results[symbol] = fut.result()
+            except Exception:
+                fetch_results[symbol] = ("", pd.DataFrame(), False)
+
     for holding in holdings:
         symbol = str(holding.get("symbol") or "").upper()
-        provider, frame, fallback = fetch_15m(
-            symbol,
-            YAHOO_TICKERS.get(symbol, f"{symbol}-USD"),
-            holding.get("coin_id"),
-        )
+        provider, frame, fallback = fetch_results.get(symbol, ("", pd.DataFrame(), False))
         if frame.empty:
             unavailable.append(symbol)
             continue

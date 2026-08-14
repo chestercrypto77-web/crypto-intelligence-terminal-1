@@ -29,6 +29,9 @@ def main():
     integrity=read(DATA/"trade_integrity.json",{"records":[]}).get("records") or []
     validated={str(x.get("trade_key")) for x in integrity if x.get("status")=="VALIDATED"}
     quarantine=set(read(DATA/"learning_quarantine.json",{}).get("quarantined_symbols") or [])
+    audit=read(DATA/"observer_audit.json",{"summary":{}}).get("summary") or {}
+    five=(audit.get("5M") or {}); fifteen=(audit.get("15M") or {})
+    continuity_ok=f(five.get("schedule_completion_pct"))>=70 and f(fifteen.get("schedule_completion_pct"))>=70
     reviews=read(DATA/"trade_reviews.json",{"reviews":[]}).get("reviews") or []
     reflections={str(x.get("trade_key")):x for x in read(DATA/"trade_reflections.json",{"records":[]}).get("records") or []}
     captures={str(x.get("trade_key")):x for x in read(DATA/"profit_capture.json",{"records":[]}).get("records") or []}
@@ -36,26 +39,30 @@ def main():
     rows=[]
     for r in reviews:
         k=key(r); sym=str(r.get("symbol") or "")
-        if validated and k not in validated: continue
-        allowed=sym not in quarantine
+        if k not in validated: continue
+        replay_points=len(((r.get("replay") or {}).get("price_path")) or [])
+        allowed=sym not in quarantine and replay_points>=4
         rows.append({"experience_id":k,"kind":"COMPLETED_TRADE","split":split_for(k),
-            "learning_allowed":allowed,"symbol":sym,"wallet":r.get("wallet"),"direction":r.get("direction"),
+            "learning_allowed":allowed,"continuity_evidence":{"replay_points":replay_points,"minimum":4},"symbol":sym,"wallet":r.get("wallet"),"direction":r.get("direction"),
             "entry_time":r.get("entry_time"),"exit_time":r.get("exit_time"),
             "realised_return_pct":f(r.get("realised_return")),"realised_pnl":f(r.get("realised_pnl")),
             "review":r,"reflection":reflections.get(k,{}),"capture":captures.get(k,{}),"timing":timing.get(k,{})})
     decisions=read(DATA/"decision_truth_replay.json",{"records":[]}).get("records") or []
     for i,d in enumerate(decisions):
         k=f"DECISION|{d.get('symbol')}|{d.get('decision_time')}|{d.get('action')}|{i}"
+        horizon_count=len(d.get("horizons") or {})
         rows.append({"experience_id":k,"kind":"COMMITTEE_DECISION","split":split_for(k),
-                     "learning_allowed":str(d.get("symbol") or "") not in quarantine,"decision":d})
+                     "learning_allowed":str(d.get("symbol") or "") not in quarantine and continuity_ok and horizon_count>=2,
+                     "continuity_evidence":{"observer_24h_gate":continuity_ok,"forward_horizons":horizon_count},"decision":d})
     moves=read(DATA/"major_move_forensics.json",{"cases":[]}).get("cases") or []
     for i,m in enumerate(moves):
         k=f"MOVE|{m.get('symbol')}|{m.get('start_time')}|{m.get('move_pct')}|{i}"
         rows.append({"experience_id":k,"kind":"MAJOR_MOVE","split":split_for(k),
-                     "learning_allowed":str(m.get("symbol") or "") not in quarantine,"move":m})
+                     "learning_allowed":str(m.get("symbol") or "") not in quarantine and continuity_ok,
+                     "continuity_evidence":{"observer_24h_gate":continuity_ok},"move":m})
     counts={s:sum(x["split"]==s and x["learning_allowed"] for x in rows) for s in ("TRAIN","VALIDATION","HOLDOUT")}
     payload={"updated_at":now(),"summary":{"experiences":len(rows),"allowed":sum(x["learning_allowed"] for x in rows),
-             "quarantined":sum(not x["learning_allowed"] for x in rows),**{k.lower():v for k,v in counts.items()}},
+             "quarantined":sum(not x["learning_allowed"] for x in rows),"observer_continuity_gate":continuity_ok,**{k.lower():v for k,v in counts.items()}},
              "records":rows[-100000:],
              "guardrail":"HOLDOUT experiences are stored for final evaluation but discovery engines must not inspect them."}
     write(OUT,payload);print(json.dumps(payload["summary"],indent=2));return 0

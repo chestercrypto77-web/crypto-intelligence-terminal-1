@@ -41,6 +41,7 @@ ENGINES=[
  ("Strategy Brain","strategy_brain_status.json","updated_at",360),
  ("Learning Evidence","learning_evidence_centre.json","updated_at",360),
  ("Market Truth","market_truth.json","updated_at",60),
+ ("Runtime Watchdog","runtime_watchdog.json","updated_at",30),
  ("Decision Truth Replay","decision_truth_replay.json","updated_at",360),
  ("Major Move Forensics","major_move_forensics.json","updated_at",360),
  ("Experience Store","learning_experience_store.json","updated_at",360),
@@ -54,16 +55,19 @@ ENGINES=[
 ]
 def age_minutes(v):
     t=parse(v)
-    return (datetime.now(timezone.utc)-t).total_seconds()/60 if t else 1e9
+    return (datetime.now(timezone.utc)-t).total_seconds()/60 if t else None
 def main():
     engines=[];alerts=[]
     for name,fn,key,maxage in ENGINES:
         data=read(DATA/fn,{})
         stamp=data.get(key) or data.get("generated_at") or data.get("updated_at")
         age=age_minutes(stamp);exists=(DATA/fn).exists()
-        status="PASS" if exists and age<=maxage else "STALE" if exists else "MISSING"
-        if status!="PASS":alerts.append(f"{name}: {status} ({age:.0f} min old)" if exists else f"{name}: file missing")
-        engines.append({"engine":name,"source_file":fn,"last_output":stamp,"age_minutes":age if age<1e8 else None,
+        status="PASS" if exists and age is not None and age<=maxage else "NO VERIFIED HEARTBEAT" if exists and age is None else "STALE" if exists else "MISSING"
+        if status!="PASS":
+            if status=="STALE": alerts.append(f"{name}: STALE ({age:.0f} min old)")
+            elif status=="NO VERIFIED HEARTBEAT": alerts.append(f"{name}: NO VERIFIED HEARTBEAT")
+            else: alerts.append(f"{name}: file missing")
+        engines.append({"engine":name,"source_file":fn,"last_output":stamp,"age_minutes":age,
                         "freshness_limit_minutes":maxage,"status":status})
 
     receipts=read(DATA/"brain_receipts.json",{"receipts":[]}).get("receipts") or []

@@ -2,6 +2,7 @@ from __future__ import annotations
 from datetime import datetime,timezone
 from pathlib import Path
 import copy,json,math,time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import numpy as np
 import pandas as pd
 import requests
@@ -33,7 +34,7 @@ def f(v,d=0.0):
 
 def fetch_binance(symbol):
     try:
-        r=requests.get(BINANCE,params={'symbol':f'{symbol}USDT','interval':'1m','limit':500},timeout=10); r.raise_for_status(); rows=r.json()
+        r=requests.get(BINANCE,params={'symbol':f'{symbol}USDT','interval':'1m','limit':500},timeout=5); r.raise_for_status(); rows=r.json()
         if not isinstance(rows,list) or not rows:return pd.DataFrame()
         x=pd.DataFrame(rows,columns=['t','Open','High','Low','Close','Volume','ct','q','n','tb','tq','i'])
         x.index=pd.to_datetime(x['t'],unit='ms',utc=True)
@@ -112,15 +113,26 @@ def analyse(frame):
 
 def main():
     holdings=read(ROOT/'holdings.json',[]); hist=read(HISTORY,[]); signals=[]; unavailable=[]; providers={}; stamp=now()
+    # Network I/O is parallelised so one unsupported/slow ticker cannot make a 5-minute scan take many minutes.
+    workers=min(10,max(2,len(holdings)))
+    results={}
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures={pool.submit(fetch,str(h.get('symbol') or '').upper()):h for h in holdings}
+        for fut in as_completed(futures):
+            h=futures[fut]; symbol=str(h.get('symbol') or '').upper()
+            try: provider,frame=fut.result()
+            except Exception: provider,frame='',pd.DataFrame()
+            results[symbol]=(h,provider,frame)
+    # Preserve holdings order in persisted output for stable diffs and easier debugging.
     for h in holdings:
-        symbol=str(h.get('symbol') or '').upper(); provider,frame=fetch(symbol)
+        symbol=str(h.get('symbol') or '').upper(); _,provider,frame=results.get(symbol,(h,'',pd.DataFrame()))
         if frame.empty: unavailable.append(symbol); continue
         a=analyse(frame)
         if not a: unavailable.append(symbol); continue
         providers[provider]=providers.get(provider,0)+1
         rec={'recorded_at':stamp,'symbol':symbol,'name':h.get('name') or symbol,'narrative':h.get('narrative') or '','data_source':provider,**a}
-        signals.append(rec); hist.append(rec); time.sleep(.01)
-    payload={'generated_at':stamp,'timeframe':'1m/5m','signals':signals,'health':{'assets_requested':len(holdings),'assets_analysed':len(signals),'unavailable_assets':unavailable,'providers':providers}}
+        signals.append(rec); hist.append(rec)
+    payload={'generated_at':stamp,'timeframe':'1m/5m','signals':signals,'health':{'assets_requested':len(holdings),'assets_analysed':len(signals),'unavailable_assets':unavailable,'providers':providers,'fetch_mode':'parallel','workers':workers}}
     write(LATEST,payload); write(HISTORY,hist[-120000:]); health=read(HEALTH,{}); health['microstructure_observer']={'updated_at':stamp,**payload['health']}; write(HEALTH,health)
     print(json.dumps(payload['health'],indent=2)); return 0
 if __name__=='__main__':raise SystemExit(main())
