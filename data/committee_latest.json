@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T03:11:27.404354+00:00",
+  "generated_at": "2026-08-18T06:04:21.348678+00:00",
   "objective": "Allocate capital only when independent evidence aligns and expected value justifies risk.",
   "market_regime": {
     "state": "RISK OFF",
@@ -13,7 +13,7 @@
   },
   "assets": [
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "BTC",
       "name": "Bitcoin",
       "narrative": "Bitcoin",
@@ -73,44 +73,44 @@
           }
         },
         "microstructure": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "1m/5m timing not decisive"
+            "1m and 5m execution timing agree Short"
           ],
           "evidence": {
-            "role_signal": "NO ACTION",
-            "state": "NEUTRAL",
-            "reason": "1m/5m evidence not aligned enough",
+            "role_signal": "SHORT ENTRY",
+            "state": "CONFIRMED",
+            "reason": "1m and 5m trend plus participation agree downward",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 64033.19921875,
-              "ema9": 64041.725301002254,
-              "ema21": 64048.858708405634,
-              "rsi": 41.5931357502848,
-              "rsi_delta": -2.0991211641370313,
-              "macd": 1.086809174322978,
-              "macd_delta": -1.7595229903915648,
+              "time": "2026-08-18T06:04:00+00:00",
+              "price": 64125.01171875,
+              "ema9": 64141.172761093476,
+              "ema21": 64147.48332386195,
+              "rsi": 41.96540381671337,
+              "rsi_delta": -1.2418825625974748,
+              "macd": -3.9449608889987298,
+              "macd_delta": -2.0660540394054205,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.01931981206770243,
-              "return_5bars": -0.02163936221943885,
+              "atr_pct": 0.02023591596217771,
+              "return_5bars": -0.06926849329979001,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 64033.19921875,
-              "ema9": 64065.72072268675,
-              "ema21": 64124.17334430379,
-              "rsi": 25.89010625046822,
-              "rsi_delta": 0.361372665972155,
-              "macd": -0.7411939195180253,
-              "macd_delta": 2.9514972228731295,
-              "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.06885161316770555,
-              "return_5bars": -0.04974800401300605,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 64125.01171875,
+              "ema9": 64153.84336583898,
+              "ema21": 64144.960412982764,
+              "rsi": 47.19681350680613,
+              "rsi_delta": -5.583116475948216,
+              "macd": -1.6987980687064415,
+              "macd_delta": -4.205349491735053,
+              "rvol": 1.3872093901585936,
+              "rvol_delta": 0.13913336677695143,
+              "atr_pct": 0.07306198191397226,
+              "return_5bars": 0.019143524093689912,
               "breakout": false,
               "breakdown": false
             }
@@ -126,15 +126,15 @@
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "13 prior matches are not directionally decisive"
+            "77 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_NORMAL|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "NEUTRAL|RVOL_NORMAL|RSI_MID|MACD_UP|RANGE|MIXED",
             "source": "global",
-            "samples": 13,
-            "avg_4h": 0.9193818288146207,
-            "up_rate": 53.84615384615385,
-            "down_rate": 46.15384615384615
+            "samples": 77,
+            "avg_4h": -0.1598062034384342,
+            "up_rate": 50.649350649350644,
+            "down_rate": 48.05194805194805
           },
           "calibration": {
             "samples": 3,
@@ -231,7 +231,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "LONG",
+        "direction": "SHORT",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -239,14 +239,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 3; Short votes 2; Neutral weight 3",
-          "2 independent analyst groups support LONG",
+          "Long votes 3; Short votes 4; Neutral weight 3",
+          "2 independent analyst groups support SHORT",
           "Committee contains directional disagreement",
           "Portfolio Fit requests reduced or no additional exposure"
         ],
         "agreement": {
           "long_votes": 3,
-          "short_votes": 2,
+          "short_votes": 4,
           "neutral_weight": 3,
           "independent_support": 2,
           "conflicts": [
@@ -257,7 +257,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "SOL",
       "name": "Solana",
       "narrative": "Layer 1",
@@ -329,34 +329,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 75.2699966430664,
-              "ema9": 75.28383871542042,
-              "ema21": 75.28591615192391,
-              "rsi": 45.66714365053288,
-              "rsi_delta": -3.3881030276936386,
-              "macd": 0.006019961353331389,
-              "macd_delta": -0.005637931074467417,
+              "time": "2026-08-18T06:04:00+00:00",
+              "price": 75.62999725341797,
+              "ema9": 75.6527526365547,
+              "ema21": 75.66780606777736,
+              "rsi": 40.98815357497591,
+              "rsi_delta": -3.1687900835061313,
+              "macd": -0.00468034580908421,
+              "macd_delta": -0.0022285795496680685,
               "rvol": 0.0,
-              "rvol_delta": -0.13058555792363544,
-              "atr_pct": 0.03701173824009413,
-              "return_5bars": -0.05311501370880434,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.02738978820326751,
+              "return_5bars": -0.03965953904180308,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 75.2699966430664,
-              "ema9": 75.31168379342563,
-              "ema21": 75.4363422036206,
-              "rsi": 28.755721136474236,
-              "rsi_delta": 8.797192333784764,
-              "macd": -0.0026828814756173214,
-              "macd_delta": 0.01591295904081566,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 75.62999725341797,
+              "ema9": 75.69011560567017,
+              "ema21": 75.6749007271757,
+              "rsi": 47.48603333165875,
+              "rsi_delta": -5.6999196928634746,
+              "macd": -0.02015956553635504,
+              "macd_delta": -0.0060553679226314425,
               "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.12146519654940928,
-              "return_5bars": -0.05311501370880434,
+              "rvol_delta": -0.4463146925638943,
+              "atr_pct": 0.10672376355231401,
+              "return_5bars": 0.013216750162570179,
               "breakout": false,
               "breakdown": false
             }
@@ -370,17 +370,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 0,
           "reasons": [
-            "13 prior matches are not directionally decisive"
+            "Only 7 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_NORMAL|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 13,
-            "avg_4h": 0.9193818288146207,
-            "up_rate": 53.84615384615385,
-            "down_rate": 46.15384615384615
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
+            "source": "asset",
+            "samples": 7,
+            "avg_4h": 0.5028630079820192,
+            "up_rate": 85.71428571428571,
+            "down_rate": 14.285714285714285
           },
           "calibration": {
             "samples": 3,
@@ -484,20 +484,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 3; Short votes 0; Neutral weight 6",
+          "Long votes 3; Short votes 0; Neutral weight 5",
           "1 independent analyst groups support LONG"
         ],
         "agreement": {
           "long_votes": 3,
           "short_votes": 0,
-          "neutral_weight": 6,
+          "neutral_weight": 5,
           "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "AVAX",
       "name": "Avalanche",
       "narrative": "Layer 1",
@@ -567,34 +567,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 6.241000175476074,
-              "ema9": 6.244796450825811,
-              "ema21": 6.2528492119672965,
-              "rsi": 31.851603005199905,
-              "rsi_delta": -0.6651899175080729,
-              "macd": 0.00124311068395545,
-              "macd_delta": -0.00018511310975581792,
+              "time": "2026-08-18T06:04:00+00:00",
+              "price": 6.309000015258789,
+              "ema9": 6.321784383970524,
+              "ema21": 6.324393912048162,
+              "rsi": 34.694842614355565,
+              "rsi_delta": -8.851339450395074,
+              "macd": -0.0043061305819830165,
+              "macd_delta": -0.0018584183090696055,
               "rvol": 0.0,
-              "rvol_delta": -0.4547878398113536,
-              "atr_pct": 0.08354882707798428,
-              "return_5bars": -0.09604677049508403,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.0883098355105618,
+              "return_5bars": -0.42613558325816925,
               "breakout": false,
-              "breakdown": false
+              "breakdown": true
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 6.241000175476074,
-              "ema9": 6.2648234027422856,
-              "ema21": 6.294556639049309,
-              "rsi": 17.344676178981047,
-              "rsi_delta": 2.305957087003449,
-              "macd": -0.006696017248331111,
-              "macd_delta": 0.0008012431024295233,
-              "rvol": 0.0,
-              "rvol_delta": -1.9040207328118877,
-              "atr_pct": 0.2495015132460135,
-              "return_5bars": -0.6368406460509402,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 6.309000015258789,
+              "ema9": 6.318780122071558,
+              "ema21": 6.306480361656439,
+              "rsi": 52.62410635489857,
+              "rsi_delta": -21.83892812839167,
+              "macd": 0.0029526980909671055,
+              "macd_delta": -0.0017429273696458443,
+              "rvol": 0.897838027031393,
+              "rvol_delta": -0.5685240686137325,
+              "atr_pct": 0.16303300262056908,
+              "return_5bars": 0.047570289431675405,
               "breakout": false,
               "breakdown": false
             }
@@ -607,18 +607,18 @@
           }
         },
         "market_memory": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "SHORT",
+          "strength": 1,
           "reasons": [
-            "Only 3 historical pattern match(es); not enough evidence"
+            "Developing historical downside edge across 12 matches"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 3,
-            "avg_4h": -0.302672536646346,
-            "up_rate": 33.33333333333333,
-            "down_rate": 66.66666666666666
+            "pattern": "BUY_WATCH|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|BULLISH",
+            "source": "asset",
+            "samples": 12,
+            "avg_4h": -0.6560287113824651,
+            "up_rate": 16.666666666666664,
+            "down_rate": 75.0
           },
           "calibration": {
             "samples": 3,
@@ -713,24 +713,24 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
+          "Long votes 0; Short votes 1; Neutral weight 8",
+          "1 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
+          "short_votes": 1,
           "neutral_weight": 8,
-          "independent_support": 0,
+          "independent_support": 1,
           "conflicts": [
             "Risk Manager requests caution"
           ]
@@ -738,7 +738,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "COTI",
       "name": "COTI",
       "narrative": "Privacy / Payments",
@@ -809,34 +809,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.009999999776482582,
-              "ema9": 0.010026368835209905,
-              "ema21": 0.010062553634047865,
-              "rsi": 1.2194066873743594,
-              "rsi_delta": 0.0,
-              "macd": -7.67413834242265e-06,
-              "macd_delta": 9.186111140141398e-07,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.010099999606609344,
+              "ema9": 0.010048799933039804,
+              "ema21": 0.010025268260497471,
+              "rsi": 98.29036382830367,
+              "rsi_delta": 97.44997609758676,
+              "macd": 1.2291434238484591e-05,
+              "macd_delta": 1.1625035324401686e-05,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.07142845168709487,
-              "return_5bars": 0.0,
+              "atr_pct": 0.07072124046797236,
+              "return_5bars": 0.9999983236193222,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.009999999776482582,
-              "ema9": 0.010079720704197274,
-              "ema21": 0.010097913740191491,
-              "rsi": 30.863553344618367,
-              "rsi_delta": -15.957472675939776,
-              "macd": -2.0378614486639144e-05,
-              "macd_delta": -1.1655653940882083e-05,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.010099999606609344,
+              "ema9": 0.010027193001203846,
+              "ema21": 0.010042376447938563,
+              "rsi": 62.64330522962838,
+              "rsi_delta": 32.339667704754234,
+              "macd": 3.506310287615663e-06,
+              "macd_delta": 1.1006598572786168e-05,
               "rvol": 0.0,
-              "rvol_delta": -0.6178248185357403,
-              "atr_pct": 0.21428668552213523,
-              "return_5bars": -0.9900973665516122,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.14144248093594472,
+              "return_5bars": 0.9999983236193222,
               "breakout": false,
               "breakdown": false
             }
@@ -850,17 +850,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 6 historical pattern match(es); not enough evidence"
+            "114 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
-            "source": "asset",
-            "samples": 6,
-            "avg_4h": 2.539374434329348,
-            "up_rate": 50.0,
-            "down_rate": 50.0
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|MIXED",
+            "source": "global",
+            "samples": 114,
+            "avg_4h": 9242.990833629485,
+            "up_rate": 41.228070175438596,
+            "down_rate": 57.01754385964912
           },
           "calibration": {
             "samples": 3,
@@ -964,14 +964,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
+          "Long votes 0; Short votes 2; Neutral weight 7",
           "1 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 6,
+          "neutral_weight": 7,
           "independent_support": 1,
           "conflicts": [
             "Risk Manager requests caution"
@@ -980,7 +980,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "POL",
       "name": "Polygon Ecosystem Token",
       "narrative": "Layer 2 / Tokenisation",
@@ -1056,17 +1056,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 8 historical pattern match(es); not enough evidence"
+            "13 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_1_5_2|RSI_MID|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 8,
-            "avg_4h": -10.400108054371215,
-            "up_rate": 50.0,
-            "down_rate": 50.0
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|BEARISH",
+            "source": "asset",
+            "samples": 13,
+            "avg_4h": -0.07343060962315363,
+            "up_rate": 46.15384615384615,
+            "down_rate": 46.15384615384615
           },
           "calibration": {
             "samples": 3,
@@ -1171,7 +1171,7 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 7",
+          "Long votes 0; Short votes 2; Neutral weight 8",
           "1 independent analyst groups support SHORT",
           "Portfolio Fit requests reduced or no additional exposure",
           "Risk Manager requests caution"
@@ -1179,7 +1179,7 @@
         "agreement": {
           "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 7,
+          "neutral_weight": 8,
           "independent_support": 1,
           "conflicts": [
             "Portfolio Fit requests reduced or no additional exposure",
@@ -1189,7 +1189,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "ZIL",
       "name": "Zilliqa",
       "narrative": "Layer 1",
@@ -1260,34 +1260,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:08:00+00:00",
-              "price": 0.0022094058804214,
-              "ema9": 0.0022140874890286327,
-              "ema21": 0.0022216752721594857,
-              "rsi": 18.75730242353292,
-              "rsi_delta": 5.86679976511472,
-              "macd": -1.1483637163775166e-06,
-              "macd_delta": 7.346133026494345e-07,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.0022228818852454424,
+              "ema9": 0.0022215926140005536,
+              "ema21": 0.002219543456710002,
+              "rsi": 72.91903743570953,
+              "rsi_delta": -2.7325349709965394,
+              "macd": 4.217415743804031e-07,
+              "macd_delta": 1.7784689978669603e-08,
               "rvol": 0.0,
-              "rvol_delta": -0.30591371900066655,
-              "atr_pct": 0.12414550231040045,
-              "return_5bars": -0.04236650757983851,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.03224503925494425,
+              "return_5bars": 0.07930068639907528,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.0022094058804214,
-              "ema9": 0.0022213141468339554,
-              "ema21": 0.00223170924052964,
-              "rsi": 15.5774211726726,
-              "rsi_delta": -5.660210065077393,
-              "macd": -3.161387688506493e-06,
-              "macd_delta": -1.2115909850174118e-06,
-              "rvol": 0.7545950022896445,
-              "rvol_delta": 0.7545950022896445,
-              "atr_pct": 0.15302983583870972,
-              "return_5bars": -1.2851115515857825,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.0022228818852454424,
+              "ema9": 0.0022194646658272657,
+              "ema21": 0.002215694448700425,
+              "rsi": 63.37718181601459,
+              "rsi_delta": 4.097578687824679,
+              "macd": 1.3490993894845727e-06,
+              "macd_delta": -7.599217468398904e-08,
+              "rvol": 0.0,
+              "rvol_delta": -0.0900259251873166,
+              "atr_pct": 0.0917890179826003,
+              "return_5bars": 0.37877533374148786,
               "breakout": false,
               "breakdown": false
             }
@@ -1301,17 +1301,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 8 historical pattern match(es); not enough evidence"
+            "17 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_1_5_2|RSI_BEAR|MACD_DOWN|BREAKDOWN|BEARISH",
-            "source": "global",
-            "samples": 8,
-            "avg_4h": 0.3459777706630654,
-            "up_rate": 62.5,
-            "down_rate": 37.5
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+            "source": "asset",
+            "samples": 17,
+            "avg_4h": 0.01914821837769783,
+            "up_rate": 58.82352941176471,
+            "down_rate": 41.17647058823529
           },
           "calibration": {
             "samples": 3,
@@ -1415,20 +1415,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 4; Short votes 0; Neutral weight 5",
+          "Long votes 4; Short votes 0; Neutral weight 6",
           "2 independent analyst groups support LONG"
         ],
         "agreement": {
           "long_votes": 4,
           "short_votes": 0,
-          "neutral_weight": 5,
+          "neutral_weight": 6,
           "independent_support": 2,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "ONDO",
       "name": "Ondo",
       "narrative": "RWA / Tokenisation",
@@ -1498,34 +1498,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 0.3293600082397461,
-              "ema9": 0.3293473006219779,
-              "ema21": 0.32921961254345555,
-              "rsi": 51.88539687285606,
-              "rsi_delta": -6.524847934818368,
-              "macd": 0.00013335319436750772,
-              "macd_delta": -4.492241145295282e-05,
+              "time": "2026-08-18T06:01:00+00:00",
+              "price": 0.3289099931716919,
+              "ema9": 0.3293209779660246,
+              "ema21": 0.329423702747551,
+              "rsi": 34.664547825379714,
+              "rsi_delta": -13.363098856190511,
+              "macd": -6.837339432938776e-06,
+              "macd_delta": -8.1947591991199e-05,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.07417036123487236,
-              "return_5bars": 0.024301274988802746,
+              "atr_pct": 0.05059949997097912,
+              "return_5bars": -0.19420569779169394,
               "breakout": false,
-              "breakdown": false
+              "breakdown": true
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.3293600082397461,
-              "ema9": 0.3294899098051164,
-              "ema21": 0.33054967561484877,
-              "rsi": 30.39873586780294,
-              "rsi_delta": 12.726411221499475,
-              "macd": 2.5841703492955918e-05,
-              "macd_delta": 0.0001892108460424043,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.32868000864982605,
+              "ema9": 0.3295459829461421,
+              "ema21": 0.3299577090923584,
+              "rsi": 35.0088527122262,
+              "rsi_delta": -3.889352697225945,
+              "macd": -0.00016198722023787562,
+              "macd_delta": 8.399878966644666e-06,
               "rvol": 0.0,
-              "rvol_delta": -3.289345790841768,
-              "atr_pct": 0.22793052198685176,
-              "return_5bars": 0.14594873109059492,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.15473111596388825,
+              "return_5bars": -0.1154742673067144,
               "breakout": false,
               "breakdown": false
             }
@@ -1539,17 +1539,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 0,
           "reasons": [
-            "13 prior matches are not directionally decisive"
+            "Only 3 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_1_15_1_5|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 13,
-            "avg_4h": 0.2660070769300151,
-            "up_rate": 53.84615384615385,
-            "down_rate": 46.15384615384615
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
+            "source": "asset",
+            "samples": 3,
+            "avg_4h": -1.19168211503623,
+            "up_rate": 0.0,
+            "down_rate": 100.0
           },
           "calibration": {
             "samples": 3,
@@ -1653,20 +1653,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
+          "Long votes 0; Short votes 0; Neutral weight 6",
           "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
-          "neutral_weight": 7,
+          "neutral_weight": 6,
           "independent_support": 0,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "DOT",
       "name": "Polkadot",
       "narrative": "Interoperability",
@@ -1736,34 +1736,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 0.7290999889373779,
-              "ema9": 0.7293582697329886,
-              "ema21": 0.7313375386982247,
-              "rsi": 31.832965508767074,
-              "rsi_delta": 0.08295059688138906,
-              "macd": 0.0005774848175748924,
-              "macd_delta": 4.909523762312634e-05,
+              "time": "2026-08-18T06:04:00+00:00",
+              "price": 0.7368999719619751,
+              "ema9": 0.7371655061649541,
+              "ema21": 0.736680634703827,
+              "rsi": 56.17664278227508,
+              "rsi_delta": -5.879731604846192,
+              "macd": -0.00011975671979218001,
+              "macd_delta": -0.00010848195965064541,
               "rvol": 0.0,
-              "rvol_delta": -0.879963282500724,
-              "atr_pct": 0.1205021248483344,
-              "return_5bars": -0.027428106649896034,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.06203641680660849,
+              "return_5bars": -0.04070127142556945,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.7290999889373779,
-              "ema9": 0.7348129869637899,
-              "ema21": 0.7422479086770924,
-              "rsi": 14.111683937254,
-              "rsi_delta": 2.977201092481252,
-              "macd": -0.0016695349578229185,
-              "macd_delta": 6.126863312871413e-05,
-              "rvol": 0.0,
-              "rvol_delta": -3.0435074419805055,
-              "atr_pct": 0.44967423165399206,
-              "return_5bars": -0.802724524204923,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.7368999719619751,
+              "ema9": 0.7358845063309393,
+              "ema21": 0.7351207756922109,
+              "rsi": 57.42890599851592,
+              "rsi_delta": 2.631232821256532,
+              "macd": 0.0006783334638995617,
+              "macd_delta": 0.00012858021608300467,
+              "rvol": 2.0323324373347322,
+              "rvol_delta": 1.3082645470234409,
+              "atr_pct": 0.13667308706267287,
+              "return_5bars": 0.42245543683634423,
               "breakout": false,
               "breakdown": false
             }
@@ -1777,17 +1777,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 0 historical pattern match(es); not enough evidence"
+            "59 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|MIXED",
             "source": "global",
-            "samples": 0,
-            "avg_4h": 0.0,
-            "up_rate": 0.0,
-            "down_rate": 0.0
+            "samples": 59,
+            "avg_4h": 10.249134037357004,
+            "up_rate": 40.67796610169492,
+            "down_rate": 57.6271186440678
           },
           "calibration": {
             "samples": 3,
@@ -1891,20 +1891,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 1; Short votes 0; Neutral weight 5",
+          "Long votes 1; Short votes 0; Neutral weight 6",
           "1 independent analyst groups support LONG"
         ],
         "agreement": {
           "long_votes": 1,
           "short_votes": 0,
-          "neutral_weight": 5,
+          "neutral_weight": 6,
           "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "SUI",
       "name": "Sui",
       "narrative": "Layer 1",
@@ -1981,15 +1981,15 @@
           "direction": "NEUTRAL",
           "strength": 0,
           "reasons": [
-            "Only 3 historical pattern match(es); not enough evidence"
+            "Only 7 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_OVERSOLD|MACD_MIXED|RANGE|BEARISH",
             "source": "global",
-            "samples": 3,
-            "avg_4h": -0.302672536646346,
-            "up_rate": 33.33333333333333,
-            "down_rate": 66.66666666666666
+            "samples": 7,
+            "avg_4h": 0.6995199287730228,
+            "up_rate": 57.14285714285714,
+            "down_rate": 42.857142857142854
           },
           "calibration": {
             "samples": 3,
@@ -2109,7 +2109,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "NEAR",
       "name": "NEAR Protocol",
       "narrative": "AI / Layer 1",
@@ -2169,46 +2169,46 @@
           }
         },
         "microstructure": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "1m/5m timing not decisive"
+            "1m and 5m execution timing agree Short"
           ],
           "evidence": {
-            "role_signal": "NO ACTION",
-            "state": "NEUTRAL",
-            "reason": "1m/5m evidence not aligned enough",
+            "role_signal": "SHORT ENTRY",
+            "state": "CONFIRMED",
+            "reason": "1m and 5m trend plus participation agree downward",
             "one_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 1.6273000240325928,
-              "ema9": 1.6281059020912816,
-              "ema21": 1.628205528947432,
-              "rsi": 45.510523203511646,
-              "rsi_delta": -8.53646878750078,
-              "macd": 0.0002614619949779869,
-              "macd_delta": -0.0003182052067502122,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 1.6401000022888184,
+              "ema9": 1.6441939252412983,
+              "ema21": 1.6452564115115158,
+              "rsi": 31.869899470813237,
+              "rsi_delta": -9.70565420859463,
+              "macd": -0.0008347792009051003,
+              "macd_delta": -0.0006867951602090034,
               "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.07330349279623688,
-              "return_5bars": -0.11048683945074078,
+              "rvol_delta": -6.477480382672256,
+              "atr_pct": 0.09058730586528353,
+              "return_5bars": -0.4733286664307945,
               "breakout": false,
-              "breakdown": false
+              "breakdown": true
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 1.6273000240325928,
-              "ema9": 1.6288912406276188,
-              "ema21": 1.6318359008277392,
-              "rsi": 42.57897953182836,
-              "rsi_delta": 5.743244899972545,
-              "macd": -0.0004614247371496445,
-              "macd_delta": 0.00034366783139050004,
-              "rvol": 0.0,
-              "rvol_delta": -1.098157953758691,
-              "atr_pct": 0.2668742975415516,
-              "return_5bars": -0.21461765528457688,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 1.6401000022888184,
+              "ema9": 1.6450192190784585,
+              "ema21": 1.6434983729943105,
+              "rsi": 46.066983774715744,
+              "rsi_delta": -13.538431577630384,
+              "macd": -0.0006299920926903244,
+              "macd_delta": -0.00039770708465173936,
+              "rvol": 2.214792995644867,
+              "rvol_delta": 2.1159724229362817,
+              "atr_pct": 0.18030240182104137,
+              "return_5bars": -0.291808751160727,
               "breakout": false,
-              "breakdown": false
+              "breakdown": true
             }
           },
           "calibration": {
@@ -2222,15 +2222,15 @@
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "14 prior matches are not directionally decisive"
+            "17 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_1_15_1_5|RSI_MID|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 14,
-            "avg_4h": 0.10641131488468411,
-            "up_rate": 57.14285714285714,
-            "down_rate": 35.714285714285715
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
+            "source": "asset",
+            "samples": 17,
+            "avg_4h": -0.17453262321660884,
+            "up_rate": 47.05882352941176,
+            "down_rate": 52.94117647058824
           },
           "calibration": {
             "samples": 3,
@@ -2325,29 +2325,29 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 9",
-          "0 independent analyst groups support NEUTRAL"
+          "Long votes 0; Short votes 2; Neutral weight 9",
+          "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
+          "short_votes": 2,
           "neutral_weight": 9,
-          "independent_support": 0,
+          "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "SUPER",
       "name": "SuperVerse",
       "narrative": "Gaming",
@@ -2426,15 +2426,15 @@
           "direction": "NEUTRAL",
           "strength": 0,
           "reasons": [
-            "Only 0 historical pattern match(es); not enough evidence"
+            "Only 4 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_1_15_1_5|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 0,
-            "avg_4h": 0.0,
-            "up_rate": 0.0,
-            "down_rate": 0.0
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
+            "source": "asset",
+            "samples": 4,
+            "avg_4h": -0.27118766159643093,
+            "up_rate": 50.0,
+            "down_rate": 50.0
           },
           "calibration": {
             "samples": 3,
@@ -2551,7 +2551,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "S",
       "name": "Sonic",
       "narrative": "Layer 1 / DeFi",
@@ -2626,17 +2626,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 0 historical pattern match(es); not enough evidence"
+            "16 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_NORMAL|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 0,
-            "avg_4h": 0.0,
-            "up_rate": 0.0,
-            "down_rate": 0.0
+            "pattern": "NEUTRAL|RVOL_NORMAL|RSI_MID|MACD_UP|RANGE|MIXED",
+            "source": "asset",
+            "samples": 16,
+            "avg_4h": 0.05041021536030463,
+            "up_rate": 43.75,
+            "down_rate": 56.25
           },
           "calibration": {
             "samples": 3,
@@ -2740,20 +2740,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
+          "Long votes 0; Short votes 2; Neutral weight 7",
           "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 6,
+          "neutral_weight": 7,
           "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "AIOZ",
       "name": "AIOZ Network",
       "narrative": "AI / DePIN",
@@ -2823,34 +2823,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.0471000000834465,
-              "ema9": 0.04707905992160386,
-              "ema21": 0.047045455675414655,
-              "rsi": 66.46365685412567,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.04740000143647194,
+              "ema9": 0.04740179711542229,
+              "ema21": 0.04739744323717959,
+              "rsi": 51.67769347313335,
               "rsi_delta": 0.0,
-              "macd": 2.2192137417535887e-05,
-              "macd_delta": -1.0251553019141813e-05,
+              "macd": -4.695611365801154e-06,
+              "macd_delta": 6.358436955457574e-07,
               "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.030330552001696664,
+              "rvol_delta": -0.05629687694856674,
+              "atr_pct": 0.01506901212343932,
               "return_5bars": 0.0,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.0471000000834465,
-              "ema9": 0.04709309956869929,
-              "ema21": 0.04731059195275141,
-              "rsi": 34.644381136637776,
-              "rsi_delta": 12.245444955252722,
-              "macd": 1.3645541854324168e-05,
-              "macd_delta": 5.013181539280273e-05,
-              "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.2123149939149072,
-              "return_5bars": 0.42643850415535756,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.04740000143647194,
+              "ema9": 0.047378593696676935,
+              "ema21": 0.0473237884903473,
+              "rsi": 54.56879787960515,
+              "rsi_delta": -5.021456744734699,
+              "macd": 9.760172716128327e-06,
+              "macd_delta": -7.96129231307968e-06,
+              "rvol": 0.314176423939917,
+              "rvol_delta": -3.408113185024445,
+              "atr_pct": 0.2411075622301698,
+              "return_5bars": 0.42372807781183575,
               "breakout": false,
               "breakdown": false
             }
@@ -2866,15 +2866,15 @@
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "30 prior matches are not directionally decisive"
+            "14 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 30,
-            "avg_4h": 21.97407775611936,
-            "up_rate": 33.33333333333333,
-            "down_rate": 60.0
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+            "source": "asset",
+            "samples": 14,
+            "avg_4h": 0.9049813042245519,
+            "up_rate": 50.0,
+            "down_rate": 42.857142857142854
           },
           "calibration": {
             "samples": 3,
@@ -2991,7 +2991,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "FIL",
       "name": "Filecoin",
       "narrative": "DePIN / Storage",
@@ -3063,34 +3063,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 0.6230000257492065,
-              "ema9": 0.6246154566432893,
-              "ema21": 0.628287048977921,
-              "rsi": 29.106936635286118,
-              "rsi_delta": -3.1524017612393322,
-              "macd": 0.0010221432142563918,
-              "macd_delta": -4.428360129318538e-05,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.625,
+              "ema9": 0.6248152296747078,
+              "ema21": 0.6242178558295504,
+              "rsi": 66.19815785503994,
+              "rsi_delta": 0.0,
+              "macd": 5.9167569625825835e-06,
+              "macd_delta": -6.73646348496443e-05,
               "rvol": 0.0,
-              "rvol_delta": -1.1567880189559123,
-              "atr_pct": 0.2866298545698665,
-              "return_5bars": -0.31999588012695535,
+              "rvol_delta": -6.50282761991203,
+              "atr_pct": 0.06857054574148996,
+              "return_5bars": 0.0,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.6230000257492065,
-              "ema9": 0.6341328820471441,
-              "ema21": 0.646561753296587,
-              "rsi": 5.984994338910241,
-              "rsi_delta": 2.3361945211574096,
-              "macd": -0.00348745255829061,
-              "macd_delta": 0.00018840373716316923,
-              "rvol": 0.0,
-              "rvol_delta": -3.2725086933613574,
-              "atr_pct": 0.779638562150694,
-              "return_5bars": -2.1978018893268114,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.625,
+              "ema9": 0.6235263111420382,
+              "ema21": 0.6229271643771841,
+              "rsi": 54.7062152889585,
+              "rsi_delta": 3.691452056849613,
+              "macd": 0.001339714775459402,
+              "macd_delta": -0.00013669539064563438,
+              "rvol": 1.5067117800022087,
+              "rvol_delta": 1.5067117800022087,
+              "atr_pct": 0.20571572440011157,
+              "return_5bars": 0.48231850193398706,
               "breakout": false,
               "breakdown": false
             }
@@ -3104,17 +3104,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 3 historical pattern match(es); not enough evidence"
+            "59 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|MIXED",
             "source": "global",
-            "samples": 3,
-            "avg_4h": -0.302672536646346,
-            "up_rate": 33.33333333333333,
-            "down_rate": 66.66666666666666
+            "samples": 59,
+            "avg_4h": 10.249134037357004,
+            "up_rate": 40.67796610169492,
+            "down_rate": 57.6271186440678
           },
           "calibration": {
             "samples": 3,
@@ -3218,14 +3218,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
+          "Long votes 0; Short votes 0; Neutral weight 8",
           "0 independent analyst groups support NEUTRAL",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
-          "neutral_weight": 7,
+          "neutral_weight": 8,
           "independent_support": 0,
           "conflicts": [
             "Risk Manager requests caution"
@@ -3234,7 +3234,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "OM",
       "name": "MANTRA",
       "narrative": "RWA / Tokenisation",
@@ -3308,34 +3308,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 0.06648938357830048,
-              "ema9": 0.06649168562627293,
-              "ema21": 0.06649243418977512,
-              "rsi": 45.043179114282864,
-              "rsi_delta": 1.0414772860729045,
-              "macd": 2.3535491342191403e-07,
-              "macd_delta": 4.6697247941283406e-07,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.06617949903011322,
+              "ema9": 0.06621996128225703,
+              "ema21": 0.06636680544520225,
+              "rsi": 4.48507913607699,
+              "rsi_delta": 1.2292377860608212,
+              "macd": -1.5417193503694803e-05,
+              "macd_delta": 2.5780124027707525e-05,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.005437951342357568,
-              "return_5bars": 0.0004146114916725452,
+              "atr_pct": 0.06550387879911158,
+              "return_5bars": 0.0050551603560933245,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.06648938357830048,
-              "ema9": 0.06649200734347599,
-              "ema21": 0.06649403167256014,
-              "rsi": 43.139643707237056,
-              "rsi_delta": -15.265824682353156,
-              "macd": -7.00339171398043e-07,
-              "macd_delta": -4.273649861572921e-07,
-              "rvol": 3.75,
-              "rvol_delta": 2.2115384615384617,
-              "atr_pct": 0.006328001665098459,
-              "return_5bars": 0.0023084212102286727,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.06617949903011322,
+              "ema9": 0.06636666705094618,
+              "ema21": 0.0664879990897942,
+              "rsi": 18.639311903396674,
+              "rsi_delta": 0.45135939970684547,
+              "macd": -7.382409109332898e-05,
+              "macd_delta": -1.7060936011003063e-05,
+              "rvol": 0.0,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.06656455640982678,
+              "return_5bars": -0.8933748736824398,
               "breakout": false,
               "breakdown": false
             }
@@ -3348,19 +3348,18 @@
           }
         },
         "market_memory": {
-          "direction": "LONG",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "28 prior matches favour upside",
-            "Historical 4H average +0.76%"
+            "252 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "NEUTRAL|RVOL_1_15_1_5|RSI_MID|MACD_MIXED|RANGE|MIXED",
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
             "source": "global",
-            "samples": 28,
-            "avg_4h": 0.7644865646388163,
-            "up_rate": 75.0,
-            "down_rate": 21.428571428571427
+            "samples": 252,
+            "avg_4h": 2.684087958389836,
+            "up_rate": 55.55555555555556,
+            "down_rate": 40.87301587301587
           },
           "calibration": {
             "samples": 3,
@@ -3455,24 +3454,24 @@
         }
       },
       "decision": {
-        "action": "BUY",
+        "action": "WATCH",
         "direction": "LONG",
-        "quality": "QUALIFIED",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
-          "SWING": true,
+          "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 6; Short votes 0; Neutral weight 5",
-          "3 independent analyst groups support LONG",
+          "Long votes 4; Short votes 0; Neutral weight 6",
+          "2 independent analyst groups support LONG",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 6,
+          "long_votes": 4,
           "short_votes": 0,
-          "neutral_weight": 5,
-          "independent_support": 3,
+          "neutral_weight": 6,
+          "independent_support": 2,
           "conflicts": [
             "Risk Manager requests caution"
           ]
@@ -3480,7 +3479,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "USDT",
       "name": "Tether USD",
       "narrative": "Stablecoin",
@@ -3550,34 +3549,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 0.9989699721336365,
-              "ema9": 0.9989577518229967,
-              "ema21": 0.9989577802329282,
-              "rsi": 51.96916792198115,
-              "rsi_delta": 1.9393057299114247,
-              "macd": 1.7178886364664432e-06,
-              "macd_delta": -7.48989269158362e-08,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.9990100264549255,
+              "ema9": 0.9990088581480548,
+              "ema21": 0.9990054242094847,
+              "rsi": 53.08027559004771,
+              "rsi_delta": 7.105427357601002e-15,
+              "macd": 3.4599887310358555e-08,
+              "macd_delta": -3.2683247470729225e-07,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.005718569740446914,
-              "return_5bars": 0.001998854387941229,
+              "atr_pct": 0.0014310767077656726,
+              "return_5bars": 0.0,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.9989699721336365,
-              "ema9": 0.9989710131810626,
-              "ema21": 0.9989988638292924,
-              "rsi": 55.65730154011853,
-              "rsi_delta": 0.41027280385495146,
-              "macd": -2.909156699230298e-06,
-              "macd_delta": 9.478491927546095e-06,
-              "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.013228401115943639,
-              "return_5bars": 0.004003755773518414,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.9990100264549255,
+              "ema9": 0.9990042698412084,
+              "ema21": 0.9990005341993335,
+              "rsi": 54.23874091863238,
+              "rsi_delta": 1.9301840168674786,
+              "macd": 3.5359080978367478e-06,
+              "macd_delta": -1.0673714294316486e-07,
+              "rvol": 0.4088856410461352,
+              "rvol_delta": -0.42671855214399407,
+              "atr_pct": 0.0052938757783994005,
+              "return_5bars": 0.0020047408541223888,
               "breakout": false,
               "breakdown": false
             }
@@ -3593,15 +3592,15 @@
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "24 prior matches are not directionally decisive"
+            "19 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
             "source": "asset",
-            "samples": 24,
-            "avg_4h": 0.005047691531259724,
-            "up_rate": 58.333333333333336,
-            "down_rate": 33.33333333333333
+            "samples": 19,
+            "avg_4h": -0.00468915709486326,
+            "up_rate": 31.57894736842105,
+            "down_rate": 57.89473684210527
           },
           "calibration": {
             "samples": 3,
@@ -3718,7 +3717,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "SEI",
       "name": "Sei",
       "narrative": "Layer 1 / Trading",
@@ -3788,34 +3787,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.03832999989390373,
-              "ema9": 0.038418664351727694,
-              "ema21": 0.038585770558118224,
-              "rsi": 25.46271768030965,
-              "rsi_delta": -1.281653070614169,
-              "macd": -2.2669622528342253e-06,
-              "macd_delta": 1.1798854872113837e-06,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.03864999860525131,
+              "ema9": 0.03868641418407555,
+              "ema21": 0.03870885815342213,
+              "rsi": 35.044460933870226,
+              "rsi_delta": 5.873254849167722,
+              "macd": -3.4933537065623696e-06,
+              "macd_delta": -3.338967496746622e-06,
               "rvol": 0.0,
-              "rvol_delta": -4.339080784617312,
-              "atr_pct": 0.18448802222184058,
-              "return_5bars": -0.49325279536995836,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.04065874646007909,
+              "return_5bars": -0.23232578691224637,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.03832999989390373,
-              "ema9": 0.0387305950998674,
-              "ema21": 0.03906186774261961,
-              "rsi": 6.543597402226908,
-              "rsi_delta": -0.32659846553072214,
-              "macd": -0.00010569046580346017,
-              "macd_delta": -3.708936259348456e-05,
-              "rvol": 0.0,
-              "rvol_delta": -6.242628279149684,
-              "atr_pct": 0.3335683617429472,
-              "return_5bars": -1.642291842121113,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.03864999860525131,
+              "ema9": 0.03872728574980437,
+              "ema21": 0.03877041232951177,
+              "rsi": 39.38518956842533,
+              "rsi_delta": -2.7107349588301233,
+              "macd": -1.2938712431868318e-05,
+              "macd_delta": -4.344832474709133e-06,
+              "rvol": 0.5499158216346752,
+              "rvol_delta": 0.19127495722558663,
+              "atr_pct": 0.1533937044725929,
+              "return_5bars": 0.07767934664077991,
               "breakout": false,
               "breakdown": false
             }
@@ -3828,18 +3827,18 @@
           }
         },
         "market_memory": {
-          "direction": "NEUTRAL",
+          "direction": "LONG",
           "strength": 1,
           "reasons": [
-            "19 prior matches are not directionally decisive"
+            "Developing historical edge across 15 matches"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|BREAKDOWN|BEARISH",
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|BEARISH",
             "source": "global",
-            "samples": 19,
-            "avg_4h": -4.679116203161274,
-            "up_rate": 63.1578947368421,
-            "down_rate": 31.57894736842105
+            "samples": 15,
+            "avg_4h": 43.89869122383001,
+            "up_rate": 73.33333333333333,
+            "down_rate": 26.666666666666668
           },
           "calibration": {
             "samples": 3,
@@ -3935,25 +3934,25 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 9",
-          "0 independent analyst groups support NEUTRAL",
+          "Long votes 1; Short votes 0; Neutral weight 8",
+          "1 independent analyst groups support LONG",
           "Portfolio Fit requests reduced or no additional exposure",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 1,
           "short_votes": 0,
-          "neutral_weight": 9,
-          "independent_support": 0,
+          "neutral_weight": 8,
+          "independent_support": 1,
           "conflicts": [
             "Portfolio Fit requests reduced or no additional exposure",
             "Risk Manager requests caution"
@@ -3962,7 +3961,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "RUNE",
       "name": "THORChain",
       "narrative": "DeFi / Interoperability",
@@ -4033,36 +4032,36 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:08:00+00:00",
-              "price": 0.4088374674320221,
-              "ema9": 0.40946085875072114,
-              "ema21": 0.4106021056455138,
-              "rsi": 8.632070657517374,
-              "rsi_delta": -1.7613338304426662,
-              "macd": -5.0573329357306556e-05,
-              "macd_delta": 7.21223408447927e-05,
-              "rvol": 0.11241685265715053,
-              "rvol_delta": 0.11241685265715053,
-              "atr_pct": 0.06060149250173619,
-              "return_5bars": -0.10274228471635061,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.4072777330875397,
+              "ema9": 0.40734709938615166,
+              "ema21": 0.4074785140236395,
+              "rsi": 38.52235507059826,
+              "rsi_delta": -4.328023793499227,
+              "macd": 5.248417340941524e-06,
+              "macd_delta": 1.558936832022186e-05,
+              "rvol": 0.0,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.021740127834293247,
+              "return_5bars": -0.004097601052144295,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.4088374674320221,
-              "ema9": 0.4106531075214467,
-              "ema21": 0.4125563335897721,
-              "rsi": 5.733633066709061,
-              "rsi_delta": 0.934985239431569,
-              "macd": -0.0004501431920256888,
-              "macd_delta": -8.662962265927306e-06,
-              "rvol": 0.34377864981913453,
-              "rvol_delta": -0.4639469760956805,
-              "atr_pct": 0.12018088901690227,
-              "return_5bars": -0.7281604158584476,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.4072777330875397,
+              "ema9": 0.4074734295036104,
+              "ema21": 0.407786009540851,
+              "rsi": 32.56320408407933,
+              "rsi_delta": 0.9091054579291153,
+              "macd": 7.181008788064846e-05,
+              "macd_delta": -3.716621978768137e-05,
+              "rvol": 0.0,
+              "rvol_delta": -0.1554006736252376,
+              "atr_pct": 0.04495001667906957,
+              "return_5bars": -0.030935899849904303,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             }
           },
           "calibration": {
@@ -4073,18 +4072,18 @@
           }
         },
         "market_memory": {
-          "direction": "LONG",
-          "strength": 1,
+          "direction": "NEUTRAL",
+          "strength": 0,
           "reasons": [
-            "Developing historical edge across 15 matches"
+            "Only 0 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_OVERSOLD|MACD_DOWN|BREAKDOWN|BEARISH",
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_OVERSOLD|MACD_UP|RANGE|BEARISH",
             "source": "global",
-            "samples": 15,
-            "avg_4h": 0.36538625236930783,
-            "up_rate": 66.66666666666666,
-            "down_rate": 20.0
+            "samples": 0,
+            "avg_4h": 0.0,
+            "up_rate": 0.0,
+            "down_rate": 0.0
           },
           "calibration": {
             "samples": 3,
@@ -4188,20 +4187,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 3; Short votes 0; Neutral weight 5",
-          "2 independent analyst groups support LONG"
+          "Long votes 2; Short votes 0; Neutral weight 5",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 3,
+          "long_votes": 2,
           "short_votes": 0,
           "neutral_weight": 5,
-          "independent_support": 2,
+          "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "SAND",
       "name": "The Sandbox",
       "narrative": "Gaming / Metaverse",
@@ -4262,45 +4261,45 @@
         },
         "microstructure": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 0,
           "reasons": [
-            "Possible local Short exhaustion: management signal, not automatic Long"
+            "1m/5m timing not decisive"
           ],
           "evidence": {
-            "role_signal": "SHORT EXIT / PROFIT PROTECT",
-            "state": "EXHAUSTION",
-            "reason": "1m bounced while 5m remains broadly down; possible local trough",
+            "role_signal": "NO ACTION",
+            "state": "NEUTRAL",
+            "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 0.037700001150369644,
-              "ema9": 0.037811983382408224,
-              "ema21": 0.03795426755922304,
-              "rsi": 13.69886143096933,
-              "rsi_delta": -3.6191027481428506,
-              "macd": 2.743067868821305e-06,
-              "macd_delta": 6.718501285606868e-06,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.03830000013113022,
+              "ema9": 0.038303433499448,
+              "ema21": 0.038306264602265036,
+              "rsi": 48.07543164555533,
+              "rsi_delta": -7.105427357601002e-15,
+              "macd": -4.782601903660248e-06,
+              "macd_delta": 1.6549949246731066e-06,
               "rvol": 0.0,
-              "rvol_delta": -1.1096585389256028,
-              "atr_pct": 0.09473304244449392,
-              "return_5bars": -0.2645448936912542,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.018650073187155773,
+              "return_5bars": 0.0,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.037700001150369644,
-              "ema9": 0.038101654645646015,
-              "ema21": 0.038467335245921275,
-              "rsi": 1.5099565420357663,
-              "rsi_delta": -0.468127113041362,
-              "macd": -9.428878151683008e-05,
-              "macd_delta": -2.0913713276508964e-05,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.03830000013113022,
+              "ema9": 0.03829973030445977,
+              "ema21": 0.038246608346052285,
+              "rsi": 52.96838585199931,
+              "rsi_delta": -6.549190670378707,
+              "macd": 1.5520260043131634e-05,
+              "macd_delta": -2.0326649516499865e-05,
               "rvol": 0.0,
-              "rvol_delta": -4.198983379976013,
-              "atr_pct": 0.26525223651868796,
-              "return_5bars": -1.5665769679016117,
+              "rvol_delta": -1.6480488109144107,
+              "atr_pct": 0.18650003711395133,
+              "return_5bars": 0.2617845467540514,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             }
           },
           "calibration": {
@@ -4311,18 +4310,18 @@
           }
         },
         "market_memory": {
-          "direction": "NEUTRAL",
+          "direction": "SHORT",
           "strength": 1,
           "reasons": [
-            "19 prior matches are not directionally decisive"
+            "Developing historical downside edge across 24 matches"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|BREAKDOWN|BEARISH",
-            "source": "global",
-            "samples": 19,
-            "avg_4h": -4.679116203161274,
-            "up_rate": 63.1578947368421,
-            "down_rate": 31.57894736842105
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+            "source": "asset",
+            "samples": 24,
+            "avg_4h": -0.537841226101643,
+            "up_rate": 25.0,
+            "down_rate": 62.5
           },
           "calibration": {
             "samples": 3,
@@ -4386,11 +4385,10 @@
           "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is NORMAL",
-            "Existing exposure in Profit-Driven Scalp Wallet"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
-            "existing_exposure": 62.5,
+            "existing_exposure": 0.0,
             "risk_state": "NORMAL"
           },
           "calibration": {
@@ -4401,13 +4399,13 @@
           }
         },
         "portfolio_fit": {
-          "direction": "CAUTION",
-          "strength": 2,
+          "direction": "APPROVE",
+          "strength": 1,
           "reasons": [
-            "Asset is already held in another active book"
+            "No obvious portfolio concentration conflict"
           ],
           "evidence": {
-            "same_narrative_positions": 1
+            "same_narrative_positions": 0
           },
           "calibration": {
             "samples": 0,
@@ -4418,32 +4416,29 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 9",
-          "0 independent analyst groups support NEUTRAL",
-          "Portfolio Fit requests reduced or no additional exposure"
+          "Long votes 0; Short votes 1; Neutral weight 7",
+          "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 9,
-          "independent_support": 0,
-          "conflicts": [
-            "Portfolio Fit requests reduced or no additional exposure"
-          ]
+          "short_votes": 1,
+          "neutral_weight": 7,
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "WIN",
       "name": "WINkLink",
       "narrative": "Oracle / Gaming",
@@ -4515,36 +4510,36 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:08:00+00:00",
-              "price": 2.9653643650817685e-05,
-              "ema9": 2.967192496778547e-05,
-              "ema21": 2.9702480659385626e-05,
-              "rsi": 27.067256320548466,
-              "rsi_delta": -0.6476325776355623,
-              "macd": 1.112231578944903e-09,
-              "macd_delta": 1.7850548169260046e-09,
-              "rvol": 3.2521008403361344,
-              "rvol_delta": 3.0961089152122585,
-              "atr_pct": 0.02570896357850966,
-              "return_5bars": -0.039432955207818754,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 2.954742740257643e-05,
+              "ema9": 2.9554866754096005e-05,
+              "ema21": 2.956239219076413e-05,
+              "rsi": 38.83535263486348,
+              "rsi_delta": 4.408421040563169,
+              "macd": -1.2885197586895736e-09,
+              "macd_delta": 9.477693058952498e-10,
+              "rvol": 0.0,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.020394946348552233,
+              "return_5bars": -0.0438250169589649,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 2.9653643650817685e-05,
-              "ema9": 2.970234942540642e-05,
-              "ema21": 2.976263805735158e-05,
-              "rsi": 24.333643948645033,
-              "rsi_delta": -1.8178603998064773,
-              "macd": -1.0532798025378001e-08,
-              "macd_delta": 1.9821414281324453e-09,
-              "rvol": 0.3853967495219885,
-              "rvol_delta": 0.3853967495219885,
-              "atr_pct": 0.096124253248942,
-              "return_5bars": -0.15969781127155303,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 2.954742740257643e-05,
+              "ema9": 2.9565084563431733e-05,
+              "ema21": 2.9584966101538575e-05,
+              "rsi": 35.78151886315881,
+              "rsi_delta": -4.5197632077713195,
+              "macd": 2.638812085281237e-09,
+              "macd_delta": -2.1673166183270075e-09,
+              "rvol": 0.0,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.049474047748473735,
+              "return_5bars": -0.07033397039722944,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             }
           },
           "calibration": {
@@ -4558,15 +4553,15 @@
           "direction": "NEUTRAL",
           "strength": 0,
           "reasons": [
-            "Only 8 historical pattern match(es); not enough evidence"
+            "Only 3 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
             "source": "asset",
-            "samples": 8,
-            "avg_4h": -0.4365005819077297,
-            "up_rate": 25.0,
-            "down_rate": 75.0
+            "samples": 3,
+            "avg_4h": -0.05279021607064912,
+            "up_rate": 33.33333333333333,
+            "down_rate": 66.66666666666666
           },
           "calibration": {
             "samples": 3,
@@ -4683,7 +4678,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "AR",
       "name": "Arweave",
       "narrative": "DePIN / Storage",
@@ -4753,34 +4748,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:08:00+00:00",
-              "price": 1.7650238275527954,
-              "ema9": 1.7678289748383287,
-              "ema21": 1.7751172655929823,
-              "rsi": 11.139492415523534,
-              "rsi_delta": 3.182340962199291,
-              "macd": -0.0006117853780981414,
-              "macd_delta": 0.0007910669356024653,
-              "rvol": 0.47047237841100414,
-              "rvol_delta": -0.0008870721899010836,
-              "atr_pct": 0.10140033951852505,
-              "return_5bars": 0.03459907903344828,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 1.772795557975769,
+              "ema9": 1.7714596818572454,
+              "ema21": 1.7707978791768757,
+              "rsi": 66.59663877953912,
+              "rsi_delta": 5.953871918475514,
+              "macd": 0.0005037416376637357,
+              "macd_delta": 0.00018535291430352998,
+              "rvol": 0.0,
+              "rvol_delta": -0.10138319280637849,
+              "atr_pct": 0.032152563527285835,
+              "return_5bars": 0.13839045676864448,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 1.7650238275527954,
-              "ema9": 1.7752938657943165,
-              "ema21": 1.7867110791620484,
-              "rsi": 7.105591328637544,
-              "rsi_delta": -0.06818181568408477,
-              "macd": -0.002746830628254456,
-              "macd_delta": -0.000625631413433152,
-              "rvol": 0.9013394890770017,
-              "rvol_delta": 0.06872137162015501,
-              "atr_pct": 0.167496680493053,
-              "return_5bars": -1.228637057813975,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 1.772795557975769,
+              "ema9": 1.7709515704662553,
+              "ema21": 1.7702454288719631,
+              "rsi": 55.39460892698341,
+              "rsi_delta": 9.25389998313981,
+              "macd": 0.0005359248022738526,
+              "macd_delta": 0.00022023190698382657,
+              "rvol": 0.0,
+              "rvol_delta": -0.4142046589213763,
+              "atr_pct": 0.06048376502796487,
+              "return_5bars": 0.265779082296258,
               "breakout": false,
               "breakdown": false
             }
@@ -4794,17 +4789,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 0 historical pattern match(es); not enough evidence"
+            "59 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_1_15_1_5|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|MIXED",
             "source": "global",
-            "samples": 0,
-            "avg_4h": 0.0,
-            "up_rate": 0.0,
-            "down_rate": 0.0
+            "samples": 59,
+            "avg_4h": 10.249134037357004,
+            "up_rate": 40.67796610169492,
+            "down_rate": 57.6271186440678
           },
           "calibration": {
             "samples": 3,
@@ -4908,14 +4903,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
+          "Long votes 0; Short votes 0; Neutral weight 9",
           "0 independent analyst groups support NEUTRAL",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
-          "neutral_weight": 8,
+          "neutral_weight": 9,
           "independent_support": 0,
           "conflicts": [
             "Risk Manager requests caution"
@@ -4924,7 +4919,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "BEAM",
       "name": "Beam",
       "narrative": "Gaming",
@@ -4994,34 +4989,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:08:00+00:00",
-              "price": 0.007137266453355551,
-              "ema9": 0.007142729320114079,
-              "ema21": 0.007162306727075032,
-              "rsi": 12.581928548139231,
-              "rsi_delta": -0.2078565862002364,
-              "macd": -1.3986343279658888e-06,
-              "macd_delta": 3.1261440525752986e-06,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.007075515575706959,
+              "ema9": 0.007076124728800424,
+              "ema21": 0.00707624704994184,
+              "rsi": 42.80054196006877,
+              "rsi_delta": -1.6976599089744724,
+              "macd": 4.2073655163072337e-07,
+              "macd_delta": -1.6086008444586296e-07,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.08676053468883035,
-              "return_5bars": 0.01135368335347664,
+              "atr_pct": 0.010410684926040888,
+              "return_5bars": -0.012627930178277236,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.007137266453355551,
-              "ema9": 0.007162931407618705,
-              "ema21": 0.007187971222917624,
-              "rsi": 16.56517394876947,
-              "rsi_delta": 0.3337612627501869,
-              "macd": -8.074817262525906e-06,
-              "macd_delta": -1.2914459696704336e-06,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.007075515575706959,
+              "ema9": 0.007076732111852011,
+              "ema21": 0.007087715485500991,
+              "rsi": 25.86900459659107,
+              "rsi_delta": -0.19933809470764174,
+              "macd": 3.3993831978742015e-06,
+              "macd_delta": 5.786814095660644e-07,
               "rvol": 0.0,
-              "rvol_delta": -17.5,
-              "atr_pct": 0.11797542516045346,
-              "return_5bars": -0.7329505134377579,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.019813960035568384,
+              "return_5bars": 0.03533434672968738,
               "breakout": false,
               "breakdown": false
             }
@@ -5037,15 +5032,15 @@
           "direction": "NEUTRAL",
           "strength": 0,
           "reasons": [
-            "Only 8 historical pattern match(es); not enough evidence"
+            "Only 6 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
             "source": "asset",
-            "samples": 8,
-            "avg_4h": 79.04494521959445,
-            "up_rate": 37.5,
-            "down_rate": 62.5
+            "samples": 6,
+            "avg_4h": -0.9909269093708577,
+            "up_rate": 33.33333333333333,
+            "down_rate": 66.66666666666666
           },
           "calibration": {
             "samples": 3,
@@ -5165,7 +5160,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "SHIB",
       "name": "Shiba Inu",
       "narrative": "Meme",
@@ -5225,46 +5220,46 @@
           }
         },
         "microstructure": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "1m/5m timing not decisive"
+            "1m and 5m execution timing agree Short"
           ],
           "evidence": {
-            "role_signal": "NO ACTION",
-            "state": "NEUTRAL",
-            "reason": "1m/5m evidence not aligned enough",
+            "role_signal": "SHORT ENTRY",
+            "state": "CONFIRMED",
+            "reason": "1m and 5m trend plus participation agree downward",
             "one_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 4.389999958220869e-06,
-              "ema9": 4.389171394110531e-06,
-              "ema21": 4.393364772357098e-06,
-              "rsi": 41.70964770694475,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 4.370000169728883e-06,
+              "ema9": 4.37410237853467e-06,
+              "ema21": 4.377252557375072e-06,
+              "rsi": 5.3877936214319675,
               "rsi_delta": 0.0,
-              "macd": 2.160481132661786e-09,
-              "macd_delta": 2.7253791452884856e-10,
+              "macd": -9.435578077880135e-10,
+              "macd_delta": -6.166239903759274e-10,
               "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.06508229314130298,
-              "return_5bars": 0.0,
+              "rvol_delta": -3.9684176712259287,
+              "atr_pct": 0.032690818016569034,
+              "return_5bars": -0.22830808447337203,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 4.389999958220869e-06,
-              "ema9": 4.402065402990017e-06,
-              "ema21": 4.423401509602762e-06,
-              "rsi": 27.581584636589838,
-              "rsi_delta": 7.738293333647718,
-              "macd": -4.918396749866322e-09,
-              "macd_delta": 1.3539563104458893e-09,
-              "rvol": 0.0,
-              "rvol_delta": -3.876248200170745,
-              "atr_pct": 0.22779024571806458,
-              "return_5bars": -0.22727033139300357,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 4.370000169728883e-06,
+              "ema9": 4.379948947604492e-06,
+              "ema21": 4.383634517144881e-06,
+              "rsi": 33.83620238079136,
+              "rsi_delta": -7.885013685534915,
+              "macd": -5.427580529232481e-10,
+              "macd_delta": -8.532466657767276e-10,
+              "rvol": 1.3678863615930954,
+              "rvol_delta": 0.8899313770228638,
+              "atr_pct": 0.08172593010026562,
+              "return_5bars": -0.22830808447337203,
               "breakout": false,
-              "breakdown": false
+              "breakdown": true
             }
           },
           "calibration": {
@@ -5275,17 +5270,17 @@
           }
         },
         "market_memory": {
-          "direction": "NEUTRAL",
+          "direction": "LONG",
           "strength": 1,
           "reasons": [
-            "18 prior matches are not directionally decisive"
+            "Developing historical edge across 18 matches"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_2PLUS|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|MIXED",
             "source": "global",
             "samples": 18,
-            "avg_4h": -0.2724131293504393,
-            "up_rate": 50.0,
+            "avg_4h": 0.1969258219982617,
+            "up_rate": 61.111111111111114,
             "down_rate": 38.88888888888889
           },
           "calibration": {
@@ -5382,32 +5377,34 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
+          "Long votes 1; Short votes 2; Neutral weight 7",
+          "1 independent analyst groups support SHORT",
+          "Committee contains directional disagreement",
           "Portfolio Fit requests reduced or no additional exposure"
         ],
         "agreement": {
-          "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
+          "long_votes": 1,
+          "short_votes": 2,
+          "neutral_weight": 7,
+          "independent_support": 1,
           "conflicts": [
+            "Committee contains directional disagreement",
             "Portfolio Fit requests reduced or no additional exposure"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "ENJ",
       "name": "Enjin Coin",
       "narrative": "Gaming",
@@ -5469,43 +5466,43 @@
         },
         "microstructure": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 0,
           "reasons": [
-            "Possible local Short exhaustion: management signal, not automatic Long"
+            "1m/5m timing not decisive"
           ],
           "evidence": {
-            "role_signal": "SHORT EXIT / PROFIT PROTECT",
-            "state": "EXHAUSTION",
-            "reason": "1m bounced while 5m remains broadly down; possible local trough",
+            "role_signal": "NO ACTION",
+            "state": "NEUTRAL",
+            "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 0.023277319967746735,
-              "ema9": 0.023291427701731385,
-              "ema21": 0.023336560934615853,
-              "rsi": 24.787639013160145,
-              "rsi_delta": 7.72969886951654,
-              "macd": -7.187932106319644e-06,
-              "macd_delta": 6.891462687524672e-06,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.023467035964131355,
+              "ema9": 0.023457267689734197,
+              "ema21": 0.023464787866070685,
+              "rsi": 50.01139431965669,
+              "rsi_delta": 15.123677522393876,
+              "macd": 1.7220178009491758e-06,
+              "macd_delta": 7.336077907383224e-06,
               "rvol": 0.0,
-              "rvol_delta": -1.713249601981249,
-              "atr_pct": 0.07143133782538257,
-              "return_5bars": 0.059962718866124476,
+              "rvol_delta": -0.28450807635829667,
+              "atr_pct": 0.02584039304610973,
+              "return_5bars": 0.14635514715519715,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.023277319967746735,
-              "ema9": 0.023345275404901375,
-              "ema21": 0.02340143678626164,
-              "rsi": 21.48995256924401,
-              "rsi_delta": -5.229174601731003,
-              "macd": -1.5473026211962795e-05,
-              "macd_delta": -1.185714157016089e-05,
-              "rvol": 0.9663275400906237,
-              "rvol_delta": -1.0090573921921921,
-              "atr_pct": 0.10710642529724934,
-              "return_5bars": -0.7259597044939059,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.023467035964131355,
+              "ema9": 0.023468777371399872,
+              "ema21": 0.023454340817523154,
+              "rsi": 53.77418672070992,
+              "rsi_delta": 3.986898677893059,
+              "macd": -7.718808150958686e-06,
+              "macd_delta": -2.9350654975198205e-06,
+              "rvol": 0.1048673915252515,
+              "rvol_delta": -2.3773701574297963,
+              "atr_pct": 0.11798204820078623,
+              "return_5bars": 0.03816114117534131,
               "breakout": false,
               "breakdown": false
             }
@@ -5518,19 +5515,18 @@
           }
         },
         "market_memory": {
-          "direction": "LONG",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 0,
           "reasons": [
-            "45 prior matches favour upside",
-            "Historical 4H average +1.74%"
+            "Only 6 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 45,
-            "avg_4h": 1.739036820490813,
-            "up_rate": 77.77777777777779,
-            "down_rate": 20.0
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
+            "source": "asset",
+            "samples": 6,
+            "avg_4h": 0.16463006144163775,
+            "up_rate": 66.66666666666666,
+            "down_rate": 33.33333333333333
           },
           "calibration": {
             "samples": 3,
@@ -5625,34 +5621,32 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 2; Short votes 2; Neutral weight 8",
-          "1 independent analyst groups support NEUTRAL",
-          "Committee contains directional disagreement",
+          "Long votes 0; Short votes 2; Neutral weight 7",
+          "1 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 2,
+          "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 8,
+          "neutral_weight": 7,
           "independent_support": 1,
           "conflicts": [
-            "Committee contains directional disagreement",
             "Risk Manager requests caution"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "IMX",
       "name": "Immutable X",
       "narrative": "Gaming / Layer 2",
@@ -5729,15 +5723,15 @@
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "19 prior matches are not directionally decisive"
+            "59 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|BREAKDOWN|BEARISH",
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|MIXED",
             "source": "global",
-            "samples": 19,
-            "avg_4h": -4.679116203161274,
-            "up_rate": 63.1578947368421,
-            "down_rate": 31.57894736842105
+            "samples": 59,
+            "avg_4h": 10.249134037357004,
+            "up_rate": 40.67796610169492,
+            "down_rate": 57.6271186440678
           },
           "calibration": {
             "samples": 3,
@@ -5858,7 +5852,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "VET",
       "name": "VeChain",
       "narrative": "Enterprise / RWA",
@@ -5919,43 +5913,43 @@
         },
         "microstructure": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "1m/5m timing not decisive"
+            "Possible local Long exhaustion: management signal, not automatic Short"
           ],
           "evidence": {
-            "role_signal": "NO ACTION",
-            "state": "NEUTRAL",
-            "reason": "1m/5m evidence not aligned enough",
+            "role_signal": "LONG EXIT / PROFIT PROTECT",
+            "state": "EXHAUSTION",
+            "reason": "1m rolled over while 5m remains broadly up; possible local peak",
             "one_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.004370000213384628,
-              "ema9": 0.0043707985122900615,
-              "ema21": 0.004376709995857159,
-              "rsi": 22.295040511510635,
-              "rsi_delta": 0.0,
-              "macd": 1.2049212100512757e-06,
-              "macd_delta": 4.5887766409464094e-07,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.004399999976158142,
+              "ema9": 0.004399566506104704,
+              "ema21": 0.004397789273845827,
+              "rsi": 80.47049710081333,
+              "rsi_delta": -1.4210854715202004e-14,
+              "macd": 2.6520099203649464e-07,
+              "macd_delta": -3.7220278258438173e-07,
               "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.03268914676486137,
+              "rvol_delta": -6.942705256940343,
+              "atr_pct": 0.016233889933636614,
               "return_5bars": 0.0,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.004370000213384628,
-              "ema9": 0.004386459304376253,
-              "ema21": 0.004404710540410983,
-              "rsi": 7.313202417921033,
-              "rsi_delta": -1.5069609907200174,
-              "macd": -5.1458864781483125e-06,
-              "macd_delta": -3.6787391135534157e-07,
-              "rvol": 0.0,
-              "rvol_delta": -1.921384688663023,
-              "atr_pct": 0.11441581934279257,
-              "return_5bars": -0.4555737376786717,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.004399999976158142,
+              "ema9": 0.004396549308848167,
+              "ema21": 0.004394727678131336,
+              "rsi": 58.337934501544325,
+              "rsi_delta": 14.417284801087682,
+              "macd": 7.106571977543279e-07,
+              "macd_delta": 8.627825212814225e-07,
+              "rvol": 1.3745760729739211,
+              "rvol_delta": -0.06725768306761615,
+              "atr_pct": 0.03246777986727323,
+              "return_5bars": 0.22779217249877526,
               "breakout": false,
               "breakdown": false
             }
@@ -5969,17 +5963,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 3 historical pattern match(es); not enough evidence"
+            "22 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 3,
-            "avg_4h": -0.302672536646346,
-            "up_rate": 33.33333333333333,
-            "down_rate": 66.66666666666666
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+            "source": "asset",
+            "samples": 22,
+            "avg_4h": -0.05118064803070048,
+            "up_rate": 36.36363636363637,
+            "down_rate": 50.0
           },
           "calibration": {
             "samples": 3,
@@ -6083,20 +6077,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
+          "Long votes 0; Short votes 2; Neutral weight 8",
           "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 6,
+          "neutral_weight": 8,
           "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "SC",
       "name": "Siacoin",
       "narrative": "DePIN / Storage",
@@ -6158,46 +6152,46 @@
           }
         },
         "microstructure": {
-          "direction": "SHORT",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 0,
           "reasons": [
-            "1m and 5m execution timing agree Short"
+            "1m/5m timing not decisive"
           ],
           "evidence": {
-            "role_signal": "SHORT ENTRY",
-            "state": "CONFIRMED",
-            "reason": "1m and 5m trend plus participation agree downward",
+            "role_signal": "NO ACTION",
+            "state": "NEUTRAL",
+            "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 0.0004562479443848133,
-              "ema9": 0.00045851370573608895,
-              "ema21": 0.0004590770811777595,
-              "rsi": 33.60439708788047,
-              "rsi_delta": -17.001291511161398,
-              "macd": -1.882627622365929e-07,
-              "macd_delta": -3.125613538598463e-07,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.0004563279799185693,
+              "ema9": 0.0004546030728528882,
+              "ema21": 0.0004540354092423566,
+              "rsi": 54.078183454855775,
+              "rsi_delta": 2.962936094323304,
+              "macd": 1.9743173808651334e-07,
+              "macd_delta": 1.6515336040449066e-07,
               "rvol": 0.0,
-              "rvol_delta": -2.896845267901853,
-              "atr_pct": 0.20741977649615548,
-              "return_5bars": -0.8061145189072305,
+              "rvol_delta": -2.7294685990338166,
+              "atr_pct": 0.7050351249968452,
+              "return_5bars": -0.1100494222182391,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.0004562479443848133,
-              "ema9": 0.0004586537173740092,
-              "ema21": 0.0004597043394803583,
-              "rsi": 26.96637871959149,
-              "rsi_delta": 2.6503731597482556,
-              "macd": -1.9840284140578036e-07,
-              "macd_delta": -6.841544369964272e-08,
-              "rvol": 10.351503161762109,
-              "rvol_delta": 7.8788695493989405,
-              "atr_pct": 0.19744309793912512,
-              "return_5bars": -0.6433235408349169,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.0004563279799185693,
+              "ema9": 0.0004552822154665758,
+              "ema21": 0.0004548572824283937,
+              "rsi": 52.37131498697389,
+              "rsi_delta": -3.8833271820781903,
+              "macd": 6.026194782588725e-07,
+              "macd_delta": -3.7017506654950335e-08,
+              "rvol": 0.10531544957774466,
+              "rvol_delta": -0.5962922853828282,
+              "atr_pct": 0.6988518171854683,
+              "return_5bars": 1.2105847950611759,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             }
           },
           "calibration": {
@@ -6211,15 +6205,15 @@
           "direction": "SHORT",
           "strength": 1,
           "reasons": [
-            "Developing historical downside edge across 17 matches"
+            "Developing historical downside edge across 13 matches"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_2PLUS|RSI_BEAR|MACD_DOWN|BREAKDOWN|BEARISH",
-            "source": "global",
-            "samples": 17,
-            "avg_4h": -5.276525327310884,
-            "up_rate": 35.294117647058826,
-            "down_rate": 64.70588235294117
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+            "source": "asset",
+            "samples": 13,
+            "avg_4h": -0.1450311528059958,
+            "up_rate": 38.46153846153847,
+            "down_rate": 61.53846153846154
           },
           "calibration": {
             "samples": 3,
@@ -6324,16 +6318,16 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 8; Neutral weight 4",
-          "4 independent analyst groups support SHORT",
+          "Long votes 0; Short votes 6; Neutral weight 4",
+          "3 independent analyst groups support SHORT",
           "Portfolio Fit requests reduced or no additional exposure",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 8,
+          "short_votes": 6,
           "neutral_weight": 4,
-          "independent_support": 4,
+          "independent_support": 3,
           "conflicts": [
             "Portfolio Fit requests reduced or no additional exposure",
             "Risk Manager requests caution"
@@ -6342,7 +6336,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "BTT",
       "name": "BitTorrent",
       "narrative": "DePIN / Storage",
@@ -6404,46 +6398,46 @@
           }
         },
         "microstructure": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "1m/5m timing not decisive"
+            "1m and 5m execution timing agree Short"
           ],
           "evidence": {
-            "role_signal": "NO ACTION",
-            "state": "NEUTRAL",
-            "reason": "1m/5m evidence not aligned enough",
+            "role_signal": "SHORT ENTRY",
+            "state": "CONFIRMED",
+            "reason": "1m and 5m trend plus participation agree downward",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 2.6031176503238385e-07,
-              "ema9": 2.604504526918968e-07,
-              "ema21": 2.606812696003768e-07,
-              "rsi": 41.794254330993645,
-              "rsi_delta": 4.296905606085794,
-              "macd": -1.0119571638425277e-10,
-              "macd_delta": 2.7244327255296576e-11,
+              "time": "2026-08-18T05:57:00+00:00",
+              "price": 2.6057190893880033e-07,
+              "ema9": 2.608101198553053e-07,
+              "ema21": 2.6100020592071335e-07,
+              "rsi": 36.268553896388475,
+              "rsi_delta": -4.952244652055306,
+              "macd": -8.283409836417553e-11,
+              "macd_delta": -2.5713990047482148e-11,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.09999478727512401,
-              "return_5bars": -0.05360211213273347,
+              "atr_pct": 0.04415563082343041,
+              "return_5bars": -0.2114941077486887,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 2.6031176503238385e-07,
-              "ema9": 2.607178986430682e-07,
-              "ema21": 2.6078364852093657e-07,
-              "rsi": 49.44765428806762,
-              "rsi_delta": -8.366106314481655,
-              "macd": -8.007730373225926e-11,
-              "macd_delta": -1.4716188169143276e-10,
-              "rvol": 0.0,
-              "rvol_delta": -0.7634875272050462,
-              "atr_pct": 0.1639208562994002,
-              "return_5bars": -0.7459572174815077,
+              "time": "2026-08-18T05:55:00+00:00",
+              "price": 2.6057190893880033e-07,
+              "ema9": 2.6104067042628517e-07,
+              "ema21": 2.610609318754619e-07,
+              "rsi": 44.02915689737251,
+              "rsi_delta": -11.390512365055613,
+              "macd": -7.189684563827206e-11,
+              "macd_delta": -1.1029544199013374e-10,
+              "rvol": 1.4702174807266164,
+              "rvol_delta": 1.4702174807266164,
+              "atr_pct": 0.14982451574537206,
+              "return_5bars": -0.3629534282400537,
               "breakout": false,
-              "breakdown": false
+              "breakdown": true
             }
           },
           "calibration": {
@@ -6454,18 +6448,18 @@
           }
         },
         "market_memory": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "LONG",
+          "strength": 1,
           "reasons": [
-            "Only 8 historical pattern match(es); not enough evidence"
+            "Developing historical edge across 18 matches"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|BREAKDOWN|BEARISH",
-            "source": "global",
-            "samples": 8,
-            "avg_4h": 0.23250601822279587,
-            "up_rate": 75.0,
-            "down_rate": 25.0
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|BEARISH",
+            "source": "asset",
+            "samples": 18,
+            "avg_4h": 0.18218099781054498,
+            "up_rate": 66.66666666666666,
+            "down_rate": 33.33333333333333
           },
           "calibration": {
             "samples": 3,
@@ -6560,24 +6554,24 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 2; Short votes 2; Neutral weight 5",
-          "1 independent analyst groups support NEUTRAL",
+          "Long votes 3; Short votes 4; Neutral weight 5",
+          "2 independent analyst groups support SHORT",
           "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 2,
-          "short_votes": 2,
+          "long_votes": 3,
+          "short_votes": 4,
           "neutral_weight": 5,
-          "independent_support": 1,
+          "independent_support": 2,
           "conflicts": [
             "Committee contains directional disagreement"
           ]
@@ -6585,7 +6579,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "TLM",
       "name": "Alien Worlds",
       "narrative": "Gaming",
@@ -6657,34 +6651,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 0.0014137583784759045,
-              "ema9": 0.0014152127879829934,
-              "ema21": 0.001413621191044086,
-              "rsi": 55.62467696590648,
-              "rsi_delta": -21.586441942167703,
-              "macd": -7.79129241716683e-07,
-              "macd_delta": -5.312505050283343e-07,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.001397053594700992,
+              "ema9": 0.0013971593545952185,
+              "ema21": 0.0013993443482370653,
+              "rsi": 36.567825767815144,
+              "rsi_delta": 10.43432367095938,
+              "macd": 6.32761371138671e-08,
+              "macd_delta": 6.706413684550728e-07,
               "rvol": 0.0,
-              "rvol_delta": -0.7209239246812945,
-              "atr_pct": 0.06212838779077573,
-              "return_5bars": -0.1154371886393335,
+              "rvol_delta": -2.866706337399583,
+              "atr_pct": 0.0727672010372149,
+              "return_5bars": 0.19842472559943314,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.0014137583784759045,
-              "ema9": 0.0014132388892720543,
-              "ema21": 0.0014081774654712577,
-              "rsi": 68.69397656607572,
-              "rsi_delta": -13.525770619411162,
-              "macd": 8.918005078267896e-07,
-              "macd_delta": -7.453430488511679e-07,
-              "rvol": 0.0,
-              "rvol_delta": -0.16098259769125517,
-              "atr_pct": 0.14634452938691742,
-              "return_5bars": -0.03511585680961993,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.001397053594700992,
+              "ema9": 0.0014001096649654153,
+              "ema21": 0.0014030232618141116,
+              "rsi": 40.586928113613546,
+              "rsi_delta": 4.122815097103668,
+              "macd": -1.393203913879178e-06,
+              "macd_delta": -8.906714568691731e-08,
+              "rvol": 0.3517841047664493,
+              "rvol_delta": -1.0851881239299668,
+              "atr_pct": 0.1991495829261761,
+              "return_5bars": -0.6250208573529314,
               "breakout": false,
               "breakdown": false
             }
@@ -6700,15 +6694,15 @@
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "32 prior matches are not directionally decisive"
+            "10 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "EARLY_BUY|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|BULLISH",
-            "source": "global",
-            "samples": 32,
-            "avg_4h": -0.13012121827895642,
-            "up_rate": 37.5,
-            "down_rate": 56.25
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_DOWN|RANGE|BEARISH",
+            "source": "asset",
+            "samples": 10,
+            "avg_4h": -0.1496594683653596,
+            "up_rate": 50.0,
+            "down_rate": 50.0
           },
           "calibration": {
             "samples": 3,
@@ -6828,7 +6822,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "PYR",
       "name": "Vulcan Forged",
       "narrative": "Gaming",
@@ -6889,44 +6883,44 @@
           }
         },
         "microstructure": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "LONG",
+          "strength": 1,
           "reasons": [
-            "1m/5m timing not decisive"
+            "Long Pullback Watch"
           ],
           "evidence": {
-            "role_signal": "NO ACTION",
-            "state": "NEUTRAL",
-            "reason": "1m/5m evidence not aligned enough",
+            "role_signal": "LONG PULLBACK WATCH",
+            "state": "PULLBACK",
+            "reason": "5m uptrend intact while 1m retraces",
             "one_minute": {
-              "time": "2026-08-18T03:06:00+00:00",
+              "time": "2026-08-18T06:03:00+00:00",
               "price": 0.0430000014603138,
-              "ema9": 0.04278183746916999,
-              "ema21": 0.042698420874346686,
-              "rsi": 64.48071042726286,
-              "rsi_delta": 0.0,
-              "macd": 0.0001052129668549726,
-              "macd_delta": 2.282120021343874e-05,
+              "ema9": 0.04325733496816183,
+              "ema21": 0.043268457241120266,
+              "rsi": 44.13105192384956,
+              "rsi_delta": 7.105427357601002e-15,
+              "macd": -0.00010343409424910395,
+              "macd_delta": -6.087972959223435e-05,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.3322265756136441,
-              "return_5bars": 0.0,
+              "atr_pct": 0.6644506759514265,
+              "return_5bars": -2.27272342428686,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
+              "time": "2026-08-18T06:00:00+00:00",
               "price": 0.0430000014603138,
-              "ema9": 0.04279972798084726,
-              "ema21": 0.042756984464013166,
-              "rsi": 56.0756677343404,
-              "rsi_delta": 27.55677236688622,
-              "macd": 7.506694433623112e-06,
-              "macd_delta": 8.189821529762557e-05,
+              "ema9": 0.04293303941610323,
+              "ema21": 0.04264803959374497,
+              "rsi": 53.37394417640594,
+              "rsi_delta": -1.9464121236351275,
+              "macd": 9.863532187095748e-05,
+              "macd_delta": 7.507495640603437e-06,
               "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.3322265756136441,
-              "return_5bars": 0.0,
+              "rvol_delta": -2.418967587034814,
+              "atr_pct": 1.8272418341422842,
+              "return_5bars": 2.380957238190362,
               "breakout": false,
               "breakdown": false
             }
@@ -7054,23 +7048,25 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 7",
+          "Long votes 1; Short votes 2; Neutral weight 7",
           "1 independent analyst groups support SHORT",
+          "Committee contains directional disagreement",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 1,
           "short_votes": 2,
           "neutral_weight": 7,
           "independent_support": 1,
           "conflicts": [
+            "Committee contains directional disagreement",
             "Risk Manager requests caution"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "PAAL",
       "name": "PAAL AI",
       "narrative": "AI",
@@ -7141,34 +7137,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 0.005067762918770313,
-              "ema9": 0.005056555779106724,
-              "ema21": 0.005059435034348302,
-              "rsi": 54.80897779407728,
-              "rsi_delta": 26.402683728036436,
-              "macd": -2.741713353365145e-07,
-              "macd_delta": 3.45141049978136e-06,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.005031267646700144,
+              "ema9": 0.0050341357941736916,
+              "ema21": 0.005037026411150296,
+              "rsi": 47.895289019076316,
+              "rsi_delta": 0.29604186019458467,
+              "macd": -2.4060251208800647e-06,
+              "macd_delta": 3.7228496240298534e-07,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.11461715839706417,
-              "return_5bars": 0.6226658122213014,
+              "atr_pct": 0.236817228908072,
+              "return_5bars": 0.009441345410232671,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.005067762918770313,
-              "ema9": 0.005062106632925283,
-              "ema21": 0.005064034465130184,
-              "rsi": 51.182432286097296,
-              "rsi_delta": -0.3823635851657343,
-              "macd": -6.370345664233911e-07,
-              "macd_delta": -1.3105461553313134e-06,
-              "rvol": 12.391779623961522,
-              "rvol_delta": 11.794078474536235,
-              "atr_pct": 0.24571817962077097,
-              "return_5bars": 0.007737479985481244,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.005031267646700144,
+              "ema9": 0.005036151847485272,
+              "ema21": 0.005036478514828362,
+              "rsi": 48.698245823493245,
+              "rsi_delta": 0.1979667350233214,
+              "macd": -3.4622054605910496e-07,
+              "macd_delta": -2.2309359352337537e-06,
+              "rvol": 0.0,
+              "rvol_delta": -1.9860274632618646,
+              "atr_pct": 0.53527242552437,
+              "return_5bars": 0.011940823500289355,
               "breakout": false,
               "breakdown": false
             }
@@ -7181,18 +7177,18 @@
           }
         },
         "market_memory": {
-          "direction": "NEUTRAL",
+          "direction": "SHORT",
           "strength": 1,
           "reasons": [
-            "44 prior matches are not directionally decisive"
+            "Developing historical downside edge across 16 matches"
           ],
           "evidence": {
-            "pattern": "NEUTRAL|RVOL_2PLUS|RSI_MID|MACD_MIXED|RANGE|MIXED",
-            "source": "global",
-            "samples": 44,
-            "avg_4h": 0.08329115317698926,
-            "up_rate": 56.81818181818182,
-            "down_rate": 40.909090909090914
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+            "source": "asset",
+            "samples": 16,
+            "avg_4h": -0.7317051364783784,
+            "up_rate": 31.25,
+            "down_rate": 68.75
           },
           "calibration": {
             "samples": 3,
@@ -7296,20 +7292,23 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 3; Short votes 0; Neutral weight 6",
-          "1 independent analyst groups support LONG"
+          "Long votes 3; Short votes 1; Neutral weight 5",
+          "1 independent analyst groups support LONG",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
           "long_votes": 3,
-          "short_votes": 0,
-          "neutral_weight": 6,
+          "short_votes": 1,
+          "neutral_weight": 5,
           "independent_support": 1,
-          "conflicts": []
+          "conflicts": [
+            "Committee contains directional disagreement"
+          ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "SKL",
       "name": "SKALE Network",
       "narrative": "Layer 2",
@@ -7380,34 +7379,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 0.0032760000322014093,
-              "ema9": 0.0032771694083638535,
-              "ema21": 0.003281252230700732,
-              "rsi": 31.842383749029366,
-              "rsi_delta": 0.0,
-              "macd": 1.1603425714381143e-06,
-              "macd_delta": -1.4147924305417583e-07,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.0032709999941289425,
+              "ema9": 0.0032728531574713914,
+              "ema21": 0.003271577080793325,
+              "rsi": 50.0497944735635,
+              "rsi_delta": -10.170106896905068,
+              "macd": -4.4811316202689466e-07,
+              "macd_delta": -9.274839872754962e-07,
               "rvol": 0.0,
-              "rvol_delta": -2.759495947796021,
-              "atr_pct": 0.0370663903699736,
-              "return_5bars": -0.09149200344978903,
+              "rvol_delta": -2.4927825893848548,
+              "atr_pct": 0.03930675873081359,
+              "return_5bars": -0.15262631328812892,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.0032760000322014093,
-              "ema9": 0.0032890742336406306,
-              "ema21": 0.0033063796590136756,
-              "rsi": 17.950956921090352,
-              "rsi_delta": 2.9890351339960404,
-              "macd": -4.411186000596167e-06,
-              "macd_delta": 8.848956773768408e-07,
-              "rvol": 0.0,
-              "rvol_delta": -1.1351568785197104,
-              "atr_pct": 0.23111781521846742,
-              "return_5bars": -0.3043236705785213,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.0032709999941289425,
+              "ema9": 0.0032706045844080683,
+              "ema21": 0.003271604976097236,
+              "rsi": 47.26707670067199,
+              "rsi_delta": 2.312971475315031,
+              "macd": 1.6236736182964404e-06,
+              "macd_delta": 9.77900344910142e-07,
+              "rvol": 1.9073027830089977,
+              "rvol_delta": -3.3061283804709607,
+              "atr_pct": 0.14412427358252486,
+              "return_5bars": 0.30665674322114533,
               "breakout": false,
               "breakdown": false
             }
@@ -7421,17 +7420,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 3 historical pattern match(es); not enough evidence"
+            "59 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|MIXED",
             "source": "global",
-            "samples": 3,
-            "avg_4h": -0.302672536646346,
-            "up_rate": 33.33333333333333,
-            "down_rate": 66.66666666666666
+            "samples": 59,
+            "avg_4h": 10.249134037357004,
+            "up_rate": 40.67796610169492,
+            "down_rate": 57.6271186440678
           },
           "calibration": {
             "samples": 3,
@@ -7535,20 +7534,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
+          "Long votes 0; Short votes 2; Neutral weight 7",
           "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 6,
+          "neutral_weight": 7,
           "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "AERO",
       "name": "Aerodrome Finance",
       "narrative": "DeFi / DEX",
@@ -7623,18 +7622,18 @@
           }
         },
         "market_memory": {
-          "direction": "LONG",
-          "strength": 1,
+          "direction": "NEUTRAL",
+          "strength": 0,
           "reasons": [
-            "Developing historical edge across 12 matches"
+            "Only 4 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
             "source": "asset",
-            "samples": 12,
-            "avg_4h": 0.15675603407924085,
-            "up_rate": 75.0,
-            "down_rate": 25.0
+            "samples": 4,
+            "avg_4h": -0.34106813374566447,
+            "up_rate": 50.0,
+            "down_rate": 50.0
           },
           "calibration": {
             "samples": 3,
@@ -7738,20 +7737,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 2; Short votes 0; Neutral weight 5",
-          "2 independent analyst groups support LONG"
+          "Long votes 1; Short votes 0; Neutral weight 5",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 2,
+          "long_votes": 1,
           "short_votes": 0,
           "neutral_weight": 5,
-          "independent_support": 2,
+          "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "LUNC",
       "name": "Terra Luna Classic",
       "narrative": "Legacy Layer 1",
@@ -7823,34 +7822,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 4.681669452111237e-05,
-              "ema9": 4.685148567445629e-05,
-              "ema21": 4.703722145703621e-05,
-              "rsi": 30.338215108627764,
-              "rsi_delta": 5.320804602030648,
-              "macd": -2.5105971163427054e-08,
-              "macd_delta": 3.0531650282548326e-08,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 4.673266448662616e-05,
+              "ema9": 4.671566097123605e-05,
+              "ema21": 4.672469518713886e-05,
+              "rsi": 51.35229296140555,
+              "rsi_delta": 5.030567553412929,
+              "macd": 4.4121726126567556e-09,
+              "macd_delta": 4.878629370336997e-09,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.16867219773068187,
-              "return_5bars": 0.2557797601643985,
-              "breakout": false,
+              "atr_pct": 0.01838402946409103,
+              "return_5bars": 0.057343527218889356,
+              "breakout": true,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 4.681669452111237e-05,
-              "ema9": 4.7045003851625224e-05,
-              "ema21": 4.726259810997323e-05,
-              "rsi": 28.19225133169651,
-              "rsi_delta": 3.4458437121699603,
-              "macd": -8.638579717847655e-08,
-              "macd_delta": -4.272626570472244e-08,
-              "rvol": 0.043092031136957545,
-              "rvol_delta": 0.043092031136957545,
-              "atr_pct": 0.23752048477986062,
-              "return_5bars": -1.253999677723805,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 4.673266448662616e-05,
+              "ema9": 4.6727382457239125e-05,
+              "ema21": 4.6735654250875636e-05,
+              "rsi": 48.085478811585055,
+              "rsi_delta": 3.7960899511955333,
+              "macd": 9.185508253277551e-09,
+              "macd_delta": -3.621282365103666e-09,
+              "rvol": 0.06779292343387472,
+              "rvol_delta": -1.0080452482349738,
+              "atr_pct": 0.08469042283034227,
+              "return_5bars": 0.14026584794379904,
               "breakout": false,
               "breakdown": false
             }
@@ -7863,18 +7862,18 @@
           }
         },
         "market_memory": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "LONG",
+          "strength": 1,
           "reasons": [
-            "Only 6 historical pattern match(es); not enough evidence"
+            "Developing historical edge across 15 matches"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
-            "source": "asset",
-            "samples": 6,
-            "avg_4h": 1.3749358844186377,
-            "up_rate": 83.33333333333334,
-            "down_rate": 16.666666666666664
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|BEARISH",
+            "source": "global",
+            "samples": 15,
+            "avg_4h": 43.89869122383001,
+            "up_rate": 73.33333333333333,
+            "down_rate": 26.666666666666668
           },
           "calibration": {
             "samples": 3,
@@ -7978,23 +7977,25 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 5; Neutral weight 4",
+          "Long votes 1; Short votes 5; Neutral weight 4",
           "2 independent analyst groups support SHORT",
+          "Committee contains directional disagreement",
           "Risk Manager requests caution"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 1,
           "short_votes": 5,
           "neutral_weight": 4,
           "independent_support": 2,
           "conflicts": [
+            "Committee contains directional disagreement",
             "Risk Manager requests caution"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "GALA",
       "name": "Gala",
       "narrative": "Gaming",
@@ -8054,46 +8055,46 @@
           }
         },
         "microstructure": {
-          "direction": "SHORT",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 0,
           "reasons": [
-            "1m and 5m execution timing agree Short"
+            "1m/5m timing not decisive"
           ],
           "evidence": {
-            "role_signal": "SHORT ENTRY",
-            "state": "CONFIRMED",
-            "reason": "1m and 5m trend plus participation agree downward",
+            "role_signal": "NO ACTION",
+            "state": "NEUTRAL",
+            "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 0.0014895487111061811,
-              "ema9": 0.001513592235242276,
-              "ema21": 0.0015374049844463918,
-              "rsi": 11.02651365300045,
-              "rsi_delta": -5.189570278380899,
-              "macd": -2.7137277225499577e-06,
-              "macd_delta": 2.3315815068374762e-07,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.0014108194736763835,
+              "ema9": 0.0014067131120328762,
+              "ema21": 0.00140103653736303,
+              "rsi": 81.74581798461153,
+              "rsi_delta": 4.018851961489332,
+              "macd": 7.49955818366374e-07,
+              "macd_delta": -3.4598079290724126e-07,
               "rvol": 0.0,
-              "rvol_delta": -1.0461232532587783,
-              "atr_pct": 0.5236843422141481,
-              "return_5bars": -1.899842834285359,
-              "breakout": false,
-              "breakdown": true
+              "rvol_delta": -0.3455320925793367,
+              "atr_pct": 0.12977601864977042,
+              "return_5bars": 0.3333918943107417,
+              "breakout": true,
+              "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.0014895487111061811,
-              "ema9": 0.0015371797913973696,
-              "ema21": 0.0015697180312643309,
-              "rsi": 4.624007223445986,
-              "rsi_delta": -1.979059633117842,
-              "macd": -1.0721445373916693e-05,
-              "macd_delta": -1.5158898299340559e-06,
-              "rvol": 1.6258964908656686,
-              "rvol_delta": -0.1695284616477375,
-              "atr_pct": 0.6780924682905484,
-              "return_5bars": -4.791255674519224,
-              "breakout": false,
-              "breakdown": true
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.0014108194736763835,
+              "ema9": 0.0014007904487613337,
+              "ema21": 0.0014011744421176895,
+              "rsi": 52.39255618780757,
+              "rsi_delta": 4.357648298367188,
+              "macd": 8.074097595494058e-06,
+              "macd_delta": -2.2011901130020568e-07,
+              "rvol": 0.12570180226075517,
+              "rvol_delta": -0.8059396969765122,
+              "atr_pct": 0.2455001347428985,
+              "return_5bars": 1.3727443150369112,
+              "breakout": true,
+              "breakdown": false
             }
           },
           "calibration": {
@@ -8107,15 +8108,15 @@
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "19 prior matches are not directionally decisive"
+            "59 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_2PLUS|RSI_OVERSOLD|MACD_DOWN|BREAKDOWN|BEARISH",
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_BEAR|MACD_UP|RANGE|MIXED",
             "source": "global",
-            "samples": 19,
-            "avg_4h": -4.679116203161274,
-            "up_rate": 63.1578947368421,
-            "down_rate": 31.57894736842105
+            "samples": 59,
+            "avg_4h": 10.249134037357004,
+            "up_rate": 40.67796610169492,
+            "down_rate": 57.6271186440678
           },
           "calibration": {
             "samples": 3,
@@ -8210,29 +8211,29 @@
         }
       },
       "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 8",
-          "1 independent analyst groups support SHORT"
+          "Long votes 0; Short votes 0; Neutral weight 8",
+          "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 2,
+          "short_votes": 0,
           "neutral_weight": 8,
-          "independent_support": 1,
+          "independent_support": 0,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "UOS",
       "name": "Ultra",
       "narrative": "Gaming",
@@ -8293,45 +8294,45 @@
           }
         },
         "microstructure": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "1m/5m timing not decisive"
+            "1m and 5m execution timing agree Short"
           ],
           "evidence": {
-            "role_signal": "NO ACTION",
-            "state": "NEUTRAL",
-            "reason": "1m/5m evidence not aligned enough",
+            "role_signal": "SHORT ENTRY",
+            "state": "CONFIRMED",
+            "reason": "1m and 5m trend plus participation agree downward",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 0.002566044917330146,
-              "ema9": 0.002562007409570777,
-              "ema21": 0.0025611805840620224,
-              "rsi": 62.690721279096884,
-              "rsi_delta": 11.029201113002223,
-              "macd": 2.211205413815451e-07,
-              "macd_delta": 2.2695908508814874e-07,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 0.002523473696783185,
+              "ema9": 0.002525374925298351,
+              "ema21": 0.0025270086013490446,
+              "rsi": 41.11826636289078,
+              "rsi_delta": -0.1122586112278654,
+              "macd": -8.06663018223299e-07,
+              "macd_delta": -1.4657819430426598e-08,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.03598105049423927,
-              "return_5bars": 0.20730516110747388,
-              "breakout": true,
+              "atr_pct": 0.06835850833357071,
+              "return_5bars": -0.011365870413027057,
+              "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 0.002566044917330146,
-              "ema9": 0.0025617271695120435,
-              "ema21": 0.002562816590475724,
-              "rsi": 42.73455804275411,
-              "rsi_delta": 5.176795563481541,
-              "macd": 1.4305163479500739e-06,
-              "macd_delta": 2.7114357751711937e-07,
-              "rvol": 0.0,
-              "rvol_delta": -0.06811409110259685,
-              "atr_pct": 0.19563938729203764,
-              "return_5bars": 0.10489093495444912,
-              "breakout": true,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.002523473696783185,
+              "ema9": 0.0025264683889003204,
+              "ema21": 0.002529614002121881,
+              "rsi": 41.580759984952024,
+              "rsi_delta": -9.598655245179053,
+              "macd": 8.221668859779474e-07,
+              "macd_delta": -1.0099221428144318e-06,
+              "rvol": 7.086956521739131,
+              "rvol_delta": 7.086956521739131,
+              "atr_pct": 0.15787557119694443,
+              "return_5bars": -0.0017161168188395415,
+              "breakout": false,
               "breakdown": false
             }
           },
@@ -8343,18 +8344,18 @@
           }
         },
         "market_memory": {
-          "direction": "SHORT",
+          "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Developing historical downside edge across 26 matches"
+            "135 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|MIXED",
-            "source": "asset",
-            "samples": 26,
-            "avg_4h": -0.30865667392294766,
-            "up_rate": 38.46153846153847,
-            "down_rate": 61.53846153846154
+            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
+            "source": "global",
+            "samples": 135,
+            "avg_4h": 0.11027217916605177,
+            "up_rate": 48.888888888888886,
+            "down_rate": 45.18518518518518
           },
           "calibration": {
             "samples": 3,
@@ -8458,14 +8459,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 3; Neutral weight 7",
+          "Long votes 0; Short votes 4; Neutral weight 8",
           "2 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 3,
-          "neutral_weight": 7,
+          "short_votes": 4,
+          "neutral_weight": 8,
           "independent_support": 2,
           "conflicts": [
             "Risk Manager requests caution"
@@ -8474,7 +8475,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "UFO",
       "name": "UFO Gaming",
       "narrative": "Gaming",
@@ -8550,17 +8551,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 0,
           "reasons": [
-            "19 prior matches are not directionally decisive"
+            "Only 2 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
             "pattern": "NEUTRAL|RVOL_NORMAL|RSI_BULL|MACD_MIXED|RANGE|MIXED",
-            "source": "global",
-            "samples": 19,
-            "avg_4h": 0.2530732895254073,
-            "up_rate": 42.10526315789473,
-            "down_rate": 57.89473684210527
+            "source": "asset",
+            "samples": 2,
+            "avg_4h": -0.08522811866364388,
+            "up_rate": 50.0,
+            "down_rate": 50.0
           },
           "calibration": {
             "samples": 3,
@@ -8664,14 +8665,14 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 8",
+          "Long votes 0; Short votes 2; Neutral weight 7",
           "1 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 8,
+          "neutral_weight": 7,
           "independent_support": 1,
           "conflicts": [
             "Risk Manager requests caution"
@@ -8680,7 +8681,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "DENT",
       "name": "Dent",
       "narrative": "Telecom / Payments",
@@ -8742,43 +8743,43 @@
         },
         "microstructure": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 0,
           "reasons": [
-            "Possible local Short exhaustion: management signal, not automatic Long"
+            "1m/5m timing not decisive"
           ],
           "evidence": {
-            "role_signal": "SHORT EXIT / PROFIT PROTECT",
-            "state": "EXHAUSTION",
-            "reason": "1m bounced while 5m remains broadly down; possible local trough",
+            "role_signal": "NO ACTION",
+            "state": "NEUTRAL",
+            "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:08:00+00:00",
-              "price": 2.5399293008376844e-05,
-              "ema9": 2.540190670073042e-05,
-              "ema21": 2.5410073209482173e-05,
-              "rsi": 8.674095002654369,
-              "rsi_delta": 0.48628655726585635,
-              "macd": 2.4683240798783966e-09,
-              "macd_delta": 2.447569409167836e-10,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 2.5184564947267063e-05,
+              "ema9": 2.5165531439972853e-05,
+              "ema21": 2.5124078579334332e-05,
+              "rsi": 83.61457994923123,
+              "rsi_delta": -2.3851006121886513,
+              "macd": 1.2253733434610371e-08,
+              "macd_delta": -8.021557576408301e-09,
               "rvol": 0.0,
-              "rvol_delta": -0.33444816053511706,
-              "atr_pct": 0.014851571806610508,
-              "return_5bars": 0.0015827331122375554,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.04790877505572341,
+              "return_5bars": -0.024623123597034002,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 2.5399293008376844e-05,
-              "ema9": 2.5409649092730767e-05,
-              "ema21": 2.541764860944298e-05,
-              "rsi": 24.77491757161991,
-              "rsi_delta": 1.7058894885845177,
-              "macd": -3.901880563730414e-09,
-              "macd_delta": -6.491322115656717e-10,
-              "rvol": 0.0007998623267267938,
-              "rvol_delta": -0.0006302933542030498,
-              "atr_pct": 0.02077777507115715,
-              "return_5bars": -0.11387528785360423,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 2.5184564947267063e-05,
+              "ema9": 2.513229076642029e-05,
+              "ema21": 2.5158946373065483e-05,
+              "rsi": 13.810797449522326,
+              "rsi_delta": 0.21255522681923367,
+              "macd": 4.604137651606755e-08,
+              "macd_delta": 9.844331410355251e-09,
+              "rvol": 0.0,
+              "rvol_delta": 0.0,
+              "atr_pct": 0.10694092514349855,
+              "return_5bars": 0.6007988999231717,
               "breakout": false,
               "breakdown": false
             }
@@ -8791,18 +8792,18 @@
           }
         },
         "market_memory": {
-          "direction": "LONG",
+          "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Developing historical edge across 15 matches"
+            "16 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_WEAK|RSI_MID|MACD_MIXED|RANGE|BEARISH",
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
             "source": "asset",
-            "samples": 15,
-            "avg_4h": 6.512387307326947,
-            "up_rate": 66.66666666666666,
-            "down_rate": 33.33333333333333
+            "samples": 16,
+            "avg_4h": 2.8370989074112978,
+            "up_rate": 50.0,
+            "down_rate": 50.0
           },
           "calibration": {
             "samples": 3,
@@ -8906,23 +8907,20 @@
           "SCALP": true
         },
         "reasons": [
-          "Long votes 1; Short votes 7; Neutral weight 3",
-          "3 independent analyst groups support SHORT",
-          "Committee contains directional disagreement"
+          "Long votes 0; Short votes 7; Neutral weight 3",
+          "3 independent analyst groups support SHORT"
         ],
         "agreement": {
-          "long_votes": 1,
+          "long_votes": 0,
           "short_votes": 7,
           "neutral_weight": 3,
           "independent_support": 3,
-          "conflicts": [
-            "Committee contains directional disagreement"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "MEW",
       "name": "Cat in a Dogs World",
       "narrative": "Meme",
@@ -8996,18 +8994,18 @@
           }
         },
         "market_memory": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "SHORT",
+          "strength": 1,
           "reasons": [
-            "Only 5 historical pattern match(es); not enough evidence"
+            "Developing historical downside edge across 15 matches"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_NORMAL|RSI_OVERSOLD|MACD_DOWN|BREAKDOWN|BEARISH",
+            "pattern": "NEUTRAL|RVOL_NORMAL|RSI_BEAR|MACD_UP|RANGE|MIXED",
             "source": "global",
-            "samples": 5,
-            "avg_4h": 1.242846913350919,
-            "up_rate": 80.0,
-            "down_rate": 20.0
+            "samples": 15,
+            "avg_4h": -0.2184286312264616,
+            "up_rate": 26.666666666666668,
+            "down_rate": 66.66666666666666
           },
           "calibration": {
             "samples": 3,
@@ -9111,20 +9109,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 3; Neutral weight 3",
-          "2 independent analyst groups support SHORT"
+          "Long votes 0; Short votes 4; Neutral weight 3",
+          "3 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 3,
+          "short_votes": 4,
           "neutral_weight": 3,
-          "independent_support": 2,
+          "independent_support": 3,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "DOGE",
       "name": "Dogecoin",
       "narrative": "Meme",
@@ -9194,34 +9192,34 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 0.06968999654054642,
-              "ema9": 0.06971064789328738,
-              "ema21": 0.06971936424344158,
-              "rsi": 42.658900185265296,
-              "rsi_delta": -6.145857041201978,
-              "macd": 8.369679250767643e-06,
-              "macd_delta": -7.5241539838154525e-06,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.06970000267028809,
+              "ema9": 0.0697234912146866,
+              "ema21": 0.06973862854137024,
+              "rsi": 38.863995772482205,
+              "rsi_delta": -3.6796480038788815,
+              "macd": -4.167565181086333e-06,
+              "macd_delta": -2.3257628329217494e-06,
               "rvol": 0.0,
               "rvol_delta": 0.0,
-              "atr_pct": 0.041000111935116546,
-              "return_5bars": -0.08603150265544812,
+              "atr_pct": 0.025619673270292576,
+              "return_5bars": -0.043017407197909474,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.06968999654054642,
-              "ema9": 0.06975734346792024,
-              "ema21": 0.06987777187111154,
-              "rsi": 24.487488885177626,
-              "rsi_delta": 6.014343844623127,
-              "macd": -1.1786617501301908e-05,
-              "macd_delta": 1.0444320777910863e-05,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.06970000267028809,
+              "ema9": 0.06976345071101395,
+              "ema21": 0.06979480939534417,
+              "rsi": 41.28791787285013,
+              "rsi_delta": -3.6983674452661504,
+              "macd": -9.652242093706215e-06,
+              "macd_delta": -7.760680360792227e-07,
               "rvol": 0.0,
-              "rvol_delta": -1.4308390529634019,
-              "atr_pct": 0.124020565821094,
-              "return_5bars": -0.08603150265544812,
+              "rvol_delta": -1.713955453366126,
+              "atr_pct": 0.10453107675377407,
+              "return_5bars": -0.043017407197909474,
               "breakout": false,
               "breakdown": false
             }
@@ -9237,15 +9235,15 @@
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "18 prior matches are not directionally decisive"
+            "95 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "SELL_WATCH|RVOL_2PLUS|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_MIXED|RANGE|BEARISH",
             "source": "global",
-            "samples": 18,
-            "avg_4h": -0.2724131293504393,
-            "up_rate": 50.0,
-            "down_rate": 38.88888888888889
+            "samples": 95,
+            "avg_4h": -0.10336112335444157,
+            "up_rate": 49.473684210526315,
+            "down_rate": 50.526315789473685
           },
           "calibration": {
             "samples": 3,
@@ -9365,7 +9363,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "GRT",
       "name": "The Graph",
       "narrative": "Data / AI",
@@ -9439,18 +9437,18 @@
           }
         },
         "market_memory": {
-          "direction": "NEUTRAL",
-          "strength": 0,
+          "direction": "SHORT",
+          "strength": 1,
           "reasons": [
-            "Only 5 historical pattern match(es); not enough evidence"
+            "Developing historical downside edge across 15 matches"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_NORMAL|RSI_OVERSOLD|MACD_DOWN|BREAKDOWN|BEARISH",
+            "pattern": "NEUTRAL|RVOL_NORMAL|RSI_BEAR|MACD_UP|RANGE|MIXED",
             "source": "global",
-            "samples": 5,
-            "avg_4h": 1.242846913350919,
-            "up_rate": 80.0,
-            "down_rate": 20.0
+            "samples": 15,
+            "avg_4h": -0.2184286312264616,
+            "up_rate": 26.666666666666668,
+            "down_rate": 66.66666666666666
           },
           "calibration": {
             "samples": 3,
@@ -9555,23 +9553,25 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 2; Short votes 0; Neutral weight 5",
+          "Long votes 2; Short votes 1; Neutral weight 5",
           "1 independent analyst groups support LONG",
+          "Committee contains directional disagreement",
           "Portfolio Fit requests reduced or no additional exposure"
         ],
         "agreement": {
           "long_votes": 2,
-          "short_votes": 0,
+          "short_votes": 1,
           "neutral_weight": 5,
           "independent_support": 1,
           "conflicts": [
+            "Committee contains directional disagreement",
             "Portfolio Fit requests reduced or no additional exposure"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "VRA",
       "name": "Verasity",
       "narrative": "Gaming / Advertising",
@@ -9644,36 +9644,36 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:09:00+00:00",
-              "price": 1.2031258847855497e-05,
-              "ema9": 1.2084657266013821e-05,
-              "ema21": 1.2109577234857834e-05,
-              "rsi": 24.9511961484627,
-              "rsi_delta": -4.841853552624173,
-              "macd": -1.1873952816567404e-08,
-              "macd_delta": -5.463668328930485e-09,
+              "time": "2026-08-18T06:02:00+00:00",
+              "price": 1.1248971532040741e-05,
+              "ema9": 1.1290812059989084e-05,
+              "ema21": 1.1374782358732552e-05,
+              "rsi": 30.62901565452198,
+              "rsi_delta": 11.230359766161499,
+              "macd": -2.092113096161152e-08,
+              "macd_delta": -5.180151639566007e-09,
               "rvol": 0.0,
-              "rvol_delta": -0.15993559640413257,
-              "atr_pct": 0.07408026320815359,
-              "return_5bars": -0.8573916784269664,
+              "rvol_delta": -1.2329863891112889,
+              "atr_pct": 0.27116450509580164,
+              "return_5bars": -1.2512085741499646,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:05:00+00:00",
-              "price": 1.2031258847855497e-05,
-              "ema9": 1.2114408471754355e-05,
-              "ema21": 1.2114250883575802e-05,
-              "rsi": 41.13736709729721,
-              "rsi_delta": -13.106277335263123,
-              "macd": -1.0758775895984531e-08,
-              "macd_delta": -7.188233721391554e-09,
-              "rvol": 0.1479458855653469,
-              "rvol_delta": -16.93037459429755,
-              "atr_pct": 0.30074871951609533,
-              "return_5bars": -0.7440309713527604,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 1.1248971532040741e-05,
+              "ema9": 1.138680825603287e-05,
+              "ema21": 1.1554252622291107e-05,
+              "rsi": 28.472582481415515,
+              "rsi_delta": -4.120359876858345,
+              "macd": -1.7265913972798857e-08,
+              "macd_delta": -1.0841768262606304e-08,
+              "rvol": 0.0,
+              "rvol_delta": -0.425938566552901,
+              "atr_pct": 0.9047747062280095,
+              "return_5bars": -2.2128804058991203,
               "breakout": false,
-              "breakdown": true
+              "breakdown": false
             }
           },
           "calibration": {
@@ -9685,17 +9685,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 3 historical pattern match(es); not enough evidence"
+            "252 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "NEUTRAL|RVOL_2PLUS|RSI_MID|MACD_DOWN|RANGE|MIXED",
-            "source": "asset",
-            "samples": 3,
-            "avg_4h": 0.16203864027208117,
-            "up_rate": 66.66666666666666,
-            "down_rate": 33.33333333333333
+            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|RANGE|BEARISH",
+            "source": "global",
+            "samples": 252,
+            "avg_4h": 2.684087958389836,
+            "up_rate": 55.55555555555556,
+            "down_rate": 40.87301587301587
           },
           "calibration": {
             "samples": 3,
@@ -9799,7 +9799,7 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 3; Short votes 3; Neutral weight 3",
+          "Long votes 3; Short votes 3; Neutral weight 4",
           "2 independent analyst groups support NEUTRAL",
           "Committee contains directional disagreement",
           "Risk Manager requests caution"
@@ -9807,7 +9807,7 @@
         "agreement": {
           "long_votes": 3,
           "short_votes": 3,
-          "neutral_weight": 3,
+          "neutral_weight": 4,
           "independent_support": 2,
           "conflicts": [
             "Committee contains directional disagreement",
@@ -9817,7 +9817,7 @@
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "VTHO",
       "name": "VeThor Token",
       "narrative": "Enterprise",
@@ -9878,43 +9878,43 @@
         },
         "microstructure": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "1m/5m timing not decisive"
+            "Possible local Long exhaustion: management signal, not automatic Short"
           ],
           "evidence": {
-            "role_signal": "NO ACTION",
-            "state": "NEUTRAL",
-            "reason": "1m/5m evidence not aligned enough",
+            "role_signal": "LONG EXIT / PROFIT PROTECT",
+            "state": "EXHAUSTION",
+            "reason": "1m rolled over while 5m remains broadly up; possible local peak",
             "one_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.000307999987853691,
-              "ema9": 0.000308059106993403,
-              "ema21": 0.00030854861014894587,
-              "rsi": 0.0,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.00030899999546818435,
+              "ema9": 0.0003089984480303824,
+              "ema21": 0.0003089368213819331,
+              "rsi": 99.90022533992577,
               "rsi_delta": 0.0,
-              "macd": 9.257075718374165e-08,
-              "macd_delta": 4.4389377972546666e-08,
+              "macd": -3.325101257426785e-08,
+              "macd_delta": 2.7865578420038924e-09,
               "rvol": 0.0,
-              "rvol_delta": 0.0,
+              "rvol_delta": -3.3891369047619047,
               "atr_pct": 0.0,
               "return_5bars": 0.0,
               "breakout": false,
               "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.000307999987853691,
-              "ema9": 0.00030924339338588177,
-              "ema21": 0.0003107337231790575,
-              "rsi": 0.0,
-              "rsi_delta": 0.0,
-              "macd": -3.743770174591661e-07,
-              "macd_delta": -7.752379098217388e-09,
-              "rvol": 0.0,
-              "rvol_delta": -1.1168850179316403,
-              "atr_pct": 0.09276441354098694,
-              "return_5bars": -0.6451661964833377,
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.00030899999546818435,
+              "ema9": 0.00030872693297637037,
+              "ema21": 0.00030845132983323755,
+              "rsi": 66.70217028467462,
+              "rsi_delta": 1.4210854715202004e-14,
+              "macd": 2.0140887543566242e-07,
+              "macd_delta": -4.460517934017323e-08,
+              "rvol": 0.4403161489051792,
+              "rvol_delta": -0.9948939474603249,
+              "atr_pct": 0.02311621888949496,
+              "return_5bars": 0.0,
               "breakout": false,
               "breakdown": false
             }
@@ -9928,17 +9928,17 @@
         },
         "market_memory": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "Only 0 historical pattern match(es); not enough evidence"
+            "12 prior matches are not directionally decisive"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_1_15_1_5|RSI_OVERSOLD|MACD_DOWN|RANGE|BEARISH",
-            "source": "global",
-            "samples": 0,
-            "avg_4h": 0.0,
-            "up_rate": 0.0,
-            "down_rate": 0.0
+            "pattern": "NEUTRAL|RVOL_WEAK|RSI_MID|MACD_UP|RANGE|MIXED",
+            "source": "asset",
+            "samples": 12,
+            "avg_4h": -0.12369361117597899,
+            "up_rate": 41.66666666666667,
+            "down_rate": 41.66666666666667
           },
           "calibration": {
             "samples": 3,
@@ -10042,20 +10042,20 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 4",
+          "Long votes 0; Short votes 2; Neutral weight 6",
           "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 2,
-          "neutral_weight": 4,
+          "neutral_weight": 6,
           "independent_support": 1,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-18T03:11:27.404354+00:00",
+      "recorded_at": "2026-08-18T06:04:21.348678+00:00",
       "symbol": "XTZ",
       "name": "Tezos",
       "narrative": "Layer 1",
@@ -10125,36 +10125,36 @@
             "state": "NEUTRAL",
             "reason": "1m/5m evidence not aligned enough",
             "one_minute": {
-              "time": "2026-08-18T03:11:00+00:00",
-              "price": 0.19769999384880066,
-              "ema9": 0.1979120271133809,
-              "ema21": 0.19808745009836162,
-              "rsi": 25.454621367404954,
-              "rsi_delta": -2.85002303717161,
-              "macd": -4.293678825453406e-05,
-              "macd_delta": -6.044697449881172e-06,
+              "time": "2026-08-18T06:03:00+00:00",
+              "price": 0.20200000703334808,
+              "ema9": 0.20173397699167966,
+              "ema21": 0.20146650084954787,
+              "rsi": 79.15888636745623,
+              "rsi_delta": 7.093983138569541,
+              "macd": 1.2235885155906126e-05,
+              "macd_delta": -2.267931949580574e-05,
               "rvol": 0.0,
-              "rvol_delta": 0.0,
-              "atr_pct": 0.036130390882052506,
-              "return_5bars": -0.10106285413788996,
-              "breakout": false,
-              "breakdown": true
+              "rvol_delta": -1.8334713457639702,
+              "atr_pct": 0.045968605319965175,
+              "return_5bars": 0.09910970363156135,
+              "breakout": true,
+              "breakdown": false
             },
             "five_minute": {
-              "time": "2026-08-18T03:10:00+00:00",
-              "price": 0.19769999384880066,
-              "ema9": 0.19825327337930637,
-              "ema21": 0.1987637512831623,
-              "rsi": 28.194589670078116,
-              "rsi_delta": -4.941488619175246,
-              "macd": -0.00013866496740230788,
-              "macd_delta": 6.609293149729349e-06,
-              "rvol": 0.0,
-              "rvol_delta": -0.08343630010495968,
-              "atr_pct": 0.17703622344373202,
-              "return_5bars": -0.4531723867819304,
-              "breakout": false,
-              "breakdown": true
+              "time": "2026-08-18T06:00:00+00:00",
+              "price": 0.20200000703334808,
+              "ema9": 0.2012976540548937,
+              "ema21": 0.20071726715305943,
+              "rsi": 71.68716439706516,
+              "rsi_delta": 5.917219091984279,
+              "macd": 8.981055767151992e-05,
+              "macd_delta": 7.807457231822658e-05,
+              "rvol": 0.5224194765479169,
+              "rvol_delta": -0.45641698536136666,
+              "atr_pct": 0.15558645409461921,
+              "return_5bars": 0.8487338662191091,
+              "breakout": true,
+              "breakdown": false
             }
           },
           "calibration": {
@@ -10171,12 +10171,12 @@
             "Only 3 historical pattern match(es); not enough evidence"
           ],
           "evidence": {
-            "pattern": "EARLY_SELL|RVOL_WEAK|RSI_BEAR|MACD_DOWN|BREAKDOWN|BEARISH",
+            "pattern": "EARLY_BUY|RVOL_WEAK|RSI_BULL|MACD_UP|BREAKOUT|BULLISH",
             "source": "asset",
             "samples": 3,
-            "avg_4h": 0.437332520680848,
-            "up_rate": 100.0,
-            "down_rate": 0.0
+            "avg_4h": 0.3379584048394335,
+            "up_rate": 66.66666666666666,
+            "down_rate": 33.33333333333333
           },
           "calibration": {
             "samples": 3,
@@ -10307,9 +10307,9 @@
   "health": {
     "assets_checked": 44,
     "qualified_core": 0,
-    "qualified_swing": 2,
+    "qualified_swing": 1,
     "qualified_scalp": 1,
-    "no_trade": 15,
-    "watch": 26
+    "no_trade": 9,
+    "watch": 33
   }
 }
