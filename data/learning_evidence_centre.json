@@ -1,44 +1,44 @@
 {
-  "updated_at": "2026-08-13T22:27:00.899262+00:00",
+  "updated_at": "2026-08-22T19:12:07.563176+00:00",
   "summary": {
-    "lessons": 13,
-    "accepted_or_eligible": 0,
+    "lessons": 14,
+    "accepted_or_eligible": 1,
     "waiting": 13,
     "brains": 16
   },
   "lessons": [
     {
       "lesson_id": "MGMT_0",
-      "title": "Actual Recorded Exit",
+      "title": "Protect 50% of MFE after +2%",
       "brain": "Management Challenger",
       "claim": "Test whether this exit/profit-protection approach improves completed replay expectancy.",
-      "status": "LEARNING",
-      "samples": 0,
+      "status": "REVIEW ELIGIBLE",
+      "samples": 305,
       "minimum_samples": 30,
-      "sample_gate_met": false,
+      "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
       "supporting_evidence": [],
       "counter_evidence": [],
       "metrics": {
-        "win_rate_pct": 0.0,
-        "expectancy_pct": 0.0
+        "win_rate_pct": 50.81967213114754,
+        "expectancy_pct": -0.5124599751202369
       }
     },
     {
       "lesson_id": "MGMT_1",
-      "title": "Protect 50% of MFE after +2%",
+      "title": "Actual Recorded Exit",
       "brain": "Management Challenger",
       "claim": "Test whether this exit/profit-protection approach improves completed replay expectancy.",
-      "status": "LEARNING",
-      "samples": 0,
+      "status": "REVIEW ELIGIBLE",
+      "samples": 305,
       "minimum_samples": 30,
-      "sample_gate_met": false,
+      "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
       "supporting_evidence": [],
       "counter_evidence": [],
       "metrics": {
-        "win_rate_pct": 0.0,
-        "expectancy_pct": 0.0
+        "win_rate_pct": 21.639344262295083,
+        "expectancy_pct": -0.6881171407886161
       }
     },
     {
@@ -46,16 +46,16 @@
       "title": "1% trailing protection after +2%",
       "brain": "Management Challenger",
       "claim": "Test whether this exit/profit-protection approach improves completed replay expectancy.",
-      "status": "LEARNING",
-      "samples": 0,
+      "status": "REVIEW ELIGIBLE",
+      "samples": 305,
       "minimum_samples": 30,
-      "sample_gate_met": false,
+      "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
       "supporting_evidence": [],
       "counter_evidence": [],
       "metrics": {
-        "win_rate_pct": 0.0,
-        "expectancy_pct": 0.0
+        "win_rate_pct": 52.459016393442624,
+        "expectancy_pct": -0.7105503225622579
       }
     },
     {
@@ -63,16 +63,16 @@
       "title": "Take +4% target",
       "brain": "Management Challenger",
       "claim": "Test whether this exit/profit-protection approach improves completed replay expectancy.",
-      "status": "LEARNING",
-      "samples": 0,
+      "status": "REVIEW ELIGIBLE",
+      "samples": 305,
       "minimum_samples": 30,
-      "sample_gate_met": false,
+      "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
       "supporting_evidence": [],
       "counter_evidence": [],
       "metrics": {
-        "win_rate_pct": 0.0,
-        "expectancy_pct": 0.0
+        "win_rate_pct": 50.81967213114754,
+        "expectancy_pct": -1.188689879128174
       }
     },
     {
@@ -81,7 +81,7 @@
       "brain": "Time Intelligence",
       "claim": "Compare how long profitable and losing trades are typically held before changing live duration rules.",
       "status": "BUILDING",
-      "samples": 169,
+      "samples": 305,
       "minimum_samples": 30,
       "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
@@ -1090,9 +1090,469 @@
         }
       ],
       "metrics": {
-        "avg_winner_holding_hours": 19.744278364722224,
-        "avg_loser_holding_hours": 8.820323110951536,
-        "avg_winner_time_to_mfe_hours": 14.833981837748016
+        "avg_winner_holding_hours": 20.6324238730303,
+        "avg_loser_holding_hours": 8.944454332925384,
+        "avg_winner_time_to_mfe_hours": 15.633651635997474
+      }
+    },
+    {
+      "lesson_id": "CAPTURE",
+      "title": "Profit capture quality",
+      "brain": "Profit Capture",
+      "claim": "Study what differentiates trades that bank most of their favourable excursion from trades that give it back.",
+      "status": "BUILDING",
+      "samples": 305,
+      "minimum_samples": 30,
+      "sample_gate_met": true,
+      "promotion_state": "TESTING / WAITING",
+      "supporting_evidence": [
+        {
+          "trade_key": "OBSERVER_TLM_2026-08-09T06:30:00+00:00",
+          "symbol": "TLM",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": 2.6031617770984283,
+          "mfe_pct": 3.5206056318574985,
+          "mae_pct": -0.30000000000000004,
+          "capture_efficiency_pct": 73.9407377396309,
+          "giveback_pct": 0.9174438547590702,
+          "best_after_exit_pct": 3.5278424828711907,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "OBSERVER_GALA_2026-08-16T17:30:00+00:00",
+          "symbol": "GALA",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": 14.931100933651065,
+          "mfe_pct": 17.816997913440847,
+          "mae_pct": -0.43187558230638445,
+          "capture_efficiency_pct": 83.8025631825847,
+          "giveback_pct": 2.8858969797897824,
+          "best_after_exit_pct": -0.0,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "OBSERVER_MEW_2026-08-19T11:45:00+00:00",
+          "symbol": "MEW",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": 7.603230194189015,
+          "mfe_pct": 9.686590250632198,
+          "mae_pct": -0.30000000000000004,
+          "capture_efficiency_pct": 78.49232802732405,
+          "giveback_pct": 2.0833600564431833,
+          "best_after_exit_pct": 18.60212198519049,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "SWING_GALA_2026-08-11T071707.201918+0000",
+          "symbol": "GALA",
+          "wallet": "Swing",
+          "direction": "SHORT",
+          "return_pct": 4.781382868210927,
+          "mfe_pct": 6.01028707864012,
+          "mae_pct": -0.7386331156353008,
+          "capture_efficiency_pct": 79.55331926162762,
+          "giveback_pct": 1.2289042104291932,
+          "best_after_exit_pct": 2.02989030041143,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "SWING_VRA_2026-08-13T181251.474733+0000",
+          "symbol": "VRA",
+          "wallet": "Swing",
+          "direction": "LONG",
+          "return_pct": 12.011731268519586,
+          "mfe_pct": 12.011731268519586,
+          "mae_pct": -0.3,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 0.1343417606109787,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "SCALP_SC_2026-08-18T030000+0000",
+          "symbol": "SC",
+          "wallet": "Scalp",
+          "direction": "SHORT",
+          "return_pct": 1.4586561052026938,
+          "mfe_pct": 1.4586561052026938,
+          "mae_pct": -0.36757590178199107,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 0.46703065412917466,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "SCALP_VRA_2026-08-18T203000+0000",
+          "symbol": "VRA",
+          "wallet": "Scalp",
+          "direction": "LONG",
+          "return_pct": 0.3655210039008263,
+          "mfe_pct": 0.3655210039008263,
+          "mae_pct": -0.30000000000000004,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 43.86999718410991,
+          "grade": "NEUTRAL"
+        },
+        {
+          "trade_key": "SCALP_ONDO_2026-08-18T213000+0000",
+          "symbol": "ONDO",
+          "wallet": "Scalp",
+          "direction": "SHORT",
+          "return_pct": 0.025102663219234378,
+          "mfe_pct": 0.025102663219234378,
+          "mae_pct": -0.6605772496104942,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 0.4781407954518313,
+          "grade": "NEUTRAL"
+        },
+        {
+          "trade_key": "SCALP_UFO_2026-08-19T204500+0000",
+          "symbol": "UFO",
+          "wallet": "Scalp",
+          "direction": "LONG",
+          "return_pct": 3.2428092277743685,
+          "mfe_pct": 3.2428092277743685,
+          "mae_pct": -0.30000000000000004,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 4.950266960192828,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "SCALP_WIN_2026-08-19T194500+0000",
+          "symbol": "WIN",
+          "wallet": "Scalp",
+          "direction": "LONG",
+          "return_pct": 2.2696111029917647,
+          "mfe_pct": 2.2696111029917647,
+          "mae_pct": -0.30000000000000004,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 13.527083033618826,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "SCALP_SAND_2026-08-20T204500+0000",
+          "symbol": "SAND",
+          "wallet": "Scalp",
+          "direction": "LONG",
+          "return_pct": 2.420006537343234,
+          "mfe_pct": 2.420006537343234,
+          "mae_pct": -0.30000000000000004,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 15.7303351974295,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "SCALP_SUPER_2026-08-20T204500+0000",
+          "symbol": "SUPER",
+          "wallet": "Scalp",
+          "direction": "LONG",
+          "return_pct": 3.87929736846967,
+          "mfe_pct": 3.87929736846967,
+          "mae_pct": -0.30000000000000004,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 8.365876341037492,
+          "grade": "EXCELLENT"
+        },
+        {
+          "trade_key": "SCALP_RUNE_2026-08-20T234500+0000",
+          "symbol": "RUNE",
+          "wallet": "Scalp",
+          "direction": "LONG",
+          "return_pct": 0.551894205851611,
+          "mfe_pct": 0.551894205851611,
+          "mae_pct": -0.30000000000000004,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 9.041152027156162,
+          "grade": "NEUTRAL"
+        },
+        {
+          "trade_key": "SCALP_POL_2026-08-22T044500+0000",
+          "symbol": "POL",
+          "wallet": "Scalp",
+          "direction": "LONG",
+          "return_pct": 6.645080482854427,
+          "mfe_pct": 6.645080482854427,
+          "mae_pct": -0.30000000000000004,
+          "capture_efficiency_pct": 100.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 0.0,
+          "grade": "EXCELLENT"
+        }
+      ],
+      "counter_evidence": [
+        {
+          "trade_key": "OBSERVER_TLM_2026-08-05T15:45:00+00:00",
+          "symbol": "TLM",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -6.062549575380782,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 6.062549575380782,
+          "best_after_exit_pct": 2.0100868839098007,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_IMX_2026-08-05T15:45:00+00:00",
+          "symbol": "IMX",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -0.2596094897545307,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.2596094897545307,
+          "best_after_exit_pct": 1.0840157648098536,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_AR_2026-08-05T20:30:00+00:00",
+          "symbol": "AR",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -1.58056142641102,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 1.58056142641102,
+          "best_after_exit_pct": 0.40445050111623804,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_ONDO_2026-08-05T15:45:00+00:00",
+          "symbol": "ONDO",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": 1.0298505008035865,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0,
+          "best_after_exit_pct": 7.484353341855876,
+          "grade": "NEUTRAL"
+        },
+        {
+          "trade_key": "OBSERVER_DOGE_2026-08-05T15:45:00+00:00",
+          "symbol": "DOGE",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": -0.694181753594669,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.694181753594669,
+          "best_after_exit_pct": 1.4569338662788422,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_VET_2026-08-05T20:30:00+00:00",
+          "symbol": "VET",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -0.7780297552351765,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.7780297552351765,
+          "best_after_exit_pct": 0.8602115864739579,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_SUPER_2026-08-05T23:30:00+00:00",
+          "symbol": "SUPER",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -0.2440423249783994,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.2440423249783994,
+          "best_after_exit_pct": 0.5175879189987631,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_SC_2026-08-05T20:30:00+00:00",
+          "symbol": "SC",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": -0.37658961075496244,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.37658961075496244,
+          "best_after_exit_pct": 0.5321077953413633,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_ENJ_2026-08-06T00:00:00+00:00",
+          "symbol": "ENJ",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -1.418140758638453,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 1.418140758638453,
+          "best_after_exit_pct": 2.6084486088827186,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_XTZ_2026-08-06T00:15:00+00:00",
+          "symbol": "XTZ",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": -0.5024654204285215,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.5024654204285215,
+          "best_after_exit_pct": -0.0,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_RUNE_2026-08-05T20:30:00+00:00",
+          "symbol": "RUNE",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -1.3828276296799167,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 1.3828276296799167,
+          "best_after_exit_pct": 2.7297329034162487,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_SAND_2026-08-06T01:45:00+00:00",
+          "symbol": "SAND",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": -0.8333576403301788,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.8333576403301788,
+          "best_after_exit_pct": 1.6826939221799342,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_SKL_2026-08-06T01:45:00+00:00",
+          "symbol": "SKL",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": -0.377824620389988,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.377824620389988,
+          "best_after_exit_pct": 2.611111635698682,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_AR_2026-08-05T23:30:00+00:00",
+          "symbol": "AR",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": -0.3975826623250909,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.3975826623250909,
+          "best_after_exit_pct": 2.5459713269579076,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_UOS_2026-08-06T00:00:00+00:00",
+          "symbol": "UOS",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": -0.049415409499708796,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.049415409499708796,
+          "best_after_exit_pct": 0.15715984831150553,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_PYR_2026-08-06T01:45:00+00:00",
+          "symbol": "PYR",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -4.695626395855423,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 4.695626395855423,
+          "best_after_exit_pct": 37.87878582628632,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_AVAX_2026-08-06T04:30:00+00:00",
+          "symbol": "AVAX",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -0.5598586614798726,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.5598586614798726,
+          "best_after_exit_pct": 0.31564570618631826,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_VTHO_2026-08-05T23:30:00+00:00",
+          "symbol": "VTHO",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "return_pct": -0.9563845757542764,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.9563845757542764,
+          "best_after_exit_pct": -0.0,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_NEAR_2026-08-06T04:30:00+00:00",
+          "symbol": "NEAR",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -0.5465885873908725,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 0.5465885873908725,
+          "best_after_exit_pct": 0.0,
+          "grade": "LOSS REVIEW"
+        },
+        {
+          "trade_key": "OBSERVER_COTI_2026-08-06T04:45:00+00:00",
+          "symbol": "COTI",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "return_pct": -2.461598213224492,
+          "mfe_pct": 0.0,
+          "mae_pct": 0.0,
+          "capture_efficiency_pct": 0.0,
+          "giveback_pct": 2.461598213224492,
+          "best_after_exit_pct": 10.071945675617933,
+          "grade": "LOSS REVIEW"
+        }
+      ],
+      "metrics": {
+        "avg_winner_capture_pct": 50.35280661577898
       }
     },
     {
@@ -1100,16 +1560,461 @@
       "title": "Learning-data integrity",
       "brain": "Trade Integrity",
       "claim": "Only validated trade records are permitted to teach downstream learning engines.",
-      "status": "BUILDING",
-      "samples": 0,
+      "status": "MATURE",
+      "samples": 322,
       "minimum_samples": 30,
-      "sample_gate_met": false,
-      "promotion_state": "TESTING / WAITING",
-      "supporting_evidence": [],
-      "counter_evidence": [],
+      "sample_gate_met": true,
+      "promotion_state": "ELIGIBLE / ACCEPTED",
+      "supporting_evidence": [
+        {
+          "trade_key": "OBSERVER_TLM_2026-08-05T15:45:00+00:00",
+          "symbol": "TLM",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.001777627043717075,
+          "exit_price": 0.0016751904040575027,
+          "reported_return_pct": -6.062549575380782,
+          "recomputed_gross_return_pct": -5.762549575380782,
+          "reported_pnl": -606.2549575380782
+        },
+        {
+          "trade_key": "OBSERVER_IMX_2026-08-05T15:45:00+00:00",
+          "symbol": "IMX",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.11065530211105942,
+          "exit_price": 0.11069999635219574,
+          "reported_return_pct": -0.2596094897545307,
+          "recomputed_gross_return_pct": 0.04039051024546936,
+          "reported_pnl": -25.96094897545307
+        },
+        {
+          "trade_key": "OBSERVER_AR_2026-08-05T20:30:00+00:00",
+          "symbol": "AR",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 1.8438313871026037,
+          "exit_price": 1.8202199935913086,
+          "reported_return_pct": -1.58056142641102,
+          "recomputed_gross_return_pct": -1.2805614264110199,
+          "reported_pnl": -158.05614264110199
+        },
+        {
+          "trade_key": "OBSERVER_ONDO_2026-08-05T15:45:00+00:00",
+          "symbol": "ONDO",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.3790203902721405,
+          "exit_price": 0.37397998571395874,
+          "reported_return_pct": 1.0298505008035865,
+          "recomputed_gross_return_pct": 1.3298505008035866,
+          "reported_pnl": 102.98505008035865
+        },
+        {
+          "trade_key": "OBSERVER_DOGE_2026-08-05T15:45:00+00:00",
+          "symbol": "DOGE",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.06973511587455869,
+          "exit_price": 0.0700099989771843,
+          "reported_return_pct": -0.694181753594669,
+          "recomputed_gross_return_pct": -0.394181753594669,
+          "reported_pnl": -69.4181753594669
+        },
+        {
+          "trade_key": "OBSERVER_VET_2026-08-05T20:30:00+00:00",
+          "symbol": "VET",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.004672335169510915,
+          "exit_price": 0.004650000017136335,
+          "reported_return_pct": -0.7780297552351765,
+          "recomputed_gross_return_pct": -0.47802975523517643,
+          "reported_pnl": -77.80297552351765
+        },
+        {
+          "trade_key": "OBSERVER_SUPER_2026-08-05T23:30:00+00:00",
+          "symbol": "SUPER",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.0849624565578997,
+          "exit_price": 0.08500999957323074,
+          "reported_return_pct": -0.2440423249783994,
+          "recomputed_gross_return_pct": 0.05595767502160065,
+          "reported_pnl": -24.40423249783994
+        },
+        {
+          "trade_key": "OBSERVER_SC_2026-08-05T20:30:00+00:00",
+          "symbol": "SC",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.0004995877055625897,
+          "exit_price": 0.0004999703378416598,
+          "reported_return_pct": -0.37658961075496244,
+          "recomputed_gross_return_pct": -0.0765896107549624,
+          "reported_pnl": -37.658961075496244
+        },
+        {
+          "trade_key": "OBSERVER_ENJ_2026-08-06T00:00:00+00:00",
+          "symbol": "ENJ",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.02520231681782752,
+          "exit_price": 0.024920519441366196,
+          "reported_return_pct": -1.418140758638453,
+          "recomputed_gross_return_pct": -1.1181407586384529,
+          "reported_pnl": -141.8140758638453
+        },
+        {
+          "trade_key": "OBSERVER_XTZ_2026-08-06T00:15:00+00:00",
+          "symbol": "XTZ",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.19680154521018267,
+          "exit_price": 0.1972000002861023,
+          "reported_return_pct": -0.5024654204285215,
+          "recomputed_gross_return_pct": -0.20246542042852145,
+          "reported_pnl": -49.9016481035504
+        },
+        {
+          "trade_key": "OBSERVER_RUNE_2026-08-05T20:30:00+00:00",
+          "symbol": "RUNE",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.4474650760442018,
+          "exit_price": 0.44261980056762695,
+          "reported_return_pct": -1.3828276296799167,
+          "recomputed_gross_return_pct": -1.0828276296799166,
+          "reported_pnl": -138.2827629679917
+        },
+        {
+          "trade_key": "OBSERVER_SAND_2026-08-06T01:45:00+00:00",
+          "symbol": "SAND",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.0413793004527688,
+          "exit_price": 0.041600000113248825,
+          "reported_return_pct": -0.8333576403301788,
+          "recomputed_gross_return_pct": -0.5333576403301787,
+          "reported_pnl": -83.33576403301788
+        },
+        {
+          "trade_key": "OBSERVER_SKL_2026-08-06T01:45:00+00:00",
+          "symbol": "SKL",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.003597200430580415,
+          "exit_price": 0.003599999938160181,
+          "reported_return_pct": -0.377824620389988,
+          "recomputed_gross_return_pct": -0.07782462038998794,
+          "reported_pnl": -36.656487927237826
+        },
+        {
+          "trade_key": "OBSERVER_AR_2026-08-05T23:30:00+00:00",
+          "symbol": "AR",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 1.819309883594513,
+          "exit_price": 1.8210852146148682,
+          "reported_return_pct": -0.3975826623250909,
+          "recomputed_gross_return_pct": -0.09758266232509083,
+          "reported_pnl": -36.61628157986907
+        },
+        {
+          "trade_key": "OBSERVER_UOS_2026-08-06T00:00:00+00:00",
+          "symbol": "UOS",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.0027584825271042067,
+          "exit_price": 0.0027515701949596405,
+          "reported_return_pct": -0.049415409499708796,
+          "recomputed_gross_return_pct": 0.25058459050029125,
+          "reported_pnl": -4.94154094997088
+        },
+        {
+          "trade_key": "OBSERVER_PYR_2026-08-06T01:45:00+00:00",
+          "symbol": "PYR",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.06903449827060103,
+          "exit_price": 0.06599999964237213,
+          "reported_return_pct": -4.695626395855423,
+          "recomputed_gross_return_pct": -4.395626395855423,
+          "reported_pnl": -469.5626395855423
+        },
+        {
+          "trade_key": "OBSERVER_AVAX_2026-08-06T04:30:00+00:00",
+          "symbol": "AVAX",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 6.670333316802978,
+          "exit_price": 6.6529998779296875,
+          "reported_return_pct": -0.5598586614798726,
+          "recomputed_gross_return_pct": -0.2598586614798726,
+          "reported_pnl": -52.8714282137669
+        },
+        {
+          "trade_key": "OBSERVER_VTHO_2026-08-05T23:30:00+00:00",
+          "symbol": "VTHO",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.0003298350098484662,
+          "exit_price": 0.0003319999959785491,
+          "reported_return_pct": -0.9563845757542764,
+          "recomputed_gross_return_pct": -0.6563845757542763,
+          "reported_pnl": -95.63845757542764
+        },
+        {
+          "trade_key": "OBSERVER_NEAR_2026-08-06T04:30:00+00:00",
+          "symbol": "NEAR",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 1.7292641919851302,
+          "exit_price": 1.725000023841858,
+          "reported_return_pct": -0.5465885873908725,
+          "recomputed_gross_return_pct": -0.24658858739087242,
+          "reported_pnl": -54.65885873908724
+        },
+        {
+          "trade_key": "OBSERVER_COTI_2026-08-06T04:45:00+00:00",
+          "symbol": "COTI",
+          "status": "VALIDATED",
+          "reasons": [],
+          "entry_price": 0.014207100092433393,
+          "exit_price": 0.013899999670684338,
+          "reported_return_pct": -2.461598213224492,
+          "recomputed_gross_return_pct": -2.1615982132244915,
+          "reported_pnl": -246.15982132244918
+        }
+      ],
+      "counter_evidence": [
+        {
+          "trade_key": "OBSERVER_DENT_2026-08-07T06:15:00+00:00",
+          "symbol": "DENT",
+          "status": "QUARANTINED",
+          "reasons": [
+            "RISK_CONTROL_BREACH_GT_10PCT_LOSS"
+          ],
+          "entry_price": 3.77488889171218e-05,
+          "exit_price": 2.7148200388182886e-05,
+          "reported_return_pct": -28.38212064787621,
+          "recomputed_gross_return_pct": -28.08212064787621,
+          "reported_pnl": -2838.212064787621
+        },
+        {
+          "trade_key": "OBSERVER_OM_2026-08-07T06:00:00+00:00",
+          "symbol": "OM",
+          "status": "QUARANTINED",
+          "reasons": [
+            "REPLAY_PRICE_DISCONTINUITY_GT_60PCT"
+          ],
+          "entry_price": 0.06499480864405632,
+          "exit_price": 0.06241084635257721,
+          "reported_return_pct": -4.275644125102618,
+          "recomputed_gross_return_pct": -3.9756441251026176,
+          "reported_pnl": -427.5644125102618
+        },
+        {
+          "trade_key": "OBSERVER_BEAM_2026-08-08T21:45:00+00:00",
+          "symbol": "BEAM",
+          "status": "QUARANTINED",
+          "reasons": [
+            "REPLAY_PRICE_DISCONTINUITY_GT_60PCT",
+            "EXTREME_RETURN_GT_100PCT",
+            "RISK_CONTROL_BREACH_GT_10PCT_LOSS"
+          ],
+          "entry_price": 0.008898274400737137,
+          "exit_price": 0.0652,
+          "reported_return_pct": -633.0263361826512,
+          "recomputed_gross_return_pct": -632.7263361826513,
+          "reported_pnl": -15825.65840456628
+        },
+        {
+          "trade_key": "OBSERVER_BTT_2026-08-10T09:45:00+00:00",
+          "symbol": "BTT",
+          "status": "QUARANTINED",
+          "reasons": [
+            "REPLAY_PRICE_DISCONTINUITY_GT_60PCT"
+          ],
+          "entry_price": 2.648011190586885e-07,
+          "exit_price": 2.6309746203878603e-07,
+          "reported_return_pct": -0.9433722885910043,
+          "recomputed_gross_return_pct": -0.6433722885910043,
+          "reported_pnl": -23.58430721477511
+        },
+        {
+          "trade_key": "OBSERVER_BTT_2026-08-10T14:30:00+00:00",
+          "symbol": "BTT",
+          "status": "QUARANTINED",
+          "reasons": [
+            "REPLAY_PRICE_DISCONTINUITY_GT_60PCT"
+          ],
+          "entry_price": 2.6296591330776664e-07,
+          "exit_price": 2.626824766593927e-07,
+          "reported_return_pct": -0.19221544161041026,
+          "recomputed_gross_return_pct": 0.10778455838958978,
+          "reported_pnl": -4.805386040260257
+        },
+        {
+          "trade_key": "OBSERVER_OM_2026-08-19T21:45:00+00:00",
+          "symbol": "OM",
+          "status": "QUARANTINED",
+          "reasons": [
+            "REPLAY_PRICE_DISCONTINUITY_GT_60PCT"
+          ],
+          "entry_price": 0.059174804832786324,
+          "exit_price": 0.0593724325299263,
+          "reported_return_pct": -0.6339727062867893,
+          "recomputed_gross_return_pct": -0.3339727062867892,
+          "reported_pnl": -15.849317657169731
+        },
+        {
+          "trade_key": "SWING_COTI_2026-08-12T054913.980264+0000",
+          "symbol": "COTI",
+          "status": "QUARANTINED",
+          "reasons": [
+            "RISK_CONTROL_BREACH_GT_10PCT_LOSS"
+          ],
+          "entry_price": 0.009800000116229057,
+          "exit_price": 0.013199999928474426,
+          "reported_return_pct": -34.99387522368372,
+          "recomputed_gross_return_pct": -34.693875223683726,
+          "reported_pnl": -1749.693761184186
+        },
+        {
+          "trade_key": "SWING_SHIB_2026-08-10T230922.671122+0000",
+          "symbol": "SHIB",
+          "status": "QUARANTINED",
+          "reasons": [
+            "RISK_CONTROL_BREACH_GT_10PCT_LOSS"
+          ],
+          "entry_price": 4.5199999476608355e-06,
+          "exit_price": 5.549999968934571e-06,
+          "reported_return_pct": -23.087611353995165,
+          "recomputed_gross_return_pct": -22.787611353995164,
+          "reported_pnl": -1154.3805676997583
+        },
+        {
+          "trade_key": "SWING_GRT_2026-08-10T230922.671122+0000",
+          "symbol": "GRT",
+          "status": "QUARANTINED",
+          "reasons": [
+            "RISK_CONTROL_BREACH_GT_10PCT_LOSS"
+          ],
+          "entry_price": 0.014066389912569815,
+          "exit_price": 0.016594847100545485,
+          "reported_return_pct": -18.275167784281475,
+          "recomputed_gross_return_pct": -17.975167784281474,
+          "reported_pnl": -913.7583892140736
+        },
+        {
+          "trade_key": "SWING_POL_2026-08-12T143403.575654+0000",
+          "symbol": "POL",
+          "status": "QUARANTINED",
+          "reasons": [
+            "RISK_CONTROL_BREACH_GT_10PCT_LOSS"
+          ],
+          "entry_price": 0.07400000095367432,
+          "exit_price": 0.10983999818563461,
+          "reported_return_pct": -48.732428067665765,
+          "recomputed_gross_return_pct": -48.43242806766577,
+          "reported_pnl": -2436.621403383288
+        },
+        {
+          "trade_key": "SWING_BTC_2026-08-13T181251.474733+0000",
+          "symbol": "BTC",
+          "status": "QUARANTINED",
+          "reasons": [
+            "RISK_CONTROL_BREACH_GT_10PCT_LOSS"
+          ],
+          "entry_price": 63133.76953125,
+          "exit_price": 77230.3125,
+          "reported_return_pct": -22.628055291823625,
+          "recomputed_gross_return_pct": -22.328055291823624,
+          "reported_pnl": -1131.4027645911813
+        },
+        {
+          "trade_key": "SWING_XTZ_2026-08-13T200632.095379+0000",
+          "symbol": "XTZ",
+          "status": "QUARANTINED",
+          "reasons": [
+            "RISK_CONTROL_BREACH_GT_10PCT_LOSS"
+          ],
+          "entry_price": 0.1941000074148178,
+          "exit_price": 0.23639999330043793,
+          "reported_return_pct": -22.09288215853561,
+          "recomputed_gross_return_pct": -21.79288215853561,
+          "reported_pnl": -1104.6441079267804
+        },
+        {
+          "trade_key": "SWING_DENT_2026-08-22T191140.690513+0000",
+          "symbol": "DENT",
+          "status": "QUARANTINED",
+          "reasons": [
+            "RISK_CONTROL_BREACH_GT_10PCT_LOSS"
+          ],
+          "entry_price": 3.799519254243933e-05,
+          "exit_price": 3.082060720771551e-05,
+          "reported_return_pct": -18.88287663422168,
+          "recomputed_gross_return_pct": -18.88287663422168,
+          "reported_pnl": -944.1438317110841
+        },
+        {
+          "trade_key": "SCALP_OM_2026-03-02T024500+0000",
+          "symbol": "OM",
+          "status": "QUARANTINED",
+          "reasons": [
+            "REPLAY_PRICE_DISCONTINUITY_GT_60PCT"
+          ],
+          "entry_price": 0.06686655000000001,
+          "exit_price": 0.007564973086118698,
+          "reported_return_pct": 88.38646118856335,
+          "recomputed_gross_return_pct": 88.68646118856334,
+          "reported_pnl": 55.241538242852094
+        },
+        {
+          "trade_key": "SCALP_PYR_2026-08-17T134500+0000",
+          "symbol": "PYR",
+          "status": "QUARANTINED",
+          "reasons": [
+            "REPLAY_PRICE_DISCONTINUITY_GT_60PCT"
+          ],
+          "entry_price": 0.04502250178903341,
+          "exit_price": 0.04399999976158142,
+          "reported_return_pct": -2.5710910918349867,
+          "recomputed_gross_return_pct": -2.271091091834987,
+          "reported_pnl": -1.6069319323968667
+        },
+        {
+          "trade_key": "SCALP_OM_2026-03-02T024500+0000",
+          "symbol": "OM",
+          "status": "QUARANTINED",
+          "reasons": [
+            "REPLAY_PRICE_DISCONTINUITY_GT_60PCT"
+          ],
+          "entry_price": 0.06686655000000001,
+          "exit_price": 0.06596902757883072,
+          "reported_return_pct": 1.0422592030982505,
+          "recomputed_gross_return_pct": 1.3422592030982505,
+          "reported_pnl": 0.6514120019364066
+        },
+        {
+          "trade_key": "SCALP_OM_2026-03-02T024500+0000",
+          "symbol": "OM",
+          "status": "QUARANTINED",
+          "reasons": [
+            "REPLAY_PRICE_DISCONTINUITY_GT_60PCT"
+          ],
+          "entry_price": 0.06686655000000001,
+          "exit_price": 0.0661795437335968,
+          "reported_return_pct": 0.7274289108727852,
+          "recomputed_gross_return_pct": 1.0274289108727852,
+          "reported_pnl": 0.45464306929549075
+        }
+      ],
       "metrics": {
-        "validation_rate_pct": 100,
-        "quarantined": 0
+        "validation_rate_pct": 94.72049689440993,
+        "quarantined": 17
       }
     },
     {
@@ -1118,7 +2023,7 @@
       "brain": "Trade Reflection",
       "claim": "Treat weak participation as a caution flag when context matches.",
       "status": "ELIGIBLE FOR FORMAL REVIEW",
-      "samples": 159,
+      "samples": 296,
       "minimum_samples": 30,
       "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
@@ -2129,8 +3034,8 @@
       ],
       "counter_evidence": [],
       "metrics": {
-        "loss_rate_pct": 84.27672955974843,
-        "reverse_superior_rate_pct": 16.352201257861633
+        "loss_rate_pct": 78.71621621621621,
+        "reverse_superior_rate_pct": 16.89189189189189
       }
     },
     {
@@ -2139,7 +3044,7 @@
       "brain": "Trade Reflection",
       "claim": "Treat opposite direction outperformed as a caution flag when context matches.",
       "status": "ELIGIBLE FOR FORMAL REVIEW",
-      "samples": 30,
+      "samples": 53,
       "minimum_samples": 30,
       "sample_gate_met": true,
       "promotion_state": "TESTING / WAITING",
@@ -2502,108 +3407,6 @@
           }
         },
         {
-          "trade_key": "OBSERVER_DENT_2026-08-07T06:15:00+00:00",
-          "symbol": "DENT",
-          "wallet": "15M Observer",
-          "direction": "LONG",
-          "entry_time": "2026-08-07T06:16:54.763775+00:00",
-          "exit_time": "2026-08-07T06:59:12.848684+00:00",
-          "realised_return_pct": -28.38212064787621,
-          "realised_pnl": -2838.212064787621,
-          "exit_reason": "HARD RISK STOP",
-          "process_grade": {
-            "overall": "GOOD PROCESS / WRONG DIRECTION",
-            "risk_management": "EXCELLENT",
-            "market_reading": "WEAK",
-            "trade_management": "EXCELLENT",
-            "entry_quality": "WEAK EVIDENCE"
-          },
-          "first_failure_warning": null,
-          "missed_clues": [
-            "WEAK_PARTICIPATION",
-            "OPPOSITE_DIRECTION_OUTPERFORMED"
-          ],
-          "reverse_trade": {
-            "trade_key": "OBSERVER_DENT_2026-08-07T06:15:00+00:00",
-            "symbol": "DENT",
-            "wallet": "15M Observer",
-            "original_direction": "LONG",
-            "opposite_direction": "SHORT",
-            "actual_return_pct": -28.38212064787621,
-            "reverse_same_exit_gross_pct": 28.08212064787621,
-            "reverse_mfe_pct": 28.57760385221543,
-            "reverse_mae_pct": -0.4034895045306186,
-            "difference_pct": 56.464241295752416,
-            "status": "REVERSE CLEARLY SUPERIOR",
-            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
-          },
-          "stop_loss_value": {
-            "worst_observed_same_direction_pct": -28.57760385221543,
-            "loss_avoided_pct": 0.19548320433921873,
-            "estimated_capital_saved_usd": 19.548320433921873,
-            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
-          },
-          "lesson_value": "HIGH",
-          "reflection_questions": {
-            "was_execution_correct": true,
-            "what_was_first_failure_clue": null,
-            "would_opposite_trade_have_been_better": true,
-            "has_repeat_pattern_been_proven": false,
-            "is_lesson_ready_for_promotion": false
-          }
-        },
-        {
-          "trade_key": "OBSERVER_OM_2026-08-07T06:00:00+00:00",
-          "symbol": "OM",
-          "wallet": "15M Observer",
-          "direction": "LONG",
-          "entry_time": "2026-08-07T06:16:54.763775+00:00",
-          "exit_time": "2026-08-07T09:43:34.320359+00:00",
-          "realised_return_pct": -4.275644125102618,
-          "realised_pnl": -427.5644125102618,
-          "exit_reason": "Observer reversal",
-          "process_grade": {
-            "overall": "POOR PROCESS REVIEW",
-            "risk_management": "REVIEW",
-            "market_reading": "WEAK",
-            "trade_management": "NORMAL",
-            "entry_quality": "WEAK EVIDENCE"
-          },
-          "first_failure_warning": null,
-          "missed_clues": [
-            "WEAK_PARTICIPATION",
-            "OPPOSITE_DIRECTION_OUTPERFORMED"
-          ],
-          "reverse_trade": {
-            "trade_key": "OBSERVER_OM_2026-08-07T06:00:00+00:00",
-            "symbol": "OM",
-            "wallet": "15M Observer",
-            "original_direction": "LONG",
-            "opposite_direction": "SHORT",
-            "actual_return_pct": -4.275644125102618,
-            "reverse_same_exit_gross_pct": 3.9756441251026176,
-            "reverse_mfe_pct": 87.90410097014917,
-            "reverse_mae_pct": 0.0,
-            "difference_pct": 8.251288250205235,
-            "status": "REVERSE CLEARLY SUPERIOR",
-            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
-          },
-          "stop_loss_value": {
-            "worst_observed_same_direction_pct": -87.90410097014917,
-            "loss_avoided_pct": 83.62845684504656,
-            "estimated_capital_saved_usd": 8362.845684504655,
-            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
-          },
-          "lesson_value": "HIGH",
-          "reflection_questions": {
-            "was_execution_correct": false,
-            "what_was_first_failure_clue": null,
-            "would_opposite_trade_have_been_better": true,
-            "has_repeat_pattern_been_proven": false,
-            "is_lesson_ready_for_promotion": false
-          }
-        },
-        {
           "trade_key": "OBSERVER_UOS_2026-08-08T06:15:00+00:00",
           "symbol": "UOS",
           "wallet": "15M Observer",
@@ -2859,57 +3662,6 @@
           }
         },
         {
-          "trade_key": "OBSERVER_BEAM_2026-08-08T21:45:00+00:00",
-          "symbol": "BEAM",
-          "wallet": "15M Observer",
-          "direction": "SHORT",
-          "entry_time": "2026-08-08T21:50:25.868749+00:00",
-          "exit_time": "2026-08-10T05:13:47.069952+00:00",
-          "realised_return_pct": -633.0263361826512,
-          "realised_pnl": -15825.65840456628,
-          "exit_reason": "HARD RISK STOP",
-          "process_grade": {
-            "overall": "GOOD PROCESS / WRONG DIRECTION",
-            "risk_management": "EXCELLENT",
-            "market_reading": "WEAK",
-            "trade_management": "EXCELLENT",
-            "entry_quality": "WEAK EVIDENCE"
-          },
-          "first_failure_warning": null,
-          "missed_clues": [
-            "WEAK_PARTICIPATION",
-            "OPPOSITE_DIRECTION_OUTPERFORMED"
-          ],
-          "reverse_trade": {
-            "trade_key": "OBSERVER_BEAM_2026-08-08T21:45:00+00:00",
-            "symbol": "BEAM",
-            "wallet": "15M Observer",
-            "original_direction": "SHORT",
-            "opposite_direction": "LONG",
-            "actual_return_pct": -633.0263361826512,
-            "reverse_same_exit_gross_pct": 632.7263361826513,
-            "reverse_mfe_pct": 632.7263361826513,
-            "reverse_mae_pct": -8.458911161605432,
-            "difference_pct": 1265.7526723653025,
-            "status": "REVERSE CLEARLY SUPERIOR",
-            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
-          },
-          "stop_loss_value": {
-            "worst_observed_same_direction_pct": -632.7263361826513,
-            "loss_avoided_pct": 0,
-            "estimated_capital_saved_usd": 0.0,
-            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
-          },
-          "lesson_value": "HIGH",
-          "reflection_questions": {
-            "was_execution_correct": true,
-            "what_was_first_failure_clue": null,
-            "would_opposite_trade_have_been_better": true,
-            "has_repeat_pattern_been_proven": false,
-            "is_lesson_ready_for_promotion": false
-          }
-        },
-        {
           "trade_key": "OBSERVER_PYR_2026-08-10T05:00:00+00:00",
           "symbol": "PYR",
           "wallet": "15M Observer",
@@ -3143,21 +3895,174 @@
             "opposite_direction": "SHORT",
             "actual_return_pct": -5.812559725781118,
             "reverse_same_exit_gross_pct": 5.512559725781118,
-            "reverse_mfe_pct": 6.026190239092277,
+            "reverse_mfe_pct": 6.732179872882938,
             "reverse_mae_pct": -1.9271114014169477,
             "difference_pct": 11.325119451562237,
             "status": "REVERSE CLEARLY SUPERIOR",
             "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
           },
           "stop_loss_value": {
-            "worst_observed_same_direction_pct": -6.026190239092277,
-            "loss_avoided_pct": 0.21363051331115912,
-            "estimated_capital_saved_usd": 5.340762832778978,
+            "worst_observed_same_direction_pct": -6.732179872882938,
+            "loss_avoided_pct": 0.9196201471018197,
+            "estimated_capital_saved_usd": 22.990503677545494,
             "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
           },
           "lesson_value": "HIGH",
           "reflection_questions": {
             "was_execution_correct": false,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_VRA_2026-08-12T23:15:00+00:00",
+          "symbol": "VRA",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-12T23:23:50.295943+00:00",
+          "exit_time": "2026-08-13T04:21:35.406924+00:00",
+          "realised_return_pct": -3.1461364173678836,
+          "realised_pnl": -78.6534104341971,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_VRA_2026-08-12T23:15:00+00:00",
+            "symbol": "VRA",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -3.1461364173678836,
+            "reverse_same_exit_gross_pct": 2.846136417367884,
+            "reverse_mfe_pct": 7.785869875431095,
+            "reverse_mae_pct": -13.94915487621673,
+            "difference_pct": 5.992272834735767,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -7.785869875431095,
+            "loss_avoided_pct": 4.639733458063211,
+            "estimated_capital_saved_usd": 115.99333645158028,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_BEAM_2026-08-13T05:45:00+00:00",
+          "symbol": "BEAM",
+          "wallet": "15M Observer",
+          "direction": "SHORT",
+          "entry_time": "2026-08-13T05:53:17.548394+00:00",
+          "exit_time": "2026-08-13T12:05:45.382255+00:00",
+          "realised_return_pct": -2.5388102781262463,
+          "realised_pnl": -63.47025695315616,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "WEAK EVIDENCE"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_BEAM_2026-08-13T05:45:00+00:00",
+            "symbol": "BEAM",
+            "wallet": "15M Observer",
+            "original_direction": "SHORT",
+            "opposite_direction": "LONG",
+            "actual_return_pct": -2.5388102781262463,
+            "reverse_same_exit_gross_pct": 2.2388102781262464,
+            "reverse_mfe_pct": 6.363794765806818,
+            "reverse_mae_pct": -3.2561450283743354,
+            "difference_pct": 4.777620556252493,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -6.363794765806818,
+            "loss_avoided_pct": 3.824984487680572,
+            "estimated_capital_saved_usd": 95.6246121920143,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
+            "what_was_first_failure_clue": null,
+            "would_opposite_trade_have_been_better": true,
+            "has_repeat_pattern_been_proven": false,
+            "is_lesson_ready_for_promotion": false
+          }
+        },
+        {
+          "trade_key": "OBSERVER_VRA_2026-08-13T20:00:00+00:00",
+          "symbol": "VRA",
+          "wallet": "15M Observer",
+          "direction": "LONG",
+          "entry_time": "2026-08-13T20:06:58.898768+00:00",
+          "exit_time": "2026-08-13T21:27:58.911064+00:00",
+          "realised_return_pct": -4.06567543759675,
+          "realised_pnl": -101.64188593991874,
+          "exit_reason": "HARD RISK STOP",
+          "process_grade": {
+            "overall": "GOOD PROCESS / WRONG DIRECTION",
+            "risk_management": "EXCELLENT",
+            "market_reading": "WEAK",
+            "trade_management": "EXCELLENT",
+            "entry_quality": "SUPPORTED"
+          },
+          "first_failure_warning": null,
+          "missed_clues": [
+            "WEAK_PARTICIPATION",
+            "OPPOSITE_DIRECTION_OUTPERFORMED"
+          ],
+          "reverse_trade": {
+            "trade_key": "OBSERVER_VRA_2026-08-13T20:00:00+00:00",
+            "symbol": "VRA",
+            "wallet": "15M Observer",
+            "original_direction": "LONG",
+            "opposite_direction": "SHORT",
+            "actual_return_pct": -4.06567543759675,
+            "reverse_same_exit_gross_pct": 3.7656754375967494,
+            "reverse_mfe_pct": 14.901619547511002,
+            "reverse_mae_pct": -0.08429961080558268,
+            "difference_pct": 7.831350875193499,
+            "status": "REVERSE CLEARLY SUPERIOR",
+            "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
+          },
+          "stop_loss_value": {
+            "worst_observed_same_direction_pct": -14.901619547511002,
+            "loss_avoided_pct": 10.835944109914251,
+            "estimated_capital_saved_usd": 270.8986027478563,
+            "note": "Historical replay estimate only; it measures observed downside avoided after the actual exit."
+          },
+          "lesson_value": "HIGH",
+          "reflection_questions": {
+            "was_execution_correct": true,
             "what_was_first_failure_clue": null,
             "would_opposite_trade_have_been_better": true,
             "has_repeat_pattern_been_proven": false,
@@ -3286,7 +4191,7 @@
             "actual_return_pct": -0.5621572767416148,
             "reverse_same_exit_gross_pct": 0.2621572767416147,
             "reverse_mfe_pct": 1.7755695291719276,
-            "reverse_mae_pct": -1.1047029445159673,
+            "reverse_mae_pct": -1.6959597340522437,
             "difference_pct": 0.8243145534832295,
             "status": "NO CLEAR REVERSE EDGE",
             "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
@@ -3622,7 +4527,7 @@
             "actual_return_pct": 4.781382868210927,
             "reverse_same_exit_gross_pct": -5.081382868210927,
             "reverse_mfe_pct": 2.8760900113572907,
-            "reverse_mae_pct": -6.573701926491571,
+            "reverse_mae_pct": -7.00812667065378,
             "difference_pct": -9.862765736421853,
             "status": "NO CLEAR REVERSE EDGE",
             "guardrail": "Hindsight research only. Opposite-direction results are never fed back into the original live decision."
@@ -3662,50 +4567,61 @@
       "name": "Trade Integrity",
       "source_file": "trade_integrity.json",
       "purpose": "Validates P/L, direction and replay before learning.",
-      "summary": {},
-      "updated_at": null
+      "summary": {
+        "reviewed": 322,
+        "validated": 305,
+        "quarantined": 17,
+        "validation_rate_pct": 94.72049689440993
+      },
+      "updated_at": "2026-08-22T19:12:04.078473+00:00"
     },
     {
       "name": "Winner School",
       "source_file": "winner_school.json",
       "purpose": "Studies repeatable profitable trade fingerprints.",
-      "summary": {},
-      "updated_at": null
+      "summary": {
+        "validated_winners": 66,
+        "fingerprints": 13
+      },
+      "updated_at": "2026-08-22T19:12:04.292440+00:00"
     },
     {
       "name": "Failure School",
       "source_file": "failure_school.json",
       "purpose": "Studies losses, givebacks and poor management.",
-      "summary": {},
-      "updated_at": null
+      "summary": {
+        "validated_failures": 242,
+        "failure_modes": 16
+      },
+      "updated_at": "2026-08-22T19:12:04.348724+00:00"
     },
     {
       "name": "Profit Capture",
       "source_file": "profit_capture.json",
       "purpose": "Measures MFE capture and profit giveback.",
       "summary": {
-        "validated_trades": 0,
-        "avg_winner_capture_pct": 0,
-        "excellent_capture": 0,
-        "low_or_poor_capture": 0,
-        "winners_given_back": 0
+        "validated_trades": 305,
+        "avg_winner_capture_pct": 50.35280661577898,
+        "excellent_capture": 11,
+        "low_or_poor_capture": 24,
+        "winners_given_back": 6
       },
-      "updated_at": "2026-08-13T22:26:59.305362+00:00"
+      "updated_at": "2026-08-22T19:12:04.889623+00:00"
     },
     {
       "name": "Time Intelligence",
       "source_file": "time_intelligence.json",
       "purpose": "Measures how trade outcomes change through time.",
       "summary": {
-        "trades_timed": 169,
-        "avg_winner_holding_hours": 19.744278364722224,
-        "avg_loser_holding_hours": 8.820323110951536,
-        "avg_winner_time_to_mfe_hours": 14.833981837748016,
-        "avg_peak_to_exit_hours": 5.9533579457692305,
-        "overheld_reviews": 109,
-        "reentry_delays_measured": 161
+        "trades_timed": 305,
+        "avg_winner_holding_hours": 20.6324238730303,
+        "avg_loser_holding_hours": 8.944454332925384,
+        "avg_winner_time_to_mfe_hours": 15.633651635997474,
+        "avg_peak_to_exit_hours": 5.848982548956284,
+        "overheld_reviews": 196,
+        "reentry_delays_measured": 301
       },
-      "updated_at": "2026-08-13T22:26:59.385425+00:00"
+      "updated_at": "2026-08-22T19:12:05.015814+00:00"
     },
     {
       "name": "Move Phase",
@@ -3714,14 +4630,12 @@
       "summary": {
         "assets": 45,
         "phase_counts": {
-          "BASE / OBSERVING": 32,
-          "IGNITION": 1,
-          "RESET / REVERSAL": 10,
-          "EXHAUSTION": 1,
-          "OBSERVING": 1
+          "BASE / OBSERVING": 31,
+          "RESET / REVERSAL": 12,
+          "EXHAUSTION": 2
         }
       },
-      "updated_at": "2026-08-13T22:26:55.116101+00:00"
+      "updated_at": "2026-08-22T19:11:57.997924+00:00"
     },
     {
       "name": "Pattern Miner",
@@ -3731,7 +4645,7 @@
         "patterns": 0,
         "candidate_patterns": 0
       },
-      "updated_at": "2026-08-13T22:27:00.249829+00:00"
+      "updated_at": "2026-08-22T19:12:06.403566+00:00"
     },
     {
       "name": "Management Challenger",
@@ -3741,7 +4655,7 @@
         "policies": 4,
         "samples_required": 30
       },
-      "updated_at": "2026-08-13T22:27:00.313660+00:00"
+      "updated_at": "2026-08-22T19:12:06.523726+00:00"
     },
     {
       "name": "Committee Memory",
@@ -3752,19 +4666,19 @@
         "advisories": 0,
         "mature_patterns": 0
       },
-      "updated_at": "2026-08-13T22:27:00.568961+00:00"
+      "updated_at": "2026-08-22T19:12:06.779088+00:00"
     },
     {
       "name": "Trade Reflection",
       "source_file": "trade_reflections.json",
       "purpose": "Grades process, finds first failure clues and studies whether the opposite direction was superior.",
       "summary": {
-        "reflections": 169,
-        "good_process_wrong_direction": 16,
-        "high_value_lessons": 136,
-        "stop_losses_praised": 21
+        "reflections": 305,
+        "good_process_wrong_direction": 33,
+        "high_value_lessons": 223,
+        "stop_losses_praised": 49
       },
-      "updated_at": "2026-08-13T22:26:58.511017+00:00"
+      "updated_at": "2026-08-22T19:12:04.774842+00:00"
     },
     {
       "name": "Missed Clue Miner",
@@ -3774,32 +4688,33 @@
         "clues": 7,
         "mature": 2
       },
-      "updated_at": "2026-08-13T22:26:58.557083+00:00"
+      "updated_at": "2026-08-22T19:12:05.831547+00:00"
     },
     {
       "name": "Experience Store",
       "source_file": "learning_experience_store.json",
       "purpose": "Separates validated experience into train, validation and locked holdout datasets.",
       "summary": {
-        "experiences": 1055,
-        "allowed": 1055,
-        "quarantined": 0,
-        "train": 625,
-        "validation": 228,
-        "holdout": 202
+        "experiences": 1191,
+        "allowed": 254,
+        "quarantined": 937,
+        "observer_continuity_gate": false,
+        "train": 163,
+        "validation": 54,
+        "holdout": 37
       },
-      "updated_at": "2026-08-13T22:26:59.471064+00:00"
+      "updated_at": "2026-08-22T19:12:05.140324+00:00"
     },
     {
       "name": "Reward Engine",
       "source_file": "learning_rewards.json",
       "purpose": "Scores process dimensions separately instead of treating profit/loss as the only reward.",
       "summary": {
-        "rewarded_trades": 169,
-        "positive_process": 49,
-        "negative_process": 2
+        "rewarded_trades": 254,
+        "positive_process": 94,
+        "negative_process": 1
       },
-      "updated_at": "2026-08-13T22:26:59.784467+00:00"
+      "updated_at": "2026-08-22T19:12:05.613280+00:00"
     },
     {
       "name": "Adversarial Learning",
@@ -3809,18 +4724,18 @@
         "lessons_challenged": 7,
         "surviving": 1
       },
-      "updated_at": "2026-08-13T22:26:59.998270+00:00"
+      "updated_at": "2026-08-22T19:12:05.966747+00:00"
     },
     {
       "name": "Learning Curriculum",
       "source_file": "learning_curriculum.json",
       "purpose": "Locks advanced learning until foundational competencies pass measurable gates.",
       "summary": {
-        "current_level": 0,
-        "current_name": "TRUST THE DATA",
-        "average_process_reward": 0.08869892045721996
+        "current_level": 2,
+        "current_name": "PROTECT CAPITAL",
+        "average_process_reward": 0.14922913702904053
       },
-      "updated_at": "2026-08-13T22:27:00.042990+00:00"
+      "updated_at": "2026-08-22T19:12:06.017647+00:00"
     },
     {
       "name": "Learning Governor",
@@ -3831,7 +4746,7 @@
         "holdout_review_eligible": 1,
         "live_promoted": 0
       },
-      "updated_at": "2026-08-13T22:27:00.076063+00:00"
+      "updated_at": "2026-08-22T19:12:06.048976+00:00"
     }
   ],
   "rules": {

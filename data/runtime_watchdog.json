@@ -1,6 +1,47 @@
 {
-  "updated_at": null,
-  "overall": "WAITING",
-  "checks": [],
-  "alerts": []
+  "updated_at": "2026-08-22T19:12:07.772257+00:00",
+  "overall": "FAIL",
+  "checks": [
+    {
+      "component": "5M",
+      "source": "microstructure_latest.json",
+      "last_output": "2026-08-22T19:02:19.859407+00:00",
+      "age_minutes": 9.798408766666666,
+      "limit_minutes": 10,
+      "status": "PASS"
+    },
+    {
+      "component": "15M",
+      "source": "observer_latest.json",
+      "last_output": "2026-08-22T17:46:14.842047+00:00",
+      "age_minutes": 85.88204356666667,
+      "limit_minutes": 30,
+      "status": "STALE"
+    },
+    {
+      "component": "Portfolio",
+      "source": "portfolio_manager.json",
+      "last_output": "2026-08-22T19:12:01.556438+00:00",
+      "age_minutes": 0.10347223333333333,
+      "limit_minutes": 35,
+      "status": "PASS"
+    },
+    {
+      "component": "Trade Desk",
+      "source": "active_trade_casefiles.json",
+      "last_output": "2026-08-22T19:12:01.715826+00:00",
+      "age_minutes": 0.10081683333333333,
+      "limit_minutes": 35,
+      "status": "PASS"
+    }
+  ],
+  "reconciliation": {
+    "wallet_open_positions": 0,
+    "casefile_positions": 0,
+    "status": "PASS"
+  },
+  "alerts": [
+    "15M stale"
+  ],
+  "rule": "Observation and stop protection have priority. Learning is quarantined when critical observation continuity is not proven."
 }
