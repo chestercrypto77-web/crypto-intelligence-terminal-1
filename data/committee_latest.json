@@ -1,36 +1,37 @@
 {
-  "generated_at": "2026-08-24T17:17:00.483484+00:00",
+  "generated_at": "2026-08-24T17:46:49.071398+00:00",
   "objective": "Allocate capital only when independent evidence aligns and expected value justifies risk.",
   "market_regime": {
     "state": "MIXED",
-    "btc_4h": 0.0896980477143261,
-    "btc_24h": 1.3363821007604582,
+    "btc_4h": -0.4539136055418558,
+    "btc_24h": 1.789509055445615,
     "eth_4h": 0.0,
-    "bullish_breadth": 18.181818181818183,
-    "bearish_breadth": 25.0,
+    "bullish_breadth": 40.909090909090914,
+    "bearish_breadth": 38.63636363636363,
     "risk_on_points": 1,
     "risk_off_points": 0
   },
   "assets": [
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "BTC",
       "name": "Bitcoin",
       "narrative": "Bitcoin",
-      "price": 77002.46875,
-      "signal": "HOLD",
+      "price": 78712.09375,
+      "signal": "STRONG BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is STRONG BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": 0.0896980477143261,
-            "r12": -0.4213569135328221,
-            "r24": 1.3363821007604582
+            "spread": 11.0,
+            "r4": -0.4539136055418558,
+            "r12": 1.851599496481393,
+            "r24": 1.789509055445615
           },
           "calibration": {
             "samples": 9,
@@ -40,14 +41,15 @@
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
+          "direction": "SHORT",
+          "strength": 3,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Relative volume is high and accelerating",
+            "Participation agrees with 4H price direction"
           ],
           "evidence": {
-            "rvol": 5.885391418746188e-05,
-            "rvol_delta": -0.291304437001062
+            "rvol": 3.1367258903456157,
+            "rvol_delta": 2.92478957842881
           },
           "calibration": {
             "samples": 6,
@@ -63,7 +65,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.2301503522252668
+            "acceleration": -1.0711134377023201
           },
           "calibration": {
             "samples": 6,
@@ -145,13 +147,15 @@
         },
         "external_attention": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "External attention score 0/100 from 0 recent event(s)",
-            "No meaningful external attention acceleration"
+            "External attention score 42/100 from 0 recent event(s)",
+            "Attention is elevated but direction is not sufficiently confirmed"
           ],
           "evidence": {
-            "attention_score": 0.0
+            "attention_score": 42.0,
+            "positive": 0,
+            "negative": 0
           },
           "calibration": {
             "samples": 0,
@@ -164,13 +168,13 @@
           "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "45 recent matched research item(s)",
+            "48 recent matched research item(s)",
             "0 active reviewed external call(s)",
             "Matched developments lean negative"
           ],
           "evidence": {
             "positive_mentions": 0,
-            "negative_mentions": 8
+            "negative_mentions": 9
           },
           "calibration": {
             "samples": 2,
@@ -180,7 +184,7 @@
           }
         },
         "macro_regime": {
-          "direction": "LONG",
+          "direction": "SHORT",
           "strength": 2,
           "reasons": [
             "Broad market regime is MIXED",
@@ -195,14 +199,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -229,51 +233,50 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "SHORT",
+        "direction": "SHORT",
+        "quality": "QUALIFIED",
         "book_permissions": {
           "CORE": false,
-          "SWING": false,
-          "SCALP": false
+          "SWING": true,
+          "SCALP": true
         },
         "reasons": [
-          "Long votes 2; Short votes 2; Neutral weight 6",
-          "1 independent analyst groups support NEUTRAL",
-          "Committee contains directional disagreement",
-          "Risk Manager requests caution"
+          "Long votes 2; Short votes 7; Neutral weight 4",
+          "3 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
           "long_votes": 2,
-          "short_votes": 2,
-          "neutral_weight": 6,
-          "independent_support": 1,
+          "short_votes": 7,
+          "neutral_weight": 4,
+          "independent_support": 3,
           "conflicts": [
-            "Committee contains directional disagreement",
-            "Risk Manager requests caution"
+            "Committee contains directional disagreement"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "SOL",
       "name": "Solana",
       "narrative": "Layer 1",
-      "price": 93.95999908447266,
-      "signal": "HOLD",
+      "price": 95.12000274658203,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": 0.3203025951670435,
-            "r12": -1.1467689976733753,
-            "r24": 1.655305392454065
+            "spread": 5.0,
+            "r4": -1.3584958565259209,
+            "r12": 1.0839577991507143,
+            "r24": 0.07364512633007969
           },
           "calibration": {
             "samples": 9,
@@ -284,13 +287,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": 0.0
+            "rvol": 1.1332311480701902,
+            "rvol_delta": 0.8897836816200864
           },
           "calibration": {
             "samples": 6,
@@ -306,7 +309,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.7025589277248352
+            "acceleration": -1.7198151229094922
           },
           "calibration": {
             "samples": 6,
@@ -388,13 +391,15 @@
         },
         "external_attention": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "External attention score 0/100 from 0 recent event(s)",
-            "No meaningful external attention acceleration"
+            "External attention score 25/100 from 0 recent event(s)",
+            "Attention is elevated but direction is not sufficiently confirmed"
           ],
           "evidence": {
-            "attention_score": 0.0
+            "attention_score": 25.0,
+            "positive": 0,
+            "negative": 0
           },
           "calibration": {
             "samples": 0,
@@ -438,14 +443,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -472,49 +477,47 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 2; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 2,
           "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "neutral_weight": 6,
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "AVAX",
       "name": "Avalanche",
       "narrative": "Layer 1",
-      "price": 7.474999904632568,
-      "signal": "HOLD",
+      "price": 7.520999908447266,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": 0.3086387956675374,
-            "r12": -0.901502248777375,
-            "r24": 1.3834227270945743
+            "spread": 5.0,
+            "r4": -0.25199009949453677,
+            "r12": 0.8041809818474022,
+            "r24": -0.2916652811859932
           },
           "calibration": {
             "samples": 9,
@@ -525,13 +528,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.00591306426689105,
-            "rvol_delta": -0.016942463000049916
+            "rvol": 0.9634351233920542,
+            "rvol_delta": 0.8891104426707359
           },
           "calibration": {
             "samples": 6,
@@ -547,7 +550,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.6091395452599957
+            "acceleration": -0.5200504267770041
           },
           "calibration": {
             "samples": 6,
@@ -629,13 +632,15 @@
         },
         "external_attention": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "External attention score 0/100 from 0 recent event(s)",
-            "No meaningful external attention acceleration"
+            "External attention score 25/100 from 0 recent event(s)",
+            "Attention is elevated but direction is not sufficiently confirmed"
           ],
           "evidence": {
-            "attention_score": 0.0
+            "attention_score": 25.0,
+            "positive": 0,
+            "negative": 0
           },
           "calibration": {
             "samples": 0,
@@ -679,14 +684,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -713,49 +718,47 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 2; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 2,
           "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "neutral_weight": 6,
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "COTI",
       "name": "COTI",
       "narrative": "Privacy / Payments",
-      "price": 0.012013999745249748,
-      "signal": "SELL WATCH",
+      "price": 0.01261099986732006,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": -3.0,
-            "r4": -0.133001845458669,
-            "r12": -0.5216547729028909,
-            "r24": -1.184406697035123
+            "spread": 9.0,
+            "r4": -6.84739470114748,
+            "r12": 1.513318557218457,
+            "r24": 4.421626857131411
           },
           "calibration": {
             "samples": 9,
@@ -771,8 +774,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": 0.0
+            "rvol": 0.5526101328515906,
+            "rvol_delta": 0.5526101328515906
           },
           "calibration": {
             "samples": 6,
@@ -783,12 +786,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.04088307884229461
+            "acceleration": -7.351834220220299
           },
           "calibration": {
             "samples": 6,
@@ -920,14 +923,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -954,49 +957,47 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 2; Short votes 0; Neutral weight 7",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 2,
           "short_votes": 0,
           "neutral_weight": 7,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "POL",
       "name": "Polygon Ecosystem Token",
       "narrative": "Layer 2 / Tokenisation",
-      "price": 0.10644999891519547,
-      "signal": "HOLD",
+      "price": 0.11593999713659286,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": -1.0,
-            "r4": -0.26234448754064443,
-            "r12": -2.096941280820075,
-            "r24": 1.9245453961776793
+            "spread": 10.0,
+            "r4": -1.209957494997549,
+            "r12": 5.630462610725218,
+            "r24": 6.631098762229248
           },
           "calibration": {
             "samples": 9,
@@ -1012,8 +1013,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": 0.0
+            "rvol": 0.5728782786872724,
+            "rvol_delta": 0.009688447725632376
           },
           "calibration": {
             "samples": 6,
@@ -1024,12 +1025,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.4366359393993805
+            "acceleration": -3.0867783652392884
           },
           "calibration": {
             "samples": 6,
@@ -1075,13 +1076,15 @@
         },
         "external_attention": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "External attention score 0/100 from 0 recent event(s)",
-            "No meaningful external attention acceleration"
+            "External attention score 25/100 from 0 recent event(s)",
+            "Attention is elevated but direction is not sufficiently confirmed"
           ],
           "evidence": {
-            "attention_score": 0.0
+            "attention_score": 25.0,
+            "positive": 0,
+            "negative": 0
           },
           "calibration": {
             "samples": 0,
@@ -1125,14 +1128,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -1159,49 +1162,46 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 6",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 2; Short votes 0; Neutral weight 7",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 2,
           "short_votes": 0,
-          "neutral_weight": 6,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "neutral_weight": 7,
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "ZIL",
       "name": "Zilliqa",
       "narrative": "Layer 1",
-      "price": 0.002736402442678809,
-      "signal": "HOLD",
+      "price": 0.002793306717649102,
+      "signal": "BUY WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Positive 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -1.0,
-            "r4": -0.012310486986533142,
-            "r12": -3.427446871886519,
-            "r24": 2.79913627012105
+            "spread": 3.0,
+            "r4": 0.6407636012317086,
+            "r12": 2.9236990196943147,
+            "r24": -1.4191928840682433
           },
           "calibration": {
             "samples": 9,
@@ -1212,13 +1212,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.012319084148948323,
-            "rvol_delta": -0.2217373183655594
+            "rvol": 0.916745145572908,
+            "rvol_delta": 0.8460510785741617
           },
           "calibration": {
             "samples": 6,
@@ -1234,7 +1234,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 1.1301718036423065
+            "acceleration": -0.3338027386663963
           },
           "calibration": {
             "samples": 6,
@@ -1366,14 +1366,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -1409,27 +1409,24 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 0; Neutral weight 6",
+          "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
-          "neutral_weight": 7,
+          "neutral_weight": 6,
           "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "ONDO",
       "name": "Ondo",
       "narrative": "RWA / Tokenisation",
-      "price": 0.3718000054359436,
+      "price": 0.3734700083732605,
       "signal": "HOLD",
       "reports": {
         "technical": {
@@ -1439,10 +1436,10 @@
             "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": -2.0,
-            "r4": 0.687860110037608,
-            "r12": -2.383951064348544,
-            "r24": 4.104833009697395
+            "spread": -1.0,
+            "r4": -0.8337543874365139,
+            "r12": 0.09648952265961519,
+            "r24": -1.9454919840140361
           },
           "calibration": {
             "samples": 9,
@@ -1458,8 +1455,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -1.0043512760728441
+            "rvol": 0.2588921134193804,
+            "rvol_delta": 0.24274746784735454
           },
           "calibration": {
             "samples": 6,
@@ -1475,7 +1472,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 1.482510464820456
+            "acceleration": -0.8659175616563856
           },
           "calibration": {
             "samples": 6,
@@ -1666,24 +1663,25 @@
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "DOT",
       "name": "Polkadot",
       "narrative": "Interoperability",
-      "price": 0.9067999720573425,
+      "price": 0.8992999792098999,
       "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -3.0,
-            "r4": 0.6660726493814995,
-            "r12": -1.4776239739666797,
-            "r24": 1.7504450116724746
+            "spread": -6.0,
+            "r4": -0.7066411102244929,
+            "r12": -0.08888051867762536,
+            "r24": -2.292486279081063
           },
           "calibration": {
             "samples": 9,
@@ -1699,8 +1697,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.003034598881959098,
-            "rvol_delta": -0.16895964509047906
+            "rvol": 0.6319954635340844,
+            "rvol_delta": 0.6273777994589727
           },
           "calibration": {
             "samples": 6,
@@ -1711,12 +1709,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 1.1586139740370593
+            "acceleration": -0.6770142706652845
           },
           "calibration": {
             "samples": 6,
@@ -1848,14 +1846,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -1891,40 +1889,38 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 1; Neutral weight 7",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 3; Neutral weight 5",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 1,
-          "neutral_weight": 7,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "short_votes": 3,
+          "neutral_weight": 5,
+          "independent_support": 2,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "SUI",
       "name": "Sui",
       "narrative": "Layer 1",
-      "price": 0.823199987411499,
-      "signal": "HOLD",
+      "price": 0.8041999936103821,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": 0.34129544054981586,
-            "r12": -1.128994731796995,
-            "r24": 4.018191993983189
+            "spread": -7.0,
+            "r4": -2.2605721278155966,
+            "r12": -1.4340034003648694,
+            "r24": -3.4110021612589803
           },
           "calibration": {
             "samples": 9,
@@ -1940,8 +1936,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.00027151879997556333,
-            "rvol_delta": -0.7540476668937244
+            "rvol": 0.5451976726974831,
+            "rvol_delta": 0.4711627120279653
           },
           "calibration": {
             "samples": 6,
@@ -1951,13 +1947,13 @@
           }
         },
         "momentum": {
-          "direction": "NEUTRAL",
+          "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": 0.7176270178154809
+            "acceleration": -1.78257099436064
           },
           "calibration": {
             "samples": 6,
@@ -2003,13 +1999,15 @@
         },
         "external_attention": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "External attention score 0/100 from 0 recent event(s)",
-            "No meaningful external attention acceleration"
+            "External attention score 25/100 from 0 recent event(s)",
+            "Attention is elevated but direction is not sufficiently confirmed"
           ],
           "evidence": {
-            "attention_score": 0.0
+            "attention_score": 25.0,
+            "positive": 0,
+            "negative": 0
           },
           "calibration": {
             "samples": 0,
@@ -2053,14 +2051,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -2087,51 +2085,47 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 4; Neutral weight 6",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "short_votes": 4,
+          "neutral_weight": 6,
+          "independent_support": 2,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "NEAR",
       "name": "NEAR Protocol",
       "narrative": "AI / Layer 1",
-      "price": 1.997499942779541,
-      "signal": "BUY",
+      "price": 1.9464999437332153,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "LONG",
-          "strength": 3,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Hourly signal is BUY",
-            "Bullish conditions materially exceed bearish conditions",
-            "Positive 4H and 12H structure"
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 8.0,
-            "r4": 1.093167073814727,
-            "r12": 1.7315976315266601,
-            "r24": 7.891321359047709
+            "spread": -7.0,
+            "r4": -2.259607122340457,
+            "r12": -3.057923995068479,
+            "r24": -0.8658048870283319
           },
           "calibration": {
             "samples": 9,
@@ -2147,8 +2141,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.00791180541461486,
-            "rvol_delta": 0.00791180541461486
+            "rvol": 0.3671427532266241,
+            "rvol_delta": -0.3154325458749075
           },
           "calibration": {
             "samples": 6,
@@ -2158,13 +2152,13 @@
           }
         },
         "momentum": {
-          "direction": "LONG",
+          "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "Positive momentum is accelerating"
+            "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": 0.5159678633058403
+            "acceleration": -1.240299123984297
           },
           "calibration": {
             "samples": 6,
@@ -2246,13 +2240,15 @@
         },
         "external_attention": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "External attention score 0/100 from 0 recent event(s)",
-            "No meaningful external attention acceleration"
+            "External attention score 25/100 from 0 recent event(s)",
+            "Attention is elevated but direction is not sufficiently confirmed"
           ],
           "evidence": {
-            "attention_score": 0.0
+            "attention_score": 25.0,
+            "positive": 0,
+            "negative": 0
           },
           "calibration": {
             "samples": 0,
@@ -2296,14 +2292,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -2331,7 +2327,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "LONG",
+        "direction": "SHORT",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -2339,40 +2335,38 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 5; Short votes 0; Neutral weight 5",
-          "2 independent analyst groups support LONG",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 4; Neutral weight 6",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
-          "long_votes": 5,
-          "short_votes": 0,
-          "neutral_weight": 5,
+          "long_votes": 0,
+          "short_votes": 4,
+          "neutral_weight": 6,
           "independent_support": 2,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "SUPER",
       "name": "SuperVerse",
       "narrative": "Gaming",
-      "price": 0.10543999820947647,
-      "signal": "BUY WATCH",
+      "price": 0.11869999766349792,
+      "signal": "STRONG BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is STRONG BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": 4.0,
-            "r4": 0.20908643714601105,
-            "r12": -3.3281422226788426,
-            "r24": 8.948125545436692
+            "spread": 11.0,
+            "r4": -7.229386697542761,
+            "r12": 6.001070813052101,
+            "r24": 8.829187093657499
           },
           "calibration": {
             "samples": 9,
@@ -2382,14 +2376,15 @@
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
+          "direction": "SHORT",
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Participation is above normal",
+            "Volume acceleration is not confirmed"
           ],
           "evidence": {
-            "rvol": 0.09259667434161074,
-            "rvol_delta": -3.3683226603033543
+            "rvol": 2.003212794538058,
+            "rvol_delta": -0.03774450939832086
           },
           "calibration": {
             "samples": 6,
@@ -2405,7 +2400,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 1.3184671780389585
+            "acceleration": -9.229743635226795
           },
           "calibration": {
             "samples": 6,
@@ -2501,14 +2496,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -2544,28 +2539,28 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 1; Short votes 0; Neutral weight 7",
-          "1 independent analyst groups support LONG",
-          "Risk Manager requests caution"
+          "Long votes 3; Short votes 1; Neutral weight 4",
+          "2 independent analyst groups support LONG",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 1,
-          "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 1,
+          "long_votes": 3,
+          "short_votes": 1,
+          "neutral_weight": 4,
+          "independent_support": 2,
           "conflicts": [
-            "Risk Manager requests caution"
+            "Committee contains directional disagreement"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "S",
       "name": "Sonic",
       "narrative": "Layer 1 / DeFi",
-      "price": 0.02740373187371738,
-      "signal": "HOLD",
+      "price": 0.02789539371280973,
+      "signal": "BUY WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
@@ -2574,10 +2569,10 @@
             "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": -0.7629152540180484,
-            "r12": -1.8707642227180021,
-            "r24": 3.867679029138027
+            "spread": 2.0,
+            "r4": -0.7916427454801589,
+            "r12": -0.29003750686380503,
+            "r24": -0.11018647537630599
           },
           "calibration": {
             "samples": 9,
@@ -2593,8 +2588,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.7296972566305328,
-            "rvol_delta": -0.07035452394438291
+            "rvol": 0.69261208030645,
+            "rvol_delta": -0.0659433123384332
           },
           "calibration": {
             "samples": 6,
@@ -2610,7 +2605,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -0.13932717977871434
+            "acceleration": -0.6949635765255572
           },
           "calibration": {
             "samples": 6,
@@ -2675,13 +2670,13 @@
           "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "42 recent matched research item(s)",
+            "44 recent matched research item(s)",
             "0 active reviewed external call(s)",
             "Matched developments lean negative"
           ],
           "evidence": {
             "positive_mentions": 1,
-            "negative_mentions": 7
+            "negative_mentions": 8
           },
           "calibration": {
             "samples": 2,
@@ -2762,24 +2757,24 @@
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "AIOZ",
       "name": "AIOZ Network",
       "narrative": "AI / DePIN",
-      "price": 0.05404999852180481,
-      "signal": "SELL WATCH",
+      "price": 0.054979998618364334,
+      "signal": "HOLD",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Technical structure is not decisive"
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -2.0,
-            "r4": 0.2782909363271857,
-            "r12": -2.6827523550522314,
-            "r24": 0.39004149090489104
+            "spread": 1.0,
+            "r4": -0.145297149077106,
+            "r12": -0.32632759051522964,
+            "r24": -1.008283304508284
           },
           "calibration": {
             "samples": 9,
@@ -2790,13 +2785,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.06865001614690373,
-            "rvol_delta": 0.06865001614690373
+            "rvol": 0.83432664675321,
+            "rvol_delta": -0.023621251847981695
           },
           "calibration": {
             "samples": 6,
@@ -2807,12 +2802,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 1.1725417213445963
+            "acceleration": -0.03652128557202945
           },
           "calibration": {
             "samples": 6,
@@ -2944,14 +2939,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -2987,27 +2982,24 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 0; Neutral weight 6",
+          "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
-          "neutral_weight": 8,
+          "neutral_weight": 6,
           "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "FIL",
       "name": "Filecoin",
       "narrative": "DePIN / Storage",
-      "price": 0.758400022983551,
+      "price": 0.7534000277519226,
       "signal": "HOLD",
       "reports": {
         "technical": {
@@ -3017,10 +3009,10 @@
             "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": 0.49026340324591633,
-            "r12": -1.4296825552993053,
-            "r24": 2.320568460424499
+            "spread": -2.0,
+            "r4": -0.4755615847843009,
+            "r12": 0.6008854978770684,
+            "r24": -2.079538966517125
           },
           "calibration": {
             "samples": 9,
@@ -3031,13 +3023,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -0.021654843988522965
+            "rvol": 0.7745933150956421,
+            "rvol_delta": 0.7655703380321452
           },
           "calibration": {
             "samples": 6,
@@ -3053,7 +3045,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.9668242550123514
+            "acceleration": -0.6758567507433236
           },
           "calibration": {
             "samples": 6,
@@ -3185,14 +3177,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -3228,40 +3220,38 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 1; Short votes 0; Neutral weight 7",
-          "1 independent analyst groups support LONG",
-          "Risk Manager requests caution"
+          "Long votes 1; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
           "long_votes": 1,
           "short_votes": 0,
-          "neutral_weight": 7,
+          "neutral_weight": 6,
           "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "OM",
       "name": "MANTRA",
       "narrative": "RWA / Tokenisation",
-      "price": 0.007314227055758238,
-      "signal": "HOLD",
+      "price": 0.007411967497318983,
+      "signal": "SELL",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is SELL",
+            "Bearish conditions materially exceed bullish conditions"
           ],
           "evidence": {
-            "spread": 2.0,
+            "spread": -5.0,
             "r4": 0.0,
-            "r12": 0.14511851313361301,
-            "r24": 10.192524941054671
+            "r12": -0.9466434445977612,
+            "r24": 1.483363556527606
           },
           "calibration": {
             "samples": 9,
@@ -3277,8 +3267,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -1.3323749716274496
+            "rvol": 0.2817933515422024,
+            "rvol_delta": -0.9398366058817809
           },
           "calibration": {
             "samples": 6,
@@ -3294,7 +3284,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -0.04837283771120434
+            "acceleration": 0.3155478148659204
           },
           "calibration": {
             "samples": 6,
@@ -3460,24 +3450,24 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
+          "Long votes 0; Short votes 2; Neutral weight 6",
+          "1 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
+          "short_votes": 2,
+          "neutral_weight": 6,
+          "independent_support": 1,
           "conflicts": [
             "Risk Manager requests caution"
           ]
@@ -3485,12 +3475,12 @@
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "USDT",
       "name": "Tether USD",
       "narrative": "Stablecoin",
-      "price": 0.9998999834060669,
-      "signal": "BUY WATCH",
+      "price": 0.9998599886894226,
+      "signal": "HOLD",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
@@ -3499,10 +3489,10 @@
             "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": 4.0,
-            "r4": 0.0,
-            "r12": 0.004000031714102015,
-            "r24": 0.006998775035516047
+            "spread": 2.0,
+            "r4": 0.01300328402975559,
+            "r12": -0.009000751473331459,
+            "r24": 0.0
           },
           "calibration": {
             "samples": 9,
@@ -3512,14 +3502,15 @@
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
+          "direction": "LONG",
+          "strength": 3,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Relative volume is high and accelerating",
+            "Participation agrees with 4H price direction"
           ],
           "evidence": {
-            "rvol": 0.009629584862013173,
-            "rvol_delta": -0.05135850404142918
+            "rvol": 2.3542300351048855,
+            "rvol_delta": 2.0714337932346245
           },
           "calibration": {
             "samples": 6,
@@ -3530,12 +3521,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": -0.0013333439047006717
+            "acceleration": 0.016003534520866076
           },
           "calibration": {
             "samples": 6,
@@ -3636,13 +3627,13 @@
           "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "29 recent matched research item(s)",
+            "32 recent matched research item(s)",
             "0 active reviewed external call(s)",
             "Matched developments lean negative"
           ],
           "evidence": {
             "positive_mentions": 0,
-            "negative_mentions": 2
+            "negative_mentions": 3
           },
           "calibration": {
             "samples": 2,
@@ -3667,14 +3658,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -3701,37 +3692,37 @@
         }
       },
       "decision": {
-        "action": "WATCH",
-        "direction": "SHORT",
-        "quality": "BUILDING",
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "NO EDGE",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 3; Neutral weight 5",
-          "2 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
+          "Long votes 3; Short votes 3; Neutral weight 4",
+          "2 independent analyst groups support NEUTRAL",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 3,
           "short_votes": 3,
-          "neutral_weight": 5,
+          "neutral_weight": 4,
           "independent_support": 2,
           "conflicts": [
-            "Risk Manager requests caution"
+            "Committee contains directional disagreement"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "SEI",
       "name": "Sei",
       "narrative": "Layer 1 / Trading",
-      "price": 0.046879999339580536,
-      "signal": "HOLD",
+      "price": 0.04665999859571457,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
@@ -3740,10 +3731,10 @@
             "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": 1.0,
-            "r4": 0.2995296043819762,
-            "r12": -2.0476409050571687,
-            "r24": 3.6480169892341374
+            "spread": -3.0,
+            "r4": -1.7477408220897384,
+            "r12": 0.30094612927349385,
+            "r24": -2.5073165059081193
           },
           "calibration": {
             "samples": 9,
@@ -3759,8 +3750,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0060063246610158275,
-            "rvol_delta": -0.06863050179374108
+            "rvol": 0.3262487494562057,
+            "rvol_delta": 0.24351090504200265
           },
           "calibration": {
             "samples": 6,
@@ -3776,7 +3767,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.9820765727343658
+            "acceleration": -1.8480561985142363
           },
           "calibration": {
             "samples": 6,
@@ -3967,24 +3958,25 @@
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "RUNE",
       "name": "THORChain",
       "narrative": "DeFi / Interoperability",
-      "price": 0.4689900577068329,
-      "signal": "HOLD",
+      "price": 0.4754120111465454,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": -1.0,
-            "r4": 0.0051665359463104465,
-            "r12": -0.7539115365139959,
-            "r24": 1.722397770790307
+            "spread": 7.0,
+            "r4": -1.4591382182454038,
+            "r12": 0.6852350732604373,
+            "r24": 0.6050805118515745
           },
           "calibration": {
             "samples": 9,
@@ -3995,13 +3987,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.003323898846685375,
-            "rvol_delta": -0.6638727796081096
+            "rvol": 0.8109686039244158,
+            "rvol_delta": 0.7498369423475738
           },
           "calibration": {
             "samples": 6,
@@ -4017,7 +4009,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.2564703814509757
+            "acceleration": -1.6875499093322162
           },
           "calibration": {
             "samples": 6,
@@ -4149,14 +4141,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -4183,49 +4175,48 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 2; Short votes 0; Neutral weight 5",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 2,
           "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "neutral_weight": 5,
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "SAND",
       "name": "The Sandbox",
       "narrative": "Gaming / Metaverse",
-      "price": 0.044599998742341995,
-      "signal": "HOLD",
+      "price": 0.042100001126527786,
+      "signal": "STRONG SELL",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 3,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is STRONG SELL",
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -1.0,
-            "r4": 0.2247145297536779,
-            "r12": -2.8322433544755055,
-            "r24": 0.6771955308963129
+            "spread": -11.0,
+            "r4": -0.7075415956350195,
+            "r12": -0.9411748618815774,
+            "r24": -8.278861444112485
           },
           "calibration": {
             "samples": 9,
@@ -4241,8 +4232,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0027562208744232905,
-            "rvol_delta": 0.0027562208744232905
+            "rvol": 0.23431892109414046,
+            "rvol_delta": -2.159311577979989
           },
           "calibration": {
             "samples": 6,
@@ -4253,12 +4244,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 1.1687956479121797
+            "acceleration": -0.3938166416744937
           },
           "calibration": {
             "samples": 6,
@@ -4424,24 +4415,24 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
+          "Long votes 0; Short votes 3; Neutral weight 6",
+          "1 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
+          "short_votes": 3,
+          "neutral_weight": 6,
+          "independent_support": 1,
           "conflicts": [
             "Risk Manager requests caution"
           ]
@@ -4449,12 +4440,12 @@
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "WIN",
       "name": "WINkLink",
       "narrative": "Oracle / Gaming",
-      "price": 3.4424559999024495e-05,
-      "signal": "HOLD",
+      "price": 3.415877290535718e-05,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
@@ -4463,10 +4454,10 @@
             "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 1.0,
-            "r4": -0.009584234431003757,
-            "r12": -1.47520369403783,
-            "r24": 2.0642043753893224
+            "spread": -4.0,
+            "r4": -0.5399416236382404,
+            "r12": -1.3771809531492152,
+            "r24": -2.2358995247199864
           },
           "calibration": {
             "samples": 9,
@@ -4476,14 +4467,15 @@
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
+          "direction": "SHORT",
+          "strength": 3,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Relative volume is high and accelerating",
+            "Participation agrees with 4H price direction"
           ],
           "evidence": {
-            "rvol": 0.010576926101494452,
-            "rvol_delta": -0.34721174957245354
+            "rvol": 2.1449200097853485,
+            "rvol_delta": 1.852616095735956
           },
           "calibration": {
             "samples": 6,
@@ -4499,7 +4491,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 0.48215033024827286
+            "acceleration": -0.08088130592183534
           },
           "calibration": {
             "samples": 6,
@@ -4631,14 +4623,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -4665,49 +4657,47 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 6",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 3; Neutral weight 4",
+          "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 6,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "short_votes": 3,
+          "neutral_weight": 4,
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "AR",
       "name": "Arweave",
       "narrative": "DePIN / Storage",
-      "price": 2.158301830291748,
-      "signal": "SELL WATCH",
+      "price": 2.266779661178589,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": -3.0,
-            "r4": 0.03897648006470078,
-            "r12": -4.182874208727949,
-            "r24": 3.77989601803721
+            "spread": 6.0,
+            "r4": -0.09635659632355464,
+            "r12": 4.83402097526584,
+            "r24": 0.6329647169350805
           },
           "calibration": {
             "samples": 9,
@@ -4723,8 +4713,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0021814566932210114,
-            "rvol_delta": -1.2212975434902114
+            "rvol": 0.5294811596146269,
+            "rvol_delta": 0.5294811596146269
           },
           "calibration": {
             "samples": 6,
@@ -4740,7 +4730,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 1.433267882974017
+            "acceleration": -1.707696921412168
           },
           "calibration": {
             "samples": 6,
@@ -4872,14 +4862,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -4915,41 +4905,39 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 1; Short votes 0; Neutral weight 7",
-          "1 independent analyst groups support LONG",
-          "Risk Manager requests caution"
+          "Long votes 3; Short votes 0; Neutral weight 6",
+          "2 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 1,
+          "long_votes": 3,
           "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "neutral_weight": 6,
+          "independent_support": 2,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "BEAM",
       "name": "Beam",
       "narrative": "Gaming",
-      "price": 0.007489179261028767,
-      "signal": "SELL",
+      "price": 0.007658384274691343,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "SHORT",
-          "strength": 2,
+          "direction": "LONG",
+          "strength": 3,
           "reasons": [
-            "Hourly signal is SELL",
-            "Bearish conditions materially exceed bullish conditions"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions",
+            "Positive 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -7.0,
-            "r4": 0.03737043041056598,
-            "r12": -1.5365738142187002,
-            "r24": -0.6436553500480224
+            "spread": 6.0,
+            "r4": 0.6239616775857826,
+            "r12": 2.670560587801374,
+            "r24": 0.6880364925107685
           },
           "calibration": {
             "samples": 9,
@@ -4960,13 +4948,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -0.1907992368030528
+            "rvol": 0.8983890954151177,
+            "rvol_delta": 0.8925966950444041
           },
           "calibration": {
             "samples": 6,
@@ -4977,12 +4965,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 0.5495617018167994
+            "acceleration": -0.2662251850146754
           },
           "calibration": {
             "samples": 6,
@@ -5114,14 +5102,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -5149,7 +5137,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "SHORT",
+        "direction": "LONG",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -5157,40 +5145,38 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
+          "Long votes 3; Short votes 0; Neutral weight 4",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 6,
+          "long_votes": 3,
+          "short_votes": 0,
+          "neutral_weight": 4,
           "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "SHIB",
       "name": "Shiba Inu",
       "narrative": "Meme",
-      "price": 5.389999842009274e-06,
-      "signal": "HOLD",
+      "price": 5.370000053517288e-06,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": 0.5596955568385464,
-            "r12": -1.8214991619892817,
-            "r24": 1.6981124466669328
+            "spread": -5.0,
+            "r4": -1.1049690905789777,
+            "r12": -0.7393721090761529,
+            "r24": -2.1857940244708773
           },
           "calibration": {
             "samples": 9,
@@ -5206,8 +5192,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.005320846956281459,
-            "rvol_delta": -0.03134316944310028
+            "rvol": 0.42201374294972793,
+            "rvol_delta": 0.20806659048967047
           },
           "calibration": {
             "samples": 6,
@@ -5217,13 +5203,13 @@
           }
         },
         "momentum": {
-          "direction": "NEUTRAL",
+          "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": 1.166861944168307
+            "acceleration": -0.8585117208869267
           },
           "calibration": {
             "samples": 6,
@@ -5355,14 +5341,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -5389,37 +5375,34 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 4; Neutral weight 4",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "short_votes": 4,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "ENJ",
       "name": "Enjin Coin",
       "narrative": "Gaming",
-      "price": 0.02715974487364292,
-      "signal": "HOLD",
+      "price": 0.027391618117690086,
+      "signal": "BUY WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
@@ -5428,10 +5411,10 @@
             "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": 1.0,
-            "r4": 0.16305639551736917,
-            "r12": -3.1454899010782245,
-            "r24": 3.2356076996823413
+            "spread": 3.0,
+            "r4": -2.8202409153204155,
+            "r12": 0.18012412289887259,
+            "r24": -2.318605496908799
           },
           "calibration": {
             "samples": 9,
@@ -5442,13 +5425,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.013809298937085638,
-            "rvol_delta": -0.018154861253590546
+            "rvol": 1.0438933871610574,
+            "rvol_delta": 0.28261759344335224
           },
           "calibration": {
             "samples": 6,
@@ -5464,7 +5447,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 1.2115530292101107
+            "acceleration": -2.8802822896200397
           },
           "calibration": {
             "samples": 6,
@@ -5596,14 +5579,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -5639,40 +5622,38 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 0; Neutral weight 7",
+          "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
-          "neutral_weight": 8,
+          "neutral_weight": 7,
           "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "IMX",
       "name": "Immutable X",
       "narrative": "Gaming / Layer 2",
-      "price": 0.1290699988603592,
+      "price": 0.13204999268054962,
       "signal": "BUY WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Bullish conditions materially exceed bearish conditions",
+            "Positive 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 4.0,
-            "r4": 0.13187931609106585,
-            "r12": -2.3011133178550414,
-            "r24": 8.855527479993341
+            "spread": 5.0,
+            "r4": 0.3571952747530416,
+            "r12": 3.5686236469161026,
+            "r24": -0.045421978868798174
           },
           "calibration": {
             "samples": 9,
@@ -5682,14 +5663,15 @@
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
+          "direction": "LONG",
           "strength": 2,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Relative volume is high and accelerating",
+            "Participation agrees with 4H price direction"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -2.62848642761417
+            "rvol": 1.7591703523674738,
+            "rvol_delta": 1.6255235447933796
           },
           "calibration": {
             "samples": 6,
@@ -5700,12 +5682,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 0.898917088709413
+            "acceleration": -0.8323459408856593
           },
           "calibration": {
             "samples": 6,
@@ -5801,14 +5783,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -5835,49 +5817,47 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 4; Short votes 0; Neutral weight 4",
+          "2 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 4,
           "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "VET",
       "name": "VeChain",
       "narrative": "Enterprise / RWA",
-      "price": 0.0056409998796880245,
-      "signal": "HOLD",
+      "price": 0.005607000086456537,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": 0.6063811790125051,
-            "r12": -1.570410366135222,
-            "r24": 3.9049502049501417
+            "spread": -7.0,
+            "r4": -0.5145491058658913,
+            "r12": -0.4615610358959299,
+            "r24": -2.163671448707094
           },
           "calibration": {
             "samples": 9,
@@ -5893,8 +5873,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.011599649769101383,
-            "rvol_delta": -0.4957921093644498
+            "rvol": 0.4031043757214684,
+            "rvol_delta": -0.381630480420301
           },
           "calibration": {
             "samples": 6,
@@ -5905,12 +5885,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 1.1298513010575792
+            "acceleration": -0.3606954272339147
           },
           "calibration": {
             "samples": 6,
@@ -6042,14 +6022,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -6076,49 +6056,47 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 2; Neutral weight 6",
+          "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "short_votes": 2,
+          "neutral_weight": 6,
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "SC",
       "name": "Siacoin",
       "narrative": "DePIN / Storage",
-      "price": 0.0006636424805037677,
-      "signal": "BUY WATCH",
+      "price": 0.000650740519631654,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
+            "Bearish conditions materially exceed bullish conditions",
             "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 3.0,
-            "r4": -0.09446138216280264,
-            "r12": -1.6237576228640527,
-            "r24": 3.3093860900601735
+            "spread": -7.0,
+            "r4": -0.9405811148870513,
+            "r12": -0.1849049855330409,
+            "r24": -3.536303108095651
           },
           "calibration": {
             "samples": 9,
@@ -6134,8 +6112,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": 0.0
+            "rvol": 0.015361337080031881,
+            "rvol_delta": 0.015361337080031881
           },
           "calibration": {
             "samples": 6,
@@ -6145,13 +6123,13 @@
           }
         },
         "momentum": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": 0.4467911587918816
+            "acceleration": -0.878946119709371
           },
           "calibration": {
             "samples": 6,
@@ -6318,7 +6296,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "LONG",
+        "direction": "SHORT",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -6326,27 +6304,29 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 1; Short votes 0; Neutral weight 6",
-          "1 independent analyst groups support LONG",
+          "Long votes 1; Short votes 4; Neutral weight 4",
+          "2 independent analyst groups support SHORT",
+          "Committee contains directional disagreement",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 1,
-          "short_votes": 0,
-          "neutral_weight": 6,
-          "independent_support": 1,
+          "short_votes": 4,
+          "neutral_weight": 4,
+          "independent_support": 2,
           "conflicts": [
+            "Committee contains directional disagreement",
             "Risk Manager requests caution"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "BTT",
       "name": "BitTorrent",
       "narrative": "DePIN / Storage",
-      "price": 2.9561269343503227e-07,
+      "price": 2.94981845172515e-07,
       "signal": "SELL WATCH",
       "reports": {
         "technical": {
@@ -6356,10 +6336,10 @@
             "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": -2.0,
-            "r4": 0.10247057351568944,
-            "r12": -0.33051799071586174,
-            "r24": 0.3559126442726157
+            "spread": -3.0,
+            "r4": -0.08211004228247942,
+            "r12": 0.0018499678038130796,
+            "r24": -0.5432162981563349
           },
           "calibration": {
             "samples": 9,
@@ -6370,13 +6350,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.00013435445137176803,
-            "rvol_delta": -1.4863377327658227
+            "rvol": 1.0562168253641124,
+            "rvol_delta": 1.0562168253641124
           },
           "calibration": {
             "samples": 6,
@@ -6392,7 +6372,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.21264323708764338
+            "acceleration": -0.08272669821708378
           },
           "calibration": {
             "samples": 6,
@@ -6524,14 +6504,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -6567,41 +6547,39 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 1; Short votes 0; Neutral weight 7",
-          "1 independent analyst groups support LONG",
-          "Risk Manager requests caution"
+          "Long votes 1; Short votes 0; Neutral weight 6",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
           "long_votes": 1,
           "short_votes": 0,
-          "neutral_weight": 7,
+          "neutral_weight": 6,
           "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "TLM",
       "name": "Alien Worlds",
       "narrative": "Gaming",
-      "price": 0.0014009351143613458,
+      "price": 0.0013916854513809085,
       "signal": "STRONG SELL",
       "reports": {
         "technical": {
           "direction": "SHORT",
-          "strength": 2,
+          "strength": 3,
           "reasons": [
             "Hourly signal is STRONG SELL",
-            "Bearish conditions materially exceed bullish conditions"
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -12.0,
-            "r4": 0.23316777926805088,
-            "r12": -2.7579025146829528,
-            "r24": -0.5371302317031756
+            "spread": -11.0,
+            "r4": -1.19184036875416,
+            "r12": -0.8691219728645838,
+            "r24": -3.3999426920112596
           },
           "calibration": {
             "samples": 9,
@@ -6617,8 +6595,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -0.15644632242058498
+            "rvol": 0.3362848884269421,
+            "rvol_delta": 0.3362848884269421
           },
           "calibration": {
             "samples": 6,
@@ -6628,13 +6606,13 @@
           }
         },
         "momentum": {
-          "direction": "NEUTRAL",
+          "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": 1.152468617495702
+            "acceleration": -0.9021330444659654
           },
           "calibration": {
             "samples": 6,
@@ -6809,15 +6787,15 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
-          "1 independent analyst groups support SHORT",
+          "Long votes 0; Short votes 5; Neutral weight 4",
+          "2 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 6,
-          "independent_support": 1,
+          "short_votes": 5,
+          "neutral_weight": 4,
+          "independent_support": 2,
           "conflicts": [
             "Risk Manager requests caution"
           ]
@@ -6825,24 +6803,24 @@
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "PYR",
       "name": "Vulcan Forged",
       "narrative": "Gaming",
-      "price": 0.042149998247623444,
-      "signal": "HOLD",
+      "price": 0.041930001229047775,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Technical structure is not decisive"
+            "Positive 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": 0.0,
-            "r12": 1.006462168799116,
-            "r24": 1.2247831655521235
+            "spread": -2.0,
+            "r4": 2.6186984951960923,
+            "r12": 0.9388556471552789,
+            "r24": 0.4792706751372
           },
           "calibration": {
             "samples": 9,
@@ -6853,13 +6831,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.05512872477536354,
-            "rvol_delta": -0.4764648011335475
+            "rvol": 0.7638628159601981,
+            "rvol_delta": 0.3470783272926009
           },
           "calibration": {
             "samples": 6,
@@ -6869,13 +6847,13 @@
           }
         },
         "momentum": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "Positive momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": -0.3354873895997053
+            "acceleration": 2.3057466128109994
           },
           "calibration": {
             "samples": 6,
@@ -7007,14 +6985,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -7041,50 +7019,46 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 2; Short votes 0; Neutral weight 5",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 2,
           "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "neutral_weight": 5,
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "PAAL",
       "name": "PAAL AI",
       "narrative": "AI",
-      "price": 0.006214741617441177,
-      "signal": "BUY",
+      "price": 0.006161398719996214,
+      "signal": "HOLD",
       "reports": {
         "technical": {
-          "direction": "LONG",
-          "strength": 2,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
-            "Hourly signal is BUY",
-            "Bullish conditions materially exceed bearish conditions"
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 6.0,
-            "r4": -0.050334099041715596,
-            "r12": 2.474126274682642,
-            "r24": 5.250898445848384
+            "spread": -1.0,
+            "r4": -0.6367910005031452,
+            "r12": -2.2529430120344474,
+            "r24": 1.5945616612010438
           },
           "calibration": {
             "samples": 9,
@@ -7094,14 +7068,15 @@
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
+          "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Relative volume is high and accelerating",
+            "Participation agrees with 4H price direction"
           ],
           "evidence": {
-            "rvol": 0.10346309791037722,
-            "rvol_delta": -0.8309511740787234
+            "rvol": 1.952054839946253,
+            "rvol_delta": 0.41643205829004626
           },
           "calibration": {
             "samples": 6,
@@ -7112,12 +7087,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -0.8750428572692629
+            "acceleration": 0.1141900035083373
           },
           "calibration": {
             "samples": 6,
@@ -7249,14 +7224,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -7284,7 +7259,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "LONG",
+        "direction": "SHORT",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -7292,28 +7267,28 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 3; Short votes 0; Neutral weight 6",
-          "2 independent analyst groups support LONG",
-          "Risk Manager requests caution"
+          "Long votes 1; Short votes 2; Neutral weight 4",
+          "1 independent analyst groups support SHORT",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 3,
-          "short_votes": 0,
-          "neutral_weight": 6,
-          "independent_support": 2,
+          "long_votes": 1,
+          "short_votes": 2,
+          "neutral_weight": 4,
+          "independent_support": 1,
           "conflicts": [
-            "Risk Manager requests caution"
+            "Committee contains directional disagreement"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "SKL",
       "name": "SKALE Network",
       "narrative": "Layer 2",
-      "price": 0.0038769999518990517,
-      "signal": "SELL WATCH",
+      "price": 0.003918999806046486,
+      "signal": "HOLD",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
@@ -7322,10 +7297,10 @@
             "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": -3.0,
-            "r4": 0.4143975327791649,
-            "r12": -4.105858878478408,
-            "r24": 4.108485576691634
+            "spread": -1.0,
+            "r4": -1.1601601123130356,
+            "r12": 0.332817879104752,
+            "r24": -3.0670298893976655
           },
           "calibration": {
             "samples": 9,
@@ -7341,8 +7316,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.02122428483469442,
-            "rvol_delta": -5.244807346587494
+            "rvol": 0.4007547921141382,
+            "rvol_delta": 0.2827388357118954
           },
           "calibration": {
             "samples": 6,
@@ -7358,7 +7333,7 @@
             "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 1.783017158938634
+            "acceleration": -1.271099405347953
           },
           "calibration": {
             "samples": 6,
@@ -7490,14 +7465,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -7534,39 +7509,38 @@
         },
         "reasons": [
           "Long votes 0; Short votes 1; Neutral weight 7",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
+          "1 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 1,
           "neutral_weight": 7,
           "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "AERO",
       "name": "Aerodrome Finance",
       "narrative": "DeFi / DEX",
-      "price": 0.47141000628471375,
-      "signal": "HOLD",
+      "price": 0.522599995136261,
+      "signal": "STRONG BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 3,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is STRONG BUY",
+            "Bullish conditions materially exceed bearish conditions",
+            "Positive 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": 0.29573425169615586,
-            "r12": -1.6584628838433702,
-            "r24": 5.3901229384144544
+            "spread": 11.0,
+            "r4": 1.0733907726642844,
+            "r12": 5.15090258760309,
+            "r24": 9.02035623646964
           },
           "calibration": {
             "samples": 9,
@@ -7576,14 +7550,15 @@
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
+          "direction": "LONG",
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Participation is above normal",
+            "Volume acceleration is not confirmed"
           ],
           "evidence": {
-            "rvol": 0.00023975429212928857,
-            "rvol_delta": -1.5338709237043593
+            "rvol": 3.013657093095456,
+            "rvol_delta": -0.9409440428747793
           },
           "calibration": {
             "samples": 6,
@@ -7594,12 +7569,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 0.8485552129772792
+            "acceleration": -0.6435767565367456
           },
           "calibration": {
             "samples": 6,
@@ -7695,14 +7670,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -7729,49 +7704,46 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 4; Short votes 0; Neutral weight 3",
+          "2 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 4,
           "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "neutral_weight": 3,
+          "independent_support": 2,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "LUNC",
       "name": "Terra Luna Classic",
       "narrative": "Legacy Layer 1",
-      "price": 5.460701504489407e-05,
-      "signal": "SELL WATCH",
+      "price": 5.485069050337188e-05,
+      "signal": "HOLD",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Positive 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -3.0,
-            "r4": -0.037207353377088914,
-            "r12": -2.1560365608023435,
-            "r24": 2.5249662035524256
+            "spread": 3.0,
+            "r4": 0.36719275216359204,
+            "r12": 1.1370676639478106,
+            "r24": -1.7194228284690305
           },
           "calibration": {
             "samples": 9,
@@ -7781,14 +7753,15 @@
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
+          "direction": "LONG",
+          "strength": 3,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Relative volume is high and accelerating",
+            "Participation agrees with 4H price direction"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -0.0842776236424441
+            "rvol": 3.3154473571907777,
+            "rvol_delta": 3.276113790276366
           },
           "calibration": {
             "samples": 6,
@@ -7804,7 +7777,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 0.6814715002236923
+            "acceleration": -0.011829802485678165
           },
           "calibration": {
             "samples": 6,
@@ -7936,14 +7909,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -7971,7 +7944,7 @@
       },
       "decision": {
         "action": "WATCH",
-        "direction": "SHORT",
+        "direction": "LONG",
         "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
@@ -7979,40 +7952,41 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 1; Neutral weight 6",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
+          "Long votes 3; Short votes 1; Neutral weight 4",
+          "1 independent analyst groups support LONG",
+          "Committee contains directional disagreement"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 3,
           "short_votes": 1,
-          "neutral_weight": 6,
+          "neutral_weight": 4,
           "independent_support": 1,
           "conflicts": [
-            "Risk Manager requests caution"
+            "Committee contains directional disagreement"
           ]
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "GALA",
       "name": "Gala",
       "narrative": "Gaming",
-      "price": 0.0019348011119291186,
+      "price": 0.0018846651073545218,
       "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Bearish conditions materially exceed bullish conditions"
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
             "spread": -6.0,
-            "r4": 0.19687518519597713,
-            "r12": -1.9070554873461654,
-            "r24": 1.1306434432750923
+            "r4": -0.8623226244119153,
+            "r12": -0.878256188607418,
+            "r24": -4.44891277929208
           },
           "calibration": {
             "samples": 9,
@@ -8028,8 +8002,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.00021981394957952335,
-            "rvol_delta": 0.00021981394957952335
+            "rvol": 0.35897370093075476,
+            "rvol_delta": 0.35897370093075476
           },
           "calibration": {
             "samples": 6,
@@ -8039,13 +8013,13 @@
           }
         },
         "momentum": {
-          "direction": "NEUTRAL",
+          "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": 0.8325603476446989
+            "acceleration": -0.569570561542776
           },
           "calibration": {
             "samples": 6,
@@ -8177,14 +8151,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -8211,49 +8185,46 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 7",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 4; Neutral weight 4",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 7,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "short_votes": 4,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "UOS",
       "name": "Ultra",
       "narrative": "Gaming",
-      "price": 0.002782529918476939,
+      "price": 0.002795623615384102,
       "signal": "HOLD",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Positive 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 1.0,
-            "r4": -0.00421708658054909,
-            "r12": -2.138922748799099,
-            "r24": 3.2505828263049708
+            "spread": -1.0,
+            "r4": 0.6536178925205194,
+            "r12": 0.3710274421542925,
+            "r24": -1.6784197813280333
           },
           "calibration": {
             "samples": 9,
@@ -8269,8 +8240,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -0.08249321349435497
+            "rvol": 0.027957030427206403,
+            "rvol_delta": -0.20777802489547778
           },
           "calibration": {
             "samples": 6,
@@ -8286,7 +8257,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": 0.7087571630191506
+            "acceleration": 0.5299420784690886
           },
           "calibration": {
             "samples": 6,
@@ -8477,24 +8448,24 @@
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "UFO",
       "name": "UFO Gaming",
       "narrative": "Gaming",
-      "price": 3.525642500748319e-08,
-      "signal": "SELL WATCH",
+      "price": 3.5638079974607855e-08,
+      "signal": "HOLD",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Technical structure is not decisive"
           ],
           "evidence": {
-            "spread": -3.0,
-            "r4": -0.29099717358380683,
-            "r12": -4.434764453801865,
-            "r24": 2.0245390949061193
+            "spread": 1.0,
+            "r4": -1.9892803336100995,
+            "r12": 0.22717848660136486,
+            "r24": -3.4002594856179513
           },
           "calibration": {
             "samples": 9,
@@ -8510,8 +8481,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.04590370812370285,
-            "rvol_delta": -0.4634135657008211
+            "rvol": 0.367246311418655,
+            "rvol_delta": 0.32095180493265907
           },
           "calibration": {
             "samples": 6,
@@ -8522,12 +8493,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 1.1872576443501481
+            "acceleration": -2.0650064958105543
           },
           "calibration": {
             "samples": 6,
@@ -8623,14 +8594,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -8666,41 +8637,38 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 6",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 0; Neutral weight 7",
+          "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
-          "neutral_weight": 6,
+          "neutral_weight": 7,
           "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "DENT",
       "name": "Dent",
       "narrative": "Telecom / Payments",
-      "price": 8.397009514737874e-05,
-      "signal": "HOLD",
+      "price": 8.222709584515542e-05,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Move is extended; entry timing risk elevated",
-            "Negative 4H and 12H structure"
+            "Negative 4H and 12H structure",
+            "Move is extended; short timing risk elevated"
           ],
           "evidence": {
-            "spread": 1.0,
-            "r4": -16.395656280466664,
-            "r12": -34.57959850397842,
-            "r24": 59.41449292859
+            "spread": -3.0,
+            "r4": -13.237214007976872,
+            "r12": -22.43834678163783,
+            "r24": -35.93755473778525
           },
           "calibration": {
             "samples": 9,
@@ -8711,13 +8679,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -8.635920288531999
+            "rvol": 0.8818337823637539,
+            "rvol_delta": -0.16957238175938705
           },
           "calibration": {
             "samples": 6,
@@ -8728,12 +8696,13 @@
         },
         "momentum": {
           "direction": "SHORT",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Negative momentum is accelerating"
+            "Negative momentum is accelerating",
+            "Downside is extended and short chasing risk is elevated"
           ],
           "evidence": {
-            "acceleration": -4.869123445807192
+            "acceleration": -5.757765080764263
           },
           "calibration": {
             "samples": 6,
@@ -8908,15 +8877,15 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 5",
-          "1 independent analyst groups support SHORT",
+          "Long votes 0; Short votes 3; Neutral weight 3",
+          "2 independent analyst groups support SHORT",
           "Risk Manager requests caution"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 5,
-          "independent_support": 1,
+          "short_votes": 3,
+          "neutral_weight": 3,
+          "independent_support": 2,
           "conflicts": [
             "Risk Manager requests caution"
           ]
@@ -8924,24 +8893,25 @@
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "MEW",
       "name": "Cat in a Dogs World",
       "narrative": "Meme",
-      "price": 0.0004207348825436123,
-      "signal": "HOLD",
+      "price": 0.000419638078050128,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
+            "Bearish conditions materially exceed bullish conditions",
             "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 0.0,
-            "r4": -1.4474136034724805,
-            "r12": -2.6946131408394414,
-            "r24": 4.548844111272077
+            "spread": -5.0,
+            "r4": -2.0798632297656994,
+            "r12": -1.1042482796035036,
+            "r24": -2.9482764095043357
           },
           "calibration": {
             "samples": 9,
@@ -8957,8 +8927,8 @@
             "Participation is too weak for a high-quality entry"
           ],
           "evidence": {
-            "rvol": 0.601345998265378,
-            "rvol_delta": -0.10155164211679668
+            "rvol": 0.7489346482124295,
+            "rvol_delta": 0.21425860923691453
           },
           "calibration": {
             "samples": 6,
@@ -8974,7 +8944,7 @@
             "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": -0.5492092231926667
+            "acceleration": -1.711780469897865
           },
           "calibration": {
             "samples": 6,
@@ -9113,37 +9083,38 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 2; Neutral weight 6",
-          "1 independent analyst groups support SHORT"
+          "Long votes 0; Short votes 4; Neutral weight 5",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 2,
-          "neutral_weight": 6,
-          "independent_support": 1,
+          "short_votes": 4,
+          "neutral_weight": 5,
+          "independent_support": 2,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "DOGE",
       "name": "Dogecoin",
       "narrative": "Meme",
-      "price": 0.09160000085830688,
-      "signal": "HOLD",
+      "price": 0.088639996945858,
+      "signal": "SELL WATCH",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "SHORT",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Bearish conditions materially exceed bullish conditions",
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -2.0,
-            "r4": 0.46063187593499144,
-            "r12": -0.855070846238859,
-            "r24": 1.4733612230078519
+            "spread": -5.0,
+            "r4": -2.84963464882404,
+            "r12": -2.977239194619663,
+            "r24": -4.058884988648737
           },
           "calibration": {
             "samples": 9,
@@ -9154,13 +9125,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": 0.0
+            "rvol": 0.8605365058177911,
+            "rvol_delta": 0.8605365058177911
           },
           "calibration": {
             "samples": 6,
@@ -9170,13 +9141,13 @@
           }
         },
         "momentum": {
-          "direction": "NEUTRAL",
+          "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": 0.7456554913479445
+            "acceleration": -1.8572215839508188
           },
           "calibration": {
             "samples": 6,
@@ -9258,13 +9229,15 @@
         },
         "external_attention": {
           "direction": "NEUTRAL",
-          "strength": 0,
+          "strength": 1,
           "reasons": [
-            "External attention score 0/100 from 0 recent event(s)",
-            "No meaningful external attention acceleration"
+            "External attention score 25/100 from 0 recent event(s)",
+            "Attention is elevated but direction is not sufficiently confirmed"
           ],
           "evidence": {
-            "attention_score": 0.0
+            "attention_score": 25.0,
+            "positive": 0,
+            "negative": 0
           },
           "calibration": {
             "samples": 0,
@@ -9308,14 +9281,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -9342,49 +9315,46 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "SHORT",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 8",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 4; Neutral weight 5",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 0,
-          "neutral_weight": 8,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "short_votes": 4,
+          "neutral_weight": 5,
+          "independent_support": 2,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "GRT",
       "name": "The Graph",
       "narrative": "Data / AI",
-      "price": 0.017178469865357756,
+      "price": 0.01740528025583403,
       "signal": "BUY WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Negative 4H and 12H structure"
+            "Technical structure is not decisive"
           ],
           "evidence": {
             "spread": 4.0,
-            "r4": -0.11633611716689307,
-            "r12": -0.7999746380768058,
-            "r24": 10.238520675775531
+            "r4": -2.1417488107915883,
+            "r12": 1.7738986809616275,
+            "r24": 0.5097809259485331
           },
           "calibration": {
             "samples": 9,
@@ -9400,8 +9370,8 @@
             "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.9621281999129991,
-            "rvol_delta": 0.04993536478165017
+            "rvol": 0.9905834301814955,
+            "rvol_delta": 0.03145512330381084
           },
           "calibration": {
             "samples": 6,
@@ -9412,12 +9382,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.1503220955253755
+            "acceleration": -2.733048371112131
           },
           "calibration": {
             "samples": 6,
@@ -9556,40 +9526,39 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 6",
+          "Long votes 0; Short votes 0; Neutral weight 7",
           "0 independent analyst groups support NEUTRAL"
         ],
         "agreement": {
           "long_votes": 0,
           "short_votes": 0,
-          "neutral_weight": 6,
+          "neutral_weight": 7,
           "independent_support": 0,
           "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "VRA",
       "name": "Verasity",
       "narrative": "Gaming / Advertising",
-      "price": 2.3904480258352123e-05,
+      "price": 2.1324844055925496e-05,
       "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "LONG",
-          "strength": 3,
+          "direction": "NEUTRAL",
+          "strength": 1,
           "reasons": [
             "Hourly signal is BUY",
             "Bullish conditions materially exceed bearish conditions",
-            "Positive 4H and 12H structure",
-            "Move is extended; entry timing risk elevated"
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": 9.0,
-            "r4": 0.3061783780239802,
-            "r12": 24.016830605300843,
-            "r24": 30.059231973587597
+            "spread": 5.0,
+            "r4": -0.48390288225513833,
+            "r12": -6.1997822748422475,
+            "r24": 10.633636221567432
           },
           "calibration": {
             "samples": 9,
@@ -9599,14 +9568,14 @@
           }
         },
         "volume_liquidity": {
-          "direction": "NEUTRAL",
-          "strength": 2,
+          "direction": "SHORT",
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Participation is above normal"
           ],
           "evidence": {
-            "rvol": 0.048953070911675646,
-            "rvol_delta": -0.6479201233656225
+            "rvol": 1.17251735575538,
+            "rvol_delta": 0.7181224483778681
           },
           "calibration": {
             "samples": 6,
@@ -9622,7 +9591,7 @@
             "Momentum is not accelerating clearly"
           ],
           "evidence": {
-            "acceleration": -7.699431823742967
+            "acceleration": 1.582691209358944
           },
           "calibration": {
             "samples": 6,
@@ -9754,14 +9723,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
-          "strength": 2,
+          "direction": "VETO",
+          "strength": 3,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is INVALIDATION RISK"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "INVALIDATION RISK"
           },
           "calibration": {
             "samples": 0,
@@ -9788,49 +9757,40 @@
         }
       },
       "decision": {
-        "action": "WATCH",
-        "direction": "LONG",
-        "quality": "BUILDING",
+        "action": "NO TRADE",
+        "direction": "NEUTRAL",
+        "quality": "REJECTED",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 3; Short votes 0; Neutral weight 6",
-          "1 independent analyst groups support LONG",
-          "Risk Manager requests caution"
+          "Risk Manager vetoed the setup"
         ],
-        "agreement": {
-          "long_votes": 3,
-          "short_votes": 0,
-          "neutral_weight": 6,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
-        }
+        "agreement": {}
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "VTHO",
       "name": "VeThor Token",
       "narrative": "Enterprise",
-      "price": 0.00036700000055134296,
-      "signal": "HOLD",
+      "price": 0.00037399999564513564,
+      "signal": "BUY",
       "reports": {
         "technical": {
-          "direction": "NEUTRAL",
-          "strength": 1,
+          "direction": "LONG",
+          "strength": 2,
           "reasons": [
-            "Technical structure is not decisive"
+            "Hourly signal is BUY",
+            "Bullish conditions materially exceed bearish conditions"
           ],
           "evidence": {
-            "spread": 1.0,
-            "r4": 0.0,
-            "r12": -1.078167475363534,
-            "r24": 3.672319798160828
+            "spread": 8.0,
+            "r4": -1.3192635640550399,
+            "r12": 1.9073556085222432,
+            "r24": 0.8086236453481055
           },
           "calibration": {
             "samples": 9,
@@ -9841,13 +9801,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.02647021465769084,
-            "rvol_delta": 0.02647021465769084
+            "rvol": 1.0764224205728499,
+            "rvol_delta": 0.4475104583806836
           },
           "calibration": {
             "samples": 6,
@@ -9858,12 +9818,12 @@
         },
         "momentum": {
           "direction": "NEUTRAL",
-          "strength": 1,
+          "strength": 2,
           "reasons": [
-            "Momentum is not accelerating clearly"
+            "4H and 12H momentum disagree"
           ],
           "evidence": {
-            "acceleration": 0.3593891584545113
+            "acceleration": -1.9550487668957874
           },
           "calibration": {
             "samples": 6,
@@ -9995,14 +9955,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -10029,49 +9989,46 @@
         }
       },
       "decision": {
-        "action": "NO TRADE",
-        "direction": "NEUTRAL",
-        "quality": "NO EDGE",
+        "action": "WATCH",
+        "direction": "LONG",
+        "quality": "BUILDING",
         "book_permissions": {
           "CORE": false,
           "SWING": false,
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 0; Neutral weight 6",
-          "0 independent analyst groups support NEUTRAL",
-          "Risk Manager requests caution"
+          "Long votes 2; Short votes 0; Neutral weight 5",
+          "1 independent analyst groups support LONG"
         ],
         "agreement": {
-          "long_votes": 0,
+          "long_votes": 2,
           "short_votes": 0,
-          "neutral_weight": 6,
-          "independent_support": 0,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "neutral_weight": 5,
+          "independent_support": 1,
+          "conflicts": []
         }
       }
     },
     {
-      "recorded_at": "2026-08-24T17:17:00.483484+00:00",
+      "recorded_at": "2026-08-24T17:46:49.071398+00:00",
       "symbol": "XTZ",
       "name": "Tezos",
       "narrative": "Layer 1",
-      "price": 0.22849999368190765,
-      "signal": "HOLD",
+      "price": 0.2295999974012375,
+      "signal": "BUY WATCH",
       "reports": {
         "technical": {
           "direction": "NEUTRAL",
           "strength": 1,
           "reasons": [
-            "Technical structure is not decisive"
+            "Negative 4H and 12H structure"
           ],
           "evidence": {
-            "spread": -1.0,
-            "r4": 0.2632712854818031,
-            "r12": -2.6001701374749664,
-            "r24": 1.4653624753819816
+            "spread": 2.0,
+            "r4": -1.3745744720073283,
+            "r12": -0.043535782832537784,
+            "r24": -2.1312853319024105
           },
           "calibration": {
             "samples": 9,
@@ -10082,13 +10039,13 @@
         },
         "volume_liquidity": {
           "direction": "NEUTRAL",
-          "strength": 2,
+          "strength": 1,
           "reasons": [
-            "Participation is too weak for a high-quality entry"
+            "Volume is ordinary"
           ],
           "evidence": {
-            "rvol": 0.0,
-            "rvol_delta": -0.3525127547516527
+            "rvol": 0.7816778337926623,
+            "rvol_delta": 0.1743505027224449
           },
           "calibration": {
             "samples": 6,
@@ -10098,13 +10055,13 @@
           }
         },
         "momentum": {
-          "direction": "NEUTRAL",
+          "direction": "SHORT",
           "strength": 2,
           "reasons": [
-            "4H and 12H momentum disagree"
+            "Negative momentum is accelerating"
           ],
           "evidence": {
-            "acceleration": 1.129994664640125
+            "acceleration": -1.3600625443964824
           },
           "calibration": {
             "samples": 6,
@@ -10236,14 +10193,14 @@
           }
         },
         "risk_manager": {
-          "direction": "CAUTION",
+          "direction": "APPROVE",
           "strength": 2,
           "reasons": [
-            "Risk Guardian state is CAUTION"
+            "Risk Guardian state is NORMAL"
           ],
           "evidence": {
             "existing_exposure": 0.0,
-            "risk_state": "CAUTION"
+            "risk_state": "NORMAL"
           },
           "calibration": {
             "samples": 0,
@@ -10279,33 +10236,30 @@
           "SCALP": false
         },
         "reasons": [
-          "Long votes 0; Short votes 1; Neutral weight 7",
-          "1 independent analyst groups support SHORT",
-          "Risk Manager requests caution"
+          "Long votes 0; Short votes 3; Neutral weight 4",
+          "2 independent analyst groups support SHORT"
         ],
         "agreement": {
           "long_votes": 0,
-          "short_votes": 1,
-          "neutral_weight": 7,
-          "independent_support": 1,
-          "conflicts": [
-            "Risk Manager requests caution"
-          ]
+          "short_votes": 3,
+          "neutral_weight": 4,
+          "independent_support": 2,
+          "conflicts": []
         }
       }
     }
   ],
   "input_receipts": {
-    "external_attention_events": 14,
-    "external_attention_assets": 2,
-    "external_attention_updated_at": "2026-08-24T04:07:55.136799+00:00"
+    "external_attention_events": 17,
+    "external_attention_assets": 14,
+    "external_attention_updated_at": "2026-08-24T17:46:44.751106+00:00"
   },
   "health": {
     "assets_checked": 44,
     "qualified_core": 0,
-    "qualified_swing": 0,
-    "qualified_scalp": 0,
-    "no_trade": 25,
-    "watch": 19
+    "qualified_swing": 1,
+    "qualified_scalp": 1,
+    "no_trade": 9,
+    "watch": 34
   }
 }
