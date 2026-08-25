@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-08-24T17:46:45.624307+00:00",
+  "updated_at": "2026-08-25T13:11:01.261780+00:00",
   "summary": {
     "strategies": 4,
-    "flagged_trades": 2,
-    "strategies_quarantined": 2
+    "flagged_trades": 3,
+    "strategies_quarantined": 3
   },
   "strategies": [
     {
@@ -36,11 +36,11 @@
     {
       "strategy_id": "btc_confirmed_challenger",
       "name": "BTC Confirmation Challenger",
-      "closed_trades": 28,
-      "raw_average_return_pct": -7.085660242198374,
-      "audited_average_return_pct": -7.085660242198374,
-      "flagged_trades": 0,
-      "evidence_status": "CLEAN"
+      "closed_trades": 30,
+      "raw_average_return_pct": -2.664446433496749,
+      "audited_average_return_pct": -6.820617937892257,
+      "flagged_trades": 1,
+      "evidence_status": "QUARANTINED / REVIEW"
     }
   ],
   "flagged_trades": [
@@ -66,6 +66,17 @@
       "reasons": [
         "Return magnitude >100%: inspect leverage/gap/stop behaviour",
         "Loss exceeded allocated capital in non-leveraged Strategy Lab simulation"
+      ]
+    },
+    {
+      "strategy_id": "btc_confirmed_challenger",
+      "symbol": "VRA",
+      "position_id": "btc_confirmed_challenger_VRA_BUY_20260813_0400000000",
+      "realised_return": 117.86452719397295,
+      "realised_pnl": 11786.452719397295,
+      "allocated_cash": 10000.0,
+      "reasons": [
+        "Return magnitude >100%: inspect leverage/gap/stop behaviour"
       ]
     }
   ],
