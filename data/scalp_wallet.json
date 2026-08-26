@@ -3,13 +3,49 @@
   "name": "Profit-Driven Scalp Wallet",
   "currency": "USD",
   "starting_cash": 25000.0,
-  "cash": 25093.618842168235,
-  "equity": 25093.618842168235,
+  "cash": 25031.118842168235,
+  "equity": 25093.431342168235,
   "previous_equity": 25093.618842168235,
-  "equity_change_this_run": 0.0,
+  "equity_change_this_run": -0.1875,
   "realised_pnl": 93.61884216824645,
-  "unrealised_pnl": 0,
-  "open_positions": [],
+  "unrealised_pnl": -0.18750000000000003,
+  "open_positions": [
+    {
+      "position_id": "SCALP_BEAM_2026-08-26T010000+0000",
+      "symbol": "BEAM",
+      "name": "Beam",
+      "narrative": "Gaming",
+      "strategy": "PROFIT_SCALP_V1",
+      "signal": "EARLY BUY",
+      "direction": "LONG",
+      "entry_time": "2026-08-26T01:09:37.282446+00:00",
+      "entry_price": 0.00818723001424223,
+      "market_entry_price": 0.008183138445019722,
+      "current_price": 0.008183138445019722,
+      "allocated_cash": 62.5,
+      "entry_fee": 0.0625,
+      "units": 7626.205675348783,
+      "status": "OPEN",
+      "unrealised_return": -0.30000000000000004,
+      "unrealised_pnl": -0.18750000000000003,
+      "maximum_favourable_excursion_pct": 0.0,
+      "maximum_adverse_excursion_pct": -0.30000000000000004,
+      "minutes_open": 0.0,
+      "profit_objective": {
+        "side": "LONG",
+        "estimated_net_move_pct": 3.7,
+        "estimated_reward_risk": 2.96,
+        "eligible": true,
+        "reasons": []
+      },
+      "entry_evidence": {
+        "rvol": 8.165018366770274,
+        "rvol_delta": 8.121872299354544,
+        "rsi": 75.16915045944643,
+        "return_1h": 10.539421676315786
+      }
+    }
+  ],
   "closed_positions": [
     {
       "position_id": "SCALP_OM_2026-03-02T024500+0000",
@@ -16204,6 +16240,38 @@
       "reason": "PARTICIPATION TOO LOW | EXPECTED NET MOVE TOO SMALL | REWARD/RISK BELOW MINIMUM",
       "estimated_net_move_pct": 0.5399999999999999,
       "estimated_reward_risk": 0.43199999999999994
+    },
+    {
+      "recorded_at": "2026-08-26T01:09:37.282446+00:00",
+      "symbol": "OM",
+      "signal": "EARLY SELL",
+      "reason": "PARTICIPATION TOO LOW",
+      "estimated_net_move_pct": 3.7,
+      "estimated_reward_risk": 2.96
+    },
+    {
+      "recorded_at": "2026-08-26T01:09:37.282446+00:00",
+      "symbol": "AERO",
+      "signal": "EARLY BUY",
+      "reason": "VOLUME NOT ACCELERATING | EXPECTED NET MOVE TOO SMALL | REWARD/RISK BELOW MINIMUM",
+      "estimated_net_move_pct": 0.5432481842303852,
+      "estimated_reward_risk": 0.4345985473843082
+    },
+    {
+      "recorded_at": "2026-08-26T01:09:37.282446+00:00",
+      "symbol": "VET",
+      "signal": "EARLY BUY",
+      "reason": "EXPECTED NET MOVE TOO SMALL | REWARD/RISK BELOW MINIMUM",
+      "estimated_net_move_pct": 0.5399999999999999,
+      "estimated_reward_risk": 0.43199999999999994
+    },
+    {
+      "recorded_at": "2026-08-26T01:09:37.282446+00:00",
+      "symbol": "UOS",
+      "signal": "EARLY SELL",
+      "reason": "PARTICIPATION TOO LOW | VOLUME NOT ACCELERATING | EXPECTED NET MOVE TOO SMALL | REWARD/RISK BELOW MINIMUM",
+      "estimated_net_move_pct": 0.5399999999999999,
+      "estimated_reward_risk": 0.43199999999999994
     }
   ],
   "equity_history": [
@@ -18334,16 +18402,24 @@
       "realised_pnl": 93.61884216824645,
       "unrealised_pnl": 0,
       "open_positions": 0
+    },
+    {
+      "recorded_at": "2026-08-26T01:09:37.282446+00:00",
+      "equity": 25093.431342168235,
+      "cash": 25031.118842168235,
+      "realised_pnl": 93.61884216824645,
+      "unrealised_pnl": -0.18750000000000003,
+      "open_positions": 1
     }
   ],
   "activity_journal": [],
   "session": {
-    "date": "2026-08-25",
-    "starting_equity": 25099.371861774333,
-    "realised_pnl": -6.101677890540716,
-    "consecutive_losses": 3,
-    "new_entries_frozen": true,
-    "freeze_reason": "CONSECUTIVE LOSS PAUSE"
+    "date": "2026-08-26",
+    "starting_equity": 25093.618842168235,
+    "realised_pnl": 0.0,
+    "consecutive_losses": 0,
+    "new_entries_frozen": false,
+    "freeze_reason": null
   },
   "rules": {
     "base_position_pct": 0.25,
@@ -18361,11 +18437,11 @@
     "wallet_drawdown_freeze_pct": 3.0,
     "consecutive_loss_pause": 3
   },
-  "updated_at": "2026-08-25T23:49:47.704425+00:00",
+  "updated_at": "2026-08-26T01:09:37.282446+00:00",
   "activity": {
     "retained": 0,
     "closed": 0,
-    "opened": 0,
-    "rejected": 0
+    "opened": 1,
+    "rejected": 4
   }
 }
