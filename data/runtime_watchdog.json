@@ -1,36 +1,36 @@
 {
-  "updated_at": "2026-08-25T13:11:17.869206+00:00",
+  "updated_at": "2026-09-02T14:29:34.023307+00:00",
   "overall": "FAIL",
   "checks": [
     {
       "component": "5M",
       "source": "microstructure_latest.json",
-      "last_output": "2026-08-25T12:59:56.547961+00:00",
-      "age_minutes": 11.35518975,
+      "last_output": "2026-09-02T13:33:55.840963+00:00",
+      "age_minutes": 55.63618136666666,
       "limit_minutes": 10,
       "status": "STALE"
     },
     {
       "component": "15M",
       "source": "observer_latest.json",
-      "last_output": "2026-08-25T12:42:48.239985+00:00",
-      "age_minutes": 28.493668749999998,
+      "last_output": "2026-09-02T10:38:33.920697+00:00",
+      "age_minutes": 231.0015307,
       "limit_minutes": 30,
-      "status": "PASS"
+      "status": "STALE"
     },
     {
       "component": "Portfolio",
       "source": "portfolio_manager.json",
-      "last_output": "2026-08-25T13:11:09.236356+00:00",
-      "age_minutes": 0.14373101666666666,
+      "last_output": "2026-09-02T14:29:23.714469+00:00",
+      "age_minutes": 0.17163678333333332,
       "limit_minutes": 35,
       "status": "PASS"
     },
     {
       "component": "Trade Desk",
       "source": "active_trade_casefiles.json",
-      "last_output": "2026-08-25T13:11:09.407689+00:00",
-      "age_minutes": 0.14087651666666667,
+      "last_output": "2026-09-02T14:29:23.888433+00:00",
+      "age_minutes": 0.16873853333333333,
       "limit_minutes": 35,
       "status": "PASS"
     }
@@ -41,7 +41,8 @@
     "status": "PASS"
   },
   "alerts": [
-    "5M stale"
+    "5M stale",
+    "15M stale"
   ],
   "rule": "Observation and stop protection have priority. Learning is quarantined when critical observation continuity is not proven."
 }
